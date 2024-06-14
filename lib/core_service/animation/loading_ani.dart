@@ -65,6 +65,8 @@ class _LoadingBar extends State<LoadingBar> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Column(
       children: [
         SizedBox(
@@ -76,15 +78,19 @@ class _LoadingBar extends State<LoadingBar> with TickerProviderStateMixin {
               children: [
                 CustomPaint(
                   painter: LoadingBarPainter(animationValue: _animation.value),
-                  child: const SizedBox(width: 360, height: 15),
+                  child: const SizedBox(width: double.infinity, height: 15),
                 ),
                 CustomPaint(
                   painter: LoadingBarPainter(animationValue: _animation2.value),
-                  child: const SizedBox(width: 360, height: 15),
+                  child: const SizedBox(width: double.infinity, height: 15),
                 ),
-                CustomPaint(
-                  painter: LoadingBarPainter(animationValue: _animation3.value),
-                  child: const SizedBox(width: 280, height: 15),
+                Padding(
+                  padding: EdgeInsets.only(right: screenWidth * 0.07),
+                  child: CustomPaint(
+                    painter:
+                        LoadingBarPainter(animationValue: _animation3.value),
+                    child: const SizedBox(width: double.infinity, height: 15),
+                  ),
                 ),
               ],
             ),

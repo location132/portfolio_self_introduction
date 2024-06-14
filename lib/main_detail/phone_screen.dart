@@ -11,13 +11,14 @@ class PhoneScreen extends StatefulWidget {
 }
 
 class _PhoneScreenState extends State<PhoneScreen> {
-  double _xOffset = 0.0;
   bool _isStartScreen = false;
   double _opacity = 0.0;
   double _opacityAni = 1.0;
   final String _myName = 'FLUTTER     이정원';
   String _displayedText = "";
   final int _delayMilliseconds = 100;
+  double cornerRadius = 67.4333;
+  double cornerRadius1 = 60.4333;
 
   void _animateText() async {
     for (int i = 0; i < _myName.length + 1; i++) {
@@ -33,12 +34,9 @@ class _PhoneScreenState extends State<PhoneScreen> {
   @override
   Widget build(BuildContext context) {
     final screenChange = Provider.of<ScreenChange>(context);
+    double screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
 
-    if (screenChange.isFirstScreen) {
-      setState(() {
-        _xOffset = 280;
-      });
-    }
     if (screenChange.isStartSimulator) {
       if (!_isStartScreen) {
         setState(() {
@@ -63,190 +61,202 @@ class _PhoneScreenState extends State<PhoneScreen> {
       }
     }
 
-    return Column(
+    return Stack(
       children: [
-        AnimatedContainer(
-          duration: const Duration(seconds: 1), // 1초 동안 애니메이션 진행
-          curve: Curves.easeOut, // 애니메이션 곡선을 지정
-          transform: Matrix4.translationValues(_xOffset, 0, 0),
-          child: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 15, top: 20),
-                child: Image.asset(
-                  'assets/Images/ipone_15pro.png',
-                  scale: 2,
-                ),
+        Column(
+          children: [
+            Container(
+              height: screenHeight * 0.8,
+              width: screenHeight * 0.37,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius:
+                    BorderRadius.all(Radius.circular(screenHeight * 0.054)),
               ),
-              //시뮬레이터 크기
-              Padding(
-                padding: const EdgeInsets.only(top: 40, left: 35),
+              child: Padding(
+                padding: EdgeInsets.all(screenHeight * 0.009),
                 child: SizedBox(
-                  height: 923,
-                  width: 430,
-                  child: _isStartScreen
-                      ? AnimatedOpacity(
-                          opacity: _opacity,
-                          duration: const Duration(milliseconds: 1500),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage('assets/Images/bg.png'),
-                                fit: BoxFit.cover,
-                              ),
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(59),
-                                topRight: Radius.circular(59),
-                                bottomLeft: Radius.circular(59),
-                                bottomRight: Radius.circular(59),
-                              ),
-                            ),
-                            child: Stack(
-                              children: [
-                                AnimatedOpacity(
-                                  opacity: _opacityAni,
-                                  duration: const Duration(seconds: 1),
-                                  child: const Padding(
-                                    padding:
-                                        EdgeInsets.only(top: 400, left: 380),
-                                    child: RiveAniwrite(),
+                  height: screenHeight * 0.77,
+                  width: screenHeight * 0.356,
+                  child: AnimatedOpacity(
+                    opacity: 1, //_opacity,
+                    duration: const Duration(milliseconds: 1500),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: const DecorationImage(
+                          image: AssetImage('assets/Images/bg.png'),
+                          fit: BoxFit.cover,
+                        ),
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(screenHeight * 0.0483)),
+                      ),
+                      child: Stack(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(top: screenHeight * 0.017),
+                                child: Container(
+                                  height: screenHeight * 0.03,
+                                  width: screenHeight * 0.15,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
                                 ),
-                                Column(
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              SizedBox(height: screenHeight * 0.27),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 15),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 15),
-                                      child: SizedBox(
-                                        height: 30,
-                                        width: 120,
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Colors.black,
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 310),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 130),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                    const Spacer(),
+                                    RichText(
+                                      text: TextSpan(
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displaySmall,
                                         children: [
-                                          RichText(
-                                            text: TextSpan(
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .displaySmall,
-                                              children: const [
-                                                TextSpan(
-                                                  text: 'self',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                TextSpan(
-                                                  text: '-introduction',
-                                                ),
-                                                TextSpan(
-                                                  text: '.',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ],
+                                          TextSpan(
+                                            text: 'self',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: screenHeight * 0.03,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: '-introduction',
+                                            style: TextStyle(
+                                              fontSize: screenHeight * 0.03,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: '.',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: screenHeight * 0.03,
                                             ),
                                           ),
                                         ],
-                                      ),
-                                    ),
-                                    const SizedBox(height: 15),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 20),
-                                      child: Row(
-                                        children: [
-                                          const Spacer(),
-                                          Text(
-                                            _displayedText,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w600),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(height: 310),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 20),
-                                      child: SizedBox(
-                                        height: 50,
-                                        width: 240,
-                                        child: Container(
-                                          width: 10,
-                                          height: 45,
-                                          decoration: BoxDecoration(
-                                            boxShadow: [
-                                              BoxShadow(
-                                                offset: const Offset(0, 10),
-                                                blurRadius: 1,
-                                                color: const Color.fromARGB(
-                                                        255, 0, 0, 0)
-                                                    .withOpacity(.31),
-                                              ),
-                                            ],
-                                            borderRadius:
-                                                BorderRadius.circular(80),
-                                            gradient: const LinearGradient(
-                                              begin: Alignment.centerLeft,
-                                              end: Alignment.centerRight,
-                                              colors: [
-                                                Color(0xffFFAE88),
-                                                Color(0xff8F93EA)
-                                              ],
-                                            ),
-                                          ),
-                                          child: MaterialButton(
-                                            materialTapTargetSize:
-                                                MaterialTapTargetSize
-                                                    .shrinkWrap,
-                                            shape: const StadiumBorder(),
-                                            onPressed: () {},
-                                            child: const Padding(
-                                              padding: EdgeInsets.all(8.0),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: <Widget>[
-                                                  Text(
-                                                    '   start   reading',
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 17),
-                                                  ),
-                                                  Icon(
-                                                    Icons.arrow_forward,
-                                                    color: Colors.white,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
+                              ),
+                              const SizedBox(height: 15),
+                              Stack(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 20),
+                                    child: Row(
+                                      children: [
+                                        const Spacer(),
+                                        Text(
+                                          _displayedText,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: screenHeight * 0.015,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Spacer(),
+                                      AnimatedOpacity(
+                                        opacity: _opacityAni,
+                                        duration: const Duration(seconds: 1),
+                                        child: SizedBox(
+                                            height: screenWidth * 0.03,
+                                            child: const RiveAniwrite()),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          SizedBox(height: screenHeight * 0.33),
+                                          Container(
+                                            height: screenHeight * 0.04,
+                                            width: screenHeight * 0.19,
+                                            decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  offset: const Offset(0, 10),
+                                                  blurRadius: 1,
+                                                  color: const Color.fromARGB(
+                                                          255, 0, 0, 0)
+                                                      .withOpacity(.31),
+                                                ),
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(80),
+                                              gradient: const LinearGradient(
+                                                begin: Alignment.centerLeft,
+                                                end: Alignment.centerRight,
+                                                colors: [
+                                                  Color(0xffFFAE88),
+                                                  Color(0xff8F93EA)
+                                                ],
+                                              ),
+                                            ),
+                                            child: MaterialButton(
+                                              materialTapTargetSize:
+                                                  MaterialTapTargetSize
+                                                      .shrinkWrap,
+                                              shape: const StadiumBorder(),
+                                              onPressed: () {},
+                                              child: Padding(
+                                                padding: EdgeInsets.all(8.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: <Widget>[
+                                                    Text(
+                                                      '   start   reading',
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize:
+                                                              screenWidth *
+                                                                  0.012),
+                                                    ),
+                                                    Icon(
+                                                      Icons.arrow_forward,
+                                                      color: Colors.white,
+                                                      size: screenWidth * 0.02,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
                           ),
-                        )
-                      : const SizedBox(),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ],
-          ),
+            )
+          ],
         ),
       ],
     );

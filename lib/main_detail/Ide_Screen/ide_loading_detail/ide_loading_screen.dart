@@ -15,9 +15,7 @@ class IdeLoadingScreen extends StatefulWidget {
 
 class _IdeLoadingScreenState extends State<IdeLoadingScreen> {
   bool _isProceeding = true; // 로딩 바 애니메이션 진행중
-  bool _isProceeding2 = true; // 투명도
   bool _isProceedingAni = true; // 로딩 인디 애니메이션 진행중
-  bool _isProceedingAni2 = true; // 투명도
   //===================================
   bool _textAni1 = false;
   bool _textAni2 = false;
@@ -47,12 +45,6 @@ class _IdeLoadingScreenState extends State<IdeLoadingScreen> {
 
   bool _textAni26 = false;
 
-  bool _textAni27 = false;
-  bool _textAni28 = false;
-  bool _textAni29 = false;
-  bool _textAni30 = false;
-  bool _textAni31 = false;
-
   //===================================
 
   @override
@@ -68,14 +60,9 @@ class _IdeLoadingScreenState extends State<IdeLoadingScreen> {
     Future.delayed(const Duration(seconds: 5), () {
       if (mounted) setState(() => _isProceeding = false);
     });
-    Future.delayed(const Duration(seconds: 6), () {
-      if (mounted) setState(() => _isProceeding2 = false);
-    });
+
     Future.delayed(const Duration(seconds: 5), () {
       if (mounted) setState(() => _isProceedingAni = false);
-    });
-    Future.delayed(const Duration(seconds: 6), () {
-      if (mounted) setState(() => _isProceedingAni2 = false);
     });
 
     for (int i = 1; i <= 11; i++) {
@@ -206,18 +193,17 @@ class _IdeLoadingScreenState extends State<IdeLoadingScreen> {
       case 26:
         _textAni26 = true;
         break;
-      case 27:
-        _textAni27 = true;
-        break;
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 40),
+        SizedBox(height: screenHeight * 0.2),
         const Center(
           child: Text(
             'Loading Message',
@@ -225,292 +211,310 @@ class _IdeLoadingScreenState extends State<IdeLoadingScreen> {
             textAlign: TextAlign.center,
           ),
         ),
-        const SizedBox(height: 50),
-        AnimatedOpacity(
-          opacity: _isProceedingAni ? 1.0 : 0.0,
-          duration: const Duration(seconds: 1),
-          child: Visibility(
-            visible: _isProceedingAni2,
-            child: const RiveAniLoding(),
-          ),
-        ),
-        AnimatedOpacity(
-          opacity: _isProceeding ? 1.0 : 0.0,
-          duration: const Duration(seconds: 1),
-          child: Visibility(
-            visible: _isProceeding2,
-            child: const LoadingBar(),
-          ),
-        ),
         const SizedBox(height: 30),
-        AnimatedOpacity(
-          opacity: !_textAni1 ? 0.0 : 1.0,
-          duration: const Duration(milliseconds: 1000),
-          child: const Text(
-            '안녕하세요!',
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
-        ),
-        AnimatedOpacity(
-          opacity: !_textAni1 ? 0.0 : 1.0,
-          duration: const Duration(milliseconds: 1000),
-          child: const Text(
-            '\n',
-            style: TextStyle(color: Colors.white, fontSize: 10),
-          ),
-        ),
-        Row(
+        Stack(
           children: [
-            AnimatedOpacity(
-              opacity: !_textAni2 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                '저는',
-                style: TextStyle(color: Colors.white, fontSize: 16),
+            Padding(
+              padding: EdgeInsets.only(
+                  left: screenWidth * 0.03, right: screenWidth * 0.03),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AnimatedOpacity(
+                    opacity: _isProceedingAni ? 1.0 : 0.0,
+                    duration: const Duration(seconds: 12),
+                    child: const RiveAniLoding(),
+                  ),
+                  AnimatedOpacity(
+                    opacity: _isProceeding ? 1.0 : 0.0,
+                    duration: const Duration(seconds: 1),
+                    child: const LoadingBar(),
+                  ),
+                ],
               ),
             ),
-            AnimatedOpacity(
-              opacity: !_textAni3 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                ' 오른쪽에 위치한',
-                style: TextStyle(color: Colors.white, fontSize: 16),
+            Padding(
+              padding: EdgeInsets.only(left: screenWidth * 0.03),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 90),
+                  AnimatedOpacity(
+                    opacity: !_textAni1 ? 0.0 : 1.0,
+                    duration: const Duration(milliseconds: 1000),
+                    child: const Text(
+                      '안녕하세요!',
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ),
+                  AnimatedOpacity(
+                    opacity: !_textAni1 ? 0.0 : 1.0,
+                    duration: const Duration(milliseconds: 1000),
+                    child: const Text(
+                      '\n',
+                      style: TextStyle(color: Colors.white, fontSize: 10),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      AnimatedOpacity(
+                        opacity: !_textAni2 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          '저는',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni3 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          ' 오른쪽에 위치한',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni4 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          ' 시뮬레이터 ',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni5 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          '화면 설정을 ',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni5 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          '도와주는',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      AnimatedOpacity(
+                        opacity: !_textAni6 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          'Interactive ',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 133, 222, 236),
+                              fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni7 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          'Simulator ',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 133, 222, 236),
+                              fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni8 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          '입니다.',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni9 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          '  "시뮬이"',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 133, 222, 236),
+                              fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni10 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          '라고 ',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni11 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          '불러주세요!',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                    ],
+                  ),
+                  AnimatedOpacity(
+                    opacity: !_textAni11 ? 0.0 : 1.0,
+                    duration: const Duration(milliseconds: 1000),
+                    child: const Text(
+                      '\n',
+                      style: TextStyle(color: Colors.white, fontSize: 17),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      AnimatedOpacity(
+                        opacity: !_textAni12 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          '저는',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni13 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          ' 오른쪽 ',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni14 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          '시뮬레이터의 ',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni15 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          ' 전체 환경을',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni16 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          ' 담당하며,',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      AnimatedOpacity(
+                        opacity: !_textAni17 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          '다양한',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni18 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          ' 방면에서',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni19 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          ' 여러분을 ',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni20 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          '지원할',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni21 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          '예정입니다.',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                    ],
+                  ),
+                  AnimatedOpacity(
+                    opacity: !_textAni21 ? 0.0 : 1.0,
+                    duration: const Duration(milliseconds: 1000),
+                    child: const Text(
+                      '\n',
+                      style: TextStyle(color: Colors.white, fontSize: 17),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      AnimatedOpacity(
+                        opacity: !_textAni22 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          '지금부터 ',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni23 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          '시뮬레이터의',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni24 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          ' 화면을',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni25 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          ' 작동시켜 ',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: !_textAni26 ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: const Text(
+                          '보겠습니다!',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 30),
+                  AnimatedOpacity(
+                    opacity: !_textAni25 ? 0.0 : 1.0,
+                    duration: const Duration(milliseconds: 1000),
+                    child: const RiveAniErrorCheck(),
+                  ),
+                ],
               ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni4 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                ' 시뮬레이터 ',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni5 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                '화면 설정을 ',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni5 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                '도와주는',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
+            )
           ],
-        ),
-        Row(
-          children: [
-            AnimatedOpacity(
-              opacity: !_textAni6 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                'Interactive ',
-                style: TextStyle(
-                    color: Color.fromARGB(255, 133, 222, 236), fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni7 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                'Simulator ',
-                style: TextStyle(
-                    color: Color.fromARGB(255, 133, 222, 236), fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni8 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                '입니다.',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni9 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                '  "시뮬이"',
-                style: TextStyle(
-                    color: Color.fromARGB(255, 133, 222, 236), fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni10 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                '라고 ',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni11 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                '불러주세요!',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-          ],
-        ),
-        AnimatedOpacity(
-          opacity: !_textAni11 ? 0.0 : 1.0,
-          duration: const Duration(milliseconds: 1000),
-          child: const Text(
-            '\n',
-            style: TextStyle(color: Colors.white, fontSize: 17),
-          ),
-        ),
-        Row(
-          children: [
-            AnimatedOpacity(
-              opacity: !_textAni12 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                '저는',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni13 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                ' 오른쪽 ',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni14 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                '시뮬레이터의 ',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni15 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                ' 전체 환경을',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni16 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                ' 담당하며,',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            AnimatedOpacity(
-              opacity: !_textAni17 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                '다양한',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni18 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                ' 방면에서',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni19 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                ' 여러분을 ',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni20 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                '지원할',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni21 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                '예정입니다.',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-          ],
-        ),
-        AnimatedOpacity(
-          opacity: !_textAni21 ? 0.0 : 1.0,
-          duration: const Duration(milliseconds: 1000),
-          child: const Text(
-            '\n',
-            style: TextStyle(color: Colors.white, fontSize: 17),
-          ),
-        ),
-        Row(
-          children: [
-            AnimatedOpacity(
-              opacity: !_textAni22 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                '지금부터 ',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni23 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                '시뮬레이터의',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni24 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                ' 화면을',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni25 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                ' 작동시켜 ',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: !_textAni26 ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 1000),
-              child: const Text(
-                '보겠습니다!',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 30),
-        AnimatedOpacity(
-          opacity: !_textAni25 ? 0.0 : 1.0,
-          duration: const Duration(milliseconds: 1000),
-          child: const RiveAniErrorCheck(),
         ),
       ],
     );
