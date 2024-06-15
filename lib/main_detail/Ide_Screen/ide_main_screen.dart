@@ -24,7 +24,7 @@ class _IdeScreenState extends State<IdeScreen> {
       child: Column(
         children: [
           SizedBox(
-            width: screenWidth * 0.35,
+            width: screenWidth * 0.4,
             height: screenHeight * 1,
             child: const IdeLoadingScreen(),
           ),

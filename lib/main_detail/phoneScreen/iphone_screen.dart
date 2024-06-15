@@ -61,26 +61,26 @@ class _PhoneScreenState extends State<PhoneScreen> {
       }
     }
 
-    return Stack(
-      children: [
-        Column(
-          children: [
-            Container(
-              height: screenHeight * 0.8,
-              width: screenHeight * 0.37,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius:
-                    BorderRadius.all(Radius.circular(screenHeight * 0.054)),
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(screenHeight * 0.009),
-                child: SizedBox(
-                  height: screenHeight * 0.77,
-                  width: screenHeight * 0.356,
-                  child: AnimatedOpacity(
-                    opacity: 1, //_opacity,
-                    duration: const Duration(milliseconds: 1500),
+    return AnimatedOpacity(
+      opacity: _opacity,
+      duration: const Duration(milliseconds: 1500),
+      child: Stack(
+        children: [
+          Column(
+            children: [
+              Container(
+                height: screenHeight * 0.9,
+                width: screenHeight * 0.43,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(screenHeight * 0.054)),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(screenHeight * 0.009),
+                  child: SizedBox(
+                    height: screenHeight * 0.87,
+                    width: screenHeight * 0.416,
                     child: Container(
                       decoration: BoxDecoration(
                         image: const DecorationImage(
@@ -128,20 +128,20 @@ class _PhoneScreenState extends State<PhoneScreen> {
                                             text: 'self',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: screenHeight * 0.03,
+                                              fontSize: screenHeight * 0.032,
                                             ),
                                           ),
                                           TextSpan(
                                             text: '-introduction',
                                             style: TextStyle(
-                                              fontSize: screenHeight * 0.03,
+                                              fontSize: screenHeight * 0.032,
                                             ),
                                           ),
                                           TextSpan(
                                             text: '.',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: screenHeight * 0.03,
+                                              fontSize: screenHeight * 0.032,
                                             ),
                                           ),
                                         ],
@@ -162,7 +162,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                                           _displayedText,
                                           style: TextStyle(
                                             fontWeight: FontWeight.w600,
-                                            fontSize: screenHeight * 0.015,
+                                            fontSize: screenHeight * 0.017,
                                           ),
                                         ),
                                       ],
@@ -185,7 +185,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                                     children: [
                                       Column(
                                         children: [
-                                          SizedBox(height: screenHeight * 0.33),
+                                          SizedBox(height: screenHeight * 0.43),
                                           Container(
                                             height: screenHeight * 0.04,
                                             width: screenHeight * 0.19,
@@ -226,15 +226,16 @@ class _PhoneScreenState extends State<PhoneScreen> {
                                                     Text(
                                                       '   start   reading',
                                                       style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize:
-                                                              screenWidth *
-                                                                  0.012),
+                                                        color: Colors.white,
+                                                        fontSize: screenHeight *
+                                                            0.015,
+                                                      ),
                                                     ),
                                                     Icon(
                                                       Icons.arrow_forward,
                                                       color: Colors.white,
-                                                      size: screenWidth * 0.02,
+                                                      size:
+                                                          screenHeight * 0.025,
                                                     ),
                                                   ],
                                                 ),
@@ -255,10 +256,10 @@ class _PhoneScreenState extends State<PhoneScreen> {
                   ),
                 ),
               ),
-            )
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/main_detail/Ide_Screen/ide_main_screen.dart';
-import 'package:self_introduction_flutter/main_detail/phone_screen.dart';
+import 'package:self_introduction_flutter/main_detail/phoneScreen/iphone_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -53,7 +53,7 @@ class _MainScreenState extends State<MainScreen> {
             Column(
               children: [
                 AnimatedOpacity(
-                  opacity: _isNextPage ? 1.0 : 0.0,
+                  opacity: !_isNextPage ? 1.0 : 0.0,
                   duration: const Duration(milliseconds: 420),
                   child: SizedBox(
                     height: screenHeight * 1,
@@ -120,23 +120,19 @@ class _MainScreenState extends State<MainScreen> {
                 const Spacer(),
                 SingleChildScrollView(
                   child: Visibility(
-                    visible: !_isNextPage,
+                    visible: _isNextPage,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AnimatedOpacity(
-                          opacity: !_isVisbility ? 1.0 : 0.0,
+                          opacity: _isVisbility ? 1.0 : 0.0,
                           duration: const Duration(milliseconds: 420),
-                          child: const Column(
-                            children: [
-                              PhoneScreen(),
-                            ],
-                          ),
+                          child: const PhoneScreen(),
                         ),
-                        SizedBox(width: screenWidth * 0.1),
+                        SizedBox(width: screenWidth * 0.2),
                         SizedBox(
                           child: AnimatedOpacity(
-                            opacity: !_isVisbility ? 1.0 : 0.0,
+                            opacity: _isVisbility ? 1.0 : 0.0,
                             duration: const Duration(milliseconds: 420),
                             child: const IdeScreen(),
                           ),
