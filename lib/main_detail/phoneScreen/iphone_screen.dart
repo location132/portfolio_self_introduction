@@ -77,7 +77,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                       BorderRadius.all(Radius.circular(screenHeight * 0.054)),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(screenHeight * 0.009),
+                  padding: EdgeInsets.all(screenHeight * 0.01),
                   child: SizedBox(
                     height: screenHeight * 0.87,
                     width: screenHeight * 0.416,
