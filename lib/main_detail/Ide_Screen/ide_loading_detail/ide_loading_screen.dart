@@ -258,11 +258,12 @@ class _IdeLoadingScreenState extends State<IdeLoadingScreen> {
                 padding: EdgeInsets.only(
                     left: screenWidth * 0.03,
                     right: screenWidth * 0.03,
-                    top: 30),
+                    top: screenHeight * 0.04),
                 child: AnimatedOpacity(
                   opacity: !_textAni28 ? 0.0 : 1.0,
                   duration: const Duration(milliseconds: 1000),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         '왼쪽의 시뮬레이터에 보이는 "start reading" 버튼\n또는, 아래의 시작하기 버튼을 클릭해주세요! ',
@@ -272,27 +273,25 @@ class _IdeLoadingScreenState extends State<IdeLoadingScreen> {
                           fontSize: screenWidth * 0.012,
                         ),
                       ),
-                      SizedBox(height: screenHeight * 0.1),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 16, horizontal: 30),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(30),
-                          boxShadow: [
-                            BoxShadow(
-                                offset: const Offset(0, 15),
-                                blurRadius: 30,
-                                color: const Color(0xFF666666).withOpacity(.11))
-                          ],
-                        ),
-                        child: Text(
-                          "start reading",
-                          style: TextStyle(
-                              fontSize: screenWidth * 0.012,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )
+                      SizedBox(height: screenHeight * 0.08),
+                      _textAni28
+                          ? InkWell(
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 16, horizontal: 16),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: Text(
+                                  "start reading",
+                                  style: TextStyle(
+                                      fontSize: screenWidth * 0.012,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(),
                     ],
                   ),
                 ),

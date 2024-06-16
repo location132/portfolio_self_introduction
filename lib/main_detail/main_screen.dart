@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/main_detail/Ide_Screen/ide_main_screen.dart';
-import 'package:self_introduction_flutter/main_detail/phoneScreen/iphone_screen.dart';
+import 'package:self_introduction_flutter/main_detail/phoneScreen/0_iphone_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

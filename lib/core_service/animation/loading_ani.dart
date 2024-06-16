@@ -78,22 +78,18 @@ class _LoadingBar extends State<LoadingBar> with TickerProviderStateMixin {
               children: [
                 CustomPaint(
                   painter: LoadingBarPainter(animationValue: _animation.value),
-                  child: const SizedBox(width: double.infinity, height: 17),
+                  child: const SizedBox(width: double.infinity, height: 14),
+                ),
+                CustomPaint(
+                  painter: LoadingBarPainter(animationValue: _animation2.value),
+                  child: const SizedBox(width: double.infinity, height: 14),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: CustomPaint(
-                    painter:
-                        LoadingBarPainter(animationValue: _animation2.value),
-                    child: const SizedBox(width: double.infinity, height: 17),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: screenWidth * 0.07, top: 10),
+                  padding: EdgeInsets.only(right: screenWidth * 0.07),
                   child: CustomPaint(
                     painter:
                         LoadingBarPainter(animationValue: _animation3.value),
-                    child: const SizedBox(width: double.infinity, height: 17),
+                    child: const SizedBox(width: double.infinity, height: 14),
                   ),
                 ),
               ],
