@@ -26,7 +26,7 @@ class _IdeScreenState extends State<IdeScreen> {
           SizedBox(
             width: screenWidth * 0.35,
             height: screenHeight * 1,
-            child: IdeLoadingScreen(),
+            child: const IdeLoadingScreen(),
           ),
         ],
       ),

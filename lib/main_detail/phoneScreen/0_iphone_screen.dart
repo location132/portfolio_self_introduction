@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:self_introduction_flutter/%08core_service/provider.dart';
 import 'package:self_introduction_flutter/main_detail/phoneScreen/1_iphone_StartScreen.dart';
+import 'package:self_introduction_flutter/main_detail/phoneScreen/2_iphone_main.dart';
 
 class PhoneScreen extends StatefulWidget {
   const PhoneScreen({super.key});
@@ -15,6 +16,13 @@ class _PhoneScreenState extends State<PhoneScreen> {
   double _opacity = 0.0;
   double cornerRadius = 67.4333;
   double cornerRadius1 = 60.4333;
+  bool _isendAni = false;
+
+  void isendAni() async {
+    setState(() {
+      _isendAni = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +61,28 @@ class _PhoneScreenState extends State<PhoneScreen> {
                 child: Padding(
                   padding: EdgeInsets.all(screenHeight * 0.01),
                   child: SizedBox(
-                      height: screenHeight * 0.87,
-                      width: screenHeight * 0.416,
-                      child: PhoneStartScreen()
-                      //=============
-                      ),
+                    height: screenHeight * 0.87,
+                    width: screenHeight * 0.416,
+                    child: Stack(
+                      children: [
+                        AnimatedOpacity(
+                          opacity: screenChange.isMainScreen ? 1.0 : 0.0,
+                          duration: const Duration(milliseconds: 420),
+                          child: const PhoneMainScreen(),
+                        ),
+                        Visibility(
+                          visible: _isendAni,
+                          child: AnimatedOpacity(
+                            opacity: !screenChange.isMainScreen ? 1.0 : 0.0,
+                            duration: const Duration(milliseconds: 420),
+                            onEnd: isendAni,
+                            child: const PhoneStartScreen(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    //=============
+                  ),
                 ),
               ),
             ],

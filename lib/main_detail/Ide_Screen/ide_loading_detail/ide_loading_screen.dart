@@ -7,7 +7,7 @@ import 'package:self_introduction_flutter/%08core_service/animation/loading_ani2
 import 'package:self_introduction_flutter/%08core_service/provider.dart';
 
 class IdeLoadingScreen extends StatefulWidget {
-  IdeLoadingScreen({super.key});
+  const IdeLoadingScreen({super.key});
 
   @override
   State<IdeLoadingScreen> createState() => _IdeLoadingScreenState();

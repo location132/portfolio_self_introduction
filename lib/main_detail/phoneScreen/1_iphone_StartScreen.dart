@@ -15,6 +15,8 @@ class _PhoneStartScreenState extends State<PhoneStartScreen> {
   double _opacityAni = 1.0;
   final String _myName = 'FLUTTER     이정원';
   bool _isStartScreen = false;
+  bool _isTouch = false;
+  bool _isUserTouch = false;
 
   final int _delayMilliseconds = 100;
 
@@ -31,6 +33,10 @@ class _PhoneStartScreenState extends State<PhoneStartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenStatus = Provider.of<ScreenChange>(context, listen: false);
+
     final screenChange = Provider.of<ScreenChange>(context);
     if (screenChange.isStartSimulator) {
       if (!_isStartScreen) {
@@ -47,11 +53,13 @@ class _PhoneStartScreenState extends State<PhoneStartScreen> {
             _opacityAni = 0.0;
           });
         });
+        Future.delayed(const Duration(seconds: 9), () {
+          setState(() {
+            _isTouch = true;
+          });
+        });
       }
     }
-
-    double screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
     return Container(
       decoration: BoxDecoration(
         image: const DecorationImage(
@@ -176,7 +184,12 @@ class _PhoneStartScreenState extends State<PhoneStartScreen> {
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
                               shape: const StadiumBorder(),
-                              onPressed: () {},
+                              onPressed: () {
+                                if (_isTouch && !_isUserTouch) {
+                                  screenStatus.setChangeScreen(true);
+                                  _isUserTouch = true;
+                                }
+                              },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Row(
