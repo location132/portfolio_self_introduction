@@ -17,12 +17,10 @@ class _PhoneMainScreenState extends State<PhoneMainScreen> {
     if (type == '++') {
       setState(() {
         _nextPage++;
-        print(_nextPage);
       });
     } else {
       setState(() {
         _nextPage--;
-        print(_nextPage);
       });
     }
   }
@@ -197,6 +195,29 @@ class _PhoneMainScreenState extends State<PhoneMainScreen> {
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: screenHeight * 0.018,
+                          ),
+                        ),
+                        SizedBox(height: screenHeight * 0.01),
+                        Container(
+                          height: screenHeight * 0.1,
+                          width: double.infinity,
+                          decoration: ShapeDecoration(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(screenHeight * 0.04),
+                            ),
+                            shadows: const [
+                              BoxShadow(
+                                color: Color(0x19000000),
+                                blurRadius: 10,
+                                offset: Offset(0, 2),
+                                spreadRadius: 0,
+                              )
+                            ],
+                          ),
+                          child: Column(
+                            children: [],
                           ),
                         ),
                       ],

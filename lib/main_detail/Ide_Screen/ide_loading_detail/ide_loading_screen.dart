@@ -16,6 +16,8 @@ class IdeLoadingScreen extends StatefulWidget {
 class _IdeLoadingScreenState extends State<IdeLoadingScreen> {
   bool _isProceeding = true; // 로딩 바 애니메이션 진행중
   bool _isProceedingAni = true; // 로딩 인디 애니메이션 진행중
+  bool _isUserTouch = false;
+
   //===================================
   bool _textAni1 = false;
   bool _textAni2 = false;
@@ -231,7 +233,7 @@ class _IdeLoadingScreenState extends State<IdeLoadingScreen> {
               textAlign: TextAlign.center,
             ),
           ),
-          const SizedBox(height: 30),
+          SizedBox(height: screenHeight * 0.03),
           Stack(
             children: [
               Padding(
@@ -276,6 +278,15 @@ class _IdeLoadingScreenState extends State<IdeLoadingScreen> {
                       SizedBox(height: screenHeight * 0.08),
                       _textAni28
                           ? InkWell(
+                              onTap: () {
+                                final screenStatus = Provider.of<ScreenChange>(
+                                    context,
+                                    listen: false);
+                                if (!_isUserTouch) {
+                                  screenStatus.setChangeScreen(true);
+                                  _isUserTouch = true;
+                                }
+                              },
                               child: Container(
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 16, horizontal: 16),

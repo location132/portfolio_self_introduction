@@ -67,21 +67,20 @@ class _PhoneScreenState extends State<PhoneScreen> {
                       children: [
                         AnimatedOpacity(
                           opacity: screenChange.isMainScreen ? 1.0 : 0.0,
-                          duration: const Duration(milliseconds: 420),
+                          duration: const Duration(milliseconds: 720),
                           child: const PhoneMainScreen(),
                         ),
                         Visibility(
-                          visible: _isendAni,
+                          visible: !_isendAni,
                           child: AnimatedOpacity(
                             opacity: !screenChange.isMainScreen ? 1.0 : 0.0,
-                            duration: const Duration(milliseconds: 420),
+                            duration: const Duration(milliseconds: 720),
                             onEnd: isendAni,
                             child: const PhoneStartScreen(),
                           ),
                         ),
                       ],
                     ),
-                    //=============
                   ),
                 ),
               ),
