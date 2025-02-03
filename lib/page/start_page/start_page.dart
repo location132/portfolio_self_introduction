@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/%08core_service/di/injector.dart';
-import 'package:self_introduction_flutter/main_detail/Ide_Screen/ide_main_screen.dart';
-import 'package:self_introduction_flutter/main_detail/phoneScreen/0_iphone_screen.dart';
 import 'package:self_introduction_flutter/page/start_page/start_cubit.dart';
+import 'package:self_introduction_flutter/page/start_page/start_state.dart';
+import 'package:self_introduction_flutter/page/start_page/widget/intro_screen.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({super.key});
@@ -25,82 +25,30 @@ class StartPageView extends StatefulWidget {
 }
 
 class _StartPageViewState extends State<StartPageView> {
-  final ScrollController _scrollController = ScrollController();
+  @override
+  void initState() {
+    super.initState();
+    final cubit = context.read<StartPageCubit>();
+    cubit.state.scrollController?.addListener(() {
+      cubit.scrollListener();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-
-    return Scaffold(
-      body: SingleChildScrollView(
-        controller: _scrollController,
-        child: Stack(
-          children: [
-            Column(
+    return BlocBuilder<StartPageCubit, StartPageState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: SingleChildScrollView(
+            controller: state.scrollController,
+            child: Stack(
               children: [
-                SizedBox(
-                  height: screenHeight * 1,
-                  width: screenWidth * 1,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/Images/mainIMG.png'),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    child: Center(
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        width: screenWidth * 0.4,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(left: screenWidth * 0.07),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    '2025',
-                                    style:
-                                        TextStyle(fontSize: screenWidth * 0.02),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Text(
-                              'PORTFOLIO',
-                              style: TextStyle(fontSize: screenWidth * 0.05),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(right: screenWidth * 0.07),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.end, // 오른쪽 정렬
-                                children: [
-                                  Text(
-                                    'FLUTTER',
-                                    style:
-                                        TextStyle(fontSize: screenWidth * 0.02),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 1),
+                IntroScreen(state: state),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

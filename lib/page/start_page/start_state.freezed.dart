@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$StartPageState {
-  bool get isTest => throw _privateConstructorUsedError;
+  ScrollController? get scrollController => throw _privateConstructorUsedError;
+  bool get isScrolled => throw _privateConstructorUsedError;
 
   /// Create a copy of StartPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +32,7 @@ abstract class $StartPageStateCopyWith<$Res> {
           StartPageState value, $Res Function(StartPageState) then) =
       _$StartPageStateCopyWithImpl<$Res, StartPageState>;
   @useResult
-  $Res call({bool isTest});
+  $Res call({ScrollController? scrollController, bool isScrolled});
 }
 
 /// @nodoc
@@ -49,12 +50,17 @@ class _$StartPageStateCopyWithImpl<$Res, $Val extends StartPageState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isTest = null,
+    Object? scrollController = freezed,
+    Object? isScrolled = null,
   }) {
     return _then(_value.copyWith(
-      isTest: null == isTest
-          ? _value.isTest
-          : isTest // ignore: cast_nullable_to_non_nullable
+      scrollController: freezed == scrollController
+          ? _value.scrollController
+          : scrollController // ignore: cast_nullable_to_non_nullable
+              as ScrollController?,
+      isScrolled: null == isScrolled
+          ? _value.isScrolled
+          : isScrolled // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -68,7 +74,7 @@ abstract class _$$StartPageStateImplCopyWith<$Res>
       __$$StartPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isTest});
+  $Res call({ScrollController? scrollController, bool isScrolled});
 }
 
 /// @nodoc
@@ -84,12 +90,17 @@ class __$$StartPageStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isTest = null,
+    Object? scrollController = freezed,
+    Object? isScrolled = null,
   }) {
     return _then(_$StartPageStateImpl(
-      isTest: null == isTest
-          ? _value.isTest
-          : isTest // ignore: cast_nullable_to_non_nullable
+      scrollController: freezed == scrollController
+          ? _value.scrollController
+          : scrollController // ignore: cast_nullable_to_non_nullable
+              as ScrollController?,
+      isScrolled: null == isScrolled
+          ? _value.isScrolled
+          : isScrolled // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -98,15 +109,17 @@ class __$$StartPageStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$StartPageStateImpl implements _StartPageState {
-  const _$StartPageStateImpl({this.isTest = false});
+  const _$StartPageStateImpl({this.scrollController, this.isScrolled = false});
 
   @override
+  final ScrollController? scrollController;
+  @override
   @JsonKey()
-  final bool isTest;
+  final bool isScrolled;
 
   @override
   String toString() {
-    return 'StartPageState(isTest: $isTest)';
+    return 'StartPageState(scrollController: $scrollController, isScrolled: $isScrolled)';
   }
 
   @override
@@ -114,11 +127,14 @@ class _$StartPageStateImpl implements _StartPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StartPageStateImpl &&
-            (identical(other.isTest, isTest) || other.isTest == isTest));
+            (identical(other.scrollController, scrollController) ||
+                other.scrollController == scrollController) &&
+            (identical(other.isScrolled, isScrolled) ||
+                other.isScrolled == isScrolled));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isTest);
+  int get hashCode => Object.hash(runtimeType, scrollController, isScrolled);
 
   /// Create a copy of StartPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -131,10 +147,14 @@ class _$StartPageStateImpl implements _StartPageState {
 }
 
 abstract class _StartPageState implements StartPageState {
-  const factory _StartPageState({final bool isTest}) = _$StartPageStateImpl;
+  const factory _StartPageState(
+      {final ScrollController? scrollController,
+      final bool isScrolled}) = _$StartPageStateImpl;
 
   @override
-  bool get isTest;
+  ScrollController? get scrollController;
+  @override
+  bool get isScrolled;
 
   /// Create a copy of StartPageState
   /// with the given fields replaced by the non-null parameter values.
