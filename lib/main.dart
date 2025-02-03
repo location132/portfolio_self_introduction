@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:self_introduction_flutter/%08core_service/provider.dart';
-import 'package:self_introduction_flutter/main_detail/main_screen.dart';
+import 'package:self_introduction_flutter/%08core_service/di/injector.dart';
+import 'package:self_introduction_flutter/page/start_page/start_cubit.dart';
+import 'package:self_introduction_flutter/page/start_page/start_page.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => ScreenChange(),
-      child: const MyApp(),
-    ),
-  );
+  Injector.init();
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
       ),
-      home: const MainScreen(),
+      home: const StartPage(),
     );
   }
 }
