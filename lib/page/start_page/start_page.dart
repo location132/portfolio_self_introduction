@@ -41,11 +41,7 @@ class _StartPageViewState extends State<StartPageView> {
         return Scaffold(
           body: SingleChildScrollView(
             controller: state.scrollController,
-            child: Stack(
-              children: [
-                IntroScreen(state: state),
-              ],
-            ),
+            child: IntroScreen(state: state),
           ),
         );
       },

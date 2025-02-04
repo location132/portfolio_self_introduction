@@ -1,73 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:self_introduction_flutter/%08core_service/di/injector.dart';
 import 'package:self_introduction_flutter/%08core_service/util/device_Info_size.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:self_introduction_flutter/page/main_page/main_cubit.dart';
+import 'package:self_introduction_flutter/page/main_page/main_state.dart';
+import 'package:self_introduction_flutter/page/main_page/widget/banner_section.dart';
+import 'package:self_introduction_flutter/page/main_page/widget/top_nav_bar.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  bool _isScreenLoad = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _isScreenLoad = true;
-  }
+class MainPage extends StatelessWidget {
+  const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: AnimatedOpacity(
-        //TODO: 개발 후, ! 제거
-        opacity: _isScreenLoad ? 1.0 : 0.0,
-        duration: const Duration(milliseconds: 300),
-        child: Column(
-          children: [
-            SizedBox(height: 10.sh),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(width: 11.sw),
-                Image.asset(
-                  'assets/Images/flutter_bird.png',
-                  scale: 25,
-                ),
-                _buildNavItem("자기소개서"),
-                _buildNavItem("프로젝트"),
-                _buildNavItem("기술 블로그"),
-                _buildNavItem("패키지"),
-                _buildNavItem("커리어 & 성장"),
-                _buildNavItem("나만의 개발 팁"),
-                _buildNavItem("교육 및 강의"),
-              ],
-            ),
-          ],
-        ),
-      ),
+    return BlocProvider(
+      create: (context) => di<MainPageCubit>(),
+      child: const MainScreen(),
     );
   }
+}
 
-  Widget _buildNavItem(String title) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 22.sw),
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          onTap: () {
-            debugPrint("$title 클릭됨");
-          },
-          child: Text(
-            title,
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
+class MainScreen extends StatelessWidget {
+  const MainScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<MainPageCubit, MainPageState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 41.sw),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 10.sh),
+                const TopNavBar(),
+                SizedBox(height: 40.sh),
+                const BannerSection(),
+              ],
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/%08core_service/di/injector.dart';
 import 'package:self_introduction_flutter/%08core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/page/main_page/main_page.dart';
 import 'package:self_introduction_flutter/page/start_page/start_page.dart';
 
 void main() {
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
           child: child!,
         );
       },
-      home: const StartPage(),
+      home: const MainPage(), //StartPage(),
     );
   }
 }
