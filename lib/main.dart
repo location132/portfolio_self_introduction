@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/%08core_service/di/injector.dart';
-import 'package:self_introduction_flutter/%08core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/core_service/di/injector.dart';
+import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/main_page/main_page.dart';
-import 'package:self_introduction_flutter/page/start_page/start_page.dart';
 
 void main() {
   Injector.init();
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        scaffoldBackgroundColor: const Color.fromARGB(0, 255, 255, 255),
       ),
       builder: (context, child) {
         ResponsiveSize.init(context); // 반응형 크기 초기화

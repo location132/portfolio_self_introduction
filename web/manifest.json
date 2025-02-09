@@ -1,6 +1,6 @@
 {
-    "name": "portfolio_self_ntroduction",
-    "short_name": "portfolio_self_ntroduction",
+    "name": "self_introduction_flutter",
+    "short_name": "self_introduction_flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

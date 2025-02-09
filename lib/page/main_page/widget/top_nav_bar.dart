@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/%08core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 
 class TopNavBar extends StatelessWidget {
   const TopNavBar({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_introduction_flutter/%08core_service/di/injector.dart';
+import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/page/start_page/start_cubit.dart';
 import 'package:self_introduction_flutter/page/start_page/start_state.dart';
 import 'package:self_introduction_flutter/page/start_page/widget/intro_screen.dart';
