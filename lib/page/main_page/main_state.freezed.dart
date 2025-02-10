@@ -16,10 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MainPageState {
-  StateMachineController? get controller => throw _privateConstructorUsedError;
-  List<SMIInput<bool>?> get buttonTriggers =>
-      throw _privateConstructorUsedError;
   MainPageStatus get status => throw _privateConstructorUsedError;
+  int get stateNameIndex => throw _privateConstructorUsedError;
+  String get stateBannerText => throw _privateConstructorUsedError;
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -35,9 +34,7 @@ abstract class $MainPageStateCopyWith<$Res> {
       _$MainPageStateCopyWithImpl<$Res, MainPageState>;
   @useResult
   $Res call(
-      {StateMachineController? controller,
-      List<SMIInput<bool>?> buttonTriggers,
-      MainPageStatus status});
+      {MainPageStatus status, int stateNameIndex, String stateBannerText});
 }
 
 /// @nodoc
@@ -55,23 +52,23 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? controller = freezed,
-    Object? buttonTriggers = null,
     Object? status = null,
+    Object? stateNameIndex = null,
+    Object? stateBannerText = null,
   }) {
     return _then(_value.copyWith(
-      controller: freezed == controller
-          ? _value.controller
-          : controller // ignore: cast_nullable_to_non_nullable
-              as StateMachineController?,
-      buttonTriggers: null == buttonTriggers
-          ? _value.buttonTriggers
-          : buttonTriggers // ignore: cast_nullable_to_non_nullable
-              as List<SMIInput<bool>?>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as MainPageStatus,
+      stateNameIndex: null == stateNameIndex
+          ? _value.stateNameIndex
+          : stateNameIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      stateBannerText: null == stateBannerText
+          ? _value.stateBannerText
+          : stateBannerText // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -85,9 +82,7 @@ abstract class _$$MainPageStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {StateMachineController? controller,
-      List<SMIInput<bool>?> buttonTriggers,
-      MainPageStatus status});
+      {MainPageStatus status, int stateNameIndex, String stateBannerText});
 }
 
 /// @nodoc
@@ -103,23 +98,23 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? controller = freezed,
-    Object? buttonTriggers = null,
     Object? status = null,
+    Object? stateNameIndex = null,
+    Object? stateBannerText = null,
   }) {
     return _then(_$MainPageStateImpl(
-      controller: freezed == controller
-          ? _value.controller
-          : controller // ignore: cast_nullable_to_non_nullable
-              as StateMachineController?,
-      buttonTriggers: null == buttonTriggers
-          ? _value._buttonTriggers
-          : buttonTriggers // ignore: cast_nullable_to_non_nullable
-              as List<SMIInput<bool>?>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as MainPageStatus,
+      stateNameIndex: null == stateNameIndex
+          ? _value.stateNameIndex
+          : stateNameIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      stateBannerText: null == stateBannerText
+          ? _value.stateBannerText
+          : stateBannerText // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -128,30 +123,24 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
 
 class _$MainPageStateImpl extends _MainPageState {
   const _$MainPageStateImpl(
-      {this.controller,
-      final List<SMIInput<bool>?> buttonTriggers = const [],
-      this.status = MainPageStatus.initial})
-      : _buttonTriggers = buttonTriggers,
-        super._();
-
-  @override
-  final StateMachineController? controller;
-  final List<SMIInput<bool>?> _buttonTriggers;
-  @override
-  @JsonKey()
-  List<SMIInput<bool>?> get buttonTriggers {
-    if (_buttonTriggers is EqualUnmodifiableListView) return _buttonTriggers;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_buttonTriggers);
-  }
+      {this.status = MainPageStatus.initial,
+      this.stateNameIndex = 0,
+      this.stateBannerText = ''})
+      : super._();
 
   @override
   @JsonKey()
   final MainPageStatus status;
+  @override
+  @JsonKey()
+  final int stateNameIndex;
+  @override
+  @JsonKey()
+  final String stateBannerText;
 
   @override
   String toString() {
-    return 'MainPageState(controller: $controller, buttonTriggers: $buttonTriggers, status: $status)';
+    return 'MainPageState(status: $status, stateNameIndex: $stateNameIndex, stateBannerText: $stateBannerText)';
   }
 
   @override
@@ -159,16 +148,16 @@ class _$MainPageStateImpl extends _MainPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MainPageStateImpl &&
-            (identical(other.controller, controller) ||
-                other.controller == controller) &&
-            const DeepCollectionEquality()
-                .equals(other._buttonTriggers, _buttonTriggers) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.stateNameIndex, stateNameIndex) ||
+                other.stateNameIndex == stateNameIndex) &&
+            (identical(other.stateBannerText, stateBannerText) ||
+                other.stateBannerText == stateBannerText));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, controller,
-      const DeepCollectionEquality().hash(_buttonTriggers), status);
+  int get hashCode =>
+      Object.hash(runtimeType, status, stateNameIndex, stateBannerText);
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -181,17 +170,17 @@ class _$MainPageStateImpl extends _MainPageState {
 
 abstract class _MainPageState extends MainPageState {
   const factory _MainPageState(
-      {final StateMachineController? controller,
-      final List<SMIInput<bool>?> buttonTriggers,
-      final MainPageStatus status}) = _$MainPageStateImpl;
+      {final MainPageStatus status,
+      final int stateNameIndex,
+      final String stateBannerText}) = _$MainPageStateImpl;
   const _MainPageState._() : super._();
 
   @override
-  StateMachineController? get controller;
-  @override
-  List<SMIInput<bool>?> get buttonTriggers;
-  @override
   MainPageStatus get status;
+  @override
+  int get stateNameIndex;
+  @override
+  String get stateBannerText;
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.
