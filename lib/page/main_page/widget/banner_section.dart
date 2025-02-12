@@ -17,10 +17,27 @@ class _BannerSectionState extends State<BannerSection> {
   Widget build(BuildContext context) {
     return BlocBuilder<MainPageCubit, MainPageState>(
       builder: (context, state) {
-        return Container(
-          height: 300.sh,
-          child: BannerRive(
-              onStateChange: context.read<MainPageCubit>().onStateChange),
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Transform.translate(
+                offset: Offset(-400.sw, 0),
+                child: Text(
+                  '저는 Flutter 개발자 이정원입니다.',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 330.sh,
+              width: double.infinity,
+              child: const BannerRive(),
+            ),
+          ],
         );
       },
     );

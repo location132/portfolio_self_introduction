@@ -16,9 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MainPageState {
+  ScrollController? get scrollController => throw _privateConstructorUsedError;
+  bool get isScrolled => throw _privateConstructorUsedError;
+  bool get isAnimationStart => throw _privateConstructorUsedError;
   MainPageStatus get status => throw _privateConstructorUsedError;
-  int get stateNameIndex => throw _privateConstructorUsedError;
-  String get stateBannerText => throw _privateConstructorUsedError;
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +35,10 @@ abstract class $MainPageStateCopyWith<$Res> {
       _$MainPageStateCopyWithImpl<$Res, MainPageState>;
   @useResult
   $Res call(
-      {MainPageStatus status, int stateNameIndex, String stateBannerText});
+      {ScrollController? scrollController,
+      bool isScrolled,
+      bool isAnimationStart,
+      MainPageStatus status});
 }
 
 /// @nodoc
@@ -52,23 +56,28 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? scrollController = freezed,
+    Object? isScrolled = null,
+    Object? isAnimationStart = null,
     Object? status = null,
-    Object? stateNameIndex = null,
-    Object? stateBannerText = null,
   }) {
     return _then(_value.copyWith(
+      scrollController: freezed == scrollController
+          ? _value.scrollController
+          : scrollController // ignore: cast_nullable_to_non_nullable
+              as ScrollController?,
+      isScrolled: null == isScrolled
+          ? _value.isScrolled
+          : isScrolled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isAnimationStart: null == isAnimationStart
+          ? _value.isAnimationStart
+          : isAnimationStart // ignore: cast_nullable_to_non_nullable
+              as bool,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as MainPageStatus,
-      stateNameIndex: null == stateNameIndex
-          ? _value.stateNameIndex
-          : stateNameIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      stateBannerText: null == stateBannerText
-          ? _value.stateBannerText
-          : stateBannerText // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
   }
 }
@@ -82,7 +91,10 @@ abstract class _$$MainPageStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {MainPageStatus status, int stateNameIndex, String stateBannerText});
+      {ScrollController? scrollController,
+      bool isScrolled,
+      bool isAnimationStart,
+      MainPageStatus status});
 }
 
 /// @nodoc
@@ -98,23 +110,28 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? scrollController = freezed,
+    Object? isScrolled = null,
+    Object? isAnimationStart = null,
     Object? status = null,
-    Object? stateNameIndex = null,
-    Object? stateBannerText = null,
   }) {
     return _then(_$MainPageStateImpl(
+      scrollController: freezed == scrollController
+          ? _value.scrollController
+          : scrollController // ignore: cast_nullable_to_non_nullable
+              as ScrollController?,
+      isScrolled: null == isScrolled
+          ? _value.isScrolled
+          : isScrolled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isAnimationStart: null == isAnimationStart
+          ? _value.isAnimationStart
+          : isAnimationStart // ignore: cast_nullable_to_non_nullable
+              as bool,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as MainPageStatus,
-      stateNameIndex: null == stateNameIndex
-          ? _value.stateNameIndex
-          : stateNameIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      stateBannerText: null == stateBannerText
-          ? _value.stateBannerText
-          : stateBannerText // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -123,24 +140,27 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
 
 class _$MainPageStateImpl extends _MainPageState {
   const _$MainPageStateImpl(
-      {this.status = MainPageStatus.initial,
-      this.stateNameIndex = 0,
-      this.stateBannerText = ''})
+      {this.scrollController,
+      this.isScrolled = false,
+      this.isAnimationStart = false,
+      this.status = MainPageStatus.initial})
       : super._();
 
   @override
+  final ScrollController? scrollController;
+  @override
+  @JsonKey()
+  final bool isScrolled;
+  @override
+  @JsonKey()
+  final bool isAnimationStart;
+  @override
   @JsonKey()
   final MainPageStatus status;
-  @override
-  @JsonKey()
-  final int stateNameIndex;
-  @override
-  @JsonKey()
-  final String stateBannerText;
 
   @override
   String toString() {
-    return 'MainPageState(status: $status, stateNameIndex: $stateNameIndex, stateBannerText: $stateBannerText)';
+    return 'MainPageState(scrollController: $scrollController, isScrolled: $isScrolled, isAnimationStart: $isAnimationStart, status: $status)';
   }
 
   @override
@@ -148,16 +168,18 @@ class _$MainPageStateImpl extends _MainPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MainPageStateImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.stateNameIndex, stateNameIndex) ||
-                other.stateNameIndex == stateNameIndex) &&
-            (identical(other.stateBannerText, stateBannerText) ||
-                other.stateBannerText == stateBannerText));
+            (identical(other.scrollController, scrollController) ||
+                other.scrollController == scrollController) &&
+            (identical(other.isScrolled, isScrolled) ||
+                other.isScrolled == isScrolled) &&
+            (identical(other.isAnimationStart, isAnimationStart) ||
+                other.isAnimationStart == isAnimationStart) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, stateNameIndex, stateBannerText);
+  int get hashCode => Object.hash(
+      runtimeType, scrollController, isScrolled, isAnimationStart, status);
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -170,17 +192,20 @@ class _$MainPageStateImpl extends _MainPageState {
 
 abstract class _MainPageState extends MainPageState {
   const factory _MainPageState(
-      {final MainPageStatus status,
-      final int stateNameIndex,
-      final String stateBannerText}) = _$MainPageStateImpl;
+      {final ScrollController? scrollController,
+      final bool isScrolled,
+      final bool isAnimationStart,
+      final MainPageStatus status}) = _$MainPageStateImpl;
   const _MainPageState._() : super._();
 
   @override
+  ScrollController? get scrollController;
+  @override
+  bool get isScrolled;
+  @override
+  bool get isAnimationStart;
+  @override
   MainPageStatus get status;
-  @override
-  int get stateNameIndex;
-  @override
-  String get stateBannerText;
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.

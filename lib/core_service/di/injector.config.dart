@@ -13,7 +13,6 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
 import '../../page/main_page/main_cubit.dart' as _i222;
-import '../../page/start_page/start_cubit.dart' as _i447;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -26,7 +25,6 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    gh.factory<_i447.StartPageCubit>(() => _i447.StartPageCubit());
     gh.factory<_i222.MainPageCubit>(() => _i222.MainPageCubit()..init());
     return this;
   }
