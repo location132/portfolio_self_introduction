@@ -16,9 +16,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: const Color.fromARGB(0, 255, 255, 255),
-      ),
+      // theme: ThemeData(
+      //   scaffoldBackgroundColor: const Color.fromARGB(0, 255, 255, 255),
+      // ),
       builder: (context, child) {
         ResponsiveSize.init(context);
         return MediaQuery(

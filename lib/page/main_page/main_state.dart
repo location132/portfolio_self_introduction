@@ -6,6 +6,13 @@ part 'main_state.freezed.dart';
 class MainPageState with _$MainPageState {
   const MainPageState._();
   const factory MainPageState({
+    //StartAnimation 컨트롤러
+    @Default([]) List<AnimationController> controllers,
+    @Default([]) List<Animation<double>> animations,
+    @Default([]) List<String> words,
+    @Default(false) bool endAnimation,
+
+    //스크롤 컨트롤러
     ScrollController? scrollController,
     @Default(false) bool isScrolled,
     @Default(false) bool isAnimationStart,

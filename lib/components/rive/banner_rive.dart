@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
-class BannerRive extends StatefulWidget {
+class BannerRive extends StatelessWidget {
   const BannerRive({super.key});
 
-  @override
-  State<BannerRive> createState() => _BannerRiveState();
-}
-
-class _BannerRiveState extends State<BannerRive> {
   @override
   Widget build(BuildContext context) {
     return const RiveAnimation.asset(

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
-import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/page/main_page/main_cubit.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
-import 'package:self_introduction_flutter/page/main_page/widget/banner_section.dart';
 import 'package:self_introduction_flutter/page/main_page/widget/intro_screen.dart';
-import 'package:self_introduction_flutter/page/main_page/widget/top_nav_bar.dart';
+import 'package:self_introduction_flutter/page/start_view/start_view.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -47,12 +45,27 @@ class _MainScreenState extends State<MainScreen> {
                   controller: state.scrollController,
                   child: Stack(
                     children: [
-                      Column(
-                        children: [
-                          IntroScreen(state: state),
-                          const SizedBox(height: 1),
-                        ],
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 720),
+                        child: state.isScrolled
+                            ? StartView(
+                                state: state,
+                                initializeAnimations: context
+                                    .read<MainPageCubit>()
+                                    .initializeAnimations,
+                                toggleFullScreen: () => context
+                                    .read<MainPageCubit>()
+                                    .toggleFullScreen(context),
+                              )
+                            : Column(
+                                key: const ValueKey('intro_screen'),
+                                children: [
+                                  IntroScreen(state: state),
+                                  const SizedBox(height: 1),
+                                ],
+                              ),
                       ),
+
                       // Visibility(
                       //   //TODO: 배포전 변경
                       //   //visible: state.isAnimationStart,
