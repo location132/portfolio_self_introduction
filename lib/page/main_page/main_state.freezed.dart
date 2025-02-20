@@ -17,14 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MainPageState {
 //StartAnimation 컨트롤러
-  List<AnimationController> get controllers =>
-      throw _privateConstructorUsedError;
-  List<Animation<double>> get animations => throw _privateConstructorUsedError;
-  List<String> get words => throw _privateConstructorUsedError;
-  bool get endAnimation => throw _privateConstructorUsedError; //스크롤 컨트롤러
+  StartAnimation? get startAnimation =>
+      throw _privateConstructorUsedError; //스크롤 컨트롤러
   ScrollController? get scrollController => throw _privateConstructorUsedError;
   bool get isScrolled => throw _privateConstructorUsedError;
-  bool get isAnimationStart => throw _privateConstructorUsedError;
+  bool get isAnimationEnd => throw _privateConstructorUsedError;
   MainPageStatus get status => throw _privateConstructorUsedError;
 
   /// Create a copy of MainPageState
@@ -41,14 +38,13 @@ abstract class $MainPageStateCopyWith<$Res> {
       _$MainPageStateCopyWithImpl<$Res, MainPageState>;
   @useResult
   $Res call(
-      {List<AnimationController> controllers,
-      List<Animation<double>> animations,
-      List<String> words,
-      bool endAnimation,
+      {StartAnimation? startAnimation,
       ScrollController? scrollController,
       bool isScrolled,
-      bool isAnimationStart,
+      bool isAnimationEnd,
       MainPageStatus status});
+
+  $StartAnimationCopyWith<$Res>? get startAnimation;
 }
 
 /// @nodoc
@@ -66,32 +62,17 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? controllers = null,
-    Object? animations = null,
-    Object? words = null,
-    Object? endAnimation = null,
+    Object? startAnimation = freezed,
     Object? scrollController = freezed,
     Object? isScrolled = null,
-    Object? isAnimationStart = null,
+    Object? isAnimationEnd = null,
     Object? status = null,
   }) {
     return _then(_value.copyWith(
-      controllers: null == controllers
-          ? _value.controllers
-          : controllers // ignore: cast_nullable_to_non_nullable
-              as List<AnimationController>,
-      animations: null == animations
-          ? _value.animations
-          : animations // ignore: cast_nullable_to_non_nullable
-              as List<Animation<double>>,
-      words: null == words
-          ? _value.words
-          : words // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      endAnimation: null == endAnimation
-          ? _value.endAnimation
-          : endAnimation // ignore: cast_nullable_to_non_nullable
-              as bool,
+      startAnimation: freezed == startAnimation
+          ? _value.startAnimation
+          : startAnimation // ignore: cast_nullable_to_non_nullable
+              as StartAnimation?,
       scrollController: freezed == scrollController
           ? _value.scrollController
           : scrollController // ignore: cast_nullable_to_non_nullable
@@ -100,15 +81,29 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
           ? _value.isScrolled
           : isScrolled // ignore: cast_nullable_to_non_nullable
               as bool,
-      isAnimationStart: null == isAnimationStart
-          ? _value.isAnimationStart
-          : isAnimationStart // ignore: cast_nullable_to_non_nullable
+      isAnimationEnd: null == isAnimationEnd
+          ? _value.isAnimationEnd
+          : isAnimationEnd // ignore: cast_nullable_to_non_nullable
               as bool,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as MainPageStatus,
     ) as $Val);
+  }
+
+  /// Create a copy of MainPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $StartAnimationCopyWith<$Res>? get startAnimation {
+    if (_value.startAnimation == null) {
+      return null;
+    }
+
+    return $StartAnimationCopyWith<$Res>(_value.startAnimation!, (value) {
+      return _then(_value.copyWith(startAnimation: value) as $Val);
+    });
   }
 }
 
@@ -121,14 +116,14 @@ abstract class _$$MainPageStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<AnimationController> controllers,
-      List<Animation<double>> animations,
-      List<String> words,
-      bool endAnimation,
+      {StartAnimation? startAnimation,
       ScrollController? scrollController,
       bool isScrolled,
-      bool isAnimationStart,
+      bool isAnimationEnd,
       MainPageStatus status});
+
+  @override
+  $StartAnimationCopyWith<$Res>? get startAnimation;
 }
 
 /// @nodoc
@@ -144,32 +139,17 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? controllers = null,
-    Object? animations = null,
-    Object? words = null,
-    Object? endAnimation = null,
+    Object? startAnimation = freezed,
     Object? scrollController = freezed,
     Object? isScrolled = null,
-    Object? isAnimationStart = null,
+    Object? isAnimationEnd = null,
     Object? status = null,
   }) {
     return _then(_$MainPageStateImpl(
-      controllers: null == controllers
-          ? _value._controllers
-          : controllers // ignore: cast_nullable_to_non_nullable
-              as List<AnimationController>,
-      animations: null == animations
-          ? _value._animations
-          : animations // ignore: cast_nullable_to_non_nullable
-              as List<Animation<double>>,
-      words: null == words
-          ? _value._words
-          : words // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      endAnimation: null == endAnimation
-          ? _value.endAnimation
-          : endAnimation // ignore: cast_nullable_to_non_nullable
-              as bool,
+      startAnimation: freezed == startAnimation
+          ? _value.startAnimation
+          : startAnimation // ignore: cast_nullable_to_non_nullable
+              as StartAnimation?,
       scrollController: freezed == scrollController
           ? _value.scrollController
           : scrollController // ignore: cast_nullable_to_non_nullable
@@ -178,9 +158,9 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
           ? _value.isScrolled
           : isScrolled // ignore: cast_nullable_to_non_nullable
               as bool,
-      isAnimationStart: null == isAnimationStart
-          ? _value.isAnimationStart
-          : isAnimationStart // ignore: cast_nullable_to_non_nullable
+      isAnimationEnd: null == isAnimationEnd
+          ? _value.isAnimationEnd
+          : isAnimationEnd // ignore: cast_nullable_to_non_nullable
               as bool,
       status: null == status
           ? _value.status
@@ -194,51 +174,16 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
 
 class _$MainPageStateImpl extends _MainPageState {
   const _$MainPageStateImpl(
-      {final List<AnimationController> controllers = const [],
-      final List<Animation<double>> animations = const [],
-      final List<String> words = const [],
-      this.endAnimation = false,
+      {this.startAnimation,
       this.scrollController,
       this.isScrolled = false,
-      this.isAnimationStart = false,
+      this.isAnimationEnd = false,
       this.status = MainPageStatus.initial})
-      : _controllers = controllers,
-        _animations = animations,
-        _words = words,
-        super._();
+      : super._();
 
 //StartAnimation 컨트롤러
-  final List<AnimationController> _controllers;
-//StartAnimation 컨트롤러
   @override
-  @JsonKey()
-  List<AnimationController> get controllers {
-    if (_controllers is EqualUnmodifiableListView) return _controllers;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_controllers);
-  }
-
-  final List<Animation<double>> _animations;
-  @override
-  @JsonKey()
-  List<Animation<double>> get animations {
-    if (_animations is EqualUnmodifiableListView) return _animations;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_animations);
-  }
-
-  final List<String> _words;
-  @override
-  @JsonKey()
-  List<String> get words {
-    if (_words is EqualUnmodifiableListView) return _words;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_words);
-  }
-
-  @override
-  @JsonKey()
-  final bool endAnimation;
+  final StartAnimation? startAnimation;
 //스크롤 컨트롤러
   @override
   final ScrollController? scrollController;
@@ -247,14 +192,14 @@ class _$MainPageStateImpl extends _MainPageState {
   final bool isScrolled;
   @override
   @JsonKey()
-  final bool isAnimationStart;
+  final bool isAnimationEnd;
   @override
   @JsonKey()
   final MainPageStatus status;
 
   @override
   String toString() {
-    return 'MainPageState(controllers: $controllers, animations: $animations, words: $words, endAnimation: $endAnimation, scrollController: $scrollController, isScrolled: $isScrolled, isAnimationStart: $isAnimationStart, status: $status)';
+    return 'MainPageState(startAnimation: $startAnimation, scrollController: $scrollController, isScrolled: $isScrolled, isAnimationEnd: $isAnimationEnd, status: $status)';
   }
 
   @override
@@ -262,33 +207,20 @@ class _$MainPageStateImpl extends _MainPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MainPageStateImpl &&
-            const DeepCollectionEquality()
-                .equals(other._controllers, _controllers) &&
-            const DeepCollectionEquality()
-                .equals(other._animations, _animations) &&
-            const DeepCollectionEquality().equals(other._words, _words) &&
-            (identical(other.endAnimation, endAnimation) ||
-                other.endAnimation == endAnimation) &&
+            (identical(other.startAnimation, startAnimation) ||
+                other.startAnimation == startAnimation) &&
             (identical(other.scrollController, scrollController) ||
                 other.scrollController == scrollController) &&
             (identical(other.isScrolled, isScrolled) ||
                 other.isScrolled == isScrolled) &&
-            (identical(other.isAnimationStart, isAnimationStart) ||
-                other.isAnimationStart == isAnimationStart) &&
+            (identical(other.isAnimationEnd, isAnimationEnd) ||
+                other.isAnimationEnd == isAnimationEnd) &&
             (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_controllers),
-      const DeepCollectionEquality().hash(_animations),
-      const DeepCollectionEquality().hash(_words),
-      endAnimation,
-      scrollController,
-      isScrolled,
-      isAnimationStart,
-      status);
+  int get hashCode => Object.hash(runtimeType, startAnimation, scrollController,
+      isScrolled, isAnimationEnd, status);
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -301,31 +233,22 @@ class _$MainPageStateImpl extends _MainPageState {
 
 abstract class _MainPageState extends MainPageState {
   const factory _MainPageState(
-      {final List<AnimationController> controllers,
-      final List<Animation<double>> animations,
-      final List<String> words,
-      final bool endAnimation,
+      {final StartAnimation? startAnimation,
       final ScrollController? scrollController,
       final bool isScrolled,
-      final bool isAnimationStart,
+      final bool isAnimationEnd,
       final MainPageStatus status}) = _$MainPageStateImpl;
   const _MainPageState._() : super._();
 
 //StartAnimation 컨트롤러
   @override
-  List<AnimationController> get controllers;
-  @override
-  List<Animation<double>> get animations;
-  @override
-  List<String> get words;
-  @override
-  bool get endAnimation; //스크롤 컨트롤러
+  StartAnimation? get startAnimation; //스크롤 컨트롤러
   @override
   ScrollController? get scrollController;
   @override
   bool get isScrolled;
   @override
-  bool get isAnimationStart;
+  bool get isAnimationEnd;
   @override
   MainPageStatus get status;
 

@@ -46,16 +46,24 @@ class _MainScreenState extends State<MainScreen> {
                   child: Stack(
                     children: [
                       AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 720),
-                        child: state.isScrolled
-                            ? StartView(
-                                state: state,
-                                initializeAnimations: context
-                                    .read<MainPageCubit>()
-                                    .initializeAnimations,
-                                toggleFullScreen: () => context
-                                    .read<MainPageCubit>()
-                                    .toggleFullScreen(context),
+                        duration: const Duration(seconds: 1),
+                        child: !state.isScrolled
+                            ? Column(
+                                key: const ValueKey('start_screen'),
+                                children: [
+                                  StartView(
+                                    state: state,
+                                    initializeAnimations: (vsync) {
+                                      context
+                                          .read<MainPageCubit>()
+                                          .initializeAnimations(vsync);
+                                    },
+                                    toggleFullScreen: () => context
+                                        .read<MainPageCubit>()
+                                        .toggleFullScreen(context),
+                                  ),
+                                  // const SizedBox(height: 1),
+                                ],
                               )
                             : Column(
                                 key: const ValueKey('intro_screen'),

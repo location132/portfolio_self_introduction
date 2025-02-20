@@ -28,30 +28,33 @@ class _TextAnimationState extends State<TextAnimation>
   Widget build(BuildContext context) {
     List<Widget> textWidgets = [];
     List<Widget> currentLineWidgets = [];
-
-    for (int i = 0; i < widget.state.words.length; i++) {
-      if (widget.state.words[i] == '\n') {
-        if (currentLineWidgets.isNotEmpty) {
-          textWidgets.add(Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.from(currentLineWidgets),
-          ));
-          currentLineWidgets.clear();
-        }
-        textWidgets.add(const SizedBox(height: 20));
-      } else {
-        currentLineWidgets.add(
-          FadeTransition(
-            opacity: widget.state.animations[i],
-            child: Text(
-              widget.state.words[i],
-              style: const TextStyle(
-                fontSize: 17,
-                fontFamily: 'Pretendard',
+    if (widget.state.startAnimation == null) {
+      return const SizedBox();
+    } else {
+      for (int i = 0; i < widget.state.startAnimation!.words.length; i++) {
+        if (widget.state.startAnimation!.words[i] == '\n') {
+          if (currentLineWidgets.isNotEmpty) {
+            textWidgets.add(Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.from(currentLineWidgets),
+            ));
+            currentLineWidgets.clear();
+          }
+          textWidgets.add(const SizedBox(height: 20));
+        } else {
+          currentLineWidgets.add(
+            FadeTransition(
+              opacity: widget.state.startAnimation!.animations[i],
+              child: Text(
+                widget.state.startAnimation!.words[i],
+                style: const TextStyle(
+                  fontSize: 17,
+                  fontFamily: 'Pretendard',
+                ),
               ),
             ),
-          ),
-        );
+          );
+        }
       }
     }
 

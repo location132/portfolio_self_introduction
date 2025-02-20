@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
+import 'package:self_introduction_flutter/model/start_animation.dart';
 import 'dart:html';
 
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
@@ -16,17 +17,20 @@ class MainPageCubit extends Cubit<MainPageState> {
   }
 
   // 애니메이션 시작
-  Future<void> initializeAnimations(TickerProvider vsync) async {
+  Future<void> initializeAnimations(
+    TickerProvider vsync, {
+    String message = TextConstants.welcomeMessage1,
+  }) async {
     final List<String> characters = [];
-    for (int i = 0; i < TextConstants.welcomeMessage.length; i++) {
-      characters.add(TextConstants.welcomeMessage[i]);
+    for (int i = 0; i < message.length; i++) {
+      characters.add(message[i]);
     }
-    emit(state.copyWith(words: characters));
+    emit(state.copyWith(startAnimation: StartAnimation(words: characters)));
 
     List<AnimationController> newControllers = [];
     List<Animation<double>> newAnimations = [];
 
-    for (int i = 0; i < state.words.length; i++) {
+    for (int i = 0; i < state.startAnimation!.words.length; i++) {
       final controller = AnimationController(
         vsync: vsync,
         duration: const Duration(milliseconds: 820),
@@ -45,28 +49,44 @@ class MainPageCubit extends Cubit<MainPageState> {
       });
     }
     emit(state.copyWith(
-      controllers: newControllers,
-      animations: newAnimations,
+      startAnimation: state.startAnimation!.copyWith(
+        controllers: newControllers,
+        animations: newAnimations,
+      ),
     ));
 
-    // await endAnimations();
+    if (message == TextConstants.welcomeMessage1) {
+      await endAnimations(vsync, TextConstants.welcomeMessage2,
+          const Duration(milliseconds: 4500));
+    } else {
+      await endAnimations(vsync, TextConstants.welcomeMessage1,
+          const Duration(milliseconds: 5500));
+    }
   }
 
   // 애니메이션 종료
-  Future<void> endAnimations() async {
-    await Future.delayed(const Duration(seconds: 5));
-    for (var controller in state.controllers) {
+  Future<void> endAnimations(
+    TickerProvider vsync,
+    String message,
+    Duration duration,
+  ) async {
+    await Future.delayed(duration);
+    for (var controller in state.startAnimation!.controllers) {
       controller.reverse();
     }
     await Future.delayed(const Duration(seconds: 1));
-    emit(state.copyWith(endAnimation: true));
+
+    initializeAnimations(
+      vsync,
+      message: message,
+    );
   }
 
   // 스크롤 리스너
   void scrollListener() async {
     if (!state.isScrolled) {
-      emit(state.copyWith(isScrolled: true, isAnimationStart: true));
-    }
+      emit(state.copyWith(isScrolled: true));
+    } else {}
   }
 
   //전체화면 모드
