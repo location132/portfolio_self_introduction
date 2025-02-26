@@ -12,9 +12,13 @@ class MainPageState with _$MainPageState {
     StartAnimation? startAnimation,
 
     //스크롤 컨트롤러
-    ScrollController? scrollController,
-    @Default(false) bool isScrolled,
-    @Default(false) bool isAnimationEnd,
+    ScrollController? mainViewScrollController,
+    ScrollController? startViewScrollController,
+    @Default(0.0) double previousScrollOffset,
+    @Default(MainViewScrollStatus.initial)
+    MainViewScrollStatus mainViewScrollStatus,
+    @Default(StartViewScrollStatus.initial)
+    StartViewScrollStatus startViewScrollStatus,
     @Default(MainPageStatus.initial) MainPageStatus status,
   }) = _MainPageState;
 }
@@ -23,4 +27,16 @@ enum MainPageStatus {
   initial,
   loading,
   loaded,
+}
+
+enum MainViewScrollStatus {
+  initial,
+  scrolled,
+  end,
+}
+
+enum StartViewScrollStatus {
+  initial,
+  scrolled,
+  end,
 }

@@ -19,9 +19,15 @@ mixin _$MainPageState {
 //StartAnimation 컨트롤러
   StartAnimation? get startAnimation =>
       throw _privateConstructorUsedError; //스크롤 컨트롤러
-  ScrollController? get scrollController => throw _privateConstructorUsedError;
-  bool get isScrolled => throw _privateConstructorUsedError;
-  bool get isAnimationEnd => throw _privateConstructorUsedError;
+  ScrollController? get mainViewScrollController =>
+      throw _privateConstructorUsedError;
+  ScrollController? get startViewScrollController =>
+      throw _privateConstructorUsedError;
+  double get previousScrollOffset => throw _privateConstructorUsedError;
+  MainViewScrollStatus get mainViewScrollStatus =>
+      throw _privateConstructorUsedError;
+  StartViewScrollStatus get startViewScrollStatus =>
+      throw _privateConstructorUsedError;
   MainPageStatus get status => throw _privateConstructorUsedError;
 
   /// Create a copy of MainPageState
@@ -39,9 +45,11 @@ abstract class $MainPageStateCopyWith<$Res> {
   @useResult
   $Res call(
       {StartAnimation? startAnimation,
-      ScrollController? scrollController,
-      bool isScrolled,
-      bool isAnimationEnd,
+      ScrollController? mainViewScrollController,
+      ScrollController? startViewScrollController,
+      double previousScrollOffset,
+      MainViewScrollStatus mainViewScrollStatus,
+      StartViewScrollStatus startViewScrollStatus,
       MainPageStatus status});
 
   $StartAnimationCopyWith<$Res>? get startAnimation;
@@ -63,9 +71,11 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
   @override
   $Res call({
     Object? startAnimation = freezed,
-    Object? scrollController = freezed,
-    Object? isScrolled = null,
-    Object? isAnimationEnd = null,
+    Object? mainViewScrollController = freezed,
+    Object? startViewScrollController = freezed,
+    Object? previousScrollOffset = null,
+    Object? mainViewScrollStatus = null,
+    Object? startViewScrollStatus = null,
     Object? status = null,
   }) {
     return _then(_value.copyWith(
@@ -73,18 +83,26 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
           ? _value.startAnimation
           : startAnimation // ignore: cast_nullable_to_non_nullable
               as StartAnimation?,
-      scrollController: freezed == scrollController
-          ? _value.scrollController
-          : scrollController // ignore: cast_nullable_to_non_nullable
+      mainViewScrollController: freezed == mainViewScrollController
+          ? _value.mainViewScrollController
+          : mainViewScrollController // ignore: cast_nullable_to_non_nullable
               as ScrollController?,
-      isScrolled: null == isScrolled
-          ? _value.isScrolled
-          : isScrolled // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isAnimationEnd: null == isAnimationEnd
-          ? _value.isAnimationEnd
-          : isAnimationEnd // ignore: cast_nullable_to_non_nullable
-              as bool,
+      startViewScrollController: freezed == startViewScrollController
+          ? _value.startViewScrollController
+          : startViewScrollController // ignore: cast_nullable_to_non_nullable
+              as ScrollController?,
+      previousScrollOffset: null == previousScrollOffset
+          ? _value.previousScrollOffset
+          : previousScrollOffset // ignore: cast_nullable_to_non_nullable
+              as double,
+      mainViewScrollStatus: null == mainViewScrollStatus
+          ? _value.mainViewScrollStatus
+          : mainViewScrollStatus // ignore: cast_nullable_to_non_nullable
+              as MainViewScrollStatus,
+      startViewScrollStatus: null == startViewScrollStatus
+          ? _value.startViewScrollStatus
+          : startViewScrollStatus // ignore: cast_nullable_to_non_nullable
+              as StartViewScrollStatus,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -117,9 +135,11 @@ abstract class _$$MainPageStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {StartAnimation? startAnimation,
-      ScrollController? scrollController,
-      bool isScrolled,
-      bool isAnimationEnd,
+      ScrollController? mainViewScrollController,
+      ScrollController? startViewScrollController,
+      double previousScrollOffset,
+      MainViewScrollStatus mainViewScrollStatus,
+      StartViewScrollStatus startViewScrollStatus,
       MainPageStatus status});
 
   @override
@@ -140,9 +160,11 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? startAnimation = freezed,
-    Object? scrollController = freezed,
-    Object? isScrolled = null,
-    Object? isAnimationEnd = null,
+    Object? mainViewScrollController = freezed,
+    Object? startViewScrollController = freezed,
+    Object? previousScrollOffset = null,
+    Object? mainViewScrollStatus = null,
+    Object? startViewScrollStatus = null,
     Object? status = null,
   }) {
     return _then(_$MainPageStateImpl(
@@ -150,18 +172,26 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
           ? _value.startAnimation
           : startAnimation // ignore: cast_nullable_to_non_nullable
               as StartAnimation?,
-      scrollController: freezed == scrollController
-          ? _value.scrollController
-          : scrollController // ignore: cast_nullable_to_non_nullable
+      mainViewScrollController: freezed == mainViewScrollController
+          ? _value.mainViewScrollController
+          : mainViewScrollController // ignore: cast_nullable_to_non_nullable
               as ScrollController?,
-      isScrolled: null == isScrolled
-          ? _value.isScrolled
-          : isScrolled // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isAnimationEnd: null == isAnimationEnd
-          ? _value.isAnimationEnd
-          : isAnimationEnd // ignore: cast_nullable_to_non_nullable
-              as bool,
+      startViewScrollController: freezed == startViewScrollController
+          ? _value.startViewScrollController
+          : startViewScrollController // ignore: cast_nullable_to_non_nullable
+              as ScrollController?,
+      previousScrollOffset: null == previousScrollOffset
+          ? _value.previousScrollOffset
+          : previousScrollOffset // ignore: cast_nullable_to_non_nullable
+              as double,
+      mainViewScrollStatus: null == mainViewScrollStatus
+          ? _value.mainViewScrollStatus
+          : mainViewScrollStatus // ignore: cast_nullable_to_non_nullable
+              as MainViewScrollStatus,
+      startViewScrollStatus: null == startViewScrollStatus
+          ? _value.startViewScrollStatus
+          : startViewScrollStatus // ignore: cast_nullable_to_non_nullable
+              as StartViewScrollStatus,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -175,9 +205,11 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
 class _$MainPageStateImpl extends _MainPageState {
   const _$MainPageStateImpl(
       {this.startAnimation,
-      this.scrollController,
-      this.isScrolled = false,
-      this.isAnimationEnd = false,
+      this.mainViewScrollController,
+      this.startViewScrollController,
+      this.previousScrollOffset = 0.0,
+      this.mainViewScrollStatus = MainViewScrollStatus.initial,
+      this.startViewScrollStatus = StartViewScrollStatus.initial,
       this.status = MainPageStatus.initial})
       : super._();
 
@@ -186,20 +218,25 @@ class _$MainPageStateImpl extends _MainPageState {
   final StartAnimation? startAnimation;
 //스크롤 컨트롤러
   @override
-  final ScrollController? scrollController;
+  final ScrollController? mainViewScrollController;
+  @override
+  final ScrollController? startViewScrollController;
   @override
   @JsonKey()
-  final bool isScrolled;
+  final double previousScrollOffset;
   @override
   @JsonKey()
-  final bool isAnimationEnd;
+  final MainViewScrollStatus mainViewScrollStatus;
+  @override
+  @JsonKey()
+  final StartViewScrollStatus startViewScrollStatus;
   @override
   @JsonKey()
   final MainPageStatus status;
 
   @override
   String toString() {
-    return 'MainPageState(startAnimation: $startAnimation, scrollController: $scrollController, isScrolled: $isScrolled, isAnimationEnd: $isAnimationEnd, status: $status)';
+    return 'MainPageState(startAnimation: $startAnimation, mainViewScrollController: $mainViewScrollController, startViewScrollController: $startViewScrollController, previousScrollOffset: $previousScrollOffset, mainViewScrollStatus: $mainViewScrollStatus, startViewScrollStatus: $startViewScrollStatus, status: $status)';
   }
 
   @override
@@ -209,18 +246,31 @@ class _$MainPageStateImpl extends _MainPageState {
             other is _$MainPageStateImpl &&
             (identical(other.startAnimation, startAnimation) ||
                 other.startAnimation == startAnimation) &&
-            (identical(other.scrollController, scrollController) ||
-                other.scrollController == scrollController) &&
-            (identical(other.isScrolled, isScrolled) ||
-                other.isScrolled == isScrolled) &&
-            (identical(other.isAnimationEnd, isAnimationEnd) ||
-                other.isAnimationEnd == isAnimationEnd) &&
+            (identical(
+                    other.mainViewScrollController, mainViewScrollController) ||
+                other.mainViewScrollController == mainViewScrollController) &&
+            (identical(other.startViewScrollController,
+                    startViewScrollController) ||
+                other.startViewScrollController == startViewScrollController) &&
+            (identical(other.previousScrollOffset, previousScrollOffset) ||
+                other.previousScrollOffset == previousScrollOffset) &&
+            (identical(other.mainViewScrollStatus, mainViewScrollStatus) ||
+                other.mainViewScrollStatus == mainViewScrollStatus) &&
+            (identical(other.startViewScrollStatus, startViewScrollStatus) ||
+                other.startViewScrollStatus == startViewScrollStatus) &&
             (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, startAnimation, scrollController,
-      isScrolled, isAnimationEnd, status);
+  int get hashCode => Object.hash(
+      runtimeType,
+      startAnimation,
+      mainViewScrollController,
+      startViewScrollController,
+      previousScrollOffset,
+      mainViewScrollStatus,
+      startViewScrollStatus,
+      status);
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -234,9 +284,11 @@ class _$MainPageStateImpl extends _MainPageState {
 abstract class _MainPageState extends MainPageState {
   const factory _MainPageState(
       {final StartAnimation? startAnimation,
-      final ScrollController? scrollController,
-      final bool isScrolled,
-      final bool isAnimationEnd,
+      final ScrollController? mainViewScrollController,
+      final ScrollController? startViewScrollController,
+      final double previousScrollOffset,
+      final MainViewScrollStatus mainViewScrollStatus,
+      final StartViewScrollStatus startViewScrollStatus,
       final MainPageStatus status}) = _$MainPageStateImpl;
   const _MainPageState._() : super._();
 
@@ -244,11 +296,15 @@ abstract class _MainPageState extends MainPageState {
   @override
   StartAnimation? get startAnimation; //스크롤 컨트롤러
   @override
-  ScrollController? get scrollController;
+  ScrollController? get mainViewScrollController;
   @override
-  bool get isScrolled;
+  ScrollController? get startViewScrollController;
   @override
-  bool get isAnimationEnd;
+  double get previousScrollOffset;
+  @override
+  MainViewScrollStatus get mainViewScrollStatus;
+  @override
+  StartViewScrollStatus get startViewScrollStatus;
   @override
   MainPageStatus get status;
 

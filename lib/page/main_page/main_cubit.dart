@@ -3,20 +3,57 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/model/start_animation.dart';
-import 'dart:html';
-
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
+import 'dart:html';
 
 @injectable
 class MainPageCubit extends Cubit<MainPageState> {
-  MainPageCubit() : super(MainPageState(scrollController: ScrollController()));
+  MainPageCubit()
+      : super(MainPageState(
+          mainViewScrollController: ScrollController(),
+          startViewScrollController: ScrollController(),
+        ));
 
   @postConstruct
-  void init() async {
+  void init() {
     emit(state.copyWith(status: MainPageStatus.loaded));
+
+    emit(state.copyWith(
+      mainViewScrollStatus: MainViewScrollStatus.end,
+    ));
+    // 해제 메모리 확인 완료
+    // state.mainViewScrollController?.addListener(() {
+    //   mainViewScrollListener();
+    // });
+    // state.startViewScrollController?.addListener(() {
+    //   startViewScrollListener();
+    // });
   }
 
-  // 애니메이션 시작
+  // MainView 스크롤 리스너
+  void mainViewScrollListener() async {
+    if (state.mainViewScrollStatus == MainViewScrollStatus.initial) {
+      emit(state.copyWith(mainViewScrollStatus: MainViewScrollStatus.scrolled));
+      await Future.delayed(const Duration(milliseconds: 1500));
+      emit(state.copyWith(
+        mainViewScrollStatus: MainViewScrollStatus.end,
+      ));
+
+      if (state.mainViewScrollController != null) {
+        state.mainViewScrollController!
+            .removeListener(() => mainViewScrollListener());
+        state.mainViewScrollController?.dispose();
+        emit(state.copyWith(mainViewScrollController: null));
+      }
+    }
+  }
+
+  // StartView 스크롤 리스너
+  void startViewScrollListener() async {
+    if (state.startViewScrollStatus == StartViewScrollStatus.initial) {}
+  }
+
+  // text 애니메이션 시작
   Future<void> initializeAnimations(
     TickerProvider vsync, {
     String message = TextConstants.welcomeMessage1,
@@ -64,7 +101,7 @@ class MainPageCubit extends Cubit<MainPageState> {
     }
   }
 
-  // 애니메이션 종료
+  // text애니메이션 종료
   Future<void> endAnimations(
     TickerProvider vsync,
     String message,
@@ -80,13 +117,6 @@ class MainPageCubit extends Cubit<MainPageState> {
       vsync,
       message: message,
     );
-  }
-
-  // 스크롤 리스너
-  void scrollListener() async {
-    if (!state.isScrolled) {
-      emit(state.copyWith(isScrolled: true));
-    } else {}
   }
 
   //전체화면 모드

@@ -14,3 +14,9 @@ class TextConstants {
   static const String topNavBar6 = '나만의 개발 팁';
   static const String topNavBar7 = '교육 및 강의';
 }
+
+class IntroTextConstants {
+  static const String introText1 = '2025';
+  static const String introText2 = 'PORTFOLIO';
+  static const String introText3 = 'FLUTTER-이정원';
+}

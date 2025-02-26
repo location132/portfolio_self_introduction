@@ -3,15 +3,21 @@ import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 
 class TopNavBar extends StatelessWidget {
-  const TopNavBar({super.key});
+  final void Function() toggleFullScreen;
+
+  const TopNavBar({
+    super.key,
+    required this.toggleFullScreen,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(color: Colors.black),
+    return Padding(
+      padding: EdgeInsets.only(top: 15.sh),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const Spacer(),
           SizedBox(width: 11.sw),
           Image.asset(
             'assets/Images/flutter_bird.png',
@@ -24,6 +30,16 @@ class TopNavBar extends StatelessWidget {
           const NavItem(title: TextConstants.topNavBar5),
           const NavItem(title: TextConstants.topNavBar6),
           const NavItem(title: TextConstants.topNavBar7),
+          const Spacer(),
+          IconButton(
+            icon: const Icon(
+              Icons.fullscreen,
+              color: Colors.black,
+              size: 30,
+            ),
+            onPressed: toggleFullScreen,
+          ),
+          SizedBox(width: 11.sw),
         ],
       ),
     );
@@ -48,7 +64,6 @@ class NavItem extends StatelessWidget {
             title,
             style: const TextStyle(
               fontSize: 12,
-              color: Colors.white,
               fontWeight: FontWeight.w600,
             ),
           ),

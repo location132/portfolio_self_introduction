@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -35,14 +36,14 @@ class IntroScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            '2025',
+                            IntroTextConstants.introText1,
                             style: TextStyle(fontSize: screenWidth * 0.02),
                           ),
                         ],
                       ),
                     ),
                     Text(
-                      'PORTFOLIO',
+                      IntroTextConstants.introText2,
                       style: TextStyle(fontSize: screenWidth * 0.05),
                     ),
                     Padding(
@@ -51,7 +52,7 @@ class IntroScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            'FLUTTER-이정원',
+                            IntroTextConstants.introText3,
                             style: TextStyle(fontSize: screenWidth * 0.02),
                           ),
                         ],
