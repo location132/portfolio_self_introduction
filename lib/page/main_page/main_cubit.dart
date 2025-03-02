@@ -25,9 +25,9 @@ class MainPageCubit extends Cubit<MainPageState> {
     // state.mainViewScrollController?.addListener(() {
     //   mainViewScrollListener();
     // });
-    // state.startViewScrollController?.addListener(() {
-    //   startViewScrollListener();
-    // });
+    state.startViewScrollController?.addListener(() {
+      startViewScrollListener();
+    });
   }
 
   // MainView 스크롤 리스너
@@ -50,7 +50,16 @@ class MainPageCubit extends Cubit<MainPageState> {
 
   // StartView 스크롤 리스너
   void startViewScrollListener() async {
-    if (state.startViewScrollStatus == StartViewScrollStatus.initial) {}
+    if (state.startViewScrollStatus == StartViewScrollStatus.initial &&
+        state.startViewScrollController!.offset > 0) {
+      emit(state.copyWith(
+          startViewScrollStatus: StartViewScrollStatus.scrolled));
+    } else if (state.startViewScrollStatus == StartViewScrollStatus.scrolled &&
+        state.startViewScrollController!.offset == 0) {
+      emit(state.copyWith(
+        startViewScrollStatus: StartViewScrollStatus.initial,
+      ));
+    }
   }
 
   // text 애니메이션 시작

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/page/main_page/main_cubit.dart';
@@ -32,39 +33,35 @@ class _MainViewState extends State<MainView> {
       builder: (context, state) {
         return Scaffold(
           body: state.status == MainPageStatus.loaded
-              ? SingleChildScrollView(
-                  controller: state.mainViewScrollController,
-                  child: Stack(
-                    children: [
-                      AnimatedSwitcher(
-                        duration: const Duration(seconds: 1),
-                        child: state.mainViewScrollStatus !=
-                                MainViewScrollStatus.initial
-                            ? Column(
-                                key: const ValueKey('start_screen'),
-                                children: [
-                                  StartView(
+              ? Column(
+                  children: [
+                    TopNavBar(
+                      toggleFullScreen: () => context
+                          .read<MainPageCubit>()
+                          .toggleFullScreen(context),
+                    ),
+                    SingleChildScrollView(
+                      controller: state.mainViewScrollController,
+                      child: Stack(
+                        children: [
+                          AnimatedSwitcher(
+                            duration: const Duration(seconds: 1),
+                            child: state.mainViewScrollStatus !=
+                                    MainViewScrollStatus.initial
+                                ? StartView(
                                     state: state,
                                     initializeAnimations: (vsync) {
                                       context
                                           .read<MainPageCubit>()
                                           .initializeAnimations(vsync);
                                     },
-                                    toggleFullScreen: () => context
-                                        .read<MainPageCubit>()
-                                        .toggleFullScreen(context),
-                                  ),
-                                ],
-                              )
-                            : Column(
-                                key: const ValueKey('intro_screen'),
-                                children: [
-                                  IntroScreen(state: state),
-                                ],
-                              ),
+                                  )
+                                : IntroScreen(state: state),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 )
               : const SizedBox.shrink(),
         );

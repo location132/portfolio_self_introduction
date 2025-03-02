@@ -12,35 +12,38 @@ class TopNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 15.sh),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Spacer(),
-          SizedBox(width: 11.sw),
-          Image.asset(
-            'assets/Images/flutter_bird.png',
-            scale: 25,
-          ),
-          const NavItem(title: TextConstants.topNavBar1),
-          const NavItem(title: TextConstants.topNavBar2),
-          const NavItem(title: TextConstants.topNavBar3),
-          const NavItem(title: TextConstants.topNavBar4),
-          const NavItem(title: TextConstants.topNavBar5),
-          const NavItem(title: TextConstants.topNavBar6),
-          const NavItem(title: TextConstants.topNavBar7),
-          const Spacer(),
-          IconButton(
-            icon: const Icon(
-              Icons.fullscreen,
-              color: Colors.black,
-              size: 30,
+    return Container(
+      color: const Color(0xFFF8F8F8),
+      child: Padding(
+        padding: EdgeInsets.only(top: 15.sh, bottom: 15.sh),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Spacer(),
+            SizedBox(width: 11.sw),
+            Image.asset(
+              'assets/Images/flutter_bird.png',
+              scale: 25,
             ),
-            onPressed: toggleFullScreen,
-          ),
-          SizedBox(width: 11.sw),
-        ],
+            const NavItem(title: TextConstants.topNavBar1),
+            const NavItem(title: TextConstants.topNavBar2),
+            const NavItem(title: TextConstants.topNavBar3),
+            const NavItem(title: TextConstants.topNavBar4),
+            const NavItem(title: TextConstants.topNavBar5),
+            const NavItem(title: TextConstants.topNavBar6),
+            const NavItem(title: TextConstants.topNavBar7),
+            const Spacer(),
+            IconButton(
+              icon: const Icon(
+                Icons.fullscreen,
+                color: Colors.black,
+                size: 30,
+              ),
+              onPressed: toggleFullScreen,
+            ),
+            SizedBox(width: 11.sw),
+          ],
+        ),
       ),
     );
   }
