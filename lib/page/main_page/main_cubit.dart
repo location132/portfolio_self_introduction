@@ -2,50 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
-import 'package:self_introduction_flutter/model/start_animation.dart';
+import 'package:self_introduction_flutter/model/profile_model.dart';
+import 'package:self_introduction_flutter/model/start_animation_model.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
-import 'dart:html';
+import 'package:universal_html/html.dart';
 
 @injectable
 class MainPageCubit extends Cubit<MainPageState> {
   MainPageCubit()
       : super(MainPageState(
-          mainViewScrollController: ScrollController(),
           startViewScrollController: ScrollController(),
+          profileViewModel: const ProfileViewModel(),
         ));
 
   @postConstruct
   void init() {
-    emit(state.copyWith(status: MainPageStatus.loaded));
-
-    emit(state.copyWith(
-      mainViewScrollStatus: MainViewScrollStatus.end,
-    ));
-    // 해제 메모리 확인 완료
-    // state.mainViewScrollController?.addListener(() {
-    //   mainViewScrollListener();
-    // });
     state.startViewScrollController?.addListener(() {
       startViewScrollListener();
     });
-  }
-
-  // MainView 스크롤 리스너
-  void mainViewScrollListener() async {
-    if (state.mainViewScrollStatus == MainViewScrollStatus.initial) {
-      emit(state.copyWith(mainViewScrollStatus: MainViewScrollStatus.scrolled));
-      await Future.delayed(const Duration(milliseconds: 1500));
-      emit(state.copyWith(
-        mainViewScrollStatus: MainViewScrollStatus.end,
-      ));
-
-      if (state.mainViewScrollController != null) {
-        state.mainViewScrollController!
-            .removeListener(() => mainViewScrollListener());
-        state.mainViewScrollController?.dispose();
-        emit(state.copyWith(mainViewScrollController: null));
-      }
-    }
   }
 
   // StartView 스크롤 리스너
@@ -71,7 +45,8 @@ class MainPageCubit extends Cubit<MainPageState> {
     for (int i = 0; i < message.length; i++) {
       characters.add(message[i]);
     }
-    emit(state.copyWith(startAnimation: StartAnimation(words: characters)));
+    emit(
+        state.copyWith(startAnimation: StartAnimationModel(words: characters)));
 
     List<AnimationController> newControllers = [];
     List<Animation<double>> newAnimations = [];
@@ -131,5 +106,34 @@ class MainPageCubit extends Cubit<MainPageState> {
   //전체화면 모드
   void toggleFullScreen(BuildContext context) {
     document.documentElement?.requestFullscreen();
+  }
+
+  //프로필 뷰 스크롤 감지
+  void profileViewListener(double visibleFraction) async {
+    if (visibleFraction > 0.03 &&
+        state.profileViewModel?.status == ProfileViewStatus.init) {
+      emit(state.copyWith(
+        profileViewModel: state.profileViewModel!
+            .copyWith(status: ProfileViewStatus.end, isProfileCard: true),
+      ));
+
+      await Future.delayed(const Duration(milliseconds: 400));
+      emit(state.copyWith(
+        profileViewModel:
+            state.profileViewModel!.copyWith(animationStart: true),
+      ));
+      await Future.delayed(const Duration(milliseconds: 4500));
+      emit(state.copyWith(
+        profileViewModel: state.profileViewModel!.copyWith(aboutSection1: true),
+      ));
+      await Future.delayed(const Duration(milliseconds: 450));
+      emit(state.copyWith(
+        profileViewModel: state.profileViewModel!.copyWith(aboutSection2: true),
+      ));
+      await Future.delayed(const Duration(milliseconds: 450));
+      emit(state.copyWith(
+        profileViewModel: state.profileViewModel!.copyWith(aboutSection3: true),
+      ));
+    }
   }
 }

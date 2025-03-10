@@ -4,12 +4,12 @@ import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
 class TextAnimation extends StatefulWidget {
   final MainPageState state;
-  final void Function(TickerProvider vsync) initializeAnimations;
+  final void Function(TickerProvider vsync)? initializeAnimations;
 
   const TextAnimation({
     super.key,
     required this.state,
-    required this.initializeAnimations,
+    this.initializeAnimations,
   });
 
   @override
@@ -21,7 +21,7 @@ class _TextAnimationState extends State<TextAnimation>
   @override
   void initState() {
     super.initState();
-    widget.initializeAnimations(this);
+    widget.initializeAnimations?.call(this);
   }
 
   @override

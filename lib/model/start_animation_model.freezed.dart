@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'start_animation.dart';
+part of 'start_animation_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$StartAnimation {
+mixin _$StartAnimationModel {
   List<AnimationController> get controllers =>
       throw _privateConstructorUsedError;
   List<Animation<double>> get animations => throw _privateConstructorUsedError;
@@ -23,18 +23,18 @@ mixin _$StartAnimation {
   bool get endAnimation => throw _privateConstructorUsedError;
   TextConstants? get textConstants => throw _privateConstructorUsedError;
 
-  /// Create a copy of StartAnimation
+  /// Create a copy of StartAnimationModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $StartAnimationCopyWith<StartAnimation> get copyWith =>
+  $StartAnimationModelCopyWith<StartAnimationModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StartAnimationCopyWith<$Res> {
-  factory $StartAnimationCopyWith(
-          StartAnimation value, $Res Function(StartAnimation) then) =
-      _$StartAnimationCopyWithImpl<$Res, StartAnimation>;
+abstract class $StartAnimationModelCopyWith<$Res> {
+  factory $StartAnimationModelCopyWith(
+          StartAnimationModel value, $Res Function(StartAnimationModel) then) =
+      _$StartAnimationModelCopyWithImpl<$Res, StartAnimationModel>;
   @useResult
   $Res call(
       {List<AnimationController> controllers,
@@ -45,16 +45,16 @@ abstract class $StartAnimationCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$StartAnimationCopyWithImpl<$Res, $Val extends StartAnimation>
-    implements $StartAnimationCopyWith<$Res> {
-  _$StartAnimationCopyWithImpl(this._value, this._then);
+class _$StartAnimationModelCopyWithImpl<$Res, $Val extends StartAnimationModel>
+    implements $StartAnimationModelCopyWith<$Res> {
+  _$StartAnimationModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of StartAnimation
+  /// Create a copy of StartAnimationModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -91,11 +91,11 @@ class _$StartAnimationCopyWithImpl<$Res, $Val extends StartAnimation>
 }
 
 /// @nodoc
-abstract class _$$StartAnimationImplCopyWith<$Res>
-    implements $StartAnimationCopyWith<$Res> {
-  factory _$$StartAnimationImplCopyWith(_$StartAnimationImpl value,
-          $Res Function(_$StartAnimationImpl) then) =
-      __$$StartAnimationImplCopyWithImpl<$Res>;
+abstract class _$$StartAnimationModelImplCopyWith<$Res>
+    implements $StartAnimationModelCopyWith<$Res> {
+  factory _$$StartAnimationModelImplCopyWith(_$StartAnimationModelImpl value,
+          $Res Function(_$StartAnimationModelImpl) then) =
+      __$$StartAnimationModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -107,14 +107,14 @@ abstract class _$$StartAnimationImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$StartAnimationImplCopyWithImpl<$Res>
-    extends _$StartAnimationCopyWithImpl<$Res, _$StartAnimationImpl>
-    implements _$$StartAnimationImplCopyWith<$Res> {
-  __$$StartAnimationImplCopyWithImpl(
-      _$StartAnimationImpl _value, $Res Function(_$StartAnimationImpl) _then)
+class __$$StartAnimationModelImplCopyWithImpl<$Res>
+    extends _$StartAnimationModelCopyWithImpl<$Res, _$StartAnimationModelImpl>
+    implements _$$StartAnimationModelImplCopyWith<$Res> {
+  __$$StartAnimationModelImplCopyWithImpl(_$StartAnimationModelImpl _value,
+      $Res Function(_$StartAnimationModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of StartAnimation
+  /// Create a copy of StartAnimationModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -125,7 +125,7 @@ class __$$StartAnimationImplCopyWithImpl<$Res>
     Object? endAnimation = null,
     Object? textConstants = freezed,
   }) {
-    return _then(_$StartAnimationImpl(
+    return _then(_$StartAnimationModelImpl(
       controllers: null == controllers
           ? _value._controllers
           : controllers // ignore: cast_nullable_to_non_nullable
@@ -152,8 +152,8 @@ class __$$StartAnimationImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$StartAnimationImpl implements _StartAnimation {
-  const _$StartAnimationImpl(
+class _$StartAnimationModelImpl implements _StartAnimationModel {
+  const _$StartAnimationModelImpl(
       {final List<AnimationController> controllers = const [],
       final List<Animation<double>> animations = const [],
       final List<String> words = const [],
@@ -198,14 +198,14 @@ class _$StartAnimationImpl implements _StartAnimation {
 
   @override
   String toString() {
-    return 'StartAnimation(controllers: $controllers, animations: $animations, words: $words, endAnimation: $endAnimation, textConstants: $textConstants)';
+    return 'StartAnimationModel(controllers: $controllers, animations: $animations, words: $words, endAnimation: $endAnimation, textConstants: $textConstants)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StartAnimationImpl &&
+            other is _$StartAnimationModelImpl &&
             const DeepCollectionEquality()
                 .equals(other._controllers, _controllers) &&
             const DeepCollectionEquality()
@@ -226,23 +226,23 @@ class _$StartAnimationImpl implements _StartAnimation {
       endAnimation,
       textConstants);
 
-  /// Create a copy of StartAnimation
+  /// Create a copy of StartAnimationModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$StartAnimationImplCopyWith<_$StartAnimationImpl> get copyWith =>
-      __$$StartAnimationImplCopyWithImpl<_$StartAnimationImpl>(
+  _$$StartAnimationModelImplCopyWith<_$StartAnimationModelImpl> get copyWith =>
+      __$$StartAnimationModelImplCopyWithImpl<_$StartAnimationModelImpl>(
           this, _$identity);
 }
 
-abstract class _StartAnimation implements StartAnimation {
-  const factory _StartAnimation(
+abstract class _StartAnimationModel implements StartAnimationModel {
+  const factory _StartAnimationModel(
       {final List<AnimationController> controllers,
       final List<Animation<double>> animations,
       final List<String> words,
       final bool endAnimation,
-      final TextConstants? textConstants}) = _$StartAnimationImpl;
+      final TextConstants? textConstants}) = _$StartAnimationModelImpl;
 
   @override
   List<AnimationController> get controllers;
@@ -255,10 +255,10 @@ abstract class _StartAnimation implements StartAnimation {
   @override
   TextConstants? get textConstants;
 
-  /// Create a copy of StartAnimation
+  /// Create a copy of StartAnimationModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StartAnimationImplCopyWith<_$StartAnimationImpl> get copyWith =>
+  _$$StartAnimationModelImplCopyWith<_$StartAnimationModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

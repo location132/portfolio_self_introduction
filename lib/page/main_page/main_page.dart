@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/main_page/main_cubit.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
-import 'package:self_introduction_flutter/page/intro_page/intro_screen.dart';
-import 'package:self_introduction_flutter/page/main_page/start_view/start_view.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/profile_view.dart';
+import 'package:self_introduction_flutter/page/main_page/view/widgets/banner_section.dart';
+import 'package:self_introduction_flutter/page/main_page/view/intro_view/introShowcase.dart';
+import 'package:self_introduction_flutter/page/main_page/view/widgets/title_text.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -32,39 +37,67 @@ class _MainViewState extends State<MainView> {
     return BlocBuilder<MainPageCubit, MainPageState>(
       builder: (context, state) {
         return Scaffold(
-          body: state.status == MainPageStatus.loaded
-              ? Column(
-                  children: [
-                    TopNavBar(
-                      toggleFullScreen: () => context
-                          .read<MainPageCubit>()
-                          .toggleFullScreen(context),
-                    ),
-                    SingleChildScrollView(
-                      controller: state.mainViewScrollController,
-                      child: Stack(
-                        children: [
-                          AnimatedSwitcher(
-                            duration: const Duration(seconds: 1),
-                            child: state.mainViewScrollStatus !=
-                                    MainViewScrollStatus.initial
-                                ? StartView(
-                                    state: state,
-                                    initializeAnimations: (vsync) {
-                                      context
-                                          .read<MainPageCubit>()
-                                          .initializeAnimations(vsync);
-                                    },
-                                  )
-                                : IntroScreen(state: state),
-                          ),
-                        ],
+            body: Column(
+          children: [
+            TopNavBar(toggleFullScreen: () {}),
+            SizedBox(
+              height: MediaQuery.of(context).size.height - 83,
+              width: MediaQuery.of(context).size.width,
+              child: CustomScrollView(
+                controller: state.startViewScrollController,
+                slivers: [
+                  SliverAppBar(
+                    expandedHeight: MediaQuery.of(context).size.height,
+                    pinned: false,
+                    backgroundColor: Colors.transparent,
+                    flexibleSpace: FlexibleSpaceBar(
+                      background: Introshowcase(
+                        state: state,
+                        initializeAnimations:
+                            context.read<MainPageCubit>().initializeAnimations,
                       ),
                     ),
-                  ],
-                )
-              : const SizedBox.shrink(),
-        );
+                  ),
+                  SliverToBoxAdapter(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 20.sh),
+                        const TitleText(
+                          title: TitleTextConstants.title1,
+                          subTitle: TitleTextConstants.subTitle1,
+                          description: TitleTextConstants.description1,
+                        ),
+                        SizedBox(height: 10.sh),
+                        BannerSection(state: state),
+                        SizedBox(height: 120.sh),
+                        const TitleText(
+                          title: TitleTextConstants.title2,
+                          subTitle: TitleTextConstants.subTitle2,
+                          description: TitleTextConstants.description2,
+                        ),
+                        SizedBox(height: 80.sh),
+                        VisibilityDetector(
+                          key: const Key('profile-view'),
+                          onVisibilityChanged: (VisibilityInfo info) {
+                            context
+                                .read<MainPageCubit>()
+                                .profileViewListener(info.visibleFraction);
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 132.sw),
+                            child: ProfileView(state: state),
+                          ),
+                        ),
+                        SizedBox(height: 800.sh),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ));
       },
     );
   }

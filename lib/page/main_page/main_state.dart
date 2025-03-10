@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:self_introduction_flutter/model/start_animation.dart';
+import 'package:self_introduction_flutter/model/profile_model.dart';
+import 'package:self_introduction_flutter/model/start_animation_model.dart';
 
 part 'main_state.freezed.dart';
 
@@ -9,30 +10,16 @@ class MainPageState with _$MainPageState {
   const MainPageState._();
   const factory MainPageState({
     //StartAnimation 컨트롤러
-    StartAnimation? startAnimation,
+    StartAnimationModel? startAnimation,
+
+    //프로필 뷰 모델
+    ProfileViewModel? profileViewModel,
 
     //스크롤 컨트롤러
-    ScrollController? mainViewScrollController,
     ScrollController? startViewScrollController,
-    @Default(0.0) double previousScrollOffset,
-    @Default(MainViewScrollStatus.initial)
-    MainViewScrollStatus mainViewScrollStatus,
     @Default(StartViewScrollStatus.initial)
     StartViewScrollStatus startViewScrollStatus,
-    @Default(MainPageStatus.initial) MainPageStatus status,
   }) = _MainPageState;
-}
-
-enum MainPageStatus {
-  initial,
-  loading,
-  loaded,
-}
-
-enum MainViewScrollStatus {
-  initial,
-  scrolled,
-  end,
 }
 
 enum StartViewScrollStatus {
