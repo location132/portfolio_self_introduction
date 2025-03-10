@@ -116,23 +116,22 @@ class MainPageCubit extends Cubit<MainPageState> {
         profileViewModel: state.profileViewModel!
             .copyWith(status: ProfileViewStatus.end, isProfileCard: true),
       ));
-
-      await Future.delayed(const Duration(milliseconds: 400));
-      emit(state.copyWith(
-        profileViewModel:
-            state.profileViewModel!.copyWith(animationStart: true),
-      ));
-      await Future.delayed(const Duration(milliseconds: 4500));
+      await Future.delayed(const Duration(milliseconds: 350));
       emit(state.copyWith(
         profileViewModel: state.profileViewModel!.copyWith(aboutSection1: true),
       ));
-      await Future.delayed(const Duration(milliseconds: 450));
+      await Future.delayed(const Duration(milliseconds: 330));
       emit(state.copyWith(
         profileViewModel: state.profileViewModel!.copyWith(aboutSection2: true),
       ));
-      await Future.delayed(const Duration(milliseconds: 450));
+      await Future.delayed(const Duration(milliseconds: 300));
       emit(state.copyWith(
         profileViewModel: state.profileViewModel!.copyWith(aboutSection3: true),
+      ));
+      await Future.delayed(const Duration(milliseconds: 250));
+      emit(state.copyWith(
+        profileViewModel:
+            state.profileViewModel!.copyWith(animationStart: true),
       ));
     }
   }

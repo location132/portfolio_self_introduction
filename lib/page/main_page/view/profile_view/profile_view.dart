@@ -21,37 +21,19 @@ class ProfileView extends StatelessWidget {
           isVisible: state.profileViewModel?.isProfileCard == true,
           child: const ProfileCard(),
         ),
-
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.7,
           child: Column(
             children: [
-              SizedBox(height: 60.sh),
-              AnimatedSwitcher(
-                duration: const Duration(milliseconds: 720),
-                transitionBuilder: (Widget child, Animation<double> animation) {
-                  return FadeTransition(
-                    opacity: animation,
-                    child: child,
-                  );
-                },
-                child: state.profileViewModel?.animationStart == true
-                    ? Padding(
-                        padding: EdgeInsets.only(left: 80.sw),
-                        child: const TextFadeAnimation(
-                            text: MyStoryTextConstants.myStory),
-                      )
-                    : const SizedBox.shrink(),
-              ),
               Padding(
-                padding: EdgeInsets.only(left: 140.sw, top: 70),
+                padding: EdgeInsets.only(left: 140.sw, top: 60),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AnimatedOpacity(
                       opacity:
                           state.profileViewModel?.aboutSection1 == true ? 1 : 0,
-                      duration: const Duration(milliseconds: 1420),
+                      duration: const Duration(milliseconds: 720),
                       child: const AboutSection(
                         title: EducationTextConstants.educationTitle,
                         sectionInfo: [
@@ -65,7 +47,7 @@ class ProfileView extends StatelessWidget {
                     AnimatedOpacity(
                       opacity:
                           state.profileViewModel?.aboutSection2 == true ? 1 : 0,
-                      duration: const Duration(milliseconds: 1420),
+                      duration: const Duration(milliseconds: 720),
                       child: const AboutSection(
                         title: ExperienceTextConstants.experienceTitle,
                         sectionInfo: [
@@ -78,7 +60,7 @@ class ProfileView extends StatelessWidget {
                     AnimatedOpacity(
                       opacity:
                           state.profileViewModel?.aboutSection3 == true ? 1 : 0,
-                      duration: const Duration(milliseconds: 1420),
+                      duration: const Duration(milliseconds: 720),
                       child: const AboutSection(
                         title: ProjectsTextConstants.projectsTitle,
                         sectionInfo: [
@@ -90,7 +72,15 @@ class ProfileView extends StatelessWidget {
                     const Spacer(),
                   ],
                 ),
-              )
+              ),
+              SizedBox(height: 70.sh),
+              state.profileViewModel?.animationStart == true
+                  ? Padding(
+                      padding: EdgeInsets.only(left: 80.sw),
+                      child: const TextFadeAnimation(
+                          text: MyStoryTextConstants.myStory),
+                    )
+                  : const SizedBox.shrink(),
             ],
           ),
         ),

@@ -7,9 +7,9 @@ import 'package:self_introduction_flutter/core_service/util/device_Info_size.dar
 import 'package:self_introduction_flutter/page/main_page/main_cubit.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/profile_view.dart';
-import 'package:self_introduction_flutter/page/main_page/view/widgets/banner_section.dart';
+import 'package:self_introduction_flutter/page/main_page/view/about_view/banner_section.dart';
 import 'package:self_introduction_flutter/page/main_page/view/intro_view/introShowcase.dart';
-import 'package:self_introduction_flutter/page/main_page/view/widgets/title_text.dart';
+import 'package:self_introduction_flutter/page/main_page/widgets/title_text.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class MainPage extends StatelessWidget {
@@ -89,6 +89,13 @@ class _MainViewState extends State<MainView> {
                             child: ProfileView(state: state),
                           ),
                         ),
+                        SizedBox(height: 120.sh),
+                        const TitleText(
+                          title: TitleTextConstants.title3,
+                          subTitle: TitleTextConstants.subTitle3,
+                          description: TitleTextConstants.description3,
+                        ),
+                        SizedBox(height: 80.sh),
                         SizedBox(height: 800.sh),
                       ],
                     ),
