@@ -71,3 +71,8 @@ class MyStoryTextConstants {
   static const String myStory =
       '저는 사회의 긍정적인 변화를 만들 수 있는 애플리케이션을 개발하는 것을 목표로 성장해 왔습니다. 이 과정에서 기술력을 키우는 것뿐만 아니라, 기업과 함께 성장하는 개발자가 되고 싶다는 확신을 갖게 되었습니다. 저는 개인의 성장이 곧 기업의 성장으로 이어진다고 생각합니다. 단순히 주어진 일을 하는 것이 아니라, 기업의 목표와 방향에 맞춰 새로운 도전을 해결하며 발전하는 개발자가 되고자 합니다. 앞으로도 창의적인 문제 해결 능력을 바탕으로, 기업과 함께 지속적으로 성장하는 개발자로 나아가겠습니다.';
 }
+
+class SkillTextConstants {
+  static const String title = '기술은 확실하게';
+  static const String subTitle = '협업은 조화로운 시너지를 만들도록';
+}

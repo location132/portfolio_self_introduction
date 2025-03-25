@@ -9,6 +9,7 @@ import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/profile_view.dart';
 import 'package:self_introduction_flutter/page/main_page/view/about_view/banner_section.dart';
 import 'package:self_introduction_flutter/page/main_page/view/intro_view/introShowcase.dart';
+import 'package:self_introduction_flutter/page/main_page/view/skill_view/skill_view.dart';
 import 'package:self_introduction_flutter/page/main_page/widgets/title_text.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -95,8 +96,21 @@ class _MainViewState extends State<MainView> {
                           subTitle: TitleTextConstants.subTitle3,
                           description: TitleTextConstants.description3,
                         ),
-                        SizedBox(height: 80.sh),
-                        SizedBox(height: 800.sh),
+                        VisibilityDetector(
+                          key: const Key('skill-view'),
+                          onVisibilityChanged: (VisibilityInfo info) {
+                            print('check ==> 실행');
+                          },
+                          child: const SkillView(),
+                        ),
+
+                        // 삭제할 테스트 내용
+                        SizedBox(height: 120.sh),
+                        const TitleText(
+                          title: TitleTextConstants.title3,
+                          subTitle: TitleTextConstants.subTitle3,
+                          description: TitleTextConstants.description3,
+                        ),
                       ],
                     ),
                   ),
