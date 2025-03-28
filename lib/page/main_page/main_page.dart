@@ -70,7 +70,7 @@ class _MainViewState extends State<MainView> {
                           description: TitleTextConstants.description1,
                         ),
                         SizedBox(height: 10.sh),
-                        BannerSection(state: state),
+                        // BannerSection(state: state),
                         SizedBox(height: 120.sh),
                         const TitleText(
                           title: TitleTextConstants.title2,
@@ -78,18 +78,19 @@ class _MainViewState extends State<MainView> {
                           description: TitleTextConstants.description2,
                         ),
                         SizedBox(height: 80.sh),
-                        VisibilityDetector(
-                          key: const Key('profile-view'),
-                          onVisibilityChanged: (VisibilityInfo info) {
-                            context
-                                .read<MainPageCubit>()
-                                .profileViewListener(info.visibleFraction);
-                          },
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 132.sw),
-                            child: ProfileView(state: state),
-                          ),
-                        ),
+                        // VisibilityDetector(
+                        //   key: const Key('profile-view'),
+                        //   onVisibilityChanged: (VisibilityInfo info) {
+                        //     // print('check => 함수 실행');
+                        //     context
+                        //         .read<MainPageCubit>()
+                        //         .profileViewListener(info.visibleFraction);
+                        //   },
+                        //   child: Padding(
+                        //     padding: EdgeInsets.only(left: 132.sw),
+                        //     child: ProfileView(state: state),
+                        //   ),
+                        // ),
                         SizedBox(height: 120.sh),
                         const TitleText(
                           title: TitleTextConstants.title3,
@@ -99,9 +100,11 @@ class _MainViewState extends State<MainView> {
                         VisibilityDetector(
                           key: const Key('skill-view'),
                           onVisibilityChanged: (VisibilityInfo info) {
-                            print('check ==> 실행');
+                            context
+                                .read<MainPageCubit>()
+                                .mySkillViewListener(info.visibleFraction);
                           },
-                          child: const SkillView(),
+                          child: SkillView(state: state),
                         ),
 
                         // 삭제할 테스트 내용

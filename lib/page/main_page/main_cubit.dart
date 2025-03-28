@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
+import 'package:self_introduction_flutter/model/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/profile_model.dart';
 import 'package:self_introduction_flutter/model/start_animation_model.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
@@ -13,6 +14,7 @@ class MainPageCubit extends Cubit<MainPageState> {
       : super(MainPageState(
           startViewScrollController: ScrollController(),
           profileViewModel: const ProfileViewModel(),
+          mySkillModel: const MySkillModel(),
         ));
 
   @postConstruct
@@ -112,6 +114,7 @@ class MainPageCubit extends Cubit<MainPageState> {
   void profileViewListener(double visibleFraction) async {
     if (visibleFraction > 0.03 &&
         state.profileViewModel?.status == ProfileViewStatus.init) {
+      print('check ==> 몇번 실행');
       emit(state.copyWith(
         profileViewModel: state.profileViewModel!
             .copyWith(status: ProfileViewStatus.end, isProfileCard: true),
@@ -132,6 +135,17 @@ class MainPageCubit extends Cubit<MainPageState> {
       emit(state.copyWith(
         profileViewModel:
             state.profileViewModel!.copyWith(animationStart: true),
+      ));
+    }
+  }
+
+  // mySkillView 스크롤 감지
+  void mySkillViewListener(double visibleFraction) async {
+    if (visibleFraction > 0.3 &&
+        state.mySkillModel?.status == MySkillViewStatus.init) {
+      emit(state.copyWith(
+        mySkillModel:
+            state.mySkillModel!.copyWith(status: MySkillViewStatus.loaded),
       ));
     }
   }

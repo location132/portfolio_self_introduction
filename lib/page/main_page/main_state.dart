@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:self_introduction_flutter/model/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/profile_model.dart';
 import 'package:self_introduction_flutter/model/start_animation_model.dart';
 
@@ -14,6 +15,9 @@ class MainPageState with _$MainPageState {
 
     //프로필 뷰 모델
     ProfileViewModel? profileViewModel,
+
+    //mySkill 모델
+    MySkillModel? mySkillModel,
 
     //스크롤 컨트롤러
     ScrollController? startViewScrollController,

@@ -20,6 +20,8 @@ mixin _$MainPageState {
   StartAnimationModel? get startAnimation =>
       throw _privateConstructorUsedError; //프로필 뷰 모델
   ProfileViewModel? get profileViewModel =>
+      throw _privateConstructorUsedError; //mySkill 모델
+  MySkillModel? get mySkillModel =>
       throw _privateConstructorUsedError; //스크롤 컨트롤러
   ScrollController? get startViewScrollController =>
       throw _privateConstructorUsedError;
@@ -42,11 +44,13 @@ abstract class $MainPageStateCopyWith<$Res> {
   $Res call(
       {StartAnimationModel? startAnimation,
       ProfileViewModel? profileViewModel,
+      MySkillModel? mySkillModel,
       ScrollController? startViewScrollController,
       StartViewScrollStatus startViewScrollStatus});
 
   $StartAnimationModelCopyWith<$Res>? get startAnimation;
   $ProfileViewModelCopyWith<$Res>? get profileViewModel;
+  $MySkillModelCopyWith<$Res>? get mySkillModel;
 }
 
 /// @nodoc
@@ -66,6 +70,7 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
   $Res call({
     Object? startAnimation = freezed,
     Object? profileViewModel = freezed,
+    Object? mySkillModel = freezed,
     Object? startViewScrollController = freezed,
     Object? startViewScrollStatus = null,
   }) {
@@ -78,6 +83,10 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
           ? _value.profileViewModel
           : profileViewModel // ignore: cast_nullable_to_non_nullable
               as ProfileViewModel?,
+      mySkillModel: freezed == mySkillModel
+          ? _value.mySkillModel
+          : mySkillModel // ignore: cast_nullable_to_non_nullable
+              as MySkillModel?,
       startViewScrollController: freezed == startViewScrollController
           ? _value.startViewScrollController
           : startViewScrollController // ignore: cast_nullable_to_non_nullable
@@ -116,6 +125,20 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
       return _then(_value.copyWith(profileViewModel: value) as $Val);
     });
   }
+
+  /// Create a copy of MainPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $MySkillModelCopyWith<$Res>? get mySkillModel {
+    if (_value.mySkillModel == null) {
+      return null;
+    }
+
+    return $MySkillModelCopyWith<$Res>(_value.mySkillModel!, (value) {
+      return _then(_value.copyWith(mySkillModel: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -129,6 +152,7 @@ abstract class _$$MainPageStateImplCopyWith<$Res>
   $Res call(
       {StartAnimationModel? startAnimation,
       ProfileViewModel? profileViewModel,
+      MySkillModel? mySkillModel,
       ScrollController? startViewScrollController,
       StartViewScrollStatus startViewScrollStatus});
 
@@ -136,6 +160,8 @@ abstract class _$$MainPageStateImplCopyWith<$Res>
   $StartAnimationModelCopyWith<$Res>? get startAnimation;
   @override
   $ProfileViewModelCopyWith<$Res>? get profileViewModel;
+  @override
+  $MySkillModelCopyWith<$Res>? get mySkillModel;
 }
 
 /// @nodoc
@@ -153,6 +179,7 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
   $Res call({
     Object? startAnimation = freezed,
     Object? profileViewModel = freezed,
+    Object? mySkillModel = freezed,
     Object? startViewScrollController = freezed,
     Object? startViewScrollStatus = null,
   }) {
@@ -165,6 +192,10 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
           ? _value.profileViewModel
           : profileViewModel // ignore: cast_nullable_to_non_nullable
               as ProfileViewModel?,
+      mySkillModel: freezed == mySkillModel
+          ? _value.mySkillModel
+          : mySkillModel // ignore: cast_nullable_to_non_nullable
+              as MySkillModel?,
       startViewScrollController: freezed == startViewScrollController
           ? _value.startViewScrollController
           : startViewScrollController // ignore: cast_nullable_to_non_nullable
@@ -183,6 +214,7 @@ class _$MainPageStateImpl extends _MainPageState {
   const _$MainPageStateImpl(
       {this.startAnimation,
       this.profileViewModel,
+      this.mySkillModel,
       this.startViewScrollController,
       this.startViewScrollStatus = StartViewScrollStatus.initial})
       : super._();
@@ -193,6 +225,9 @@ class _$MainPageStateImpl extends _MainPageState {
 //프로필 뷰 모델
   @override
   final ProfileViewModel? profileViewModel;
+//mySkill 모델
+  @override
+  final MySkillModel? mySkillModel;
 //스크롤 컨트롤러
   @override
   final ScrollController? startViewScrollController;
@@ -202,7 +237,7 @@ class _$MainPageStateImpl extends _MainPageState {
 
   @override
   String toString() {
-    return 'MainPageState(startAnimation: $startAnimation, profileViewModel: $profileViewModel, startViewScrollController: $startViewScrollController, startViewScrollStatus: $startViewScrollStatus)';
+    return 'MainPageState(startAnimation: $startAnimation, profileViewModel: $profileViewModel, mySkillModel: $mySkillModel, startViewScrollController: $startViewScrollController, startViewScrollStatus: $startViewScrollStatus)';
   }
 
   @override
@@ -214,6 +249,8 @@ class _$MainPageStateImpl extends _MainPageState {
                 other.startAnimation == startAnimation) &&
             (identical(other.profileViewModel, profileViewModel) ||
                 other.profileViewModel == profileViewModel) &&
+            (identical(other.mySkillModel, mySkillModel) ||
+                other.mySkillModel == mySkillModel) &&
             (identical(other.startViewScrollController,
                     startViewScrollController) ||
                 other.startViewScrollController == startViewScrollController) &&
@@ -223,7 +260,7 @@ class _$MainPageStateImpl extends _MainPageState {
 
   @override
   int get hashCode => Object.hash(runtimeType, startAnimation, profileViewModel,
-      startViewScrollController, startViewScrollStatus);
+      mySkillModel, startViewScrollController, startViewScrollStatus);
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -238,6 +275,7 @@ abstract class _MainPageState extends MainPageState {
   const factory _MainPageState(
       {final StartAnimationModel? startAnimation,
       final ProfileViewModel? profileViewModel,
+      final MySkillModel? mySkillModel,
       final ScrollController? startViewScrollController,
       final StartViewScrollStatus startViewScrollStatus}) = _$MainPageStateImpl;
   const _MainPageState._() : super._();
@@ -246,7 +284,9 @@ abstract class _MainPageState extends MainPageState {
   @override
   StartAnimationModel? get startAnimation; //프로필 뷰 모델
   @override
-  ProfileViewModel? get profileViewModel; //스크롤 컨트롤러
+  ProfileViewModel? get profileViewModel; //mySkill 모델
+  @override
+  MySkillModel? get mySkillModel; //스크롤 컨트롤러
   @override
   ScrollController? get startViewScrollController;
   @override
