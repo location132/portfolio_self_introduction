@@ -70,7 +70,7 @@ class _MainViewState extends State<MainView> {
                           description: TitleTextConstants.description1,
                         ),
                         SizedBox(height: 10.sh),
-                        // BannerSection(state: state),
+                        BannerSection(state: state),
                         SizedBox(height: 120.sh),
                         const TitleText(
                           title: TitleTextConstants.title2,
@@ -97,15 +97,15 @@ class _MainViewState extends State<MainView> {
                           subTitle: TitleTextConstants.subTitle3,
                           description: TitleTextConstants.description3,
                         ),
-                        VisibilityDetector(
-                          key: const Key('skill-view'),
-                          onVisibilityChanged: (VisibilityInfo info) {
-                            context
-                                .read<MainPageCubit>()
-                                .mySkillViewListener(info.visibleFraction);
-                          },
-                          child: SkillView(state: state),
-                        ),
+                        // VisibilityDetector(
+                        //   key: const Key('skill-view'),
+                        //   onVisibilityChanged: (VisibilityInfo info) {
+                        //     context
+                        //         .read<MainPageCubit>()
+                        //         .mySkillViewListener(info.visibleFraction);
+                        //   },
+                        //   child: SkillView(state: state),
+                        // ),
 
                         // 삭제할 테스트 내용
                         SizedBox(height: 120.sh),

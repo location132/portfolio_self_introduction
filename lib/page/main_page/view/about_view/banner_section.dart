@@ -13,12 +13,16 @@ class BannerSection extends StatefulWidget {
 class _BannerSectionState extends State<BannerSection> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 15),
-      child: SizedBox(
-        height: 400,
-        child: BannerRive(state: widget.state),
-      ),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 15),
+          child: SizedBox(
+            height: 400,
+            child: BannerRive(state: widget.state),
+          ),
+        ),
+      ],
     );
   }
 }
