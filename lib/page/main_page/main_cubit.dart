@@ -2,41 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
-import 'package:self_introduction_flutter/model/mySkill_model.dart';
-import 'package:self_introduction_flutter/model/profile_model.dart';
-import 'package:self_introduction_flutter/model/start_animation_model.dart';
+import 'package:self_introduction_flutter/model/main_page/description_model.dart';
+import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
+import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
+import 'package:self_introduction_flutter/model/main_page/start_animation_model.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:universal_html/html.dart';
 
 @injectable
 class MainPageCubit extends Cubit<MainPageState> {
-  MainPageCubit()
-      : super(MainPageState(
-          startViewScrollController: ScrollController(),
-          profileViewModel: const ProfileViewModel(),
-          mySkillModel: const MySkillModel(),
-        ));
-
-  @postConstruct
-  void init() {
-    state.startViewScrollController?.addListener(() {
-      startViewScrollListener();
-    });
-  }
-
-  // StartView 스크롤 리스너
-  void startViewScrollListener() async {
-    if (state.startViewScrollStatus == StartViewScrollStatus.initial &&
-        state.startViewScrollController!.offset > 0) {
-      emit(state.copyWith(
-          startViewScrollStatus: StartViewScrollStatus.scrolled));
-    } else if (state.startViewScrollStatus == StartViewScrollStatus.scrolled &&
-        state.startViewScrollController!.offset == 0) {
-      emit(state.copyWith(
-        startViewScrollStatus: StartViewScrollStatus.initial,
-      ));
-    }
-  }
+  MainPageCubit() : super(const MainPageState());
 
   // text 애니메이션 시작
   Future<void> initializeAnimations(
@@ -105,48 +80,54 @@ class MainPageCubit extends Cubit<MainPageState> {
     );
   }
 
-  //전체화면 모드
+  //전체화면 모드 TODO: 작동안함
   void toggleFullScreen(BuildContext context) {
     document.documentElement?.requestFullscreen();
   }
 
-  //프로필 뷰 스크롤 감지
-  void profileViewListener(double visibleFraction) async {
-    if (visibleFraction > 0.03 &&
-        state.profileViewModel?.status == ProfileViewStatus.init) {
-      print('check ==> 몇번 실행');
+  //사용자 스크롤 감지
+  void viewListener(String viewName) async {
+    if (viewName == 'banner') {
       emit(state.copyWith(
-        profileViewModel: state.profileViewModel!
-            .copyWith(status: ProfileViewStatus.end, isProfileCard: true),
+        scrollModel:
+            state.scrollModel.copyWith(bannerState: BannerState.activated),
       ));
-      await Future.delayed(const Duration(milliseconds: 350));
+    } else if (viewName == 'profile') {
       emit(state.copyWith(
-        profileViewModel: state.profileViewModel!.copyWith(aboutSection1: true),
+        scrollModel: state.scrollModel
+            .copyWith(profileViewState: ProfileViewState.active),
       ));
-      await Future.delayed(const Duration(milliseconds: 330));
+    } else if (viewName == 'skill') {
+      //TODO: 아직 모델 변경 안됨
       emit(state.copyWith(
-        profileViewModel: state.profileViewModel!.copyWith(aboutSection2: true),
-      ));
-      await Future.delayed(const Duration(milliseconds: 300));
-      emit(state.copyWith(
-        profileViewModel: state.profileViewModel!.copyWith(aboutSection3: true),
-      ));
-      await Future.delayed(const Duration(milliseconds: 250));
-      emit(state.copyWith(
-        profileViewModel:
-            state.profileViewModel!.copyWith(animationStart: true),
+        mySkillModel:
+            state.mySkillModel.copyWith(status: MySkillViewStatus.loaded),
       ));
     }
   }
 
-  // mySkillView 스크롤 감지
-  void mySkillViewListener(double visibleFraction) async {
-    if (visibleFraction > 0.3 &&
-        state.mySkillModel?.status == MySkillViewStatus.init) {
+  //Description 버튼 클릭
+  void descriptionButton(String descriptionName, bool isActive) {
+    //int 0= About Me, 1= Skill
+    if (descriptionName == 'banner') {
       emit(state.copyWith(
-        mySkillModel:
-            state.mySkillModel!.copyWith(status: MySkillViewStatus.loaded),
-      ));
+          descriptionModel: state.descriptionModel.copyWith(
+              bannerDescriptionState: isActive
+                  ? BannerDescriptionState.active
+                  : BannerDescriptionState.inactive)));
+    } else if (descriptionName == 'profile') {
+      emit(state.copyWith(
+          descriptionModel: state.descriptionModel.copyWith(
+              profileDescriptionState: isActive
+                  ? ProfileDescriptionState.active
+                  : ProfileDescriptionState.inactive)));
+    } else if (descriptionName == 'skill') {
+      //TODO: 아직 모델 변경 안됨
+      emit(state.copyWith(
+          descriptionModel: state.descriptionModel.copyWith(
+              skillDescriptionState: isActive
+                  ? SkillDescriptionState.active
+                  : SkillDescriptionState.inactive)));
     }
   }
 }

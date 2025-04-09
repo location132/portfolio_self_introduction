@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
+import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
 class BannerRive extends StatefulWidget {
@@ -46,9 +47,8 @@ class _BannerRiveState extends State<BannerRive> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.state.startViewScrollStatus == StartViewScrollStatus.scrolled &&
+    if (widget.state.scrollModel.bannerState == BannerState.activated &&
         !_hasStarted) {
-      print('check0 ==> 실행');
       _startAni();
     }
     return RiveAnimation.asset(

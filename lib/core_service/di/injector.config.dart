@@ -25,7 +25,7 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    gh.factory<_i222.MainPageCubit>(() => _i222.MainPageCubit()..init());
+    gh.factory<_i222.MainPageCubit>(() => _i222.MainPageCubit());
     return this;
   }
 }

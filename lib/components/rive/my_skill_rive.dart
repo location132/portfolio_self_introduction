@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:self_introduction_flutter/model/mySkill_model.dart';
+import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
 class MySkillRive extends StatefulWidget {
@@ -42,7 +42,7 @@ class _MySkillRiveState extends State<MySkillRive> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.state?.mySkillModel?.status == MySkillViewStatus.loaded &&
+    if (widget.state?.mySkillModel.status == MySkillViewStatus.loaded &&
         !_hasStarted) {
       _startAni();
     }

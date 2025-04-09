@@ -18,15 +18,12 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MainPageState {
 //StartAnimation 컨트롤러
   StartAnimationModel? get startAnimation =>
-      throw _privateConstructorUsedError; //프로필 뷰 모델
-  ProfileViewModel? get profileViewModel =>
       throw _privateConstructorUsedError; //mySkill 모델
-  MySkillModel? get mySkillModel =>
-      throw _privateConstructorUsedError; //스크롤 컨트롤러
-  ScrollController? get startViewScrollController =>
-      throw _privateConstructorUsedError;
-  StartViewScrollStatus get startViewScrollStatus =>
-      throw _privateConstructorUsedError;
+  MySkillModel get mySkillModel =>
+      throw _privateConstructorUsedError; //DescriptionModel
+  DescriptionModel get descriptionModel =>
+      throw _privateConstructorUsedError; //ScrollModel
+  ScrollModel get scrollModel => throw _privateConstructorUsedError;
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -43,14 +40,14 @@ abstract class $MainPageStateCopyWith<$Res> {
   @useResult
   $Res call(
       {StartAnimationModel? startAnimation,
-      ProfileViewModel? profileViewModel,
-      MySkillModel? mySkillModel,
-      ScrollController? startViewScrollController,
-      StartViewScrollStatus startViewScrollStatus});
+      MySkillModel mySkillModel,
+      DescriptionModel descriptionModel,
+      ScrollModel scrollModel});
 
   $StartAnimationModelCopyWith<$Res>? get startAnimation;
-  $ProfileViewModelCopyWith<$Res>? get profileViewModel;
-  $MySkillModelCopyWith<$Res>? get mySkillModel;
+  $MySkillModelCopyWith<$Res> get mySkillModel;
+  $DescriptionModelCopyWith<$Res> get descriptionModel;
+  $ScrollModelCopyWith<$Res> get scrollModel;
 }
 
 /// @nodoc
@@ -69,32 +66,27 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
   @override
   $Res call({
     Object? startAnimation = freezed,
-    Object? profileViewModel = freezed,
-    Object? mySkillModel = freezed,
-    Object? startViewScrollController = freezed,
-    Object? startViewScrollStatus = null,
+    Object? mySkillModel = null,
+    Object? descriptionModel = null,
+    Object? scrollModel = null,
   }) {
     return _then(_value.copyWith(
       startAnimation: freezed == startAnimation
           ? _value.startAnimation
           : startAnimation // ignore: cast_nullable_to_non_nullable
               as StartAnimationModel?,
-      profileViewModel: freezed == profileViewModel
-          ? _value.profileViewModel
-          : profileViewModel // ignore: cast_nullable_to_non_nullable
-              as ProfileViewModel?,
-      mySkillModel: freezed == mySkillModel
+      mySkillModel: null == mySkillModel
           ? _value.mySkillModel
           : mySkillModel // ignore: cast_nullable_to_non_nullable
-              as MySkillModel?,
-      startViewScrollController: freezed == startViewScrollController
-          ? _value.startViewScrollController
-          : startViewScrollController // ignore: cast_nullable_to_non_nullable
-              as ScrollController?,
-      startViewScrollStatus: null == startViewScrollStatus
-          ? _value.startViewScrollStatus
-          : startViewScrollStatus // ignore: cast_nullable_to_non_nullable
-              as StartViewScrollStatus,
+              as MySkillModel,
+      descriptionModel: null == descriptionModel
+          ? _value.descriptionModel
+          : descriptionModel // ignore: cast_nullable_to_non_nullable
+              as DescriptionModel,
+      scrollModel: null == scrollModel
+          ? _value.scrollModel
+          : scrollModel // ignore: cast_nullable_to_non_nullable
+              as ScrollModel,
     ) as $Val);
   }
 
@@ -116,13 +108,9 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ProfileViewModelCopyWith<$Res>? get profileViewModel {
-    if (_value.profileViewModel == null) {
-      return null;
-    }
-
-    return $ProfileViewModelCopyWith<$Res>(_value.profileViewModel!, (value) {
-      return _then(_value.copyWith(profileViewModel: value) as $Val);
+  $MySkillModelCopyWith<$Res> get mySkillModel {
+    return $MySkillModelCopyWith<$Res>(_value.mySkillModel, (value) {
+      return _then(_value.copyWith(mySkillModel: value) as $Val);
     });
   }
 
@@ -130,13 +118,19 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $MySkillModelCopyWith<$Res>? get mySkillModel {
-    if (_value.mySkillModel == null) {
-      return null;
-    }
+  $DescriptionModelCopyWith<$Res> get descriptionModel {
+    return $DescriptionModelCopyWith<$Res>(_value.descriptionModel, (value) {
+      return _then(_value.copyWith(descriptionModel: value) as $Val);
+    });
+  }
 
-    return $MySkillModelCopyWith<$Res>(_value.mySkillModel!, (value) {
-      return _then(_value.copyWith(mySkillModel: value) as $Val);
+  /// Create a copy of MainPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ScrollModelCopyWith<$Res> get scrollModel {
+    return $ScrollModelCopyWith<$Res>(_value.scrollModel, (value) {
+      return _then(_value.copyWith(scrollModel: value) as $Val);
     });
   }
 }
@@ -151,17 +145,18 @@ abstract class _$$MainPageStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {StartAnimationModel? startAnimation,
-      ProfileViewModel? profileViewModel,
-      MySkillModel? mySkillModel,
-      ScrollController? startViewScrollController,
-      StartViewScrollStatus startViewScrollStatus});
+      MySkillModel mySkillModel,
+      DescriptionModel descriptionModel,
+      ScrollModel scrollModel});
 
   @override
   $StartAnimationModelCopyWith<$Res>? get startAnimation;
   @override
-  $ProfileViewModelCopyWith<$Res>? get profileViewModel;
+  $MySkillModelCopyWith<$Res> get mySkillModel;
   @override
-  $MySkillModelCopyWith<$Res>? get mySkillModel;
+  $DescriptionModelCopyWith<$Res> get descriptionModel;
+  @override
+  $ScrollModelCopyWith<$Res> get scrollModel;
 }
 
 /// @nodoc
@@ -178,66 +173,59 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? startAnimation = freezed,
-    Object? profileViewModel = freezed,
-    Object? mySkillModel = freezed,
-    Object? startViewScrollController = freezed,
-    Object? startViewScrollStatus = null,
+    Object? mySkillModel = null,
+    Object? descriptionModel = null,
+    Object? scrollModel = null,
   }) {
     return _then(_$MainPageStateImpl(
       startAnimation: freezed == startAnimation
           ? _value.startAnimation
           : startAnimation // ignore: cast_nullable_to_non_nullable
               as StartAnimationModel?,
-      profileViewModel: freezed == profileViewModel
-          ? _value.profileViewModel
-          : profileViewModel // ignore: cast_nullable_to_non_nullable
-              as ProfileViewModel?,
-      mySkillModel: freezed == mySkillModel
+      mySkillModel: null == mySkillModel
           ? _value.mySkillModel
           : mySkillModel // ignore: cast_nullable_to_non_nullable
-              as MySkillModel?,
-      startViewScrollController: freezed == startViewScrollController
-          ? _value.startViewScrollController
-          : startViewScrollController // ignore: cast_nullable_to_non_nullable
-              as ScrollController?,
-      startViewScrollStatus: null == startViewScrollStatus
-          ? _value.startViewScrollStatus
-          : startViewScrollStatus // ignore: cast_nullable_to_non_nullable
-              as StartViewScrollStatus,
+              as MySkillModel,
+      descriptionModel: null == descriptionModel
+          ? _value.descriptionModel
+          : descriptionModel // ignore: cast_nullable_to_non_nullable
+              as DescriptionModel,
+      scrollModel: null == scrollModel
+          ? _value.scrollModel
+          : scrollModel // ignore: cast_nullable_to_non_nullable
+              as ScrollModel,
     ));
   }
 }
 
 /// @nodoc
 
-class _$MainPageStateImpl extends _MainPageState {
+class _$MainPageStateImpl implements _MainPageState {
   const _$MainPageStateImpl(
       {this.startAnimation,
-      this.profileViewModel,
-      this.mySkillModel,
-      this.startViewScrollController,
-      this.startViewScrollStatus = StartViewScrollStatus.initial})
-      : super._();
+      this.mySkillModel = const MySkillModel(),
+      this.descriptionModel = const DescriptionModel(),
+      this.scrollModel = const ScrollModel()});
 
 //StartAnimation 컨트롤러
   @override
   final StartAnimationModel? startAnimation;
-//프로필 뷰 모델
-  @override
-  final ProfileViewModel? profileViewModel;
 //mySkill 모델
   @override
-  final MySkillModel? mySkillModel;
-//스크롤 컨트롤러
-  @override
-  final ScrollController? startViewScrollController;
+  @JsonKey()
+  final MySkillModel mySkillModel;
+//DescriptionModel
   @override
   @JsonKey()
-  final StartViewScrollStatus startViewScrollStatus;
+  final DescriptionModel descriptionModel;
+//ScrollModel
+  @override
+  @JsonKey()
+  final ScrollModel scrollModel;
 
   @override
   String toString() {
-    return 'MainPageState(startAnimation: $startAnimation, profileViewModel: $profileViewModel, mySkillModel: $mySkillModel, startViewScrollController: $startViewScrollController, startViewScrollStatus: $startViewScrollStatus)';
+    return 'MainPageState(startAnimation: $startAnimation, mySkillModel: $mySkillModel, descriptionModel: $descriptionModel, scrollModel: $scrollModel)';
   }
 
   @override
@@ -247,20 +235,17 @@ class _$MainPageStateImpl extends _MainPageState {
             other is _$MainPageStateImpl &&
             (identical(other.startAnimation, startAnimation) ||
                 other.startAnimation == startAnimation) &&
-            (identical(other.profileViewModel, profileViewModel) ||
-                other.profileViewModel == profileViewModel) &&
             (identical(other.mySkillModel, mySkillModel) ||
                 other.mySkillModel == mySkillModel) &&
-            (identical(other.startViewScrollController,
-                    startViewScrollController) ||
-                other.startViewScrollController == startViewScrollController) &&
-            (identical(other.startViewScrollStatus, startViewScrollStatus) ||
-                other.startViewScrollStatus == startViewScrollStatus));
+            (identical(other.descriptionModel, descriptionModel) ||
+                other.descriptionModel == descriptionModel) &&
+            (identical(other.scrollModel, scrollModel) ||
+                other.scrollModel == scrollModel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, startAnimation, profileViewModel,
-      mySkillModel, startViewScrollController, startViewScrollStatus);
+  int get hashCode => Object.hash(
+      runtimeType, startAnimation, mySkillModel, descriptionModel, scrollModel);
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -271,26 +256,22 @@ class _$MainPageStateImpl extends _MainPageState {
       __$$MainPageStateImplCopyWithImpl<_$MainPageStateImpl>(this, _$identity);
 }
 
-abstract class _MainPageState extends MainPageState {
+abstract class _MainPageState implements MainPageState {
   const factory _MainPageState(
       {final StartAnimationModel? startAnimation,
-      final ProfileViewModel? profileViewModel,
-      final MySkillModel? mySkillModel,
-      final ScrollController? startViewScrollController,
-      final StartViewScrollStatus startViewScrollStatus}) = _$MainPageStateImpl;
-  const _MainPageState._() : super._();
+      final MySkillModel mySkillModel,
+      final DescriptionModel descriptionModel,
+      final ScrollModel scrollModel}) = _$MainPageStateImpl;
 
 //StartAnimation 컨트롤러
   @override
-  StartAnimationModel? get startAnimation; //프로필 뷰 모델
+  StartAnimationModel? get startAnimation; //mySkill 모델
   @override
-  ProfileViewModel? get profileViewModel; //mySkill 모델
+  MySkillModel get mySkillModel; //DescriptionModel
   @override
-  MySkillModel? get mySkillModel; //스크롤 컨트롤러
+  DescriptionModel get descriptionModel; //ScrollModel
   @override
-  ScrollController? get startViewScrollController;
-  @override
-  StartViewScrollStatus get startViewScrollStatus;
+  ScrollModel get scrollModel;
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.

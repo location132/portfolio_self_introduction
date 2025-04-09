@@ -1,8 +1,3 @@
-//TODO: 텍스트 페이드 애니메이션 추가
-/*
- 추 후, 리펙터링 시작 지금은 하드 코딩 
-*/
-
 import 'package:flutter/material.dart';
 
 class TextFadeAnimation extends StatefulWidget {
@@ -36,7 +31,7 @@ class _TextFadeAnimationState extends State<TextFadeAnimation>
     for (int i = 0; i < characters.length; i++) {
       final controller = AnimationController(
         vsync: this,
-        duration: const Duration(milliseconds: 820),
+        duration: const Duration(milliseconds: 520),
       );
 
       final animation = CurvedAnimation(
@@ -46,7 +41,7 @@ class _TextFadeAnimationState extends State<TextFadeAnimation>
       controllers.add(controller);
       animations.add(animation);
 
-      Future.delayed(Duration(milliseconds: i * 15), () {
+      Future.delayed(Duration(milliseconds: i * 8), () {
         if (mounted) {
           controller.forward();
         }

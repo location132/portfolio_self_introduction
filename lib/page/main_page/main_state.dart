@@ -1,33 +1,24 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:self_introduction_flutter/model/mySkill_model.dart';
-import 'package:self_introduction_flutter/model/profile_model.dart';
-import 'package:self_introduction_flutter/model/start_animation_model.dart';
+import 'package:self_introduction_flutter/model/main_page/description_model.dart';
+import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
+import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
+import 'package:self_introduction_flutter/model/main_page/start_animation_model.dart';
 
 part 'main_state.freezed.dart';
 
 @freezed
 class MainPageState with _$MainPageState {
-  const MainPageState._();
   const factory MainPageState({
     //StartAnimation 컨트롤러
     StartAnimationModel? startAnimation,
 
-    //프로필 뷰 모델
-    ProfileViewModel? profileViewModel,
-
     //mySkill 모델
-    MySkillModel? mySkillModel,
+    @Default(MySkillModel()) MySkillModel mySkillModel,
 
-    //스크롤 컨트롤러
-    ScrollController? startViewScrollController,
-    @Default(StartViewScrollStatus.initial)
-    StartViewScrollStatus startViewScrollStatus,
+    //DescriptionModel
+    @Default(DescriptionModel()) DescriptionModel descriptionModel,
+
+    //ScrollModel
+    @Default(ScrollModel()) ScrollModel scrollModel,
   }) = _MainPageState;
-}
-
-enum StartViewScrollStatus {
-  initial,
-  scrolled,
-  end,
 }
