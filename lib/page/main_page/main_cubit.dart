@@ -108,7 +108,6 @@ class MainPageCubit extends Cubit<MainPageState> {
 
   //Description 버튼 클릭
   void descriptionButton(String descriptionName, bool isActive) {
-    //int 0= About Me, 1= Skill
     if (descriptionName == 'banner') {
       emit(state.copyWith(
           descriptionModel: state.descriptionModel.copyWith(

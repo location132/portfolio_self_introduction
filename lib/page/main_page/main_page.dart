@@ -53,54 +53,12 @@ class _MainViewState extends State<_MainView> {
                       pinned: false,
                       backgroundColor: Colors.transparent,
                       flexibleSpace: FlexibleSpaceBar(
-                        background:
-                            //--------------------------------
-                            Container(
-                                width: double.infinity,
-                                height:
-                                    MediaQuery.of(context).size.height - 400,
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(13),
-                                    bottomRight: Radius.circular(13),
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black12,
-                                      blurRadius: 15,
-                                      offset: Offset(5, 5),
-                                    ),
-                                  ],
-                                ),
-                                child: Stack(
-                                  children: [
-                                    Positioned(
-                                      top: 20,
-                                      right: 20,
-                                      child: Container(
-                                        padding: const EdgeInsets.all(8),
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.white.withAlpha(70),
-                                        ),
-                                        child: const Icon(
-                                          Icons.close,
-                                          size: 24,
-                                          color: Colors.black87,
-                                        ),
-                                      ),
-                                    ),
-                                    const Center(child: CircleMenu())
-                                  ],
-                                )),
-                        //--------------------------------
-
-                        // Introshowcase(
-                        //   state: state,
-                        //   initializeAnimations: context
-                        //       .read<MainPageCubit>()
-                        //       .initializeAnimations,
-                        // ),
+                        background: Introshowcase(
+                          state: state,
+                          initializeAnimations: context
+                              .read<MainPageCubit>()
+                              .initializeAnimations,
+                        ),
                       ),
                     ),
                     SliverToBoxAdapter(

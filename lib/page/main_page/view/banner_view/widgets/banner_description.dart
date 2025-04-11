@@ -65,14 +65,6 @@ class _BannerDescriptionState extends State<BannerDescription>
     }
   }
 
-  void _onClose() {
-    _controller.reverse();
-    setState(() {
-      _isSelected = false;
-    });
-    widget.isActive(false);
-  }
-
   @override
   void dispose() {
     _controller.dispose();
@@ -112,29 +104,11 @@ class _BannerDescriptionState extends State<BannerDescription>
             ],
           ),
           child: _isSelected
-              ? Stack(
-                  children: [
-                    Positioned(
-                      top: 20,
-                      right: 20,
-                      child: GestureDetector(
-                        onTap: _onClose,
-                        child: Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white.withAlpha(70),
-                          ),
-                          child: const Icon(
-                            Icons.close,
-                            size: 24,
-                            color: Colors.black87,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Center(child: CircleMenu())
-                  ],
+              ? Center(
+                  child: CircleMenuLayout(
+                    isActive: widget.isActive,
+                    state: widget.state,
+                  ),
                 )
               : const SizedBox.shrink(),
         ),

@@ -67,12 +67,47 @@ class ProjectsTextConstants {
       '팀 프로젝트: \n - 잎사이 프로젝트(Flutter, PM) \n - Klang 프로젝트(Flutter, PM)\n';
 }
 
-class MyStoryTextConstants {
-  static const String myStory =
-      '저는 사회의 긍정적인 변화를 만들 수 있는 애플리케이션을 개발하는 것을 목표로 성장해 왔습니다. 이 과정에서 기술력을 키우는 것뿐만 아니라, 기업과 함께 성장하는 개발자가 되고 싶다는 확신을 갖게 되었습니다. 저는 개인의 성장이 곧 기업의 성장으로 이어진다고 생각합니다. 단순히 주어진 일을 하는 것이 아니라, 기업의 목표와 방향에 맞춰 새로운 도전을 해결하며 발전하는 개발자가 되고자 합니다. 앞으로도 창의적인 문제 해결 능력을 바탕으로, 기업과 함께 지속적으로 성장하는 개발자로 나아가겠습니다.';
-}
-
 class SkillTextConstants {
   static const String title = '기술은 확실하게';
   static const String subTitle = '협업은 조화로운 시너지를 만들도록';
+}
+
+//Description
+class DescriptionTextConstants {
+  static const String descriptionTitle = 'DESCRIPTION';
+  static const String description = '전달하고 싶은 내용, 그리고 디테일들\n\n'
+      'Description은 모든 과정이 어떻게 만들어졌는지 확인할 수 있는 공간입니다.\n'
+      '최대한 많은 아이디어를 담은 모든 부분을 소개하겠습니다.';
+}
+
+// About Me, DESCRIPTION
+class BannerDescriptionConstants {
+  static const Map<String, String> bannerDescriptions = {
+    'About Me': '웹의 가장 처음은 Rive 애니메이션과 함께\n'
+        '저만의 장점과 목표를 보여주고 새로운 툴의 도전을 구현해보고 싶었습니다.\n\n'
+        '각 모션과 트리거 속에는\n'
+        '제가 목표로해온 개발 방식과 생각이 자연스럽게 녹아들게 구성하였으며,\n'
+        '지금까지 어떤 목표를 가지고 개발에 임해왔는지\n'
+        '그리고...\n'
+        '어디를 향해 나아가고 있는지에 관해 시각적 효과로 표현할 수 있도록 목표하였습니다.\n\n'
+        '마우스를 올릴 때마다 부드럽게 반응하는 About Me 섹션은\n'
+        '저의 장점과 강점을 자연스럽게 전달하기 위한 시도이며\n'
+        '처음으로 시도해보는 도전을 보여줄 수 있는 저만의 작은 공간입니다.',
+    'Detail': '현재 보고 계신 Rive 애니메이션은 약 4일에 걸쳐 제작되었습니다.\n'
+        '처음으로 Rive를 제작하는 도전은 많은 시간이 걸렸지만\n'
+        'Rive에 관해 공부해 더 발전한 Flutter 개발자가 되었습니다.\n\n'
+        '작은 모션 그리고 디테일한 움직임에도 부드러운 전환을 위해 조정을 반복하며\n'
+        '13트리거와 6개의 컨트롤러를 활용해 자연스럽게 반응하도록 구현했습니다.\n\n'
+        '여기서 끝나지 않고 저는 더 완벽한 애니메이션을 만들기 위해\n'
+        '0.1초에서 0.3초까지 미세하게 속도를 다르게 설정해\n'
+        '부드러운 선의 흐름과 템포를 만들기위해 설계하였습니다.\n\n'
+        '이 설계를 통해 자칫 너무 많은 텍스트의 부담감을\n'
+        '조금이라도 몰입할 수 있도록 구성하고자 노력했습니다.',
+    'Process': '현재 노션에 있는 내용을 웹사이트 firebase로 옮겨\n'
+        '작업을 진행중입니다.\n'
+        '조금씩 완성되어 가는 모습을 기대해주세요.\n\n\n\n'
+        'Rive 제작과정                         Flutter 제작과정',
+  };
+
+  static const List<String> menuItems = ['About Me', 'Detail', 'Process'];
 }

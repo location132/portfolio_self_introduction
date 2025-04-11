@@ -1,17 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/widget/animation/animated_slide_in_widget.dart';
-import 'package:self_introduction_flutter/components/widget/animation/text_fade_animaion.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/about_section.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/my_story.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/profile_card.dart';
 import 'package:self_introduction_flutter/page/main_page/widgets/title_text.dart';
 
-class ProfileView extends StatelessWidget {
+class ProfileView extends StatefulWidget {
   final MainPageState state;
   const ProfileView({super.key, required this.state});
+
+  @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+  final Map<String, bool> _profileViewState = {
+    'ProfileCard': false,
+    'Education': false,
+    'Experience': false,
+    'Projects': false,
+    'Final': false,
+  };
+
+  @override
+  void didUpdateWidget(covariant ProfileView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.state.scrollModel.profileViewState == ProfileViewState.active &&
+        _profileViewState['Final'] == false) {
+      _updateProfileViewState();
+    }
+  }
+
+  void _updateProfileViewState() async {
+    setState(() {
+      _profileViewState['ProfileCard'] = true;
+    });
+    await Future.delayed(const Duration(milliseconds: 320));
+    setState(() {
+      _profileViewState['Education'] = true;
+    });
+    await Future.delayed(const Duration(milliseconds: 220));
+    setState(() {
+      _profileViewState['Experience'] = true;
+    });
+    await Future.delayed(const Duration(milliseconds: 120));
+    setState(() {
+      _profileViewState['Projects'] = true;
+      _profileViewState['Final'] = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +72,7 @@ class ProfileView extends StatelessWidget {
             children: [
               // 프로필 카드
               AnimatedSlideInWidget(
-                isVisible: state.scrollModel.profileViewState ==
-                    ProfileViewState.active,
+                isVisible: _profileViewState['ProfileCard']!,
                 child: const ProfileCard(),
               ),
               SizedBox(
@@ -40,15 +80,12 @@ class ProfileView extends StatelessWidget {
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(left: 140.sw, top: 60),
+                      padding: EdgeInsets.only(left: 140.sw, top: 0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AnimatedOpacity(
-                            opacity: state.scrollModel.profileViewState ==
-                                    ProfileViewState.active
-                                ? 1
-                                : 0,
+                            opacity: _profileViewState['Education']! ? 1 : 0,
                             duration: const Duration(milliseconds: 720),
                             child: const AboutSection(
                               title: EducationTextConstants.educationTitle,
@@ -61,10 +98,7 @@ class ProfileView extends StatelessWidget {
                           ),
                           const Spacer(),
                           AnimatedOpacity(
-                            opacity: state.scrollModel.profileViewState ==
-                                    ProfileViewState.active
-                                ? 1
-                                : 0,
+                            opacity: _profileViewState['Experience']! ? 1 : 0,
                             duration: const Duration(milliseconds: 720),
                             child: const AboutSection(
                               title: ExperienceTextConstants.experienceTitle,
@@ -76,10 +110,7 @@ class ProfileView extends StatelessWidget {
                           ),
                           const Spacer(),
                           AnimatedOpacity(
-                            opacity: state.scrollModel.profileViewState ==
-                                    ProfileViewState.active
-                                ? 1
-                                : 0,
+                            opacity: _profileViewState['Projects']! ? 1 : 0,
                             duration: const Duration(milliseconds: 720),
                             child: const AboutSection(
                               title: ProjectsTextConstants.projectsTitle,
@@ -93,15 +124,8 @@ class ProfileView extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 70.sh),
-                    state.scrollModel.profileViewState ==
-                            ProfileViewState.active
-                        ? Padding(
-                            padding: EdgeInsets.only(left: 80.sw),
-                            child: const TextFadeAnimation(
-                                text: MyStoryTextConstants.myStory),
-                          )
-                        : const SizedBox.shrink(),
+                    const SizedBox(height: 50),
+                    const MyStory(),
                   ],
                 ),
               ),

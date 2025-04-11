@@ -21,7 +21,9 @@ class _TextAnimationState extends State<TextAnimation>
   @override
   void initState() {
     super.initState();
-    widget.initializeAnimations?.call(this);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      widget.initializeAnimations?.call(this);
+    });
   }
 
   @override
