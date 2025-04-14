@@ -21,6 +21,7 @@ dependencies:
   responsive_framework: ^1.5.1
   visibility_detector: ^0.4.0+2
   universal_html: ^2.2.4
+  google_fonts: ^6.2.1
   
   
   
@@ -36,20 +37,6 @@ flutter:
     - assets/Images/
     - assets/rive/
 
-fonts:
-  - family: NotoSansKR
-    fonts:
-      - asset: assets/fonts/NotoSansKR-Regular.ttf
-      - asset: assets/fonts/NotoSansKR-Medium.ttf
-        weight: 500
-
-  - family: DancingScript
-    fonts:
-      - asset: assets/fonts/DancingScript-Regular.ttf
-
-  - family: PlayfairDisplay
-    fonts:
-      - asset: assets/fonts/PlayfairDisplay-Regular.ttf
 
 
 

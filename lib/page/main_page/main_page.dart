@@ -11,6 +11,7 @@ import 'package:self_introduction_flutter/page/main_page/view/profile_view/profi
 import 'package:self_introduction_flutter/page/main_page/view/banner_view/banner_view.dart';
 import 'package:self_introduction_flutter/page/main_page/view/intro_view/introShowcase.dart';
 import 'package:self_introduction_flutter/page/main_page/view/skill_view/skill_view.dart';
+import 'package:self_introduction_flutter/page/main_page/widgets/deco.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class MainPage extends StatelessWidget {
@@ -86,20 +87,35 @@ class _MainViewState extends State<_MainView> {
                               },
                             ),
                           ),
+                          Column(
+                            children: [
+                              Transform(
+                                transform: Matrix4.translationValues(0, 1, 0),
+                                child: const DiagonalTriangle(isTop: true),
+                              ),
+                              // 프로필 뷰
+                              VisibilityDetector(
+                                key: const Key('profile-view'),
+                                onVisibilityChanged: (VisibilityInfo info) {
+                                  if (info.visibleFraction > 0.5 &&
+                                      state.scrollModel.profileViewState ==
+                                          ProfileViewState.inactive) {
+                                    context
+                                        .read<MainPageCubit>()
+                                        .viewListener('profile');
+                                  }
+                                },
+                                child: const ProfileView(),
+                              ),
 
-                          // 프로필 뷰
-                          VisibilityDetector(
-                            key: const Key('profile-view'),
-                            onVisibilityChanged: (VisibilityInfo info) {
-                              if (info.visibleFraction > 0.5 &&
-                                  state.scrollModel.profileViewState ==
-                                      ProfileViewState.inactive) {
-                                context
-                                    .read<MainPageCubit>()
-                                    .viewListener('profile');
-                              }
-                            },
-                            child: ProfileView(state: state),
+                              Transform(
+                                transform: Matrix4.translationValues(0, -1, 0),
+                                child: const DiagonalTriangle(isTop: false),
+                              ),
+                              const SizedBox(
+                                height: 100,
+                              ),
+                            ],
                           ),
 
                           // 스킬 뷰

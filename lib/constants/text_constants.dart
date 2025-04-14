@@ -62,9 +62,10 @@ class ExperienceTextConstants {
 
 class ProjectsTextConstants {
   static const String projectsTitle = 'PROJECTS';
-  static const String projects1 = '개인 프로젝트: \n - 개인 웹 페이지 \n - Rive 애니메이션\n';
+  static const String projects1 =
+      '개인 프로젝트: \n - 개인 웹 페이지 \n - Rive 애니메이션\n - My_Diary(시각디자인 학생과 함꼐한 프로젝트) \n - 네이버 MAP';
   static const String projects2 =
-      '팀 프로젝트: \n - 잎사이 프로젝트(Flutter, PM) \n - Klang 프로젝트(Flutter, PM)\n';
+      '팀 프로젝트: \n - 잎사이 프로젝트(Flutter, PM) \n - Klang 프로젝트(Flutter, PM)\n - 졸업작품 Koffee';
 }
 
 class SkillTextConstants {

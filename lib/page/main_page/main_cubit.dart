@@ -19,6 +19,7 @@ class MainPageCubit extends Cubit<MainPageState> {
     String message = TextConstants.welcomeMessage1,
   }) async {
     final List<String> characters = [];
+
     for (int i = 0; i < message.length; i++) {
       characters.add(message[i]);
     }

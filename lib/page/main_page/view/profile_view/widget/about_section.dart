@@ -12,61 +12,61 @@ class AboutSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+    return Container(
+      width: 280.sw,
+      padding: EdgeInsets.all(20.sw),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 15),
-          child: Container(
-            constraints: BoxConstraints(maxHeight: 180.sh, maxWidth: 300),
-            child: ScrollConfiguration(
-              behavior:
-                  ScrollConfiguration.of(context).copyWith(scrollbars: false),
-              child: ListView.builder(
-                itemCount: sectionInfo.length,
-                itemBuilder: (context, index) {
-                  return SizedBox(
-                    height: 180.sh / sectionInfo.length,
-                    child: Column(
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              '•',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              sectionInfo[index],
-                              style: const TextStyle(
-                                fontSize: 16,
-                                color: Colors.black54,
-                                height: 1.5,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                      ],
-                    ),
-                  );
-                },
-              ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 22.sw,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).primaryColor,
             ),
           ),
-        ),
-      ],
+          SizedBox(height: 16.sh),
+          ...sectionInfo
+              .map((info) => Padding(
+                    padding: EdgeInsets.only(bottom: 12.sh),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.arrow_right,
+                          size: 18.sw,
+                          color:
+                              Theme.of(context).primaryColor.withOpacity(0.7),
+                        ),
+                        SizedBox(width: 8.sw),
+                        Expanded(
+                          child: Text(
+                            info,
+                            style: TextStyle(
+                              fontSize: 16.sw,
+                              height: 1.5,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ))
+              .toList(),
+        ],
+      ),
     );
   }
 }

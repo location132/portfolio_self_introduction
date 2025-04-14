@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 
-class MyStory extends StatelessWidget {
+class MyStory extends StatefulWidget {
   const MyStory({super.key});
 
+  @override
+  State<MyStory> createState() => _MyStoryState();
+}
+
+class _MyStoryState extends State<MyStory> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,32 +22,27 @@ class MyStory extends StatelessWidget {
             children: [
               Text(
                 'MyStory',
-                style: const TextStyle(
-                  fontFamily: 'DancingScript',
+                style: GoogleFonts.dancingScript(
                   fontSize: 36,
                   fontWeight: FontWeight.w400,
-                  color: Colors.black54,
+                  color: Colors.grey[600],
                   letterSpacing: 1.2,
                 ),
               ),
               const SizedBox(width: 8),
-              Text(
-                'With',
-                style: const TextStyle(
-                  fontFamily: 'PlayfairDisplay',
-                  fontSize: 34,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black54,
-                ),
-              ),
+              Text('With',
+                  style: GoogleFonts.playfairDisplay(
+                    fontSize: 34,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey[600],
+                  )),
               const SizedBox(width: 8),
               Text(
                 'Flutter',
-                style: const TextStyle(
-                  fontFamily: 'DancingScript',
+                style: GoogleFonts.dancingScript(
                   fontSize: 36,
                   fontWeight: FontWeight.w400,
-                  color: Colors.black54,
+                  color: Colors.grey[600],
                   letterSpacing: 1.2,
                 ),
               ),
@@ -60,15 +61,14 @@ class MyStory extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 132.sw, top: 30),
       child: RichText(
-        text: TextSpan(
+        text: const TextSpan(
           style: const TextStyle(
-            fontFamily: 'NotoSansKR',
             fontSize: 16,
             height: 1.8,
             color: Colors.black87,
             fontWeight: FontWeight.w400,
           ),
-          children: const [
+          children: [
             TextSpan(
               text: '4년간 개발을 배우며 교수님과 동기들이 저에게 해준 말이 있습니다.\n\n',
             ),
@@ -77,8 +77,10 @@ class MyStory extends StatelessWidget {
                   '“정원이는 성격이 Flutter 개발자보다는 연구직, 또는 보안에 성격이 더 어울릴 것 같은데 이쪽으로 공부를 해보는 것은 어떻게 생각하시나요?”\n\n',
               style: TextStyle(
                 fontStyle: FontStyle.italic,
+                fontSize: 17,
                 fontWeight: FontWeight.w500,
                 color: Colors.black,
+                fontFamilyFallback: ['sans-serif'], // ✅ 이 부분에도 fallback
               ),
             ),
             TextSpan(
@@ -87,14 +89,15 @@ class MyStory extends StatelessWidget {
             ),
             TextSpan(
               text: '지인들이 말해주는 나의 성격과 분위기,\n'
-                  '그리고 그 말을 듣고도 여전히 나의 목표였던 Flutter 개발자로 꿈을 이어가게 되는 나의 고집.\n\n',
+                  '그리고 그 말을 듣고도 여전히 나의 목표였던 Flutter 개발자로 꿈을 이어가게 되는 나의 고집.\n',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
+                fontFamilyFallback: ['sans-serif'], // ✅ 여기도 추가해주는 게 좋아
               ),
             ),
             TextSpan(
               text:
-                  '이 이야기는 저의 목표 그리고 함께 일하게 될 기업의 방향성과 동료와의 협력이 잘 맞는지 확인할 수 있는 짧은 소개로 이어집니다.',
+                  '   - 이 이야기는 저의 목표 그리고 함께 일하게 될 기업의 방향성과 동료와의 협력이 잘 맞는지 확인할 수 있는 짧은 소개로 이어집니다.',
             ),
           ],
         ),
