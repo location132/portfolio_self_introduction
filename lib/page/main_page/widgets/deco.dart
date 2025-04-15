@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-//상단 직각삼각형
 class DiagonalTriangleClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
@@ -16,7 +15,6 @@ class DiagonalTriangleClipper extends CustomClipper<Path> {
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
 
-//하단 직각삼각형
 class DiagonalTriangleClipper2 extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
@@ -34,24 +32,32 @@ class DiagonalTriangleClipper2 extends CustomClipper<Path> {
 
 class DiagonalTriangle extends StatelessWidget {
   final bool isTop;
-  const DiagonalTriangle({super.key, required this.isTop});
+  final String? description;
+
+  const DiagonalTriangle({
+    super.key,
+    required this.isTop,
+    this.description,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ClipPath(
       clipper: isTop ? DiagonalTriangleClipper() : DiagonalTriangleClipper2(),
       child: SizedBox(
-        width: double.infinity,
-        height: 220,
+        height: MediaQuery.of(context).size.height * 0.15,
+        width: MediaQuery.of(context).size.width,
         child: Row(
           children: [
             Container(
               width: MediaQuery.of(context).size.width * 0.90,
-              color: const Color.fromARGB(255, 192, 183, 170),
+              color: Colors.black,
             ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.10,
-              color: const Color.fromARGB(255, 227, 217, 205),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Container(
+                color: Colors.black,
+              ),
             ),
           ],
         ),

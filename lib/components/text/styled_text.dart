@@ -45,7 +45,7 @@ class StyledText extends StatelessWidget {
       text: text,
       fontSize: 32,
       fontWeight: FontWeight.bold,
-      color: Colors.grey,
+      color: color ?? Colors.grey,
       textAlign: textAlign,
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
+import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/model/main_page/description_model.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
@@ -11,7 +12,39 @@ import 'package:universal_html/html.dart';
 
 @injectable
 class MainPageCubit extends Cubit<MainPageState> {
-  MainPageCubit() : super(const MainPageState());
+  MainPageCubit()
+      : super(MainPageState(
+          scrollModel: ScrollModel(scrollController: ScrollController()),
+        ));
+
+  @postConstruct
+  void init() {
+    final controller = state.scrollModel.scrollController;
+    changeProfileViewHeight(controller);
+  }
+
+  void changeProfileViewHeight(controller) async {
+    await Future.delayed(const Duration(seconds: 2));
+
+    void waitForAttachment() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (controller.hasClients) {
+          controller.addListener(() {
+            final maxHeight = controller.position.maxScrollExtent;
+            final limit = maxHeight - 87.sh;
+
+            if (controller.offset > limit) {
+              controller.jumpTo(limit);
+            }
+          });
+        } else {
+          waitForAttachment();
+        }
+      });
+    }
+
+    waitForAttachment();
+  }
 
   // text 애니메이션 시작
   Future<void> initializeAnimations(
@@ -93,7 +126,12 @@ class MainPageCubit extends Cubit<MainPageState> {
         scrollModel:
             state.scrollModel.copyWith(bannerState: BannerState.activated),
       ));
-    } else if (viewName == 'profile') {
+    } else if (viewName == 'profile_background') {
+      emit(state.copyWith(
+        scrollModel:
+            state.scrollModel.copyWith(bannerState: BannerState.inactive),
+      ));
+    } else if (viewName == 'profile_view') {
       emit(state.copyWith(
         scrollModel: state.scrollModel
             .copyWith(profileViewState: ProfileViewState.active),

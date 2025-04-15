@@ -2,6 +2,7 @@
 
 // 1. => 사용자가 메인화면에서 가장 먼저 볼 수 있는 배너
 
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'scroll_model.freezed.dart';
@@ -9,8 +10,9 @@ part 'scroll_model.freezed.dart';
 @freezed
 class ScrollModel with _$ScrollModel {
   const factory ScrollModel({
+    ScrollController? scrollController,
     @Default(BannerState.inactive) BannerState bannerState,
-    @Default(ProfileViewState.inactive) ProfileViewState profileViewState,
+    @Default(ProfileViewState.initial) ProfileViewState profileViewState,
   }) = _ScrollModel;
 }
 
@@ -20,6 +22,7 @@ enum BannerState {
 }
 
 enum ProfileViewState {
+  initial,
   inactive,
   active,
 }

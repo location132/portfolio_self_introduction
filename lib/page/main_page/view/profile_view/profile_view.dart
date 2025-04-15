@@ -1,7 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
+import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
 class ProfileView extends StatefulWidget {
-  const ProfileView({super.key});
+  final MainPageState state;
+  const ProfileView({super.key, required this.state});
 
   @override
   State<ProfileView> createState() => _ProfileViewState();
@@ -9,30 +14,18 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        //-----------------------------------------------------
-        Align(
-          alignment: Alignment.centerRight,
-          child: Container(
-            height: MediaQuery.of(context).size.height * 0.8,
-            width: MediaQuery.of(context).size.width * 0.10,
-            color: const Color.fromARGB(255, 227, 217, 205),
-          ),
-        ),
+  void didUpdateWidget(covariant ProfileView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.state.scrollModel.bannerState !=
+        oldWidget.state.scrollModel.bannerState) {
+      print(widget.state.scrollModel.bannerState);
+    }
+  }
 
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Container(
-            height: MediaQuery.of(context).size.height * 0.8,
-            width: MediaQuery.of(context).size.width * 0.90,
-            color: const Color.fromARGB(255, 192, 183, 170),
-          ),
-        ),
-        //-----------------------------------------------------
-      ],
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
     );
   }
 }

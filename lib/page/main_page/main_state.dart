@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:self_introduction_flutter/model/main_page/description_model.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
@@ -20,5 +22,8 @@ class MainPageState with _$MainPageState {
 
     //ScrollModel
     @Default(ScrollModel()) ScrollModel scrollModel,
+
+    // 프로필 뷰 높이
+    @Default(0.0) double mainViewHeight,
   }) = _MainPageState;
 }

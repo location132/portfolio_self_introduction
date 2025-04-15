@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/page/main_page/main_cubit.dart';
@@ -10,6 +11,7 @@ import 'package:self_introduction_flutter/page/main_page/view/banner_view/widget
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/profile_view.dart';
 import 'package:self_introduction_flutter/page/main_page/view/banner_view/banner_view.dart';
 import 'package:self_introduction_flutter/page/main_page/view/intro_view/introShowcase.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/profile_background.dart';
 import 'package:self_introduction_flutter/page/main_page/view/skill_view/skill_view.dart';
 import 'package:self_introduction_flutter/page/main_page/widgets/deco.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -40,6 +42,14 @@ class _MainViewState extends State<_MainView> {
   Widget build(BuildContext context) {
     return BlocBuilder<MainPageCubit, MainPageState>(
       builder: (context, state) {
+        if (state.mainViewHeight != 0.0 &&
+            state.mainViewHeight !=
+                state.scrollModel.scrollController!.position.maxScrollExtent) {
+          context
+              .read<MainPageCubit>()
+              .changeProfileViewHeight(state.scrollModel.scrollController);
+        }
+
         return Scaffold(
           body: Column(
             children: [
@@ -48,6 +58,7 @@ class _MainViewState extends State<_MainView> {
                 height: MediaQuery.of(context).size.height - 83,
                 width: MediaQuery.of(context).size.width,
                 child: CustomScrollView(
+                  controller: state.scrollModel.scrollController,
                   slivers: [
                     SliverAppBar(
                       expandedHeight: MediaQuery.of(context).size.height,
@@ -87,34 +98,47 @@ class _MainViewState extends State<_MainView> {
                               },
                             ),
                           ),
-                          Column(
+                          Stack(
                             children: [
-                              Transform(
-                                transform: Matrix4.translationValues(0, 1, 0),
-                                child: const DiagonalTriangle(isTop: true),
-                              ),
-                              // 프로필 뷰
+                              // 프로필 배경화면
                               VisibilityDetector(
-                                key: const Key('profile-view'),
+                                key: const Key('profile-background'),
                                 onVisibilityChanged: (VisibilityInfo info) {
-                                  if (info.visibleFraction > 0.5 &&
+                                  if (info.visibleFraction > 0.85 &&
                                       state.scrollModel.profileViewState ==
-                                          ProfileViewState.inactive) {
+                                          ProfileViewState.initial) {
                                     context
                                         .read<MainPageCubit>()
-                                        .viewListener('profile');
+                                        .viewListener('profile_background');
                                   }
                                 },
-                                child: const ProfileView(),
+                                child: const ProfileBackground(),
                               ),
 
-                              Transform(
-                                transform: Matrix4.translationValues(0, -1, 0),
-                                child: const DiagonalTriangle(isTop: false),
-                              ),
-                              const SizedBox(
-                                height: 100,
-                              ),
+                              // 프로필 뷰
+                              // Positioned(
+                              //   top: 300.sh,
+                              //   child: VisibilityDetector(
+                              //     key: const Key('profile-view'),
+                              //     onVisibilityChanged: (VisibilityInfo info) {
+                              //       if (info.visibleFraction > 0.5 &&
+                              //           state.scrollModel.profileViewState ==
+                              //               ProfileViewState.inactive) {
+                              //         // Todo: 프로필 뷰 리모델링
+                              //         // context
+                              //         // context
+                              //         //     .read<MainPageCubit>()
+                              //         //     .viewListener('profile');
+                              //       }
+                              //     },
+                              //     child: SizedBox(
+                              //       width: MediaQuery.of(context).size.width,
+                              //       height: MediaQuery.of(context).size.height *
+                              //           0.55,
+                              //       child: ProfileView(state: state),
+                              //     ),
+                              //   ),
+                              // ),
                             ],
                           ),
 

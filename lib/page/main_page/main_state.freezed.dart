@@ -23,7 +23,8 @@ mixin _$MainPageState {
       throw _privateConstructorUsedError; //DescriptionModel
   DescriptionModel get descriptionModel =>
       throw _privateConstructorUsedError; //ScrollModel
-  ScrollModel get scrollModel => throw _privateConstructorUsedError;
+  ScrollModel get scrollModel => throw _privateConstructorUsedError; // 프로필 뷰 높이
+  double get mainViewHeight => throw _privateConstructorUsedError;
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -42,7 +43,8 @@ abstract class $MainPageStateCopyWith<$Res> {
       {StartAnimationModel? startAnimation,
       MySkillModel mySkillModel,
       DescriptionModel descriptionModel,
-      ScrollModel scrollModel});
+      ScrollModel scrollModel,
+      double mainViewHeight});
 
   $StartAnimationModelCopyWith<$Res>? get startAnimation;
   $MySkillModelCopyWith<$Res> get mySkillModel;
@@ -69,6 +71,7 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
     Object? mySkillModel = null,
     Object? descriptionModel = null,
     Object? scrollModel = null,
+    Object? mainViewHeight = null,
   }) {
     return _then(_value.copyWith(
       startAnimation: freezed == startAnimation
@@ -87,6 +90,10 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
           ? _value.scrollModel
           : scrollModel // ignore: cast_nullable_to_non_nullable
               as ScrollModel,
+      mainViewHeight: null == mainViewHeight
+          ? _value.mainViewHeight
+          : mainViewHeight // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 
@@ -147,7 +154,8 @@ abstract class _$$MainPageStateImplCopyWith<$Res>
       {StartAnimationModel? startAnimation,
       MySkillModel mySkillModel,
       DescriptionModel descriptionModel,
-      ScrollModel scrollModel});
+      ScrollModel scrollModel,
+      double mainViewHeight});
 
   @override
   $StartAnimationModelCopyWith<$Res>? get startAnimation;
@@ -176,6 +184,7 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
     Object? mySkillModel = null,
     Object? descriptionModel = null,
     Object? scrollModel = null,
+    Object? mainViewHeight = null,
   }) {
     return _then(_$MainPageStateImpl(
       startAnimation: freezed == startAnimation
@@ -194,6 +203,10 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
           ? _value.scrollModel
           : scrollModel // ignore: cast_nullable_to_non_nullable
               as ScrollModel,
+      mainViewHeight: null == mainViewHeight
+          ? _value.mainViewHeight
+          : mainViewHeight // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -205,7 +218,8 @@ class _$MainPageStateImpl implements _MainPageState {
       {this.startAnimation,
       this.mySkillModel = const MySkillModel(),
       this.descriptionModel = const DescriptionModel(),
-      this.scrollModel = const ScrollModel()});
+      this.scrollModel = const ScrollModel(),
+      this.mainViewHeight = 0.0});
 
 //StartAnimation 컨트롤러
   @override
@@ -222,10 +236,14 @@ class _$MainPageStateImpl implements _MainPageState {
   @override
   @JsonKey()
   final ScrollModel scrollModel;
+// 프로필 뷰 높이
+  @override
+  @JsonKey()
+  final double mainViewHeight;
 
   @override
   String toString() {
-    return 'MainPageState(startAnimation: $startAnimation, mySkillModel: $mySkillModel, descriptionModel: $descriptionModel, scrollModel: $scrollModel)';
+    return 'MainPageState(startAnimation: $startAnimation, mySkillModel: $mySkillModel, descriptionModel: $descriptionModel, scrollModel: $scrollModel, mainViewHeight: $mainViewHeight)';
   }
 
   @override
@@ -240,12 +258,14 @@ class _$MainPageStateImpl implements _MainPageState {
             (identical(other.descriptionModel, descriptionModel) ||
                 other.descriptionModel == descriptionModel) &&
             (identical(other.scrollModel, scrollModel) ||
-                other.scrollModel == scrollModel));
+                other.scrollModel == scrollModel) &&
+            (identical(other.mainViewHeight, mainViewHeight) ||
+                other.mainViewHeight == mainViewHeight));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, startAnimation, mySkillModel, descriptionModel, scrollModel);
+  int get hashCode => Object.hash(runtimeType, startAnimation, mySkillModel,
+      descriptionModel, scrollModel, mainViewHeight);
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -261,7 +281,8 @@ abstract class _MainPageState implements MainPageState {
       {final StartAnimationModel? startAnimation,
       final MySkillModel mySkillModel,
       final DescriptionModel descriptionModel,
-      final ScrollModel scrollModel}) = _$MainPageStateImpl;
+      final ScrollModel scrollModel,
+      final double mainViewHeight}) = _$MainPageStateImpl;
 
 //StartAnimation 컨트롤러
   @override
@@ -271,7 +292,9 @@ abstract class _MainPageState implements MainPageState {
   @override
   DescriptionModel get descriptionModel; //ScrollModel
   @override
-  ScrollModel get scrollModel;
+  ScrollModel get scrollModel; // 프로필 뷰 높이
+  @override
+  double get mainViewHeight;
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.

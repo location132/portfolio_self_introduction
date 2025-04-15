@@ -6,12 +6,14 @@ class TitleText extends StatelessWidget {
   final String? title;
   final String? subTitle;
   final String? description;
+  final Color? color;
 
   const TitleText({
     super.key,
     this.title,
     this.subTitle,
     this.description,
+    this.color,
   });
 
   @override
@@ -25,6 +27,7 @@ class TitleText extends StatelessWidget {
             children: [
               StyledText.heading(
                 text: title ?? '',
+                color: color,
               ),
               StyledText.subHeading(
                 text: subTitle ?? '',

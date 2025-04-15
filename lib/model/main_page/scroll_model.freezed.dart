@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ScrollModel {
+  ScrollController? get scrollController => throw _privateConstructorUsedError;
   BannerState get bannerState => throw _privateConstructorUsedError;
   ProfileViewState get profileViewState => throw _privateConstructorUsedError;
 
@@ -32,7 +33,10 @@ abstract class $ScrollModelCopyWith<$Res> {
           ScrollModel value, $Res Function(ScrollModel) then) =
       _$ScrollModelCopyWithImpl<$Res, ScrollModel>;
   @useResult
-  $Res call({BannerState bannerState, ProfileViewState profileViewState});
+  $Res call(
+      {ScrollController? scrollController,
+      BannerState bannerState,
+      ProfileViewState profileViewState});
 }
 
 /// @nodoc
@@ -50,10 +54,15 @@ class _$ScrollModelCopyWithImpl<$Res, $Val extends ScrollModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? scrollController = freezed,
     Object? bannerState = null,
     Object? profileViewState = null,
   }) {
     return _then(_value.copyWith(
+      scrollController: freezed == scrollController
+          ? _value.scrollController
+          : scrollController // ignore: cast_nullable_to_non_nullable
+              as ScrollController?,
       bannerState: null == bannerState
           ? _value.bannerState
           : bannerState // ignore: cast_nullable_to_non_nullable
@@ -74,7 +83,10 @@ abstract class _$$ScrollModelImplCopyWith<$Res>
       __$$ScrollModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BannerState bannerState, ProfileViewState profileViewState});
+  $Res call(
+      {ScrollController? scrollController,
+      BannerState bannerState,
+      ProfileViewState profileViewState});
 }
 
 /// @nodoc
@@ -90,10 +102,15 @@ class __$$ScrollModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? scrollController = freezed,
     Object? bannerState = null,
     Object? profileViewState = null,
   }) {
     return _then(_$ScrollModelImpl(
+      scrollController: freezed == scrollController
+          ? _value.scrollController
+          : scrollController // ignore: cast_nullable_to_non_nullable
+              as ScrollController?,
       bannerState: null == bannerState
           ? _value.bannerState
           : bannerState // ignore: cast_nullable_to_non_nullable
@@ -110,9 +127,12 @@ class __$$ScrollModelImplCopyWithImpl<$Res>
 
 class _$ScrollModelImpl implements _ScrollModel {
   const _$ScrollModelImpl(
-      {this.bannerState = BannerState.inactive,
-      this.profileViewState = ProfileViewState.inactive});
+      {this.scrollController,
+      this.bannerState = BannerState.inactive,
+      this.profileViewState = ProfileViewState.initial});
 
+  @override
+  final ScrollController? scrollController;
   @override
   @JsonKey()
   final BannerState bannerState;
@@ -122,7 +142,7 @@ class _$ScrollModelImpl implements _ScrollModel {
 
   @override
   String toString() {
-    return 'ScrollModel(bannerState: $bannerState, profileViewState: $profileViewState)';
+    return 'ScrollModel(scrollController: $scrollController, bannerState: $bannerState, profileViewState: $profileViewState)';
   }
 
   @override
@@ -130,6 +150,8 @@ class _$ScrollModelImpl implements _ScrollModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ScrollModelImpl &&
+            (identical(other.scrollController, scrollController) ||
+                other.scrollController == scrollController) &&
             (identical(other.bannerState, bannerState) ||
                 other.bannerState == bannerState) &&
             (identical(other.profileViewState, profileViewState) ||
@@ -137,7 +159,8 @@ class _$ScrollModelImpl implements _ScrollModel {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bannerState, profileViewState);
+  int get hashCode =>
+      Object.hash(runtimeType, scrollController, bannerState, profileViewState);
 
   /// Create a copy of ScrollModel
   /// with the given fields replaced by the non-null parameter values.
@@ -150,9 +173,12 @@ class _$ScrollModelImpl implements _ScrollModel {
 
 abstract class _ScrollModel implements ScrollModel {
   const factory _ScrollModel(
-      {final BannerState bannerState,
+      {final ScrollController? scrollController,
+      final BannerState bannerState,
       final ProfileViewState profileViewState}) = _$ScrollModelImpl;
 
+  @override
+  ScrollController? get scrollController;
   @override
   BannerState get bannerState;
   @override
