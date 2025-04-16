@@ -6,9 +6,6 @@ part 'description_model.freezed.dart';
 class DescriptionModel with _$DescriptionModel {
   const factory DescriptionModel({
     //--------------------------------
-    @Default(IntroshowcaseState.inactive) IntroshowcaseState introshowcaseState,
-
-    //--------------------------------
     @Default(BannerDescriptionState.inactive)
     BannerDescriptionState bannerDescriptionState,
     //--------------------------------
@@ -18,11 +15,6 @@ class DescriptionModel with _$DescriptionModel {
     @Default(SkillDescriptionState.inactive)
     SkillDescriptionState skillDescriptionState,
   }) = _DescriptionModel;
-}
-
-enum IntroshowcaseState {
-  inactive,
-  active,
 }
 
 enum BannerDescriptionState {

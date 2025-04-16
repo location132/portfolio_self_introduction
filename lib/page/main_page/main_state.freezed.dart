@@ -262,7 +262,7 @@ class _$MainPageStateImpl implements _MainPageState {
       this.scrollModel = const ScrollModel(),
       this.profileModel = const ProfileModel(),
       this.mainViewHeight = 0.0,
-      this.remainingTime = 0});
+      this.remainingTime = 3});
 
 //StartAnimation 컨트롤러
   @override

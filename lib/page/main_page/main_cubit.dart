@@ -33,7 +33,8 @@ class MainPageCubit extends Cubit<MainPageState> {
 
   final Random random = Random();
   void changeProfileViewHeight(controller) async {
-    emit(state.copyWith(remainingTime: 4 + random.nextInt(3)));
+    emit(
+        state.copyWith(remainingTime: state.remainingTime + random.nextInt(3)));
     await Future.delayed(Duration(seconds: state.remainingTime));
 
     void waitForAttachment() {
@@ -59,9 +60,10 @@ class MainPageCubit extends Cubit<MainPageState> {
     waitForAttachment();
   }
 
-  void awaitDuration(TickerProvider vsync) async {
+  void awaitDuration(TickerProvider vsync,
+      {String message = TextConstants.welcomeMessage1}) async {
     await Future.delayed(Duration(seconds: state.remainingTime + 1));
-    initializeAnimations(vsync);
+    initializeAnimations(vsync, message: message);
   }
 
   // text 애니메이션 시작
@@ -169,14 +171,7 @@ class MainPageCubit extends Cubit<MainPageState> {
 
   //Description 버튼 클릭
   void descriptionButton(String descriptionName, bool isActive) {
-    if (descriptionName == 'intro') {
-      emit(state.copyWith(
-          descriptionModel: state.descriptionModel.copyWith(
-              introshowcaseState: isActive
-                  ? IntroshowcaseState.active
-                  : IntroshowcaseState.inactive)));
-      print(state.descriptionModel.introshowcaseState);
-    } else if (descriptionName == 'banner') {
+    if (descriptionName == 'banner') {
       emit(state.copyWith(
           descriptionModel: state.descriptionModel.copyWith(
               bannerDescriptionState: isActive

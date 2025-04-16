@@ -1,26 +1,23 @@
-//TODO: 추후 리펙터링 큐빅과 다른 걸로 분리
-
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/model/main_page/description_model.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
-class CircleMenuLayout extends StatefulWidget {
+class MenuLayout extends StatefulWidget {
   final Function(bool) isActive;
   final MainPageState state;
-  const CircleMenuLayout({
+  const MenuLayout({
     super.key,
     required this.isActive,
     required this.state,
   });
 
   @override
-  State<CircleMenuLayout> createState() => _CircleMenuLayoutState();
+  State<MenuLayout> createState() => _MenuLayoutState();
 }
 
-class _CircleMenuLayoutState extends State<CircleMenuLayout>
-    with TickerProviderStateMixin {
+class _MenuLayoutState extends State<MenuLayout> with TickerProviderStateMixin {
   int index = 0;
 
   late AnimationController _animationController;

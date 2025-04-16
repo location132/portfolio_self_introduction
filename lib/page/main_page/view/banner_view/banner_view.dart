@@ -37,7 +37,7 @@ class _BannerViewState extends State<BannerView> {
         //배너
         Stack(
           children: [
-            BannerDescription(
+            SectionDescription(
               state: widget.state,
               isActive: widget.isActive,
             ),

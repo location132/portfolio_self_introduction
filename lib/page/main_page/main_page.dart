@@ -73,11 +73,6 @@ class _MainViewState extends State<_MainView> {
                           state: state,
                           initializeAnimations:
                               context.read<MainPageCubit>().awaitDuration,
-                          onTapDescription: () {
-                            context
-                                .read<MainPageCubit>()
-                                .descriptionButton('intro', true);
-                          },
                         ),
                       ),
                     ),

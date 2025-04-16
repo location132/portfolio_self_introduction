@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/model/main_page/description_model.dart';
+import 'package:self_introduction_flutter/components/condition_utils/condition_utils.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:self_introduction_flutter/page/main_page/view/banner_view/widgets/circle_menu.dart';
 
-class BannerDescription extends StatefulWidget {
+class SectionDescription extends StatefulWidget {
   final MainPageState state;
+
   final Function(bool) isActive;
 
-  const BannerDescription({
+  const SectionDescription({
     super.key,
     required this.state,
     required this.isActive,
   });
 
   @override
-  State<BannerDescription> createState() => _BannerDescriptionState();
+  State<SectionDescription> createState() => _SectionDescriptionState();
 }
 
-class _BannerDescriptionState extends State<BannerDescription>
+class _SectionDescriptionState extends State<SectionDescription>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<Offset> _offsetAnimation;
@@ -49,10 +50,10 @@ class _BannerDescriptionState extends State<BannerDescription>
   }
 
   @override
-  void didUpdateWidget(covariant BannerDescription oldWidget) {
+  void didUpdateWidget(covariant SectionDescription oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.state.descriptionModel.bannerDescriptionState ==
-        BannerDescriptionState.active) {
+
+    if (ProfileConditions.isBannerDescriptionActive(widget.state)) {
       _controller.forward();
       setState(() {
         _isSelected = true;
@@ -105,7 +106,7 @@ class _BannerDescriptionState extends State<BannerDescription>
           ),
           child: _isSelected
               ? Center(
-                  child: CircleMenuLayout(
+                  child: MenuLayout(
                     isActive: widget.isActive,
                     state: widget.state,
                   ),

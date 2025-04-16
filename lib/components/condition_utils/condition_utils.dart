@@ -3,9 +3,21 @@ import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 
 class ProfileConditions {
+  // 배너 설명 활성화
+  static bool isBannerDescriptionActive(MainPageState state) =>
+      state.descriptionModel.bannerDescriptionState ==
+      BannerDescriptionState.active;
+
+  // 배너 설명 비활성화
+  static bool isBannerDescriptionInactive(MainPageState state) =>
+      state.descriptionModel.bannerDescriptionState ==
+      BannerDescriptionState.inactive;
+
+  // 프로필 뷰 활성화
   static bool isProfileViewActive(MainPageState state) =>
       state.scrollModel.profileViewState == ProfileViewState.active;
 
-  static bool isIntroshowcaseActive(MainPageState state) =>
-      state.descriptionModel.introshowcaseState == IntroshowcaseState.active;
+  // 프로필 뷰 비활성화
+  static bool isProfileViewInactive(MainPageState state) =>
+      state.scrollModel.profileViewState == ProfileViewState.inactive;
 }
