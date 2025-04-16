@@ -23,8 +23,12 @@ mixin _$MainPageState {
       throw _privateConstructorUsedError; //DescriptionModel
   DescriptionModel get descriptionModel =>
       throw _privateConstructorUsedError; //ScrollModel
-  ScrollModel get scrollModel => throw _privateConstructorUsedError; // 프로필 뷰 높이
+  ScrollModel get scrollModel =>
+      throw _privateConstructorUsedError; //ProfileModel
+  ProfileModel get profileModel =>
+      throw _privateConstructorUsedError; // 프로필 뷰 높이
   double get mainViewHeight => throw _privateConstructorUsedError;
+  int get remainingTime => throw _privateConstructorUsedError;
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -44,12 +48,15 @@ abstract class $MainPageStateCopyWith<$Res> {
       MySkillModel mySkillModel,
       DescriptionModel descriptionModel,
       ScrollModel scrollModel,
-      double mainViewHeight});
+      ProfileModel profileModel,
+      double mainViewHeight,
+      int remainingTime});
 
   $StartAnimationModelCopyWith<$Res>? get startAnimation;
   $MySkillModelCopyWith<$Res> get mySkillModel;
   $DescriptionModelCopyWith<$Res> get descriptionModel;
   $ScrollModelCopyWith<$Res> get scrollModel;
+  $ProfileModelCopyWith<$Res> get profileModel;
 }
 
 /// @nodoc
@@ -71,7 +78,9 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
     Object? mySkillModel = null,
     Object? descriptionModel = null,
     Object? scrollModel = null,
+    Object? profileModel = null,
     Object? mainViewHeight = null,
+    Object? remainingTime = null,
   }) {
     return _then(_value.copyWith(
       startAnimation: freezed == startAnimation
@@ -90,10 +99,18 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
           ? _value.scrollModel
           : scrollModel // ignore: cast_nullable_to_non_nullable
               as ScrollModel,
+      profileModel: null == profileModel
+          ? _value.profileModel
+          : profileModel // ignore: cast_nullable_to_non_nullable
+              as ProfileModel,
       mainViewHeight: null == mainViewHeight
           ? _value.mainViewHeight
           : mainViewHeight // ignore: cast_nullable_to_non_nullable
               as double,
+      remainingTime: null == remainingTime
+          ? _value.remainingTime
+          : remainingTime // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
@@ -140,6 +157,16 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
       return _then(_value.copyWith(scrollModel: value) as $Val);
     });
   }
+
+  /// Create a copy of MainPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProfileModelCopyWith<$Res> get profileModel {
+    return $ProfileModelCopyWith<$Res>(_value.profileModel, (value) {
+      return _then(_value.copyWith(profileModel: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -155,7 +182,9 @@ abstract class _$$MainPageStateImplCopyWith<$Res>
       MySkillModel mySkillModel,
       DescriptionModel descriptionModel,
       ScrollModel scrollModel,
-      double mainViewHeight});
+      ProfileModel profileModel,
+      double mainViewHeight,
+      int remainingTime});
 
   @override
   $StartAnimationModelCopyWith<$Res>? get startAnimation;
@@ -165,6 +194,8 @@ abstract class _$$MainPageStateImplCopyWith<$Res>
   $DescriptionModelCopyWith<$Res> get descriptionModel;
   @override
   $ScrollModelCopyWith<$Res> get scrollModel;
+  @override
+  $ProfileModelCopyWith<$Res> get profileModel;
 }
 
 /// @nodoc
@@ -184,7 +215,9 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
     Object? mySkillModel = null,
     Object? descriptionModel = null,
     Object? scrollModel = null,
+    Object? profileModel = null,
     Object? mainViewHeight = null,
+    Object? remainingTime = null,
   }) {
     return _then(_$MainPageStateImpl(
       startAnimation: freezed == startAnimation
@@ -203,10 +236,18 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
           ? _value.scrollModel
           : scrollModel // ignore: cast_nullable_to_non_nullable
               as ScrollModel,
+      profileModel: null == profileModel
+          ? _value.profileModel
+          : profileModel // ignore: cast_nullable_to_non_nullable
+              as ProfileModel,
       mainViewHeight: null == mainViewHeight
           ? _value.mainViewHeight
           : mainViewHeight // ignore: cast_nullable_to_non_nullable
               as double,
+      remainingTime: null == remainingTime
+          ? _value.remainingTime
+          : remainingTime // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -219,7 +260,9 @@ class _$MainPageStateImpl implements _MainPageState {
       this.mySkillModel = const MySkillModel(),
       this.descriptionModel = const DescriptionModel(),
       this.scrollModel = const ScrollModel(),
-      this.mainViewHeight = 0.0});
+      this.profileModel = const ProfileModel(),
+      this.mainViewHeight = 0.0,
+      this.remainingTime = 0});
 
 //StartAnimation 컨트롤러
   @override
@@ -236,14 +279,21 @@ class _$MainPageStateImpl implements _MainPageState {
   @override
   @JsonKey()
   final ScrollModel scrollModel;
+//ProfileModel
+  @override
+  @JsonKey()
+  final ProfileModel profileModel;
 // 프로필 뷰 높이
   @override
   @JsonKey()
   final double mainViewHeight;
+  @override
+  @JsonKey()
+  final int remainingTime;
 
   @override
   String toString() {
-    return 'MainPageState(startAnimation: $startAnimation, mySkillModel: $mySkillModel, descriptionModel: $descriptionModel, scrollModel: $scrollModel, mainViewHeight: $mainViewHeight)';
+    return 'MainPageState(startAnimation: $startAnimation, mySkillModel: $mySkillModel, descriptionModel: $descriptionModel, scrollModel: $scrollModel, profileModel: $profileModel, mainViewHeight: $mainViewHeight, remainingTime: $remainingTime)';
   }
 
   @override
@@ -259,13 +309,24 @@ class _$MainPageStateImpl implements _MainPageState {
                 other.descriptionModel == descriptionModel) &&
             (identical(other.scrollModel, scrollModel) ||
                 other.scrollModel == scrollModel) &&
+            (identical(other.profileModel, profileModel) ||
+                other.profileModel == profileModel) &&
             (identical(other.mainViewHeight, mainViewHeight) ||
-                other.mainViewHeight == mainViewHeight));
+                other.mainViewHeight == mainViewHeight) &&
+            (identical(other.remainingTime, remainingTime) ||
+                other.remainingTime == remainingTime));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, startAnimation, mySkillModel,
-      descriptionModel, scrollModel, mainViewHeight);
+  int get hashCode => Object.hash(
+      runtimeType,
+      startAnimation,
+      mySkillModel,
+      descriptionModel,
+      scrollModel,
+      profileModel,
+      mainViewHeight,
+      remainingTime);
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -282,7 +343,9 @@ abstract class _MainPageState implements MainPageState {
       final MySkillModel mySkillModel,
       final DescriptionModel descriptionModel,
       final ScrollModel scrollModel,
-      final double mainViewHeight}) = _$MainPageStateImpl;
+      final ProfileModel profileModel,
+      final double mainViewHeight,
+      final int remainingTime}) = _$MainPageStateImpl;
 
 //StartAnimation 컨트롤러
   @override
@@ -292,9 +355,13 @@ abstract class _MainPageState implements MainPageState {
   @override
   DescriptionModel get descriptionModel; //ScrollModel
   @override
-  ScrollModel get scrollModel; // 프로필 뷰 높이
+  ScrollModel get scrollModel; //ProfileModel
+  @override
+  ProfileModel get profileModel; // 프로필 뷰 높이
   @override
   double get mainViewHeight;
+  @override
+  int get remainingTime;
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.

@@ -16,6 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DescriptionModel {
+//--------------------------------
+  IntroshowcaseState get introshowcaseState =>
+      throw _privateConstructorUsedError; //--------------------------------
   BannerDescriptionState get bannerDescriptionState =>
       throw _privateConstructorUsedError; //--------------------------------
   ProfileDescriptionState get profileDescriptionState =>
@@ -37,7 +40,8 @@ abstract class $DescriptionModelCopyWith<$Res> {
       _$DescriptionModelCopyWithImpl<$Res, DescriptionModel>;
   @useResult
   $Res call(
-      {BannerDescriptionState bannerDescriptionState,
+      {IntroshowcaseState introshowcaseState,
+      BannerDescriptionState bannerDescriptionState,
       ProfileDescriptionState profileDescriptionState,
       SkillDescriptionState skillDescriptionState});
 }
@@ -57,11 +61,16 @@ class _$DescriptionModelCopyWithImpl<$Res, $Val extends DescriptionModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? introshowcaseState = null,
     Object? bannerDescriptionState = null,
     Object? profileDescriptionState = null,
     Object? skillDescriptionState = null,
   }) {
     return _then(_value.copyWith(
+      introshowcaseState: null == introshowcaseState
+          ? _value.introshowcaseState
+          : introshowcaseState // ignore: cast_nullable_to_non_nullable
+              as IntroshowcaseState,
       bannerDescriptionState: null == bannerDescriptionState
           ? _value.bannerDescriptionState
           : bannerDescriptionState // ignore: cast_nullable_to_non_nullable
@@ -87,7 +96,8 @@ abstract class _$$DescriptionModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {BannerDescriptionState bannerDescriptionState,
+      {IntroshowcaseState introshowcaseState,
+      BannerDescriptionState bannerDescriptionState,
       ProfileDescriptionState profileDescriptionState,
       SkillDescriptionState skillDescriptionState});
 }
@@ -105,11 +115,16 @@ class __$$DescriptionModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? introshowcaseState = null,
     Object? bannerDescriptionState = null,
     Object? profileDescriptionState = null,
     Object? skillDescriptionState = null,
   }) {
     return _then(_$DescriptionModelImpl(
+      introshowcaseState: null == introshowcaseState
+          ? _value.introshowcaseState
+          : introshowcaseState // ignore: cast_nullable_to_non_nullable
+              as IntroshowcaseState,
       bannerDescriptionState: null == bannerDescriptionState
           ? _value.bannerDescriptionState
           : bannerDescriptionState // ignore: cast_nullable_to_non_nullable
@@ -130,10 +145,16 @@ class __$$DescriptionModelImplCopyWithImpl<$Res>
 
 class _$DescriptionModelImpl implements _DescriptionModel {
   const _$DescriptionModelImpl(
-      {this.bannerDescriptionState = BannerDescriptionState.inactive,
+      {this.introshowcaseState = IntroshowcaseState.inactive,
+      this.bannerDescriptionState = BannerDescriptionState.inactive,
       this.profileDescriptionState = ProfileDescriptionState.inactive,
       this.skillDescriptionState = SkillDescriptionState.inactive});
 
+//--------------------------------
+  @override
+  @JsonKey()
+  final IntroshowcaseState introshowcaseState;
+//--------------------------------
   @override
   @JsonKey()
   final BannerDescriptionState bannerDescriptionState;
@@ -148,7 +169,7 @@ class _$DescriptionModelImpl implements _DescriptionModel {
 
   @override
   String toString() {
-    return 'DescriptionModel(bannerDescriptionState: $bannerDescriptionState, profileDescriptionState: $profileDescriptionState, skillDescriptionState: $skillDescriptionState)';
+    return 'DescriptionModel(introshowcaseState: $introshowcaseState, bannerDescriptionState: $bannerDescriptionState, profileDescriptionState: $profileDescriptionState, skillDescriptionState: $skillDescriptionState)';
   }
 
   @override
@@ -156,6 +177,8 @@ class _$DescriptionModelImpl implements _DescriptionModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DescriptionModelImpl &&
+            (identical(other.introshowcaseState, introshowcaseState) ||
+                other.introshowcaseState == introshowcaseState) &&
             (identical(other.bannerDescriptionState, bannerDescriptionState) ||
                 other.bannerDescriptionState == bannerDescriptionState) &&
             (identical(
@@ -166,8 +189,8 @@ class _$DescriptionModelImpl implements _DescriptionModel {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bannerDescriptionState,
-      profileDescriptionState, skillDescriptionState);
+  int get hashCode => Object.hash(runtimeType, introshowcaseState,
+      bannerDescriptionState, profileDescriptionState, skillDescriptionState);
 
   /// Create a copy of DescriptionModel
   /// with the given fields replaced by the non-null parameter values.
@@ -181,11 +204,15 @@ class _$DescriptionModelImpl implements _DescriptionModel {
 
 abstract class _DescriptionModel implements DescriptionModel {
   const factory _DescriptionModel(
-          {final BannerDescriptionState bannerDescriptionState,
+          {final IntroshowcaseState introshowcaseState,
+          final BannerDescriptionState bannerDescriptionState,
           final ProfileDescriptionState profileDescriptionState,
           final SkillDescriptionState skillDescriptionState}) =
       _$DescriptionModelImpl;
 
+//--------------------------------
+  @override
+  IntroshowcaseState get introshowcaseState; //--------------------------------
   @override
   BannerDescriptionState
       get bannerDescriptionState; //--------------------------------

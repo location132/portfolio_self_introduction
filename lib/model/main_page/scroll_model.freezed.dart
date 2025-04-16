@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ScrollModel {
   ScrollController? get scrollController => throw _privateConstructorUsedError;
+  ScrollController? get subScrollController =>
+      throw _privateConstructorUsedError;
   BannerState get bannerState => throw _privateConstructorUsedError;
   ProfileViewState get profileViewState => throw _privateConstructorUsedError;
 
@@ -35,6 +37,7 @@ abstract class $ScrollModelCopyWith<$Res> {
   @useResult
   $Res call(
       {ScrollController? scrollController,
+      ScrollController? subScrollController,
       BannerState bannerState,
       ProfileViewState profileViewState});
 }
@@ -55,6 +58,7 @@ class _$ScrollModelCopyWithImpl<$Res, $Val extends ScrollModel>
   @override
   $Res call({
     Object? scrollController = freezed,
+    Object? subScrollController = freezed,
     Object? bannerState = null,
     Object? profileViewState = null,
   }) {
@@ -62,6 +66,10 @@ class _$ScrollModelCopyWithImpl<$Res, $Val extends ScrollModel>
       scrollController: freezed == scrollController
           ? _value.scrollController
           : scrollController // ignore: cast_nullable_to_non_nullable
+              as ScrollController?,
+      subScrollController: freezed == subScrollController
+          ? _value.subScrollController
+          : subScrollController // ignore: cast_nullable_to_non_nullable
               as ScrollController?,
       bannerState: null == bannerState
           ? _value.bannerState
@@ -85,6 +93,7 @@ abstract class _$$ScrollModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {ScrollController? scrollController,
+      ScrollController? subScrollController,
       BannerState bannerState,
       ProfileViewState profileViewState});
 }
@@ -103,6 +112,7 @@ class __$$ScrollModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? scrollController = freezed,
+    Object? subScrollController = freezed,
     Object? bannerState = null,
     Object? profileViewState = null,
   }) {
@@ -110,6 +120,10 @@ class __$$ScrollModelImplCopyWithImpl<$Res>
       scrollController: freezed == scrollController
           ? _value.scrollController
           : scrollController // ignore: cast_nullable_to_non_nullable
+              as ScrollController?,
+      subScrollController: freezed == subScrollController
+          ? _value.subScrollController
+          : subScrollController // ignore: cast_nullable_to_non_nullable
               as ScrollController?,
       bannerState: null == bannerState
           ? _value.bannerState
@@ -128,11 +142,14 @@ class __$$ScrollModelImplCopyWithImpl<$Res>
 class _$ScrollModelImpl implements _ScrollModel {
   const _$ScrollModelImpl(
       {this.scrollController,
+      this.subScrollController,
       this.bannerState = BannerState.inactive,
-      this.profileViewState = ProfileViewState.initial});
+      this.profileViewState = ProfileViewState.inactive});
 
   @override
   final ScrollController? scrollController;
+  @override
+  final ScrollController? subScrollController;
   @override
   @JsonKey()
   final BannerState bannerState;
@@ -142,7 +159,7 @@ class _$ScrollModelImpl implements _ScrollModel {
 
   @override
   String toString() {
-    return 'ScrollModel(scrollController: $scrollController, bannerState: $bannerState, profileViewState: $profileViewState)';
+    return 'ScrollModel(scrollController: $scrollController, subScrollController: $subScrollController, bannerState: $bannerState, profileViewState: $profileViewState)';
   }
 
   @override
@@ -152,6 +169,8 @@ class _$ScrollModelImpl implements _ScrollModel {
             other is _$ScrollModelImpl &&
             (identical(other.scrollController, scrollController) ||
                 other.scrollController == scrollController) &&
+            (identical(other.subScrollController, subScrollController) ||
+                other.subScrollController == subScrollController) &&
             (identical(other.bannerState, bannerState) ||
                 other.bannerState == bannerState) &&
             (identical(other.profileViewState, profileViewState) ||
@@ -159,8 +178,8 @@ class _$ScrollModelImpl implements _ScrollModel {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, scrollController, bannerState, profileViewState);
+  int get hashCode => Object.hash(runtimeType, scrollController,
+      subScrollController, bannerState, profileViewState);
 
   /// Create a copy of ScrollModel
   /// with the given fields replaced by the non-null parameter values.
@@ -174,11 +193,14 @@ class _$ScrollModelImpl implements _ScrollModel {
 abstract class _ScrollModel implements ScrollModel {
   const factory _ScrollModel(
       {final ScrollController? scrollController,
+      final ScrollController? subScrollController,
       final BannerState bannerState,
       final ProfileViewState profileViewState}) = _$ScrollModelImpl;
 
   @override
   ScrollController? get scrollController;
+  @override
+  ScrollController? get subScrollController;
   @override
   BannerState get bannerState;
   @override

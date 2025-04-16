@@ -11,8 +11,9 @@ part 'scroll_model.freezed.dart';
 class ScrollModel with _$ScrollModel {
   const factory ScrollModel({
     ScrollController? scrollController,
+    ScrollController? subScrollController,
     @Default(BannerState.inactive) BannerState bannerState,
-    @Default(ProfileViewState.initial) ProfileViewState profileViewState,
+    @Default(ProfileViewState.inactive) ProfileViewState profileViewState,
   }) = _ScrollModel;
 }
 
@@ -22,7 +23,6 @@ enum BannerState {
 }
 
 enum ProfileViewState {
-  initial,
   inactive,
   active,
 }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -14,20 +16,31 @@ import 'package:universal_html/html.dart';
 class MainPageCubit extends Cubit<MainPageState> {
   MainPageCubit()
       : super(MainPageState(
-          scrollModel: ScrollModel(scrollController: ScrollController()),
+          scrollModel: ScrollModel(
+              scrollController: ScrollController(),
+              subScrollController: ScrollController()),
         ));
 
   @postConstruct
   void init() {
+    emit(state.copyWith(
+        scrollModel: state.scrollModel
+            .copyWith(profileViewState: ProfileViewState.active)));
+
     final controller = state.scrollModel.scrollController;
     changeProfileViewHeight(controller);
   }
 
+  final Random random = Random();
   void changeProfileViewHeight(controller) async {
-    await Future.delayed(const Duration(seconds: 2));
+    emit(state.copyWith(remainingTime: 4 + random.nextInt(3)));
+    await Future.delayed(Duration(seconds: state.remainingTime));
 
     void waitForAttachment() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
+        emit(state.copyWith(
+            scrollModel: state.scrollModel
+                .copyWith(profileViewState: ProfileViewState.inactive)));
         if (controller.hasClients) {
           controller.addListener(() {
             final maxHeight = controller.position.maxScrollExtent;
@@ -44,6 +57,11 @@ class MainPageCubit extends Cubit<MainPageState> {
     }
 
     waitForAttachment();
+  }
+
+  void awaitDuration(TickerProvider vsync) async {
+    await Future.delayed(Duration(seconds: state.remainingTime + 1));
+    initializeAnimations(vsync);
   }
 
   // text 애니메이션 시작
@@ -114,7 +132,6 @@ class MainPageCubit extends Cubit<MainPageState> {
     );
   }
 
-  //전체화면 모드 TODO: 작동안함
   void toggleFullScreen(BuildContext context) {
     document.documentElement?.requestFullscreen();
   }
@@ -128,13 +145,18 @@ class MainPageCubit extends Cubit<MainPageState> {
       ));
     } else if (viewName == 'profile_background') {
       emit(state.copyWith(
-        scrollModel:
-            state.scrollModel.copyWith(bannerState: BannerState.inactive),
-      ));
-    } else if (viewName == 'profile_view') {
-      emit(state.copyWith(
         scrollModel: state.scrollModel
             .copyWith(profileViewState: ProfileViewState.active),
+      ));
+    } else if (viewName == 'profile_isTop') {
+      emit(state.copyWith(
+        scrollModel: state.scrollModel
+            .copyWith(profileViewState: ProfileViewState.inactive),
+      ));
+    } else if (viewName == 'profile_isBottom') {
+      emit(state.copyWith(
+        scrollModel: state.scrollModel
+            .copyWith(profileViewState: ProfileViewState.inactive),
       ));
     } else if (viewName == 'skill') {
       //TODO: 아직 모델 변경 안됨
@@ -147,7 +169,14 @@ class MainPageCubit extends Cubit<MainPageState> {
 
   //Description 버튼 클릭
   void descriptionButton(String descriptionName, bool isActive) {
-    if (descriptionName == 'banner') {
+    if (descriptionName == 'intro') {
+      emit(state.copyWith(
+          descriptionModel: state.descriptionModel.copyWith(
+              introshowcaseState: isActive
+                  ? IntroshowcaseState.active
+                  : IntroshowcaseState.inactive)));
+      print(state.descriptionModel.introshowcaseState);
+    } else if (descriptionName == 'banner') {
       emit(state.copyWith(
           descriptionModel: state.descriptionModel.copyWith(
               bannerDescriptionState: isActive

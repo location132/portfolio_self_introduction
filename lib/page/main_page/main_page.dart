@@ -3,17 +3,14 @@ import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
-import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/page/main_page/main_cubit.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
-import 'package:self_introduction_flutter/page/main_page/view/banner_view/widgets/circle_menu.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/profile_view.dart';
 import 'package:self_introduction_flutter/page/main_page/view/banner_view/banner_view.dart';
 import 'package:self_introduction_flutter/page/main_page/view/intro_view/introShowcase.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/profile_background.dart';
-import 'package:self_introduction_flutter/page/main_page/view/skill_view/skill_view.dart';
-import 'package:self_introduction_flutter/page/main_page/widgets/deco.dart';
+
 import 'package:visibility_detector/visibility_detector.dart';
 
 class MainPage extends StatelessWidget {
@@ -53,12 +50,19 @@ class _MainViewState extends State<_MainView> {
         return Scaffold(
           body: Column(
             children: [
-              TopNavBar(toggleFullScreen: () {}),
+              TopNavBar(toggleFullScreen: () {
+                // TODO: 전체화면 비활성화
+                // context.read<MainPageCubit>().toggleFullScreen(context);
+              }),
               SizedBox(
                 height: MediaQuery.of(context).size.height - 83,
                 width: MediaQuery.of(context).size.width,
                 child: CustomScrollView(
                   controller: state.scrollModel.scrollController,
+                  physics: state.scrollModel.profileViewState ==
+                          ProfileViewState.inactive
+                      ? const AlwaysScrollableScrollPhysics()
+                      : const NeverScrollableScrollPhysics(),
                   slivers: [
                     SliverAppBar(
                       expandedHeight: MediaQuery.of(context).size.height,
@@ -67,9 +71,13 @@ class _MainViewState extends State<_MainView> {
                       flexibleSpace: FlexibleSpaceBar(
                         background: Introshowcase(
                           state: state,
-                          initializeAnimations: context
-                              .read<MainPageCubit>()
-                              .initializeAnimations,
+                          initializeAnimations:
+                              context.read<MainPageCubit>().awaitDuration,
+                          onTapDescription: () {
+                            context
+                                .read<MainPageCubit>()
+                                .descriptionButton('intro', true);
+                          },
                         ),
                       ),
                     ),
@@ -106,7 +114,7 @@ class _MainViewState extends State<_MainView> {
                                 onVisibilityChanged: (VisibilityInfo info) {
                                   if (info.visibleFraction > 0.85 &&
                                       state.scrollModel.profileViewState ==
-                                          ProfileViewState.initial) {
+                                          ProfileViewState.inactive) {
                                     context
                                         .read<MainPageCubit>()
                                         .viewListener('profile_background');
@@ -116,29 +124,32 @@ class _MainViewState extends State<_MainView> {
                               ),
 
                               // 프로필 뷰
-                              // Positioned(
-                              //   top: 300.sh,
-                              //   child: VisibilityDetector(
-                              //     key: const Key('profile-view'),
-                              //     onVisibilityChanged: (VisibilityInfo info) {
-                              //       if (info.visibleFraction > 0.5 &&
-                              //           state.scrollModel.profileViewState ==
-                              //               ProfileViewState.inactive) {
-                              //         // Todo: 프로필 뷰 리모델링
-                              //         // context
-                              //         // context
-                              //         //     .read<MainPageCubit>()
-                              //         //     .viewListener('profile');
-                              //       }
-                              //     },
-                              //     child: SizedBox(
-                              //       width: MediaQuery.of(context).size.width,
-                              //       height: MediaQuery.of(context).size.height *
-                              //           0.55,
-                              //       child: ProfileView(state: state),
-                              //     ),
-                              //   ),
-                              // ),
+                              Positioned(
+                                top: 170.sh,
+                                child: VisibilityDetector(
+                                  key: const Key('profile-view'),
+                                  onVisibilityChanged: (VisibilityInfo info) {
+                                    if (info.visibleFraction > 0.5 &&
+                                        state.scrollModel.profileViewState ==
+                                            ProfileViewState.inactive) {
+                                      // Todo: 프로필 뷰 리모델링
+                                      // context
+                                      // context
+                                      //     .read<MainPageCubit>()
+                                      //     .viewListener('profile');
+                                    }
+                                  },
+                                  child: ProfileView(
+                                    state: state,
+                                    onScroll: (String scrollState) {
+                                      print('scrollState ==> $scrollState');
+                                      context
+                                          .read<MainPageCubit>()
+                                          .viewListener(scrollState);
+                                    },
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
 
@@ -151,7 +162,7 @@ class _MainViewState extends State<_MainView> {
                           //             MySkillViewStatus.init) {
                           //       context
                           //           .read<MainPageCubit>()
-                          //           .mySkillViewListener(info.visibleFraction);
+                          //           .viewListener('skill');
                           //     }
                           //   },
                           //   child: SkillView(
@@ -159,7 +170,7 @@ class _MainViewState extends State<_MainView> {
                           //     onTap: (int index) {
                           //       context
                           //           .read<MainPageCubit>()
-                          //           .descriptionButton(index);
+                          //           .descriptionButton('skill', true);
                           //     },
                           //   ),
                           // ),

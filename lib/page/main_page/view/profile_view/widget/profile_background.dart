@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/page/main_page/widgets/deco.dart';
-import 'package:self_introduction_flutter/page/main_page/widgets/title_text.dart';
 
 class ProfileBackground extends StatefulWidget {
   const ProfileBackground({super.key});
@@ -29,19 +28,13 @@ class _ProfileBackgroundState extends State<ProfileBackground> {
                 children: [
                   Container(
                       width: MediaQuery.of(context).size.width * 0.90,
-                      color: Colors.grey),
+                      color: Colors.black),
                   const SizedBox(width: 10),
                   Expanded(
-                    child: Container(color: Colors.grey),
+                    child: Container(color: Colors.black),
                   ),
                 ],
               ),
-            ),
-            const TitleText(
-              title: TitleTextConstants.title2,
-              subTitle: TitleTextConstants.subTitle2,
-              description: '  ${TitleTextConstants.description2}',
-              color: Colors.white,
             ),
           ],
         ),
