@@ -14,19 +14,26 @@ import 'package:self_introduction_flutter/page/main_page/view/profile_view/widge
 import 'package:visibility_detector/visibility_detector.dart';
 
 class MainPage extends StatelessWidget {
-  const MainPage({super.key});
+  final bool isChromeBrowser;
+  const MainPage({
+    super.key,
+    required this.isChromeBrowser,
+  });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => di<MainPageCubit>(),
-      child: const _MainView(),
+      child: _MainView(isChromeBrowser: isChromeBrowser),
     );
   }
 }
 
 class _MainView extends StatefulWidget {
-  const _MainView();
+  final bool isChromeBrowser;
+  const _MainView({
+    required this.isChromeBrowser,
+  });
 
   @override
   State<_MainView> createState() => _MainViewState();
@@ -73,6 +80,9 @@ class _MainViewState extends State<_MainView> {
                           state: state,
                           initializeAnimations:
                               context.read<MainPageCubit>().awaitDuration,
+                          isChromeBrowser: widget.isChromeBrowser,
+                          isChromeBrowserWithCubit:
+                              context.read<MainPageCubit>().isChromeBrowser,
                         ),
                       ),
                     ),

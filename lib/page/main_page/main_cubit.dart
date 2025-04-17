@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -31,10 +29,13 @@ class MainPageCubit extends Cubit<MainPageState> {
     changeProfileViewHeight(controller);
   }
 
-  final Random random = Random();
+  //브라우저 확인
+  void isChromeBrowser(bool isChrome) {
+    emit(state.copyWith(isChromeBrowser: isChrome));
+  }
+
   void changeProfileViewHeight(controller) async {
-    emit(
-        state.copyWith(remainingTime: state.remainingTime + random.nextInt(3)));
+    emit(state.copyWith(remainingTime: state.remainingTime));
     await Future.delayed(Duration(seconds: state.remainingTime));
 
     void waitForAttachment() {
@@ -63,6 +64,7 @@ class MainPageCubit extends Cubit<MainPageState> {
   void awaitDuration(TickerProvider vsync,
       {String message = TextConstants.welcomeMessage1}) async {
     await Future.delayed(Duration(seconds: state.remainingTime + 1));
+
     initializeAnimations(vsync, message: message);
   }
 

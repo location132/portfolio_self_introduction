@@ -27,6 +27,7 @@ class MainPageState with _$MainPageState {
 
     // 프로필 뷰 높이
     @Default(0.0) double mainViewHeight,
-    @Default(3) int remainingTime,
+    @Default(4) int remainingTime,
+    @Default(false) bool isChromeBrowser,
   }) = _MainPageState;
 }

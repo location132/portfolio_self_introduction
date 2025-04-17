@@ -2,15 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/main_page/main_page.dart';
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
+
+bool isChromeBrowser() {
+  final userAgent = html.window.navigator.userAgent.toLowerCase();
+  return userAgent.contains('chrome') &&
+      !userAgent.contains('edg') &&
+      !userAgent.contains('opr');
+}
 
 void main() {
   Injector.init();
 
-  runApp(const MyApp());
+  final chromeBrowser = isChromeBrowser();
+
+  runApp(MyApp(isChromeBrowser: chromeBrowser));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool isChromeBrowser;
+  const MyApp({
+    super.key,
+    required this.isChromeBrowser,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +43,7 @@ class MyApp extends StatelessWidget {
           child: child!,
         );
       },
-      home: const MainPage(),
+      home: MainPage(isChromeBrowser: isChromeBrowser),
     );
   }
 }
