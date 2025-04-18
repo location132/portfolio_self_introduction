@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:self_introduction_flutter/model/init_model.dart';
 import 'package:self_introduction_flutter/model/main_page/description_model.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/profile_model.dart';
@@ -25,9 +26,7 @@ class MainPageState with _$MainPageState {
     //ProfileModel
     @Default(ProfileModel()) ProfileModel profileModel,
 
-    // 프로필 뷰 높이
-    @Default(0.0) double mainViewHeight,
-    @Default(4) int remainingTime,
-    @Default(false) bool isChromeBrowser,
+    //InitModel
+    @Default(InitModel()) InitModel initModel,
   }) = _MainPageState;
 }

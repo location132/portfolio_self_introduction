@@ -46,8 +46,8 @@ class _MainViewState extends State<_MainView> {
   Widget build(BuildContext context) {
     return BlocBuilder<MainPageCubit, MainPageState>(
       builder: (context, state) {
-        if (state.mainViewHeight != 0.0 &&
-            state.mainViewHeight !=
+        if (state.initModel.mainViewHeight != 0.0 &&
+            state.initModel.mainViewHeight !=
                 state.scrollModel.scrollController!.position.maxScrollExtent) {
           context
               .read<MainPageCubit>()
@@ -131,28 +131,13 @@ class _MainViewState extends State<_MainView> {
                               // 프로필 뷰
                               Positioned(
                                 top: 170.sh,
-                                child: VisibilityDetector(
-                                  key: const Key('profile-view'),
-                                  onVisibilityChanged: (VisibilityInfo info) {
-                                    if (info.visibleFraction > 0.5 &&
-                                        state.scrollModel.profileViewState ==
-                                            ProfileViewState.inactive) {
-                                      // Todo: 프로필 뷰 리모델링
-                                      // context
-                                      // context
-                                      //     .read<MainPageCubit>()
-                                      //     .viewListener('profile');
-                                    }
+                                child: ProfileView(
+                                  state: state,
+                                  onScroll: (String scrollState) {
+                                    context
+                                        .read<MainPageCubit>()
+                                        .viewListener(scrollState);
                                   },
-                                  child: ProfileView(
-                                    state: state,
-                                    onScroll: (String scrollState) {
-                                      print('scrollState ==> $scrollState');
-                                      context
-                                          .read<MainPageCubit>()
-                                          .viewListener(scrollState);
-                                    },
-                                  ),
                                 ),
                               ),
                             ],

@@ -26,10 +26,8 @@ mixin _$MainPageState {
   ScrollModel get scrollModel =>
       throw _privateConstructorUsedError; //ProfileModel
   ProfileModel get profileModel =>
-      throw _privateConstructorUsedError; // 프로필 뷰 높이
-  double get mainViewHeight => throw _privateConstructorUsedError;
-  int get remainingTime => throw _privateConstructorUsedError;
-  bool get isChromeBrowser => throw _privateConstructorUsedError;
+      throw _privateConstructorUsedError; //InitModel
+  InitModel get initModel => throw _privateConstructorUsedError;
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -50,15 +48,14 @@ abstract class $MainPageStateCopyWith<$Res> {
       DescriptionModel descriptionModel,
       ScrollModel scrollModel,
       ProfileModel profileModel,
-      double mainViewHeight,
-      int remainingTime,
-      bool isChromeBrowser});
+      InitModel initModel});
 
   $StartAnimationModelCopyWith<$Res>? get startAnimation;
   $MySkillModelCopyWith<$Res> get mySkillModel;
   $DescriptionModelCopyWith<$Res> get descriptionModel;
   $ScrollModelCopyWith<$Res> get scrollModel;
   $ProfileModelCopyWith<$Res> get profileModel;
+  $InitModelCopyWith<$Res> get initModel;
 }
 
 /// @nodoc
@@ -81,9 +78,7 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
     Object? descriptionModel = null,
     Object? scrollModel = null,
     Object? profileModel = null,
-    Object? mainViewHeight = null,
-    Object? remainingTime = null,
-    Object? isChromeBrowser = null,
+    Object? initModel = null,
   }) {
     return _then(_value.copyWith(
       startAnimation: freezed == startAnimation
@@ -106,18 +101,10 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
           ? _value.profileModel
           : profileModel // ignore: cast_nullable_to_non_nullable
               as ProfileModel,
-      mainViewHeight: null == mainViewHeight
-          ? _value.mainViewHeight
-          : mainViewHeight // ignore: cast_nullable_to_non_nullable
-              as double,
-      remainingTime: null == remainingTime
-          ? _value.remainingTime
-          : remainingTime // ignore: cast_nullable_to_non_nullable
-              as int,
-      isChromeBrowser: null == isChromeBrowser
-          ? _value.isChromeBrowser
-          : isChromeBrowser // ignore: cast_nullable_to_non_nullable
-              as bool,
+      initModel: null == initModel
+          ? _value.initModel
+          : initModel // ignore: cast_nullable_to_non_nullable
+              as InitModel,
     ) as $Val);
   }
 
@@ -174,6 +161,16 @@ class _$MainPageStateCopyWithImpl<$Res, $Val extends MainPageState>
       return _then(_value.copyWith(profileModel: value) as $Val);
     });
   }
+
+  /// Create a copy of MainPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $InitModelCopyWith<$Res> get initModel {
+    return $InitModelCopyWith<$Res>(_value.initModel, (value) {
+      return _then(_value.copyWith(initModel: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -190,9 +187,7 @@ abstract class _$$MainPageStateImplCopyWith<$Res>
       DescriptionModel descriptionModel,
       ScrollModel scrollModel,
       ProfileModel profileModel,
-      double mainViewHeight,
-      int remainingTime,
-      bool isChromeBrowser});
+      InitModel initModel});
 
   @override
   $StartAnimationModelCopyWith<$Res>? get startAnimation;
@@ -204,6 +199,8 @@ abstract class _$$MainPageStateImplCopyWith<$Res>
   $ScrollModelCopyWith<$Res> get scrollModel;
   @override
   $ProfileModelCopyWith<$Res> get profileModel;
+  @override
+  $InitModelCopyWith<$Res> get initModel;
 }
 
 /// @nodoc
@@ -224,9 +221,7 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
     Object? descriptionModel = null,
     Object? scrollModel = null,
     Object? profileModel = null,
-    Object? mainViewHeight = null,
-    Object? remainingTime = null,
-    Object? isChromeBrowser = null,
+    Object? initModel = null,
   }) {
     return _then(_$MainPageStateImpl(
       startAnimation: freezed == startAnimation
@@ -249,18 +244,10 @@ class __$$MainPageStateImplCopyWithImpl<$Res>
           ? _value.profileModel
           : profileModel // ignore: cast_nullable_to_non_nullable
               as ProfileModel,
-      mainViewHeight: null == mainViewHeight
-          ? _value.mainViewHeight
-          : mainViewHeight // ignore: cast_nullable_to_non_nullable
-              as double,
-      remainingTime: null == remainingTime
-          ? _value.remainingTime
-          : remainingTime // ignore: cast_nullable_to_non_nullable
-              as int,
-      isChromeBrowser: null == isChromeBrowser
-          ? _value.isChromeBrowser
-          : isChromeBrowser // ignore: cast_nullable_to_non_nullable
-              as bool,
+      initModel: null == initModel
+          ? _value.initModel
+          : initModel // ignore: cast_nullable_to_non_nullable
+              as InitModel,
     ));
   }
 }
@@ -274,9 +261,7 @@ class _$MainPageStateImpl implements _MainPageState {
       this.descriptionModel = const DescriptionModel(),
       this.scrollModel = const ScrollModel(),
       this.profileModel = const ProfileModel(),
-      this.mainViewHeight = 0.0,
-      this.remainingTime = 4,
-      this.isChromeBrowser = false});
+      this.initModel = const InitModel()});
 
 //StartAnimation 컨트롤러
   @override
@@ -297,20 +282,14 @@ class _$MainPageStateImpl implements _MainPageState {
   @override
   @JsonKey()
   final ProfileModel profileModel;
-// 프로필 뷰 높이
+//InitModel
   @override
   @JsonKey()
-  final double mainViewHeight;
-  @override
-  @JsonKey()
-  final int remainingTime;
-  @override
-  @JsonKey()
-  final bool isChromeBrowser;
+  final InitModel initModel;
 
   @override
   String toString() {
-    return 'MainPageState(startAnimation: $startAnimation, mySkillModel: $mySkillModel, descriptionModel: $descriptionModel, scrollModel: $scrollModel, profileModel: $profileModel, mainViewHeight: $mainViewHeight, remainingTime: $remainingTime, isChromeBrowser: $isChromeBrowser)';
+    return 'MainPageState(startAnimation: $startAnimation, mySkillModel: $mySkillModel, descriptionModel: $descriptionModel, scrollModel: $scrollModel, profileModel: $profileModel, initModel: $initModel)';
   }
 
   @override
@@ -328,25 +307,13 @@ class _$MainPageStateImpl implements _MainPageState {
                 other.scrollModel == scrollModel) &&
             (identical(other.profileModel, profileModel) ||
                 other.profileModel == profileModel) &&
-            (identical(other.mainViewHeight, mainViewHeight) ||
-                other.mainViewHeight == mainViewHeight) &&
-            (identical(other.remainingTime, remainingTime) ||
-                other.remainingTime == remainingTime) &&
-            (identical(other.isChromeBrowser, isChromeBrowser) ||
-                other.isChromeBrowser == isChromeBrowser));
+            (identical(other.initModel, initModel) ||
+                other.initModel == initModel));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      startAnimation,
-      mySkillModel,
-      descriptionModel,
-      scrollModel,
-      profileModel,
-      mainViewHeight,
-      remainingTime,
-      isChromeBrowser);
+  int get hashCode => Object.hash(runtimeType, startAnimation, mySkillModel,
+      descriptionModel, scrollModel, profileModel, initModel);
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -364,9 +331,7 @@ abstract class _MainPageState implements MainPageState {
       final DescriptionModel descriptionModel,
       final ScrollModel scrollModel,
       final ProfileModel profileModel,
-      final double mainViewHeight,
-      final int remainingTime,
-      final bool isChromeBrowser}) = _$MainPageStateImpl;
+      final InitModel initModel}) = _$MainPageStateImpl;
 
 //StartAnimation 컨트롤러
   @override
@@ -378,13 +343,9 @@ abstract class _MainPageState implements MainPageState {
   @override
   ScrollModel get scrollModel; //ProfileModel
   @override
-  ProfileModel get profileModel; // 프로필 뷰 높이
+  ProfileModel get profileModel; //InitModel
   @override
-  double get mainViewHeight;
-  @override
-  int get remainingTime;
-  @override
-  bool get isChromeBrowser;
+  InitModel get initModel;
 
   /// Create a copy of MainPageState
   /// with the given fields replaced by the non-null parameter values.

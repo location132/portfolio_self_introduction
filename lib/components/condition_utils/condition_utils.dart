@@ -1,3 +1,4 @@
+import 'package:self_introduction_flutter/model/init_model.dart';
 import 'package:self_introduction_flutter/model/main_page/description_model.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
@@ -20,4 +21,12 @@ class ProfileConditions {
   // 프로필 뷰 비활성화
   static bool isProfileViewInactive(MainPageState state) =>
       state.scrollModel.profileViewState == ProfileViewState.inactive;
+
+  // 초기화 상태
+  static bool isInitState(MainPageState state) =>
+      state.initModel.initState == InitState.inactive;
+
+  // 초기화 상태 비활성화
+  static bool isInitStateLoaded(MainPageState state) =>
+      state.initModel.initState == InitState.active;
 }

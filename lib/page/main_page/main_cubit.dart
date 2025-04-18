@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/model/init_model.dart';
 import 'package:self_introduction_flutter/model/main_page/description_model.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
@@ -20,36 +21,42 @@ class MainPageCubit extends Cubit<MainPageState> {
         ));
 
   @postConstruct
-  void init() {
+  void init() async {
+    //TODO: 추 후, 주석 해제
     emit(state.copyWith(
-        scrollModel: state.scrollModel
-            .copyWith(profileViewState: ProfileViewState.active)));
+        initModel: state.initModel.copyWith(initState: InitState.active)));
 
     final controller = state.scrollModel.scrollController;
-    changeProfileViewHeight(controller);
+    await changeProfileViewHeight(controller);
+    emit(state.copyWith(
+        initModel: state.initModel.copyWith(initState: InitState.inactive)));
   }
 
   //브라우저 확인
   void isChromeBrowser(bool isChrome) {
-    emit(state.copyWith(isChromeBrowser: isChrome));
+    emit(state.copyWith(
+        initModel: state.initModel.copyWith(isChromeBrowser: isChrome)));
   }
 
-  void changeProfileViewHeight(controller) async {
-    emit(state.copyWith(remainingTime: state.remainingTime));
-    await Future.delayed(Duration(seconds: state.remainingTime));
+  Future<void> changeProfileViewHeight(controller) async {
+    //TODO: 추후 주석 해제
+    emit(state.copyWith(
+        initModel: state.initModel
+            .copyWith(remainingTime: state.initModel.remainingTime)));
+    await Future.delayed(Duration(seconds: state.initModel.remainingTime));
 
     void waitForAttachment() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        emit(state.copyWith(
-            scrollModel: state.scrollModel
-                .copyWith(profileViewState: ProfileViewState.inactive)));
         if (controller.hasClients) {
           controller.addListener(() {
             final maxHeight = controller.position.maxScrollExtent;
             final limit = maxHeight - 87.sh;
-
             if (controller.offset > limit) {
               controller.jumpTo(limit);
+            }
+            if (limit != state.initModel.mainViewHeight) {
+              emit(state.copyWith(
+                  initModel: state.initModel.copyWith(mainViewHeight: limit)));
             }
           });
         } else {
@@ -63,7 +70,8 @@ class MainPageCubit extends Cubit<MainPageState> {
 
   void awaitDuration(TickerProvider vsync,
       {String message = TextConstants.welcomeMessage1}) async {
-    await Future.delayed(Duration(seconds: state.remainingTime + 1));
+    //TODO: 추 후, 주석 해제
+    await Future.delayed(Duration(seconds: state.initModel.remainingTime + 1));
 
     initializeAnimations(vsync, message: message);
   }

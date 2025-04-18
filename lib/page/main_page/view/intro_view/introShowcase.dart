@@ -34,7 +34,7 @@ class _IntroshowcaseState extends State<Introshowcase> {
       children: [
         AnimatedOpacity(
           duration: const Duration(milliseconds: 720),
-          opacity: ProfileConditions.isProfileViewActive(widget.state) ? 0 : 1,
+          opacity: ProfileConditions.isInitStateLoaded(widget.state) ? 0 : 1,
           child: const Waves(),
         ),
         Positioned(
@@ -42,8 +42,7 @@ class _IntroshowcaseState extends State<Introshowcase> {
           left: 0,
           right: 0,
           child: AnimatedOpacity(
-            opacity:
-                ProfileConditions.isProfileViewActive(widget.state) ? 0 : 1,
+            opacity: ProfileConditions.isInitStateLoaded(widget.state) ? 0 : 1,
             duration: const Duration(milliseconds: 720),
             child: TextAnimation(
               state: widget.state,
@@ -52,7 +51,7 @@ class _IntroshowcaseState extends State<Introshowcase> {
           ),
         ),
         AnimatedOpacity(
-          opacity: ProfileConditions.isProfileViewActive(widget.state) ? 1 : 0,
+          opacity: ProfileConditions.isInitStateLoaded(widget.state) ? 1 : 0,
           duration: const Duration(milliseconds: 720),
           child: Center(
             child: LoadingMessage(
@@ -66,8 +65,7 @@ class _IntroshowcaseState extends State<Introshowcase> {
           left: 0,
           right: 0,
           child: AnimatedOpacity(
-            opacity:
-                ProfileConditions.isProfileViewActive(widget.state) ? 0 : 1,
+            opacity: ProfileConditions.isInitStateLoaded(widget.state) ? 0 : 1,
             duration: const Duration(milliseconds: 720),
             child: widget.isChromeBrowser
                 ? Padding(
