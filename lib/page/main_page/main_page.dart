@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:self_introduction_flutter/components/condition_utils/condition_utils.dart';
 import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -66,8 +67,7 @@ class _MainViewState extends State<_MainView> {
                 width: MediaQuery.of(context).size.width,
                 child: CustomScrollView(
                   controller: state.scrollModel.scrollController,
-                  physics: state.scrollModel.profileViewState ==
-                          ProfileViewState.inactive
+                  physics: ProfileConditions.isMainPageScrollActive(state)
                       ? const AlwaysScrollableScrollPhysics()
                       : const NeverScrollableScrollPhysics(),
                   slivers: [
@@ -117,9 +117,8 @@ class _MainViewState extends State<_MainView> {
                               VisibilityDetector(
                                 key: const Key('profile-background'),
                                 onVisibilityChanged: (VisibilityInfo info) {
-                                  if (info.visibleFraction > 0.85 &&
-                                      state.scrollModel.profileViewState ==
-                                          ProfileViewState.inactive) {
+                                  if (ProfileConditions
+                                      .isProfileViewScrollActive(state, info)) {
                                     context
                                         .read<MainPageCubit>()
                                         .viewListener('profile_background');

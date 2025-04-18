@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:self_introduction_flutter/components/condition_utils/condition_utils.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
-import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
-
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:self_introduction_flutter/page/main_page/widgets/title_text.dart';
 
@@ -69,8 +68,7 @@ class _ProfileViewState extends State<ProfileView> {
           width: MediaQuery.of(context).size.width,
           color: Colors.white,
           child: SingleChildScrollView(
-            physics: widget.state.scrollModel.profileViewState ==
-                    ProfileViewState.active
+            physics: ProfileConditions.isProfileViewScrollInactive(widget.state)
                 ? const AlwaysScrollableScrollPhysics()
                 : const NeverScrollableScrollPhysics(),
             controller: widget.state.scrollModel.subScrollController,

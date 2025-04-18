@@ -2,6 +2,7 @@ import 'package:self_introduction_flutter/model/init_model.dart';
 import 'package:self_introduction_flutter/model/main_page/description_model.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class ProfileConditions {
   // 배너 설명 활성화
@@ -29,4 +30,21 @@ class ProfileConditions {
   // 초기화 상태 비활성화
   static bool isInitStateLoaded(MainPageState state) =>
       state.initModel.initState == InitState.active;
+
+  // 메인 페이지 스크롤 활성화
+  static bool isMainPageScrollActive(MainPageState state) =>
+      state.initModel.initState == InitState.inactive &&
+      state.scrollModel.profileViewState == ProfileViewState.inactive;
+
+  // 프로필 뷰 스크롤 활성화
+  static bool isProfileViewScrollActive(
+          MainPageState state, VisibilityInfo info) =>
+      state.scrollModel.scrollController!.offset ==
+          state.initModel.mainViewHeight &&
+      info.visibleFraction > 0.85 &&
+      state.scrollModel.profileViewState == ProfileViewState.inactive;
+
+  // 프로필 뷰 스크롤 비활성화
+  static bool isProfileViewScrollInactive(MainPageState state) =>
+      state.scrollModel.profileViewState == ProfileViewState.active;
 }

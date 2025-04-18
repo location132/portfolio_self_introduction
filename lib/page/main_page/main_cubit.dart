@@ -71,7 +71,7 @@ class MainPageCubit extends Cubit<MainPageState> {
   void awaitDuration(TickerProvider vsync,
       {String message = TextConstants.welcomeMessage1}) async {
     //TODO: 추 후, 주석 해제
-    await Future.delayed(Duration(seconds: state.initModel.remainingTime + 1));
+    await Future.delayed(Duration(seconds: state.initModel.remainingTime));
 
     initializeAnimations(vsync, message: message);
   }
