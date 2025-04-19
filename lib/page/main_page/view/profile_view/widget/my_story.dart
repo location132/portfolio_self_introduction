@@ -80,7 +80,7 @@ class _MyStoryState extends State<MyStory> {
                 fontSize: 17,
                 fontWeight: FontWeight.w500,
                 color: Colors.black,
-                fontFamilyFallback: ['sans-serif'], // ✅ 이 부분에도 fallback
+                fontFamilyFallback: ['sans-serif'],
               ),
             ),
             TextSpan(
@@ -92,7 +92,7 @@ class _MyStoryState extends State<MyStory> {
                   '그리고 그 말을 듣고도 여전히 나의 목표였던 Flutter 개발자로 꿈을 이어가게 되는 나의 고집.\n',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
-                fontFamilyFallback: ['sans-serif'], // ✅ 여기도 추가해주는 게 좋아
+                fontFamilyFallback: ['sans-serif'],
               ),
             ),
             TextSpan(

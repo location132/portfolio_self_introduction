@@ -4,7 +4,7 @@ import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class ProfileConditions {
+class Conditions {
   // 배너 설명 활성화
   static bool isBannerDescriptionActive(MainPageState state) =>
       state.descriptionModel.bannerDescriptionState ==
@@ -47,4 +47,14 @@ class ProfileConditions {
   // 프로필 뷰 스크롤 비활성화
   static bool isProfileViewScrollInactive(MainPageState state) =>
       state.scrollModel.profileViewState == ProfileViewState.active;
+
+  //-- 사용자 스크롤 감지 조건 -- //
+  static bool isBannerScrollActive(String viewName) => viewName == 'banner';
+  static bool isProfileBackgroundScrollActive(String viewName) =>
+      viewName == 'profile_background';
+  static bool isProfileIsTopScrollActive(String viewName) =>
+      viewName == 'profile_isTop';
+  static bool isProfileIsBottomScrollActive(String viewName) =>
+      viewName == 'profile_isBottom';
+  static bool isUserScrollActive(String viewName) => viewName == 'skill';
 }

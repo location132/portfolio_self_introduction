@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:self_introduction_flutter/components/condition_utils/condition_utils.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/model/init_model.dart';
@@ -23,8 +24,8 @@ class MainPageCubit extends Cubit<MainPageState> {
   @postConstruct
   void init() async {
     //TODO: 추 후, 주석 해제
-    emit(state.copyWith(
-        initModel: state.initModel.copyWith(initState: InitState.active)));
+    // emit(state.copyWith(
+    //     initModel: state.initModel.copyWith(initState: InitState.active)));
 
     final controller = state.scrollModel.scrollController;
     await changeProfileViewHeight(controller);
@@ -40,10 +41,10 @@ class MainPageCubit extends Cubit<MainPageState> {
 
   Future<void> changeProfileViewHeight(controller) async {
     //TODO: 추후 주석 해제
-    emit(state.copyWith(
-        initModel: state.initModel
-            .copyWith(remainingTime: state.initModel.remainingTime)));
-    await Future.delayed(Duration(seconds: state.initModel.remainingTime));
+    // emit(state.copyWith(
+    //     initModel: state.initModel
+    //         .copyWith(remainingTime: state.initModel.remainingTime)));
+    // await Future.delayed(Duration(seconds: state.initModel.remainingTime));
 
     void waitForAttachment() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -71,7 +72,7 @@ class MainPageCubit extends Cubit<MainPageState> {
   void awaitDuration(TickerProvider vsync,
       {String message = TextConstants.welcomeMessage1}) async {
     //TODO: 추 후, 주석 해제
-    await Future.delayed(Duration(seconds: state.initModel.remainingTime));
+    // await Future.delayed(Duration(seconds: state.initModel.remainingTime));
 
     initializeAnimations(vsync, message: message);
   }
@@ -150,31 +151,63 @@ class MainPageCubit extends Cubit<MainPageState> {
 
   //사용자 스크롤 감지
   void viewListener(String viewName) async {
-    if (viewName == 'banner') {
+    if (Conditions.isBannerScrollActive(viewName)) {
       emit(state.copyWith(
         scrollModel:
             state.scrollModel.copyWith(bannerState: BannerState.activated),
       ));
-    } else if (viewName == 'profile_background') {
+    } else if (Conditions.isProfileBackgroundScrollActive(viewName)) {
       emit(state.copyWith(
         scrollModel: state.scrollModel
             .copyWith(profileViewState: ProfileViewState.active),
       ));
-    } else if (viewName == 'profile_isTop') {
+    } else if (Conditions.isProfileIsTopScrollActive(viewName)) {
+      upScrollPageNumber();
+    } else if (Conditions.isProfileIsBottomScrollActive(viewName)) {
       emit(state.copyWith(
         scrollModel: state.scrollModel
             .copyWith(profileViewState: ProfileViewState.inactive),
       ));
-    } else if (viewName == 'profile_isBottom') {
-      emit(state.copyWith(
-        scrollModel: state.scrollModel
-            .copyWith(profileViewState: ProfileViewState.inactive),
-      ));
-    } else if (viewName == 'skill') {
+    } else if (Conditions.isUserScrollActive(viewName)) {
       //TODO: 아직 모델 변경 안됨
       emit(state.copyWith(
         mySkillModel:
             state.mySkillModel.copyWith(status: MySkillViewStatus.loaded),
+      ));
+    }
+  }
+
+  // 프로필 페이지 전환 (사용자가 위로 올렸을 때)
+  void upScrollPageNumber() {
+    if (state.profileModel.scrollCount == 0) {
+      // 페이지 종료
+      emit(state.copyWith(
+        scrollModel: state.scrollModel
+            .copyWith(profileViewState: ProfileViewState.inactive),
+      ));
+    } else {
+      // 상위 페이지로 이동
+      emit(state.copyWith(
+        profileModel: state.profileModel
+            .copyWith(scrollCount: state.profileModel.scrollCount - 1),
+      ));
+    }
+  }
+
+  // 프로필 페이지 전환 (사용자가 아래로 내렸을 때)
+  void downScrollPageNumber() {
+    //TODO: 마지막 페이지 ==> 0이 될 수 있도록 수정
+    if (state.profileModel.scrollCount != 3) {
+      // 하위 페이지로 이동
+      emit(state.copyWith(
+        profileModel: state.profileModel
+            .copyWith(scrollCount: state.profileModel.scrollCount + 1),
+      ));
+    } else {
+      // 페이지 종료
+      emit(state.copyWith(
+        scrollModel: state.scrollModel
+            .copyWith(profileViewState: ProfileViewState.inactive),
       ));
     }
   }

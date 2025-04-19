@@ -53,7 +53,7 @@ class _SectionDescriptionState extends State<SectionDescription>
   void didUpdateWidget(covariant SectionDescription oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (ProfileConditions.isBannerDescriptionActive(widget.state)) {
+    if (Conditions.isBannerDescriptionActive(widget.state)) {
       _controller.forward();
       setState(() {
         _isSelected = true;

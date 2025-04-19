@@ -10,6 +10,7 @@ import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/profile_view.dart';
 import 'package:self_introduction_flutter/page/main_page/view/banner_view/banner_view.dart';
 import 'package:self_introduction_flutter/page/main_page/view/intro_view/introShowcase.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/command_scroll.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/profile_background.dart';
 
 import 'package:visibility_detector/visibility_detector.dart';
@@ -67,7 +68,7 @@ class _MainViewState extends State<_MainView> {
                 width: MediaQuery.of(context).size.width,
                 child: CustomScrollView(
                   controller: state.scrollModel.scrollController,
-                  physics: ProfileConditions.isMainPageScrollActive(state)
+                  physics: Conditions.isMainPageScrollActive(state)
                       ? const AlwaysScrollableScrollPhysics()
                       : const NeverScrollableScrollPhysics(),
                   slivers: [
@@ -117,8 +118,8 @@ class _MainViewState extends State<_MainView> {
                               VisibilityDetector(
                                 key: const Key('profile-background'),
                                 onVisibilityChanged: (VisibilityInfo info) {
-                                  if (ProfileConditions
-                                      .isProfileViewScrollActive(state, info)) {
+                                  if (Conditions.isProfileViewScrollActive(
+                                      state, info)) {
                                     context
                                         .read<MainPageCubit>()
                                         .viewListener('profile_background');
@@ -138,6 +139,14 @@ class _MainViewState extends State<_MainView> {
                                         .viewListener(scrollState);
                                   },
                                 ),
+                              ),
+                              CommandScroll(
+                                state: state,
+                                onScroll: (String scrollState) {
+                                  context
+                                      .read<MainPageCubit>()
+                                      .viewListener(scrollState);
+                                },
                               ),
                             ],
                           ),
