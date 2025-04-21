@@ -14,6 +14,7 @@ class ScrollModel with _$ScrollModel {
     ScrollController? subScrollController,
     @Default(BannerState.inactive) BannerState bannerState,
     @Default(ProfileViewState.inactive) ProfileViewState profileViewState,
+    @Default(false) bool isScrollWaiting,
   }) = _ScrollModel;
 }
 

@@ -4,6 +4,7 @@ import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/page/main_page/main_cubit.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
@@ -12,6 +13,7 @@ import 'package:self_introduction_flutter/page/main_page/view/banner_view/banner
 import 'package:self_introduction_flutter/page/main_page/view/intro_view/introShowcase.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/command_scroll.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/profile_background.dart';
+import 'package:self_introduction_flutter/page/main_page/view/skill_view/skill_view.dart';
 
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -119,7 +121,7 @@ class _MainViewState extends State<_MainView> {
                                 key: const Key('profile-background'),
                                 onVisibilityChanged: (VisibilityInfo info) {
                                   if (Conditions.isProfileViewScrollActive(
-                                      state, info)) {
+                                      state)) {
                                     context
                                         .read<MainPageCubit>()
                                         .viewListener('profile_background');
@@ -152,26 +154,29 @@ class _MainViewState extends State<_MainView> {
                           ),
 
                           // 스킬 뷰
-                          // VisibilityDetector(
-                          //   key: const Key('skill-view'),
-                          //   onVisibilityChanged: (VisibilityInfo info) {
-                          //     if (info.visibleFraction > 0.8 &&
-                          //         state.mySkillModel.status ==
-                          //             MySkillViewStatus.init) {
-                          //       context
-                          //           .read<MainPageCubit>()
-                          //           .viewListener('skill');
-                          //     }
-                          //   },
-                          //   child: SkillView(
-                          //     state: state,
-                          //     onTap: (int index) {
-                          //       context
-                          //           .read<MainPageCubit>()
-                          //           .descriptionButton('skill', true);
-                          //     },
-                          //   ),
-                          // ),
+                          Visibility(
+                            visible: Conditions.isSkillViewActive(state),
+                            child: VisibilityDetector(
+                              key: const Key('skill-view'),
+                              onVisibilityChanged: (VisibilityInfo info) {
+                                if (info.visibleFraction > 0.8 &&
+                                    state.mySkillModel.status ==
+                                        MySkillViewStatus.inactive) {
+                                  context
+                                      .read<MainPageCubit>()
+                                      .viewListener('skill');
+                                }
+                              },
+                              child: SkillView(
+                                state: state,
+                                onTap: (int index) {
+                                  context
+                                      .read<MainPageCubit>()
+                                      .descriptionButton('skill', true);
+                                },
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),

@@ -42,7 +42,7 @@ class _MySkillRiveState extends State<MySkillRive> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.state?.mySkillModel.status == MySkillViewStatus.loaded &&
+    if (widget.state?.mySkillModel.status == MySkillViewStatus.active &&
         !_hasStarted) {
       _startAni();
     }

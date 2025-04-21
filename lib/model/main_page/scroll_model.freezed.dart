@@ -21,6 +21,7 @@ mixin _$ScrollModel {
       throw _privateConstructorUsedError;
   BannerState get bannerState => throw _privateConstructorUsedError;
   ProfileViewState get profileViewState => throw _privateConstructorUsedError;
+  bool get isScrollWaiting => throw _privateConstructorUsedError;
 
   /// Create a copy of ScrollModel
   /// with the given fields replaced by the non-null parameter values.
@@ -39,7 +40,8 @@ abstract class $ScrollModelCopyWith<$Res> {
       {ScrollController? scrollController,
       ScrollController? subScrollController,
       BannerState bannerState,
-      ProfileViewState profileViewState});
+      ProfileViewState profileViewState,
+      bool isScrollWaiting});
 }
 
 /// @nodoc
@@ -61,6 +63,7 @@ class _$ScrollModelCopyWithImpl<$Res, $Val extends ScrollModel>
     Object? subScrollController = freezed,
     Object? bannerState = null,
     Object? profileViewState = null,
+    Object? isScrollWaiting = null,
   }) {
     return _then(_value.copyWith(
       scrollController: freezed == scrollController
@@ -79,6 +82,10 @@ class _$ScrollModelCopyWithImpl<$Res, $Val extends ScrollModel>
           ? _value.profileViewState
           : profileViewState // ignore: cast_nullable_to_non_nullable
               as ProfileViewState,
+      isScrollWaiting: null == isScrollWaiting
+          ? _value.isScrollWaiting
+          : isScrollWaiting // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -95,7 +102,8 @@ abstract class _$$ScrollModelImplCopyWith<$Res>
       {ScrollController? scrollController,
       ScrollController? subScrollController,
       BannerState bannerState,
-      ProfileViewState profileViewState});
+      ProfileViewState profileViewState,
+      bool isScrollWaiting});
 }
 
 /// @nodoc
@@ -115,6 +123,7 @@ class __$$ScrollModelImplCopyWithImpl<$Res>
     Object? subScrollController = freezed,
     Object? bannerState = null,
     Object? profileViewState = null,
+    Object? isScrollWaiting = null,
   }) {
     return _then(_$ScrollModelImpl(
       scrollController: freezed == scrollController
@@ -133,6 +142,10 @@ class __$$ScrollModelImplCopyWithImpl<$Res>
           ? _value.profileViewState
           : profileViewState // ignore: cast_nullable_to_non_nullable
               as ProfileViewState,
+      isScrollWaiting: null == isScrollWaiting
+          ? _value.isScrollWaiting
+          : isScrollWaiting // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -144,7 +157,8 @@ class _$ScrollModelImpl implements _ScrollModel {
       {this.scrollController,
       this.subScrollController,
       this.bannerState = BannerState.inactive,
-      this.profileViewState = ProfileViewState.inactive});
+      this.profileViewState = ProfileViewState.inactive,
+      this.isScrollWaiting = false});
 
   @override
   final ScrollController? scrollController;
@@ -156,10 +170,13 @@ class _$ScrollModelImpl implements _ScrollModel {
   @override
   @JsonKey()
   final ProfileViewState profileViewState;
+  @override
+  @JsonKey()
+  final bool isScrollWaiting;
 
   @override
   String toString() {
-    return 'ScrollModel(scrollController: $scrollController, subScrollController: $subScrollController, bannerState: $bannerState, profileViewState: $profileViewState)';
+    return 'ScrollModel(scrollController: $scrollController, subScrollController: $subScrollController, bannerState: $bannerState, profileViewState: $profileViewState, isScrollWaiting: $isScrollWaiting)';
   }
 
   @override
@@ -174,12 +191,14 @@ class _$ScrollModelImpl implements _ScrollModel {
             (identical(other.bannerState, bannerState) ||
                 other.bannerState == bannerState) &&
             (identical(other.profileViewState, profileViewState) ||
-                other.profileViewState == profileViewState));
+                other.profileViewState == profileViewState) &&
+            (identical(other.isScrollWaiting, isScrollWaiting) ||
+                other.isScrollWaiting == isScrollWaiting));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, scrollController,
-      subScrollController, bannerState, profileViewState);
+      subScrollController, bannerState, profileViewState, isScrollWaiting);
 
   /// Create a copy of ScrollModel
   /// with the given fields replaced by the non-null parameter values.
@@ -195,7 +214,8 @@ abstract class _ScrollModel implements ScrollModel {
       {final ScrollController? scrollController,
       final ScrollController? subScrollController,
       final BannerState bannerState,
-      final ProfileViewState profileViewState}) = _$ScrollModelImpl;
+      final ProfileViewState profileViewState,
+      final bool isScrollWaiting}) = _$ScrollModelImpl;
 
   @override
   ScrollController? get scrollController;
@@ -205,6 +225,8 @@ abstract class _ScrollModel implements ScrollModel {
   BannerState get bannerState;
   @override
   ProfileViewState get profileViewState;
+  @override
+  bool get isScrollWaiting;
 
   /// Create a copy of ScrollModel
   /// with the given fields replaced by the non-null parameter values.

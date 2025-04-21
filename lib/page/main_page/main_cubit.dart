@@ -157,59 +157,69 @@ class MainPageCubit extends Cubit<MainPageState> {
             state.scrollModel.copyWith(bannerState: BannerState.activated),
       ));
     } else if (Conditions.isProfileBackgroundScrollActive(viewName)) {
-      emit(state.copyWith(
-        scrollModel: state.scrollModel
-            .copyWith(profileViewState: ProfileViewState.active),
-      ));
+      // 프로필 뷰 활성화
+      profileViewActive();
     } else if (Conditions.isProfileIsTopScrollActive(viewName)) {
       upScrollPageNumber();
     } else if (Conditions.isProfileIsBottomScrollActive(viewName)) {
-      emit(state.copyWith(
-        scrollModel: state.scrollModel
-            .copyWith(profileViewState: ProfileViewState.inactive),
-      ));
+      downScrollPageNumber();
     } else if (Conditions.isUserScrollActive(viewName)) {
-      //TODO: 아직 모델 변경 안됨
+      emit(state.copyWith(
+          mySkillModel:
+              state.mySkillModel.copyWith(status: MySkillViewStatus.active)));
+    }
+  }
+
+  // 프로필 뷰 활성화
+  void profileViewActive() async {
+    emit(state.copyWith(
+      scrollModel: state.scrollModel.copyWith(
+          profileViewState: ProfileViewState.active, isScrollWaiting: true),
+      profileModel: state.profileModel.copyWith(scrollCount: 1),
+    ));
+    await Future.delayed(const Duration(seconds: 1));
+    emit(state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
+  }
+
+  // 프로필 페이지 전환 (사용자가 아래로 내렸을 때)
+  void downScrollPageNumber() async {
+    //TODO: 페이지 전환 조건 추가
+    if (state.profileModel.scrollCount != 4) {
+      // 하위 페이지로 이동
+      emit(state.copyWith(
+        profileModel: state.profileModel
+            .copyWith(scrollCount: state.profileModel.scrollCount + 1),
+        scrollModel: state.scrollModel.copyWith(
+          isScrollWaiting: true,
+        ),
+      ));
+      await Future.delayed(const Duration(seconds: 1));
+      emit(state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
+      ));
+    } else {
+      // 페이지 종료
       emit(state.copyWith(
         mySkillModel:
-            state.mySkillModel.copyWith(status: MySkillViewStatus.loaded),
+            state.mySkillModel.copyWith(status: MySkillViewStatus.inactive),
+        scrollModel: state.scrollModel
+            .copyWith(profileViewState: ProfileViewState.inactive),
       ));
     }
   }
 
   // 프로필 페이지 전환 (사용자가 위로 올렸을 때)
-  void upScrollPageNumber() {
-    if (state.profileModel.scrollCount == 0) {
-      // 페이지 종료
-      emit(state.copyWith(
-        scrollModel: state.scrollModel
-            .copyWith(profileViewState: ProfileViewState.inactive),
-      ));
-    } else {
-      // 상위 페이지로 이동
-      emit(state.copyWith(
-        profileModel: state.profileModel
-            .copyWith(scrollCount: state.profileModel.scrollCount - 1),
-      ));
-    }
-  }
-
-  // 프로필 페이지 전환 (사용자가 아래로 내렸을 때)
-  void downScrollPageNumber() {
-    //TODO: 마지막 페이지 ==> 0이 될 수 있도록 수정
-    if (state.profileModel.scrollCount != 3) {
-      // 하위 페이지로 이동
-      emit(state.copyWith(
-        profileModel: state.profileModel
-            .copyWith(scrollCount: state.profileModel.scrollCount + 1),
-      ));
-    } else {
-      // 페이지 종료
-      emit(state.copyWith(
-        scrollModel: state.scrollModel
-            .copyWith(profileViewState: ProfileViewState.inactive),
-      ));
-    }
+  void upScrollPageNumber() async {
+    // 상위 페이지로 이동
+    emit(state.copyWith(
+      profileModel: state.profileModel
+          .copyWith(scrollCount: state.profileModel.scrollCount - 1),
+      scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+    ));
+    await Future.delayed(const Duration(seconds: 1));
+    emit(state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
   }
 
   //Description 버튼 클릭
@@ -227,7 +237,6 @@ class MainPageCubit extends Cubit<MainPageState> {
                   ? ProfileDescriptionState.active
                   : ProfileDescriptionState.inactive)));
     } else if (descriptionName == 'skill') {
-      //TODO: 아직 모델 변경 안됨
       emit(state.copyWith(
           descriptionModel: state.descriptionModel.copyWith(
               skillDescriptionState: isActive

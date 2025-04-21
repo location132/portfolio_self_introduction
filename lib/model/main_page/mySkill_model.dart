@@ -11,5 +11,6 @@ class MySkillModel with _$MySkillModel {
 
 enum MySkillViewStatus {
   init,
-  loaded,
+  inactive,
+  active,
 }

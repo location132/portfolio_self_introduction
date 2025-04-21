@@ -15,6 +15,7 @@ class CommandScroll extends StatefulWidget {
 class _CommandScrollState extends State<CommandScroll> {
   double _lastScrollPosition = 0;
   ScrollController? controller;
+  int pageNumber = 1;
 
   late double initScrollPosition;
   @override
@@ -36,6 +37,12 @@ class _CommandScrollState extends State<CommandScroll> {
         controller!.jumpTo(initScrollPosition);
       }
     });
+  }
+
+  void checkPageNumber() {
+    pageNumber = widget.state.profileModel.scrollCount;
+    setState(() {});
+    initScroll();
   }
 
   void _profileScrollListener() {
@@ -67,6 +74,10 @@ class _CommandScrollState extends State<CommandScroll> {
 
   @override
   Widget build(BuildContext context) {
+    if (pageNumber != widget.state.profileModel.scrollCount) {
+      checkPageNumber();
+    }
+
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -78,7 +89,12 @@ class _CommandScrollState extends State<CommandScroll> {
         controller: widget.state.scrollModel.subScrollController,
         child: Column(
           children: [
-            SizedBox(height: MediaQuery.of(context).size.height + 200.sh),
+            const Text(''),
+            SizedBox(height: (MediaQuery.of(context).size.height + 10.sh) / 2),
+            Text('center${widget.state.profileModel.scrollCount}',
+                style: const TextStyle(color: Colors.white)),
+            SizedBox(height: (MediaQuery.of(context).size.height + 10.sh) / 2),
+            const Text(''),
           ],
         ),
       ),

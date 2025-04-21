@@ -1,8 +1,8 @@
 import 'package:self_introduction_flutter/model/init_model.dart';
 import 'package:self_introduction_flutter/model/main_page/description_model.dart';
+import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 class Conditions {
   // 배너 설명 활성화
@@ -34,19 +34,22 @@ class Conditions {
   // 메인 페이지 스크롤 활성화
   static bool isMainPageScrollActive(MainPageState state) =>
       state.initModel.initState == InitState.inactive &&
-      state.scrollModel.profileViewState == ProfileViewState.inactive;
+          state.profileModel.scrollCount == 0 ||
+      state.profileModel.scrollCount == 4 &&
+          state.scrollModel.profileViewState == ProfileViewState.inactive;
 
   // 프로필 뷰 스크롤 활성화
-  static bool isProfileViewScrollActive(
-          MainPageState state, VisibilityInfo info) =>
+  static bool isProfileViewScrollActive(MainPageState state) =>
+      //TODO: 화면 스크롤 안되는 문제
       state.scrollModel.scrollController!.offset ==
           state.initModel.mainViewHeight &&
-      info.visibleFraction > 0.85 &&
+      state.mySkillModel.status == MySkillViewStatus.init &&
       state.scrollModel.profileViewState == ProfileViewState.inactive;
 
   // 프로필 뷰 스크롤 비활성화
   static bool isProfileViewScrollInactive(MainPageState state) =>
-      state.scrollModel.profileViewState == ProfileViewState.active;
+      state.scrollModel.profileViewState == ProfileViewState.active &&
+      state.scrollModel.isScrollWaiting == false;
 
   //-- 사용자 스크롤 감지 조건 -- //
   static bool isBannerScrollActive(String viewName) => viewName == 'banner';
@@ -57,4 +60,8 @@ class Conditions {
   static bool isProfileIsBottomScrollActive(String viewName) =>
       viewName == 'profile_isBottom';
   static bool isUserScrollActive(String viewName) => viewName == 'skill';
+
+  // 스킬 뷰 활성화
+  static bool isSkillViewActive(MainPageState state) =>
+      state.mySkillModel.status != MySkillViewStatus.init;
 }
