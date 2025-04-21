@@ -59,6 +59,7 @@ class _MainViewState extends State<_MainView> {
         }
 
         return Scaffold(
+          backgroundColor: Colors.transparent,
           body: Column(
             children: [
               TopNavBar(toggleFullScreen: () {
@@ -93,27 +94,6 @@ class _MainViewState extends State<_MainView> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // 배너 뷰
-                          VisibilityDetector(
-                            key: const Key('banner-view'),
-                            onVisibilityChanged: (VisibilityInfo info) {
-                              if (info.visibleFraction > 0.2 &&
-                                  state.scrollModel.bannerState ==
-                                      BannerState.inactive) {
-                                context
-                                    .read<MainPageCubit>()
-                                    .viewListener('banner');
-                              }
-                            },
-                            child: BannerView(
-                              state: state,
-                              isActive: (bool isActive) {
-                                context
-                                    .read<MainPageCubit>()
-                                    .descriptionButton('banner', isActive);
-                              },
-                            ),
-                          ),
                           Stack(
                             children: [
                               // 프로필 배경화면
@@ -151,6 +131,31 @@ class _MainViewState extends State<_MainView> {
                                 },
                               ),
                             ],
+                          ),
+
+                          // 배너 뷰
+                          Visibility(
+                            visible: Conditions.isSkillViewActive(state),
+                            child: VisibilityDetector(
+                              key: const Key('banner-view'),
+                              onVisibilityChanged: (VisibilityInfo info) {
+                                if (info.visibleFraction > 0.2 &&
+                                    state.scrollModel.bannerState ==
+                                        BannerState.inactive) {
+                                  context
+                                      .read<MainPageCubit>()
+                                      .viewListener('banner');
+                                }
+                              },
+                              child: BannerView(
+                                state: state,
+                                isActive: (bool isActive) {
+                                  context
+                                      .read<MainPageCubit>()
+                                      .descriptionButton('banner', isActive);
+                                },
+                              ),
+                            ),
                           ),
 
                           // 스킬 뷰

@@ -194,6 +194,15 @@ class MainPageCubit extends Cubit<MainPageState> {
           isScrollWaiting: true,
         ),
       ));
+
+      if (state.profileModel.scrollCount == 3 ||
+          state.profileModel.scrollCount == 4) {
+        emit(state.copyWith(
+          mySkillModel:
+              state.mySkillModel.copyWith(status: MySkillViewStatus.inactive),
+        ));
+      }
+
       await Future.delayed(const Duration(seconds: 1));
       emit(state.copyWith(
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
@@ -212,14 +221,28 @@ class MainPageCubit extends Cubit<MainPageState> {
   // 프로필 페이지 전환 (사용자가 위로 올렸을 때)
   void upScrollPageNumber() async {
     // 상위 페이지로 이동
-    emit(state.copyWith(
-      profileModel: state.profileModel
-          .copyWith(scrollCount: state.profileModel.scrollCount - 1),
-      scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
-    ));
-    await Future.delayed(const Duration(seconds: 1));
-    emit(state.copyWith(
-        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
+    if (state.profileModel.scrollCount != 0) {
+      emit(state.copyWith(
+        profileModel: state.profileModel
+            .copyWith(scrollCount: state.profileModel.scrollCount - 1),
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+      ));
+      if (state.profileModel.scrollCount == 2) {
+        // 스킬 뷰 비활성화
+        emit(state.copyWith(
+            mySkillModel:
+                state.mySkillModel.copyWith(status: MySkillViewStatus.init)));
+      }
+      if (state.profileModel.scrollCount == 0) {
+        emit(state.copyWith(
+          scrollModel: state.scrollModel
+              .copyWith(profileViewState: ProfileViewState.inactive),
+        ));
+      }
+      await Future.delayed(const Duration(seconds: 1));
+      emit(state.copyWith(
+          scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
+    }
   }
 
   //Description 버튼 클릭
