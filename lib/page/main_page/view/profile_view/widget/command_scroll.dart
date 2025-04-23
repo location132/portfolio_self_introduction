@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:self_introduction_flutter/components/condition_utils/condition_utils.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
@@ -89,12 +90,39 @@ class _CommandScrollState extends State<CommandScroll> {
         controller: widget.state.scrollModel.subScrollController,
         child: Column(
           children: [
-            const Text(''),
             SizedBox(height: (MediaQuery.of(context).size.height + 10.sh) / 2),
-            Text('center${widget.state.profileModel.scrollCount}',
-                style: const TextStyle(color: Colors.white)),
+            AnimatedOpacity(
+              opacity: widget.state.profileModel.scrollCount == 0 ? 1 : 0,
+              duration: const Duration(milliseconds: 420),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 300),
+                child: Column(
+                  children: [
+                    Text(
+                      'Just scroll down a little more, plz',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.dancingScript(
+                        fontSize: 36,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                        letterSpacing: 1.2,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    const Text(
+                      '스크롤을 조금만 더 내려주세요',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.white,
+                        letterSpacing: 1.2,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             SizedBox(height: (MediaQuery.of(context).size.height + 10.sh) / 2),
-            const Text(''),
           ],
         ),
       ),

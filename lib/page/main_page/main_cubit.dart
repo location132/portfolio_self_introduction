@@ -175,9 +175,9 @@ class MainPageCubit extends Cubit<MainPageState> {
     emit(state.copyWith(
       scrollModel: state.scrollModel.copyWith(
           profileViewState: ProfileViewState.active, isScrollWaiting: true),
-      profileModel: state.profileModel.copyWith(scrollCount: 1),
+      profileModel: state.profileModel.copyWith(scrollCount: 1, finalCount: 1),
     ));
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 2));
     emit(state.copyWith(
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
   }
@@ -190,20 +190,22 @@ class MainPageCubit extends Cubit<MainPageState> {
       emit(state.copyWith(
         profileModel: state.profileModel
             .copyWith(scrollCount: state.profileModel.scrollCount + 1),
-        scrollModel: state.scrollModel.copyWith(
-          isScrollWaiting: true,
-        ),
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
       ));
 
-      if (state.profileModel.scrollCount == 3 ||
-          state.profileModel.scrollCount == 4) {
+      if (Conditions.isCountingWithThreeOrFour(state)) {
         emit(state.copyWith(
-          mySkillModel:
-              state.mySkillModel.copyWith(status: MySkillViewStatus.inactive),
-        ));
+            mySkillModel: state.mySkillModel
+                .copyWith(status: MySkillViewStatus.inactive)));
       }
 
-      await Future.delayed(const Duration(seconds: 1));
+      if (Conditions.isProfileCountGreaterThanFinalCount(state)) {
+        emit(state.copyWith(
+            profileModel: state.profileModel
+                .copyWith(finalCount: state.profileModel.scrollCount)));
+      }
+
+      await Future.delayed(const Duration(seconds: 2));
       emit(state.copyWith(
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
       ));
@@ -239,7 +241,7 @@ class MainPageCubit extends Cubit<MainPageState> {
               .copyWith(profileViewState: ProfileViewState.inactive),
         ));
       }
-      await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 2));
       emit(state.copyWith(
           scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
     }

@@ -64,4 +64,15 @@ class Conditions {
   // 스킬 뷰 활성화
   static bool isSkillViewActive(MainPageState state) =>
       state.mySkillModel.status != MySkillViewStatus.init;
+
+  //-- 프로필 뷰 카운트 조건 -- //
+
+  /* 프로필 카운트가 3 또는 4일 때 조건 */
+  static bool isCountingWithThreeOrFour(MainPageState state) =>
+      state.profileModel.scrollCount == 3 ||
+      state.profileModel.scrollCount == 4;
+
+  /* 파이널 카운트보다 프로필 카운트가 클 때 */
+  static bool isProfileCountGreaterThanFinalCount(MainPageState state) =>
+      state.profileModel.scrollCount > state.profileModel.finalCount;
 }

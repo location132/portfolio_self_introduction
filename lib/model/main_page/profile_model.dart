@@ -6,5 +6,6 @@ part 'profile_model.freezed.dart';
 class ProfileModel with _$ProfileModel {
   const factory ProfileModel({
     @Default(0) int scrollCount,
+    @Default(0) int finalCount,
   }) = _ProfileModel;
 }

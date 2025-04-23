@@ -3,74 +3,153 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 
 class MyStory extends StatefulWidget {
-  const MyStory({super.key});
+  final bool isThirdPageInit;
+  const MyStory({super.key, required this.isThirdPageInit});
 
   @override
   State<MyStory> createState() => _MyStoryState();
 }
 
-class _MyStoryState extends State<MyStory> {
+class _MyStoryState extends State<MyStory> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _fadeAnimation;
+  late Animation<Offset> _slideAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
+    );
+
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0.0, 0.2),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
+    );
+  }
+
+  void startAnimation() {
+    _controller.forward();
+  }
+
+  void stopAnimation() {
+    _controller.reverse();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    if (widget.isThirdPageInit) {
+      startAnimation();
+    } else {
+      _controller.reverse();
+    }
+    return Row(
       children: [
-        Padding(
-          padding: EdgeInsets.only(left: 132.sw),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                'MyStory',
-                style: GoogleFonts.dancingScript(
-                  fontSize: 36,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.grey[600],
-                  letterSpacing: 1.2,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Text('With',
-                  style: GoogleFonts.playfairDisplay(
-                    fontSize: 34,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.grey[600],
-                  )),
-              const SizedBox(width: 8),
-              Text(
-                'Flutter',
-                style: GoogleFonts.dancingScript(
-                  fontSize: 36,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.grey[600],
-                  letterSpacing: 1.2,
-                ),
-              ),
-            ],
+        AnimatedOpacity(
+          opacity: widget.isThirdPageInit ? 1 : 0,
+          duration: const Duration(seconds: 1),
+          child: SizedBox(
+            height: 500.sh,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset('assets/images/my_self.jpeg'),
+            ),
           ),
         ),
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.only(right: 35.sw),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 42.sw),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            'MyStory',
+                            style: GoogleFonts.dancingScript(
+                              fontSize: 36,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                              letterSpacing: 1.2,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Text('With',
+                              style: GoogleFonts.playfairDisplay(
+                                fontSize: 34,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                              )),
+                          const SizedBox(width: 8),
+                          Text(
+                            'Flutter',
+                            style: GoogleFonts.dancingScript(
+                              fontSize: 36,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                              letterSpacing: 1.2,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
 
-        //------------- 내 이야기 시작 -------------
-        _buildMyStory()
-        //------------- 내 이야기 끝 -------------
+                //------------- 내 이야기 시작 -------------
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 20, top: 20.sh),
+                      child: _buildMyStory(),
+                    ),
+                  ),
+                )
+                //------------- 내 이야기 끝 -------------
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
 
   Widget _buildMyStory() {
     return Padding(
-      padding: EdgeInsets.only(left: 132.sw, top: 30),
+      padding: EdgeInsets.only(left: 42.sw, top: 30),
       child: RichText(
         text: const TextSpan(
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 16,
             height: 1.8,
-            color: Colors.black87,
+            color: Colors.white,
             fontWeight: FontWeight.w400,
           ),
           children: [
             TextSpan(
-              text: '4년간 개발을 배우며 교수님과 동기들이 저에게 해준 말이 있습니다.\n\n',
+              text: '개발을 배우며 교수님과 동기들이 저에게 해준 말이 있습니다.\n\n',
             ),
             TextSpan(
               text:
@@ -79,12 +158,12 @@ class _MyStoryState extends State<MyStory> {
                 fontStyle: FontStyle.italic,
                 fontSize: 17,
                 fontWeight: FontWeight.w500,
-                color: Colors.black,
+                color: Colors.white,
                 fontFamilyFallback: ['sans-serif'],
               ),
             ),
             TextSpan(
-              text: '이 말은 저와 대학생활 친한 동기 4명과 전임 교수님에게 들었던 말이었습니다.\n'
+              text: '이 말은 대학생활을 같이 한 친한 동기 4명과 전임 교수님에게 들었던 말이었습니다.\n'
                   '나는 왜 보안, 또는 연구직에 어울린다는 말을 들었을까..     그 당시에는 몰랐지만 이제는 당당하게 말할 수 있는 나의 이야기.\n\n',
             ),
             TextSpan(

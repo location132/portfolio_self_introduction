@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ProfileModel {
   int get scrollCount => throw _privateConstructorUsedError;
+  int get finalCount => throw _privateConstructorUsedError;
 
   /// Create a copy of ProfileModel
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +32,7 @@ abstract class $ProfileModelCopyWith<$Res> {
           ProfileModel value, $Res Function(ProfileModel) then) =
       _$ProfileModelCopyWithImpl<$Res, ProfileModel>;
   @useResult
-  $Res call({int scrollCount});
+  $Res call({int scrollCount, int finalCount});
 }
 
 /// @nodoc
@@ -50,11 +51,16 @@ class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
   @override
   $Res call({
     Object? scrollCount = null,
+    Object? finalCount = null,
   }) {
     return _then(_value.copyWith(
       scrollCount: null == scrollCount
           ? _value.scrollCount
           : scrollCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      finalCount: null == finalCount
+          ? _value.finalCount
+          : finalCount // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -68,7 +74,7 @@ abstract class _$$ProfileModelImplCopyWith<$Res>
       __$$ProfileModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int scrollCount});
+  $Res call({int scrollCount, int finalCount});
 }
 
 /// @nodoc
@@ -85,11 +91,16 @@ class __$$ProfileModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? scrollCount = null,
+    Object? finalCount = null,
   }) {
     return _then(_$ProfileModelImpl(
       scrollCount: null == scrollCount
           ? _value.scrollCount
           : scrollCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      finalCount: null == finalCount
+          ? _value.finalCount
+          : finalCount // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -98,15 +109,18 @@ class __$$ProfileModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ProfileModelImpl implements _ProfileModel {
-  const _$ProfileModelImpl({this.scrollCount = 0});
+  const _$ProfileModelImpl({this.scrollCount = 0, this.finalCount = 0});
 
   @override
   @JsonKey()
   final int scrollCount;
+  @override
+  @JsonKey()
+  final int finalCount;
 
   @override
   String toString() {
-    return 'ProfileModel(scrollCount: $scrollCount)';
+    return 'ProfileModel(scrollCount: $scrollCount, finalCount: $finalCount)';
   }
 
   @override
@@ -115,11 +129,13 @@ class _$ProfileModelImpl implements _ProfileModel {
         (other.runtimeType == runtimeType &&
             other is _$ProfileModelImpl &&
             (identical(other.scrollCount, scrollCount) ||
-                other.scrollCount == scrollCount));
+                other.scrollCount == scrollCount) &&
+            (identical(other.finalCount, finalCount) ||
+                other.finalCount == finalCount));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, scrollCount);
+  int get hashCode => Object.hash(runtimeType, scrollCount, finalCount);
 
   /// Create a copy of ProfileModel
   /// with the given fields replaced by the non-null parameter values.
@@ -131,10 +147,13 @@ class _$ProfileModelImpl implements _ProfileModel {
 }
 
 abstract class _ProfileModel implements ProfileModel {
-  const factory _ProfileModel({final int scrollCount}) = _$ProfileModelImpl;
+  const factory _ProfileModel({final int scrollCount, final int finalCount}) =
+      _$ProfileModelImpl;
 
   @override
   int get scrollCount;
+  @override
+  int get finalCount;
 
   /// Create a copy of ProfileModel
   /// with the given fields replaced by the non-null parameter values.
