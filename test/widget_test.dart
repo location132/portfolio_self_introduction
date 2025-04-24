@@ -1,144 +1,240 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/components/widget/animation/animated_slide_in_widget.dart';
-import 'package:self_introduction_flutter/constants/text_constants.dart';
+import 'package:self_introduction_flutter/components/condition_utils/condition_utils.dart';
+import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
+import 'package:self_introduction_flutter/core_service/di/injector.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+
+import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
+import 'package:self_introduction_flutter/page/main_page/main_cubit.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/about_section.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/profile_view.dart';
+import 'package:self_introduction_flutter/page/main_page/view/banner_view/banner_view.dart';
+import 'package:self_introduction_flutter/page/main_page/view/intro_view/introShowcase.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/command_scroll.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/profile_background.dart';
+import 'package:self_introduction_flutter/page/main_page/view/skill_view/skill_view.dart';
 
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/profile_card.dart';
-import 'package:self_introduction_flutter/page/main_page/widgets/title_text.dart';
+import 'package:visibility_detector/visibility_detector.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'dart:js' as js;
 
-class ProfileView extends StatefulWidget {
-  final MainPageState state;
-  const ProfileView({super.key, required this.state});
+class MainPage extends StatelessWidget {
+  final bool isChromeBrowser;
+  const MainPage({
+    super.key,
+    required this.isChromeBrowser,
+  });
 
   @override
-  State<ProfileView> createState() => _ProfileViewState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => di<MainPageCubit>(),
+      child: _MainView(isChromeBrowser: isChromeBrowser),
+    );
+  }
 }
 
-class _ProfileViewState extends State<ProfileView> {
-  //TODO: 이 부분 수정해야함 ALL false 설정
-  final Map<String, bool> _profileViewState = {
-    'ProfileCard': true,
-    'Education': true,
-    'Experience': true,
-    'Projects': true,
-    'Final': true,
-  };
+class _MainView extends StatefulWidget {
+  final bool isChromeBrowser;
+  const _MainView({
+    required this.isChromeBrowser,
+  });
 
   @override
-  void didUpdateWidget(covariant ProfileView oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.state.scrollModel.profileViewState == ProfileViewState.active &&
-        _profileViewState['Final'] == false) {
-      _updateProfileViewState();
-    }
-  }
+  State<_MainView> createState() => _MainViewState();
+}
 
-  void _updateProfileViewState() async {
-    setState(() {
-      _profileViewState['ProfileCard'] = true;
-    });
-    await Future.delayed(const Duration(milliseconds: 320));
-    setState(() {
-      _profileViewState['Education'] = true;
-    });
-    await Future.delayed(const Duration(milliseconds: 220));
-    setState(() {
-      _profileViewState['Experience'] = true;
-    });
-    await Future.delayed(const Duration(milliseconds: 120));
-    setState(() {
-      _profileViewState['Projects'] = true;
-    });
-    await Future.delayed(const Duration(milliseconds: 520));
-    setState(() {
-      _profileViewState['Final'] = true;
-    });
+class _MainViewState extends State<_MainView> {
+  bool isCurrentlyScrolling = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (kIsWeb) {
+      // 웹에서 스크롤 속도 제어를 위한 JS 코드
+      js.context.callMethod('eval', [
+        '''
+        document.addEventListener('wheel', function(event) {
+          event.preventDefault();
+        }, { passive: false });
+      '''
+      ]);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: 132.sw, top: 80.sh),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const TitleText(
-            title: TitleTextConstants.title2,
-            subTitle: TitleTextConstants.subTitle2,
-            description: TitleTextConstants.description2,
-          ),
-          SizedBox(height: 80.sh),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return BlocBuilder<MainPageCubit, MainPageState>(
+      builder: (context, state) {
+        if (state.initModel.mainViewHeight != 0.0 &&
+            state.initModel.mainViewHeight !=
+                state.scrollModel.scrollController!.position.maxScrollExtent) {
+          context
+              .read<MainPageCubit>()
+              .changeProfileViewHeight(state.scrollModel.scrollController);
+        }
+
+        return Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Column(
             children: [
-              // 💡 왼쪽: 고정 프로필 카드
-              AnimatedSlideInWidget(
-                isVisible: _profileViewState['ProfileCard']!,
-                child: const ProfileCard(),
-              ),
+              TopNavBar(toggleFullScreen: () {
+                // TODO: 전체화면 비활성화
+                // context.read<MainPageCubit>().toggleFullScreen(context);
+              }),
+              SizedBox(
+                height: MediaQuery.of(context).size.height - 83,
+                width: MediaQuery.of(context).size.width,
+                child: kIsWeb
+                    ? Listener(
+                        onPointerSignal: (PointerSignalEvent event) {
+                          if (event is PointerScrollEvent &&
+                              Conditions.isMainPageScrollActive(state)) {
+                            state.scrollModel.scrollController?.position.jumpTo(
+                              (state.scrollModel.scrollController?.position
+                                          .pixels ??
+                                      0) +
+                                  (event.scrollDelta.dy * 0.4),
+                            );
+                          }
+                        },
+                        child: CustomScrollView(
+                          controller: state.scrollModel.scrollController,
+                          physics: const NeverScrollableScrollPhysics(),
+                          slivers: [
+                            SliverAppBar(
+                              expandedHeight:
+                                  MediaQuery.of(context).size.height,
+                              pinned: false,
+                              backgroundColor: Colors.transparent,
+                              flexibleSpace: FlexibleSpaceBar(
+                                background: Introshowcase(
+                                  state: state,
+                                  initializeAnimations: context
+                                      .read<MainPageCubit>()
+                                      .awaitDuration,
+                                  isChromeBrowser: widget.isChromeBrowser,
+                                  isChromeBrowserWithCubit: context
+                                      .read<MainPageCubit>()
+                                      .isChromeBrowser,
+                                ),
+                              ),
+                            ),
+                            SliverToBoxAdapter(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Stack(
+                                    children: [
+                                      // 프로필 배경화면
+                                      VisibilityDetector(
+                                        key: const Key('profile-background'),
+                                        onVisibilityChanged:
+                                            (VisibilityInfo info) {
+                                          if (Conditions
+                                              .isProfileViewScrollActive(
+                                                  state)) {
+                                            context
+                                                .read<MainPageCubit>()
+                                                .viewListener(
+                                                    'profile_background');
+                                          }
+                                        },
+                                        child: const ProfileBackground(),
+                                      ),
 
-              const SizedBox(width: 60),
+                                      // 프로필 뷰
+                                      Positioned(
+                                        top: 170.sh,
+                                        child: ProfileView(
+                                          state: state,
+                                          onScroll: (String scrollState) {
+                                            context
+                                                .read<MainPageCubit>()
+                                                .viewListener(scrollState);
+                                          },
+                                        ),
+                                      ),
+                                      CommandScroll(
+                                        state: state,
+                                        onScroll: (String scrollState) {
+                                          context
+                                              .read<MainPageCubit>()
+                                              .viewListener(scrollState);
+                                        },
+                                      ),
+                                    ],
+                                  ),
 
-              // 💡 오른쪽: 스크롤 되는 AboutSection 영역
-              Expanded(
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.8, // 예시 높이
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 60),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AnimatedOpacity(
-                            opacity: _profileViewState['Education']! ? 1 : 0,
-                            duration: const Duration(milliseconds: 720),
-                            child: const AboutSection(
-                              title: EducationTextConstants.educationTitle,
-                              sectionInfo: [
-                                EducationTextConstants.profileCardEducation1,
-                                EducationTextConstants.profileCardEducation2,
-                                EducationTextConstants.profileCardEducation5,
-                              ],
+                                  // 배너 뷰
+                                  Visibility(
+                                    visible:
+                                        Conditions.isSkillViewActive(state),
+                                    child: VisibilityDetector(
+                                      key: const Key('banner-view'),
+                                      onVisibilityChanged:
+                                          (VisibilityInfo info) {
+                                        if (info.visibleFraction > 0.2 &&
+                                            state.scrollModel.bannerState ==
+                                                BannerState.inactive) {
+                                          context
+                                              .read<MainPageCubit>()
+                                              .viewListener('banner');
+                                        }
+                                      },
+                                      child: BannerView(
+                                        state: state,
+                                        isActive: (bool isActive) {
+                                          context
+                                              .read<MainPageCubit>()
+                                              .descriptionButton(
+                                                  'banner', isActive);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+
+                                  // 스킬 뷰
+                                  Visibility(
+                                    visible:
+                                        Conditions.isSkillViewActive(state),
+                                    child: VisibilityDetector(
+                                      key: const Key('skill-view'),
+                                      onVisibilityChanged:
+                                          (VisibilityInfo info) {
+                                        if (info.visibleFraction > 0.8 &&
+                                            state.mySkillModel.status ==
+                                                MySkillViewStatus.inactive) {
+                                          context
+                                              .read<MainPageCubit>()
+                                              .viewListener('skill');
+                                        }
+                                      },
+                                      child: SkillView(
+                                        state: state,
+                                        onTap: (int index) {
+                                          context
+                                              .read<MainPageCubit>()
+                                              .descriptionButton('skill', true);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 40),
-                          AnimatedOpacity(
-                            opacity: _profileViewState['Experience']! ? 1 : 0,
-                            duration: const Duration(milliseconds: 720),
-                            child: const AboutSection(
-                              title: ExperienceTextConstants.experienceTitle,
-                              sectionInfo: [
-                                ExperienceTextConstants.experience1,
-                                ExperienceTextConstants.experience2,
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 40),
-                          AnimatedOpacity(
-                            opacity: _profileViewState['Projects']! ? 1 : 0,
-                            duration: const Duration(milliseconds: 720),
-                            child: const AboutSection(
-                              title: ProjectsTextConstants.projectsTitle,
-                              sectionInfo: [
-                                ProjectsTextConstants.projects1,
-                                ProjectsTextConstants.projects2,
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                          ],
+                        ),
+                      )
+                    : const SizedBox(),
               ),
             ],
           ),
-          SizedBox(height: 120.sh),
-        ],
-      ),
+        );
+      },
     );
   }
 }

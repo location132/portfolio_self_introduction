@@ -4,6 +4,7 @@ import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/core_service/util/slow_scroll_physics.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/page/main_page/main_cubit.dart';
@@ -14,7 +15,6 @@ import 'package:self_introduction_flutter/page/main_page/view/intro_view/introSh
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/command_scroll.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/profile_background.dart';
 import 'package:self_introduction_flutter/page/main_page/view/skill_view/skill_view.dart';
-
 import 'package:visibility_detector/visibility_detector.dart';
 
 class MainPage extends StatelessWidget {
@@ -69,51 +69,60 @@ class _MainViewState extends State<_MainView> {
               SizedBox(
                 height: MediaQuery.of(context).size.height - 83,
                 width: MediaQuery.of(context).size.width,
-                child: CustomScrollView(
-                  controller: state.scrollModel.scrollController,
-                  physics: Conditions.isMainPageScrollActive(state)
-                      ? const AlwaysScrollableScrollPhysics()
-                      : const NeverScrollableScrollPhysics(),
-                  slivers: [
-                    SliverAppBar(
-                      expandedHeight: MediaQuery.of(context).size.height,
-                      pinned: false,
-                      backgroundColor: Colors.transparent,
-                      flexibleSpace: FlexibleSpaceBar(
-                        background: Introshowcase(
-                          state: state,
-                          initializeAnimations:
-                              context.read<MainPageCubit>().awaitDuration,
-                          isChromeBrowser: widget.isChromeBrowser,
-                          isChromeBrowserWithCubit:
-                              context.read<MainPageCubit>().isChromeBrowser,
+                child: SlowScrollPhysics(
+                  state: state,
+                  child: CustomScrollView(
+                    controller: state.scrollModel.scrollController,
+                    physics: const NeverScrollableScrollPhysics(),
+                    slivers: [
+                      SliverAppBar(
+                        expandedHeight: MediaQuery.of(context).size.height,
+                        pinned: false,
+                        backgroundColor: Colors.transparent,
+                        flexibleSpace: FlexibleSpaceBar(
+                          background: Introshowcase(
+                            state: state,
+                            initializeAnimations:
+                                context.read<MainPageCubit>().awaitDuration,
+                            isChromeBrowser: widget.isChromeBrowser,
+                            isChromeBrowserWithCubit:
+                                context.read<MainPageCubit>().isChromeBrowser,
+                          ),
                         ),
                       ),
-                    ),
-                    SliverToBoxAdapter(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Stack(
-                            children: [
-                              // 프로필 배경화면
-                              VisibilityDetector(
-                                key: const Key('profile-background'),
-                                onVisibilityChanged: (VisibilityInfo info) {
-                                  if (Conditions.isProfileViewScrollActive(
-                                      state)) {
-                                    context
-                                        .read<MainPageCubit>()
-                                        .viewListener('profile_background');
-                                  }
-                                },
-                                child: const ProfileBackground(),
-                              ),
+                      SliverToBoxAdapter(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Stack(
+                              children: [
+                                // 프로필 배경화면
+                                VisibilityDetector(
+                                  key: const Key('profile-background'),
+                                  onVisibilityChanged: (VisibilityInfo info) {
+                                    if (Conditions.isProfileViewScrollActive(
+                                        state)) {
+                                      context
+                                          .read<MainPageCubit>()
+                                          .viewListener('profile_background');
+                                    }
+                                  },
+                                  child: const ProfileBackground(),
+                                ),
 
-                              // 프로필 뷰
-                              Positioned(
-                                top: 170.sh,
-                                child: ProfileView(
+                                // 프로필 뷰
+                                Positioned(
+                                  top: 170.sh,
+                                  child: ProfileView(
+                                    state: state,
+                                    onScroll: (String scrollState) {
+                                      context
+                                          .read<MainPageCubit>()
+                                          .viewListener(scrollState);
+                                    },
+                                  ),
+                                ),
+                                CommandScroll(
                                   state: state,
                                   onScroll: (String scrollState) {
                                     context
@@ -121,73 +130,65 @@ class _MainViewState extends State<_MainView> {
                                         .viewListener(scrollState);
                                   },
                                 ),
-                              ),
-                              CommandScroll(
-                                state: state,
-                                onScroll: (String scrollState) {
-                                  context
-                                      .read<MainPageCubit>()
-                                      .viewListener(scrollState);
-                                },
-                              ),
-                            ],
-                          ),
+                              ],
+                            ),
 
-                          // 배너 뷰
-                          Visibility(
-                            visible: Conditions.isSkillViewActive(state),
-                            child: VisibilityDetector(
-                              key: const Key('banner-view'),
-                              onVisibilityChanged: (VisibilityInfo info) {
-                                if (info.visibleFraction > 0.2 &&
-                                    state.scrollModel.bannerState ==
-                                        BannerState.inactive) {
-                                  context
-                                      .read<MainPageCubit>()
-                                      .viewListener('banner');
-                                }
-                              },
-                              child: BannerView(
-                                state: state,
-                                isActive: (bool isActive) {
-                                  context
-                                      .read<MainPageCubit>()
-                                      .descriptionButton('banner', isActive);
+                            // 배너 뷰
+                            Visibility(
+                              visible: Conditions.isSkillViewActive(state),
+                              child: VisibilityDetector(
+                                key: const Key('banner-view'),
+                                onVisibilityChanged: (VisibilityInfo info) {
+                                  if (info.visibleFraction > 0.2 &&
+                                      state.scrollModel.bannerState ==
+                                          BannerState.inactive) {
+                                    context
+                                        .read<MainPageCubit>()
+                                        .viewListener('banner');
+                                  }
                                 },
+                                child: BannerView(
+                                  state: state,
+                                  isActive: (bool isActive) {
+                                    context
+                                        .read<MainPageCubit>()
+                                        .descriptionButton('banner', isActive);
+                                  },
+                                ),
                               ),
                             ),
-                          ),
 
-                          // 스킬 뷰
-                          Visibility(
-                            visible: Conditions.isSkillViewActive(state),
-                            child: VisibilityDetector(
-                              key: const Key('skill-view'),
-                              onVisibilityChanged: (VisibilityInfo info) {
-                                if (info.visibleFraction > 0.8 &&
-                                    state.mySkillModel.status ==
-                                        MySkillViewStatus.inactive) {
-                                  context
-                                      .read<MainPageCubit>()
-                                      .viewListener('skill');
-                                }
-                              },
-                              child: SkillView(
-                                state: state,
-                                onTap: (int index) {
-                                  context
-                                      .read<MainPageCubit>()
-                                      .descriptionButton('skill', true);
+                            // 스킬 뷰
+                            Visibility(
+                              visible: Conditions.isSkillViewActive(state),
+                              child: VisibilityDetector(
+                                key: const Key('skill-view'),
+                                onVisibilityChanged: (VisibilityInfo info) {
+                                  if (info.visibleFraction > 0.8 &&
+                                      state.mySkillModel.status ==
+                                          MySkillViewStatus.inactive) {
+                                    context
+                                        .read<MainPageCubit>()
+                                        .viewListener('skill');
+                                  }
                                 },
+                                child: SkillView(
+                                  state: state,
+                                  onTap: (int index) {
+                                    context
+                                        .read<MainPageCubit>()
+                                        .descriptionButton('skill', true);
+                                  },
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+              )
             ],
           ),
         );
