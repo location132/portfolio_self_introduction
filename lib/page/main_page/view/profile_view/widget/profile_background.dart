@@ -27,7 +27,7 @@ class _ProfileBackgroundState extends State<ProfileBackground> {
               child: Row(
                 children: [
                   Container(
-                      width: MediaQuery.of(context).size.width * 0.90,
+                      width: MediaQuery.of(context).size.width * 0.9,
                       color: Colors.black),
                   const SizedBox(width: 10),
                   Expanded(

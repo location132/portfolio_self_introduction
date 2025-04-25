@@ -4,7 +4,7 @@ class DiagonalTriangleClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     final path = Path()
-      ..moveTo(size.width, size.height) // 우측 하단 (직각 위치)
+      ..moveTo(size.width, size.height) // 우측 하단
       ..lineTo(0, size.height) // 좌측 하단
       ..lineTo(size.width, 0) // 우측 상단
       ..close();
@@ -19,7 +19,7 @@ class DiagonalTriangleClipper2 extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     final path = Path()
-      ..moveTo(0, 0) // 좌측 상단 (직각 위치)
+      ..moveTo(0, 0) // 좌측 상단
       ..lineTo(size.width, 0) // 우측 상단
       ..lineTo(0, size.height) // 좌측 하단
       ..close();

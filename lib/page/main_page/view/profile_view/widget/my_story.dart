@@ -56,83 +56,86 @@ class _MyStoryState extends State<MyStory> with SingleTickerProviderStateMixin {
     } else {
       _controller.reverse();
     }
-    return Row(
-      children: [
-        AnimatedOpacity(
-          opacity: widget.isThirdPageInit ? 1 : 0,
-          duration: const Duration(seconds: 1),
-          child: SizedBox(
-            height: 500.sh,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset('assets/images/my_self.jpeg'),
+    return Padding(
+      padding: EdgeInsets.only(left: 130.sw, right: 130.sw, bottom: 70.sh),
+      child: Row(
+        children: [
+          AnimatedOpacity(
+            opacity: widget.isThirdPageInit ? 1 : 0,
+            duration: const Duration(seconds: 1),
+            child: SizedBox(
+              height: 500.sh,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset('assets/images/my_self.jpeg'),
+              ),
             ),
           ),
-        ),
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.only(right: 35.sw),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                FadeTransition(
-                  opacity: _fadeAnimation,
-                  child: SlideTransition(
-                    position: _slideAnimation,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 42.sw),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'MyStory',
-                            style: GoogleFonts.dancingScript(
-                              fontSize: 36,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                              letterSpacing: 1.2,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Text('With',
-                              style: GoogleFonts.playfairDisplay(
-                                fontSize: 34,
-                                fontWeight: FontWeight.w500,
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(right: 35.sw),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: SlideTransition(
+                      position: _slideAnimation,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 42.sw),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'MyStory',
+                              style: GoogleFonts.dancingScript(
+                                fontSize: 36,
+                                fontWeight: FontWeight.w400,
                                 color: Colors.white,
-                              )),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Flutter',
-                            style: GoogleFonts.dancingScript(
-                              fontSize: 36,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                              letterSpacing: 1.2,
+                                letterSpacing: 1.2,
+                              ),
                             ),
-                          ),
-                        ],
+                            const SizedBox(width: 8),
+                            Text('With',
+                                style: GoogleFonts.playfairDisplay(
+                                  fontSize: 34,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                )),
+                            const SizedBox(width: 8),
+                            Text(
+                              'Flutter',
+                              style: GoogleFonts.dancingScript(
+                                fontSize: 36,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white,
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
 
-                //------------- 내 이야기 시작 -------------
-                FadeTransition(
-                  opacity: _fadeAnimation,
-                  child: SlideTransition(
-                    position: _slideAnimation,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 20, top: 20.sh),
-                      child: _buildMyStory(),
+                  //------------- 내 이야기 시작 -------------
+                  FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: SlideTransition(
+                      position: _slideAnimation,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 20, top: 20.sh),
+                        child: _buildMyStory(),
+                      ),
                     ),
-                  ),
-                )
-                //------------- 내 이야기 끝 -------------
-              ],
+                  )
+                  //------------- 내 이야기 끝 -------------
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

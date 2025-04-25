@@ -1,25 +1,180 @@
-        // Align(
-        //   alignment: Alignment.centerLeft,
-        //   child: Padding(
-        //     padding:
-        //         EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.6),
-        //     child: Center(
-        //       child: Container(
-        //         height: MediaQuery.of(context).size.height / 2 / 1.5,
-        //         decoration: BoxDecoration(
-        //           shape: BoxShape.circle,
-        //           border: Border.all(
-        //             color: Colors.white,
-        //             width: 12.0,
-        //           ),
-        //         ),
-        //         child: Container(
-        //           decoration: BoxDecoration(
-        //             shape: BoxShape.circle,
-        //             color: Colors.transparent,
-        //           ),
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ),
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'dart:ui';
+
+import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+
+class InfoWithMyStory extends StatefulWidget {
+  final bool pageStart;
+  const InfoWithMyStory({super.key, required this.pageStart});
+
+  @override
+  State<InfoWithMyStory> createState() => _InfoWithMyStoryState();
+}
+
+class _InfoWithMyStoryState extends State<InfoWithMyStory>
+    with TickerProviderStateMixin {
+  late AnimationController _animationController;
+
+  late Animation<double> _fadeAnimation;
+  late Animation<Offset> _leftSlide;
+  late Animation<Offset> _rightSlide;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1200),
+    );
+
+    _fadeAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
+
+    _leftSlide = Tween<Offset>(
+      begin: const Offset(-0.2, 0),
+      end: const Offset(0, 0),
+    ).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
+
+    _rightSlide = Tween<Offset>(
+      begin: const Offset(0.2, 0),
+      end: const Offset(0, 0),
+    ).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
+  }
+
+  void startAnimation() async {
+    _animationController.forward();
+  }
+
+  void stopAnimation() {
+    _animationController.reverse();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.pageStart) {
+      startAnimation();
+    }
+    return AnimatedOpacity(
+      opacity: widget.pageStart ? 1.0 : 0.0,
+      duration: const Duration(milliseconds: 420),
+      child: Row(
+        children: [
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: Padding(
+              padding: EdgeInsets.only(left: 130.sw, right: 130.sw, top: 110),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SlideTransition(
+                    position: _leftSlide,
+                    child: FadeTransition(
+                      opacity: _fadeAnimation,
+                      child: const Text(
+                        '지금의 저를 만들어준 소중한 시간들을 소개합니다.',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  SlideTransition(
+                    position: _rightSlide,
+                    child: FadeTransition(
+                      opacity: _fadeAnimation,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Chapter 1',
+                            style: GoogleFonts.dancingScript(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                              letterSpacing: 1.2,
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            '다양한 세미나 참여',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            'Chapter 2',
+                            style: GoogleFonts.dancingScript(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                              letterSpacing: 1.2,
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            '경험이 가장 풍부했던 대학생활',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            'Chapter 3',
+                            style: GoogleFonts.dancingScript(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                              letterSpacing: 1.2,
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            '진행중인 나의 이야기',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Container(color: Colors.transparent),
+          ),
+        ],
+      ),
+    );
+  }
+}

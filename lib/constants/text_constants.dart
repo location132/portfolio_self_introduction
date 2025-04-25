@@ -36,7 +36,7 @@ class TitleTextConstants {
 
   static const String title2 = 'Who Am I.';
   static const String subTitle2 = '나를 소개하는';
-  static const String description2 = '단 하나의 카드, 그리고 이야기';
+  static const String description2 = '과거의 기록, 그리고 진행중인 이야기';
 
   static const String title3 = 'My Skills.';
   static const String subTitle3 = '나를 빛나게 하는';
