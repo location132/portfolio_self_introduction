@@ -129,6 +129,11 @@ class _MainViewState extends State<_MainView> {
                                         .read<MainPageCubit>()
                                         .viewListener(scrollState);
                                   },
+                                  onTap: () {
+                                    context
+                                        .read<MainPageCubit>()
+                                        .userClickWithProfileViewScreen_1();
+                                  },
                                 ),
                               ],
                             ),

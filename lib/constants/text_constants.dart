@@ -29,6 +29,19 @@ class ProfileCardTextConstants {
   static const String profileCardEmail = 'piano23010@gmail.com';
 }
 
+class ProfilePage1Constants {
+  static const String retrospect =
+      '회고: 빛나는 작은 별의 애니메이션을 100% 혼자 구현하지는 못하였지만, 문서화를 통해 이해할 수 있도록 노션에 세세하게 작성하였습니다.';
+  static const String title = '지금의 저를 만들어준\n 소중한 시간들을 소개합니다.';
+  static const String chapter1 = 'Chapter 1';
+  static const String chapter1Title = '다양한 세미나 참여';
+  static const String chapter2 = 'Chapter 2';
+  static const String chapter2Title = '경험이 가장 풍부했던 대학생활';
+  static const String chapter3 = 'Chapter 3';
+  static const String chapter3Title = '진행중인 나의 이야기';
+  static const String scroll = '스크롤을 따라 다양한 이야기가 소개됩니다.';
+}
+
 class TitleTextConstants {
   static const String title1 = 'About Me.';
   static const String subTitle1 = '짧지만 깊게';

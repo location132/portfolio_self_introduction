@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:self_introduction_flutter/components/widget/animation/star_animation.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_1/widgets/chapter_with_blur.dart';
+
 class Page1 extends StatefulWidget {
-  final bool pageStart;
   final MainPageState state;
-  const Page1({super.key, required this.pageStart, required this.state});
+  const Page1({super.key, required this.state});
 
   @override
   State<Page1> createState() => _Page1State();
@@ -20,6 +22,7 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
   late Animation<Offset> _rightSlide;
   bool _isStarAnimationStart = false;
   bool _isTipOpacity = false;
+  bool _isUserClick = false;
 
   @override
   void initState() {
@@ -75,6 +78,8 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
     });
   }
 
+  void changePageNumber() {}
+
   @override
   void dispose() {
     _animationController.dispose();
@@ -82,10 +87,31 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
   }
 
   @override
-  Widget build(BuildContext context) {
-    if (widget.pageStart) {
-      startAnimation();
+  void didUpdateWidget(covariant Page1 oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (_animationController.status == AnimationStatus.forward) {
+      return;
     } else {
+      if (widget.state.profileModel.isUserClick) {
+        setState(() {
+          _isUserClick = true;
+        });
+      } else {
+        setState(() {
+          _isUserClick = false;
+        });
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.state.profileModel.scrollCount == 1) {
+      startAnimation();
+    } else if (widget.state.profileModel.scrollCount == 2) {
+      changePageNumber();
+    } else if (widget.state.profileModel.scrollCount == 3 ||
+        widget.state.profileModel.scrollCount == 0) {
       stopAnimation();
     }
 
@@ -98,6 +124,21 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
               opacity: _isStarAnimationStart ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 720),
               child: const StarAnimation(),
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 40,
+            child: AnimatedOpacity(
+              opacity: _isTipOpacity ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 720),
+              child: const Text(
+                ProfilePage1Constants.retrospect,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
           Row(
@@ -115,7 +156,7 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
                         child: FadeTransition(
                           opacity: _fadeAnimation,
                           child: const Text(
-                            '지금의 저를 만들어준\n 소중한 시간들을 소개합니다.',
+                            ProfilePage1Constants.title,
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -130,16 +171,7 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
                         position: _rightSlide,
                         child: FadeTransition(
                           opacity: _fadeAnimation,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _buildChapterBox('Chapter 1', '다양한 세미나 참여'),
-                              const SizedBox(height: 16),
-                              _buildChapterBox('Chapter 2', '경험이 가장 풍부했던 대학생활'),
-                              const SizedBox(height: 16),
-                              _buildChapterBox('Chapter 3', '진행중인 나의 이야기'),
-                            ],
-                          ),
+                          child: ChapterWithBlur(isUserClick: _isUserClick),
                         ),
                       ),
                     ],
@@ -151,61 +183,6 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
                 child: Container(color: Colors.transparent),
               ),
             ],
-          ),
-          Positioned(
-            bottom: 0,
-            left: 40,
-            child: AnimatedOpacity(
-              opacity: _isTipOpacity ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 720),
-              child: const Text(
-                '회고: 빛나는 작은 별의 애니메이션을 100% 혼자 구현하지는 못하였지만, 문서화를 통해 이해할 수 있도록 노션에 세세하게 작성하였습니다.',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _buildChapterBox(String chapter, String title) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            chapter,
-            style: GoogleFonts.dancingScript(
-              fontSize: 18,
-              fontWeight: FontWeight.w400,
-              color: Colors.white,
-              letterSpacing: 1.2,
-            ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
-            ),
           ),
         ],
       ),

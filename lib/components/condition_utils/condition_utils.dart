@@ -49,6 +49,7 @@ class Conditions {
   // 프로필 뷰 스크롤 비활성화
   static bool isProfileViewScrollInactive(MainPageState state) =>
       state.scrollModel.profileViewState == ProfileViewState.active &&
+      state.profileModel.isUserClick == false &&
       state.scrollModel.isScrollWaiting == false;
 
   //-- 사용자 스크롤 감지 조건 -- //

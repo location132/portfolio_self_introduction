@@ -194,6 +194,9 @@ class MainPageCubit extends Cubit<MainPageState> {
       ));
 
       if (Conditions.isCountingWithThreeOrFour(state)) {
+        // 순간 넘치는 위젯 렌더링을 줄이기 위해 딜레이 추가
+        await Future.delayed(const Duration(milliseconds: 1500));
+        // 크... 진짜 아이디어 좋다 내 포폴이니 이렇게 주석도 마음대로 하고
         emit(state.copyWith(
             mySkillModel: state.mySkillModel
                 .copyWith(status: MySkillViewStatus.inactive)));
@@ -245,6 +248,16 @@ class MainPageCubit extends Cubit<MainPageState> {
       emit(state.copyWith(
           scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
     }
+  }
+
+  void userClickWithProfileViewScreen_1() async {
+    emit(state.copyWith(
+      profileModel: state.profileModel.copyWith(isUserClick: true),
+    ));
+    await Future.delayed(const Duration(seconds: 2));
+    emit(state.copyWith(
+      profileModel: state.profileModel.copyWith(isUserClick: false),
+    ));
   }
 
   //Description 버튼 클릭

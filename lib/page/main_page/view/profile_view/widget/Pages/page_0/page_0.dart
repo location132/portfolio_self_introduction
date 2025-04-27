@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
 class Page0 extends StatefulWidget {
-  final bool pageStart;
-  const Page0({super.key, required this.pageStart});
+  final MainPageState state;
+  const Page0({super.key, required this.state});
 
   @override
   State<Page0> createState() => _Page0State();
@@ -28,7 +29,7 @@ class _Page0State extends State<Page0> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.pageStart) {
+    if (widget.state.profileModel.scrollCount == 0) {
       activeOpacity();
     } else {
       deactiveOpacity();

@@ -6,7 +6,12 @@ import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 class CommandScroll extends StatefulWidget {
   final MainPageState state;
   final Function(String) onScroll;
-  const CommandScroll({super.key, required this.state, required this.onScroll});
+  final Function() onTap;
+  const CommandScroll(
+      {super.key,
+      required this.state,
+      required this.onScroll,
+      required this.onTap});
 
   @override
   State<CommandScroll> createState() => _CommandScrollState();
@@ -79,16 +84,25 @@ class _CommandScrollState extends State<CommandScroll> {
       checkPageNumber();
     }
 
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      color: Colors.transparent,
-      child: SingleChildScrollView(
-        physics: Conditions.isProfileViewScrollInactive(widget.state)
-            ? const AlwaysScrollableScrollPhysics()
-            : const NeverScrollableScrollPhysics(),
-        controller: widget.state.scrollModel.subScrollController,
-        child: SizedBox(height: (MediaQuery.of(context).size.height + 10.sh)),
+    return GestureDetector(
+      onTap: () {
+        if (widget.state.profileModel.scrollCount == 1) {
+          widget.onTap();
+        }
+      },
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        color: Colors.transparent,
+        child: SingleChildScrollView(
+          physics: Conditions.isProfileViewScrollInactive(widget.state)
+              ? const AlwaysScrollableScrollPhysics()
+              : const NeverScrollableScrollPhysics(),
+          controller: widget.state.scrollModel.subScrollController,
+          child: SizedBox(
+            height: (MediaQuery.of(context).size.height + 10.sh),
+          ),
+        ),
       ),
     );
   }

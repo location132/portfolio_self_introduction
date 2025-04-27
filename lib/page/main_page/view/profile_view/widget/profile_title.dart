@@ -20,23 +20,14 @@ class _ProfileTitleState extends State<ProfileTitle> {
       top: 40,
       left: 0,
       right: 0,
-      child: Stack(
-        children: [
-          AnimatedOpacity(
-            opacity: widget.state.profileModel.scrollCount != 1 ? 1.0 : 0.0,
-            duration: const Duration(milliseconds: 720),
-            child: const TitleText(
-              title: TitleTextConstants.title2,
-              subTitle: TitleTextConstants.subTitle2,
-              description: '  ${TitleTextConstants.description2}',
-              color: Colors.white,
-            ),
-          ),
-          AnimatedOpacity(
-            opacity: widget.state.profileModel.scrollCount == 1 ? 1.0 : 0.0,
-            duration: const Duration(milliseconds: 720),
-            child: ImageFiltered(
-              imageFilter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+      child: AnimatedOpacity(
+        opacity: widget.state.profileModel.scrollCount > 1 ? 0.0 : 1.0,
+        duration: const Duration(milliseconds: 720),
+        child: Stack(
+          children: [
+            AnimatedOpacity(
+              opacity: widget.state.profileModel.scrollCount != 1 ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 720),
               child: const TitleText(
                 title: TitleTextConstants.title2,
                 subTitle: TitleTextConstants.subTitle2,
@@ -44,8 +35,21 @@ class _ProfileTitleState extends State<ProfileTitle> {
                 color: Colors.white,
               ),
             ),
-          ),
-        ],
+            AnimatedOpacity(
+              opacity: widget.state.profileModel.scrollCount == 1 ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 720),
+              child: ImageFiltered(
+                imageFilter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+                child: const TitleText(
+                  title: TitleTextConstants.title2,
+                  subTitle: TitleTextConstants.subTitle2,
+                  description: '  ${TitleTextConstants.description2}',
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
