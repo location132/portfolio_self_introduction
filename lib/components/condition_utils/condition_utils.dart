@@ -46,12 +46,6 @@ class Conditions {
       state.mySkillModel.status == MySkillViewStatus.init &&
       state.scrollModel.profileViewState == ProfileViewState.inactive;
 
-  // 프로필 뷰 스크롤 비활성화
-  static bool isProfileViewScrollInactive(MainPageState state) =>
-      state.scrollModel.profileViewState == ProfileViewState.active &&
-      state.profileModel.isUserClick == false &&
-      state.scrollModel.isScrollWaiting == false;
-
   //-- 사용자 스크롤 감지 조건 -- //
   static bool isBannerScrollActive(String viewName) => viewName == 'banner';
   static bool isProfileBackgroundScrollActive(String viewName) =>
@@ -65,15 +59,4 @@ class Conditions {
   // 스킬 뷰 활성화
   static bool isSkillViewActive(MainPageState state) =>
       state.mySkillModel.status != MySkillViewStatus.init;
-
-  //-- 프로필 뷰 카운트 조건 -- //
-
-  /* 프로필 카운트가 3 또는 4일 때 조건 */
-  static bool isCountingWithThreeOrFour(MainPageState state) =>
-      state.profileModel.scrollCount == 3 ||
-      state.profileModel.scrollCount == 4;
-
-  /* 파이널 카운트보다 프로필 카운트가 클 때 */
-  static bool isProfileCountGreaterThanFinalCount(MainPageState state) =>
-      state.profileModel.scrollCount > state.profileModel.finalCount;
 }

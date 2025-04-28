@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:self_introduction_flutter/components/widget/animation/star_animation.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
-import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
-
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_1/widgets/chapter_with_blur.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_1/widgets/chapter_card.dart';
 
 class Page1 extends StatefulWidget {
   final MainPageState state;
@@ -23,6 +20,7 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
   bool _isStarAnimationStart = false;
   bool _isTipOpacity = false;
   bool _isUserClick = false;
+  String _retrospect = ProfilePage1Constants.retrospect1;
 
   @override
   void initState() {
@@ -47,7 +45,7 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
     );
 
     _rightSlide = Tween<Offset>(
-      begin: const Offset(0.2, 0),
+      begin: const Offset(0.1, 0),
       end: const Offset(0, 0),
     ).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
@@ -55,6 +53,9 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
   }
 
   void startAnimation() async {
+    if (_isStarAnimationStart) {
+      return;
+    }
     setState(() {
       _isStarAnimationStart = true;
     });
@@ -67,73 +68,100 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
   }
 
   void stopAnimation() async {
+    _animationController.reverse();
     setState(() {
       _isStarAnimationStart = false;
-    });
-    await Future.delayed(const Duration(milliseconds: 420));
-    _animationController.reverse();
-    await Future.delayed(const Duration(milliseconds: 120));
-    setState(() {
       _isTipOpacity = false;
     });
   }
 
-  void changePageNumber() {}
-
   @override
   void dispose() {
     _animationController.dispose();
+
     super.dispose();
   }
 
   @override
   void didUpdateWidget(covariant Page1 oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (_animationController.status == AnimationStatus.forward) {
-      return;
+
+    if (widget.state.profileModel.scrollCount == 1 &&
+        widget.state.profileModel.previousCount == 0) {
+      // 0 => 1번 흐름
+      startAnimation();
+    } else if (widget.state.profileModel.scrollCount == 2 &&
+        widget.state.profileModel.previousCount == 1) {
+      // 1 => 2번 흐름
+      setState(() {
+        _isTipOpacity = false;
+      });
+    } else if (widget.state.profileModel.scrollCount == 1 &&
+        widget.state.profileModel.previousCount == 2) {
+      // 2 => 1번 흐름
+
+      setState(() {
+        _retrospect = ProfilePage1Constants.retrospect2;
+        _isTipOpacity = true;
+      });
+    } else if (widget.state.profileModel.scrollCount == 0 &&
+        widget.state.profileModel.previousCount == 1) {
+      // 1 => 0번 흐름
+      stopAnimation();
+    }
+
+    if (widget.state.profileModel.isUserClick) {
+      setState(() {
+        _isUserClick = true;
+      });
     } else {
-      if (widget.state.profileModel.isUserClick) {
-        setState(() {
-          _isUserClick = true;
-        });
-      } else {
-        setState(() {
-          _isUserClick = false;
-        });
-      }
+      setState(() {
+        _isUserClick = false;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.state.profileModel.scrollCount == 1) {
-      startAnimation();
-    } else if (widget.state.profileModel.scrollCount == 2) {
-      changePageNumber();
-    } else if (widget.state.profileModel.scrollCount == 3 ||
-        widget.state.profileModel.scrollCount == 0) {
-      stopAnimation();
-    }
-
     return Visibility(
       visible: widget.state.profileModel.scrollCount < 3,
       child: Stack(
         children: [
+          // 별 애니메이션
           Positioned.fill(
             child: AnimatedOpacity(
               opacity: _isStarAnimationStart ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 720),
+              duration: const Duration(milliseconds: 420),
               child: const StarAnimation(),
+            ),
+          ),
+          // 회고 텍스트
+          Positioned(
+            bottom: 0,
+            left: 40,
+            child: AnimatedOpacity(
+              opacity: _isTipOpacity ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 420),
+              child: Text(
+                _retrospect,
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
           Positioned(
             bottom: 0,
             left: 40,
             child: AnimatedOpacity(
-              opacity: _isTipOpacity ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 720),
+              opacity:
+                  widget.state.profileModel.scrollCount == 0 && !_isTipOpacity
+                      ? 1.0
+                      : 0.0,
+              duration: const Duration(milliseconds: 1120),
               child: const Text(
-                ProfilePage1Constants.retrospect,
+                ProfilePage1Constants.retrospect0,
                 style: TextStyle(
                   fontSize: 12,
                   color: Colors.white,
@@ -141,48 +169,18 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
               ),
             ),
           ),
-          Row(
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: Padding(
-                  padding:
-                      EdgeInsets.only(left: 130.sw, right: 130.sw, top: 110),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SlideTransition(
-                        position: _leftSlide,
-                        child: FadeTransition(
-                          opacity: _fadeAnimation,
-                          child: const Text(
-                            ProfilePage1Constants.title,
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      SlideTransition(
-                        position: _rightSlide,
-                        child: FadeTransition(
-                          opacity: _fadeAnimation,
-                          child: ChapterWithBlur(isUserClick: _isUserClick),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+          // 중앙 챕터
+          Positioned.fill(
+            child: AnimatedOpacity(
+              opacity: widget.state.profileModel.scrollCount == 1 ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 420),
+              child: ChapterCard(
+                leftSlide: _leftSlide,
+                rightSlide: _rightSlide,
+                fadeAnimation: _fadeAnimation,
+                isUserClick: _isUserClick,
               ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Container(color: Colors.transparent),
-              ),
-            ],
+            ),
           ),
         ],
       ),

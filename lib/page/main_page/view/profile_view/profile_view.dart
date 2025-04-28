@@ -30,7 +30,7 @@ class _ProfileViewState extends State<ProfileView> {
               Page1(state: widget.state),
             ],
           ),
-          Page3(state: widget.state),
+          // Page3(state: widget.state),
         ],
       ),
     );

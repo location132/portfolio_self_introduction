@@ -17,7 +17,7 @@ class _StarAnimationState extends State<StarAnimation>
     with SingleTickerProviderStateMixin {
   late AnimationController _starsController;
   final List<StarData> _stars = [];
-  final int _starCount = 120;
+  final int _starCount = 80;
 
   @override
   void initState() {

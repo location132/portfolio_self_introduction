@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:self_introduction_flutter/components/condition_utils/condition_utils.dart';
+import 'package:self_introduction_flutter/components/condition_utils/profile_view_condition_utils.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/model/init_model.dart';
@@ -157,12 +158,11 @@ class MainPageCubit extends Cubit<MainPageState> {
             state.scrollModel.copyWith(bannerState: BannerState.activated),
       ));
     } else if (Conditions.isProfileBackgroundScrollActive(viewName)) {
-      // 프로필 뷰 활성화
-      profileViewActive();
+      await profileViewActive();
     } else if (Conditions.isProfileIsTopScrollActive(viewName)) {
-      upScrollPageNumber();
+      await upScrollPageNumber();
     } else if (Conditions.isProfileIsBottomScrollActive(viewName)) {
-      downScrollPageNumber();
+      await downScrollPageNumber();
     } else if (Conditions.isUserScrollActive(viewName)) {
       emit(state.copyWith(
           mySkillModel:
@@ -171,38 +171,51 @@ class MainPageCubit extends Cubit<MainPageState> {
   }
 
   // 프로필 뷰 활성화
-  void profileViewActive() async {
+  Future<void> profileViewActive() async {
+    if (state.scrollModel.isScrollWaiting == true) {
+      return;
+    }
     emit(state.copyWith(
       scrollModel: state.scrollModel.copyWith(
           profileViewState: ProfileViewState.active, isScrollWaiting: true),
-      profileModel: state.profileModel.copyWith(scrollCount: 1, finalCount: 1),
+      profileModel: state.profileModel.copyWith(
+        scrollCount: 1,
+        finalCount: 1,
+        previousCount: 0,
+      ),
     ));
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 3));
     emit(state.copyWith(
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
   }
 
   // 프로필 페이지 전환 (사용자가 아래로 내렸을 때)
-  void downScrollPageNumber() async {
-    //TODO: 페이지 전환 조건 추가
-    if (state.profileModel.scrollCount != 4) {
-      // 하위 페이지로 이동
+  Future<void> downScrollPageNumber() async {
+    // 스크롤 대기 조건
+    if (ProfileViewConditionUtils.isScrollWaiting(state)) {
+      return;
+    }
+
+    // 프로필 뷰 카운트가 4가 아닐 때
+    if (ProfileViewConditionUtils.isNotScrollCountFour(state)) {
       emit(state.copyWith(
-        profileModel: state.profileModel
-            .copyWith(scrollCount: state.profileModel.scrollCount + 1),
+        profileModel: state.profileModel.copyWith(
+            scrollCount: state.profileModel.scrollCount + 1,
+            previousCount: state.profileModel.scrollCount),
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
       ));
 
-      if (Conditions.isCountingWithThreeOrFour(state)) {
-        // 순간 넘치는 위젯 렌더링을 줄이기 위해 딜레이 추가
+      // 숨겨져 있는 위젯 활성화
+      if (ProfileViewConditionUtils.isCountingWithThreeOrFour(state)) {
         await Future.delayed(const Duration(milliseconds: 1500));
-        // 크... 진짜 아이디어 좋다 내 포폴이니 이렇게 주석도 마음대로 하고
         emit(state.copyWith(
             mySkillModel: state.mySkillModel
                 .copyWith(status: MySkillViewStatus.inactive)));
       }
 
-      if (Conditions.isProfileCountGreaterThanFinalCount(state)) {
+      // 프로필 뷰 최대치 증가
+      if (ProfileViewConditionUtils.isProfileCountGreaterThanFinalCount(
+          state)) {
         emit(state.copyWith(
             profileModel: state.profileModel
                 .copyWith(finalCount: state.profileModel.scrollCount)));
@@ -224,25 +237,33 @@ class MainPageCubit extends Cubit<MainPageState> {
   }
 
   // 프로필 페이지 전환 (사용자가 위로 올렸을 때)
-  void upScrollPageNumber() async {
+  Future<void> upScrollPageNumber() async {
+    if (ProfileViewConditionUtils.isScrollWaiting(state)) {
+      return;
+    }
     // 상위 페이지로 이동
     if (state.profileModel.scrollCount != 0) {
       emit(state.copyWith(
-        profileModel: state.profileModel
-            .copyWith(scrollCount: state.profileModel.scrollCount - 1),
+        profileModel: state.profileModel.copyWith(
+          scrollCount: state.profileModel.scrollCount - 1,
+          previousCount: state.profileModel.scrollCount,
+        ),
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
       ));
-      if (state.profileModel.scrollCount == 2) {
-        // 스킬 뷰 비활성화
+
+      if (ProfileViewConditionUtils.isProfileCountTwo(state)) {
         emit(state.copyWith(
             mySkillModel:
                 state.mySkillModel.copyWith(status: MySkillViewStatus.init)));
       }
-      if (state.profileModel.scrollCount == 0) {
+      if (ProfileViewConditionUtils.isProfileCountZero(state)) {
         emit(state.copyWith(
           scrollModel: state.scrollModel
               .copyWith(profileViewState: ProfileViewState.inactive),
         ));
+        await Future.delayed(const Duration(milliseconds: 500));
+        emit(state.copyWith(
+            scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
       }
       await Future.delayed(const Duration(seconds: 2));
       emit(state.copyWith(
@@ -251,13 +272,17 @@ class MainPageCubit extends Cubit<MainPageState> {
   }
 
   void userClickWithProfileViewScreen_1() async {
-    emit(state.copyWith(
-      profileModel: state.profileModel.copyWith(isUserClick: true),
-    ));
-    await Future.delayed(const Duration(seconds: 2));
-    emit(state.copyWith(
-      profileModel: state.profileModel.copyWith(isUserClick: false),
-    ));
+    if (state.profileModel.isUserClick) {
+      return;
+    } else {
+      emit(state.copyWith(
+        profileModel: state.profileModel.copyWith(isUserClick: true),
+      ));
+      await Future.delayed(const Duration(seconds: 2));
+      emit(state.copyWith(
+        profileModel: state.profileModel.copyWith(isUserClick: false),
+      ));
+    }
   }
 
   //Description 버튼 클릭

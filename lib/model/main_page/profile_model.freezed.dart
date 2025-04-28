@@ -16,9 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProfileModel {
-  int get scrollCount => throw _privateConstructorUsedError;
-  int get finalCount =>
-      throw _privateConstructorUsedError; // 사용자가 1번 화면에서 터치를 했을 때, 관리하는 상태 변수
+  int get scrollCount => throw _privateConstructorUsedError; //현재 페이지 번호
+  int get finalCount => throw _privateConstructorUsedError; //사용자가 본 최종 페이지 번호
+  int get previousCount =>
+      throw _privateConstructorUsedError; //사용자가 본 이전 페이지 번호
+// 사용자가 1번 화면에서 터치를 했을 때, 관리하는 상태 변수
   bool get isUserClick => throw _privateConstructorUsedError;
 
   /// Create a copy of ProfileModel
@@ -34,7 +36,8 @@ abstract class $ProfileModelCopyWith<$Res> {
           ProfileModel value, $Res Function(ProfileModel) then) =
       _$ProfileModelCopyWithImpl<$Res, ProfileModel>;
   @useResult
-  $Res call({int scrollCount, int finalCount, bool isUserClick});
+  $Res call(
+      {int scrollCount, int finalCount, int previousCount, bool isUserClick});
 }
 
 /// @nodoc
@@ -54,6 +57,7 @@ class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
   $Res call({
     Object? scrollCount = null,
     Object? finalCount = null,
+    Object? previousCount = null,
     Object? isUserClick = null,
   }) {
     return _then(_value.copyWith(
@@ -64,6 +68,10 @@ class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
       finalCount: null == finalCount
           ? _value.finalCount
           : finalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      previousCount: null == previousCount
+          ? _value.previousCount
+          : previousCount // ignore: cast_nullable_to_non_nullable
               as int,
       isUserClick: null == isUserClick
           ? _value.isUserClick
@@ -81,7 +89,8 @@ abstract class _$$ProfileModelImplCopyWith<$Res>
       __$$ProfileModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int scrollCount, int finalCount, bool isUserClick});
+  $Res call(
+      {int scrollCount, int finalCount, int previousCount, bool isUserClick});
 }
 
 /// @nodoc
@@ -99,6 +108,7 @@ class __$$ProfileModelImplCopyWithImpl<$Res>
   $Res call({
     Object? scrollCount = null,
     Object? finalCount = null,
+    Object? previousCount = null,
     Object? isUserClick = null,
   }) {
     return _then(_$ProfileModelImpl(
@@ -109,6 +119,10 @@ class __$$ProfileModelImplCopyWithImpl<$Res>
       finalCount: null == finalCount
           ? _value.finalCount
           : finalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      previousCount: null == previousCount
+          ? _value.previousCount
+          : previousCount // ignore: cast_nullable_to_non_nullable
               as int,
       isUserClick: null == isUserClick
           ? _value.isUserClick
@@ -122,14 +136,23 @@ class __$$ProfileModelImplCopyWithImpl<$Res>
 
 class _$ProfileModelImpl implements _ProfileModel {
   const _$ProfileModelImpl(
-      {this.scrollCount = 0, this.finalCount = 0, this.isUserClick = false});
+      {this.scrollCount = 0,
+      this.finalCount = 0,
+      this.previousCount = 0,
+      this.isUserClick = false});
 
   @override
   @JsonKey()
   final int scrollCount;
+//현재 페이지 번호
   @override
   @JsonKey()
   final int finalCount;
+//사용자가 본 최종 페이지 번호
+  @override
+  @JsonKey()
+  final int previousCount;
+//사용자가 본 이전 페이지 번호
 // 사용자가 1번 화면에서 터치를 했을 때, 관리하는 상태 변수
   @override
   @JsonKey()
@@ -137,7 +160,7 @@ class _$ProfileModelImpl implements _ProfileModel {
 
   @override
   String toString() {
-    return 'ProfileModel(scrollCount: $scrollCount, finalCount: $finalCount, isUserClick: $isUserClick)';
+    return 'ProfileModel(scrollCount: $scrollCount, finalCount: $finalCount, previousCount: $previousCount, isUserClick: $isUserClick)';
   }
 
   @override
@@ -149,13 +172,15 @@ class _$ProfileModelImpl implements _ProfileModel {
                 other.scrollCount == scrollCount) &&
             (identical(other.finalCount, finalCount) ||
                 other.finalCount == finalCount) &&
+            (identical(other.previousCount, previousCount) ||
+                other.previousCount == previousCount) &&
             (identical(other.isUserClick, isUserClick) ||
                 other.isUserClick == isUserClick));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, scrollCount, finalCount, isUserClick);
+  int get hashCode => Object.hash(
+      runtimeType, scrollCount, finalCount, previousCount, isUserClick);
 
   /// Create a copy of ProfileModel
   /// with the given fields replaced by the non-null parameter values.
@@ -170,12 +195,16 @@ abstract class _ProfileModel implements ProfileModel {
   const factory _ProfileModel(
       {final int scrollCount,
       final int finalCount,
+      final int previousCount,
       final bool isUserClick}) = _$ProfileModelImpl;
 
   @override
-  int get scrollCount;
+  int get scrollCount; //현재 페이지 번호
   @override
-  int get finalCount; // 사용자가 1번 화면에서 터치를 했을 때, 관리하는 상태 변수
+  int get finalCount; //사용자가 본 최종 페이지 번호
+  @override
+  int get previousCount; //사용자가 본 이전 페이지 번호
+// 사용자가 1번 화면에서 터치를 했을 때, 관리하는 상태 변수
   @override
   bool get isUserClick;
 

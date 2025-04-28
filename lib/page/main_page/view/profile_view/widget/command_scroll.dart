@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/components/condition_utils/condition_utils.dart';
+import 'package:self_introduction_flutter/components/condition_utils/profile_view_condition_utils.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
@@ -53,7 +53,9 @@ class _CommandScrollState extends State<CommandScroll> {
 
   void _profileScrollListener() {
     final controller = widget.state.scrollModel.subScrollController;
-    if (controller == null) return;
+    if (controller == null) {
+      return;
+    }
 
     double currentPosition = controller.position.pixels;
     double maxScroll = controller.position.maxScrollExtent;
@@ -95,7 +97,8 @@ class _CommandScrollState extends State<CommandScroll> {
         width: MediaQuery.of(context).size.width,
         color: Colors.transparent,
         child: SingleChildScrollView(
-          physics: Conditions.isProfileViewScrollInactive(widget.state)
+          physics: ProfileViewConditionUtils.isProfileViewScrollInactive(
+                  widget.state)
               ? const AlwaysScrollableScrollPhysics()
               : const NeverScrollableScrollPhysics(),
           controller: widget.state.scrollModel.subScrollController,

@@ -15,7 +15,6 @@ class _Page0State extends State<Page0> {
   bool _isTextOpacity = true;
 
   void activeOpacity() async {
-    await Future.delayed(const Duration(milliseconds: 1300));
     setState(() {
       _isTextOpacity = true;
     });
@@ -36,7 +35,7 @@ class _Page0State extends State<Page0> {
     }
     return AnimatedOpacity(
       opacity: _isTextOpacity ? 1 : 0,
-      duration: const Duration(milliseconds: 420),
+      duration: const Duration(milliseconds: 1120),
       child: Row(
         children: [
           SizedBox(

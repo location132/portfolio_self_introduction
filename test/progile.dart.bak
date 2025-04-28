@@ -1,218 +1,306 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:self_introduction_flutter/components/widget/animation/star_animation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+import 'package:self_introduction_flutter/components/condition_utils/condition_utils.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/model/init_model.dart';
+import 'package:self_introduction_flutter/model/main_page/description_model.dart';
+import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
+import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
+import 'package:self_introduction_flutter/model/main_page/start_animation_model.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
+import 'package:universal_html/html.dart';
 
-class Page1 extends StatefulWidget {
-  final MainPageState state;
-  const Page1({super.key, required this.state});
+@injectable
+class MainPageCubit extends Cubit<MainPageState> {
+  MainPageCubit()
+      : super(MainPageState(
+          scrollModel: ScrollModel(
+              scrollController: ScrollController(),
+              subScrollController: ScrollController()),
+        ));
 
-  @override
-  State<Page1> createState() => _Page1State();
-}
+  @postConstruct
+  void init() async {
+    //TODO: 추 후, 주석 해제
+    // emit(state.copyWith(
+    //     initModel: state.initModel.copyWith(initState: InitState.active)));
 
-class _Page1State extends State<Page1> with TickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _fadeAnimation;
-  late Animation<Offset> _leftSlide;
-  late Animation<Offset> _rightSlide;
-  bool _isStarAnimationStart = false;
-  bool _isTipOpacity = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1200),
-    );
-
-    _fadeAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
-    );
-
-    _leftSlide = Tween<Offset>(
-      begin: const Offset(-0.2, 0),
-      end: const Offset(0, 0),
-    ).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
-    );
-
-    _rightSlide = Tween<Offset>(
-      begin: const Offset(0.2, 0),
-      end: const Offset(0, 0),
-    ).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
-    );
+    final controller = state.scrollModel.scrollController;
+    await changeProfileViewHeight(controller);
+    emit(state.copyWith(
+        initModel: state.initModel.copyWith(initState: InitState.inactive)));
   }
 
-  void startAnimation() async {
-    setState(() {
-      _isStarAnimationStart = true;
-    });
-    await Future.delayed(const Duration(milliseconds: 420));
-    _animationController.forward();
-    await Future.delayed(const Duration(milliseconds: 720));
-    setState(() {
-      _isTipOpacity = true;
-    });
+  //브라우저 확인
+  void isChromeBrowser(bool isChrome) {
+    emit(state.copyWith(
+        initModel: state.initModel.copyWith(isChromeBrowser: isChrome)));
   }
 
-  void stopAnimation() async {
-    setState(() {
-      _isStarAnimationStart = false;
-    });
-    await Future.delayed(const Duration(milliseconds: 420));
-    _animationController.reverse();
-    await Future.delayed(const Duration(milliseconds: 120));
-    setState(() {
-      _isTipOpacity = false;
-    });
-  }
+  Future<void> changeProfileViewHeight(controller) async {
+    //TODO: 추후 주석 해제
+    // emit(state.copyWith(
+    //     initModel: state.initModel
+    //         .copyWith(remainingTime: state.initModel.remainingTime)));
+    // await Future.delayed(Duration(seconds: state.initModel.remainingTime));
 
-  void changePageNumber() {}
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (widget.state.profileModel.scrollCount == 1) {
-      startAnimation();
-    } else if (widget.state.profileModel.scrollCount == 2) {
-      changePageNumber();
-    } else if (widget.state.profileModel.scrollCount == 3 ||
-        widget.state.profileModel.scrollCount == 0) {
-      stopAnimation();
+    void waitForAttachment() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (controller.hasClients) {
+          controller.addListener(() {
+            final maxHeight = controller.position.maxScrollExtent;
+            final limit = maxHeight - 87.sh;
+            if (controller.offset > limit) {
+              controller.jumpTo(limit);
+            }
+            if (limit != state.initModel.mainViewHeight) {
+              emit(state.copyWith(
+                  initModel: state.initModel.copyWith(mainViewHeight: limit)));
+            }
+          });
+        } else {
+          waitForAttachment();
+        }
+      });
     }
 
-    return Visibility(
-      visible: widget.state.profileModel.scrollCount < 3,
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: AnimatedOpacity(
-              opacity: _isStarAnimationStart ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 720),
-              child: const StarAnimation(),
-            ),
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: Padding(
-                  padding:
-                      EdgeInsets.only(left: 130.sw, right: 130.sw, top: 110),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SlideTransition(
-                        position: _leftSlide,
-                        child: FadeTransition(
-                          opacity: _fadeAnimation,
-                          child: const Text(
-                            '지금의 저를 만들어준\n 소중한 시간들을 소개합니다.',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      SlideTransition(
-                        position: _rightSlide,
-                        child: FadeTransition(
-                          opacity: _fadeAnimation,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _buildChapterBox('Chapter 1', '다양한 세미나 참여'),
-                              const SizedBox(height: 16),
-                              _buildChapterBox('Chapter 2', '경험이 가장 풍부했던 대학생활'),
-                              const SizedBox(height: 16),
-                              _buildChapterBox('Chapter 3', '진행중인 나의 이야기'),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Container(color: Colors.transparent),
-              ),
-            ],
-          ),
-          Positioned(
-            bottom: 0,
-            left: 40,
-            child: AnimatedOpacity(
-              opacity: _isTipOpacity ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 720),
-              child: const Text(
-                '회고: 빛나는 작은 별의 애니메이션을 100% 혼자 구현하지는 못하였지만, 문서화를 통해 이해할 수 있도록 노션에 세세하게 작성하였습니다.',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          )
-        ],
+    waitForAttachment();
+  }
+
+  void awaitDuration(TickerProvider vsync,
+      {String message = TextConstants.welcomeMessage1}) async {
+    //TODO: 추 후, 주석 해제
+    // await Future.delayed(Duration(seconds: state.initModel.remainingTime));
+
+    initializeAnimations(vsync, message: message);
+  }
+
+  // text 애니메이션 시작
+  Future<void> initializeAnimations(
+    TickerProvider vsync, {
+    String message = TextConstants.welcomeMessage1,
+  }) async {
+    final List<String> characters = [];
+
+    for (int i = 0; i < message.length; i++) {
+      characters.add(message[i]);
+    }
+    emit(
+        state.copyWith(startAnimation: StartAnimationModel(words: characters)));
+
+    List<AnimationController> newControllers = [];
+    List<Animation<double>> newAnimations = [];
+
+    for (int i = 0; i < state.startAnimation!.words.length; i++) {
+      final controller = AnimationController(
+        vsync: vsync,
+        duration: const Duration(milliseconds: 820),
+      );
+
+      final animation = CurvedAnimation(
+        parent: controller,
+        curve: Curves.easeIn,
+      );
+
+      newControllers.add(controller);
+      newAnimations.add(animation);
+
+      Future.delayed(Duration(milliseconds: i * 25), () {
+        controller.forward();
+      });
+    }
+    emit(state.copyWith(
+      startAnimation: state.startAnimation!.copyWith(
+        controllers: newControllers,
+        animations: newAnimations,
       ),
+    ));
+
+    if (message == TextConstants.welcomeMessage1) {
+      await endAnimations(vsync, TextConstants.welcomeMessage2,
+          const Duration(milliseconds: 4500));
+    } else {
+      await endAnimations(vsync, TextConstants.welcomeMessage1,
+          const Duration(milliseconds: 5500));
+    }
+  }
+
+  // text애니메이션 종료
+  Future<void> endAnimations(
+    TickerProvider vsync,
+    String message,
+    Duration duration,
+  ) async {
+    await Future.delayed(duration);
+    for (var controller in state.startAnimation!.controllers) {
+      controller.reverse();
+    }
+    await Future.delayed(const Duration(seconds: 1));
+
+    initializeAnimations(
+      vsync,
+      message: message,
     );
   }
 
-  Widget _buildChapterBox(String chapter, String title) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
+  void toggleFullScreen(BuildContext context) {
+    document.documentElement?.requestFullscreen();
+  }
+
+  //사용자 스크롤 감지
+  void viewListener(String viewName) async {
+    if (Conditions.isBannerScrollActive(viewName)) {
+      emit(state.copyWith(
+        scrollModel:
+            state.scrollModel.copyWith(bannerState: BannerState.activated),
+      ));
+    } else if (Conditions.isProfileBackgroundScrollActive(viewName)) {
+      // 프로필 뷰 활성화
+      profileViewActive();
+    } else if (Conditions.isProfileIsTopScrollActive(viewName)) {
+      upScrollPageNumber();
+    } else if (Conditions.isProfileIsBottomScrollActive(viewName)) {
+      downScrollPageNumber();
+    } else if (Conditions.isUserScrollActive(viewName)) {
+      emit(state.copyWith(
+          mySkillModel:
+              state.mySkillModel.copyWith(status: MySkillViewStatus.active)));
+    }
+  }
+
+  // 프로필 뷰 활성화
+  void profileViewActive() async {
+    if (state.scrollModel.isScrollWaiting == true) {
+      return;
+    }
+    emit(state.copyWith(
+      scrollModel: state.scrollModel.copyWith(
+          profileViewState: ProfileViewState.active, isScrollWaiting: true),
+      profileModel: state.profileModel.copyWith(
+        scrollCount: 1,
+        finalCount: 1,
+        previousCount: 0,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            chapter,
-            style: GoogleFonts.dancingScript(
-              fontSize: 18,
-              fontWeight: FontWeight.w400,
-              color: Colors.white,
-              letterSpacing: 1.2,
-            ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
-            ),
-          ),
-        ],
-      ),
-    );
+    ));
+    await Future.delayed(const Duration(milliseconds: 1500));
+    emit(state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
+  }
+
+  // 프로필 페이지 전환 (사용자가 아래로 내렸을 때)
+  void downScrollPageNumber() async {
+    if (state.scrollModel.isScrollWaiting == true) {
+      print('check ==> error');
+      return;
+    }
+    //TODO: 페이지 전환 조건 추가
+    if (state.profileModel.scrollCount != 4) {
+      // 하위 페이지로 이동
+      emit(state.copyWith(
+        profileModel: state.profileModel.copyWith(
+            scrollCount: state.profileModel.scrollCount + 1,
+            previousCount: state.profileModel.scrollCount),
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+      ));
+
+      if (Conditions.isCountingWithThreeOrFour(state)) {
+        // 순간 넘치는 위젯 렌더링을 줄이기 위해 딜레이 추가
+        await Future.delayed(const Duration(milliseconds: 1500));
+        // 크... 진짜 아이디어 좋다 내 포폴이니 이렇게 주석도 마음대로 하고
+        emit(state.copyWith(
+            mySkillModel: state.mySkillModel
+                .copyWith(status: MySkillViewStatus.inactive)));
+      }
+
+      if (Conditions.isProfileCountGreaterThanFinalCount(state)) {
+        emit(state.copyWith(
+            profileModel: state.profileModel
+                .copyWith(finalCount: state.profileModel.scrollCount)));
+      }
+
+      await Future.delayed(const Duration(seconds: 2));
+      emit(state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
+      ));
+    } else {
+      // 페이지 종료
+      emit(state.copyWith(
+        mySkillModel:
+            state.mySkillModel.copyWith(status: MySkillViewStatus.inactive),
+        scrollModel: state.scrollModel
+            .copyWith(profileViewState: ProfileViewState.inactive),
+      ));
+    }
+  }
+
+  // 프로필 페이지 전환 (사용자가 위로 올렸을 때)
+  void upScrollPageNumber() async {
+    // 상위 페이지로 이동
+    if (state.profileModel.scrollCount != 0) {
+      emit(state.copyWith(
+        profileModel: state.profileModel.copyWith(
+          scrollCount: state.profileModel.scrollCount - 1,
+          previousCount: state.profileModel.scrollCount,
+        ),
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+      ));
+
+      if (state.profileModel.scrollCount == 2) {
+        emit(state.copyWith(
+            mySkillModel:
+                state.mySkillModel.copyWith(status: MySkillViewStatus.init)));
+      }
+      if (state.profileModel.scrollCount == 0) {
+        emit(state.copyWith(
+          scrollModel: state.scrollModel
+              .copyWith(profileViewState: ProfileViewState.inactive),
+        ));
+        await Future.delayed(const Duration(milliseconds: 500));
+        emit(state.copyWith(
+            scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
+      }
+      await Future.delayed(const Duration(seconds: 2));
+      emit(state.copyWith(
+          scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
+    }
+  }
+
+  void userClickWithProfileViewScreen_1() async {
+    if (state.profileModel.isUserClick) {
+      return;
+    } else {
+      emit(state.copyWith(
+        profileModel: state.profileModel.copyWith(isUserClick: true),
+      ));
+      await Future.delayed(const Duration(seconds: 2));
+      emit(state.copyWith(
+        profileModel: state.profileModel.copyWith(isUserClick: false),
+      ));
+    }
+  }
+
+  //Description 버튼 클릭
+  void descriptionButton(String descriptionName, bool isActive) {
+    if (descriptionName == 'banner') {
+      emit(state.copyWith(
+          descriptionModel: state.descriptionModel.copyWith(
+              bannerDescriptionState: isActive
+                  ? BannerDescriptionState.active
+                  : BannerDescriptionState.inactive)));
+    } else if (descriptionName == 'profile') {
+      emit(state.copyWith(
+          descriptionModel: state.descriptionModel.copyWith(
+              profileDescriptionState: isActive
+                  ? ProfileDescriptionState.active
+                  : ProfileDescriptionState.inactive)));
+    } else if (descriptionName == 'skill') {
+      emit(state.copyWith(
+          descriptionModel: state.descriptionModel.copyWith(
+              skillDescriptionState: isActive
+                  ? SkillDescriptionState.active
+                  : SkillDescriptionState.inactive)));
+    }
   }
 }
