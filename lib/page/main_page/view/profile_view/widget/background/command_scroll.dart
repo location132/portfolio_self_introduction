@@ -1,16 +1,21 @@
+/*
+사용자의 스크롤을 감지해 다음 화면, 또는 이전화면으로 이동하는 기능을 담당하는 위젯
+ */
+
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/condition_utils/profile_view_condition_utils.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/page/main_page/main_cubit.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
 class CommandScroll extends StatefulWidget {
   final MainPageState state;
-  final Function(String) onScroll;
+  final MainPageCubit cubit;
   final Function() onTap;
   const CommandScroll(
       {super.key,
       required this.state,
-      required this.onScroll,
+      required this.cubit,
       required this.onTap});
 
   @override
@@ -20,9 +25,8 @@ class CommandScroll extends StatefulWidget {
 class _CommandScrollState extends State<CommandScroll> {
   double _lastScrollPosition = 0;
   ScrollController? controller;
-  int pageNumber = 1;
 
-  late double initScrollPosition;
+  double? initScrollPosition;
 
   @override
   void initState() {
@@ -40,20 +44,14 @@ class _CommandScrollState extends State<CommandScroll> {
 
       if (controller != null && controller!.hasClients) {
         initScrollPosition = controller!.position.maxScrollExtent / 2;
-        controller!.jumpTo(initScrollPosition);
+        controller!.jumpTo(initScrollPosition!);
       }
     });
   }
 
-  void checkPageNumber() {
-    pageNumber = widget.state.profileModel.scrollCount;
-    setState(() {});
-    initScroll();
-  }
-
-  void _profileScrollListener() {
+  void _profileScrollListener() async {
     final controller = widget.state.scrollModel.subScrollController;
-    if (controller == null) {
+    if (controller == null || widget.state.scrollModel.isScrollWaiting) {
       return;
     }
 
@@ -61,12 +59,16 @@ class _CommandScrollState extends State<CommandScroll> {
     double maxScroll = controller.position.maxScrollExtent;
 
     if (currentPosition > _lastScrollPosition) {
+      // 스크롤 아래로 내려갔을 때
       if (currentPosition.toStringAsFixed(2) == maxScroll.toStringAsFixed(2)) {
-        widget.onScroll('profile_isBottom');
+        await widget.cubit.profileIsBottomScroll();
+        initScroll();
       }
     } else if (currentPosition < _lastScrollPosition) {
+      // 스크롤 위로 올려갔을 때
       if (currentPosition.toStringAsFixed(2) == '0.00') {
-        widget.onScroll('profile_isTop');
+        await widget.cubit.profileIsTopScroll();
+        initScroll();
       }
     }
 
@@ -82,10 +84,6 @@ class _CommandScrollState extends State<CommandScroll> {
 
   @override
   Widget build(BuildContext context) {
-    if (pageNumber != widget.state.profileModel.scrollCount) {
-      checkPageNumber();
-    }
-
     return GestureDetector(
       onTap: () {
         if (widget.state.profileModel.scrollCount == 1) {

@@ -1,6 +1,11 @@
+/*
+프로필 배경화면을 담당하는 위젯
+직각삼각형 2개와 직사각형 1개로 이루어져 있음
+*/
+
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
-import 'package:self_introduction_flutter/page/main_page/widgets/deco.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/background/diagonal_triangle.dart';
 
 class ProfileBackground extends StatefulWidget {
   const ProfileBackground({super.key});

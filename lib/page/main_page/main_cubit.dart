@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:self_introduction_flutter/components/condition_utils/condition_utils.dart';
 import 'package:self_introduction_flutter/components/condition_utils/profile_view_condition_utils.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
@@ -150,26 +149,7 @@ class MainPageCubit extends Cubit<MainPageState> {
     document.documentElement?.requestFullscreen();
   }
 
-  //사용자 스크롤 감지
-  void viewListener(String viewName) async {
-    if (Conditions.isBannerScrollActive(viewName)) {
-      emit(state.copyWith(
-        scrollModel:
-            state.scrollModel.copyWith(bannerState: BannerState.activated),
-      ));
-    } else if (Conditions.isProfileBackgroundScrollActive(viewName)) {
-      await profileViewActive();
-    } else if (Conditions.isProfileIsTopScrollActive(viewName)) {
-      await upScrollPageNumber();
-    } else if (Conditions.isProfileIsBottomScrollActive(viewName)) {
-      await downScrollPageNumber();
-    } else if (Conditions.isUserScrollActive(viewName)) {
-      emit(state.copyWith(
-          mySkillModel:
-              state.mySkillModel.copyWith(status: MySkillViewStatus.active)));
-    }
-  }
-
+//******************************************************* */
   // 프로필 뷰 활성화
   Future<void> profileViewActive() async {
     if (state.scrollModel.isScrollWaiting == true) {
@@ -184,94 +164,69 @@ class MainPageCubit extends Cubit<MainPageState> {
         previousCount: 0,
       ),
     ));
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
     emit(state.copyWith(
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
   }
 
-  // 프로필 페이지 전환 (사용자가 아래로 내렸을 때)
-  Future<void> downScrollPageNumber() async {
-    // 스크롤 대기 조건
-    if (ProfileViewConditionUtils.isScrollWaiting(state)) {
-      return;
-    }
-
-    // 프로필 뷰 카운트가 4가 아닐 때
-    if (ProfileViewConditionUtils.isNotScrollCountFour(state)) {
+  //사용자 스크롤 감지
+  void viewListener(String viewName) async {
+    if (ProfileViewConditionUtils.isBannerScrollActive(viewName)) {
       emit(state.copyWith(
-        profileModel: state.profileModel.copyWith(
-            scrollCount: state.profileModel.scrollCount + 1,
-            previousCount: state.profileModel.scrollCount),
-        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+        scrollModel:
+            state.scrollModel.copyWith(bannerState: BannerState.activated),
       ));
-
-      // 숨겨져 있는 위젯 활성화
-      if (ProfileViewConditionUtils.isCountingWithThreeOrFour(state)) {
-        await Future.delayed(const Duration(milliseconds: 1500));
-        emit(state.copyWith(
-            mySkillModel: state.mySkillModel
-                .copyWith(status: MySkillViewStatus.inactive)));
-      }
-
-      // 프로필 뷰 최대치 증가
-      if (ProfileViewConditionUtils.isProfileCountGreaterThanFinalCount(
-          state)) {
-        emit(state.copyWith(
-            profileModel: state.profileModel
-                .copyWith(finalCount: state.profileModel.scrollCount)));
-      }
-
-      await Future.delayed(const Duration(seconds: 2));
+    } else if (ProfileViewConditionUtils.isUserScrollActive(viewName)) {
       emit(state.copyWith(
-        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
-      ));
-    } else {
-      // 페이지 종료
-      emit(state.copyWith(
-        mySkillModel:
-            state.mySkillModel.copyWith(status: MySkillViewStatus.inactive),
-        scrollModel: state.scrollModel
-            .copyWith(profileViewState: ProfileViewState.inactive),
-      ));
+          mySkillModel:
+              state.mySkillModel.copyWith(status: MySkillViewStatus.active)));
     }
   }
 
-  // 프로필 페이지 전환 (사용자가 위로 올렸을 때)
-  Future<void> upScrollPageNumber() async {
-    if (ProfileViewConditionUtils.isScrollWaiting(state)) {
+  Future<void> profileIsTopScroll() async {
+    if (state.scrollModel.isScrollWaiting == true) {
       return;
     }
-    // 상위 페이지로 이동
-    if (state.profileModel.scrollCount != 0) {
+    if (!ProfileViewConditionUtils.isProfileCountZero(state)) {
       emit(state.copyWith(
-        profileModel: state.profileModel.copyWith(
-          scrollCount: state.profileModel.scrollCount - 1,
-          previousCount: state.profileModel.scrollCount,
-        ),
-        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
-      ));
+          profileModel: state.profileModel.copyWith(
+              previousCount: state.profileModel.scrollCount,
+              scrollCount: state.profileModel.scrollCount - 1),
+          scrollModel: state.scrollModel.copyWith(isScrollWaiting: true)));
 
-      if (ProfileViewConditionUtils.isProfileCountTwo(state)) {
-        emit(state.copyWith(
-            mySkillModel:
-                state.mySkillModel.copyWith(status: MySkillViewStatus.init)));
-      }
+      //-------------- 프로필 뷰 카운트가 0이라면 ---------------
       if (ProfileViewConditionUtils.isProfileCountZero(state)) {
         emit(state.copyWith(
-          scrollModel: state.scrollModel
-              .copyWith(profileViewState: ProfileViewState.inactive),
-        ));
-        await Future.delayed(const Duration(milliseconds: 500));
-        emit(state.copyWith(
-            scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
+            profileModel:
+                state.profileModel.copyWith(scrollCount: 0, previousCount: 1),
+            scrollModel: state.scrollModel
+                .copyWith(profileViewState: ProfileViewState.inactive)));
       }
       await Future.delayed(const Duration(seconds: 2));
       emit(state.copyWith(
           scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
     }
+
+    return;
   }
 
-  void userClickWithProfileViewScreen_1() async {
+  Future<void> profileIsBottomScroll() async {
+    if (state.scrollModel.isScrollWaiting == true) {
+      return;
+    }
+    emit(state.copyWith(
+        profileModel: state.profileModel
+            .copyWith(scrollCount: state.profileModel.scrollCount + 1),
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true)));
+    await Future.delayed(const Duration(seconds: 2));
+    emit(state.copyWith(
+      scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
+    ));
+
+    return;
+  }
+
+  void userClickWithProfileViewScreen() async {
     if (state.profileModel.isUserClick) {
       return;
     } else {

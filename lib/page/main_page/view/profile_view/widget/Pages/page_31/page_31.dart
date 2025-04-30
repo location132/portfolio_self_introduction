@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_3/widgets/my_story.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_31/widgets/my_story.dart';
 
-class Page3 extends StatefulWidget {
+class Page31 extends StatefulWidget {
   final MainPageState state;
-  const Page3({super.key, required this.state});
+  const Page31({super.key, required this.state});
 
   @override
-  State<Page3> createState() => _Page3State();
+  State<Page31> createState() => _Page31State();
 }
 
-class _Page3State extends State<Page3> with SingleTickerProviderStateMixin {
+class _Page31State extends State<Page31> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;

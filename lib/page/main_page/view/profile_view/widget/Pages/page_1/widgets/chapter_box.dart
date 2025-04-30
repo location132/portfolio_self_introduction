@@ -4,11 +4,15 @@ import 'package:google_fonts/google_fonts.dart';
 class ChapterBox extends StatelessWidget {
   final String chapter;
   final String title;
+  final TextStyle? chapterTextStyle;
+  final TextStyle? titleTextStyle;
 
   const ChapterBox({
     super.key,
     required this.chapter,
     required this.title,
+    this.chapterTextStyle,
+    this.titleTextStyle,
   });
 
   @override
@@ -20,21 +24,23 @@ class ChapterBox extends StatelessWidget {
         children: [
           Text(
             chapter,
-            style: GoogleFonts.dancingScript(
-              fontSize: 18,
-              fontWeight: FontWeight.w400,
-              color: Colors.white,
-              letterSpacing: 1.2,
-            ),
+            style: chapterTextStyle ??
+                GoogleFonts.dancingScript(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white,
+                  letterSpacing: 1.2,
+                ),
           ),
           const SizedBox(height: 6),
           Text(
             title,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
-            ),
+            style: titleTextStyle ??
+                const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                ),
           ),
         ],
       ),

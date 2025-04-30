@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
 /*
 해당 클래스는 4시간동안 만들다 실패,
@@ -7,7 +8,8 @@ import 'package:flutter/material.dart';
 */
 
 class StarAnimation extends StatefulWidget {
-  const StarAnimation({super.key});
+  final MainPageState state;
+  const StarAnimation({super.key, required this.state});
 
   @override
   State<StarAnimation> createState() => _StarAnimationState();
@@ -18,6 +20,14 @@ class _StarAnimationState extends State<StarAnimation>
   late AnimationController _starsController;
   final List<StarData> _stars = [];
   final int _starCount = 80;
+
+  @override
+  void didUpdateWidget(StarAnimation oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.state.profileModel.scrollCount == 1) {
+      _starsController.repeat(reverse: true);
+    }
+  }
 
   @override
   void initState() {
@@ -109,7 +119,10 @@ class StarsPainter extends CustomPainter {
 
       paint.color = Colors.white.withOpacity(opacity);
 
-      canvas.drawCircle(Offset(x, y), star.size, paint);
+      if (opacity.isFinite && x.isFinite && y.isFinite && star.size > 0) {
+        paint.color = Colors.white.withOpacity(opacity.clamp(0.0, 1.0));
+        canvas.drawCircle(Offset(x, y), star.size, paint);
+      }
     }
   }
 

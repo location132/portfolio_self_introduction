@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/components/widget/animation/star_animation.dart';
+
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_1/widgets/chapter_card.dart';
 
 class Page1 extends StatefulWidget {
   final MainPageState state;
+
   const Page1({super.key, required this.state});
 
   @override
@@ -17,17 +18,17 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _leftSlide;
   late Animation<Offset> _rightSlide;
-  bool _isStarAnimationStart = false;
   bool _isTipOpacity = false;
   bool _isUserClick = false;
-  String _retrospect = ProfilePage1Constants.retrospect1;
+  bool _isStartAnimation = false;
+  bool _isChapterAnimation = false;
 
   @override
   void initState() {
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1200),
+      duration: const Duration(milliseconds: 900),
     );
 
     _fadeAnimation = Tween<double>(
@@ -53,11 +54,13 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
   }
 
   void startAnimation() async {
-    if (_isStarAnimationStart) {
+    if (_isStartAnimation) {
       return;
     }
+
     setState(() {
-      _isStarAnimationStart = true;
+      _isStartAnimation = true;
+      _isChapterAnimation = true;
     });
     await Future.delayed(const Duration(milliseconds: 420));
     _animationController.forward();
@@ -68,17 +71,21 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
   }
 
   void stopAnimation() async {
-    _animationController.reverse();
+    if (!_isStartAnimation) {
+      return;
+    }
+
     setState(() {
-      _isStarAnimationStart = false;
+      _isStartAnimation = false;
       _isTipOpacity = false;
+      _isChapterAnimation = false;
     });
+    _animationController.reverse();
   }
 
   @override
   void dispose() {
     _animationController.dispose();
-
     super.dispose();
   }
 
@@ -86,27 +93,14 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
   void didUpdateWidget(covariant Page1 oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (widget.state.profileModel.scrollCount == 1 &&
-        widget.state.profileModel.previousCount == 0) {
-      // 0 => 1번 흐름
+    if (widget.state.profileModel.scrollCount == 1 && !_isStartAnimation) {
       startAnimation();
-    } else if (widget.state.profileModel.scrollCount == 2 &&
-        widget.state.profileModel.previousCount == 1) {
-      // 1 => 2번 흐름
-      setState(() {
-        _isTipOpacity = false;
-      });
-    } else if (widget.state.profileModel.scrollCount == 1 &&
-        widget.state.profileModel.previousCount == 2) {
-      // 2 => 1번 흐름
-
-      setState(() {
-        _retrospect = ProfilePage1Constants.retrospect2;
-        _isTipOpacity = true;
-      });
     } else if (widget.state.profileModel.scrollCount == 0 &&
-        widget.state.profileModel.previousCount == 1) {
-      // 1 => 0번 흐름
+        widget.state.profileModel.previousCount == 1 &&
+        _isStartAnimation) {
+      stopAnimation();
+    } else if (widget.state.profileModel.scrollCount == 2 &&
+        _isStartAnimation) {
       stopAnimation();
     }
 
@@ -123,45 +117,20 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      visible: widget.state.profileModel.scrollCount < 3,
+    return AnimatedOpacity(
+      opacity: widget.state.profileModel.scrollCount == 1 ? 1.0 : 0.0,
+      duration: const Duration(milliseconds: 720),
       child: Stack(
         children: [
-          // 별 애니메이션
-          Positioned.fill(
-            child: AnimatedOpacity(
-              opacity: _isStarAnimationStart ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 420),
-              child: const StarAnimation(),
-            ),
-          ),
           // 회고 텍스트
           Positioned(
             bottom: 0,
             left: 40,
             child: AnimatedOpacity(
               opacity: _isTipOpacity ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 420),
-              child: Text(
-                _retrospect,
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 40,
-            child: AnimatedOpacity(
-              opacity:
-                  widget.state.profileModel.scrollCount == 0 && !_isTipOpacity
-                      ? 1.0
-                      : 0.0,
-              duration: const Duration(milliseconds: 1120),
+              duration: const Duration(milliseconds: 720),
               child: const Text(
-                ProfilePage1Constants.retrospect0,
+                ProfilePage1Constants.retrospect1,
                 style: TextStyle(
                   fontSize: 12,
                   color: Colors.white,
@@ -172,8 +141,8 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
           // 중앙 챕터
           Positioned.fill(
             child: AnimatedOpacity(
-              opacity: widget.state.profileModel.scrollCount == 1 ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 420),
+              opacity: _isChapterAnimation ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 720),
               child: ChapterCard(
                 leftSlide: _leftSlide,
                 rightSlide: _rightSlide,

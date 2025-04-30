@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/components/condition_utils/condition_utils.dart';
+import 'package:self_introduction_flutter/components/condition_utils/profile_view_condition_utils.dart';
 import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/core_service/util/slow_scroll_physics.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/page/main_page/main_cubit.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/profile_view.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/profile_page.dart';
 import 'package:self_introduction_flutter/page/main_page/view/banner_view/banner_view.dart';
 import 'package:self_introduction_flutter/page/main_page/view/intro_view/introShowcase.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/command_scroll.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/profile_background.dart';
 import 'package:self_introduction_flutter/page/main_page/view/skill_view/skill_view.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -94,53 +91,16 @@ class _MainViewState extends State<_MainView> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Stack(
-                              children: [
-                                // 프로필 배경화면
-                                VisibilityDetector(
-                                  key: const Key('profile-background'),
-                                  onVisibilityChanged: (VisibilityInfo info) {
-                                    if (Conditions.isProfileViewScrollActive(
-                                        state)) {
-                                      context
-                                          .read<MainPageCubit>()
-                                          .viewListener('profile_background');
-                                    }
-                                  },
-                                  child: const ProfileBackground(),
-                                ),
-
-                                // 프로필 뷰
-                                Positioned(
-                                  top: 170.sh,
-                                  child: ProfileView(
-                                    state: state,
-                                    onScroll: (String scrollState) {
-                                      context
-                                          .read<MainPageCubit>()
-                                          .viewListener(scrollState);
-                                    },
-                                  ),
-                                ),
-                                CommandScroll(
-                                  state: state,
-                                  onScroll: (String scrollState) {
-                                    context
-                                        .read<MainPageCubit>()
-                                        .viewListener(scrollState);
-                                  },
-                                  onTap: () {
-                                    context
-                                        .read<MainPageCubit>()
-                                        .userClickWithProfileViewScreen_1();
-                                  },
-                                ),
-                              ],
+                            ProfilePage(
+                              state: state,
+                              cubit: context.read<MainPageCubit>(),
                             ),
 
                             // 배너 뷰
                             Visibility(
-                              visible: Conditions.isSkillViewActive(state),
+                              visible:
+                                  ProfileViewConditionUtils.isSkillViewActive(
+                                      state),
                               child: VisibilityDetector(
                                 key: const Key('banner-view'),
                                 onVisibilityChanged: (VisibilityInfo info) {
@@ -165,7 +125,9 @@ class _MainViewState extends State<_MainView> {
 
                             // 스킬 뷰
                             Visibility(
-                              visible: Conditions.isSkillViewActive(state),
+                              visible:
+                                  ProfileViewConditionUtils.isSkillViewActive(
+                                      state),
                               child: VisibilityDetector(
                                 key: const Key('skill-view'),
                                 onVisibilityChanged: (VisibilityInfo info) {

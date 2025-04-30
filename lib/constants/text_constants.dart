@@ -31,9 +31,9 @@ class ProfileCardTextConstants {
 
 class ProfilePage1Constants {
   static const String retrospect0 =
-      '지금 보여지는 Who Am I\n\n   - 이 코드를 실제로 보면 세세한 디테일 뿐 아니라 정교하게 이루어진 MVVM 패턴을 확인할 수 있습니다.\n      - 이 챕터에만 사용된 4개의 모델, 6개의 뷰, 그리고 @postConstruct어노테이션 등...';
+      '지금 보여지는 Who Am I\n\n   - 이 페이지의 코드는 세세한 디테일 뿐 아니라 정교하게 이루어진 MVVM 패턴을 확인할 수 있습니다.\n         4개의 모델, 6개의 뷰, 그리고 @postConstruct어노테이션 등, 저를 가장 잘 표현하는 코드입니다.';
   static const String retrospect1 =
-      'Q: 재미있는 사실 알고 계셨나요?\n\n   - A : 현재 보고 계신 화면에서 위아래 공간을 정확하게 잘라내기 위해,\n           DI주입 후 실행되는 @postConstruct 어노테이션을 사용하여 서비스파일에서 작업을 진행했습니다.';
+      'Q: 재미있는 사실 알고 계셨나요?\n\n   - A : 현재 보고 계신 화면에서 위아래 공간을 정확하게 잘라내기 위해,\n           DI주입 후 실행되는 @postConstruct 어노테이션을 사용하여 서비스파일에서 작업을 했습니다.';
   static const String retrospect2 =
       '사용자의 눈길이 가지않는 이곳 check\n\n   -point: 저의 장점은 아주 작은 미세한 부분이라도 관심을 가지며, 부족함을 채우기 위해 노력하는 것입니다.';
   static const String title = '지금의 저를 만들어준\n 소중한 시간들을 소개합니다.';
