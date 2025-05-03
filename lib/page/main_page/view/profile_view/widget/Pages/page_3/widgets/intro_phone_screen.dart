@@ -122,10 +122,10 @@ class _IntroPhoneScreenState extends State<IntroPhoneScreen>
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
                               colors: [
-                                Colors.black
-                                    .withOpacity(_backdropOpacity.value * 0.4),
-                                Colors.black
-                                    .withOpacity(_backdropOpacity.value * 0.7),
+                                Color.fromRGBO(
+                                    0, 0, 0, _backdropOpacity.value * 0.4),
+                                Color.fromRGBO(
+                                    0, 0, 0, _backdropOpacity.value * 0.7),
                               ],
                             ),
                           ),
@@ -186,45 +186,29 @@ class _IntroPhoneScreenState extends State<IntroPhoneScreen>
                                 position: _buttonSlide,
                                 child: Column(
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       width: 220,
-                                      decoration: BoxDecoration(
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color:
-                                                Colors.black.withOpacity(0.2),
-                                            blurRadius: 15,
-                                            offset: const Offset(0, 5),
-                                          ),
-                                        ],
-                                      ),
                                       child: ElevatedButton(
                                         onPressed: () {},
                                         style: ElevatedButton.styleFrom(
-                                          backgroundColor: const Color(
-                                              0xFFFFF3E0), // peach cream
-                                          foregroundColor: const Color(
-                                              0xFF6D4C41), // gentle brown
+                                          backgroundColor:
+                                              const Color(0xFFFDF6EC),
+                                          foregroundColor:
+                                              const Color(0xFF5D4037),
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 16),
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
-                                                BorderRadius.circular(12),
-                                            side: const BorderSide(
-                                              color: Color(
-                                                  0xFFBCAAA4), // muted brown
-                                              width: 1.2,
-                                            ),
+                                                BorderRadius.circular(16),
                                           ),
-                                          elevation: 0,
+                                          elevation: 2,
                                         ),
                                         child: const Text(
                                           '이어서 보기',
                                           style: TextStyle(
                                             fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(
-                                                0xFF6D4C41), // gentle brown
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xFF5D4037),
                                           ),
                                         ),
                                       ),

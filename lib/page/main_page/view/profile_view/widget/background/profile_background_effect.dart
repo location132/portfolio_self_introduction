@@ -53,11 +53,11 @@ class _ProfileBackgroundEffectState extends State<ProfileBackgroundEffect> {
         ),
         Positioned.fill(
           child: Visibility(
-            visible: VisibleorOpacityCondition.isVisibleWith2And3(
+            visible: VisibleorOpacityCondition.isVisibleWith2And4(
                 widget.state.profileModel.scrollCount),
             replacement: const SizedBox.shrink(),
             child: AnimatedOpacity(
-                opacity: VisibleorOpacityCondition.isOpacityWith3(
+                opacity: VisibleorOpacityCondition.isOpacityWith3And4(
                     widget.state.profileModel.scrollCount),
                 duration: const Duration(milliseconds: 720),
                 child: BackgroundImage(

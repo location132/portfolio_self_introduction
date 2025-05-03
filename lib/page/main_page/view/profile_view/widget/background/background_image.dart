@@ -36,8 +36,10 @@ class BackgroundImage extends StatelessWidget {
                 duration: const Duration(milliseconds: 1400),
                 curve: Curves.easeOutQuad,
                 child: AnimatedOpacity(
-                  opacity:
-                      state.profileModel.scrollCount == scrollCount ? 0.2 : 0.0,
+                  opacity: state.profileModel.scrollCount == scrollCount ||
+                          state.profileModel.scrollCount == scrollCount + 1
+                      ? 0.2
+                      : 0.0,
                   duration: const Duration(milliseconds: 500),
                   child: Image.asset(
                     imagePath,

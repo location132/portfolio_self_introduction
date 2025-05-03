@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_2/page_2.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_31/page_31.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_3/page_3.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_4/page_4.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/background/profile_background_effect.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_1/page_1.dart';
@@ -82,8 +83,9 @@ class _ProfileViewState extends State<ProfileView> {
           ProfileTitle(state: widget.state),
           Page0(state: widget.state),
           Page1(state: widget.state),
-          Page2(state: widget.state),
-          // Page31(state: widget.state),
+          // Page2(state: widget.state),
+          // Page3(state: widget.state),
+          // Page4(state: widget.state),
         ],
       ),
     );

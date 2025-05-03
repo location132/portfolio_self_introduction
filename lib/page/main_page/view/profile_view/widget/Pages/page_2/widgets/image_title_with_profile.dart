@@ -3,15 +3,27 @@ import 'package:self_introduction_flutter/components/condition_utils/visible_con
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
-class ImageTitleWith4 extends StatefulWidget {
+class ImageTitleWithProfile extends StatefulWidget {
   final MainPageState state;
-  const ImageTitleWith4({super.key, required this.state});
+  final int scrollCount;
+  final String imagePath;
+  final String imageTitle;
+  final String title;
+  final String description;
+  const ImageTitleWithProfile(
+      {super.key,
+      required this.state,
+      required this.scrollCount,
+      required this.imagePath,
+      required this.imageTitle,
+      required this.title,
+      required this.description});
 
   @override
-  State<ImageTitleWith4> createState() => _ImageTitleWith4State();
+  State<ImageTitleWithProfile> createState() => _ImageTitleWithProfileState();
 }
 
-class _ImageTitleWith4State extends State<ImageTitleWith4>
+class _ImageTitleWithProfileState extends State<ImageTitleWithProfile>
     with SingleTickerProviderStateMixin {
   late AnimationController _textAnimationController;
 
@@ -53,9 +65,9 @@ class _ImageTitleWith4State extends State<ImageTitleWith4>
   }
 
   @override
-  void didUpdateWidget(ImageTitleWith4 oldWidget) {
+  void didUpdateWidget(ImageTitleWithProfile oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.state.profileModel.scrollCount == 4) {
+    if (widget.state.profileModel.scrollCount == widget.scrollCount) {
       if (!_isAnimating) {
         _onImageOpacityChanged();
       }
@@ -68,6 +80,7 @@ class _ImageTitleWith4State extends State<ImageTitleWith4>
     setState(() {
       _isImageOpacirt = true;
     });
+
     await Future.delayed(const Duration(milliseconds: 300));
     await _textAnimationController.forward();
     setState(() {
@@ -87,8 +100,8 @@ class _ImageTitleWith4State extends State<ImageTitleWith4>
   Widget build(BuildContext context) {
     return Positioned.fill(
       child: AnimatedOpacity(
-        opacity: VisibleorOpacityCondition.isOpacityWith4(
-            widget.state.profileModel.scrollCount),
+        opacity: VisibleorOpacityCondition.isImageTitleOpacity(
+            widget.state.profileModel.scrollCount, widget.scrollCount),
         duration: const Duration(milliseconds: 720),
         child: Padding(
           padding: EdgeInsets.only(left: 130.sw, right: 130.sw, top: 110),
@@ -98,8 +111,11 @@ class _ImageTitleWith4State extends State<ImageTitleWith4>
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
+                  Container(
                     width: 620.sw,
+                    constraints: BoxConstraints(
+                      maxWidth: 720.sh,
+                    ),
                     child: AnimatedOpacity(
                       opacity: _isImageOpacirt ? 1.0 : 0.0,
                       duration: const Duration(milliseconds: 720),
@@ -112,15 +128,15 @@ class _ImageTitleWith4State extends State<ImageTitleWith4>
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/Images/SeminarImage_flutter.jpg',
+                              widget.imagePath,
                               fit: BoxFit.cover,
                             ),
                           ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 10, right: 10),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10, right: 10),
                             child: Text(
-                              '선배 개발자의 조언 with 커뮤니케이션',
-                              style: TextStyle(
+                              widget.imageTitle,
+                              style: const TextStyle(
                                 fontSize: 14,
                                 color: Colors.white,
                               ),
@@ -135,32 +151,32 @@ class _ImageTitleWith4State extends State<ImageTitleWith4>
                     opacity: _fadeTextAnimation,
                     child: SlideTransition(
                       position: _slideTextAnimation,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            '의견의 다름은 가능성의 씨앗입니다.',
-                            style: TextStyle(
-                              fontSize: 32,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              widget.title,
+                              style: const TextStyle(
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 26),
-                          Text(
-                            '예전엔 말하는 사람이 되길 원했습니다.\n'
-                            '지금은 듣는 사람이 되길 노력하고 있습니다.\n\n'
-                            '다른 의견 속에서 더 나은 성장 그리고 목표를 발견하게 되었기 때문입니다.\n\n'
-                            '저는 믿고있습니다.\n의견의 다름은 가능성 그리고 성장할 수 있는 씨앗의 첫 단계라는 것을.',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.white.withOpacity(0.85),
-                              height: 1.5,
+                            const SizedBox(height: 16),
+                            Text(
+                              widget.description,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w300,
+                                color: Colors.white.withOpacity(0.85),
+                                height: 1.5,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   )

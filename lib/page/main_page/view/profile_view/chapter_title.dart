@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_1/widgets/chapter_box.dart';
 
 class ChapterTitle extends StatelessWidget {
-  const ChapterTitle({super.key});
+  final String chapter;
+  final String title;
+  final MainPageState state;
+  const ChapterTitle(
+      {super.key,
+      required this.state,
+      required this.chapter,
+      required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +20,9 @@ class ChapterTitle extends StatelessWidget {
       top: 40,
       left: 130.sw,
       child: ChapterBox(
-        chapter: ProfilePage1Constants.chapter1,
-        title: '  ${ProfilePage1Constants.chapter1Title}',
+        state: state,
+        chapter: chapter,
+        title: title,
         chapterTextStyle: GoogleFonts.dancingScript(
           fontSize: 32,
           fontWeight: FontWeight.w400,

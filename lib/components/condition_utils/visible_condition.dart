@@ -2,8 +2,8 @@
 
 class VisibleorOpacityCondition {
   // -- 조건 : 페이지 2 또는 페이지 3 일때 visible == true
-  static bool isVisibleWith2And3(int scrollCount) {
-    return scrollCount == 2 || scrollCount == 3;
+  static bool isVisibleWith2And4(int scrollCount) {
+    return scrollCount == 2 || scrollCount == 3 || scrollCount == 4;
   }
 
   // -- 조건 : 페이지 3 또는 페이지 4 일때 visible == true
@@ -31,9 +31,9 @@ class VisibleorOpacityCondition {
     return scrollCount == 1 ? 1.0 : 0.0;
   }
 
-  // -- 조건 : 페이지 2 일때 opacity == 1.0
-  static double isOpacityWith2(int scrollCount) {
-    return scrollCount == 2 ? 1.0 : 0.0;
+  // -- 조건 : 스크롤카운트가 맞을때 opacity == 1.0
+  static double isImageTitleOpacity(int scrollCount, int scrollCount2) {
+    return scrollCount == scrollCount2 ? 1.0 : 0.0;
   }
 
   // -- 조건 : 페이지 0 또는 페이지 1 일때 opacity == 1.0
@@ -42,12 +42,24 @@ class VisibleorOpacityCondition {
   }
 
   // -- 조건 : 페이지 3 일때 opacity == 1.0
-  static double isOpacityWith3(int scrollCount) {
-    return scrollCount == 3 ? 1.0 : 0.0;
+  static double isOpacityWith3And4(int scrollCount) {
+    return scrollCount == 3 || scrollCount == 4 ? 1.0 : 0.0;
   }
 
   // -- 조건 : 페이지 4 일때 opacity == 1.0
   static double isOpacityWith4(int scrollCount) {
     return scrollCount == 4 ? 1.0 : 0.0;
+  }
+
+  // -- 조건 : 페이지 4 일때 opacity == 1.0
+  static double isOpacityWith5(int scrollCount) {
+    return scrollCount == 5 ? 1.0 : 0.0;
+  }
+
+  //TODO: 삭제 예정
+
+  // -- 조건 : 페이지 1 일때 opacity == 1.0
+  static double isOpacityWith1_2(int scrollCount) {
+    return scrollCount == 1 || scrollCount == 2 ? 1.0 : 0.0;
   }
 }

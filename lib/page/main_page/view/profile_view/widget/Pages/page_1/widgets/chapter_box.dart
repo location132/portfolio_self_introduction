@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
-class ChapterBox extends StatelessWidget {
+class ChapterBox extends StatefulWidget {
   final String chapter;
   final String title;
   final TextStyle? chapterTextStyle;
   final TextStyle? titleTextStyle;
+  final MainPageState? state;
 
   const ChapterBox({
     super.key,
@@ -13,7 +15,53 @@ class ChapterBox extends StatelessWidget {
     required this.title,
     this.chapterTextStyle,
     this.titleTextStyle,
+    this.state,
   });
+
+  @override
+  State<ChapterBox> createState() => _ChapterBoxState();
+}
+
+class _ChapterBoxState extends State<ChapterBox> {
+  String titleDescription = '';
+  bool isOpacity = false;
+  bool isActive = false;
+  @override
+  void didUpdateWidget(covariant ChapterBox oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.state != null) {
+      if (widget.state!.profileModel.scrollCount == 2) {
+        setState(() {
+          titleDescription = '';
+          isOpacity = false;
+          isActive = true;
+        });
+      } else if (widget.state!.profileModel.scrollCount == 3 && isActive) {
+        setState(() {
+          titleDescription = '함께하는 법을 배웠습니다.';
+          isOpacity = true;
+        });
+      } else if (widget.state!.profileModel.scrollCount == 4) {
+        setState(() {
+          titleDescription = '중심이길 원해 참여하고있습니다.';
+          isOpacity = true;
+        });
+      } else {
+        setState(() {
+          titleDescription = '';
+          isOpacity = false;
+        });
+      }
+    }
+  }
+
+  void awaitFuture() async {
+    setState(() {
+      isOpacity = false;
+      isActive = false;
+    });
+    await Future.delayed(const Duration(milliseconds: 420));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +71,8 @@ class ChapterBox extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            chapter,
-            style: chapterTextStyle ??
+            widget.chapter,
+            style: widget.chapterTextStyle ??
                 GoogleFonts.dancingScript(
                   fontSize: 18,
                   fontWeight: FontWeight.w400,
@@ -33,14 +81,41 @@ class ChapterBox extends StatelessWidget {
                 ),
           ),
           const SizedBox(height: 6),
-          Text(
-            title,
-            style: titleTextStyle ??
-                const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white,
-                ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Stack(
+                children: [
+                  AnimatedOpacity(
+                    opacity: isOpacity ? 0 : 1,
+                    duration: const Duration(milliseconds: 420),
+                    child: Text(
+                      widget.title,
+                      style: widget.titleTextStyle ??
+                          const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                    ),
+                  ),
+                  AnimatedOpacity(
+                    opacity: isOpacity ? 1 : 0,
+                    duration: const Duration(milliseconds: 420),
+                    child: Text(
+                      titleDescription,
+                      style: widget.titleTextStyle ??
+                          const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
       ),
