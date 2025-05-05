@@ -1,47 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/constants/text_constants.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_2/page_2.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_3/page_3.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_4/page_4.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/background/profile_background_effect.dart';
-import 'package:self_introduction_flutter/page/main_page/main_state.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_1/page_1.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_0/page_0.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_page/chapter_view.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_intro_page/chapter_intro_view.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/background/profile_background_effect.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/init_page/init_view.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/profile_title.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/retrospect_text.dart';
 
-class ProfileView extends StatefulWidget {
-  final MainPageState state;
-  const ProfileView({super.key, required this.state});
-
-  @override
-  State<ProfileView> createState() => _ProfileViewState();
-}
-
-class _ProfileViewState extends State<ProfileView> {
-  int _scrollCount = 0;
-  bool _textAnimationOpacity = true;
-
-  @override
-  void didUpdateWidget(covariant ProfileView oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.state.profileModel.scrollCount != _scrollCount) {
-      _scrollCount = widget.state.profileModel.scrollCount;
-      if (_scrollCount == 0) {
-        textAnimationOpacity(true);
-      } else {
-        textAnimationOpacity(false);
-      }
-    }
-  }
-
-  void textAnimationOpacity(bool isActive) async {
-    if (isActive) {
-      await Future.delayed(const Duration(milliseconds: 720));
-    }
-    setState(() {
-      _textAnimationOpacity = isActive;
-    });
-  }
+class ProfileView extends StatelessWidget {
+  final int scrollCount;
+  final int previousCount;
+  final bool isUserClick;
+  const ProfileView(
+      {super.key,
+      required this.scrollCount,
+      required this.previousCount,
+      required this.isUserClick});
 
   @override
   Widget build(BuildContext context) {
@@ -49,43 +22,47 @@ class _ProfileViewState extends State<ProfileView> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.8,
       child: Stack(
-        alignment: Alignment.center,
         children: [
-          ProfileBackgroundEffect(state: widget.state),
-
-          Positioned(
-            bottom: 0,
-            left: 40,
-            child: AnimatedOpacity(
-              opacity: _textAnimationOpacity ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 720),
-              child: const Text(
-                ProfilePage1Constants.retrospect0,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.white,
+          ProfileBackgroundEffect(scrollCount: scrollCount),
+          Row(
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    RetrospectTextView(scrollCount: scrollCount),
+                    ProfileTitleView(scrollCount: scrollCount),
+                    InitPageView(scrollCount: scrollCount),
+                    ChapterView(
+                      scrollCount: scrollCount,
+                      previousCount: previousCount,
+                      isUserClick: isUserClick,
+                    ),
+                    ChapterIntroView(scrollCount: scrollCount),
+                    // 세미나, 컨퍼런스 페이지
+                    // Page2(scrollCount: scrollCount),
+                    // Page3(scrollCount: scrollCount),
+                    // Page4(state: widget.state),
+                  ],
                 ),
               ),
-            ),
-          ),
-          //TODO: 삭제 (페이지 넘버)
-          Positioned(
-            bottom: 40,
-            right: 40,
-            child: Text(
-              widget.state.profileModel.scrollCount.toString(),
-              style: const TextStyle(
-                fontSize: 12,
-                color: Colors.white,
+              const SizedBox(width: 10),
+              Expanded(
+                child:
+                    //TODO: 삭제 (페이지 넘버)
+                    Center(
+                  child: Text(
+                    scrollCount.toString(),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
-          ProfileTitle(state: widget.state),
-          Page0(state: widget.state),
-          Page1(state: widget.state),
-          // Page2(state: widget.state),
-          // Page3(state: widget.state),
-          // Page4(state: widget.state),
         ],
       ),
     );

@@ -38,9 +38,9 @@ class ProfilePage1Constants {
       '사용자의 눈길이 가지않는 이곳 check\n\n   -point: 저의 장점은 아주 작은 미세한 부분이라도 관심을 가지며, 부족함을 채우기 위해 노력하는 것입니다.';
   static const String title = '지금의 저를 만들어준\n 소중한 시간들을 소개합니다.';
   static const String chapter1 = 'Chapter 1';
-  static const String chapter1Title = '다양한 세미나 참여';
+  static const String chapter1Title = '다양한 컨퍼런스와 세미나 참여';
   static const String chapter2 = 'Chapter 2';
-  static const String chapter2Title = '경험이 가장 풍부했던 대학생활';
+  static const String chapter2Title = '경험이 풍부했던 대학생활';
   static const String chapter3 = 'Chapter 3';
   static const String chapter3Title = '진행중인 나의 이야기';
   static const String scroll = '스크롤을 따라 다양한 이야기가 소개됩니다.';

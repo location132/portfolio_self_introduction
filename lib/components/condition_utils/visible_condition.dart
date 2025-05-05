@@ -1,6 +1,15 @@
 // 위젯을 숨기거나, 보이게 하는 조건을 처리하는 유틸 클래스
 
 class VisibleorOpacityCondition {
+  // 사용중
+  static double isOpacityWith0(int scrollCount) {
+    return scrollCount != 0 ? 1.0 : 0.0;
+  }
+
+  static double isOpacityWith3(int scrollCount) {
+    return scrollCount == 3 ? 1.0 : 0.0;
+  }
+
   // -- 조건 : 페이지 2 또는 페이지 3 일때 visible == true
   static bool isVisibleWith2And4(int scrollCount) {
     return scrollCount == 2 || scrollCount == 3 || scrollCount == 4;
@@ -42,8 +51,8 @@ class VisibleorOpacityCondition {
   }
 
   // -- 조건 : 페이지 3 일때 opacity == 1.0
-  static double isOpacityWith3And4(int scrollCount) {
-    return scrollCount == 3 || scrollCount == 4 ? 1.0 : 0.0;
+  static double isOpacityWith4And5(int scrollCount) {
+    return scrollCount == 4 || scrollCount == 5 ? 1.0 : 0.0;
   }
 
   // -- 조건 : 페이지 4 일때 opacity == 1.0

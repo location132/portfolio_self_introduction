@@ -1,15 +1,16 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
 /*
 해당 클래스는 4시간동안 만들다 실패,
 인공지능의 도움으로 만들어졌으나 노션에 자세하게 문서화해 최대한 이해할 수 있도록 작업 진행 하였음
 */
 
+// 사용 중
+
 class StarAnimation extends StatefulWidget {
-  final MainPageState state;
-  const StarAnimation({super.key, required this.state});
+  final int scrollCount;
+  const StarAnimation({super.key, required this.scrollCount});
 
   @override
   State<StarAnimation> createState() => _StarAnimationState();
@@ -24,7 +25,7 @@ class _StarAnimationState extends State<StarAnimation>
   @override
   void didUpdateWidget(StarAnimation oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.state.profileModel.scrollCount == 1) {
+    if (widget.scrollCount == 1) {
       _starsController.repeat(reverse: true);
     }
   }

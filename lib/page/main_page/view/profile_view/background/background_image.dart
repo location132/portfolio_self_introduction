@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
 class BackgroundImage extends StatelessWidget {
-  final MainPageState state;
+  final int stateScrollCount;
   final int scrollCount;
   final String imagePath;
   const BackgroundImage(
       {super.key,
-      required this.state,
+      required this.stateScrollCount,
       required this.scrollCount,
       required this.imagePath});
 
@@ -20,7 +19,7 @@ class BackgroundImage extends StatelessWidget {
           child: Stack(
             children: [
               AnimatedPositioned.fromRect(
-                rect: state.profileModel.scrollCount == scrollCount
+                rect: stateScrollCount == scrollCount
                     ? Rect.fromLTWH(
                         -50,
                         -50,
@@ -36,8 +35,8 @@ class BackgroundImage extends StatelessWidget {
                 duration: const Duration(milliseconds: 1400),
                 curve: Curves.easeOutQuad,
                 child: AnimatedOpacity(
-                  opacity: state.profileModel.scrollCount == scrollCount ||
-                          state.profileModel.scrollCount == scrollCount + 1
+                  opacity: stateScrollCount == scrollCount ||
+                          stateScrollCount == scrollCount + 1
                       ? 0.2
                       : 0.0,
                   duration: const Duration(milliseconds: 500),

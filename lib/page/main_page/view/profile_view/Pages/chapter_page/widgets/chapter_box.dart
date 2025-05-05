@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
 class ChapterBox extends StatefulWidget {
   final String chapter;
   final String title;
   final TextStyle? chapterTextStyle;
   final TextStyle? titleTextStyle;
-  final MainPageState? state;
+  final int? scrollCount;
 
   const ChapterBox({
     super.key,
@@ -15,7 +14,7 @@ class ChapterBox extends StatefulWidget {
     required this.title,
     this.chapterTextStyle,
     this.titleTextStyle,
-    this.state,
+    this.scrollCount,
   });
 
   @override
@@ -29,29 +28,27 @@ class _ChapterBoxState extends State<ChapterBox> {
   @override
   void didUpdateWidget(covariant ChapterBox oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.state != null) {
-      if (widget.state!.profileModel.scrollCount == 2) {
-        setState(() {
-          titleDescription = '';
-          isOpacity = false;
-          isActive = true;
-        });
-      } else if (widget.state!.profileModel.scrollCount == 3 && isActive) {
-        setState(() {
-          titleDescription = '함께하는 법을 배웠습니다.';
-          isOpacity = true;
-        });
-      } else if (widget.state!.profileModel.scrollCount == 4) {
-        setState(() {
-          titleDescription = '중심이길 원해 참여하고있습니다.';
-          isOpacity = true;
-        });
-      } else {
-        setState(() {
-          titleDescription = '';
-          isOpacity = false;
-        });
-      }
+    if (widget.scrollCount == 2) {
+      setState(() {
+        titleDescription = '';
+        isOpacity = false;
+        isActive = true;
+      });
+    } else if (widget.scrollCount == 3 && isActive) {
+      setState(() {
+        titleDescription = '함께하는 법을 배웠습니다.';
+        isOpacity = true;
+      });
+    } else if (widget.scrollCount == 4) {
+      setState(() {
+        titleDescription = '중심이길 원해 참여하고있습니다.';
+        isOpacity = true;
+      });
+    } else {
+      setState(() {
+        titleDescription = '';
+        isOpacity = false;
+      });
     }
   }
 

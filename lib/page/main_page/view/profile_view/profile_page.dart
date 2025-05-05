@@ -5,8 +5,8 @@ import 'package:self_introduction_flutter/core_service/util/device_Info_size.dar
 import 'package:self_introduction_flutter/page/main_page/main_cubit.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/profile_view.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/background/command_scroll.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/background/profile_background.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/background/command_scroll.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/background/profile_background.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -33,7 +33,9 @@ class ProfilePage extends StatelessWidget {
         Positioned(
           top: 170.sh,
           child: ProfileView(
-            state: state,
+            scrollCount: state.profileModel.scrollCount,
+            previousCount: state.profileModel.previousCount,
+            isUserClick: state.profileModel.isUserClick,
           ),
         ),
 

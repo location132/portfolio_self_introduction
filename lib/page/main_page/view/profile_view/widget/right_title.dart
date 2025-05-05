@@ -1,3 +1,7 @@
+/*
+아직 사용되지 않는 페이지 
+ */
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';

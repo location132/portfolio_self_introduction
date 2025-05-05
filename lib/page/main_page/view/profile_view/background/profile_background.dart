@@ -5,7 +5,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/background/diagonal_triangle.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/background/diagonal_triangle.dart';
 
 class ProfileBackground extends StatefulWidget {
   const ProfileBackground({super.key});

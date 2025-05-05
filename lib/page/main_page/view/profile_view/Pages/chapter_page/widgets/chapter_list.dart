@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_1/widgets/chapter_box.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_page/widgets/chapter_box.dart';
 
 class ChapterList extends StatefulWidget {
   const ChapterList({super.key});

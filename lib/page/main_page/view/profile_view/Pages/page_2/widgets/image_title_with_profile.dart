@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/condition_utils/visible_condition.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
-import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 
 class ImageTitleWithProfile extends StatefulWidget {
-  final MainPageState state;
+  final int stateScrollCount;
   final int scrollCount;
   final String imagePath;
   final String imageTitle;
@@ -12,7 +11,7 @@ class ImageTitleWithProfile extends StatefulWidget {
   final String description;
   const ImageTitleWithProfile(
       {super.key,
-      required this.state,
+      required this.stateScrollCount,
       required this.scrollCount,
       required this.imagePath,
       required this.imageTitle,
@@ -67,7 +66,7 @@ class _ImageTitleWithProfileState extends State<ImageTitleWithProfile>
   @override
   void didUpdateWidget(ImageTitleWithProfile oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.state.profileModel.scrollCount == widget.scrollCount) {
+    if (widget.stateScrollCount == widget.scrollCount) {
       if (!_isAnimating) {
         _onImageOpacityChanged();
       }
@@ -101,7 +100,7 @@ class _ImageTitleWithProfileState extends State<ImageTitleWithProfile>
     return Positioned.fill(
       child: AnimatedOpacity(
         opacity: VisibleorOpacityCondition.isImageTitleOpacity(
-            widget.state.profileModel.scrollCount, widget.scrollCount),
+            widget.stateScrollCount, widget.scrollCount),
         duration: const Duration(milliseconds: 720),
         child: Padding(
           padding: EdgeInsets.only(left: 130.sw, right: 130.sw, top: 110),

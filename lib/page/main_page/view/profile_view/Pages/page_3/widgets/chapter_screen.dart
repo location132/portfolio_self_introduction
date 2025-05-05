@@ -27,6 +27,19 @@ class _ChapterScreenState extends State<ChapterScreen>
   late final Animation<double> _buttonOpacity;
   late final Animation<Offset> _buttonSlide;
 
+  //-- 챕터마다 변경되는 변수
+  String chapterNumber = ProfilePage1Constants.chapter1;
+  String chapterTitle = ' ${ProfilePage1Constants.chapter1Title}';
+  String chapterContent =
+      '\n\n이번 챕터에서는\n각종 세미나와 컨퍼런스에 참여한 이유를\n확인하실 수 있습니다.\n\n세 가지로 구성된 작은 이야기는\n제가 꿈꾸던 목표와 느낀점을 공유할 수\n있도록 구셩한 챕터입니다.';
+  String chapterImage = 'assets/images/screen_2.jpeg';
+  /*
+  // 챕터 2 내용
+  'assets/images/phone_screen.webp',
+  ProfilePage1Constants.chapter2
+  가장 큰 성장이 이루어졌던 대학생활\n\n
+  대학 시절 제가 겪은 경험과 정체기 그리고 극복에 관한 이야기를 확인하실 수 있습니다.\n\n 세 가지로 구성된 작은 이야기는 앞으로의 성장 가능성을 확인하실 수 있도록 구성한 챕터입니다.
+ */
   @override
   void initState() {
     super.initState();
@@ -74,6 +87,15 @@ class _ChapterScreenState extends State<ChapterScreen>
   @override
   void didUpdateWidget(covariant ChapterScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
+
+    if (widget.scrollCount == 3) {
+      _backdropController.forward();
+      _contentController.forward();
+    } else if (widget.scrollCount == 4 || widget.scrollCount == 2) {
+      _backdropController.reverse();
+      _contentController.reverse();
+    }
+
     // TODO: 스크롤 번호 변경 예정
     if (widget.scrollCount == 6) {
       _backdropController.forward();
@@ -94,14 +116,18 @@ class _ChapterScreenState extends State<ChapterScreen>
   @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
-      opacity: widget.scrollCount == 6 ? 1.0 : 0.0,
+      opacity: widget.scrollCount == 6 ||
+              widget.scrollCount == 2 ||
+              widget.scrollCount == 3
+          ? 1.0
+          : 0.0,
       duration: const Duration(milliseconds: 720),
       child: Stack(
         children: [
           SizedBox(
             height: 750,
             child: Image.asset(
-              'assets/images/phone_screen.webp',
+              chapterImage,
               fit: BoxFit.cover,
             ),
           ),
@@ -135,7 +161,7 @@ class _ChapterScreenState extends State<ChapterScreen>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 70),
                     FadeTransition(
                       opacity: _textOpacity,
                       child: SlideTransition(
@@ -145,9 +171,9 @@ class _ChapterScreenState extends State<ChapterScreen>
                             Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                ProfilePage1Constants.chapter2,
+                                chapterNumber,
                                 style: GoogleFonts.dancingScript(
-                                  fontSize: 18,
+                                  fontSize: 22,
                                   fontWeight: FontWeight.w400,
                                   color: Colors.white,
                                   letterSpacing: 1.2,
@@ -155,26 +181,29 @@ class _ChapterScreenState extends State<ChapterScreen>
                               ),
                             ),
                             const SizedBox(height: 3),
-                            const Text(
-                              '가장 큰 성장이 이루어졌던 대학생활\n\n',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                chapterTitle,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                ),
                               ),
                             ),
-                            const SizedBox(height: 13),
-                            const Text(
-                              '대학 시절 제가 겪은 경험과 정체기 그리고 극복에 관한 이야기를 확인하실 수 있습니다.\n\n 세 가지로 구성된 작은 이야기는 앞으로의 성장 가능성을 확인하실 수 있도록 구성한 챕터입니다.',
-                              style: TextStyle(
+                            const SizedBox(height: 20),
+                            Text(
+                              chapterContent,
+                              style: const TextStyle(
                                 color: Colors.white70,
-                                fontSize: 14,
+                                fontSize: 16,
                               ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                    const SizedBox(height: 130),
+                    const Spacer(),
                     FadeTransition(
                       opacity: _buttonOpacity,
                       child: SlideTransition(

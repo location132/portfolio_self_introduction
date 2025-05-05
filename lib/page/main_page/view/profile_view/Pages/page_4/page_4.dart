@@ -4,7 +4,7 @@ import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/chapter_title.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Pages/page_4/widgets/my_story.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/page_4/widgets/my_story.dart';
 
 class Page4 extends StatefulWidget {
   final MainPageState state;
@@ -75,7 +75,7 @@ class _Page4State extends State<Page4> with SingleTickerProviderStateMixin {
             child: Stack(
               children: [
                 ChapterTitle(
-                  state: widget.state,
+                  scrollCount: widget.state.profileModel.scrollCount,
                   chapter: ProfilePage1Constants.chapter3,
                   title: '  ${ProfilePage1Constants.chapter3Title}',
                 ),
