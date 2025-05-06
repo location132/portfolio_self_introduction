@@ -187,6 +187,7 @@ class MainPageCubit extends Cubit<MainPageState> {
     if (state.scrollModel.isScrollWaiting == true) {
       return;
     }
+
     if (!ProfileViewConditionUtils.isProfileCountZero(state)) {
       emit(state.copyWith(
           profileModel: state.profileModel.copyWith(
@@ -210,14 +211,17 @@ class MainPageCubit extends Cubit<MainPageState> {
     return;
   }
 
+  // 사용자가 스크롤을 아래로 내리면
   Future<void> profileIsBottomScroll() async {
     if (state.scrollModel.isScrollWaiting == true) {
       return;
     }
+
     emit(state.copyWith(
         profileModel: state.profileModel
             .copyWith(scrollCount: state.profileModel.scrollCount + 1),
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: true)));
+
     await Future.delayed(const Duration(seconds: 2));
     emit(state.copyWith(
       scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
@@ -226,6 +230,7 @@ class MainPageCubit extends Cubit<MainPageState> {
     return;
   }
 
+  // 사용자가 화면을 클릭했을 시,
   void userClickWithProfileViewScreen() async {
     if (state.profileModel.isUserClick) {
       return;
@@ -237,6 +242,32 @@ class MainPageCubit extends Cubit<MainPageState> {
       emit(state.copyWith(
         profileModel: state.profileModel.copyWith(isUserClick: false),
       ));
+    }
+  }
+
+  // 챕터 건너뛰기, 이어보기
+  void continueChapterView(int chapterNumber, bool isContinue) async {
+    print('챕터 번호 $chapterNumber 이어보기 ${isContinue ? '이어보기' : '건너뛰기'}');
+    if (chapterNumber == 1) {
+      // 챕터 1 건너뛰기, 이어보기
+      await skipChapterView(isContinue);
+    } else if (chapterNumber == 2) {
+      // 챕터 2 건너뛰기, 이어보기
+    } else {
+      // 챕터 3 건너뛰기, 이어보기
+    }
+  }
+
+  //TODO: 작업 시작 5월 6일
+  // 챕터 건너뛰기
+  Future<void> skipChapterView(bool isContinue) async {
+    if (isContinue) {
+      // 이어보기
+    } else {
+      emit(state.copyWith(
+        profileModel: state.profileModel.copyWith(isChapterSkip: true),
+      ));
+      await profileIsBottomScroll();
     }
   }
 

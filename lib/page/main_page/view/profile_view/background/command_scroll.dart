@@ -7,6 +7,7 @@ import 'package:self_introduction_flutter/components/condition_utils/profile_vie
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/main_page/main_cubit.dart';
 import 'package:self_introduction_flutter/page/main_page/main_state.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/background/button_screen.dart';
 
 class CommandScroll extends StatefulWidget {
   final MainPageState state;
@@ -86,6 +87,7 @@ class _CommandScrollState extends State<CommandScroll> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        //TODO: 터치 로직 수정
         if (widget.state.profileModel.scrollCount == 1) {
           widget.onTap();
         }
@@ -100,9 +102,11 @@ class _CommandScrollState extends State<CommandScroll> {
               ? const AlwaysScrollableScrollPhysics()
               : const NeverScrollableScrollPhysics(),
           controller: widget.state.scrollModel.subScrollController,
-          child: SizedBox(
-            height: (MediaQuery.of(context).size.height + 10.sh),
-          ),
+          child: widget.state.profileModel.scrollCount != 3
+              ? SizedBox(
+                  height: (MediaQuery.of(context).size.height + 10.sh),
+                )
+              : const ProfileButtonScreen(),
         ),
       ),
     );

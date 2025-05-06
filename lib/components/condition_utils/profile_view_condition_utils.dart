@@ -9,6 +9,7 @@ class ProfileViewConditionUtils {
   static bool isProfileViewScrollInactive(MainPageState state) =>
       state.scrollModel.isScrollWaiting == false &&
       state.scrollModel.profileViewState == ProfileViewState.active &&
+      // state.profileModel.scrollCount != 3 &&
       state.profileModel.isUserClick == false;
 
   /* 프로필 뷰 카운트가 4가 아닐 때 */

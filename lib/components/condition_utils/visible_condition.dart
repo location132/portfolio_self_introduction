@@ -10,21 +10,6 @@ class VisibleorOpacityCondition {
     return scrollCount == 3 ? 1.0 : 0.0;
   }
 
-  // -- 조건 : 페이지 2 또는 페이지 3 일때 visible == true
-  static bool isVisibleWith2And4(int scrollCount) {
-    return scrollCount == 2 || scrollCount == 3 || scrollCount == 4;
-  }
-
-  // -- 조건 : 페이지 3 또는 페이지 4 일때 visible == true
-  static bool isVisibleWith3And4(int scrollCount) {
-    return scrollCount == 3 || scrollCount == 4;
-  }
-
-  // -- 조건 : 페이지 2 또는 페이지 3 일때 opacity == 1.0
-  static double isOpacityWith2And3(int scrollCount) {
-    return scrollCount == 2 || scrollCount == 3 || scrollCount == 4 ? 1.0 : 0.0;
-  }
-
   // -- 조건 : 페이지 0 또는 페이지 1 또는 페이지 2 일때 visible == true
   static bool isVisibleWith0between2(int scrollCount) {
     return scrollCount == 0 || scrollCount == 1 || scrollCount == 2;

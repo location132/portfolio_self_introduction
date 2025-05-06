@@ -29,11 +29,17 @@ class ProfilePage extends StatelessWidget {
           child: const ProfileBackground(),
         ),
 
+/*
+    onPressed: (int chapterNumber, bool isContinue) {
+              cubit.continueChapterView(chapterNumber, isContinue);
+            },
+ */
         // 프로필 뷰
         Positioned(
           top: 170.sh,
           child: ProfileView(
             scrollCount: state.profileModel.scrollCount,
+            isChapterSkip: state.profileModel.isChapterSkip,
             previousCount: state.profileModel.previousCount,
             isUserClick: state.profileModel.isUserClick,
           ),

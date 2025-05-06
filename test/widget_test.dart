@@ -1,231 +1,201 @@
-// import 'package:flutter/material.dart';
-// import 'package:self_introduction_flutter/constants/text_constants.dart';
-// import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
-// import 'package:self_introduction_flutter/page/main_page/main_state.dart';
-// import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/%08right_title.dart';
-// import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/my_story.dart';
-// import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/Info_with_mystory.dart';
-// import 'package:self_introduction_flutter/page/main_page/widgets/title_text.dart';
+import 'dart:ui';
 
-// class ProfileView extends StatefulWidget {
-//   final MainPageState state;
-//   final Function(String) onScroll;
-//   const ProfileView({super.key, required this.state, required this.onScroll});
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_intro_page/animation/chapter_screen_ani.dart';
 
-//   @override
-//   State<ProfileView> createState() => _ProfileViewState();
-// }
+class ChapterScreen extends StatefulWidget {
+  final int scrollCount;
 
-// class _ProfileViewState extends State<ProfileView> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       width: MediaQuery.of(context).size.width,
-//       height: MediaQuery.of(context).size.height * 0.8,
-//       child: Stack(
-//         children: [
-//           Row(
-//             children: [
-//               SizedBox(
-//                 width: MediaQuery.of(context).size.width * 0.90,
-//                 child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     const TitleText(
-//                       title: TitleTextConstants.title2,
-//                       subTitle: TitleTextConstants.subTitle2,
-//                       description: '  ${TitleTextConstants.description2}',
-//                       color: Colors.white,
-//                     ),
-//                     const Spacer(),
-//                     // 1번 페이지
-//                     Stack(
-//                       alignment: Alignment.center,
-//                       children: [
-//                         Padding(
-//                           padding: EdgeInsets.only(left: 130.sw, right: 130.sw),
-//                           child: SeminarImage(
-//                             pageStart:
-//                                 widget.state.profileModel.scrollCount == 1,
-//                           ),
-//                         ),
-//                         //-------------------------------
-//                         Padding(
-//                           padding: EdgeInsets.only(
-//                               left: 130.sw, right: 130.sw, bottom: 70.sh),
-//                         ),
-//                         //-------------------------------
-//                         Padding(
-//                             padding: EdgeInsets.only(
-//                                 left: 130.sw, right: 130.sw, bottom: 70.sh),
-//                             child: MyStory(
-//                                 isThirdPageInit:
-//                                     widget.state.profileModel.scrollCount ==
-//                                         3)),
-//                       ],
-//                     ),
-//                     const Spacer(),
-//                   ],
-//                 ),
-//               ),
-//               const SizedBox(width: 10),
-//               RightTitle(state: widget.state),
-//             ],
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+  const ChapterScreen({
+    super.key,
+    required this.scrollCount,
+  });
 
+  @override
+  State<ChapterScreen> createState() => _ChapterScreenState();
+}
 
+class _ChapterScreenState extends State<ChapterScreen>
+    with TickerProviderStateMixin {
+  late ChapterScreenAnimation animation;
 
+  //-- 챕터마다 변경되는 변수
+  String chapterNumber = ProfilePage1Constants.chapter1;
+  String chapterTitle = ' ${ProfilePage1Constants.chapter1Title}';
+  String chapterContent =
+      '\n\n이번 챕터에서는\n각종 세미나와 컨퍼런스에 참여한 이유를\n확인하실 수 있습니다.\n\n세 가지로 구성된 작은 이야기는\n제가 꿈꾸던 목표와 느낀점을 공유할 수\n있도록 구셩한 챕터입니다.';
+  String chapterImage = 'assets/images/screen_2.jpeg';
+  /*
+  // 챕터 2 내용
+  'assets/images/phone_screen.webp',
+  ProfilePage1Constants.chapter2
+  가장 큰 성장이 이루어졌던 대학생활\n\n
+  대학 시절 제가 겪은 경험과 정체기 그리고 극복에 관한 이야기를 확인하실 수 있습니다.\n\n 세 가지로 구성된 작은 이야기는 앞으로의 성장 가능성을 확인하실 수 있도록 구성한 챕터입니다.
+ */
+  @override
+  void initState() {
+    super.initState();
+    animation = ChapterScreenAnimation(vsync: this);
+  }
 
+  @override
+  void didUpdateWidget(covariant ChapterScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.scrollCount == 3) {
+      animation.backdropController.forward();
+    } else {
+      animation.backdropController.reverse();
+    }
+  }
 
+  @override
+  void dispose() {
+    animation.dispose();
+    super.dispose();
+  }
 
-
-
-// //-----------------------------
-// /*
-// import 'package:flutter/material.dart';
-// import 'dart:ui';
-
-// import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
-
-// class SeminarImage extends StatefulWidget {
-//   final bool pageStart;
-//   const SeminarImage({super.key, required this.pageStart});
-
-//   @override
-//   State<SeminarImage> createState() => _SeminarImageState();
-// }
-
-// class _SeminarImageState extends State<SeminarImage>
-//     with TickerProviderStateMixin {
-//   late AnimationController _animationController;
-//   late AnimationController _imageAnimationControllerWithLeft;
-//   late AnimationController _imageAnimationControllerWithRight;
-//   late Animation<double> _fadeAnimation;
-//   late Animation<Offset> _leftSlide;
-//   late Animation<Offset> _rightSlide;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _animationController = AnimationController(
-//       vsync: this,
-//       duration: const Duration(milliseconds: 1200),
-//     );
-
-//     _imageAnimationControllerWithLeft = AnimationController(
-//       vsync: this,
-//       duration: const Duration(seconds: 3),
-//     );
-
-//     _imageAnimationControllerWithRight = AnimationController(
-//       vsync: this,
-//       duration: const Duration(seconds: 3),
-//     );
-
-//     _fadeAnimation = Tween<double>(
-//       begin: 0.0,
-//       end: 1.0,
-//     ).animate(
-//       CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
-//     );
-
-//     _leftSlide = Tween<Offset>(
-//       begin: const Offset(-1.2, -3.5),
-//       end: const Offset(0, -2.0),
-//     ).animate(
-//       CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
-//     );
-
-//     _rightSlide = Tween<Offset>(
-//       begin: const Offset(1.2, -3.5),
-//       end: const Offset(0, -2.0),
-//     ).animate(
-//       CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
-//     );
-//   }
-
-//   void startAnimation() async {
-//     _animationController.forward();
-//     await Future.delayed(const Duration(milliseconds: 420));
-//     _imageAnimationControllerWithLeft.forward();
-//     await Future.delayed(const Duration(milliseconds: 420));
-//     _imageAnimationControllerWithRight.forward();
-//   }
-
-//   void stopAnimation() {
-//     _animationController.reverse();
-//   }
-
-//   @override
-//   void dispose() {
-//     _animationController.dispose();
-//     _imageAnimationControllerWithLeft.dispose();
-//     _imageAnimationControllerWithRight.dispose();
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     if (widget.pageStart) {
-//       startAnimation();
-//     }
-//     return AnimatedOpacity(
-//       opacity: widget.pageStart ? 1.0 : 0.0,
-//       duration: const Duration(milliseconds: 420),
-//       child: Padding(
-//         padding: EdgeInsets.only(left: 130.sw, right: 130.sw),
-//         child: Stack(
-//           alignment: Alignment.center,
-//           children: [
-//             Positioned(
-//               top: 0,
-//               left: 30,
-//               bottom: 0,
-//               child: Text('왼쪽 테스트', style: TextStyle(color: Colors.white)),
-//             ),
-//             SlideTransition(
-//               position: _leftSlide,
-//               child: FadeTransition(
-//                 opacity: _fadeAnimation,
-//                 child: const Text(
-//                   '테스트 입니당 제목',
-//                   style: TextStyle(
-//                     fontSize: 24,
-//                     fontWeight: FontWeight.bold,
-//                     color: Colors.white,
-//                   ),
-//                 ),
-//               ),
-//             ),
-//             SlideTransition(
-//               position: _rightSlide,
-//               child: FadeTransition(
-//                 opacity: _fadeAnimation,
-//                 child: const Text(
-//                   '테스트 입니당 내용',
-//                   style: TextStyle(
-//                     fontSize: 16,
-//                     fontWeight: FontWeight.normal,
-//                     color: Colors.white,
-//                   ),
-//                 ),
-//               ),
-//             ),
-//             Positioned(
-//               top: 0,
-//               right: 30,
-//               bottom: 0,
-//               child: Text('오른쪽 테스트', style: TextStyle(color: Colors.white)),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-// */
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedOpacity(
+      opacity: widget.scrollCount == 2 || widget.scrollCount == 3 ? 1.0 : 0.0,
+      duration: const Duration(milliseconds: 720),
+      child: Stack(
+        children: [
+          SizedBox(
+            height: 750,
+            child:
+                Image.asset('assets/images/screen_2.jpeg', fit: BoxFit.cover),
+          ),
+          AnimatedBuilder(
+            animation: animation.backdropController,
+            builder: (context, child) {
+              return BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: animation.backdropBlur.value,
+                  sigmaY: animation.backdropBlur.value,
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color.fromRGBO(
+                            0, 0, 0, animation.backdropOpacity.value * 0.4),
+                        Color.fromRGBO(
+                            0, 0, 0, animation.backdropOpacity.value * 0.7),
+                      ],
+                    ),
+                  ),
+                  child: child,
+                ),
+              );
+            },
+            child: Center(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 70),
+                    FadeTransition(
+                      opacity: animation.textOpacity,
+                      child: SlideTransition(
+                        position: animation.textSlide,
+                        child: Column(
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                chapterNumber,
+                                style: GoogleFonts.dancingScript(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.white,
+                                  letterSpacing: 1.2,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 3),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                chapterTitle,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                              chapterContent,
+                              style: const TextStyle(
+                                color: Colors.white70,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    FadeTransition(
+                      opacity: animation.buttonOpacity,
+                      child: SlideTransition(
+                        position: animation.buttonSlide,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              width: 220,
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFFFDF6EC),
+                                  foregroundColor: const Color(0xFF5D4037),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 16),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  elevation: 2,
+                                ),
+                                child: const Text(
+                                  '이어서 보기',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xFF5D4037),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 5),
+                            TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                '다음에 보기',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white70,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

@@ -1,3 +1,5 @@
+//TODO: 리펙
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -29,17 +31,15 @@ class _ChapterBoxState extends State<ChapterBox> {
   void didUpdateWidget(covariant ChapterBox oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.scrollCount == 2) {
-      setState(() {
-        titleDescription = '';
-        isOpacity = false;
-        isActive = true;
-      });
+      awaitFuture(2);
     } else if (widget.scrollCount == 3 && isActive) {
+      awaitFuture(3);
+    } else if (widget.scrollCount == 4 && isActive) {
       setState(() {
         titleDescription = '함께하는 법을 배웠습니다.';
         isOpacity = true;
       });
-    } else if (widget.scrollCount == 4) {
+    } else if (widget.scrollCount == 5) {
       setState(() {
         titleDescription = '중심이길 원해 참여하고있습니다.';
         isOpacity = true;
@@ -52,12 +52,29 @@ class _ChapterBoxState extends State<ChapterBox> {
     }
   }
 
-  void awaitFuture() async {
-    setState(() {
-      isOpacity = false;
-      isActive = false;
-    });
-    await Future.delayed(const Duration(milliseconds: 420));
+  void awaitFuture(int count) async {
+    if (count == 2) {
+      setState(() {
+        isOpacity = false;
+        isActive = false;
+      });
+      await Future.delayed(const Duration(milliseconds: 420));
+      setState(() {
+        titleDescription = '';
+        isOpacity = false;
+        isActive = true;
+      });
+    } else {
+      setState(() {
+        isOpacity = false;
+        isActive = false;
+      });
+      await Future.delayed(const Duration(milliseconds: 420));
+      setState(() {
+        titleDescription = '  버튼을 클릭해 이야기를 시작해보세요';
+        isOpacity = true;
+      });
+    }
   }
 
   @override

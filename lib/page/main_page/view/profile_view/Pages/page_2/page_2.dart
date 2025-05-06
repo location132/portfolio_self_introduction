@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/components/condition_utils/visible_condition.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/page_2/widgets/image_title_with_profile.dart';
 
 class Page2 extends StatelessWidget {
@@ -9,14 +8,15 @@ class Page2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
-      opacity: VisibleorOpacityCondition.isOpacityWith2And3(scrollCount),
+      opacity:
+          scrollCount == 4 || scrollCount == 5 || scrollCount == 6 ? 1.0 : 0.0,
       duration: const Duration(milliseconds: 720),
       child: Stack(
         alignment: Alignment.center,
         children: [
           ImageTitleWithProfile(
             stateScrollCount: scrollCount,
-            scrollCount: 3,
+            scrollCount: 4,
             imagePath: 'assets/Images/SeminarImage_groom.jpeg',
             imageTitle: '판교 디지털센터 groom 강연',
             title: '매일 배우고, 매일 성장합니다.',
@@ -26,7 +26,7 @@ class Page2 extends StatelessWidget {
           // 2번 뷰
           ImageTitleWithProfile(
             stateScrollCount: scrollCount,
-            scrollCount: 4,
+            scrollCount: 5,
             imagePath: 'assets/Images/pdc_groom.jpg',
             imageTitle: '선배 개발자의 조언 with 커뮤니케이션',
             title: '의견의 다름은 가능성의 씨앗입니다.',
@@ -38,7 +38,7 @@ class Page2 extends StatelessWidget {
           // 3번 뷰
           ImageTitleWithProfile(
             stateScrollCount: scrollCount,
-            scrollCount: 5,
+            scrollCount: 6,
             imagePath: 'assets/Images/SeminarImage_flutter.jpg',
             imageTitle: '송도 Future<Flutter> 2024',
             title: '도와주는 기술 속에서도 저는 중심이길 원합니다.',
