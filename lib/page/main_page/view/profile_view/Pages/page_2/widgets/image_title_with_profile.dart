@@ -103,13 +103,14 @@ class _ImageTitleWithProfileState extends State<ImageTitleWithProfile>
             widget.stateScrollCount, widget.scrollCount),
         duration: const Duration(milliseconds: 720),
         child: Padding(
-          padding: EdgeInsets.only(top: 110),
+          padding: const EdgeInsets.only(top: 110),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const Spacer(),
                   Container(
                     width: 620.sw,
                     constraints: BoxConstraints(
@@ -145,43 +146,41 @@ class _ImageTitleWithProfileState extends State<ImageTitleWithProfile>
                       ),
                     ),
                   ),
-                  const SizedBox(width: 60),
+                  SizedBox(width: 60.sh),
                   FadeTransition(
                     opacity: _fadeTextAnimation,
                     child: SlideTransition(
                       position: _slideTextAnimation,
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              widget.title,
-                              style: const TextStyle(
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            widget.title,
+                            style: const TextStyle(
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
-                            const SizedBox(height: 16),
-                            RichText(
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.white.withOpacity(0.85),
-                                  height: 1.5,
-                                ),
-                                children:
-                                    _buildHighlightedText(widget.description),
+                          ),
+                          const SizedBox(height: 16),
+                          RichText(
+                            text: TextSpan(
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w300,
+                                color: Colors.white.withOpacity(0.85),
+                                height: 1.5,
                               ),
+                              children:
+                                  _buildHighlightedText(widget.description),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                  )
+                  ),
+                  const Spacer(),
                 ],
               ),
             ],

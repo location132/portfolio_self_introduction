@@ -16,24 +16,31 @@ import 'package:visibility_detector/visibility_detector.dart';
 
 class MainPage extends StatelessWidget {
   final bool isChromeBrowser;
+  final bool isPad;
   const MainPage({
     super.key,
     required this.isChromeBrowser,
+    required this.isPad,
   });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => di<MainPageCubit>(),
-      child: _MainView(isChromeBrowser: isChromeBrowser),
+      child: _MainView(
+        isChromeBrowser: isChromeBrowser,
+        isPad: isPad,
+      ),
     );
   }
 }
 
 class _MainView extends StatefulWidget {
   final bool isChromeBrowser;
+  final bool isPad;
   const _MainView({
     required this.isChromeBrowser,
+    required this.isPad,
   });
 
   @override
@@ -84,6 +91,7 @@ class _MainViewState extends State<_MainView> {
                             isChromeBrowser: widget.isChromeBrowser,
                             isChromeBrowserWithCubit:
                                 context.read<MainPageCubit>().isChromeBrowser,
+                            isPad: widget.isPad,
                           ),
                         ),
                       ),

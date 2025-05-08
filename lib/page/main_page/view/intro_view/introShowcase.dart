@@ -11,6 +11,7 @@ import 'package:self_introduction_flutter/page/main_page/view/intro_view/widget/
 class Introshowcase extends StatefulWidget {
   final MainPageState state;
   final bool isChromeBrowser;
+  final bool isPad;
   final void Function(bool isChrome) isChromeBrowserWithCubit;
   final void Function(TickerProvider vsync, {String message})
       initializeAnimations;
@@ -21,6 +22,7 @@ class Introshowcase extends StatefulWidget {
     required this.initializeAnimations,
     required this.isChromeBrowser,
     required this.isChromeBrowserWithCubit,
+    required this.isPad,
   });
 
   @override
@@ -57,6 +59,7 @@ class _IntroshowcaseState extends State<Introshowcase> {
             child: LoadingMessage(
               isChromeBrowser: widget.isChromeBrowser,
               isChromeBrowserWithCubit: widget.isChromeBrowserWithCubit,
+              isPad: widget.isPad,
             ),
           ),
         ),
