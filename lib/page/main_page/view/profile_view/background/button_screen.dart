@@ -3,7 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 
 class ProfileButtonScreen extends StatelessWidget {
-  const ProfileButtonScreen({super.key});
+  final int chapterNumber;
+  final Function(int chapterNumber, bool isContinue) onTap;
+  final Function() onBackButtonTap;
+  const ProfileButtonScreen({
+    super.key,
+    required this.chapterNumber,
+    required this.onTap,
+    required this.onBackButtonTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +49,25 @@ class ProfileButtonScreen extends StatelessWidget {
                                     horizontal: 20, vertical: 20),
                                 child: Column(
                                   children: [
-                                    const SizedBox(height: 70),
+                                    const SizedBox(height: 25),
+                                    GestureDetector(
+                                      onTap: () {
+                                        onBackButtonTap();
+                                      },
+                                      child: const AnimatedOpacity(
+                                        opacity: 0.0,
+                                        duration: Duration(seconds: 0),
+                                        child: Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Icon(Icons.arrow_back,
+                                              color: Colors.white, size: 20),
+                                        ),
+                                      ),
+                                    ),
                                     const Spacer(),
                                     GestureDetector(
                                       onTap: () {
-                                        print('이어서 보기');
+                                        onTap(chapterNumber, true);
                                       },
                                       child: AnimatedOpacity(
                                         opacity: 0.0,
@@ -87,7 +109,7 @@ class ProfileButtonScreen extends StatelessWidget {
                                             const SizedBox(height: 10),
                                             GestureDetector(
                                               onTap: () {
-                                                print('다음에 보기');
+                                                onTap(chapterNumber, false);
                                               },
                                               child: const AnimatedOpacity(
                                                 opacity: 0.0,

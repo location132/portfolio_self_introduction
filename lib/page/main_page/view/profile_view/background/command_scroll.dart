@@ -31,12 +31,11 @@ class _CommandScrollState extends State<CommandScroll> {
 
   @override
   void initState() {
+    super.initState();
     widget.state.scrollModel.subScrollController
         ?.addListener(_profileScrollListener);
 
     initScroll();
-
-    super.initState();
   }
 
   void initScroll() {
@@ -106,7 +105,18 @@ class _CommandScrollState extends State<CommandScroll> {
               ? SizedBox(
                   height: (MediaQuery.of(context).size.height + 10.sh),
                 )
-              : const ProfileButtonScreen(),
+              : ProfileButtonScreen(
+                  chapterNumber: 3,
+                  onTap: (int chapterNumber, bool isContinue) async {
+                    await widget.cubit
+                        .continueChapterView(chapterNumber, isContinue);
+                    initScroll();
+                  },
+                  onBackButtonTap: () async {
+                    await widget.cubit.profileIsTopScroll();
+                    initScroll();
+                  },
+                ),
         ),
       ),
     );

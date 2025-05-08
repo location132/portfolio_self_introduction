@@ -26,33 +26,23 @@ class _ProfileBackgroundEffectState extends State<ProfileBackgroundEffect> {
     return Stack(
       children: [
         Positioned.fill(
-          child: Visibility(
-            visible: VisibleorOpacityCondition.isVisibleWith0between2(
+          child: AnimatedOpacity(
+            opacity: VisibleorOpacityCondition.isOpacityWith0And1(
                 widget.scrollCount),
-            replacement: const SizedBox.shrink(),
-            child: AnimatedOpacity(
-              opacity:
-                  VisibleorOpacityCondition.isOpacityWith0(widget.scrollCount),
-              duration: const Duration(milliseconds: 720),
-              child: StarAnimation(scrollCount: widget.scrollCount),
-            ),
+            duration: const Duration(milliseconds: 720),
+            child: StarAnimation(scrollCount: widget.scrollCount),
           ),
         ),
         Positioned.fill(
-          child: Visibility(
-            visible:
-                VisibleorOpacityCondition.isVisibleWith0(widget.scrollCount),
-            replacement: const SizedBox.shrink(),
-            child: AnimatedOpacity(
-              opacity:
-                  VisibleorOpacityCondition.isOpacityWith3(widget.scrollCount),
-              duration: const Duration(milliseconds: 720),
-              child: const TestRiv(),
-            ),
+          child: AnimatedOpacity(
+            opacity:
+                VisibleorOpacityCondition.isOpacityWith3(widget.scrollCount),
+            duration: const Duration(milliseconds: 720),
+            child: const TestRiv(),
           ),
         ),
         //TODO: 비지빌리티 작업 들어가기
-        // 세미나 백그라운드 이미지 1
+
         Positioned.fill(
           child: AnimatedOpacity(
               opacity: widget.scrollCount == 5 ? 1.0 : 0.0,

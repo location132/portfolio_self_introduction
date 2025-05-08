@@ -1,3 +1,5 @@
+// TODO: sh 리펙터링
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
@@ -23,7 +25,7 @@ class _ChapterScreenState extends State<ChapterScreen>
   String chapterNumber = ProfilePage1Constants.chapter1;
   String chapterTitle = ' ${ProfilePage1Constants.chapter1Title}';
   String chapterContent =
-      '\n\n이번 챕터에서는\n각종 세미나와 컨퍼런스에 참여한 이유를\n확인하실 수 있습니다.\n\n세 가지로 구성된 작은 이야기는\n제가 꿈꾸던 목표와 느낀점을 공유할 수\n있도록 구셩한 챕터입니다.';
+      '\n\n이번 챕터에서는\n각종 세미나와 컨퍼런스에 참여한 이유를\n확인하실 수 있습니다.\n\n세 가지로 구성된 작은 세미나 이야기는\n제가 꿈꾸던 목표와 느낀점을 공유할 수\n있도록 구셩한 챕터입니다.';
   String chapterImage = 'assets/images/screen_2.jpeg';
   /*
   // 챕터 2 내용
@@ -42,7 +44,9 @@ class _ChapterScreenState extends State<ChapterScreen>
   void didUpdateWidget(covariant ChapterScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.scrollCount == 3) {
-      animation.contentController.forward();
+      animation.startAnimationWithContent();
+    } else {
+      animation.reverseAnimationWithContent();
     }
   }
 
@@ -60,13 +64,20 @@ class _ChapterScreenState extends State<ChapterScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 70),
+            //뒤로 가기 버튼
+            const SizedBox(height: 25),
             FadeTransition(
               opacity: animation.textOpacity,
               child: SlideTransition(
                 position: animation.textSlide,
                 child: Column(
                   children: [
+                    const Align(
+                      alignment: Alignment.topLeft,
+                      child:
+                          Icon(Icons.arrow_back, color: Colors.white, size: 20),
+                    ),
+                    const SizedBox(height: 50),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(

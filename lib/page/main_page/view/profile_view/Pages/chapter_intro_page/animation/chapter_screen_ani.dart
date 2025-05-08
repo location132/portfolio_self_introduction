@@ -10,6 +10,9 @@ class ChapterScreenAnimation {
   late final Animation<double> buttonOpacity;
   late final Animation<Offset> buttonSlide;
 
+  bool _isAnimationActiveWithContent = false;
+  bool _isAnimationActiveWithBackdrop = false;
+
   ChapterScreenAnimation({required TickerProvider vsync})
       : backdropController = AnimationController(
           vsync: vsync,
@@ -51,7 +54,40 @@ class ChapterScreenAnimation {
     );
   }
 
-  void dispose() {
+  void startAnimationWithContent() async {
+    if (_isAnimationActiveWithContent) {
+      return;
+    }
+    await Future.delayed(const Duration(milliseconds: 420));
+    contentController.forward();
+    _isAnimationActiveWithContent = true;
+  }
+
+  void startAnimationWithBackdrop() async {
+    if (_isAnimationActiveWithBackdrop) {
+      return;
+    }
+    backdropController.forward();
+    _isAnimationActiveWithBackdrop = true;
+  }
+
+  void reverseAnimationWithContent() async {
+    if (!_isAnimationActiveWithContent) {
+      return;
+    }
+    contentController.reverse();
+    _isAnimationActiveWithContent = false;
+  }
+
+  void reverseAnimationWithBackdrop() async {
+    if (!_isAnimationActiveWithBackdrop) {
+      return;
+    }
+    backdropController.reverse();
+    _isAnimationActiveWithBackdrop = false;
+  }
+
+  void dispose() async {
     backdropController.dispose();
     contentController.dispose();
   }

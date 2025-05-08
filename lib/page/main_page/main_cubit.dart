@@ -203,7 +203,7 @@ class MainPageCubit extends Cubit<MainPageState> {
             scrollModel: state.scrollModel
                 .copyWith(profileViewState: ProfileViewState.inactive)));
       }
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(milliseconds: 1500));
       emit(state.copyWith(
           scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
     }
@@ -222,7 +222,7 @@ class MainPageCubit extends Cubit<MainPageState> {
             .copyWith(scrollCount: state.profileModel.scrollCount + 1),
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: true)));
 
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(milliseconds: 1500));
     emit(state.copyWith(
       scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
     ));
@@ -246,12 +246,12 @@ class MainPageCubit extends Cubit<MainPageState> {
   }
 
   // 챕터 건너뛰기, 이어보기
-  void continueChapterView(int chapterNumber, bool isContinue) async {
-    print('챕터 번호 $chapterNumber 이어보기 ${isContinue ? '이어보기' : '건너뛰기'}');
-    if (chapterNumber == 1) {
+  Future<void> continueChapterView(int pageNumber, bool isContinue) async {
+    print('챕터 번호 $pageNumber 이어보기 ${isContinue ? '이어보기' : '건너뛰기'}');
+    if (pageNumber == 3) {
       // 챕터 1 건너뛰기, 이어보기
       await skipChapterView(isContinue);
-    } else if (chapterNumber == 2) {
+    } else if (pageNumber == 10) {
       // 챕터 2 건너뛰기, 이어보기
     } else {
       // 챕터 3 건너뛰기, 이어보기
@@ -263,11 +263,25 @@ class MainPageCubit extends Cubit<MainPageState> {
   Future<void> skipChapterView(bool isContinue) async {
     if (isContinue) {
       // 이어보기
-    } else {
-      emit(state.copyWith(
-        profileModel: state.profileModel.copyWith(isChapterSkip: true),
-      ));
       await profileIsBottomScroll();
+    } else {
+      // 건너뛰기
+      emit(state.copyWith(
+        profileModel: state.profileModel.copyWith(
+            isChapterSkip: true,
+            scrollCount: state.profileModel.scrollCount + 1),
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+      ));
+      for (int i = 0; i < 3; i++) {
+        await Future.delayed(Duration(milliseconds: 500 + (i * 300)));
+        emit(state.copyWith(
+          profileModel: state.profileModel
+              .copyWith(scrollCount: state.profileModel.scrollCount + 1),
+        ));
+      }
+      emit(state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
+      ));
     }
   }
 

@@ -50,7 +50,9 @@ class _ProfileTitleViewState extends State<ProfileTitleView> {
           AnimatedOpacity(
             opacity: widget.scrollCount == 2 ||
                     widget.scrollCount == 3 ||
-                    widget.scrollCount == 4
+                    widget.scrollCount == 4 ||
+                    widget.scrollCount == 5 ||
+                    widget.scrollCount == 6
                 ? 1.0
                 : 0.0,
             duration: const Duration(milliseconds: 720),

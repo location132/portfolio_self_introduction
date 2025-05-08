@@ -33,7 +33,9 @@ class _IntroPhoneScreenState extends State<IntroPhoneScreen>
   void didUpdateWidget(covariant IntroPhoneScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.scrollCount == 3) {
-      animation.backdropController.forward();
+      animation.startAnimationWithBackdrop();
+    } else if (widget.scrollCount != 3) {
+      animation.reverseAnimationWithBackdrop();
     }
   }
 

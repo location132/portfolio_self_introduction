@@ -103,7 +103,7 @@ class _ImageTitleWithProfileState extends State<ImageTitleWithProfile>
             widget.stateScrollCount, widget.scrollCount),
         duration: const Duration(milliseconds: 720),
         child: Padding(
-          padding: EdgeInsets.only(left: 130.sw, right: 130.sw, top: 110),
+          padding: EdgeInsets.only(top: 110),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -165,13 +165,16 @@ class _ImageTitleWithProfileState extends State<ImageTitleWithProfile>
                               ),
                             ),
                             const SizedBox(height: 16),
-                            Text(
-                              widget.description,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w300,
-                                color: Colors.white.withOpacity(0.85),
-                                height: 1.5,
+                            RichText(
+                              text: TextSpan(
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w300,
+                                  color: Colors.white.withOpacity(0.85),
+                                  height: 1.5,
+                                ),
+                                children:
+                                    _buildHighlightedText(widget.description),
                               ),
                             ),
                           ],
@@ -186,5 +189,38 @@ class _ImageTitleWithProfileState extends State<ImageTitleWithProfile>
         ),
       ),
     );
+  }
+
+  List<TextSpan> _buildHighlightedText(String text) {
+    final List<TextSpan> spans = [];
+    final RegExp highlightRegex = RegExp(r'"([^"]+)"');
+
+    int currentPosition = 0;
+
+    for (final Match match in highlightRegex.allMatches(text)) {
+      if (match.start > currentPosition) {
+        spans.add(TextSpan(
+          text: text.substring(currentPosition, match.start),
+        ));
+      }
+
+      spans.add(TextSpan(
+        text: match.group(0),
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      ));
+
+      currentPosition = match.end;
+    }
+
+    if (currentPosition < text.length) {
+      spans.add(TextSpan(
+        text: text.substring(currentPosition),
+      ));
+    }
+
+    return spans;
   }
 }
