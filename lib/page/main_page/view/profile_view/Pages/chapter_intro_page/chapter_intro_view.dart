@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:self_introduction_flutter/model/main_page/profile_model.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_intro_page/widgets/chapter1_text.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_intro_page/widgets/chapter2_text.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_intro_page/widgets/intro_phone_screen.dart';
 
 class ChapterIntroView extends StatefulWidget {
-  final int scrollCount;
-  final bool isChapterSkip;
+  final ProfileModel profileModel;
 
   const ChapterIntroView({
     super.key,
-    required this.scrollCount,
-    required this.isChapterSkip,
+    required this.profileModel,
   });
 
   @override
@@ -21,10 +20,10 @@ class _ChapterIntroViewState extends State<ChapterIntroView> {
   @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
-      opacity: widget.scrollCount == 2 ||
-              widget.scrollCount == 3 ||
-              widget.scrollCount == 7 ||
-              widget.scrollCount == 8
+      opacity: widget.profileModel.scrollCount == 2 ||
+              widget.profileModel.scrollCount == 3 ||
+              widget.profileModel.scrollCount == 7 ||
+              widget.profileModel.scrollCount == 8
           ? 1.0
           : 0.0,
       duration: const Duration(milliseconds: 720),
@@ -38,20 +37,21 @@ class _ChapterIntroViewState extends State<ChapterIntroView> {
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 900),
                   curve: Curves.easeOut,
-                  width: widget.scrollCount == 3 || widget.scrollCount == 8
+                  width: widget.profileModel.scrollCount == 3 ||
+                          widget.profileModel.scrollCount == 8
                       ? 0
                       : 640,
                 ),
                 Stack(
                   children: [
                     AnimatedOpacity(
-                      opacity: widget.scrollCount == 2 ? 1.0 : 0.0,
+                      opacity: widget.profileModel.scrollCount == 2 ? 1.0 : 0.0,
                       duration: const Duration(milliseconds: 720),
                       curve: Curves.easeInOut,
                       child: const IntroTextWithChapter1(),
                     ),
                     AnimatedOpacity(
-                      opacity: widget.scrollCount == 7 ? 1.0 : 0.0,
+                      opacity: widget.profileModel.scrollCount == 7 ? 1.0 : 0.0,
                       duration: const Duration(milliseconds: 720),
                       curve: Curves.easeInOut,
                       child: const IntroTextWithChapter2(),
@@ -67,13 +67,13 @@ class _ChapterIntroViewState extends State<ChapterIntroView> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IntroPhoneScreen(
-                  scrollCount: widget.scrollCount,
-                  isChapterSkip: widget.isChapterSkip,
+                  profileModel: widget.profileModel,
                 ),
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 900),
                   curve: Curves.easeOut,
-                  width: widget.scrollCount == 3 || widget.scrollCount == 8
+                  width: widget.profileModel.scrollCount == 3 ||
+                          widget.profileModel.scrollCount == 8
                       ? 0
                       : 640,
                 ),

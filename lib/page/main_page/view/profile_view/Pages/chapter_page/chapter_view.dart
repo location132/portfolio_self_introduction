@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/model/main_page/profile_model.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_page/animation/chapter_view_ani.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_page/widgets/chapter_with_blur.dart';
 
 class ChapterView extends StatefulWidget {
-  final int scrollCount;
-  final int previousCount;
-  final bool isUserClick;
+  final ProfileModel profileModel;
   const ChapterView({
     super.key,
-    required this.scrollCount,
-    required this.previousCount,
-    required this.isUserClick,
+    required this.profileModel,
   });
 
   @override
@@ -38,7 +35,7 @@ class _ChapterViewState extends State<ChapterView>
   @override
   void didUpdateWidget(ChapterView oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.scrollCount == 1) {
+    if (widget.profileModel.scrollCount == 1) {
       animations.startAnimation();
     } else {
       animations.stopAnimation();
@@ -76,7 +73,7 @@ class _ChapterViewState extends State<ChapterView>
                 child: FadeTransition(
                   opacity: animations.fade,
                   child: ChapterWithBlur(
-                    isUserClick: widget.isUserClick,
+                    isUserClick: widget.profileModel.isUserClick,
                   ),
                 ),
               ),

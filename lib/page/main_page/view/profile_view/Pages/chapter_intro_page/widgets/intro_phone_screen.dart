@@ -2,17 +2,16 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/model/main_page/profile_model.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_intro_page/animation/chapter_screen_ani.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_intro_page/widgets/chapter_screen.dart';
 
 class IntroPhoneScreen extends StatefulWidget {
-  final int scrollCount;
-  final bool isChapterSkip;
+  final ProfileModel profileModel;
 
   const IntroPhoneScreen({
     super.key,
-    required this.scrollCount,
-    required this.isChapterSkip,
+    required this.profileModel,
   });
 
   @override
@@ -33,11 +32,13 @@ class _IntroPhoneScreenState extends State<IntroPhoneScreen>
   @override
   void didUpdateWidget(covariant IntroPhoneScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.scrollCount == 3 || widget.scrollCount == 8) {
+    if (widget.profileModel.scrollCount == 3 ||
+        widget.profileModel.scrollCount == 8) {
       animation.startAnimationWithBackdrop();
-    } else if (widget.scrollCount != 3 || widget.scrollCount != 8) {
+    } else if (widget.profileModel.scrollCount != 3 ||
+        widget.profileModel.scrollCount != 8) {
       animation.reverseAnimationWithBackdrop();
-      updateChapterData(widget.scrollCount);
+      updateChapterData(widget.profileModel.scrollCount);
     }
   }
 
@@ -115,7 +116,7 @@ class _IntroPhoneScreenState extends State<IntroPhoneScreen>
             right: 13.sh,
             bottom: 12.sh,
             child: ChapterScreen(
-              scrollCount: widget.scrollCount,
+              scrollCount: widget.profileModel.scrollCount,
             ),
           ),
         ],

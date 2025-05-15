@@ -174,24 +174,23 @@ class MainPageCubit extends Cubit<MainPageState> {
   }
 
 //******************************************************* */
+
   // 프로필 뷰 활성화
   Future<void> profileViewActive() async {
-    if (state.scrollModel.isScrollWaiting == true) {
-      return;
-    }
     emit(state.copyWith(
-      scrollModel: state.scrollModel.copyWith(
-          profileViewState: ProfileViewState.active, isScrollWaiting: true),
       profileModel: state.profileModel.copyWith(
         //TODO: 스크롤 카운트 변경
-        scrollCount: 8,
+        scrollCount: 1,
         finalCount: 1,
         previousCount: 0,
       ),
+      scrollModel:
+          state.scrollModel.copyWith(profileViewState: ProfileViewState.active),
     ));
     await Future.delayed(const Duration(seconds: 2));
     emit(state.copyWith(
-        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
+      scrollModel: state.scrollModel.copyWith(isScrollInit: true),
+    ));
   }
 
   //사용자 스크롤 감지
@@ -225,10 +224,15 @@ class MainPageCubit extends Cubit<MainPageState> {
         emit(state.copyWith(
             profileModel:
                 state.profileModel.copyWith(scrollCount: 0, previousCount: 1),
-            scrollModel: state.scrollModel
-                .copyWith(profileViewState: ProfileViewState.inactive)));
+            scrollModel: state.scrollModel.copyWith(
+                profileViewState: ProfileViewState.inactive,
+                isScrollInit: false)));
       }
-      await Future.delayed(const Duration(milliseconds: 1500));
+      if (state.profileModel.scrollCount != 1) {
+        await Future.delayed(const Duration(milliseconds: 1500));
+      } else {
+        await Future.delayed(const Duration(milliseconds: 1000));
+      }
       emit(state.copyWith(
           scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
     }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/model/main_page/chapter_model/profile_chapter2_model.dart';
+import 'package:self_introduction_flutter/model/main_page/profile_model.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_page/chapter_view.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_intro_page/chapter_intro_view.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_1/chapter_1.dart';
@@ -10,19 +10,11 @@ import 'package:self_introduction_flutter/page/main_page/view/profile_view/widge
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/widget/retrospect_text.dart';
 
 class ProfileView extends StatelessWidget {
-  final int scrollCount;
-  final int previousCount;
-  final bool isUserClick;
-  final bool isChapterSkip;
-  final ProfileChapter2Model profileChapter2Model;
+  final ProfileModel profileModel;
 
   const ProfileView({
     super.key,
-    required this.scrollCount,
-    required this.previousCount,
-    required this.isUserClick,
-    required this.isChapterSkip,
-    required this.profileChapter2Model,
+    required this.profileModel,
   });
 
   @override
@@ -32,7 +24,7 @@ class ProfileView extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.8,
       child: Stack(
         children: [
-          ProfileBackgroundEffect(scrollCount: scrollCount),
+          ProfileBackgroundEffect(scrollCount: profileModel.scrollCount),
           Row(
             children: [
               SizedBox(
@@ -40,25 +32,21 @@ class ProfileView extends StatelessWidget {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    InitPageView(scrollCount: scrollCount),
-                    RetrospectTextView(scrollCount: scrollCount),
-                    ProfileTitleView(scrollCount: scrollCount),
+                    InitPageView(scrollCount: profileModel.scrollCount),
+                    RetrospectTextView(scrollCount: profileModel.scrollCount),
+                    ProfileTitleView(scrollCount: profileModel.scrollCount),
                     ChapterView(
-                      scrollCount: scrollCount,
-                      previousCount: previousCount,
-                      isUserClick: isUserClick,
+                      profileModel: profileModel,
                     ),
 
                     // 세미나, 컨퍼런스 페이지
-                    Page2(scrollCount: scrollCount),
+                    Page2(scrollCount: profileModel.scrollCount),
                     Chapter2(
-                      scrollCount: scrollCount,
-                      profileChapter2Model: profileChapter2Model,
+                      profileModel: profileModel,
                     ),
                     // Page4(state: widget.state),
                     ChapterIntroView(
-                      scrollCount: scrollCount,
-                      isChapterSkip: isChapterSkip,
+                      profileModel: profileModel,
                     ),
                   ],
                 ),
@@ -69,7 +57,7 @@ class ProfileView extends StatelessWidget {
                     //TODO: 삭제 (페이지 넘버)
                     Center(
                   child: Text(
-                    scrollCount.toString(),
+                    profileModel.scrollCount.toString(),
                     style: const TextStyle(
                       fontSize: 12,
                       color: Colors.white,

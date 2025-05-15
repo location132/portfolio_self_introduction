@@ -25,8 +25,6 @@ class CommandScroll extends StatefulWidget {
 
 class _CommandScrollState extends State<CommandScroll> {
   double _lastScrollPosition = 0;
-  ScrollController? controller;
-
   double? initScrollPosition;
 
   @override
@@ -34,17 +32,17 @@ class _CommandScrollState extends State<CommandScroll> {
     super.initState();
     widget.state.scrollModel.subScrollController
         ?.addListener(_profileScrollListener);
-
     initScroll();
   }
 
   void initScroll() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      controller = widget.state.scrollModel.subScrollController;
-
-      if (controller != null && controller!.hasClients) {
-        initScrollPosition = controller!.position.maxScrollExtent / 2;
-        controller!.jumpTo(initScrollPosition!);
+      if (widget.state.scrollModel.subScrollController != null) {
+        initScrollPosition = widget.state.scrollModel.subScrollController!
+                .position.maxScrollExtent /
+            2;
+        widget.state.scrollModel.subScrollController!
+            .jumpTo(initScrollPosition!);
       }
     });
   }
@@ -58,18 +56,24 @@ class _CommandScrollState extends State<CommandScroll> {
     double currentPosition = controller.position.pixels;
     double maxScroll = controller.position.maxScrollExtent;
 
-    if (currentPosition > _lastScrollPosition) {
-      // 스크롤 아래로 내려갔을 때
-      if (currentPosition.toStringAsFixed(2) == maxScroll.toStringAsFixed(2)) {
-        await widget.cubit.profileIsBottomScroll();
-        initScroll();
+    if (widget.state.scrollModel.isScrollInit) {
+      if (currentPosition > _lastScrollPosition) {
+        // 스크롤 아래로 내려갔을 때
+
+        if (currentPosition.toStringAsFixed(2) ==
+            maxScroll.toStringAsFixed(2)) {
+          await widget.cubit.profileIsBottomScroll();
+          initScroll();
+        }
+      } else if (currentPosition < _lastScrollPosition) {
+        // 스크롤 위로 올려갔을 때
+        if (currentPosition.toStringAsFixed(2) == '0.00') {
+          await widget.cubit.profileIsTopScroll();
+          initScroll();
+        }
       }
-    } else if (currentPosition < _lastScrollPosition) {
-      // 스크롤 위로 올려갔을 때
-      if (currentPosition.toStringAsFixed(2) == '0.00') {
-        await widget.cubit.profileIsTopScroll();
-        initScroll();
-      }
+    } else {
+      initScroll();
     }
 
     _lastScrollPosition = currentPosition;
@@ -103,8 +107,12 @@ class _CommandScrollState extends State<CommandScroll> {
           controller: widget.state.scrollModel.subScrollController,
           child: widget.state.profileModel.scrollCount != 3 &&
                   widget.state.profileModel.scrollCount != 8
-              ? SizedBox(
-                  height: (MediaQuery.of(context).size.height + 10.sh),
+              ? Column(
+                  children: [
+                    SizedBox(
+                      height: (MediaQuery.of(context).size.height + 50.sh),
+                    ),
+                  ],
                 )
               : ProfileButtonScreen(
                   chapterNumber: widget.state.profileModel.scrollCount,
