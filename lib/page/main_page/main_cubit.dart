@@ -5,6 +5,7 @@ import 'package:self_introduction_flutter/components/condition_utils/profile_vie
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/model/init_model.dart';
+import 'package:self_introduction_flutter/model/main_page/chapter_model/profile_chapter2_model.dart';
 import 'package:self_introduction_flutter/model/main_page/description_model.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
@@ -17,17 +18,18 @@ class MainPageCubit extends Cubit<MainPageState> {
   MainPageCubit()
       : super(MainPageState(
           scrollModel: ScrollModel(
-              scrollController: ScrollController(),
-              subScrollController: ScrollController()),
+            scrollController: ScrollController(),
+            subScrollController: ScrollController(),
+          ),
         ));
 
   @postConstruct
   void init() async {
-    //TODO: 추 후, 주석 해제
+    //TODO:  배포 후, 주석 해제
     // emit(state.copyWith(
     //     initModel: state.initModel.copyWith(initState: InitState.active)));
-
     final controller = state.scrollModel.scrollController;
+    isInitProfileView();
     await changeProfileViewHeight(controller);
     emit(state.copyWith(
         initModel: state.initModel.copyWith(initState: InitState.inactive)));
@@ -39,12 +41,34 @@ class MainPageCubit extends Cubit<MainPageState> {
         initModel: state.initModel.copyWith(isChromeBrowser: isChrome)));
   }
 
+  // 프로필 뷰 초기화
+  void isInitProfileView() async {
+    for (int i = 0; i < 16; i++) {
+      await Future.delayed(const Duration(milliseconds: 300));
+      emit(state.copyWith(
+        profileModel: state.profileModel
+            .copyWith(scrollCount: state.profileModel.scrollCount + 1),
+      ));
+    }
+
+    emit(state.copyWith(
+      profileModel: state.profileModel.copyWith(
+        scrollCount: 0,
+        finalCount: 1,
+        previousCount: 0,
+        profileChapter2Model: const ProfileChapter2Model(
+          isInitCompleteWithChapter2: true,
+        ),
+      ),
+    ));
+  }
+
   Future<void> changeProfileViewHeight(controller) async {
-    //TODO: 추후 주석 해제
+    //TODO: 배포 주석 해제
     // emit(state.copyWith(
     //     initModel: state.initModel
     //         .copyWith(remainingTime: state.initModel.remainingTime)));
-    // await Future.delayed(Duration(seconds: state.initModel.remainingTime));
+    await Future.delayed(Duration(seconds: state.initModel.remainingTime));
 
     void waitForAttachment() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -159,7 +183,8 @@ class MainPageCubit extends Cubit<MainPageState> {
       scrollModel: state.scrollModel.copyWith(
           profileViewState: ProfileViewState.active, isScrollWaiting: true),
       profileModel: state.profileModel.copyWith(
-        scrollCount: 1,
+        //TODO: 스크롤 카운트 변경
+        scrollCount: 8,
         finalCount: 1,
         previousCount: 0,
       ),
@@ -250,9 +275,10 @@ class MainPageCubit extends Cubit<MainPageState> {
     print('챕터 번호 $pageNumber 이어보기 ${isContinue ? '이어보기' : '건너뛰기'}');
     if (pageNumber == 3) {
       // 챕터 1 건너뛰기, 이어보기
-      await skipChapterView(isContinue);
-    } else if (pageNumber == 10) {
+      await skipChapterView(isContinue, 3);
+    } else if (pageNumber == 8) {
       // 챕터 2 건너뛰기, 이어보기
+      await skipChapterView(isContinue, 1);
     } else {
       // 챕터 3 건너뛰기, 이어보기
     }
@@ -260,7 +286,7 @@ class MainPageCubit extends Cubit<MainPageState> {
 
   //TODO: 작업 시작 5월 6일
   // 챕터 건너뛰기
-  Future<void> skipChapterView(bool isContinue) async {
+  Future<void> skipChapterView(bool isContinue, int count) async {
     if (isContinue) {
       // 이어보기
       await profileIsBottomScroll();
@@ -272,8 +298,8 @@ class MainPageCubit extends Cubit<MainPageState> {
             scrollCount: state.profileModel.scrollCount + 1),
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
       ));
-      for (int i = 0; i < 3; i++) {
-        await Future.delayed(Duration(milliseconds: 500 + (i * 300)));
+      for (int i = 0; i < count; i++) {
+        await Future.delayed(const Duration(milliseconds: 950));
         emit(state.copyWith(
           profileModel: state.profileModel
               .copyWith(scrollCount: state.profileModel.scrollCount + 1),

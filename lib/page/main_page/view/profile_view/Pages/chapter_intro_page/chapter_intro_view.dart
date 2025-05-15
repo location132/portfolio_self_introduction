@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_intro_page/widgets/chapter1_text.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_intro_page/widgets/chapter2_text.dart';
 import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_intro_page/widgets/intro_phone_screen.dart';
 
 class ChapterIntroView extends StatefulWidget {
   final int scrollCount;
-
   final bool isChapterSkip;
 
   const ChapterIntroView({
@@ -21,7 +21,12 @@ class _ChapterIntroViewState extends State<ChapterIntroView> {
   @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
-      opacity: widget.scrollCount == 2 || widget.scrollCount == 3 ? 1.0 : 0.0,
+      opacity: widget.scrollCount == 2 ||
+              widget.scrollCount == 3 ||
+              widget.scrollCount == 7 ||
+              widget.scrollCount == 8
+          ? 1.0
+          : 0.0,
       duration: const Duration(milliseconds: 720),
       child: Stack(
         children: [
@@ -33,7 +38,9 @@ class _ChapterIntroViewState extends State<ChapterIntroView> {
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 900),
                   curve: Curves.easeOut,
-                  width: widget.scrollCount == 3 ? 0 : 640,
+                  width: widget.scrollCount == 3 || widget.scrollCount == 8
+                      ? 0
+                      : 640,
                 ),
                 Stack(
                   children: [
@@ -43,7 +50,12 @@ class _ChapterIntroViewState extends State<ChapterIntroView> {
                       curve: Curves.easeInOut,
                       child: const IntroTextWithChapter1(),
                     ),
-                    // IntroTextWithChapter2(scrollCount: widget.scrollCount),
+                    AnimatedOpacity(
+                      opacity: widget.scrollCount == 7 ? 1.0 : 0.0,
+                      duration: const Duration(milliseconds: 720),
+                      curve: Curves.easeInOut,
+                      child: const IntroTextWithChapter2(),
+                    ),
                   ],
                 ),
               ],
@@ -61,7 +73,9 @@ class _ChapterIntroViewState extends State<ChapterIntroView> {
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 900),
                   curve: Curves.easeOut,
-                  width: widget.scrollCount == 3 ? 0 : 640,
+                  width: widget.scrollCount == 3 || widget.scrollCount == 8
+                      ? 0
+                      : 640,
                 ),
               ],
             ),

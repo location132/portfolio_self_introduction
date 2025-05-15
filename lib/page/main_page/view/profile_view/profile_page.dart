@@ -42,6 +42,7 @@ class ProfilePage extends StatelessWidget {
             isChapterSkip: state.profileModel.isChapterSkip,
             previousCount: state.profileModel.previousCount,
             isUserClick: state.profileModel.isUserClick,
+            profileChapter2Model: state.profileModel.profileChapter2Model,
           ),
         ),
 

@@ -77,6 +77,36 @@ class _ProfileTitleViewState extends State<ProfileTitleView> {
               ),
             ),
           ),
+          AnimatedOpacity(
+            opacity: widget.scrollCount == 7 ||
+                    widget.scrollCount == 8 ||
+                    widget.scrollCount == 9 ||
+                    widget.scrollCount == 10 ||
+                    widget.scrollCount == 11
+                ? 1.0
+                : 0.0,
+            duration: const Duration(milliseconds: 720),
+            child: Padding(
+              padding: EdgeInsets.only(left: 130.sw),
+              child: ChapterBox(
+                scrollCount: widget.scrollCount,
+                chapter: ProfilePage1Constants.chapter2,
+                title: '  ${ProfilePage1Constants.chapter2Title}',
+                chapterTextStyle: GoogleFonts.dancingScript(
+                  fontSize: 32,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white,
+                  letterSpacing: 1.2,
+                ),
+                titleTextStyle: const TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white,
+                  letterSpacing: 1.2,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

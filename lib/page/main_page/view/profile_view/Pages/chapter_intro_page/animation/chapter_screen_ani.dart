@@ -10,6 +10,10 @@ class ChapterScreenAnimation {
   late final Animation<double> buttonOpacity;
   late final Animation<Offset> buttonSlide;
 
+  late String chapterNumber;
+  late String chapterTitle;
+  late String chapterContent;
+
   bool _isAnimationActiveWithContent = false;
   bool _isAnimationActiveWithBackdrop = false;
 

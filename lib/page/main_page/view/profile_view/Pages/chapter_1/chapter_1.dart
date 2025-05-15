@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/page_2/widgets/image_title_with_profile.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_1/widgets/image_title_with_profile.dart';
 
 class Page2 extends StatelessWidget {
   final int scrollCount;

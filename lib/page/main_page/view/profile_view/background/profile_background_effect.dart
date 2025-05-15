@@ -42,7 +42,6 @@ class _ProfileBackgroundEffectState extends State<ProfileBackgroundEffect> {
           ),
         ),
         //TODO: 비지빌리티 작업 들어가기
-
         Positioned.fill(
           child: AnimatedOpacity(
               opacity: widget.scrollCount == 5 ? 1.0 : 0.0,

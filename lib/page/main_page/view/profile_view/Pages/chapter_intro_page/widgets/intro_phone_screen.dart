@@ -22,6 +22,7 @@ class IntroPhoneScreen extends StatefulWidget {
 class _IntroPhoneScreenState extends State<IntroPhoneScreen>
     with TickerProviderStateMixin {
   late ChapterScreenAnimation animation;
+  String chapterImage = 'assets/images/screen_2.jpeg';
 
   @override
   void initState() {
@@ -32,10 +33,19 @@ class _IntroPhoneScreenState extends State<IntroPhoneScreen>
   @override
   void didUpdateWidget(covariant IntroPhoneScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.scrollCount == 3) {
+    if (widget.scrollCount == 3 || widget.scrollCount == 8) {
       animation.startAnimationWithBackdrop();
-    } else if (widget.scrollCount != 3) {
+    } else if (widget.scrollCount != 3 || widget.scrollCount != 8) {
       animation.reverseAnimationWithBackdrop();
+      updateChapterData(widget.scrollCount);
+    }
+  }
+
+  void updateChapterData(int scrollCount) {
+    if (scrollCount == 1 || scrollCount == 2 || scrollCount == 3) {
+      chapterImage = 'assets/images/screen_2.jpeg';
+    } else if (scrollCount == 6 || scrollCount == 7 || scrollCount == 8) {
+      chapterImage = 'assets/images/phone_screen.webp';
     }
   }
 
@@ -71,7 +81,7 @@ class _IntroPhoneScreenState extends State<IntroPhoneScreen>
                       fit: StackFit.expand,
                       children: [
                         Image.asset(
-                          'assets/images/screen_2.jpeg',
+                          chapterImage,
                           fit: BoxFit.cover,
                         ),
                         Container(
@@ -95,8 +105,7 @@ class _IntroPhoneScreenState extends State<IntroPhoneScreen>
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(42.sh),
-                child: Image.asset('assets/images/screen_2.jpeg',
-                    fit: BoxFit.cover),
+                child: Image.asset(chapterImage, fit: BoxFit.cover),
               ),
             ),
           ),
