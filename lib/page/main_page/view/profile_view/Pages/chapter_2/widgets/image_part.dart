@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_2/animation/chapter_2_ani.dart';
+import 'package:self_introduction_flutter/page/main_page/view/profile_view/Pages/chapter_2/animation/chapter2_img_ani.dart';
 
 class ImagePart extends StatefulWidget {
   final int scrollCount;
@@ -12,30 +12,31 @@ class ImagePart extends StatefulWidget {
 }
 
 class _ImagePartState extends State<ImagePart> with TickerProviderStateMixin {
-  late Chapter2Animation _chapter2Animation;
+  late Chapter2ImageAnimation _chapter2ImageAnimation;
   @override
   void initState() {
     super.initState();
-    _chapter2Animation = Chapter2Animation(vsync: this);
+    _chapter2ImageAnimation = Chapter2ImageAnimation(vsync: this);
+    _chapter2ImageAnimation.animationWithImageForward();
   }
 
   @override
   void didUpdateWidget(ImagePart oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.scrollCount == 8 || widget.scrollCount == 9) {
-      _chapter2Animation.animationWithImageForward();
-    }
-    if (widget.scrollCount == 10) {
-      _chapter2Animation.imageChangeForwardWith10();
-    }
-    if (widget.scrollCount == 11) {
-      _chapter2Animation.imageChangeForwardWith11();
+    if (widget.scrollCount == 9) {
+      _chapter2ImageAnimation.animationWithImageForward();
+    } else if (widget.scrollCount == 10) {
+      _chapter2ImageAnimation.showImagePage10();
+    } else if (widget.scrollCount == 11) {
+      _chapter2ImageAnimation.showImagePage11();
+    } else if (widget.scrollCount == 12) {
+      _chapter2ImageAnimation.showImagePage12();
     }
   }
 
   @override
   void dispose() {
-    _chapter2Animation.disposeWith1();
+    _chapter2ImageAnimation.dispose();
     super.dispose();
   }
 
@@ -55,9 +56,9 @@ class _ImagePartState extends State<ImagePart> with TickerProviderStateMixin {
           opacity: widget.scrollCount == 9 ? 1 : 0,
           duration: const Duration(milliseconds: 720),
           child: SlideTransition(
-            position: _chapter2Animation.textMoveAnimation0,
+            position: _chapter2ImageAnimation.imageMoveShow,
             child: FadeTransition(
-              opacity: _chapter2Animation.textOpacityAnimation0,
+              opacity: _chapter2ImageAnimation.imageOpacityShow,
               child: Text(
                 '입학 후,\n'
                 ' 개발 강의를 처음 수강했던 날의 기억이 아직도 생생합니다.\n\n'
@@ -78,7 +79,7 @@ class _ImagePartState extends State<ImagePart> with TickerProviderStateMixin {
           ),
         ),
         AnimatedOpacity(
-          opacity: _chapter2Animation.isImageChangeActiveWith10 ? 1 : 0,
+          opacity: _chapter2ImageAnimation.isPage10Active ? 1 : 0,
           duration: const Duration(milliseconds: 720),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
@@ -89,7 +90,7 @@ class _ImagePartState extends State<ImagePart> with TickerProviderStateMixin {
           ),
         ),
         AnimatedOpacity(
-          opacity: _chapter2Animation.isImageChangeActiveWith11 ? 1 : 0,
+          opacity: _chapter2ImageAnimation.isPage11Active ? 1 : 0,
           duration: const Duration(milliseconds: 720),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),

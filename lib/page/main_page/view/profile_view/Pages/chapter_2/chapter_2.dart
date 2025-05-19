@@ -17,17 +17,12 @@ class Chapter2 extends StatefulWidget {
 
 class _Chapter2State extends State<Chapter2> with TickerProviderStateMixin {
   @override
-  void didUpdateWidget(Chapter2 oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.profileModel.scrollCount == 10) {}
-  }
-
-  @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
       opacity: widget.profileModel.scrollCount == 9 ||
               widget.profileModel.scrollCount == 10 ||
-              widget.profileModel.scrollCount == 11
+              widget.profileModel.scrollCount == 11 ||
+              widget.profileModel.scrollCount == 12
           ? 1
           : 0,
       duration: const Duration(milliseconds: 720),
@@ -41,30 +36,39 @@ class _Chapter2State extends State<Chapter2> with TickerProviderStateMixin {
           children: [
             //-- ImagePart
             AnimatedContainer(
-              duration: const Duration(milliseconds: 620),
+              duration: const Duration(milliseconds: 520),
               width: (widget.profileModel.scrollCount == 8 ||
-                      widget.profileModel.scrollCount == 9)
+                      widget.profileModel.scrollCount == 9 ||
+                      widget.profileModel.scrollCount == 12)
                   ? MediaQuery.of(context).size.width * 0.9
                   : (MediaQuery.of(context).size.width * 0.9) * 0.55,
               height: (widget.profileModel.scrollCount == 8 ||
-                      widget.profileModel.scrollCount == 9)
+                      widget.profileModel.scrollCount == 9 ||
+                      widget.profileModel.scrollCount == 12)
                   ? MediaQuery.of(context).size.height * 0.55
                   : MediaQuery.of(context).size.height * 0.4,
-              child: ImagePart(
-                scrollCount: widget.profileModel.scrollCount,
+              child: Visibility(
+                visible: widget
+                    .profileModel.profileChapter2Model.isImagePartReverseActive,
+                child: ImagePart(
+                  scrollCount: widget.profileModel.scrollCount,
+                ),
               ),
             ),
             //-- TextPart
             AnimatedContainer(
-              duration: const Duration(milliseconds: 620),
+              duration: const Duration(milliseconds: 520),
               width: widget.profileModel.scrollCount != 8 &&
-                      widget.profileModel.scrollCount != 9
+                      widget.profileModel.scrollCount != 9 &&
+                      widget.profileModel.scrollCount != 12
                   ? (MediaQuery.of(context).size.width * 0.9) * 0.45
                   : 0,
               child: Visibility(
-                visible: widget.profileModel.scrollCount == 10,
+                visible: widget
+                    .profileModel.profileChapter2Model.isTextPartReverseActive,
                 child: TextPart(
                   scrollCount: widget.profileModel.scrollCount,
+                  previousCount: widget.profileModel.previousCount,
                 ),
               ),
             ),

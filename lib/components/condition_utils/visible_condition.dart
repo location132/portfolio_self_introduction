@@ -58,8 +58,6 @@ class VisibleorOpacityCondition {
     return scrollCount == 5 ? 1.0 : 0.0;
   }
 
-  //TODO: 삭제 예정
-
   // -- 조건 : 페이지 1 일때 opacity == 1.0
   static double isOpacityWith1_2(int scrollCount) {
     return scrollCount == 1 || scrollCount == 2 ? 1.0 : 0.0;

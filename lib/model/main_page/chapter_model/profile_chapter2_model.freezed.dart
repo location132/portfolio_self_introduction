@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProfileChapter2Model {
-  bool get isInitCompleteWithChapter2 => throw _privateConstructorUsedError;
+  bool get isTextPartReverseActive => throw _privateConstructorUsedError;
+  bool get isImagePartReverseActive => throw _privateConstructorUsedError;
 
   /// Create a copy of ProfileChapter2Model
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +32,7 @@ abstract class $ProfileChapter2ModelCopyWith<$Res> {
           $Res Function(ProfileChapter2Model) then) =
       _$ProfileChapter2ModelCopyWithImpl<$Res, ProfileChapter2Model>;
   @useResult
-  $Res call({bool isInitCompleteWithChapter2});
+  $Res call({bool isTextPartReverseActive, bool isImagePartReverseActive});
 }
 
 /// @nodoc
@@ -50,12 +51,17 @@ class _$ProfileChapter2ModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isInitCompleteWithChapter2 = null,
+    Object? isTextPartReverseActive = null,
+    Object? isImagePartReverseActive = null,
   }) {
     return _then(_value.copyWith(
-      isInitCompleteWithChapter2: null == isInitCompleteWithChapter2
-          ? _value.isInitCompleteWithChapter2
-          : isInitCompleteWithChapter2 // ignore: cast_nullable_to_non_nullable
+      isTextPartReverseActive: null == isTextPartReverseActive
+          ? _value.isTextPartReverseActive
+          : isTextPartReverseActive // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isImagePartReverseActive: null == isImagePartReverseActive
+          ? _value.isImagePartReverseActive
+          : isImagePartReverseActive // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -69,7 +75,7 @@ abstract class _$$ProfileChapter2ModelImplCopyWith<$Res>
       __$$ProfileChapter2ModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isInitCompleteWithChapter2});
+  $Res call({bool isTextPartReverseActive, bool isImagePartReverseActive});
 }
 
 /// @nodoc
@@ -85,12 +91,17 @@ class __$$ProfileChapter2ModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isInitCompleteWithChapter2 = null,
+    Object? isTextPartReverseActive = null,
+    Object? isImagePartReverseActive = null,
   }) {
     return _then(_$ProfileChapter2ModelImpl(
-      isInitCompleteWithChapter2: null == isInitCompleteWithChapter2
-          ? _value.isInitCompleteWithChapter2
-          : isInitCompleteWithChapter2 // ignore: cast_nullable_to_non_nullable
+      isTextPartReverseActive: null == isTextPartReverseActive
+          ? _value.isTextPartReverseActive
+          : isTextPartReverseActive // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isImagePartReverseActive: null == isImagePartReverseActive
+          ? _value.isImagePartReverseActive
+          : isImagePartReverseActive // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -99,15 +110,20 @@ class __$$ProfileChapter2ModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ProfileChapter2ModelImpl implements _ProfileChapter2Model {
-  const _$ProfileChapter2ModelImpl({this.isInitCompleteWithChapter2 = false});
+  const _$ProfileChapter2ModelImpl(
+      {this.isTextPartReverseActive = false,
+      this.isImagePartReverseActive = false});
 
   @override
   @JsonKey()
-  final bool isInitCompleteWithChapter2;
+  final bool isTextPartReverseActive;
+  @override
+  @JsonKey()
+  final bool isImagePartReverseActive;
 
   @override
   String toString() {
-    return 'ProfileChapter2Model(isInitCompleteWithChapter2: $isInitCompleteWithChapter2)';
+    return 'ProfileChapter2Model(isTextPartReverseActive: $isTextPartReverseActive, isImagePartReverseActive: $isImagePartReverseActive)';
   }
 
   @override
@@ -115,14 +131,17 @@ class _$ProfileChapter2ModelImpl implements _ProfileChapter2Model {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProfileChapter2ModelImpl &&
-            (identical(other.isInitCompleteWithChapter2,
-                    isInitCompleteWithChapter2) ||
-                other.isInitCompleteWithChapter2 ==
-                    isInitCompleteWithChapter2));
+            (identical(
+                    other.isTextPartReverseActive, isTextPartReverseActive) ||
+                other.isTextPartReverseActive == isTextPartReverseActive) &&
+            (identical(
+                    other.isImagePartReverseActive, isImagePartReverseActive) ||
+                other.isImagePartReverseActive == isImagePartReverseActive));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isInitCompleteWithChapter2);
+  int get hashCode => Object.hash(
+      runtimeType, isTextPartReverseActive, isImagePartReverseActive);
 
   /// Create a copy of ProfileChapter2Model
   /// with the given fields replaced by the non-null parameter values.
@@ -136,11 +155,14 @@ class _$ProfileChapter2ModelImpl implements _ProfileChapter2Model {
 }
 
 abstract class _ProfileChapter2Model implements ProfileChapter2Model {
-  const factory _ProfileChapter2Model({final bool isInitCompleteWithChapter2}) =
-      _$ProfileChapter2ModelImpl;
+  const factory _ProfileChapter2Model(
+      {final bool isTextPartReverseActive,
+      final bool isImagePartReverseActive}) = _$ProfileChapter2ModelImpl;
 
   @override
-  bool get isInitCompleteWithChapter2;
+  bool get isTextPartReverseActive;
+  @override
+  bool get isImagePartReverseActive;
 
   /// Create a copy of ProfileChapter2Model
   /// with the given fields replaced by the non-null parameter values.

@@ -5,7 +5,6 @@ import 'package:self_introduction_flutter/components/condition_utils/profile_vie
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/model/init_model.dart';
-import 'package:self_introduction_flutter/model/main_page/chapter_model/profile_chapter2_model.dart';
 import 'package:self_introduction_flutter/model/main_page/description_model.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
@@ -26,8 +25,8 @@ class MainPageCubit extends Cubit<MainPageState> {
   @postConstruct
   void init() async {
     //TODO:  배포 후, 주석 해제
-    // emit(state.copyWith(
-    //     initModel: state.initModel.copyWith(initState: InitState.active)));
+    emit(state.copyWith(
+        initModel: state.initModel.copyWith(initState: InitState.active)));
     final controller = state.scrollModel.scrollController;
     isInitProfileView();
     await changeProfileViewHeight(controller);
@@ -44,11 +43,15 @@ class MainPageCubit extends Cubit<MainPageState> {
   // 프로필 뷰 초기화
   void isInitProfileView() async {
     for (int i = 0; i < 16; i++) {
-      await Future.delayed(const Duration(milliseconds: 300));
+      await Future.delayed(const Duration(milliseconds: 200));
       emit(state.copyWith(
         profileModel: state.profileModel
             .copyWith(scrollCount: state.profileModel.scrollCount + 1),
       ));
+      if (state.profileModel.scrollCount == 9) {
+        isImagePartActive();
+        isTextPartActive();
+      }
     }
 
     emit(state.copyWith(
@@ -56,18 +59,17 @@ class MainPageCubit extends Cubit<MainPageState> {
         scrollCount: 0,
         finalCount: 1,
         previousCount: 0,
-        profileChapter2Model: const ProfileChapter2Model(
-          isInitCompleteWithChapter2: true,
-        ),
+        profileChapter2Model: state.profileModel.profileChapter2Model
+            .copyWith(isImagePartReverseActive: false),
       ),
     ));
   }
 
   Future<void> changeProfileViewHeight(controller) async {
     //TODO: 배포 주석 해제
-    // emit(state.copyWith(
-    //     initModel: state.initModel
-    //         .copyWith(remainingTime: state.initModel.remainingTime)));
+    emit(state.copyWith(
+        initModel: state.initModel
+            .copyWith(remainingTime: state.initModel.remainingTime)));
     await Future.delayed(Duration(seconds: state.initModel.remainingTime));
 
     void waitForAttachment() {
@@ -96,7 +98,7 @@ class MainPageCubit extends Cubit<MainPageState> {
   void awaitDuration(TickerProvider vsync,
       {String message = TextConstants.welcomeMessage1}) async {
     //TODO: 추 후, 주석 해제
-    // await Future.delayed(Duration(seconds: state.initModel.remainingTime));
+    await Future.delayed(Duration(seconds: state.initModel.remainingTime));
 
     initializeAnimations(vsync, message: message);
   }
@@ -177,6 +179,7 @@ class MainPageCubit extends Cubit<MainPageState> {
 
   // 프로필 뷰 활성화
   Future<void> profileViewActive() async {
+    await isTextPartDispose(isReverseTime: false);
     emit(state.copyWith(
       profileModel: state.profileModel.copyWith(
         //TODO: 스크롤 카운트 변경
@@ -228,11 +231,32 @@ class MainPageCubit extends Cubit<MainPageState> {
                 profileViewState: ProfileViewState.inactive,
                 isScrollInit: false)));
       }
+
+      // 8번 페이지일 경우
+      if (state.profileModel.scrollCount == 8) {
+        isImagePartReverseActive();
+      }
+      // 9번 페이지라면
+      if (state.profileModel.scrollCount == 9) {
+        isTextPartDispose();
+      }
+
+      // 10번 페이지일 경우
+      if (state.profileModel.scrollCount == 10) {
+        isTextPartActive();
+      }
+
+      // 11번 페이지일 경우
+      if (state.profileModel.scrollCount == 11) {
+        isTextPartActive();
+      }
+
       if (state.profileModel.scrollCount != 1) {
         await Future.delayed(const Duration(milliseconds: 1500));
       } else {
         await Future.delayed(const Duration(milliseconds: 1000));
       }
+
       emit(state.copyWith(
           scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
     }
@@ -247,9 +271,18 @@ class MainPageCubit extends Cubit<MainPageState> {
     }
 
     emit(state.copyWith(
-        profileModel: state.profileModel
-            .copyWith(scrollCount: state.profileModel.scrollCount + 1),
+        profileModel: state.profileModel.copyWith(
+            previousCount: state.profileModel.scrollCount,
+            scrollCount: state.profileModel.scrollCount + 1),
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: true)));
+
+    // 9번 페이지일 경우
+    if (state.profileModel.scrollCount == 9) {
+      isImagePartActive();
+    }
+    if (state.profileModel.scrollCount == 10) {
+      isTextPartActive();
+    }
 
     await Future.delayed(const Duration(milliseconds: 1500));
     emit(state.copyWith(
@@ -274,9 +307,53 @@ class MainPageCubit extends Cubit<MainPageState> {
     }
   }
 
+// 이미지 파트 활성화
+  void isImagePartActive() {
+    emit(state.copyWith(
+      profileModel: state.profileModel.copyWith(
+        profileChapter2Model: state.profileModel.profileChapter2Model
+            .copyWith(isImagePartReverseActive: true),
+      ),
+    ));
+  }
+
+  // 이미지 파트 리버스 활성화
+  void isImagePartReverseActive() async {
+    await Future.delayed(const Duration(milliseconds: 800));
+    emit(state.copyWith(
+      profileModel: state.profileModel.copyWith(
+        profileChapter2Model: state.profileModel.profileChapter2Model
+            .copyWith(isImagePartReverseActive: false),
+      ),
+    ));
+  }
+
+  // 텍스트 파트 활성화 With 1번텍스트
+  void isTextPartActive() {
+    emit(state.copyWith(
+      profileModel: state.profileModel.copyWith(
+        profileChapter2Model: state.profileModel.profileChapter2Model
+            .copyWith(isTextPartReverseActive: true),
+      ),
+    ));
+  }
+
+  // 텍스트 파트 리버스 활성화 With 1번텍스트
+  Future<void> isTextPartDispose({bool isReverseTime = true}) async {
+    if (isReverseTime) {
+      await Future.delayed(const Duration(milliseconds: 700));
+    }
+
+    emit(state.copyWith(
+      profileModel: state.profileModel.copyWith(
+        profileChapter2Model: state.profileModel.profileChapter2Model
+            .copyWith(isTextPartReverseActive: false),
+      ),
+    ));
+  }
+
   // 챕터 건너뛰기, 이어보기
   Future<void> continueChapterView(int pageNumber, bool isContinue) async {
-    print('챕터 번호 $pageNumber 이어보기 ${isContinue ? '이어보기' : '건너뛰기'}');
     if (pageNumber == 3) {
       // 챕터 1 건너뛰기, 이어보기
       await skipChapterView(isContinue, 3);
@@ -288,7 +365,6 @@ class MainPageCubit extends Cubit<MainPageState> {
     }
   }
 
-  //TODO: 작업 시작 5월 6일
   // 챕터 건너뛰기
   Future<void> skipChapterView(bool isContinue, int count) async {
     if (isContinue) {
