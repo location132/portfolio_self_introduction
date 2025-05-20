@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/rive/air_bubble.dart';
 import 'package:self_introduction_flutter/model/main_page/description_model.dart';
-import 'package:self_introduction_flutter/page/main_page/main_state.dart';
+import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 
 class DescriptionButton extends StatefulWidget {
   final Function() onTap;
-  final MainPageState state;
+  final DesktopState state;
   const DescriptionButton(
       {super.key, required this.onTap, required this.state});
 

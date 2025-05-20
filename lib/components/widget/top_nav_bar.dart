@@ -3,11 +3,8 @@ import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 
 class TopNavBar extends StatelessWidget {
-  final void Function() toggleFullScreen;
-
   const TopNavBar({
     super.key,
-    required this.toggleFullScreen,
   });
 
   @override
@@ -33,15 +30,6 @@ class TopNavBar extends StatelessWidget {
             const NavItem(title: TextConstants.topNavBar6),
             const NavItem(title: TextConstants.topNavBar7),
             const Spacer(),
-            IconButton(
-              icon: const Icon(
-                Icons.fullscreen,
-                color: Colors.black,
-                size: 30,
-              ),
-              onPressed: toggleFullScreen,
-            ),
-            SizedBox(width: 11.sw),
           ],
         ),
       ),

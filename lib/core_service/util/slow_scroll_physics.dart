@@ -5,10 +5,10 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:js' as js;
 
 import 'package:self_introduction_flutter/components/condition_utils/condition_utils.dart';
-import 'package:self_introduction_flutter/page/main_page/main_state.dart';
+import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 
 class SlowScrollPhysics extends StatefulWidget {
-  final MainPageState state;
+  final DesktopState state;
   final Widget child;
   const SlowScrollPhysics(
       {super.key, required this.state, required this.child});
