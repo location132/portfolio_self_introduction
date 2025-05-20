@@ -16,9 +16,6 @@ class InitModel with _$InitModel {
 
     // 브라우저 확인
     @Default(false) bool isChromeBrowser,
-
-    // 반응형 모델 (데스크탑, 태블릿, 모바일)
-    @Default(DeviceType.mobile) DeviceType deviceType,
   }) = _InitModel;
 }
 

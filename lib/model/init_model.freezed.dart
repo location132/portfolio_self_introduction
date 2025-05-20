@@ -20,9 +20,7 @@ mixin _$InitModel {
   InitState get initState => throw _privateConstructorUsedError; // 프로필 뷰 높이
   double get mainViewHeight => throw _privateConstructorUsedError; // 로딩 남은시간()
   int get remainingTime => throw _privateConstructorUsedError; // 브라우저 확인
-  bool get isChromeBrowser =>
-      throw _privateConstructorUsedError; // 반응형 모델 (데스크탑, 태블릿, 모바일)
-  DeviceType get deviceType => throw _privateConstructorUsedError;
+  bool get isChromeBrowser => throw _privateConstructorUsedError;
 
   /// Create a copy of InitModel
   /// with the given fields replaced by the non-null parameter values.
@@ -40,8 +38,7 @@ abstract class $InitModelCopyWith<$Res> {
       {InitState initState,
       double mainViewHeight,
       int remainingTime,
-      bool isChromeBrowser,
-      DeviceType deviceType});
+      bool isChromeBrowser});
 }
 
 /// @nodoc
@@ -63,7 +60,6 @@ class _$InitModelCopyWithImpl<$Res, $Val extends InitModel>
     Object? mainViewHeight = null,
     Object? remainingTime = null,
     Object? isChromeBrowser = null,
-    Object? deviceType = null,
   }) {
     return _then(_value.copyWith(
       initState: null == initState
@@ -82,10 +78,6 @@ class _$InitModelCopyWithImpl<$Res, $Val extends InitModel>
           ? _value.isChromeBrowser
           : isChromeBrowser // ignore: cast_nullable_to_non_nullable
               as bool,
-      deviceType: null == deviceType
-          ? _value.deviceType
-          : deviceType // ignore: cast_nullable_to_non_nullable
-              as DeviceType,
     ) as $Val);
   }
 }
@@ -102,8 +94,7 @@ abstract class _$$InitModelImplCopyWith<$Res>
       {InitState initState,
       double mainViewHeight,
       int remainingTime,
-      bool isChromeBrowser,
-      DeviceType deviceType});
+      bool isChromeBrowser});
 }
 
 /// @nodoc
@@ -123,7 +114,6 @@ class __$$InitModelImplCopyWithImpl<$Res>
     Object? mainViewHeight = null,
     Object? remainingTime = null,
     Object? isChromeBrowser = null,
-    Object? deviceType = null,
   }) {
     return _then(_$InitModelImpl(
       initState: null == initState
@@ -142,10 +132,6 @@ class __$$InitModelImplCopyWithImpl<$Res>
           ? _value.isChromeBrowser
           : isChromeBrowser // ignore: cast_nullable_to_non_nullable
               as bool,
-      deviceType: null == deviceType
-          ? _value.deviceType
-          : deviceType // ignore: cast_nullable_to_non_nullable
-              as DeviceType,
     ));
   }
 }
@@ -157,8 +143,7 @@ class _$InitModelImpl implements _InitModel {
       {this.initState = InitState.inactive,
       this.mainViewHeight = 0.0,
       this.remainingTime = 4,
-      this.isChromeBrowser = false,
-      this.deviceType = DeviceType.mobile});
+      this.isChromeBrowser = false});
 
 // 초기화 상태
   @override
@@ -176,14 +161,10 @@ class _$InitModelImpl implements _InitModel {
   @override
   @JsonKey()
   final bool isChromeBrowser;
-// 반응형 모델 (데스크탑, 태블릿, 모바일)
-  @override
-  @JsonKey()
-  final DeviceType deviceType;
 
   @override
   String toString() {
-    return 'InitModel(initState: $initState, mainViewHeight: $mainViewHeight, remainingTime: $remainingTime, isChromeBrowser: $isChromeBrowser, deviceType: $deviceType)';
+    return 'InitModel(initState: $initState, mainViewHeight: $mainViewHeight, remainingTime: $remainingTime, isChromeBrowser: $isChromeBrowser)';
   }
 
   @override
@@ -198,14 +179,12 @@ class _$InitModelImpl implements _InitModel {
             (identical(other.remainingTime, remainingTime) ||
                 other.remainingTime == remainingTime) &&
             (identical(other.isChromeBrowser, isChromeBrowser) ||
-                other.isChromeBrowser == isChromeBrowser) &&
-            (identical(other.deviceType, deviceType) ||
-                other.deviceType == deviceType));
+                other.isChromeBrowser == isChromeBrowser));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, initState, mainViewHeight,
-      remainingTime, isChromeBrowser, deviceType);
+  int get hashCode => Object.hash(
+      runtimeType, initState, mainViewHeight, remainingTime, isChromeBrowser);
 
   /// Create a copy of InitModel
   /// with the given fields replaced by the non-null parameter values.
@@ -221,8 +200,7 @@ abstract class _InitModel implements InitModel {
       {final InitState initState,
       final double mainViewHeight,
       final int remainingTime,
-      final bool isChromeBrowser,
-      final DeviceType deviceType}) = _$InitModelImpl;
+      final bool isChromeBrowser}) = _$InitModelImpl;
 
 // 초기화 상태
   @override
@@ -232,9 +210,7 @@ abstract class _InitModel implements InitModel {
   @override
   int get remainingTime; // 브라우저 확인
   @override
-  bool get isChromeBrowser; // 반응형 모델 (데스크탑, 태블릿, 모바일)
-  @override
-  DeviceType get deviceType;
+  bool get isChromeBrowser;
 
   /// Create a copy of InitModel
   /// with the given fields replaced by the non-null parameter values.

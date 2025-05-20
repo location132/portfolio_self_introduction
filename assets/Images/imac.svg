@@ -1,0 +1,30 @@
+<svg width="200" height="150" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+  <!-- 얇은 프레임 -->
+  <rect
+    x="1" y="1"
+    width="198" height="110"
+    rx="8" ry="8"
+    fill="none"
+    stroke="#333"
+    stroke-width="2"
+  />
+  <!-- 화면 내부 -->
+  <rect
+    x="8" y="8"
+    width="184" height="94"
+    rx="4" ry="4"
+    fill="#fff"
+  />
+  <!-- 스탠드 -->
+  <rect
+    x="95" y="112"
+    width="10" height="20"
+    fill="#666"
+  />
+  <!-- 베이스 -->
+  <rect
+    x="60" y="132"
+    width="80" height="4"
+    fill="#666"
+  />
+</svg>

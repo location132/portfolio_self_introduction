@@ -16,10 +16,12 @@ import 'package:visibility_detector/visibility_detector.dart';
 
 class DesktopPage extends StatelessWidget {
   final bool isChromeBrowser;
+  final String deviceType;
 
   const DesktopPage({
     super.key,
     required this.isChromeBrowser,
+    required this.deviceType,
   });
 
   @override
@@ -28,6 +30,7 @@ class DesktopPage extends StatelessWidget {
       create: (context) => di<DesktopCubit>(),
       child: _MainView(
         isChromeBrowser: isChromeBrowser,
+        deviceType: deviceType,
       ),
     );
   }
@@ -35,9 +38,10 @@ class DesktopPage extends StatelessWidget {
 
 class _MainView extends StatefulWidget {
   final bool isChromeBrowser;
-
+  final String deviceType;
   const _MainView({
     required this.isChromeBrowser,
+    required this.deviceType,
   });
 
   @override
@@ -46,6 +50,17 @@ class _MainView extends StatefulWidget {
 
 class _MainViewState extends State<_MainView> {
   @override
+  void initState() {
+    super.initState();
+    print('check ==> initState11');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('check ==> dispose');
+  }
+
   Widget build(BuildContext context) {
     return BlocBuilder<DesktopCubit, DesktopState>(
       builder: (context, state) {
@@ -61,7 +76,7 @@ class _MainViewState extends State<_MainView> {
           backgroundColor: Colors.transparent,
           body: Column(
             children: [
-              const TopNavBar(),
+              TopNavBar(deviceType: widget.deviceType),
               SizedBox(
                 height: MediaQuery.of(context).size.height - 83,
                 width: MediaQuery.of(context).size.width,
@@ -87,63 +102,63 @@ class _MainViewState extends State<_MainView> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // ProfilePage(
-                            //   state: state,
-                            //   cubit: context.read<DesktopCubit>(),
-                            // ),
+                            ProfilePage(
+                              state: state,
+                              cubit: context.read<DesktopCubit>(),
+                            ),
                             // 배너 뷰
-                            // Visibility(
-                            //   visible:
-                            //       ProfileViewConditionUtils.isSkillViewActive(
-                            //           state),
-                            //   child: VisibilityDetector(
-                            //     key: const Key('banner-view'),
-                            //     onVisibilityChanged: (VisibilityInfo info) {
-                            //       if (info.visibleFraction > 0.2 &&
-                            //           state.scrollModel.bannerState ==
-                            //               BannerState.inactive) {
-                            //         context
-                            //             .read<DesktopCubit>()
-                            //             .viewListener('banner');
-                            //       }
-                            //     },
-                            //     child: BannerView(
-                            //       state: state,
-                            //       isActive: (bool isActive) {
-                            //         context
-                            //             .read<DesktopCubit>()
-                            //             .descriptionButton('banner', isActive);
-                            //       },
-                            //     ),
-                            //   ),
-                            // ),
+                            Visibility(
+                              visible:
+                                  ProfileViewConditionUtils.isSkillViewActive(
+                                      state),
+                              child: VisibilityDetector(
+                                key: const Key('banner-view'),
+                                onVisibilityChanged: (VisibilityInfo info) {
+                                  if (info.visibleFraction > 0.2 &&
+                                      state.scrollModel.bannerState ==
+                                          BannerState.inactive) {
+                                    context
+                                        .read<DesktopCubit>()
+                                        .viewListener('banner');
+                                  }
+                                },
+                                child: BannerView(
+                                  state: state,
+                                  isActive: (bool isActive) {
+                                    context
+                                        .read<DesktopCubit>()
+                                        .descriptionButton('banner', isActive);
+                                  },
+                                ),
+                              ),
+                            ),
 
-                            // // 스킬 뷰
-                            // Visibility(
-                            //   visible:
-                            //       ProfileViewConditionUtils.isSkillViewActive(
-                            //           state),
-                            //   child: VisibilityDetector(
-                            //     key: const Key('skill-view'),
-                            //     onVisibilityChanged: (VisibilityInfo info) {
-                            //       if (info.visibleFraction > 0.8 &&
-                            //           state.mySkillModel.status ==
-                            //               MySkillViewStatus.inactive) {
-                            //         context
-                            //             .read<DesktopCubit>()
-                            //             .viewListener('skill');
-                            //       }
-                            //     },
-                            //     child: SkillView(
-                            //       state: state,
-                            //       onTap: (int index) {
-                            //         context
-                            //             .read<DesktopCubit>()
-                            //             .descriptionButton('skill', true);
-                            //       },
-                            //     ),
-                            //   ),
-                            // ),
+                            // 스킬 뷰
+                            Visibility(
+                              visible:
+                                  ProfileViewConditionUtils.isSkillViewActive(
+                                      state),
+                              child: VisibilityDetector(
+                                key: const Key('skill-view'),
+                                onVisibilityChanged: (VisibilityInfo info) {
+                                  if (info.visibleFraction > 0.8 &&
+                                      state.mySkillModel.status ==
+                                          MySkillViewStatus.inactive) {
+                                    context
+                                        .read<DesktopCubit>()
+                                        .viewListener('skill');
+                                  }
+                                },
+                                child: SkillView(
+                                  state: state,
+                                  onTap: (int index) {
+                                    context
+                                        .read<DesktopCubit>()
+                                        .descriptionButton('skill', true);
+                                  },
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),

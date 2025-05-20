@@ -33,7 +33,7 @@ class _IntroshowcaseState extends State<Introshowcase> {
         AnimatedOpacity(
           duration: const Duration(milliseconds: 720),
           opacity: Conditions.isInitStateLoaded(widget.state) ? 0 : 1,
-          child: const Waves(),
+          child: const Waves(deviceType: 'desktop'),
         ),
         // 텍스트 애니메이션
         Positioned(

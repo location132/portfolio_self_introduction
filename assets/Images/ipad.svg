@@ -1,0 +1,24 @@
+<svg width="180" height="100" viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- 얇은 프레임 -->
+  <rect
+    x="1" y="1"
+    width="178" height="98"
+    rx="10" ry="10"
+    fill="none"
+    stroke="#333"
+    stroke-width="2"
+  />
+  <!-- 화면 -->
+  <rect
+    x="8" y="8"
+    width="164" height="84"
+    rx="6" ry="6"
+    fill="#fff"
+  />
+  <!-- 전면 카메라 (약간 아래로) -->
+  <circle
+    cx="90" cy="8"
+    r="3"
+    fill="#333"
+  />
+</svg>

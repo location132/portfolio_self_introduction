@@ -2,7 +2,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class Waves extends StatefulWidget {
-  const Waves({super.key});
+  final String deviceType;
+  const Waves({
+    super.key,
+    required this.deviceType,
+  });
 
   @override
   WavesState createState() => WavesState();
@@ -16,12 +20,18 @@ class WavesState extends State<Waves> with SingleTickerProviderStateMixin {
     const Color(0xFF0000F8),
   ];
   final int nodes = 3;
-  final double waveHeight = 120;
+  late double waveHeight;
   List<Wave> waves = [];
 
   @override
   void initState() {
     super.initState();
+
+    if (widget.deviceType == 'desktop') {
+      waveHeight = 120;
+    } else {
+      waveHeight = 60;
+    }
 
     _controller = AnimationController(
       vsync: this,

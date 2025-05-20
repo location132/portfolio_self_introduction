@@ -13,6 +13,7 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
 import '../../page/desktop_page/desktop_cubit.dart' as _i903;
+import '../../page/mobile_page/mobile_cubit.dart' as _i673;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -26,6 +27,7 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.factory<_i903.DesktopCubit>(() => _i903.DesktopCubit()..init());
+    gh.factory<_i673.MobileCubit>(() => _i673.MobileCubit());
     return this;
   }
 }

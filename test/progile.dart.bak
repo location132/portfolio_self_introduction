@@ -1,19 +1,68 @@
-       // SlideTransition(
-        //   position: _chapter2Animation.textMoveAnimation2,
-        //   child: FadeTransition(
-        //     opacity: _chapter2Animation.textOpacityAnimation2,
-        //     child: Text(
-        //       "이 모든 경험들이 쌓여,\n"
-        //       " 저는 9명의 개발자, 3명의 디자이너, 1명의 보안 전문가,\n"
-        //       " 그리고 3명의 경영학과 친구들과 함께\n"
-        //       " 하나의 서비스를 만들어내는 PM이자,\n"
-        //       " Flutter 개발자로 성장할 수 있었습니다.",
-        //       style: GoogleFonts.notoSans(
-        //         fontSize: 18,
-        //         fontWeight: FontWeight.w600,
-        //         color: Colors.white,
-        //       ),
-        //       textAlign: TextAlign.left,
-        //     ),
-        //   ),
-        // ),
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="self_introduction_flutter">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <meta name="theme-color" content="#ffffff"> 
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>self_introduction_flutter</title>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    /* 모바일에서만 적용 (최대 너비 768px 이하는 모바일, 필요에 따라 조절) */
+    @media screen and (max-width: 768px) {
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff !important;
+        height: 500vh !important;    /* 모바일에서만 강제로 스크롤 확보 */
+        overflow-y: scroll !important;
+        overflow-x: hidden !important;
+        touch-action: pan-y !important;
+        overscroll-behavior: none;
+      }
+  
+      flt-glass-pane {
+        background-color: #ffffff !important;
+        position: fixed !important;
+        top: 50vh !important;
+        left: 50vw !important;
+        max-width: 100vw !important;
+        max-height: 100vh !important;
+        transform: translate(-50vw, -50vh) !important;
+      }
+    }
+  
+
+  </style>
+
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
