@@ -1,15 +1,26 @@
+//2줄 타이틀
+
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/page/mobile_page/animation/intro_ani.dart';
 
-class IntroTitle extends StatefulWidget {
+class TwoLineTitle extends StatefulWidget {
   final bool isTitelText;
-  const IntroTitle({super.key, required this.isTitelText});
+  final String title;
+
+  final String subTitle;
+  const TwoLineTitle({
+    super.key,
+    required this.isTitelText,
+    required this.title,
+    required this.subTitle,
+  });
 
   @override
-  State<IntroTitle> createState() => _IntroTitleState();
+  State<TwoLineTitle> createState() => _TwoLineTitleState();
 }
 
-class _IntroTitleState extends State<IntroTitle> with TickerProviderStateMixin {
+class _TwoLineTitleState extends State<TwoLineTitle>
+    with TickerProviderStateMixin {
   late TextMoveAnimation _titleAnimation;
   late TextMoveAnimation _subTitleAnimation;
 
@@ -21,7 +32,7 @@ class _IntroTitleState extends State<IntroTitle> with TickerProviderStateMixin {
   }
 
   @override
-  void didUpdateWidget(IntroTitle oldWidget) {
+  void didUpdateWidget(TwoLineTitle oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.isTitelText) {
       _titleAnimation.forward();
@@ -47,9 +58,9 @@ class _IntroTitleState extends State<IntroTitle> with TickerProviderStateMixin {
             position: _titleAnimation.moveShow,
             child: FadeTransition(
               opacity: _titleAnimation.opacityShow,
-              child: const Text(
-                'Flutter Portfolio',
-                style: TextStyle(
+              child: Text(
+                widget.title,
+                style: const TextStyle(
                   fontSize: 25.0,
                   fontWeight: FontWeight.bold,
                 ),
@@ -62,9 +73,9 @@ class _IntroTitleState extends State<IntroTitle> with TickerProviderStateMixin {
               position: _subTitleAnimation.moveShow,
               child: FadeTransition(
                 opacity: _subTitleAnimation.opacityShow,
-                child: const Text(
-                  '2025년 나를 보여주기 위한 하나의 선택',
-                  style: TextStyle(
+                child: Text(
+                  widget.subTitle,
+                  style: const TextStyle(
                     fontSize: 15.0,
                     fontWeight: FontWeight.bold,
                   ),

@@ -4,6 +4,7 @@ import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/intro_view/intro_page.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/main_view/main_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/navi_bar.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
 
@@ -47,7 +48,7 @@ class _MobileViewState extends State<_MobileView> {
       builder: (context, state) {
         return Scaffold(
           body: ListView(
-            physics: state.introModel.isSubTitle
+            physics: state.scrollModel.isScrollWaiting
                 ? const NeverScrollableScrollPhysics()
                 : const AlwaysScrollableScrollPhysics(),
             controller: state.scrollModel.scrollController,
@@ -68,10 +69,17 @@ class _MobileViewState extends State<_MobileView> {
                         ),
                       ),
                       AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 600),
+                        duration: const Duration(milliseconds: 1000),
                         child: state.introModel.isPageTransition
-                            ? const SizedBox.shrink()
+                            ? MainPage(
+                                key: const ValueKey('main'),
+                                isTitelTextAniStart:
+                                    state.introModel.isTitelTextAniStart,
+                                isChapterContainerAniStart:
+                                    state.introModel.isChapterContainerAniStart,
+                              )
                             : IntroPage(
+                                key: const ValueKey('intro'),
                                 deviceType: widget.deviceType,
                                 introModel: state.introModel,
                               ),

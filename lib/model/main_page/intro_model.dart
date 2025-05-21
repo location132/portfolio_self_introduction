@@ -20,5 +20,7 @@ class IntroModel with _$IntroModel {
 
     // 화면 전환
     @Default(false) bool isPageTransition,
+    @Default(false) bool isTitelTextAniStart,
+    @Default(false) bool isChapterContainerAniStart,
   }) = _IntroModel;
 }

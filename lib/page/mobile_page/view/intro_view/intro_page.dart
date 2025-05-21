@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/model/main_page/intro_model.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/intro_view/widget/wave_animation.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/intro_view/widget/intro_text.dart';
-import 'package:self_introduction_flutter/page/mobile_page/view/intro_view/widget/intro_title.dart';
+import 'package:self_introduction_flutter/components/widget/mobile_title/two_line_title.dart';
 
 class IntroPage extends StatelessWidget {
   final String deviceType;
@@ -32,7 +32,11 @@ class IntroPage extends StatelessWidget {
                 ),
         ),
         Positioned.fill(
-          child: IntroTitle(isTitelText: introModel.isTitelText),
+          child: TwoLineTitle(
+            isTitelText: introModel.isTitelText,
+            title: 'Flutter Portfolio',
+            subTitle: '2025년 나를 보여주기 위한 하나의 선택',
+          ),
         ),
         Positioned.fill(
           child: IntroText(
