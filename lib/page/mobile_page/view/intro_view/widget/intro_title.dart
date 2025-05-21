@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/page/mobile_page/view/intro_view/animation/intro_ani.dart';
+import 'package:self_introduction_flutter/page/mobile_page/animation/intro_ani.dart';
 
 class IntroTitle extends StatefulWidget {
   final bool isTitelText;
@@ -10,14 +10,14 @@ class IntroTitle extends StatefulWidget {
 }
 
 class _IntroTitleState extends State<IntroTitle> with TickerProviderStateMixin {
-  late IntroAnimation _titleAnimation;
-  late IntroAnimation _subTitleAnimation;
+  late TextMoveAnimation _titleAnimation;
+  late TextMoveAnimation _subTitleAnimation;
 
   @override
   void initState() {
     super.initState();
-    _titleAnimation = IntroAnimation(vsync: this, beginDy: 1);
-    _subTitleAnimation = IntroAnimation(vsync: this, beginDy: 1.5);
+    _titleAnimation = TextMoveAnimation(vsync: this, beginDy: 1);
+    _subTitleAnimation = TextMoveAnimation(vsync: this, beginDy: 1.5);
   }
 
   @override

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class IntroAnimation {
+class TextMoveAnimation {
   late AnimationController showController;
   late Animation<Offset> moveShow;
   late Animation<double> opacityShow;
 
-  IntroAnimation({required TickerProvider vsync, double beginDy = 0.5})
+  TextMoveAnimation({required TickerProvider vsync, double beginDy = 0.5})
       : showController = AnimationController(
           vsync: vsync,
           duration: const Duration(milliseconds: 620),
