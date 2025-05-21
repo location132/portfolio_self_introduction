@@ -47,6 +47,9 @@ class _MobileViewState extends State<_MobileView> {
       builder: (context, state) {
         return Scaffold(
           body: ListView(
+            physics: state.introModel.isSubTitle
+                ? const NeverScrollableScrollPhysics()
+                : const AlwaysScrollableScrollPhysics(),
             controller: state.scrollModel.scrollController,
             children: [
               Stack(
