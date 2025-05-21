@@ -5,29 +5,35 @@ import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/
 
 class NaviBar extends StatefulWidget {
   final String deviceType;
-  const NaviBar({super.key, required this.deviceType});
+  final bool isDeviceSelector;
+  final bool isDescription;
+  final Function() onPressed;
+  const NaviBar({
+    super.key,
+    required this.deviceType,
+    required this.isDeviceSelector,
+    required this.isDescription,
+    required this.onPressed,
+  });
 
   @override
   State<NaviBar> createState() => _NaviBarState();
 }
 
 class _NaviBarState extends State<NaviBar> with SingleTickerProviderStateMixin {
-  bool _expanded = false;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() => _expanded = true);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TopNavBar(deviceType: widget.deviceType),
-        DeviceSelector(deviceType: widget.deviceType),
+        TopNavBar(
+          deviceType: widget.deviceType,
+          onPressed: widget.onPressed,
+        ),
+        const SizedBox(height: 3),
+        DeviceSelector(
+          deviceType: widget.deviceType,
+          isDeviceSelector: widget.isDeviceSelector,
+        ),
         const SizedBox(height: 30),
         AnimatedSize(
           duration: const Duration(milliseconds: 700),
@@ -35,7 +41,7 @@ class _NaviBarState extends State<NaviBar> with SingleTickerProviderStateMixin {
           child: ClipRect(
             child: Align(
               alignment: Alignment.topCenter,
-              heightFactor: _expanded ? 1 : 0,
+              heightFactor: widget.isDescription ? 1 : 0,
               child: Container(
                 width: double.infinity,
                 color: const Color.fromARGB(255, 234, 233, 233),

@@ -16,7 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MobileState {
-  String get test => throw _privateConstructorUsedError;
+  InitModel get initModel => throw _privateConstructorUsedError;
+  IntroModel get introModel => throw _privateConstructorUsedError;
+  ScrollModel get scrollModel => throw _privateConstructorUsedError;
 
   /// Create a copy of MobileState
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +33,12 @@ abstract class $MobileStateCopyWith<$Res> {
           MobileState value, $Res Function(MobileState) then) =
       _$MobileStateCopyWithImpl<$Res, MobileState>;
   @useResult
-  $Res call({String test});
+  $Res call(
+      {InitModel initModel, IntroModel introModel, ScrollModel scrollModel});
+
+  $InitModelCopyWith<$Res> get initModel;
+  $IntroModelCopyWith<$Res> get introModel;
+  $ScrollModelCopyWith<$Res> get scrollModel;
 }
 
 /// @nodoc
@@ -49,14 +56,54 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? test = null,
+    Object? initModel = null,
+    Object? introModel = null,
+    Object? scrollModel = null,
   }) {
     return _then(_value.copyWith(
-      test: null == test
-          ? _value.test
-          : test // ignore: cast_nullable_to_non_nullable
-              as String,
+      initModel: null == initModel
+          ? _value.initModel
+          : initModel // ignore: cast_nullable_to_non_nullable
+              as InitModel,
+      introModel: null == introModel
+          ? _value.introModel
+          : introModel // ignore: cast_nullable_to_non_nullable
+              as IntroModel,
+      scrollModel: null == scrollModel
+          ? _value.scrollModel
+          : scrollModel // ignore: cast_nullable_to_non_nullable
+              as ScrollModel,
     ) as $Val);
+  }
+
+  /// Create a copy of MobileState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $InitModelCopyWith<$Res> get initModel {
+    return $InitModelCopyWith<$Res>(_value.initModel, (value) {
+      return _then(_value.copyWith(initModel: value) as $Val);
+    });
+  }
+
+  /// Create a copy of MobileState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $IntroModelCopyWith<$Res> get introModel {
+    return $IntroModelCopyWith<$Res>(_value.introModel, (value) {
+      return _then(_value.copyWith(introModel: value) as $Val);
+    });
+  }
+
+  /// Create a copy of MobileState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ScrollModelCopyWith<$Res> get scrollModel {
+    return $ScrollModelCopyWith<$Res>(_value.scrollModel, (value) {
+      return _then(_value.copyWith(scrollModel: value) as $Val);
+    });
   }
 }
 
@@ -68,7 +115,15 @@ abstract class _$$MobileStateImplCopyWith<$Res>
       __$$MobileStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String test});
+  $Res call(
+      {InitModel initModel, IntroModel introModel, ScrollModel scrollModel});
+
+  @override
+  $InitModelCopyWith<$Res> get initModel;
+  @override
+  $IntroModelCopyWith<$Res> get introModel;
+  @override
+  $ScrollModelCopyWith<$Res> get scrollModel;
 }
 
 /// @nodoc
@@ -84,13 +139,23 @@ class __$$MobileStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? test = null,
+    Object? initModel = null,
+    Object? introModel = null,
+    Object? scrollModel = null,
   }) {
     return _then(_$MobileStateImpl(
-      test: null == test
-          ? _value.test
-          : test // ignore: cast_nullable_to_non_nullable
-              as String,
+      initModel: null == initModel
+          ? _value.initModel
+          : initModel // ignore: cast_nullable_to_non_nullable
+              as InitModel,
+      introModel: null == introModel
+          ? _value.introModel
+          : introModel // ignore: cast_nullable_to_non_nullable
+              as IntroModel,
+      scrollModel: null == scrollModel
+          ? _value.scrollModel
+          : scrollModel // ignore: cast_nullable_to_non_nullable
+              as ScrollModel,
     ));
   }
 }
@@ -98,15 +163,24 @@ class __$$MobileStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MobileStateImpl implements _MobileState {
-  const _$MobileStateImpl({this.test = ''});
+  const _$MobileStateImpl(
+      {this.initModel = const InitModel(),
+      this.introModel = const IntroModel(),
+      this.scrollModel = const ScrollModel()});
 
   @override
   @JsonKey()
-  final String test;
+  final InitModel initModel;
+  @override
+  @JsonKey()
+  final IntroModel introModel;
+  @override
+  @JsonKey()
+  final ScrollModel scrollModel;
 
   @override
   String toString() {
-    return 'MobileState(test: $test)';
+    return 'MobileState(initModel: $initModel, introModel: $introModel, scrollModel: $scrollModel)';
   }
 
   @override
@@ -114,11 +188,17 @@ class _$MobileStateImpl implements _MobileState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MobileStateImpl &&
-            (identical(other.test, test) || other.test == test));
+            (identical(other.initModel, initModel) ||
+                other.initModel == initModel) &&
+            (identical(other.introModel, introModel) ||
+                other.introModel == introModel) &&
+            (identical(other.scrollModel, scrollModel) ||
+                other.scrollModel == scrollModel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, test);
+  int get hashCode =>
+      Object.hash(runtimeType, initModel, introModel, scrollModel);
 
   /// Create a copy of MobileState
   /// with the given fields replaced by the non-null parameter values.
@@ -130,10 +210,17 @@ class _$MobileStateImpl implements _MobileState {
 }
 
 abstract class _MobileState implements MobileState {
-  const factory _MobileState({final String test}) = _$MobileStateImpl;
+  const factory _MobileState(
+      {final InitModel initModel,
+      final IntroModel introModel,
+      final ScrollModel scrollModel}) = _$MobileStateImpl;
 
   @override
-  String get test;
+  InitModel get initModel;
+  @override
+  IntroModel get introModel;
+  @override
+  ScrollModel get scrollModel;
 
   /// Create a copy of MobileState
   /// with the given fields replaced by the non-null parameter values.

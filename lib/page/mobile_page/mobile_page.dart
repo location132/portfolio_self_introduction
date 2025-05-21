@@ -5,6 +5,7 @@ import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/intro_view/intro_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/navi_bar.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
 
 class MobilePage extends StatelessWidget {
   final String deviceType;
@@ -45,13 +46,40 @@ class _MobileViewState extends State<_MobileView> {
     return BlocBuilder<MobileCubit, MobileState>(
       builder: (context, state) {
         return Scaffold(
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                NaviBar(deviceType: widget.deviceType),
-                IntroPage(deviceType: widget.deviceType),
-              ],
-            ),
+          body: ListView(
+            controller: state.scrollModel.scrollController,
+            children: [
+              Stack(
+                children: [
+                  Column(
+                    children: [
+                      AnimatedOpacity(
+                        opacity: state.initModel.isMobileInit ? 1.0 : 0.0,
+                        duration: const Duration(milliseconds: 600),
+                        child: NaviBar(
+                          deviceType: widget.deviceType,
+                          isDeviceSelector: state.introModel.isDeviceSelector,
+                          isDescription: state.introModel.isDescription,
+                          onPressed: () =>
+                              context.read<MobileCubit>().menuClicked(),
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: state.initModel.isMobileInit ? 1.0 : 0.0,
+                        duration: const Duration(milliseconds: 600),
+                        child: IntroPage(
+                          deviceType: widget.deviceType,
+                          introModel: state.introModel,
+                        ),
+                      ),
+                    ],
+                  ),
+                  MenuScreen(
+                    isMenuClicked: state.introModel.isMenuClicked,
+                  ),
+                ],
+              ),
+            ],
           ),
         );
       },

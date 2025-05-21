@@ -6,9 +6,11 @@ import 'package:self_introduction_flutter/core_service/util/device_Info_size.dar
 
 class TopNavBar extends StatelessWidget {
   final String deviceType;
+  final Function()? onPressed;
   const TopNavBar({
     super.key,
     required this.deviceType,
+    this.onPressed,
   });
 
   @override
@@ -56,9 +58,7 @@ class TopNavBar extends StatelessWidget {
                   scale: 25,
                 ),
                 const Spacer(),
-                MenuToggleButton(
-                  onPressed: () => debugPrint('메뉴 클릭됨'),
-                ),
+                MenuToggleButton(onPressed: onPressed!),
               ],
             ),
           ),

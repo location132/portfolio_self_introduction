@@ -16,6 +16,9 @@ class ScrollModel with _$ScrollModel {
     @Default(ProfileViewState.inactive) ProfileViewState profileViewState,
     @Default(false) bool isScrollWaiting,
     @Default(false) bool isScrollInit,
+
+    //모바일에서 사용되는 모델
+    @Default(false) bool isAtBottom,
   }) = _ScrollModel;
 }
 

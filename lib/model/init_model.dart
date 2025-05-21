@@ -16,6 +16,9 @@ class InitModel with _$InitModel {
 
     // 브라우저 확인
     @Default(false) bool isChromeBrowser,
+
+    //모바일 init 확인
+    @Default(false) bool isMobileInit,
   }) = _InitModel;
 }
 
