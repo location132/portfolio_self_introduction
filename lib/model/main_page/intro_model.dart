@@ -17,5 +17,8 @@ class IntroModel with _$IntroModel {
 
     //메뉴 클릭 여부
     @Default(false) bool isMenuClicked,
+
+    // 화면 전환
+    @Default(false) bool isPageTransition,
   }) = _IntroModel;
 }

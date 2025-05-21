@@ -67,13 +67,14 @@ class _MobileViewState extends State<_MobileView> {
                               context.read<MobileCubit>().menuClicked(),
                         ),
                       ),
-                      AnimatedOpacity(
-                        opacity: state.initModel.isMobileInit ? 1.0 : 0.0,
+                      AnimatedSwitcher(
                         duration: const Duration(milliseconds: 600),
-                        child: IntroPage(
-                          deviceType: widget.deviceType,
-                          introModel: state.introModel,
-                        ),
+                        child: state.introModel.isPageTransition
+                            ? const SizedBox.shrink()
+                            : IntroPage(
+                                deviceType: widget.deviceType,
+                                introModel: state.introModel,
+                              ),
                       ),
                     ],
                   ),

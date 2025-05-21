@@ -71,6 +71,7 @@ class MobileCubit extends Cubit<MobileState> {
     emit(state.copyWith(
       introModel: state.introModel.copyWith(
         isWaveAnimationVisible: true,
+        isPageTransition: true,
       ),
     ));
   }

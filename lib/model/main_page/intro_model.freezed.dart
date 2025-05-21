@@ -24,7 +24,8 @@ mixin _$IntroModel {
   bool get isWaveAnimation => throw _privateConstructorUsedError;
   bool get isWaveAnimationVisible =>
       throw _privateConstructorUsedError; //메뉴 클릭 여부
-  bool get isMenuClicked => throw _privateConstructorUsedError;
+  bool get isMenuClicked => throw _privateConstructorUsedError; // 화면 전환
+  bool get isPageTransition => throw _privateConstructorUsedError;
 
   /// Create a copy of IntroModel
   /// with the given fields replaced by the non-null parameter values.
@@ -47,7 +48,8 @@ abstract class $IntroModelCopyWith<$Res> {
       bool isSubTitle,
       bool isWaveAnimation,
       bool isWaveAnimationVisible,
-      bool isMenuClicked});
+      bool isMenuClicked,
+      bool isPageTransition});
 }
 
 /// @nodoc
@@ -73,6 +75,7 @@ class _$IntroModelCopyWithImpl<$Res, $Val extends IntroModel>
     Object? isWaveAnimation = null,
     Object? isWaveAnimationVisible = null,
     Object? isMenuClicked = null,
+    Object? isPageTransition = null,
   }) {
     return _then(_value.copyWith(
       isDeviceSelector: null == isDeviceSelector
@@ -107,6 +110,10 @@ class _$IntroModelCopyWithImpl<$Res, $Val extends IntroModel>
           ? _value.isMenuClicked
           : isMenuClicked // ignore: cast_nullable_to_non_nullable
               as bool,
+      isPageTransition: null == isPageTransition
+          ? _value.isPageTransition
+          : isPageTransition // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -127,7 +134,8 @@ abstract class _$$IntroModelImplCopyWith<$Res>
       bool isSubTitle,
       bool isWaveAnimation,
       bool isWaveAnimationVisible,
-      bool isMenuClicked});
+      bool isMenuClicked,
+      bool isPageTransition});
 }
 
 /// @nodoc
@@ -151,6 +159,7 @@ class __$$IntroModelImplCopyWithImpl<$Res>
     Object? isWaveAnimation = null,
     Object? isWaveAnimationVisible = null,
     Object? isMenuClicked = null,
+    Object? isPageTransition = null,
   }) {
     return _then(_$IntroModelImpl(
       isDeviceSelector: null == isDeviceSelector
@@ -185,6 +194,10 @@ class __$$IntroModelImplCopyWithImpl<$Res>
           ? _value.isMenuClicked
           : isMenuClicked // ignore: cast_nullable_to_non_nullable
               as bool,
+      isPageTransition: null == isPageTransition
+          ? _value.isPageTransition
+          : isPageTransition // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -200,7 +213,8 @@ class _$IntroModelImpl implements _IntroModel {
       this.isSubTitle = false,
       this.isWaveAnimation = true,
       this.isWaveAnimationVisible = false,
-      this.isMenuClicked = false});
+      this.isMenuClicked = false,
+      this.isPageTransition = false});
 
   @override
   @JsonKey()
@@ -228,10 +242,14 @@ class _$IntroModelImpl implements _IntroModel {
   @override
   @JsonKey()
   final bool isMenuClicked;
+// 화면 전환
+  @override
+  @JsonKey()
+  final bool isPageTransition;
 
   @override
   String toString() {
-    return 'IntroModel(isDeviceSelector: $isDeviceSelector, isDescription: $isDescription, isTitelText: $isTitelText, isFirstIntroText: $isFirstIntroText, isSubTitle: $isSubTitle, isWaveAnimation: $isWaveAnimation, isWaveAnimationVisible: $isWaveAnimationVisible, isMenuClicked: $isMenuClicked)';
+    return 'IntroModel(isDeviceSelector: $isDeviceSelector, isDescription: $isDescription, isTitelText: $isTitelText, isFirstIntroText: $isFirstIntroText, isSubTitle: $isSubTitle, isWaveAnimation: $isWaveAnimation, isWaveAnimationVisible: $isWaveAnimationVisible, isMenuClicked: $isMenuClicked, isPageTransition: $isPageTransition)';
   }
 
   @override
@@ -254,7 +272,9 @@ class _$IntroModelImpl implements _IntroModel {
             (identical(other.isWaveAnimationVisible, isWaveAnimationVisible) ||
                 other.isWaveAnimationVisible == isWaveAnimationVisible) &&
             (identical(other.isMenuClicked, isMenuClicked) ||
-                other.isMenuClicked == isMenuClicked));
+                other.isMenuClicked == isMenuClicked) &&
+            (identical(other.isPageTransition, isPageTransition) ||
+                other.isPageTransition == isPageTransition));
   }
 
   @override
@@ -267,7 +287,8 @@ class _$IntroModelImpl implements _IntroModel {
       isSubTitle,
       isWaveAnimation,
       isWaveAnimationVisible,
-      isMenuClicked);
+      isMenuClicked,
+      isPageTransition);
 
   /// Create a copy of IntroModel
   /// with the given fields replaced by the non-null parameter values.
@@ -287,7 +308,8 @@ abstract class _IntroModel implements IntroModel {
       final bool isSubTitle,
       final bool isWaveAnimation,
       final bool isWaveAnimationVisible,
-      final bool isMenuClicked}) = _$IntroModelImpl;
+      final bool isMenuClicked,
+      final bool isPageTransition}) = _$IntroModelImpl;
 
   @override
   bool get isDeviceSelector;
@@ -304,7 +326,9 @@ abstract class _IntroModel implements IntroModel {
   @override
   bool get isWaveAnimationVisible; //메뉴 클릭 여부
   @override
-  bool get isMenuClicked;
+  bool get isMenuClicked; // 화면 전환
+  @override
+  bool get isPageTransition;
 
   /// Create a copy of IntroModel
   /// with the given fields replaced by the non-null parameter values.

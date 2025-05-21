@@ -18,7 +18,11 @@ class IntroPage extends StatelessWidget {
           opacity: introModel.isWaveAnimation ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 2000),
           child: !introModel.isWaveAnimationVisible
-              ? Waves(deviceType: deviceType)
+              ? AnimatedOpacity(
+                  opacity: introModel.isFirstIntroText ? 1.0 : 0.0,
+                  duration: const Duration(milliseconds: 600),
+                  child: Waves(deviceType: deviceType),
+                )
               : SizedBox(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
