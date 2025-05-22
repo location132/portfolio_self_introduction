@@ -44,6 +44,13 @@ class ProfilePage1Constants {
   static const String chapter3 = 'Chapter 3';
   static const String chapter3Title = '진행중인 나의 이야기';
   static const String scroll = '스크롤을 따라 다양한 이야기가 소개됩니다.';
+
+  static const String chapter1Mobile =
+      ' 세미나에 참여하는 이유 그리고 되고싶은\n개발자의 모습을 확인할 수 있습니다.';
+  static const String chapter2Mobile =
+      ' 대학생활의 프로젝트와, 인턴 경험..\n성장을 위한 소중한 시간들을 소개합니다.';
+  static const String chapter3Mobile =
+      ' 아직 끝나지 않은 과감한 성장기 그리고 목표,\n더 나은 개발자로 성장하기 위한 저를 소개합니다.';
 }
 
 class TitleTextConstants {

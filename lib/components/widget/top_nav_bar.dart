@@ -7,10 +7,12 @@ import 'package:self_introduction_flutter/core_service/util/device_Info_size.dar
 class TopNavBar extends StatelessWidget {
   final String deviceType;
   final Function()? onPressed;
+  final Function()? onHomePressed;
   const TopNavBar({
     super.key,
     required this.deviceType,
     this.onPressed,
+    this.onHomePressed,
   });
 
   @override
@@ -53,9 +55,14 @@ class TopNavBar extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 15.sh, horizontal: 40.sw),
             child: Row(
               children: [
-                Image.asset(
-                  'assets/Images/flutter_bird.png',
-                  scale: 25,
+                GestureDetector(
+                  onTap: () {
+                    onHomePressed?.call();
+                  },
+                  child: Image.asset(
+                    'assets/Images/flutter_bird.png',
+                    scale: 25,
+                  ),
                 ),
                 const Spacer(),
                 MenuToggleButton(onPressed: onPressed!),

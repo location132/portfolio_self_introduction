@@ -22,5 +22,6 @@ class IntroModel with _$IntroModel {
     @Default(false) bool isPageTransition,
     @Default(false) bool isTitelTextAniStart,
     @Default(false) bool isChapterContainerAniStart,
+    @Default(false) bool isHome,
   }) = _IntroModel;
 }

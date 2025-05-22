@@ -28,22 +28,23 @@ class MobileCubit extends Cubit<MobileState> {
   @postConstruct
   void init() async {
     emit(state.copyWith(
+      introModel: state.introModel.copyWith(isHome: true),
       scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
     ));
-    await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 300));
     emit(state.copyWith(
       initModel: state.initModel.copyWith(isMobileInit: true),
       introModel: state.introModel.copyWith(isDeviceSelector: true),
     ));
 
-    await Future.delayed(const Duration(milliseconds: 300));
+    await Future.delayed(const Duration(milliseconds: 500));
     emit(state.copyWith(
       introModel: state.introModel.copyWith(isDescription: true),
     ));
     await Future.delayed(const Duration(milliseconds: 500));
     emit(state.copyWith(
-        introModel: state.introModel
-            .copyWith(isTitelText: true, isFirstIntroText: true)));
+        introModel: state.introModel.copyWith(
+            isTitelText: true, isFirstIntroText: true, isHome: false)));
     await Future.delayed(const Duration(seconds: 1));
     emit(state.copyWith(
       scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
@@ -92,5 +93,39 @@ class MobileCubit extends Cubit<MobileState> {
       introModel: state.introModel.copyWith(isChapterContainerAniStart: true),
       scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
     ));
+  }
+
+  // 다시 홈 화면으로 돌아가기
+  void goHome() async {
+    if (state.introModel.isHome) return;
+
+    emit(state.copyWith(
+      introModel: state.introModel.copyWith(
+        isDescription: false,
+        isDeviceSelector: false,
+        isTitelText: false,
+        isFirstIntroText: false,
+      ),
+      initModel: state.initModel.copyWith(isMobileInit: false),
+    ));
+    final ctrl = state.scrollModel.scrollController;
+    if (ctrl != null && ctrl.hasClients) {
+      await ctrl.animateTo(
+        0,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    }
+    ctrl?.removeListener(_scrollListener);
+
+    emit(MobileState(
+      scrollModel: ScrollModel(
+        scrollController: ctrl,
+      ),
+    ));
+
+    ctrl?.addListener(_scrollListener);
+
+    init();
   }
 }

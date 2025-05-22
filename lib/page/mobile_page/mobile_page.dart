@@ -46,6 +46,7 @@ class _MobileViewState extends State<_MobileView> {
   Widget build(BuildContext context) {
     return BlocBuilder<MobileCubit, MobileState>(
       builder: (context, state) {
+        print('check ==> state.introModel.isHome: ${state.introModel.isHome}');
         return Scaffold(
           body: ListView(
             physics: state.scrollModel.isScrollWaiting
@@ -53,6 +54,13 @@ class _MobileViewState extends State<_MobileView> {
                 : const AlwaysScrollableScrollPhysics(),
             controller: state.scrollModel.scrollController,
             children: [
+              // MainPage(
+              //   key: const ValueKey('main'),
+              //   isTitelTextAniStart: state.introModel.isTitelTextAniStart,
+              //   isChapterContainerAniStart:
+              //       state.introModel.isChapterContainerAniStart,
+              // )
+
               Stack(
                 children: [
                   Column(
@@ -66,6 +74,9 @@ class _MobileViewState extends State<_MobileView> {
                           isDescription: state.introModel.isDescription,
                           onPressed: () =>
                               context.read<MobileCubit>().menuClicked(),
+                          onHomePressed: () {
+                            context.read<MobileCubit>().goHome();
+                          },
                         ),
                       ),
                       AnimatedSwitcher(

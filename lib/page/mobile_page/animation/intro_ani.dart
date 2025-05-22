@@ -29,6 +29,10 @@ class TextMoveAnimation {
     showController.reset();
   }
 
+  void reverse() {
+    showController.reverse();
+  }
+
   void dispose() {
     showController.dispose();
   }

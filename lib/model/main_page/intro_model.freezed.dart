@@ -28,6 +28,7 @@ mixin _$IntroModel {
   bool get isPageTransition => throw _privateConstructorUsedError;
   bool get isTitelTextAniStart => throw _privateConstructorUsedError;
   bool get isChapterContainerAniStart => throw _privateConstructorUsedError;
+  bool get isHome => throw _privateConstructorUsedError;
 
   /// Create a copy of IntroModel
   /// with the given fields replaced by the non-null parameter values.
@@ -53,7 +54,8 @@ abstract class $IntroModelCopyWith<$Res> {
       bool isMenuClicked,
       bool isPageTransition,
       bool isTitelTextAniStart,
-      bool isChapterContainerAniStart});
+      bool isChapterContainerAniStart,
+      bool isHome});
 }
 
 /// @nodoc
@@ -82,6 +84,7 @@ class _$IntroModelCopyWithImpl<$Res, $Val extends IntroModel>
     Object? isPageTransition = null,
     Object? isTitelTextAniStart = null,
     Object? isChapterContainerAniStart = null,
+    Object? isHome = null,
   }) {
     return _then(_value.copyWith(
       isDeviceSelector: null == isDeviceSelector
@@ -128,6 +131,10 @@ class _$IntroModelCopyWithImpl<$Res, $Val extends IntroModel>
           ? _value.isChapterContainerAniStart
           : isChapterContainerAniStart // ignore: cast_nullable_to_non_nullable
               as bool,
+      isHome: null == isHome
+          ? _value.isHome
+          : isHome // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -151,7 +158,8 @@ abstract class _$$IntroModelImplCopyWith<$Res>
       bool isMenuClicked,
       bool isPageTransition,
       bool isTitelTextAniStart,
-      bool isChapterContainerAniStart});
+      bool isChapterContainerAniStart,
+      bool isHome});
 }
 
 /// @nodoc
@@ -178,6 +186,7 @@ class __$$IntroModelImplCopyWithImpl<$Res>
     Object? isPageTransition = null,
     Object? isTitelTextAniStart = null,
     Object? isChapterContainerAniStart = null,
+    Object? isHome = null,
   }) {
     return _then(_$IntroModelImpl(
       isDeviceSelector: null == isDeviceSelector
@@ -224,6 +233,10 @@ class __$$IntroModelImplCopyWithImpl<$Res>
           ? _value.isChapterContainerAniStart
           : isChapterContainerAniStart // ignore: cast_nullable_to_non_nullable
               as bool,
+      isHome: null == isHome
+          ? _value.isHome
+          : isHome // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -242,7 +255,8 @@ class _$IntroModelImpl implements _IntroModel {
       this.isMenuClicked = false,
       this.isPageTransition = false,
       this.isTitelTextAniStart = false,
-      this.isChapterContainerAniStart = false});
+      this.isChapterContainerAniStart = false,
+      this.isHome = false});
 
   @override
   @JsonKey()
@@ -280,10 +294,13 @@ class _$IntroModelImpl implements _IntroModel {
   @override
   @JsonKey()
   final bool isChapterContainerAniStart;
+  @override
+  @JsonKey()
+  final bool isHome;
 
   @override
   String toString() {
-    return 'IntroModel(isDeviceSelector: $isDeviceSelector, isDescription: $isDescription, isTitelText: $isTitelText, isFirstIntroText: $isFirstIntroText, isSubTitle: $isSubTitle, isWaveAnimation: $isWaveAnimation, isWaveAnimationVisible: $isWaveAnimationVisible, isMenuClicked: $isMenuClicked, isPageTransition: $isPageTransition, isTitelTextAniStart: $isTitelTextAniStart, isChapterContainerAniStart: $isChapterContainerAniStart)';
+    return 'IntroModel(isDeviceSelector: $isDeviceSelector, isDescription: $isDescription, isTitelText: $isTitelText, isFirstIntroText: $isFirstIntroText, isSubTitle: $isSubTitle, isWaveAnimation: $isWaveAnimation, isWaveAnimationVisible: $isWaveAnimationVisible, isMenuClicked: $isMenuClicked, isPageTransition: $isPageTransition, isTitelTextAniStart: $isTitelTextAniStart, isChapterContainerAniStart: $isChapterContainerAniStart, isHome: $isHome)';
   }
 
   @override
@@ -314,7 +331,8 @@ class _$IntroModelImpl implements _IntroModel {
             (identical(other.isChapterContainerAniStart,
                     isChapterContainerAniStart) ||
                 other.isChapterContainerAniStart ==
-                    isChapterContainerAniStart));
+                    isChapterContainerAniStart) &&
+            (identical(other.isHome, isHome) || other.isHome == isHome));
   }
 
   @override
@@ -330,7 +348,8 @@ class _$IntroModelImpl implements _IntroModel {
       isMenuClicked,
       isPageTransition,
       isTitelTextAniStart,
-      isChapterContainerAniStart);
+      isChapterContainerAniStart,
+      isHome);
 
   /// Create a copy of IntroModel
   /// with the given fields replaced by the non-null parameter values.
@@ -353,7 +372,8 @@ abstract class _IntroModel implements IntroModel {
       final bool isMenuClicked,
       final bool isPageTransition,
       final bool isTitelTextAniStart,
-      final bool isChapterContainerAniStart}) = _$IntroModelImpl;
+      final bool isChapterContainerAniStart,
+      final bool isHome}) = _$IntroModelImpl;
 
   @override
   bool get isDeviceSelector;
@@ -377,6 +397,8 @@ abstract class _IntroModel implements IntroModel {
   bool get isTitelTextAniStart;
   @override
   bool get isChapterContainerAniStart;
+  @override
+  bool get isHome;
 
   /// Create a copy of IntroModel
   /// with the given fields replaced by the non-null parameter values.

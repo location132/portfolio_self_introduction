@@ -8,12 +8,14 @@ class NaviBar extends StatefulWidget {
   final bool isDeviceSelector;
   final bool isDescription;
   final Function() onPressed;
+  final Function() onHomePressed;
   const NaviBar({
     super.key,
     required this.deviceType,
     required this.isDeviceSelector,
     required this.isDescription,
     required this.onPressed,
+    required this.onHomePressed,
   });
 
   @override
@@ -28,6 +30,7 @@ class _NaviBarState extends State<NaviBar> with SingleTickerProviderStateMixin {
         TopNavBar(
           deviceType: widget.deviceType,
           onPressed: widget.onPressed,
+          onHomePressed: widget.onHomePressed,
         ),
         const SizedBox(height: 3),
         DeviceSelector(

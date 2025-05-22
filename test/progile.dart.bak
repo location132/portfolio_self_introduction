@@ -1,68 +1,80 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
+import 'dart:ui';
+import 'package:flutter/material.dart';
 
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
+class SecondCard extends StatelessWidget {
+  const SecondCard({super.key});
 
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="$FLUTTER_BASE_HREF">
-
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
-
-  <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="self_introduction_flutter">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
-  <meta name="theme-color" content="#ffffff"> 
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <title>self_introduction_flutter</title>
-  <link rel="manifest" href="manifest.json">
-
-  <style>
-    /* 모바일에서만 적용 (최대 너비 768px 이하는 모바일, 필요에 따라 조절) */
-    @media screen and (max-width: 768px) {
-      html, body {
-        margin: 0;
-        padding: 0;
-        background-color: #ffffff !important;
-        height: 500vh !important;    /* 모바일에서만 강제로 스크롤 확보 */
-        overflow-y: scroll !important;
-        overflow-x: hidden !important;
-        touch-action: pan-y !important;
-        overscroll-behavior: none;
-      }
-  
-      flt-glass-pane {
-        background-color: #ffffff !important;
-        position: fixed !important;
-        top: 50vh !important;
-        left: 50vw !important;
-        max-width: 100vw !important;
-        max-height: 100vh !important;
-        transform: translate(-50vw, -50vh) !important;
-      }
-    }
-  
-
-  </style>
-
-</head>
-<body>
-  <script src="flutter_bootstrap.js" async></script>
-</body>
-</html>
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 22, right: 22),
+      child: SizedBox(
+        width: 258,
+        height: 501.3,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(22),
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Image.asset(
+                  'assets/Images/phone_screen.webp',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Positioned(
+                left: 0,
+                right: 0,
+                top: 0,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(0),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+                    child: Container(
+                      width: double.infinity,
+                      color: Colors.black.withOpacity(0.4),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
+                      child: const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            ' Chapter 2',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            ' 경험이 풍부했던 대학생활',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            ' 세미나에 참여하는 이유 그리고 되고싶은\n개발자의 모습을 확인할 수 있습니다.',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 222, 222, 222),
+                              fontSize: 10,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -45,39 +45,35 @@ class MyApp extends StatelessWidget {
       },
       home: Stack(
         children: [
-          // 데스크탑 화면
-          Visibility(
-            visible: isMobileDevice || deviceType == 'desktop',
-            child: AnimatedOpacity(
-              duration: const Duration(milliseconds: 300),
-              opacity: deviceType == 'desktop' ? 1.0 : 0.0,
-              child: DesktopPage(
-                isChromeBrowser: isChromeBrowser,
-                deviceType: deviceType,
-              ),
-            ),
-          ),
+          // Visibility(
+          //   visible: !isMobileDevice,
+          //   child: AnimatedOpacity(
+          //     duration: const Duration(milliseconds: 300),
+          //     opacity: deviceType == 'desktop' ? 1.0 : 0.0,
+          //     child: DesktopPage(
+          //       isChromeBrowser: isChromeBrowser,
+          //       deviceType: deviceType,
+          //     ),
+          //   ),
+          // ),
 
-          // // 태블릿 화면 (나중에 위젯 추가)
-          Visibility(
-            visible: isMobileDevice || deviceType == 'tablet',
-            child: AnimatedOpacity(
-              duration: const Duration(milliseconds: 300),
-              opacity: deviceType == 'tablet' ? 1.0 : 0.0,
-              child: const Text('tablet'),
-            ),
-          ),
+          // // // 태블릿 화면 (나중에 위젯 추가)
+          // Visibility(
+          //   visible: isMobileDevice,
+          //   child: AnimatedOpacity(
+          //     duration: const Duration(milliseconds: 300),
+          //     opacity: deviceType == 'tablet' ? 1.0 : 0.0,
+          //     child: const Text('tablet'),
+          //   ),
+          // ),
 
-          // // 모바일 화면 (나중에 위젯 추가)
-          Visibility(
-            visible: deviceType == 'mobile',
-            child: AnimatedOpacity(
-              duration: const Duration(milliseconds: 300),
-              opacity: deviceType == 'mobile' ? 1.0 : 0.0,
-              child: MobilePage(
-                deviceType: deviceType,
-                isMobileDevice: isMobileDevice,
-              ),
+          // 모바일 화면
+          AnimatedOpacity(
+            duration: const Duration(milliseconds: 300),
+            opacity: deviceType == 'mobile' ? 1.0 : 0.0,
+            child: MobilePage(
+              deviceType: deviceType,
+              isMobileDevice: isMobileDevice,
             ),
           ),
         ],

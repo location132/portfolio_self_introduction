@@ -43,7 +43,7 @@ class _OneLineTitleState extends State<OneLineTitle>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 40.0, left: 20.0),
+      padding: const EdgeInsets.only(top: 40.0, left: 32),
       child: SlideTransition(
         position: _titleAnimation.moveShow,
         child: FadeTransition(

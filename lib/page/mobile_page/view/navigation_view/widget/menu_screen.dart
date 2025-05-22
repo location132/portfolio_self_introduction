@@ -76,6 +76,7 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
             child: TopNavBar(
               deviceType: 'mobile',
               onPressed: () {},
+              onHomePressed: () {},
             ),
           ),
         ),

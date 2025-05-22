@@ -37,6 +37,9 @@ class _TwoLineTitleState extends State<TwoLineTitle>
     if (widget.isTitelText) {
       _titleAnimation.forward();
       _subTitleAnimation.forward();
+    } else {
+      _titleAnimation.reverse();
+      _subTitleAnimation.reverse();
     }
   }
 
@@ -50,7 +53,7 @@ class _TwoLineTitleState extends State<TwoLineTitle>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 40.0, left: 20.0),
+      padding: const EdgeInsets.only(top: 40.0, left: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
