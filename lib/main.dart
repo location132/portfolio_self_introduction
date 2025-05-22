@@ -9,10 +9,7 @@ void main() {
   Injector.init();
   final chromeBrowser = MainService().isChromeBrowser();
   final mobileDevice = MainService().isMobileDevice();
-  runApp(MyApp(
-    isChromeBrowser: chromeBrowser,
-    isMobileDevice: mobileDevice,
-  ));
+  runApp(MyApp(isChromeBrowser: chromeBrowser, isMobileDevice: mobileDevice));
 }
 
 class MyApp extends StatelessWidget {
@@ -37,9 +34,9 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         ResponsiveSize.init(context);
         return MediaQuery(
-          data: MediaQuery.of(context).copyWith(
-            textScaler: const TextScaler.linear(1.0),
-          ),
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: const TextScaler.linear(1.0)),
           child: child!,
         );
       },

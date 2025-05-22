@@ -32,10 +32,7 @@ class MobilePage extends StatelessWidget {
 class _MobileView extends StatefulWidget {
   final String deviceType;
   final bool isMobileDevice;
-  const _MobileView({
-    required this.deviceType,
-    required this.isMobileDevice,
-  });
+  const _MobileView({required this.deviceType, required this.isMobileDevice});
 
   @override
   State<_MobileView> createState() => _MobileViewState();
@@ -46,7 +43,6 @@ class _MobileViewState extends State<_MobileView> {
   Widget build(BuildContext context) {
     return BlocBuilder<MobileCubit, MobileState>(
       builder: (context, state) {
-        print('check ==> state.introModel.isHome: ${state.introModel.isHome}');
         return Scaffold(
           body: ListView(
             physics: state.scrollModel.isScrollWaiting
@@ -54,13 +50,7 @@ class _MobileViewState extends State<_MobileView> {
                 : const AlwaysScrollableScrollPhysics(),
             controller: state.scrollModel.scrollController,
             children: [
-              // MainPage(
-              //   key: const ValueKey('main'),
-              //   isTitelTextAniStart: state.introModel.isTitelTextAniStart,
-              //   isChapterContainerAniStart:
-              //       state.introModel.isChapterContainerAniStart,
-              // )
-
+              Text('113'),
               Stack(
                 children: [
                   Column(
@@ -97,9 +87,7 @@ class _MobileViewState extends State<_MobileView> {
                       ),
                     ],
                   ),
-                  MenuScreen(
-                    isMenuClicked: state.introModel.isMenuClicked,
-                  ),
+                  MenuScreen(isMenuClicked: state.introModel.isMenuClicked),
                 ],
               ),
             ],

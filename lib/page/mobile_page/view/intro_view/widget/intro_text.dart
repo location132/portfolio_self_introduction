@@ -46,8 +46,7 @@ class _IntroTextState extends State<IntroText> with TickerProviderStateMixin {
           opacity: widget.isFirstIntroText && !widget.isSubTitle ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 600),
           child: const Text(
-            '\nMVVM패턴, 클린아키텍쳐, get it을 사용한 DI\n'
-            'Cubit 패턴, Rive애니메이션, 생명주기까지',
+            '안녕하세요. Flutter 개발자 이정원입니다.',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 15.0,
@@ -59,7 +58,9 @@ class _IntroTextState extends State<IntroText> with TickerProviderStateMixin {
           child: FadeTransition(
             opacity: _introAnimation.opacityShow,
             child: const Text(
-              '\n많은 것을 공부하고 경험한 신입 개발자\n\n'
+              '\nMVVM패턴, 클린아키텍쳐, get it을 사용한 DI\n'
+              'Cubit 패턴, Rive애니메이션, 생명주기까지\n'
+              '\n많은 것을 공부하고 경험한 신입 개발자\n'
               '지금 바로 시작합니다.',
               textAlign: TextAlign.center,
               style: TextStyle(
