@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
-import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 
 class BannerRive extends StatefulWidget {
-  final DesktopState state;
-  const BannerRive({super.key, required this.state});
+  final bool isStartAni;
+  const BannerRive({super.key, required this.isStartAni});
 
   @override
   State<BannerRive> createState() => _BannerRiveState();
@@ -47,8 +45,7 @@ class _BannerRiveState extends State<BannerRive> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.state.scrollModel.bannerState == BannerState.activated &&
-        !_hasStarted) {
+    if (widget.isStartAni && !_hasStarted) {
       _startAni();
     }
     return RiveAnimation.asset(

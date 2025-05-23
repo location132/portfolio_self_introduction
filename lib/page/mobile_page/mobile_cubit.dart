@@ -28,60 +28,62 @@ class MobileCubit extends Cubit<MobileState> {
 
   @postConstruct
   void init() async {
-    emit(
-      state.copyWith(
-        introModel: state.introModel.copyWith(isHome: true),
-        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
-      ),
-    );
-    await Future.delayed(const Duration(milliseconds: 300));
-    emit(
-      state.copyWith(
-        initModel: state.initModel.copyWith(isMobileInit: true),
-        introModel: state.introModel.copyWith(isDeviceSelector: true),
-      ),
-    );
+    introAtBottom();
+    //TODO: 배포시 주석 해제
+    // emit(
+    //   state.copyWith(
+    //     introModel: state.introModel.copyWith(isHome: true),
+    //     scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+    //   ),
+    // );
+    // await Future.delayed(const Duration(milliseconds: 300));
+    // emit(
+    //   state.copyWith(
+    //     initModel: state.initModel.copyWith(isMobileInit: true),
+    //     introModel: state.introModel.copyWith(isDeviceSelector: true),
+    //   ),
+    // );
 
-    await Future.delayed(const Duration(milliseconds: 500));
-    emit(
-      state.copyWith(
-        introModel: state.introModel.copyWith(isDescription: true),
-      ),
-    );
-    await Future.delayed(const Duration(milliseconds: 500));
-    emit(
-      state.copyWith(
-        introModel: state.introModel.copyWith(
-          isTitelText: true,
-          isFirstIntroText: true,
-          isHome: false,
-        ),
-      ),
-    );
+    // await Future.delayed(const Duration(milliseconds: 500));
+    // emit(
+    //   state.copyWith(
+    //     introModel: state.introModel.copyWith(isDescription: true),
+    //   ),
+    // );
+    // await Future.delayed(const Duration(milliseconds: 500));
+    // emit(
+    //   state.copyWith(
+    //     introModel: state.introModel.copyWith(
+    //       isTitelText: true,
+    //       isFirstIntroText: true,
+    //       isHome: false,
+    //     ),
+    //   ),
+    // );
 
-    await Future.delayed(const Duration(seconds: 1));
-    if (state.introModel.isMobileDialog == MobileDialogType.none) {
-      emit(
-        state.copyWith(
-          introModel: state.introModel.copyWith(
-            isMobileDialog: MobileDialogType.active,
-          ),
-        ),
-      );
-      await Future.delayed(const Duration(milliseconds: 100));
-      emit(
-        state.copyWith(
-          introModel: state.introModel.copyWith(
-            isMobileDialog: MobileDialogType.inactive,
-          ),
-        ),
-      );
-    }
-    emit(
-      state.copyWith(
-        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
-      ),
-    );
+    // await Future.delayed(const Duration(seconds: 1));
+    // if (state.introModel.isMobileDialog == MobileDialogType.none) {
+    //   emit(
+    //     state.copyWith(
+    //       introModel: state.introModel.copyWith(
+    //         isMobileDialog: MobileDialogType.active,
+    //       ),
+    //     ),
+    //   );
+    //   await Future.delayed(const Duration(milliseconds: 100));
+    //   emit(
+    //     state.copyWith(
+    //       introModel: state.introModel.copyWith(
+    //         isMobileDialog: MobileDialogType.inactive,
+    //       ),
+    //     ),
+    //   );
+    // }
+    // emit(
+    //   state.copyWith(
+    //     scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
+    //   ),
+    // );
   }
 
   //메뉴 클릭
@@ -103,23 +105,23 @@ class MobileCubit extends Cubit<MobileState> {
 
   // 하단 스크롤에 도착하였을 때,
   void introAtBottom() async {
-    emit(
-      state.copyWith(
-        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
-      ),
-    );
-    await Future.delayed(const Duration(milliseconds: 500));
-    emit(
-      state.copyWith(
-        scrollModel: state.scrollModel.copyWith(isAtBottom: true),
-        introModel: state.introModel.copyWith(
-          isSubTitle: true,
-          isWaveAnimation: false,
-        ),
-      ),
-    );
+    // emit(
+    //   state.copyWith(
+    //     scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+    //   ),
+    // );
+    // await Future.delayed(const Duration(milliseconds: 500));
+    // emit(
+    //   state.copyWith(
+    //     scrollModel: state.scrollModel.copyWith(isAtBottom: true),
+    //     introModel: state.introModel.copyWith(
+    //       isSubTitle: true,
+    //       isWaveAnimation: false,
+    //     ),
+    //   ),
+    // );
 
-    await Future.delayed(const Duration(milliseconds: 2500));
+    // await Future.delayed(const Duration(milliseconds: 2500));
     emit(
       state.copyWith(
         introModel: state.introModel.copyWith(
@@ -176,5 +178,30 @@ class MobileCubit extends Cubit<MobileState> {
     ctrl?.addListener(_scrollListener);
 
     init();
+  }
+
+  // aboutMe ani
+  void aboutMeAniStart() async {
+    emit(
+      state.copyWith(
+        aboutMeModel: state.aboutMeModel.copyWith(isSectionTitleAniStart: true),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 300));
+    emit(
+      state.copyWith(
+        aboutMeModel: state.aboutMeModel.copyWith(isBannerAniStart: true),
+      ),
+    );
+  }
+
+  void aboutMeBackGroundColor(bool isBackGroundAniStart) {
+    emit(
+      state.copyWith(
+        aboutMeModel: state.aboutMeModel.copyWith(
+          isBackGroundAniStart: isBackGroundAniStart,
+        ),
+      ),
+    );
   }
 }

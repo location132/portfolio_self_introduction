@@ -12,7 +12,8 @@ part of 'mySkill_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$MySkillModel {
@@ -28,8 +29,9 @@ mixin _$MySkillModel {
 /// @nodoc
 abstract class $MySkillModelCopyWith<$Res> {
   factory $MySkillModelCopyWith(
-          MySkillModel value, $Res Function(MySkillModel) then) =
-      _$MySkillModelCopyWithImpl<$Res, MySkillModel>;
+    MySkillModel value,
+    $Res Function(MySkillModel) then,
+  ) = _$MySkillModelCopyWithImpl<$Res, MySkillModel>;
   @useResult
   $Res call({MySkillViewStatus status});
 }
@@ -48,15 +50,17 @@ class _$MySkillModelCopyWithImpl<$Res, $Val extends MySkillModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? status = null,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as MySkillViewStatus,
-    ) as $Val);
+  $Res call({Object? status = null}) {
+    return _then(
+      _value.copyWith(
+            status:
+                null == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as MySkillViewStatus,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -64,8 +68,9 @@ class _$MySkillModelCopyWithImpl<$Res, $Val extends MySkillModel>
 abstract class _$$MySkillModelImplCopyWith<$Res>
     implements $MySkillModelCopyWith<$Res> {
   factory _$$MySkillModelImplCopyWith(
-          _$MySkillModelImpl value, $Res Function(_$MySkillModelImpl) then) =
-      __$$MySkillModelImplCopyWithImpl<$Res>;
+    _$MySkillModelImpl value,
+    $Res Function(_$MySkillModelImpl) then,
+  ) = __$$MySkillModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({MySkillViewStatus status});
@@ -76,22 +81,24 @@ class __$$MySkillModelImplCopyWithImpl<$Res>
     extends _$MySkillModelCopyWithImpl<$Res, _$MySkillModelImpl>
     implements _$$MySkillModelImplCopyWith<$Res> {
   __$$MySkillModelImplCopyWithImpl(
-      _$MySkillModelImpl _value, $Res Function(_$MySkillModelImpl) _then)
-      : super(_value, _then);
+    _$MySkillModelImpl _value,
+    $Res Function(_$MySkillModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of MySkillModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? status = null,
-  }) {
-    return _then(_$MySkillModelImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as MySkillViewStatus,
-    ));
+  $Res call({Object? status = null}) {
+    return _then(
+      _$MySkillModelImpl(
+        status:
+            null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as MySkillViewStatus,
+      ),
+    );
   }
 }
 

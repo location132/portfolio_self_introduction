@@ -12,7 +12,8 @@ part of 'scroll_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$ScrollModel {
@@ -35,17 +36,19 @@ mixin _$ScrollModel {
 /// @nodoc
 abstract class $ScrollModelCopyWith<$Res> {
   factory $ScrollModelCopyWith(
-          ScrollModel value, $Res Function(ScrollModel) then) =
-      _$ScrollModelCopyWithImpl<$Res, ScrollModel>;
+    ScrollModel value,
+    $Res Function(ScrollModel) then,
+  ) = _$ScrollModelCopyWithImpl<$Res, ScrollModel>;
   @useResult
-  $Res call(
-      {ScrollController? scrollController,
-      ScrollController? subScrollController,
-      BannerState bannerState,
-      ProfileViewState profileViewState,
-      bool isScrollWaiting,
-      bool isScrollInit,
-      bool isAtBottom});
+  $Res call({
+    ScrollController? scrollController,
+    ScrollController? subScrollController,
+    BannerState bannerState,
+    ProfileViewState profileViewState,
+    bool isScrollWaiting,
+    bool isScrollInit,
+    bool isAtBottom,
+  });
 }
 
 /// @nodoc
@@ -71,36 +74,46 @@ class _$ScrollModelCopyWithImpl<$Res, $Val extends ScrollModel>
     Object? isScrollInit = null,
     Object? isAtBottom = null,
   }) {
-    return _then(_value.copyWith(
-      scrollController: freezed == scrollController
-          ? _value.scrollController
-          : scrollController // ignore: cast_nullable_to_non_nullable
-              as ScrollController?,
-      subScrollController: freezed == subScrollController
-          ? _value.subScrollController
-          : subScrollController // ignore: cast_nullable_to_non_nullable
-              as ScrollController?,
-      bannerState: null == bannerState
-          ? _value.bannerState
-          : bannerState // ignore: cast_nullable_to_non_nullable
-              as BannerState,
-      profileViewState: null == profileViewState
-          ? _value.profileViewState
-          : profileViewState // ignore: cast_nullable_to_non_nullable
-              as ProfileViewState,
-      isScrollWaiting: null == isScrollWaiting
-          ? _value.isScrollWaiting
-          : isScrollWaiting // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isScrollInit: null == isScrollInit
-          ? _value.isScrollInit
-          : isScrollInit // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isAtBottom: null == isAtBottom
-          ? _value.isAtBottom
-          : isAtBottom // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            scrollController:
+                freezed == scrollController
+                    ? _value.scrollController
+                    : scrollController // ignore: cast_nullable_to_non_nullable
+                        as ScrollController?,
+            subScrollController:
+                freezed == subScrollController
+                    ? _value.subScrollController
+                    : subScrollController // ignore: cast_nullable_to_non_nullable
+                        as ScrollController?,
+            bannerState:
+                null == bannerState
+                    ? _value.bannerState
+                    : bannerState // ignore: cast_nullable_to_non_nullable
+                        as BannerState,
+            profileViewState:
+                null == profileViewState
+                    ? _value.profileViewState
+                    : profileViewState // ignore: cast_nullable_to_non_nullable
+                        as ProfileViewState,
+            isScrollWaiting:
+                null == isScrollWaiting
+                    ? _value.isScrollWaiting
+                    : isScrollWaiting // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isScrollInit:
+                null == isScrollInit
+                    ? _value.isScrollInit
+                    : isScrollInit // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isAtBottom:
+                null == isAtBottom
+                    ? _value.isAtBottom
+                    : isAtBottom // ignore: cast_nullable_to_non_nullable
+                        as bool,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -108,18 +121,20 @@ class _$ScrollModelCopyWithImpl<$Res, $Val extends ScrollModel>
 abstract class _$$ScrollModelImplCopyWith<$Res>
     implements $ScrollModelCopyWith<$Res> {
   factory _$$ScrollModelImplCopyWith(
-          _$ScrollModelImpl value, $Res Function(_$ScrollModelImpl) then) =
-      __$$ScrollModelImplCopyWithImpl<$Res>;
+    _$ScrollModelImpl value,
+    $Res Function(_$ScrollModelImpl) then,
+  ) = __$$ScrollModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {ScrollController? scrollController,
-      ScrollController? subScrollController,
-      BannerState bannerState,
-      ProfileViewState profileViewState,
-      bool isScrollWaiting,
-      bool isScrollInit,
-      bool isAtBottom});
+  $Res call({
+    ScrollController? scrollController,
+    ScrollController? subScrollController,
+    BannerState bannerState,
+    ProfileViewState profileViewState,
+    bool isScrollWaiting,
+    bool isScrollInit,
+    bool isAtBottom,
+  });
 }
 
 /// @nodoc
@@ -127,8 +142,9 @@ class __$$ScrollModelImplCopyWithImpl<$Res>
     extends _$ScrollModelCopyWithImpl<$Res, _$ScrollModelImpl>
     implements _$$ScrollModelImplCopyWith<$Res> {
   __$$ScrollModelImplCopyWithImpl(
-      _$ScrollModelImpl _value, $Res Function(_$ScrollModelImpl) _then)
-      : super(_value, _then);
+    _$ScrollModelImpl _value,
+    $Res Function(_$ScrollModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ScrollModel
   /// with the given fields replaced by the non-null parameter values.
@@ -143,50 +159,60 @@ class __$$ScrollModelImplCopyWithImpl<$Res>
     Object? isScrollInit = null,
     Object? isAtBottom = null,
   }) {
-    return _then(_$ScrollModelImpl(
-      scrollController: freezed == scrollController
-          ? _value.scrollController
-          : scrollController // ignore: cast_nullable_to_non_nullable
-              as ScrollController?,
-      subScrollController: freezed == subScrollController
-          ? _value.subScrollController
-          : subScrollController // ignore: cast_nullable_to_non_nullable
-              as ScrollController?,
-      bannerState: null == bannerState
-          ? _value.bannerState
-          : bannerState // ignore: cast_nullable_to_non_nullable
-              as BannerState,
-      profileViewState: null == profileViewState
-          ? _value.profileViewState
-          : profileViewState // ignore: cast_nullable_to_non_nullable
-              as ProfileViewState,
-      isScrollWaiting: null == isScrollWaiting
-          ? _value.isScrollWaiting
-          : isScrollWaiting // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isScrollInit: null == isScrollInit
-          ? _value.isScrollInit
-          : isScrollInit // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isAtBottom: null == isAtBottom
-          ? _value.isAtBottom
-          : isAtBottom // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$ScrollModelImpl(
+        scrollController:
+            freezed == scrollController
+                ? _value.scrollController
+                : scrollController // ignore: cast_nullable_to_non_nullable
+                    as ScrollController?,
+        subScrollController:
+            freezed == subScrollController
+                ? _value.subScrollController
+                : subScrollController // ignore: cast_nullable_to_non_nullable
+                    as ScrollController?,
+        bannerState:
+            null == bannerState
+                ? _value.bannerState
+                : bannerState // ignore: cast_nullable_to_non_nullable
+                    as BannerState,
+        profileViewState:
+            null == profileViewState
+                ? _value.profileViewState
+                : profileViewState // ignore: cast_nullable_to_non_nullable
+                    as ProfileViewState,
+        isScrollWaiting:
+            null == isScrollWaiting
+                ? _value.isScrollWaiting
+                : isScrollWaiting // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isScrollInit:
+            null == isScrollInit
+                ? _value.isScrollInit
+                : isScrollInit // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isAtBottom:
+            null == isAtBottom
+                ? _value.isAtBottom
+                : isAtBottom // ignore: cast_nullable_to_non_nullable
+                    as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$ScrollModelImpl implements _ScrollModel {
-  const _$ScrollModelImpl(
-      {this.scrollController,
-      this.subScrollController,
-      this.bannerState = BannerState.inactive,
-      this.profileViewState = ProfileViewState.inactive,
-      this.isScrollWaiting = false,
-      this.isScrollInit = false,
-      this.isAtBottom = false});
+  const _$ScrollModelImpl({
+    this.scrollController,
+    this.subScrollController,
+    this.bannerState = BannerState.inactive,
+    this.profileViewState = ProfileViewState.inactive,
+    this.isScrollWaiting = false,
+    this.isScrollInit = false,
+    this.isAtBottom = false,
+  });
 
   @override
   final ScrollController? scrollController;
@@ -204,7 +230,7 @@ class _$ScrollModelImpl implements _ScrollModel {
   @override
   @JsonKey()
   final bool isScrollInit;
-//모바일에서 사용되는 모델
+  //모바일에서 사용되는 모델
   @override
   @JsonKey()
   final bool isAtBottom;
@@ -237,14 +263,15 @@ class _$ScrollModelImpl implements _ScrollModel {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      scrollController,
-      subScrollController,
-      bannerState,
-      profileViewState,
-      isScrollWaiting,
-      isScrollInit,
-      isAtBottom);
+    runtimeType,
+    scrollController,
+    subScrollController,
+    bannerState,
+    profileViewState,
+    isScrollWaiting,
+    isScrollInit,
+    isAtBottom,
+  );
 
   /// Create a copy of ScrollModel
   /// with the given fields replaced by the non-null parameter values.
@@ -256,14 +283,15 @@ class _$ScrollModelImpl implements _ScrollModel {
 }
 
 abstract class _ScrollModel implements ScrollModel {
-  const factory _ScrollModel(
-      {final ScrollController? scrollController,
-      final ScrollController? subScrollController,
-      final BannerState bannerState,
-      final ProfileViewState profileViewState,
-      final bool isScrollWaiting,
-      final bool isScrollInit,
-      final bool isAtBottom}) = _$ScrollModelImpl;
+  const factory _ScrollModel({
+    final ScrollController? scrollController,
+    final ScrollController? subScrollController,
+    final BannerState bannerState,
+    final ProfileViewState profileViewState,
+    final bool isScrollWaiting,
+    final bool isScrollInit,
+    final bool isAtBottom,
+  }) = _$ScrollModelImpl;
 
   @override
   ScrollController? get scrollController;

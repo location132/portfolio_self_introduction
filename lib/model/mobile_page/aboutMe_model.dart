@@ -1,0 +1,12 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'aboutMe_model.freezed.dart';
+
+@freezed
+class AboutMeModel with _$AboutMeModel {
+  const factory AboutMeModel({
+    @Default(false) bool isBackGroundAniStart,
+    @Default(false) bool isSectionTitleAniStart,
+    @Default(false) bool isBannerAniStart,
+  }) = _AboutMeModel;
+}

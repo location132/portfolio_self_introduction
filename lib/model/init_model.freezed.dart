@@ -12,11 +12,12 @@ part of 'init_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$InitModel {
-// 초기화 상태
+  // 초기화 상태
   InitState get initState => throw _privateConstructorUsedError; // 프로필 뷰 높이
   double get mainViewHeight => throw _privateConstructorUsedError; // 로딩 남은시간()
   int get remainingTime => throw _privateConstructorUsedError; // 브라우저 확인
@@ -35,12 +36,13 @@ abstract class $InitModelCopyWith<$Res> {
   factory $InitModelCopyWith(InitModel value, $Res Function(InitModel) then) =
       _$InitModelCopyWithImpl<$Res, InitModel>;
   @useResult
-  $Res call(
-      {InitState initState,
-      double mainViewHeight,
-      int remainingTime,
-      bool isChromeBrowser,
-      bool isMobileInit});
+  $Res call({
+    InitState initState,
+    double mainViewHeight,
+    int remainingTime,
+    bool isChromeBrowser,
+    bool isMobileInit,
+  });
 }
 
 /// @nodoc
@@ -64,28 +66,36 @@ class _$InitModelCopyWithImpl<$Res, $Val extends InitModel>
     Object? isChromeBrowser = null,
     Object? isMobileInit = null,
   }) {
-    return _then(_value.copyWith(
-      initState: null == initState
-          ? _value.initState
-          : initState // ignore: cast_nullable_to_non_nullable
-              as InitState,
-      mainViewHeight: null == mainViewHeight
-          ? _value.mainViewHeight
-          : mainViewHeight // ignore: cast_nullable_to_non_nullable
-              as double,
-      remainingTime: null == remainingTime
-          ? _value.remainingTime
-          : remainingTime // ignore: cast_nullable_to_non_nullable
-              as int,
-      isChromeBrowser: null == isChromeBrowser
-          ? _value.isChromeBrowser
-          : isChromeBrowser // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isMobileInit: null == isMobileInit
-          ? _value.isMobileInit
-          : isMobileInit // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            initState:
+                null == initState
+                    ? _value.initState
+                    : initState // ignore: cast_nullable_to_non_nullable
+                        as InitState,
+            mainViewHeight:
+                null == mainViewHeight
+                    ? _value.mainViewHeight
+                    : mainViewHeight // ignore: cast_nullable_to_non_nullable
+                        as double,
+            remainingTime:
+                null == remainingTime
+                    ? _value.remainingTime
+                    : remainingTime // ignore: cast_nullable_to_non_nullable
+                        as int,
+            isChromeBrowser:
+                null == isChromeBrowser
+                    ? _value.isChromeBrowser
+                    : isChromeBrowser // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isMobileInit:
+                null == isMobileInit
+                    ? _value.isMobileInit
+                    : isMobileInit // ignore: cast_nullable_to_non_nullable
+                        as bool,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -93,16 +103,18 @@ class _$InitModelCopyWithImpl<$Res, $Val extends InitModel>
 abstract class _$$InitModelImplCopyWith<$Res>
     implements $InitModelCopyWith<$Res> {
   factory _$$InitModelImplCopyWith(
-          _$InitModelImpl value, $Res Function(_$InitModelImpl) then) =
-      __$$InitModelImplCopyWithImpl<$Res>;
+    _$InitModelImpl value,
+    $Res Function(_$InitModelImpl) then,
+  ) = __$$InitModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {InitState initState,
-      double mainViewHeight,
-      int remainingTime,
-      bool isChromeBrowser,
-      bool isMobileInit});
+  $Res call({
+    InitState initState,
+    double mainViewHeight,
+    int remainingTime,
+    bool isChromeBrowser,
+    bool isMobileInit,
+  });
 }
 
 /// @nodoc
@@ -110,8 +122,9 @@ class __$$InitModelImplCopyWithImpl<$Res>
     extends _$InitModelCopyWithImpl<$Res, _$InitModelImpl>
     implements _$$InitModelImplCopyWith<$Res> {
   __$$InitModelImplCopyWithImpl(
-      _$InitModelImpl _value, $Res Function(_$InitModelImpl) _then)
-      : super(_value, _then);
+    _$InitModelImpl _value,
+    $Res Function(_$InitModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of InitModel
   /// with the given fields replaced by the non-null parameter values.
@@ -124,58 +137,66 @@ class __$$InitModelImplCopyWithImpl<$Res>
     Object? isChromeBrowser = null,
     Object? isMobileInit = null,
   }) {
-    return _then(_$InitModelImpl(
-      initState: null == initState
-          ? _value.initState
-          : initState // ignore: cast_nullable_to_non_nullable
-              as InitState,
-      mainViewHeight: null == mainViewHeight
-          ? _value.mainViewHeight
-          : mainViewHeight // ignore: cast_nullable_to_non_nullable
-              as double,
-      remainingTime: null == remainingTime
-          ? _value.remainingTime
-          : remainingTime // ignore: cast_nullable_to_non_nullable
-              as int,
-      isChromeBrowser: null == isChromeBrowser
-          ? _value.isChromeBrowser
-          : isChromeBrowser // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isMobileInit: null == isMobileInit
-          ? _value.isMobileInit
-          : isMobileInit // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$InitModelImpl(
+        initState:
+            null == initState
+                ? _value.initState
+                : initState // ignore: cast_nullable_to_non_nullable
+                    as InitState,
+        mainViewHeight:
+            null == mainViewHeight
+                ? _value.mainViewHeight
+                : mainViewHeight // ignore: cast_nullable_to_non_nullable
+                    as double,
+        remainingTime:
+            null == remainingTime
+                ? _value.remainingTime
+                : remainingTime // ignore: cast_nullable_to_non_nullable
+                    as int,
+        isChromeBrowser:
+            null == isChromeBrowser
+                ? _value.isChromeBrowser
+                : isChromeBrowser // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isMobileInit:
+            null == isMobileInit
+                ? _value.isMobileInit
+                : isMobileInit // ignore: cast_nullable_to_non_nullable
+                    as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$InitModelImpl implements _InitModel {
-  const _$InitModelImpl(
-      {this.initState = InitState.inactive,
-      this.mainViewHeight = 0.0,
-      this.remainingTime = 4,
-      this.isChromeBrowser = false,
-      this.isMobileInit = false});
+  const _$InitModelImpl({
+    this.initState = InitState.inactive,
+    this.mainViewHeight = 0.0,
+    this.remainingTime = 4,
+    this.isChromeBrowser = false,
+    this.isMobileInit = false,
+  });
 
-// 초기화 상태
+  // 초기화 상태
   @override
   @JsonKey()
   final InitState initState;
-// 프로필 뷰 높이
+  // 프로필 뷰 높이
   @override
   @JsonKey()
   final double mainViewHeight;
-// 로딩 남은시간()
+  // 로딩 남은시간()
   @override
   @JsonKey()
   final int remainingTime;
-// 브라우저 확인
+  // 브라우저 확인
   @override
   @JsonKey()
   final bool isChromeBrowser;
-//모바일 init 확인
+  //모바일 init 확인
   @override
   @JsonKey()
   final bool isMobileInit;
@@ -203,8 +224,14 @@ class _$InitModelImpl implements _InitModel {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, initState, mainViewHeight,
-      remainingTime, isChromeBrowser, isMobileInit);
+  int get hashCode => Object.hash(
+    runtimeType,
+    initState,
+    mainViewHeight,
+    remainingTime,
+    isChromeBrowser,
+    isMobileInit,
+  );
 
   /// Create a copy of InitModel
   /// with the given fields replaced by the non-null parameter values.
@@ -216,14 +243,15 @@ class _$InitModelImpl implements _InitModel {
 }
 
 abstract class _InitModel implements InitModel {
-  const factory _InitModel(
-      {final InitState initState,
-      final double mainViewHeight,
-      final int remainingTime,
-      final bool isChromeBrowser,
-      final bool isMobileInit}) = _$InitModelImpl;
+  const factory _InitModel({
+    final InitState initState,
+    final double mainViewHeight,
+    final int remainingTime,
+    final bool isChromeBrowser,
+    final bool isMobileInit,
+  }) = _$InitModelImpl;
 
-// 초기화 상태
+  // 초기화 상태
   @override
   InitState get initState; // 프로필 뷰 높이
   @override

@@ -20,6 +20,7 @@ mixin _$MobileState {
   InitModel get initModel => throw _privateConstructorUsedError;
   IntroModel get introModel => throw _privateConstructorUsedError;
   ScrollModel get scrollModel => throw _privateConstructorUsedError;
+  AboutMeModel get aboutMeModel => throw _privateConstructorUsedError;
 
   /// Create a copy of MobileState
   /// with the given fields replaced by the non-null parameter values.
@@ -39,11 +40,13 @@ abstract class $MobileStateCopyWith<$Res> {
     InitModel initModel,
     IntroModel introModel,
     ScrollModel scrollModel,
+    AboutMeModel aboutMeModel,
   });
 
   $InitModelCopyWith<$Res> get initModel;
   $IntroModelCopyWith<$Res> get introModel;
   $ScrollModelCopyWith<$Res> get scrollModel;
+  $AboutMeModelCopyWith<$Res> get aboutMeModel;
 }
 
 /// @nodoc
@@ -64,6 +67,7 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
     Object? initModel = null,
     Object? introModel = null,
     Object? scrollModel = null,
+    Object? aboutMeModel = null,
   }) {
     return _then(
       _value.copyWith(
@@ -82,6 +86,11 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
                     ? _value.scrollModel
                     : scrollModel // ignore: cast_nullable_to_non_nullable
                         as ScrollModel,
+            aboutMeModel:
+                null == aboutMeModel
+                    ? _value.aboutMeModel
+                    : aboutMeModel // ignore: cast_nullable_to_non_nullable
+                        as AboutMeModel,
           )
           as $Val,
     );
@@ -116,6 +125,16 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
       return _then(_value.copyWith(scrollModel: value) as $Val);
     });
   }
+
+  /// Create a copy of MobileState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AboutMeModelCopyWith<$Res> get aboutMeModel {
+    return $AboutMeModelCopyWith<$Res>(_value.aboutMeModel, (value) {
+      return _then(_value.copyWith(aboutMeModel: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -131,6 +150,7 @@ abstract class _$$MobileStateImplCopyWith<$Res>
     InitModel initModel,
     IntroModel introModel,
     ScrollModel scrollModel,
+    AboutMeModel aboutMeModel,
   });
 
   @override
@@ -139,6 +159,8 @@ abstract class _$$MobileStateImplCopyWith<$Res>
   $IntroModelCopyWith<$Res> get introModel;
   @override
   $ScrollModelCopyWith<$Res> get scrollModel;
+  @override
+  $AboutMeModelCopyWith<$Res> get aboutMeModel;
 }
 
 /// @nodoc
@@ -158,6 +180,7 @@ class __$$MobileStateImplCopyWithImpl<$Res>
     Object? initModel = null,
     Object? introModel = null,
     Object? scrollModel = null,
+    Object? aboutMeModel = null,
   }) {
     return _then(
       _$MobileStateImpl(
@@ -176,6 +199,11 @@ class __$$MobileStateImplCopyWithImpl<$Res>
                 ? _value.scrollModel
                 : scrollModel // ignore: cast_nullable_to_non_nullable
                     as ScrollModel,
+        aboutMeModel:
+            null == aboutMeModel
+                ? _value.aboutMeModel
+                : aboutMeModel // ignore: cast_nullable_to_non_nullable
+                    as AboutMeModel,
       ),
     );
   }
@@ -188,6 +216,7 @@ class _$MobileStateImpl implements _MobileState {
     this.initModel = const InitModel(),
     this.introModel = const IntroModel(),
     this.scrollModel = const ScrollModel(),
+    this.aboutMeModel = const AboutMeModel(),
   });
 
   @override
@@ -199,10 +228,13 @@ class _$MobileStateImpl implements _MobileState {
   @override
   @JsonKey()
   final ScrollModel scrollModel;
+  @override
+  @JsonKey()
+  final AboutMeModel aboutMeModel;
 
   @override
   String toString() {
-    return 'MobileState(initModel: $initModel, introModel: $introModel, scrollModel: $scrollModel)';
+    return 'MobileState(initModel: $initModel, introModel: $introModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel)';
   }
 
   @override
@@ -215,12 +247,19 @@ class _$MobileStateImpl implements _MobileState {
             (identical(other.introModel, introModel) ||
                 other.introModel == introModel) &&
             (identical(other.scrollModel, scrollModel) ||
-                other.scrollModel == scrollModel));
+                other.scrollModel == scrollModel) &&
+            (identical(other.aboutMeModel, aboutMeModel) ||
+                other.aboutMeModel == aboutMeModel));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, initModel, introModel, scrollModel);
+  int get hashCode => Object.hash(
+    runtimeType,
+    initModel,
+    introModel,
+    scrollModel,
+    aboutMeModel,
+  );
 
   /// Create a copy of MobileState
   /// with the given fields replaced by the non-null parameter values.
@@ -236,6 +275,7 @@ abstract class _MobileState implements MobileState {
     final InitModel initModel,
     final IntroModel introModel,
     final ScrollModel scrollModel,
+    final AboutMeModel aboutMeModel,
   }) = _$MobileStateImpl;
 
   @override
@@ -244,6 +284,8 @@ abstract class _MobileState implements MobileState {
   IntroModel get introModel;
   @override
   ScrollModel get scrollModel;
+  @override
+  AboutMeModel get aboutMeModel;
 
   /// Create a copy of MobileState
   /// with the given fields replaced by the non-null parameter values.

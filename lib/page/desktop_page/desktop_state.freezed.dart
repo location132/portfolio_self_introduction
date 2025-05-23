@@ -12,11 +12,12 @@ part of 'desktop_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$DesktopState {
-//StartAnimation 컨트롤러
+  //StartAnimation 컨트롤러
   StartAnimationModel? get startAnimation =>
       throw _privateConstructorUsedError; //mySkill 모델
   MySkillModel get mySkillModel =>
@@ -39,16 +40,18 @@ mixin _$DesktopState {
 /// @nodoc
 abstract class $DesktopStateCopyWith<$Res> {
   factory $DesktopStateCopyWith(
-          DesktopState value, $Res Function(DesktopState) then) =
-      _$DesktopStateCopyWithImpl<$Res, DesktopState>;
+    DesktopState value,
+    $Res Function(DesktopState) then,
+  ) = _$DesktopStateCopyWithImpl<$Res, DesktopState>;
   @useResult
-  $Res call(
-      {StartAnimationModel? startAnimation,
-      MySkillModel mySkillModel,
-      DescriptionModel descriptionModel,
-      ScrollModel scrollModel,
-      ProfileModel profileModel,
-      InitModel initModel});
+  $Res call({
+    StartAnimationModel? startAnimation,
+    MySkillModel mySkillModel,
+    DescriptionModel descriptionModel,
+    ScrollModel scrollModel,
+    ProfileModel profileModel,
+    InitModel initModel,
+  });
 
   $StartAnimationModelCopyWith<$Res>? get startAnimation;
   $MySkillModelCopyWith<$Res> get mySkillModel;
@@ -80,32 +83,41 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
     Object? profileModel = null,
     Object? initModel = null,
   }) {
-    return _then(_value.copyWith(
-      startAnimation: freezed == startAnimation
-          ? _value.startAnimation
-          : startAnimation // ignore: cast_nullable_to_non_nullable
-              as StartAnimationModel?,
-      mySkillModel: null == mySkillModel
-          ? _value.mySkillModel
-          : mySkillModel // ignore: cast_nullable_to_non_nullable
-              as MySkillModel,
-      descriptionModel: null == descriptionModel
-          ? _value.descriptionModel
-          : descriptionModel // ignore: cast_nullable_to_non_nullable
-              as DescriptionModel,
-      scrollModel: null == scrollModel
-          ? _value.scrollModel
-          : scrollModel // ignore: cast_nullable_to_non_nullable
-              as ScrollModel,
-      profileModel: null == profileModel
-          ? _value.profileModel
-          : profileModel // ignore: cast_nullable_to_non_nullable
-              as ProfileModel,
-      initModel: null == initModel
-          ? _value.initModel
-          : initModel // ignore: cast_nullable_to_non_nullable
-              as InitModel,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            startAnimation:
+                freezed == startAnimation
+                    ? _value.startAnimation
+                    : startAnimation // ignore: cast_nullable_to_non_nullable
+                        as StartAnimationModel?,
+            mySkillModel:
+                null == mySkillModel
+                    ? _value.mySkillModel
+                    : mySkillModel // ignore: cast_nullable_to_non_nullable
+                        as MySkillModel,
+            descriptionModel:
+                null == descriptionModel
+                    ? _value.descriptionModel
+                    : descriptionModel // ignore: cast_nullable_to_non_nullable
+                        as DescriptionModel,
+            scrollModel:
+                null == scrollModel
+                    ? _value.scrollModel
+                    : scrollModel // ignore: cast_nullable_to_non_nullable
+                        as ScrollModel,
+            profileModel:
+                null == profileModel
+                    ? _value.profileModel
+                    : profileModel // ignore: cast_nullable_to_non_nullable
+                        as ProfileModel,
+            initModel:
+                null == initModel
+                    ? _value.initModel
+                    : initModel // ignore: cast_nullable_to_non_nullable
+                        as InitModel,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of DesktopState
@@ -177,17 +189,19 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
 abstract class _$$DesktopStateImplCopyWith<$Res>
     implements $DesktopStateCopyWith<$Res> {
   factory _$$DesktopStateImplCopyWith(
-          _$DesktopStateImpl value, $Res Function(_$DesktopStateImpl) then) =
-      __$$DesktopStateImplCopyWithImpl<$Res>;
+    _$DesktopStateImpl value,
+    $Res Function(_$DesktopStateImpl) then,
+  ) = __$$DesktopStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {StartAnimationModel? startAnimation,
-      MySkillModel mySkillModel,
-      DescriptionModel descriptionModel,
-      ScrollModel scrollModel,
-      ProfileModel profileModel,
-      InitModel initModel});
+  $Res call({
+    StartAnimationModel? startAnimation,
+    MySkillModel mySkillModel,
+    DescriptionModel descriptionModel,
+    ScrollModel scrollModel,
+    ProfileModel profileModel,
+    InitModel initModel,
+  });
 
   @override
   $StartAnimationModelCopyWith<$Res>? get startAnimation;
@@ -208,8 +222,9 @@ class __$$DesktopStateImplCopyWithImpl<$Res>
     extends _$DesktopStateCopyWithImpl<$Res, _$DesktopStateImpl>
     implements _$$DesktopStateImplCopyWith<$Res> {
   __$$DesktopStateImplCopyWithImpl(
-      _$DesktopStateImpl _value, $Res Function(_$DesktopStateImpl) _then)
-      : super(_value, _then);
+    _$DesktopStateImpl _value,
+    $Res Function(_$DesktopStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of DesktopState
   /// with the given fields replaced by the non-null parameter values.
@@ -223,66 +238,75 @@ class __$$DesktopStateImplCopyWithImpl<$Res>
     Object? profileModel = null,
     Object? initModel = null,
   }) {
-    return _then(_$DesktopStateImpl(
-      startAnimation: freezed == startAnimation
-          ? _value.startAnimation
-          : startAnimation // ignore: cast_nullable_to_non_nullable
-              as StartAnimationModel?,
-      mySkillModel: null == mySkillModel
-          ? _value.mySkillModel
-          : mySkillModel // ignore: cast_nullable_to_non_nullable
-              as MySkillModel,
-      descriptionModel: null == descriptionModel
-          ? _value.descriptionModel
-          : descriptionModel // ignore: cast_nullable_to_non_nullable
-              as DescriptionModel,
-      scrollModel: null == scrollModel
-          ? _value.scrollModel
-          : scrollModel // ignore: cast_nullable_to_non_nullable
-              as ScrollModel,
-      profileModel: null == profileModel
-          ? _value.profileModel
-          : profileModel // ignore: cast_nullable_to_non_nullable
-              as ProfileModel,
-      initModel: null == initModel
-          ? _value.initModel
-          : initModel // ignore: cast_nullable_to_non_nullable
-              as InitModel,
-    ));
+    return _then(
+      _$DesktopStateImpl(
+        startAnimation:
+            freezed == startAnimation
+                ? _value.startAnimation
+                : startAnimation // ignore: cast_nullable_to_non_nullable
+                    as StartAnimationModel?,
+        mySkillModel:
+            null == mySkillModel
+                ? _value.mySkillModel
+                : mySkillModel // ignore: cast_nullable_to_non_nullable
+                    as MySkillModel,
+        descriptionModel:
+            null == descriptionModel
+                ? _value.descriptionModel
+                : descriptionModel // ignore: cast_nullable_to_non_nullable
+                    as DescriptionModel,
+        scrollModel:
+            null == scrollModel
+                ? _value.scrollModel
+                : scrollModel // ignore: cast_nullable_to_non_nullable
+                    as ScrollModel,
+        profileModel:
+            null == profileModel
+                ? _value.profileModel
+                : profileModel // ignore: cast_nullable_to_non_nullable
+                    as ProfileModel,
+        initModel:
+            null == initModel
+                ? _value.initModel
+                : initModel // ignore: cast_nullable_to_non_nullable
+                    as InitModel,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$DesktopStateImpl implements _DesktopState {
-  const _$DesktopStateImpl(
-      {this.startAnimation,
-      this.mySkillModel = const MySkillModel(),
-      this.descriptionModel = const DescriptionModel(),
-      this.scrollModel = const ScrollModel(),
-      this.profileModel = const ProfileModel(),
-      this.initModel = const InitModel()});
+  const _$DesktopStateImpl({
+    this.startAnimation,
+    this.mySkillModel = const MySkillModel(),
+    this.descriptionModel = const DescriptionModel(),
+    this.scrollModel = const ScrollModel(),
+    this.profileModel = const ProfileModel(),
+    this.initModel = const InitModel(),
+  });
 
-//StartAnimation 컨트롤러
+  //StartAnimation 컨트롤러
   @override
   final StartAnimationModel? startAnimation;
-//mySkill 모델
+  //mySkill 모델
   @override
   @JsonKey()
   final MySkillModel mySkillModel;
-//DescriptionModel
+  //DescriptionModel
   @override
   @JsonKey()
   final DescriptionModel descriptionModel;
-//ScrollModel
+  //ScrollModel
   @override
   @JsonKey()
   final ScrollModel scrollModel;
-//ProfileModel
+  //ProfileModel
   @override
   @JsonKey()
   final ProfileModel profileModel;
-//InitModel
+  //InitModel
   @override
   @JsonKey()
   final InitModel initModel;
@@ -312,8 +336,15 @@ class _$DesktopStateImpl implements _DesktopState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, startAnimation, mySkillModel,
-      descriptionModel, scrollModel, profileModel, initModel);
+  int get hashCode => Object.hash(
+    runtimeType,
+    startAnimation,
+    mySkillModel,
+    descriptionModel,
+    scrollModel,
+    profileModel,
+    initModel,
+  );
 
   /// Create a copy of DesktopState
   /// with the given fields replaced by the non-null parameter values.
@@ -325,15 +356,16 @@ class _$DesktopStateImpl implements _DesktopState {
 }
 
 abstract class _DesktopState implements DesktopState {
-  const factory _DesktopState(
-      {final StartAnimationModel? startAnimation,
-      final MySkillModel mySkillModel,
-      final DescriptionModel descriptionModel,
-      final ScrollModel scrollModel,
-      final ProfileModel profileModel,
-      final InitModel initModel}) = _$DesktopStateImpl;
+  const factory _DesktopState({
+    final StartAnimationModel? startAnimation,
+    final MySkillModel mySkillModel,
+    final DescriptionModel descriptionModel,
+    final ScrollModel scrollModel,
+    final ProfileModel profileModel,
+    final InitModel initModel,
+  }) = _$DesktopStateImpl;
 
-//StartAnimation 컨트롤러
+  //StartAnimation 컨트롤러
   @override
   StartAnimationModel? get startAnimation; //mySkill 모델
   @override

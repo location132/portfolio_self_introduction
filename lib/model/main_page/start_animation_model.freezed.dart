@@ -12,7 +12,8 @@ part of 'start_animation_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$StartAnimationModel {
@@ -33,15 +34,17 @@ mixin _$StartAnimationModel {
 /// @nodoc
 abstract class $StartAnimationModelCopyWith<$Res> {
   factory $StartAnimationModelCopyWith(
-          StartAnimationModel value, $Res Function(StartAnimationModel) then) =
-      _$StartAnimationModelCopyWithImpl<$Res, StartAnimationModel>;
+    StartAnimationModel value,
+    $Res Function(StartAnimationModel) then,
+  ) = _$StartAnimationModelCopyWithImpl<$Res, StartAnimationModel>;
   @useResult
-  $Res call(
-      {List<AnimationController> controllers,
-      List<Animation<double>> animations,
-      List<String> words,
-      bool endAnimation,
-      TextConstants? textConstants});
+  $Res call({
+    List<AnimationController> controllers,
+    List<Animation<double>> animations,
+    List<String> words,
+    bool endAnimation,
+    TextConstants? textConstants,
+  });
 }
 
 /// @nodoc
@@ -65,54 +68,65 @@ class _$StartAnimationModelCopyWithImpl<$Res, $Val extends StartAnimationModel>
     Object? endAnimation = null,
     Object? textConstants = freezed,
   }) {
-    return _then(_value.copyWith(
-      controllers: null == controllers
-          ? _value.controllers
-          : controllers // ignore: cast_nullable_to_non_nullable
-              as List<AnimationController>,
-      animations: null == animations
-          ? _value.animations
-          : animations // ignore: cast_nullable_to_non_nullable
-              as List<Animation<double>>,
-      words: null == words
-          ? _value.words
-          : words // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      endAnimation: null == endAnimation
-          ? _value.endAnimation
-          : endAnimation // ignore: cast_nullable_to_non_nullable
-              as bool,
-      textConstants: freezed == textConstants
-          ? _value.textConstants
-          : textConstants // ignore: cast_nullable_to_non_nullable
-              as TextConstants?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            controllers:
+                null == controllers
+                    ? _value.controllers
+                    : controllers // ignore: cast_nullable_to_non_nullable
+                        as List<AnimationController>,
+            animations:
+                null == animations
+                    ? _value.animations
+                    : animations // ignore: cast_nullable_to_non_nullable
+                        as List<Animation<double>>,
+            words:
+                null == words
+                    ? _value.words
+                    : words // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
+            endAnimation:
+                null == endAnimation
+                    ? _value.endAnimation
+                    : endAnimation // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            textConstants:
+                freezed == textConstants
+                    ? _value.textConstants
+                    : textConstants // ignore: cast_nullable_to_non_nullable
+                        as TextConstants?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$StartAnimationModelImplCopyWith<$Res>
     implements $StartAnimationModelCopyWith<$Res> {
-  factory _$$StartAnimationModelImplCopyWith(_$StartAnimationModelImpl value,
-          $Res Function(_$StartAnimationModelImpl) then) =
-      __$$StartAnimationModelImplCopyWithImpl<$Res>;
+  factory _$$StartAnimationModelImplCopyWith(
+    _$StartAnimationModelImpl value,
+    $Res Function(_$StartAnimationModelImpl) then,
+  ) = __$$StartAnimationModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<AnimationController> controllers,
-      List<Animation<double>> animations,
-      List<String> words,
-      bool endAnimation,
-      TextConstants? textConstants});
+  $Res call({
+    List<AnimationController> controllers,
+    List<Animation<double>> animations,
+    List<String> words,
+    bool endAnimation,
+    TextConstants? textConstants,
+  });
 }
 
 /// @nodoc
 class __$$StartAnimationModelImplCopyWithImpl<$Res>
     extends _$StartAnimationModelCopyWithImpl<$Res, _$StartAnimationModelImpl>
     implements _$$StartAnimationModelImplCopyWith<$Res> {
-  __$$StartAnimationModelImplCopyWithImpl(_$StartAnimationModelImpl _value,
-      $Res Function(_$StartAnimationModelImpl) _then)
-      : super(_value, _then);
+  __$$StartAnimationModelImplCopyWithImpl(
+    _$StartAnimationModelImpl _value,
+    $Res Function(_$StartAnimationModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of StartAnimationModel
   /// with the given fields replaced by the non-null parameter values.
@@ -125,43 +139,50 @@ class __$$StartAnimationModelImplCopyWithImpl<$Res>
     Object? endAnimation = null,
     Object? textConstants = freezed,
   }) {
-    return _then(_$StartAnimationModelImpl(
-      controllers: null == controllers
-          ? _value._controllers
-          : controllers // ignore: cast_nullable_to_non_nullable
-              as List<AnimationController>,
-      animations: null == animations
-          ? _value._animations
-          : animations // ignore: cast_nullable_to_non_nullable
-              as List<Animation<double>>,
-      words: null == words
-          ? _value._words
-          : words // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      endAnimation: null == endAnimation
-          ? _value.endAnimation
-          : endAnimation // ignore: cast_nullable_to_non_nullable
-              as bool,
-      textConstants: freezed == textConstants
-          ? _value.textConstants
-          : textConstants // ignore: cast_nullable_to_non_nullable
-              as TextConstants?,
-    ));
+    return _then(
+      _$StartAnimationModelImpl(
+        controllers:
+            null == controllers
+                ? _value._controllers
+                : controllers // ignore: cast_nullable_to_non_nullable
+                    as List<AnimationController>,
+        animations:
+            null == animations
+                ? _value._animations
+                : animations // ignore: cast_nullable_to_non_nullable
+                    as List<Animation<double>>,
+        words:
+            null == words
+                ? _value._words
+                : words // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
+        endAnimation:
+            null == endAnimation
+                ? _value.endAnimation
+                : endAnimation // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        textConstants:
+            freezed == textConstants
+                ? _value.textConstants
+                : textConstants // ignore: cast_nullable_to_non_nullable
+                    as TextConstants?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$StartAnimationModelImpl implements _StartAnimationModel {
-  const _$StartAnimationModelImpl(
-      {final List<AnimationController> controllers = const [],
-      final List<Animation<double>> animations = const [],
-      final List<String> words = const [],
-      this.endAnimation = false,
-      this.textConstants})
-      : _controllers = controllers,
-        _animations = animations,
-        _words = words;
+  const _$StartAnimationModelImpl({
+    final List<AnimationController> controllers = const [],
+    final List<Animation<double>> animations = const [],
+    final List<String> words = const [],
+    this.endAnimation = false,
+    this.textConstants,
+  }) : _controllers = controllers,
+       _animations = animations,
+       _words = words;
 
   final List<AnimationController> _controllers;
   @override
@@ -206,10 +227,14 @@ class _$StartAnimationModelImpl implements _StartAnimationModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StartAnimationModelImpl &&
-            const DeepCollectionEquality()
-                .equals(other._controllers, _controllers) &&
-            const DeepCollectionEquality()
-                .equals(other._animations, _animations) &&
+            const DeepCollectionEquality().equals(
+              other._controllers,
+              _controllers,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._animations,
+              _animations,
+            ) &&
             const DeepCollectionEquality().equals(other._words, _words) &&
             (identical(other.endAnimation, endAnimation) ||
                 other.endAnimation == endAnimation) &&
@@ -219,12 +244,13 @@ class _$StartAnimationModelImpl implements _StartAnimationModel {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_controllers),
-      const DeepCollectionEquality().hash(_animations),
-      const DeepCollectionEquality().hash(_words),
-      endAnimation,
-      textConstants);
+    runtimeType,
+    const DeepCollectionEquality().hash(_controllers),
+    const DeepCollectionEquality().hash(_animations),
+    const DeepCollectionEquality().hash(_words),
+    endAnimation,
+    textConstants,
+  );
 
   /// Create a copy of StartAnimationModel
   /// with the given fields replaced by the non-null parameter values.
@@ -233,16 +259,19 @@ class _$StartAnimationModelImpl implements _StartAnimationModel {
   @pragma('vm:prefer-inline')
   _$$StartAnimationModelImplCopyWith<_$StartAnimationModelImpl> get copyWith =>
       __$$StartAnimationModelImplCopyWithImpl<_$StartAnimationModelImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _StartAnimationModel implements StartAnimationModel {
-  const factory _StartAnimationModel(
-      {final List<AnimationController> controllers,
-      final List<Animation<double>> animations,
-      final List<String> words,
-      final bool endAnimation,
-      final TextConstants? textConstants}) = _$StartAnimationModelImpl;
+  const factory _StartAnimationModel({
+    final List<AnimationController> controllers,
+    final List<Animation<double>> animations,
+    final List<String> words,
+    final bool endAnimation,
+    final TextConstants? textConstants,
+  }) = _$StartAnimationModelImpl;
 
   @override
   List<AnimationController> get controllers;

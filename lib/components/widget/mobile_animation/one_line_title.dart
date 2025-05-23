@@ -4,12 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/page/mobile_page/animation/intro_ani.dart';
 
 class OneLineTitle extends StatefulWidget {
-  final bool isTitelText;
+  final bool isTitelTextAniStart;
+  final bool? isReverse;
   final String title;
+  final Color? color;
   const OneLineTitle({
     super.key,
-    required this.isTitelText,
+    required this.isTitelTextAniStart,
+    this.isReverse,
     required this.title,
+    this.color,
   });
 
   @override
@@ -29,8 +33,12 @@ class _OneLineTitleState extends State<OneLineTitle>
   @override
   void didUpdateWidget(OneLineTitle oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.isTitelText) {
+    if (widget.isTitelTextAniStart &&
+        !_titleAnimation.showController.isCompleted) {
       _titleAnimation.forward();
+    } else if (widget.isReverse == true &&
+        _titleAnimation.showController.isCompleted) {
+      _titleAnimation.reverse();
     }
   }
 
@@ -50,9 +58,9 @@ class _OneLineTitleState extends State<OneLineTitle>
           opacity: _titleAnimation.opacityShow,
           child: Text(
             widget.title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 25.0,
-              color: Colors.black,
+              color: widget.color ?? Colors.black,
               fontWeight: FontWeight.bold,
             ),
           ),

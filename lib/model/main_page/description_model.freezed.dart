@@ -12,7 +12,8 @@ part of 'description_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$DescriptionModel {
@@ -35,14 +36,16 @@ mixin _$DescriptionModel {
 /// @nodoc
 abstract class $DescriptionModelCopyWith<$Res> {
   factory $DescriptionModelCopyWith(
-          DescriptionModel value, $Res Function(DescriptionModel) then) =
-      _$DescriptionModelCopyWithImpl<$Res, DescriptionModel>;
+    DescriptionModel value,
+    $Res Function(DescriptionModel) then,
+  ) = _$DescriptionModelCopyWithImpl<$Res, DescriptionModel>;
   @useResult
-  $Res call(
-      {IntroDescriptionState introDescriptionState,
-      BannerDescriptionState bannerDescriptionState,
-      ProfileDescriptionState profileDescriptionState,
-      SkillDescriptionState skillDescriptionState});
+  $Res call({
+    IntroDescriptionState introDescriptionState,
+    BannerDescriptionState bannerDescriptionState,
+    ProfileDescriptionState profileDescriptionState,
+    SkillDescriptionState skillDescriptionState,
+  });
 }
 
 /// @nodoc
@@ -65,49 +68,59 @@ class _$DescriptionModelCopyWithImpl<$Res, $Val extends DescriptionModel>
     Object? profileDescriptionState = null,
     Object? skillDescriptionState = null,
   }) {
-    return _then(_value.copyWith(
-      introDescriptionState: null == introDescriptionState
-          ? _value.introDescriptionState
-          : introDescriptionState // ignore: cast_nullable_to_non_nullable
-              as IntroDescriptionState,
-      bannerDescriptionState: null == bannerDescriptionState
-          ? _value.bannerDescriptionState
-          : bannerDescriptionState // ignore: cast_nullable_to_non_nullable
-              as BannerDescriptionState,
-      profileDescriptionState: null == profileDescriptionState
-          ? _value.profileDescriptionState
-          : profileDescriptionState // ignore: cast_nullable_to_non_nullable
-              as ProfileDescriptionState,
-      skillDescriptionState: null == skillDescriptionState
-          ? _value.skillDescriptionState
-          : skillDescriptionState // ignore: cast_nullable_to_non_nullable
-              as SkillDescriptionState,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            introDescriptionState:
+                null == introDescriptionState
+                    ? _value.introDescriptionState
+                    : introDescriptionState // ignore: cast_nullable_to_non_nullable
+                        as IntroDescriptionState,
+            bannerDescriptionState:
+                null == bannerDescriptionState
+                    ? _value.bannerDescriptionState
+                    : bannerDescriptionState // ignore: cast_nullable_to_non_nullable
+                        as BannerDescriptionState,
+            profileDescriptionState:
+                null == profileDescriptionState
+                    ? _value.profileDescriptionState
+                    : profileDescriptionState // ignore: cast_nullable_to_non_nullable
+                        as ProfileDescriptionState,
+            skillDescriptionState:
+                null == skillDescriptionState
+                    ? _value.skillDescriptionState
+                    : skillDescriptionState // ignore: cast_nullable_to_non_nullable
+                        as SkillDescriptionState,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$DescriptionModelImplCopyWith<$Res>
     implements $DescriptionModelCopyWith<$Res> {
-  factory _$$DescriptionModelImplCopyWith(_$DescriptionModelImpl value,
-          $Res Function(_$DescriptionModelImpl) then) =
-      __$$DescriptionModelImplCopyWithImpl<$Res>;
+  factory _$$DescriptionModelImplCopyWith(
+    _$DescriptionModelImpl value,
+    $Res Function(_$DescriptionModelImpl) then,
+  ) = __$$DescriptionModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {IntroDescriptionState introDescriptionState,
-      BannerDescriptionState bannerDescriptionState,
-      ProfileDescriptionState profileDescriptionState,
-      SkillDescriptionState skillDescriptionState});
+  $Res call({
+    IntroDescriptionState introDescriptionState,
+    BannerDescriptionState bannerDescriptionState,
+    ProfileDescriptionState profileDescriptionState,
+    SkillDescriptionState skillDescriptionState,
+  });
 }
 
 /// @nodoc
 class __$$DescriptionModelImplCopyWithImpl<$Res>
     extends _$DescriptionModelCopyWithImpl<$Res, _$DescriptionModelImpl>
     implements _$$DescriptionModelImplCopyWith<$Res> {
-  __$$DescriptionModelImplCopyWithImpl(_$DescriptionModelImpl _value,
-      $Res Function(_$DescriptionModelImpl) _then)
-      : super(_value, _then);
+  __$$DescriptionModelImplCopyWithImpl(
+    _$DescriptionModelImpl _value,
+    $Res Function(_$DescriptionModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of DescriptionModel
   /// with the given fields replaced by the non-null parameter values.
@@ -119,48 +132,55 @@ class __$$DescriptionModelImplCopyWithImpl<$Res>
     Object? profileDescriptionState = null,
     Object? skillDescriptionState = null,
   }) {
-    return _then(_$DescriptionModelImpl(
-      introDescriptionState: null == introDescriptionState
-          ? _value.introDescriptionState
-          : introDescriptionState // ignore: cast_nullable_to_non_nullable
-              as IntroDescriptionState,
-      bannerDescriptionState: null == bannerDescriptionState
-          ? _value.bannerDescriptionState
-          : bannerDescriptionState // ignore: cast_nullable_to_non_nullable
-              as BannerDescriptionState,
-      profileDescriptionState: null == profileDescriptionState
-          ? _value.profileDescriptionState
-          : profileDescriptionState // ignore: cast_nullable_to_non_nullable
-              as ProfileDescriptionState,
-      skillDescriptionState: null == skillDescriptionState
-          ? _value.skillDescriptionState
-          : skillDescriptionState // ignore: cast_nullable_to_non_nullable
-              as SkillDescriptionState,
-    ));
+    return _then(
+      _$DescriptionModelImpl(
+        introDescriptionState:
+            null == introDescriptionState
+                ? _value.introDescriptionState
+                : introDescriptionState // ignore: cast_nullable_to_non_nullable
+                    as IntroDescriptionState,
+        bannerDescriptionState:
+            null == bannerDescriptionState
+                ? _value.bannerDescriptionState
+                : bannerDescriptionState // ignore: cast_nullable_to_non_nullable
+                    as BannerDescriptionState,
+        profileDescriptionState:
+            null == profileDescriptionState
+                ? _value.profileDescriptionState
+                : profileDescriptionState // ignore: cast_nullable_to_non_nullable
+                    as ProfileDescriptionState,
+        skillDescriptionState:
+            null == skillDescriptionState
+                ? _value.skillDescriptionState
+                : skillDescriptionState // ignore: cast_nullable_to_non_nullable
+                    as SkillDescriptionState,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$DescriptionModelImpl implements _DescriptionModel {
-  const _$DescriptionModelImpl(
-      {this.introDescriptionState = IntroDescriptionState.inactive,
-      this.bannerDescriptionState = BannerDescriptionState.inactive,
-      this.profileDescriptionState = ProfileDescriptionState.inactive,
-      this.skillDescriptionState = SkillDescriptionState.inactive});
+  const _$DescriptionModelImpl({
+    this.introDescriptionState = IntroDescriptionState.inactive,
+    this.bannerDescriptionState = BannerDescriptionState.inactive,
+    this.profileDescriptionState = ProfileDescriptionState.inactive,
+    this.skillDescriptionState = SkillDescriptionState.inactive,
+  });
 
   @override
   @JsonKey()
   final IntroDescriptionState introDescriptionState;
-//--------------------------------
+  //--------------------------------
   @override
   @JsonKey()
   final BannerDescriptionState bannerDescriptionState;
-//--------------------------------
+  //--------------------------------
   @override
   @JsonKey()
   final ProfileDescriptionState profileDescriptionState;
-//--------------------------------
+  //--------------------------------
   @override
   @JsonKey()
   final SkillDescriptionState skillDescriptionState;
@@ -180,15 +200,22 @@ class _$DescriptionModelImpl implements _DescriptionModel {
             (identical(other.bannerDescriptionState, bannerDescriptionState) ||
                 other.bannerDescriptionState == bannerDescriptionState) &&
             (identical(
-                    other.profileDescriptionState, profileDescriptionState) ||
+                  other.profileDescriptionState,
+                  profileDescriptionState,
+                ) ||
                 other.profileDescriptionState == profileDescriptionState) &&
             (identical(other.skillDescriptionState, skillDescriptionState) ||
                 other.skillDescriptionState == skillDescriptionState));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, introDescriptionState,
-      bannerDescriptionState, profileDescriptionState, skillDescriptionState);
+  int get hashCode => Object.hash(
+    runtimeType,
+    introDescriptionState,
+    bannerDescriptionState,
+    profileDescriptionState,
+    skillDescriptionState,
+  );
 
   /// Create a copy of DescriptionModel
   /// with the given fields replaced by the non-null parameter values.
@@ -197,26 +224,25 @@ class _$DescriptionModelImpl implements _DescriptionModel {
   @pragma('vm:prefer-inline')
   _$$DescriptionModelImplCopyWith<_$DescriptionModelImpl> get copyWith =>
       __$$DescriptionModelImplCopyWithImpl<_$DescriptionModelImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _DescriptionModel implements DescriptionModel {
-  const factory _DescriptionModel(
-          {final IntroDescriptionState introDescriptionState,
-          final BannerDescriptionState bannerDescriptionState,
-          final ProfileDescriptionState profileDescriptionState,
-          final SkillDescriptionState skillDescriptionState}) =
-      _$DescriptionModelImpl;
+  const factory _DescriptionModel({
+    final IntroDescriptionState introDescriptionState,
+    final BannerDescriptionState bannerDescriptionState,
+    final ProfileDescriptionState profileDescriptionState,
+    final SkillDescriptionState skillDescriptionState,
+  }) = _$DescriptionModelImpl;
 
   @override
-  IntroDescriptionState
-      get introDescriptionState; //--------------------------------
+  IntroDescriptionState get introDescriptionState; //--------------------------------
   @override
-  BannerDescriptionState
-      get bannerDescriptionState; //--------------------------------
+  BannerDescriptionState get bannerDescriptionState; //--------------------------------
   @override
-  ProfileDescriptionState
-      get profileDescriptionState; //--------------------------------
+  ProfileDescriptionState get profileDescriptionState; //--------------------------------
   @override
   SkillDescriptionState get skillDescriptionState;
 
