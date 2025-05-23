@@ -12,7 +12,8 @@ part of 'intro_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$IntroModel {
@@ -28,7 +29,8 @@ mixin _$IntroModel {
   bool get isPageTransition => throw _privateConstructorUsedError;
   bool get isTitelTextAniStart => throw _privateConstructorUsedError;
   bool get isChapterContainerAniStart => throw _privateConstructorUsedError;
-  bool get isHome => throw _privateConstructorUsedError;
+  bool get isHome => throw _privateConstructorUsedError; // 모바일 디바이스 안내 다이얼로그
+  MobileDialogType get isMobileDialog => throw _privateConstructorUsedError;
 
   /// Create a copy of IntroModel
   /// with the given fields replaced by the non-null parameter values.
@@ -40,22 +42,25 @@ mixin _$IntroModel {
 /// @nodoc
 abstract class $IntroModelCopyWith<$Res> {
   factory $IntroModelCopyWith(
-          IntroModel value, $Res Function(IntroModel) then) =
-      _$IntroModelCopyWithImpl<$Res, IntroModel>;
+    IntroModel value,
+    $Res Function(IntroModel) then,
+  ) = _$IntroModelCopyWithImpl<$Res, IntroModel>;
   @useResult
-  $Res call(
-      {bool isDeviceSelector,
-      bool isDescription,
-      bool isTitelText,
-      bool isFirstIntroText,
-      bool isSubTitle,
-      bool isWaveAnimation,
-      bool isWaveAnimationVisible,
-      bool isMenuClicked,
-      bool isPageTransition,
-      bool isTitelTextAniStart,
-      bool isChapterContainerAniStart,
-      bool isHome});
+  $Res call({
+    bool isDeviceSelector,
+    bool isDescription,
+    bool isTitelText,
+    bool isFirstIntroText,
+    bool isSubTitle,
+    bool isWaveAnimation,
+    bool isWaveAnimationVisible,
+    bool isMenuClicked,
+    bool isPageTransition,
+    bool isTitelTextAniStart,
+    bool isChapterContainerAniStart,
+    bool isHome,
+    MobileDialogType isMobileDialog,
+  });
 }
 
 /// @nodoc
@@ -85,57 +90,78 @@ class _$IntroModelCopyWithImpl<$Res, $Val extends IntroModel>
     Object? isTitelTextAniStart = null,
     Object? isChapterContainerAniStart = null,
     Object? isHome = null,
+    Object? isMobileDialog = null,
   }) {
-    return _then(_value.copyWith(
-      isDeviceSelector: null == isDeviceSelector
-          ? _value.isDeviceSelector
-          : isDeviceSelector // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDescription: null == isDescription
-          ? _value.isDescription
-          : isDescription // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isTitelText: null == isTitelText
-          ? _value.isTitelText
-          : isTitelText // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFirstIntroText: null == isFirstIntroText
-          ? _value.isFirstIntroText
-          : isFirstIntroText // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSubTitle: null == isSubTitle
-          ? _value.isSubTitle
-          : isSubTitle // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isWaveAnimation: null == isWaveAnimation
-          ? _value.isWaveAnimation
-          : isWaveAnimation // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isWaveAnimationVisible: null == isWaveAnimationVisible
-          ? _value.isWaveAnimationVisible
-          : isWaveAnimationVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isMenuClicked: null == isMenuClicked
-          ? _value.isMenuClicked
-          : isMenuClicked // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isPageTransition: null == isPageTransition
-          ? _value.isPageTransition
-          : isPageTransition // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isTitelTextAniStart: null == isTitelTextAniStart
-          ? _value.isTitelTextAniStart
-          : isTitelTextAniStart // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isChapterContainerAniStart: null == isChapterContainerAniStart
-          ? _value.isChapterContainerAniStart
-          : isChapterContainerAniStart // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isHome: null == isHome
-          ? _value.isHome
-          : isHome // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isDeviceSelector:
+                null == isDeviceSelector
+                    ? _value.isDeviceSelector
+                    : isDeviceSelector // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isDescription:
+                null == isDescription
+                    ? _value.isDescription
+                    : isDescription // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isTitelText:
+                null == isTitelText
+                    ? _value.isTitelText
+                    : isTitelText // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isFirstIntroText:
+                null == isFirstIntroText
+                    ? _value.isFirstIntroText
+                    : isFirstIntroText // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isSubTitle:
+                null == isSubTitle
+                    ? _value.isSubTitle
+                    : isSubTitle // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isWaveAnimation:
+                null == isWaveAnimation
+                    ? _value.isWaveAnimation
+                    : isWaveAnimation // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isWaveAnimationVisible:
+                null == isWaveAnimationVisible
+                    ? _value.isWaveAnimationVisible
+                    : isWaveAnimationVisible // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isMenuClicked:
+                null == isMenuClicked
+                    ? _value.isMenuClicked
+                    : isMenuClicked // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isPageTransition:
+                null == isPageTransition
+                    ? _value.isPageTransition
+                    : isPageTransition // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isTitelTextAniStart:
+                null == isTitelTextAniStart
+                    ? _value.isTitelTextAniStart
+                    : isTitelTextAniStart // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isChapterContainerAniStart:
+                null == isChapterContainerAniStart
+                    ? _value.isChapterContainerAniStart
+                    : isChapterContainerAniStart // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isHome:
+                null == isHome
+                    ? _value.isHome
+                    : isHome // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isMobileDialog:
+                null == isMobileDialog
+                    ? _value.isMobileDialog
+                    : isMobileDialog // ignore: cast_nullable_to_non_nullable
+                        as MobileDialogType,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -143,23 +169,26 @@ class _$IntroModelCopyWithImpl<$Res, $Val extends IntroModel>
 abstract class _$$IntroModelImplCopyWith<$Res>
     implements $IntroModelCopyWith<$Res> {
   factory _$$IntroModelImplCopyWith(
-          _$IntroModelImpl value, $Res Function(_$IntroModelImpl) then) =
-      __$$IntroModelImplCopyWithImpl<$Res>;
+    _$IntroModelImpl value,
+    $Res Function(_$IntroModelImpl) then,
+  ) = __$$IntroModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isDeviceSelector,
-      bool isDescription,
-      bool isTitelText,
-      bool isFirstIntroText,
-      bool isSubTitle,
-      bool isWaveAnimation,
-      bool isWaveAnimationVisible,
-      bool isMenuClicked,
-      bool isPageTransition,
-      bool isTitelTextAniStart,
-      bool isChapterContainerAniStart,
-      bool isHome});
+  $Res call({
+    bool isDeviceSelector,
+    bool isDescription,
+    bool isTitelText,
+    bool isFirstIntroText,
+    bool isSubTitle,
+    bool isWaveAnimation,
+    bool isWaveAnimationVisible,
+    bool isMenuClicked,
+    bool isPageTransition,
+    bool isTitelTextAniStart,
+    bool isChapterContainerAniStart,
+    bool isHome,
+    MobileDialogType isMobileDialog,
+  });
 }
 
 /// @nodoc
@@ -167,8 +196,9 @@ class __$$IntroModelImplCopyWithImpl<$Res>
     extends _$IntroModelCopyWithImpl<$Res, _$IntroModelImpl>
     implements _$$IntroModelImplCopyWith<$Res> {
   __$$IntroModelImplCopyWithImpl(
-      _$IntroModelImpl _value, $Res Function(_$IntroModelImpl) _then)
-      : super(_value, _then);
+    _$IntroModelImpl _value,
+    $Res Function(_$IntroModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of IntroModel
   /// with the given fields replaced by the non-null parameter values.
@@ -187,76 +217,98 @@ class __$$IntroModelImplCopyWithImpl<$Res>
     Object? isTitelTextAniStart = null,
     Object? isChapterContainerAniStart = null,
     Object? isHome = null,
+    Object? isMobileDialog = null,
   }) {
-    return _then(_$IntroModelImpl(
-      isDeviceSelector: null == isDeviceSelector
-          ? _value.isDeviceSelector
-          : isDeviceSelector // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDescription: null == isDescription
-          ? _value.isDescription
-          : isDescription // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isTitelText: null == isTitelText
-          ? _value.isTitelText
-          : isTitelText // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFirstIntroText: null == isFirstIntroText
-          ? _value.isFirstIntroText
-          : isFirstIntroText // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSubTitle: null == isSubTitle
-          ? _value.isSubTitle
-          : isSubTitle // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isWaveAnimation: null == isWaveAnimation
-          ? _value.isWaveAnimation
-          : isWaveAnimation // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isWaveAnimationVisible: null == isWaveAnimationVisible
-          ? _value.isWaveAnimationVisible
-          : isWaveAnimationVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isMenuClicked: null == isMenuClicked
-          ? _value.isMenuClicked
-          : isMenuClicked // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isPageTransition: null == isPageTransition
-          ? _value.isPageTransition
-          : isPageTransition // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isTitelTextAniStart: null == isTitelTextAniStart
-          ? _value.isTitelTextAniStart
-          : isTitelTextAniStart // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isChapterContainerAniStart: null == isChapterContainerAniStart
-          ? _value.isChapterContainerAniStart
-          : isChapterContainerAniStart // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isHome: null == isHome
-          ? _value.isHome
-          : isHome // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$IntroModelImpl(
+        isDeviceSelector:
+            null == isDeviceSelector
+                ? _value.isDeviceSelector
+                : isDeviceSelector // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isDescription:
+            null == isDescription
+                ? _value.isDescription
+                : isDescription // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isTitelText:
+            null == isTitelText
+                ? _value.isTitelText
+                : isTitelText // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isFirstIntroText:
+            null == isFirstIntroText
+                ? _value.isFirstIntroText
+                : isFirstIntroText // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isSubTitle:
+            null == isSubTitle
+                ? _value.isSubTitle
+                : isSubTitle // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isWaveAnimation:
+            null == isWaveAnimation
+                ? _value.isWaveAnimation
+                : isWaveAnimation // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isWaveAnimationVisible:
+            null == isWaveAnimationVisible
+                ? _value.isWaveAnimationVisible
+                : isWaveAnimationVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isMenuClicked:
+            null == isMenuClicked
+                ? _value.isMenuClicked
+                : isMenuClicked // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isPageTransition:
+            null == isPageTransition
+                ? _value.isPageTransition
+                : isPageTransition // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isTitelTextAniStart:
+            null == isTitelTextAniStart
+                ? _value.isTitelTextAniStart
+                : isTitelTextAniStart // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isChapterContainerAniStart:
+            null == isChapterContainerAniStart
+                ? _value.isChapterContainerAniStart
+                : isChapterContainerAniStart // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isHome:
+            null == isHome
+                ? _value.isHome
+                : isHome // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isMobileDialog:
+            null == isMobileDialog
+                ? _value.isMobileDialog
+                : isMobileDialog // ignore: cast_nullable_to_non_nullable
+                    as MobileDialogType,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$IntroModelImpl implements _IntroModel {
-  const _$IntroModelImpl(
-      {this.isDeviceSelector = false,
-      this.isDescription = false,
-      this.isTitelText = false,
-      this.isFirstIntroText = false,
-      this.isSubTitle = false,
-      this.isWaveAnimation = true,
-      this.isWaveAnimationVisible = false,
-      this.isMenuClicked = false,
-      this.isPageTransition = false,
-      this.isTitelTextAniStart = false,
-      this.isChapterContainerAniStart = false,
-      this.isHome = false});
+  const _$IntroModelImpl({
+    this.isDeviceSelector = false,
+    this.isDescription = false,
+    this.isTitelText = false,
+    this.isFirstIntroText = false,
+    this.isSubTitle = false,
+    this.isWaveAnimation = true,
+    this.isWaveAnimationVisible = false,
+    this.isMenuClicked = false,
+    this.isPageTransition = false,
+    this.isTitelTextAniStart = false,
+    this.isChapterContainerAniStart = false,
+    this.isHome = false,
+    this.isMobileDialog = MobileDialogType.none,
+  });
 
   @override
   @JsonKey()
@@ -273,18 +325,18 @@ class _$IntroModelImpl implements _IntroModel {
   @override
   @JsonKey()
   final bool isSubTitle;
-//웨이브 애니메이션
+  //웨이브 애니메이션
   @override
   @JsonKey()
   final bool isWaveAnimation;
   @override
   @JsonKey()
   final bool isWaveAnimationVisible;
-//메뉴 클릭 여부
+  //메뉴 클릭 여부
   @override
   @JsonKey()
   final bool isMenuClicked;
-// 화면 전환
+  // 화면 전환
   @override
   @JsonKey()
   final bool isPageTransition;
@@ -297,10 +349,14 @@ class _$IntroModelImpl implements _IntroModel {
   @override
   @JsonKey()
   final bool isHome;
+  // 모바일 디바이스 안내 다이얼로그
+  @override
+  @JsonKey()
+  final MobileDialogType isMobileDialog;
 
   @override
   String toString() {
-    return 'IntroModel(isDeviceSelector: $isDeviceSelector, isDescription: $isDescription, isTitelText: $isTitelText, isFirstIntroText: $isFirstIntroText, isSubTitle: $isSubTitle, isWaveAnimation: $isWaveAnimation, isWaveAnimationVisible: $isWaveAnimationVisible, isMenuClicked: $isMenuClicked, isPageTransition: $isPageTransition, isTitelTextAniStart: $isTitelTextAniStart, isChapterContainerAniStart: $isChapterContainerAniStart, isHome: $isHome)';
+    return 'IntroModel(isDeviceSelector: $isDeviceSelector, isDescription: $isDescription, isTitelText: $isTitelText, isFirstIntroText: $isFirstIntroText, isSubTitle: $isSubTitle, isWaveAnimation: $isWaveAnimation, isWaveAnimationVisible: $isWaveAnimationVisible, isMenuClicked: $isMenuClicked, isPageTransition: $isPageTransition, isTitelTextAniStart: $isTitelTextAniStart, isChapterContainerAniStart: $isChapterContainerAniStart, isHome: $isHome, isMobileDialog: $isMobileDialog)';
   }
 
   @override
@@ -328,28 +384,34 @@ class _$IntroModelImpl implements _IntroModel {
                 other.isPageTransition == isPageTransition) &&
             (identical(other.isTitelTextAniStart, isTitelTextAniStart) ||
                 other.isTitelTextAniStart == isTitelTextAniStart) &&
-            (identical(other.isChapterContainerAniStart,
-                    isChapterContainerAniStart) ||
+            (identical(
+                  other.isChapterContainerAniStart,
+                  isChapterContainerAniStart,
+                ) ||
                 other.isChapterContainerAniStart ==
                     isChapterContainerAniStart) &&
-            (identical(other.isHome, isHome) || other.isHome == isHome));
+            (identical(other.isHome, isHome) || other.isHome == isHome) &&
+            (identical(other.isMobileDialog, isMobileDialog) ||
+                other.isMobileDialog == isMobileDialog));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      isDeviceSelector,
-      isDescription,
-      isTitelText,
-      isFirstIntroText,
-      isSubTitle,
-      isWaveAnimation,
-      isWaveAnimationVisible,
-      isMenuClicked,
-      isPageTransition,
-      isTitelTextAniStart,
-      isChapterContainerAniStart,
-      isHome);
+    runtimeType,
+    isDeviceSelector,
+    isDescription,
+    isTitelText,
+    isFirstIntroText,
+    isSubTitle,
+    isWaveAnimation,
+    isWaveAnimationVisible,
+    isMenuClicked,
+    isPageTransition,
+    isTitelTextAniStart,
+    isChapterContainerAniStart,
+    isHome,
+    isMobileDialog,
+  );
 
   /// Create a copy of IntroModel
   /// with the given fields replaced by the non-null parameter values.
@@ -361,19 +423,21 @@ class _$IntroModelImpl implements _IntroModel {
 }
 
 abstract class _IntroModel implements IntroModel {
-  const factory _IntroModel(
-      {final bool isDeviceSelector,
-      final bool isDescription,
-      final bool isTitelText,
-      final bool isFirstIntroText,
-      final bool isSubTitle,
-      final bool isWaveAnimation,
-      final bool isWaveAnimationVisible,
-      final bool isMenuClicked,
-      final bool isPageTransition,
-      final bool isTitelTextAniStart,
-      final bool isChapterContainerAniStart,
-      final bool isHome}) = _$IntroModelImpl;
+  const factory _IntroModel({
+    final bool isDeviceSelector,
+    final bool isDescription,
+    final bool isTitelText,
+    final bool isFirstIntroText,
+    final bool isSubTitle,
+    final bool isWaveAnimation,
+    final bool isWaveAnimationVisible,
+    final bool isMenuClicked,
+    final bool isPageTransition,
+    final bool isTitelTextAniStart,
+    final bool isChapterContainerAniStart,
+    final bool isHome,
+    final MobileDialogType isMobileDialog,
+  }) = _$IntroModelImpl;
 
   @override
   bool get isDeviceSelector;
@@ -398,7 +462,9 @@ abstract class _IntroModel implements IntroModel {
   @override
   bool get isChapterContainerAniStart;
   @override
-  bool get isHome;
+  bool get isHome; // 모바일 디바이스 안내 다이얼로그
+  @override
+  MobileDialogType get isMobileDialog;
 
   /// Create a copy of IntroModel
   /// with the given fields replaced by the non-null parameter values.

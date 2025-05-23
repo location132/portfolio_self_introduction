@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
+import 'package:self_introduction_flutter/model/main_page/intro_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/intro_view/intro_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/main_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/navi_bar.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
+import 'package:self_introduction_flutter/service/mobile_dialog.dart';
 
 class MobilePage extends StatelessWidget {
   final String deviceType;
@@ -43,6 +45,12 @@ class _MobileViewState extends State<_MobileView> {
   Widget build(BuildContext context) {
     return BlocBuilder<MobileCubit, MobileState>(
       builder: (context, state) {
+        if (state.introModel.isMobileDialog == MobileDialogType.active &&
+            widget.isMobileDevice) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            showMobileDialog(context);
+          });
+        }
         return Scaffold(
           body: ListView(
             physics: state.scrollModel.isScrollWaiting
@@ -50,7 +58,6 @@ class _MobileViewState extends State<_MobileView> {
                 : const AlwaysScrollableScrollPhysics(),
             controller: state.scrollModel.scrollController,
             children: [
-              Text('113'),
               Stack(
                 children: [
                   Column(

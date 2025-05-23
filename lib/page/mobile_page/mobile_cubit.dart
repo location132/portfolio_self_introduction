@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:self_introduction_flutter/model/main_page/intro_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
 
@@ -57,7 +58,25 @@ class MobileCubit extends Cubit<MobileState> {
         ),
       ),
     );
+
     await Future.delayed(const Duration(seconds: 1));
+    if (state.introModel.isMobileDialog == MobileDialogType.none) {
+      emit(
+        state.copyWith(
+          introModel: state.introModel.copyWith(
+            isMobileDialog: MobileDialogType.active,
+          ),
+        ),
+      );
+      await Future.delayed(const Duration(milliseconds: 100));
+      emit(
+        state.copyWith(
+          introModel: state.introModel.copyWith(
+            isMobileDialog: MobileDialogType.inactive,
+          ),
+        ),
+      );
+    }
     emit(
       state.copyWith(
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
@@ -86,10 +105,13 @@ class MobileCubit extends Cubit<MobileState> {
   void introAtBottom() async {
     emit(
       state.copyWith(
-        scrollModel: state.scrollModel.copyWith(
-          isAtBottom: true,
-          isScrollWaiting: true,
-        ),
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 500));
+    emit(
+      state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isAtBottom: true),
         introModel: state.introModel.copyWith(
           isSubTitle: true,
           isWaveAnimation: false,

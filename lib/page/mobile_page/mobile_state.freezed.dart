@@ -12,7 +12,8 @@ part of 'mobile_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$MobileState {
@@ -30,11 +31,15 @@ mixin _$MobileState {
 /// @nodoc
 abstract class $MobileStateCopyWith<$Res> {
   factory $MobileStateCopyWith(
-          MobileState value, $Res Function(MobileState) then) =
-      _$MobileStateCopyWithImpl<$Res, MobileState>;
+    MobileState value,
+    $Res Function(MobileState) then,
+  ) = _$MobileStateCopyWithImpl<$Res, MobileState>;
   @useResult
-  $Res call(
-      {InitModel initModel, IntroModel introModel, ScrollModel scrollModel});
+  $Res call({
+    InitModel initModel,
+    IntroModel introModel,
+    ScrollModel scrollModel,
+  });
 
   $InitModelCopyWith<$Res> get initModel;
   $IntroModelCopyWith<$Res> get introModel;
@@ -60,20 +65,26 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
     Object? introModel = null,
     Object? scrollModel = null,
   }) {
-    return _then(_value.copyWith(
-      initModel: null == initModel
-          ? _value.initModel
-          : initModel // ignore: cast_nullable_to_non_nullable
-              as InitModel,
-      introModel: null == introModel
-          ? _value.introModel
-          : introModel // ignore: cast_nullable_to_non_nullable
-              as IntroModel,
-      scrollModel: null == scrollModel
-          ? _value.scrollModel
-          : scrollModel // ignore: cast_nullable_to_non_nullable
-              as ScrollModel,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            initModel:
+                null == initModel
+                    ? _value.initModel
+                    : initModel // ignore: cast_nullable_to_non_nullable
+                        as InitModel,
+            introModel:
+                null == introModel
+                    ? _value.introModel
+                    : introModel // ignore: cast_nullable_to_non_nullable
+                        as IntroModel,
+            scrollModel:
+                null == scrollModel
+                    ? _value.scrollModel
+                    : scrollModel // ignore: cast_nullable_to_non_nullable
+                        as ScrollModel,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of MobileState
@@ -111,12 +122,16 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
 abstract class _$$MobileStateImplCopyWith<$Res>
     implements $MobileStateCopyWith<$Res> {
   factory _$$MobileStateImplCopyWith(
-          _$MobileStateImpl value, $Res Function(_$MobileStateImpl) then) =
-      __$$MobileStateImplCopyWithImpl<$Res>;
+    _$MobileStateImpl value,
+    $Res Function(_$MobileStateImpl) then,
+  ) = __$$MobileStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {InitModel initModel, IntroModel introModel, ScrollModel scrollModel});
+  $Res call({
+    InitModel initModel,
+    IntroModel introModel,
+    ScrollModel scrollModel,
+  });
 
   @override
   $InitModelCopyWith<$Res> get initModel;
@@ -131,8 +146,9 @@ class __$$MobileStateImplCopyWithImpl<$Res>
     extends _$MobileStateCopyWithImpl<$Res, _$MobileStateImpl>
     implements _$$MobileStateImplCopyWith<$Res> {
   __$$MobileStateImplCopyWithImpl(
-      _$MobileStateImpl _value, $Res Function(_$MobileStateImpl) _then)
-      : super(_value, _then);
+    _$MobileStateImpl _value,
+    $Res Function(_$MobileStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of MobileState
   /// with the given fields replaced by the non-null parameter values.
@@ -143,30 +159,36 @@ class __$$MobileStateImplCopyWithImpl<$Res>
     Object? introModel = null,
     Object? scrollModel = null,
   }) {
-    return _then(_$MobileStateImpl(
-      initModel: null == initModel
-          ? _value.initModel
-          : initModel // ignore: cast_nullable_to_non_nullable
-              as InitModel,
-      introModel: null == introModel
-          ? _value.introModel
-          : introModel // ignore: cast_nullable_to_non_nullable
-              as IntroModel,
-      scrollModel: null == scrollModel
-          ? _value.scrollModel
-          : scrollModel // ignore: cast_nullable_to_non_nullable
-              as ScrollModel,
-    ));
+    return _then(
+      _$MobileStateImpl(
+        initModel:
+            null == initModel
+                ? _value.initModel
+                : initModel // ignore: cast_nullable_to_non_nullable
+                    as InitModel,
+        introModel:
+            null == introModel
+                ? _value.introModel
+                : introModel // ignore: cast_nullable_to_non_nullable
+                    as IntroModel,
+        scrollModel:
+            null == scrollModel
+                ? _value.scrollModel
+                : scrollModel // ignore: cast_nullable_to_non_nullable
+                    as ScrollModel,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$MobileStateImpl implements _MobileState {
-  const _$MobileStateImpl(
-      {this.initModel = const InitModel(),
-      this.introModel = const IntroModel(),
-      this.scrollModel = const ScrollModel()});
+  const _$MobileStateImpl({
+    this.initModel = const InitModel(),
+    this.introModel = const IntroModel(),
+    this.scrollModel = const ScrollModel(),
+  });
 
   @override
   @JsonKey()
@@ -210,10 +232,11 @@ class _$MobileStateImpl implements _MobileState {
 }
 
 abstract class _MobileState implements MobileState {
-  const factory _MobileState(
-      {final InitModel initModel,
-      final IntroModel introModel,
-      final ScrollModel scrollModel}) = _$MobileStateImpl;
+  const factory _MobileState({
+    final InitModel initModel,
+    final IntroModel introModel,
+    final ScrollModel scrollModel,
+  }) = _$MobileStateImpl;
 
   @override
   InitModel get initModel;

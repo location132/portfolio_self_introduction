@@ -23,5 +23,10 @@ class IntroModel with _$IntroModel {
     @Default(false) bool isTitelTextAniStart,
     @Default(false) bool isChapterContainerAniStart,
     @Default(false) bool isHome,
+
+    // 모바일 디바이스 안내 다이얼로그
+    @Default(MobileDialogType.none) MobileDialogType isMobileDialog,
   }) = _IntroModel;
 }
+
+enum MobileDialogType { none, active, inactive }
