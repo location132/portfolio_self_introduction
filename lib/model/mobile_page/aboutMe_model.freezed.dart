@@ -17,9 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AboutMeModel {
+  bool get isVisible => throw _privateConstructorUsedError;
   bool get isBackGroundAniStart => throw _privateConstructorUsedError;
-  bool get isSectionTitleAniStart => throw _privateConstructorUsedError;
-  bool get isBannerAniStart => throw _privateConstructorUsedError;
+  bool get isTitleAniStart => throw _privateConstructorUsedError;
+  bool get isDescriptionAniStart => throw _privateConstructorUsedError;
 
   /// Create a copy of AboutMeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -36,9 +37,10 @@ abstract class $AboutMeModelCopyWith<$Res> {
   ) = _$AboutMeModelCopyWithImpl<$Res, AboutMeModel>;
   @useResult
   $Res call({
+    bool isVisible,
     bool isBackGroundAniStart,
-    bool isSectionTitleAniStart,
-    bool isBannerAniStart,
+    bool isTitleAniStart,
+    bool isDescriptionAniStart,
   });
 }
 
@@ -57,26 +59,32 @@ class _$AboutMeModelCopyWithImpl<$Res, $Val extends AboutMeModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isVisible = null,
     Object? isBackGroundAniStart = null,
-    Object? isSectionTitleAniStart = null,
-    Object? isBannerAniStart = null,
+    Object? isTitleAniStart = null,
+    Object? isDescriptionAniStart = null,
   }) {
     return _then(
       _value.copyWith(
+            isVisible:
+                null == isVisible
+                    ? _value.isVisible
+                    : isVisible // ignore: cast_nullable_to_non_nullable
+                        as bool,
             isBackGroundAniStart:
                 null == isBackGroundAniStart
                     ? _value.isBackGroundAniStart
                     : isBackGroundAniStart // ignore: cast_nullable_to_non_nullable
                         as bool,
-            isSectionTitleAniStart:
-                null == isSectionTitleAniStart
-                    ? _value.isSectionTitleAniStart
-                    : isSectionTitleAniStart // ignore: cast_nullable_to_non_nullable
+            isTitleAniStart:
+                null == isTitleAniStart
+                    ? _value.isTitleAniStart
+                    : isTitleAniStart // ignore: cast_nullable_to_non_nullable
                         as bool,
-            isBannerAniStart:
-                null == isBannerAniStart
-                    ? _value.isBannerAniStart
-                    : isBannerAniStart // ignore: cast_nullable_to_non_nullable
+            isDescriptionAniStart:
+                null == isDescriptionAniStart
+                    ? _value.isDescriptionAniStart
+                    : isDescriptionAniStart // ignore: cast_nullable_to_non_nullable
                         as bool,
           )
           as $Val,
@@ -94,9 +102,10 @@ abstract class _$$AboutMeModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
+    bool isVisible,
     bool isBackGroundAniStart,
-    bool isSectionTitleAniStart,
-    bool isBannerAniStart,
+    bool isTitleAniStart,
+    bool isDescriptionAniStart,
   });
 }
 
@@ -114,26 +123,32 @@ class __$$AboutMeModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isVisible = null,
     Object? isBackGroundAniStart = null,
-    Object? isSectionTitleAniStart = null,
-    Object? isBannerAniStart = null,
+    Object? isTitleAniStart = null,
+    Object? isDescriptionAniStart = null,
   }) {
     return _then(
       _$AboutMeModelImpl(
+        isVisible:
+            null == isVisible
+                ? _value.isVisible
+                : isVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
         isBackGroundAniStart:
             null == isBackGroundAniStart
                 ? _value.isBackGroundAniStart
                 : isBackGroundAniStart // ignore: cast_nullable_to_non_nullable
                     as bool,
-        isSectionTitleAniStart:
-            null == isSectionTitleAniStart
-                ? _value.isSectionTitleAniStart
-                : isSectionTitleAniStart // ignore: cast_nullable_to_non_nullable
+        isTitleAniStart:
+            null == isTitleAniStart
+                ? _value.isTitleAniStart
+                : isTitleAniStart // ignore: cast_nullable_to_non_nullable
                     as bool,
-        isBannerAniStart:
-            null == isBannerAniStart
-                ? _value.isBannerAniStart
-                : isBannerAniStart // ignore: cast_nullable_to_non_nullable
+        isDescriptionAniStart:
+            null == isDescriptionAniStart
+                ? _value.isDescriptionAniStart
+                : isDescriptionAniStart // ignore: cast_nullable_to_non_nullable
                     as bool,
       ),
     );
@@ -144,24 +159,28 @@ class __$$AboutMeModelImplCopyWithImpl<$Res>
 
 class _$AboutMeModelImpl implements _AboutMeModel {
   const _$AboutMeModelImpl({
+    this.isVisible = false,
     this.isBackGroundAniStart = false,
-    this.isSectionTitleAniStart = false,
-    this.isBannerAniStart = false,
+    this.isTitleAniStart = false,
+    this.isDescriptionAniStart = false,
   });
 
+  @override
+  @JsonKey()
+  final bool isVisible;
   @override
   @JsonKey()
   final bool isBackGroundAniStart;
   @override
   @JsonKey()
-  final bool isSectionTitleAniStart;
+  final bool isTitleAniStart;
   @override
   @JsonKey()
-  final bool isBannerAniStart;
+  final bool isDescriptionAniStart;
 
   @override
   String toString() {
-    return 'AboutMeModel(isBackGroundAniStart: $isBackGroundAniStart, isSectionTitleAniStart: $isSectionTitleAniStart, isBannerAniStart: $isBannerAniStart)';
+    return 'AboutMeModel(isVisible: $isVisible, isBackGroundAniStart: $isBackGroundAniStart, isTitleAniStart: $isTitleAniStart, isDescriptionAniStart: $isDescriptionAniStart)';
   }
 
   @override
@@ -169,20 +188,23 @@ class _$AboutMeModelImpl implements _AboutMeModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AboutMeModelImpl &&
+            (identical(other.isVisible, isVisible) ||
+                other.isVisible == isVisible) &&
             (identical(other.isBackGroundAniStart, isBackGroundAniStart) ||
                 other.isBackGroundAniStart == isBackGroundAniStart) &&
-            (identical(other.isSectionTitleAniStart, isSectionTitleAniStart) ||
-                other.isSectionTitleAniStart == isSectionTitleAniStart) &&
-            (identical(other.isBannerAniStart, isBannerAniStart) ||
-                other.isBannerAniStart == isBannerAniStart));
+            (identical(other.isTitleAniStart, isTitleAniStart) ||
+                other.isTitleAniStart == isTitleAniStart) &&
+            (identical(other.isDescriptionAniStart, isDescriptionAniStart) ||
+                other.isDescriptionAniStart == isDescriptionAniStart));
   }
 
   @override
   int get hashCode => Object.hash(
     runtimeType,
+    isVisible,
     isBackGroundAniStart,
-    isSectionTitleAniStart,
-    isBannerAniStart,
+    isTitleAniStart,
+    isDescriptionAniStart,
   );
 
   /// Create a copy of AboutMeModel
@@ -196,17 +218,20 @@ class _$AboutMeModelImpl implements _AboutMeModel {
 
 abstract class _AboutMeModel implements AboutMeModel {
   const factory _AboutMeModel({
+    final bool isVisible,
     final bool isBackGroundAniStart,
-    final bool isSectionTitleAniStart,
-    final bool isBannerAniStart,
+    final bool isTitleAniStart,
+    final bool isDescriptionAniStart,
   }) = _$AboutMeModelImpl;
 
   @override
+  bool get isVisible;
+  @override
   bool get isBackGroundAniStart;
   @override
-  bool get isSectionTitleAniStart;
+  bool get isTitleAniStart;
   @override
-  bool get isBannerAniStart;
+  bool get isDescriptionAniStart;
 
   /// Create a copy of AboutMeModel
   /// with the given fields replaced by the non-null parameter values.

@@ -22,7 +22,7 @@ class AboutMeDescription extends StatelessWidget {
         padding: const EdgeInsets.only(left: 30),
         child: Column(
           children: [
-            const SizedBox(height: 110),
+            const SizedBox(height: 20),
             RichText(
               text: const TextSpan(
                 style: TextStyle(fontSize: 14, color: Colors.grey, height: 1.5),
