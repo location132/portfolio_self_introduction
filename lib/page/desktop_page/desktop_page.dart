@@ -39,10 +39,7 @@ class DesktopPage extends StatelessWidget {
 class _MainView extends StatefulWidget {
   final bool isChromeBrowser;
   final String deviceType;
-  const _MainView({
-    required this.isChromeBrowser,
-    required this.deviceType,
-  });
+  const _MainView({required this.isChromeBrowser, required this.deviceType});
 
   @override
   State<_MainView> createState() => _MainViewState();
@@ -67,16 +64,16 @@ class _MainViewState extends State<_MainView> {
         if (state.initModel.mainViewHeight != 0.0 &&
             state.initModel.mainViewHeight !=
                 state.scrollModel.scrollController!.position.maxScrollExtent) {
-          context
-              .read<DesktopCubit>()
-              .changeProfileViewHeight(state.scrollModel.scrollController);
+          context.read<DesktopCubit>().changeProfileViewHeight(
+            state.scrollModel.scrollController,
+          );
         }
 
         return Scaffold(
           backgroundColor: Colors.transparent,
           body: Column(
             children: [
-              TopNavBar(deviceType: widget.deviceType),
+              TopNavBar(deviceType: widget.deviceType, isMenuClicked: false),
               SizedBox(
                 height: MediaQuery.of(context).size.height - 83,
                 width: MediaQuery.of(context).size.width,
@@ -110,16 +107,17 @@ class _MainViewState extends State<_MainView> {
                             Visibility(
                               visible:
                                   ProfileViewConditionUtils.isSkillViewActive(
-                                      state),
+                                    state,
+                                  ),
                               child: VisibilityDetector(
                                 key: const Key('banner-view'),
                                 onVisibilityChanged: (VisibilityInfo info) {
                                   if (info.visibleFraction > 0.2 &&
                                       state.scrollModel.bannerState ==
                                           BannerState.inactive) {
-                                    context
-                                        .read<DesktopCubit>()
-                                        .viewListener('banner');
+                                    context.read<DesktopCubit>().viewListener(
+                                      'banner',
+                                    );
                                   }
                                 },
                                 child: BannerView(
@@ -137,16 +135,17 @@ class _MainViewState extends State<_MainView> {
                             Visibility(
                               visible:
                                   ProfileViewConditionUtils.isSkillViewActive(
-                                      state),
+                                    state,
+                                  ),
                               child: VisibilityDetector(
                                 key: const Key('skill-view'),
                                 onVisibilityChanged: (VisibilityInfo info) {
                                   if (info.visibleFraction > 0.8 &&
                                       state.mySkillModel.status ==
                                           MySkillViewStatus.inactive) {
-                                    context
-                                        .read<DesktopCubit>()
-                                        .viewListener('skill');
+                                    context.read<DesktopCubit>().viewListener(
+                                      'skill',
+                                    );
                                   }
                                 },
                                 child: SkillView(
@@ -165,7 +164,7 @@ class _MainViewState extends State<_MainView> {
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         );

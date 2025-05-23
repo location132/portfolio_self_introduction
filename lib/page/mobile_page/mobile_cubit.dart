@@ -156,6 +156,7 @@ class MobileCubit extends Cubit<MobileState> {
           isDeviceSelector: false,
           isTitelText: false,
           isFirstIntroText: false,
+          isMenuClicked: true,
         ),
         initModel: state.initModel.copyWith(isMobileInit: false),
       ),

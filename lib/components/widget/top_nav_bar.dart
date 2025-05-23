@@ -8,11 +8,13 @@ class TopNavBar extends StatelessWidget {
   final String deviceType;
   final Function()? onPressed;
   final Function()? onHomePressed;
+  final bool isMenuClicked;
   const TopNavBar({
     super.key,
     required this.deviceType,
     this.onPressed,
     this.onHomePressed,
+    required this.isMenuClicked,
   });
 
   @override
@@ -28,10 +30,7 @@ class TopNavBar extends StatelessWidget {
             children: [
               const Spacer(),
               SizedBox(width: 11.sw),
-              Image.asset(
-                'assets/Images/flutter_bird.png',
-                scale: 25,
-              ),
+              Image.asset('assets/Images/flutter_bird.png', scale: 25),
               const NavItem(title: TextConstants.topNavBar1),
               const NavItem(title: TextConstants.topNavBar2),
               const NavItem(title: TextConstants.topNavBar3),
@@ -65,7 +64,10 @@ class TopNavBar extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                MenuToggleButton(onPressed: onPressed!),
+                MenuToggleButton(
+                  onPressed: onPressed!,
+                  isMenuClicked: isMenuClicked,
+                ),
               ],
             ),
           ),
@@ -92,10 +94,7 @@ class NavItem extends StatelessWidget {
           },
           child: Text(
             title,
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-            ),
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
           ),
         ),
       ),
@@ -104,8 +103,13 @@ class NavItem extends StatelessWidget {
 }
 
 class MenuToggleButton extends StatefulWidget {
+  final bool isMenuClicked;
   final VoidCallback onPressed;
-  const MenuToggleButton({super.key, required this.onPressed});
+  const MenuToggleButton({
+    super.key,
+    required this.onPressed,
+    required this.isMenuClicked,
+  });
 
   @override
   State<MenuToggleButton> createState() => _MenuToggleButtonState();
@@ -114,7 +118,6 @@ class MenuToggleButton extends StatefulWidget {
 class _MenuToggleButtonState extends State<MenuToggleButton>
     with SingleTickerProviderStateMixin {
   late final AnimationController _ctrl;
-  bool _opened = false;
 
   @override
   void initState() {
@@ -126,18 +129,30 @@ class _MenuToggleButtonState extends State<MenuToggleButton>
   }
 
   @override
+  void didUpdateWidget(MenuToggleButton oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.isMenuClicked != oldWidget.isMenuClicked) {
+      if (widget.isMenuClicked) {
+        _ctrl.forward();
+      } else {
+        _ctrl.reverse();
+      }
+    }
+  }
+
+  @override
   void dispose() {
     _ctrl.dispose();
     super.dispose();
   }
 
   void _toggle() {
-    if (_opened) {
+    if (widget.isMenuClicked) {
       _ctrl.reverse();
     } else {
       _ctrl.forward();
     }
-    setState(() => _opened = !_opened);
     widget.onPressed();
   }
 
@@ -148,10 +163,7 @@ class _MenuToggleButtonState extends State<MenuToggleButton>
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       hoverColor: Colors.transparent,
-      icon: AnimatedIcon(
-        icon: AnimatedIcons.menu_close,
-        progress: _ctrl,
-      ),
+      icon: AnimatedIcon(icon: AnimatedIcons.menu_close, progress: _ctrl),
       onPressed: _toggle,
     );
   }

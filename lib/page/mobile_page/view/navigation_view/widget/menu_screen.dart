@@ -28,11 +28,7 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
     super.initState();
     menuItemAnimations = List.generate(
       menuTexts.length,
-      (i) => MenuItemAnimation(
-        vsync: this,
-        text: menuTexts[i],
-        beginDy: 0.2,
-      ),
+      (i) => MenuItemAnimation(vsync: this, text: menuTexts[i], beginDy: 0.2),
     );
   }
 
@@ -74,6 +70,7 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
           child: IgnorePointer(
             ignoring: true,
             child: TopNavBar(
+              isMenuClicked: widget.isMenuClicked,
               deviceType: 'mobile',
               onPressed: () {},
               onHomePressed: () {},
@@ -89,29 +86,29 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
             height: widget.isMenuClicked ? maxHeight : 0,
             width: double.infinity,
             color: Colors.white,
-            child: ListView.builder(
-              itemCount: menuItemAnimations.length,
-              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-              itemBuilder: (context, index) {
-                final ani = menuItemAnimations[index];
-                return SlideTransition(
-                  position: ani.animation.moveShow,
-                  child: FadeTransition(
-                    opacity: ani.animation.opacityShow,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Text(
-                        ani.text,
-                        style: const TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
+            // child: ListView.builder(
+            //   itemCount: menuItemAnimations.length,
+            //   padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+            //   itemBuilder: (context, index) {
+            //     final ani = menuItemAnimations[index];
+            //     return SlideTransition(
+            //       position: ani.animation.moveShow,
+            //       child: FadeTransition(
+            //         opacity: ani.animation.opacityShow,
+            //         child: Padding(
+            //           padding: const EdgeInsets.symmetric(vertical: 10),
+            //           child: Text(
+            //             ani.text,
+            //             style: const TextStyle(
+            //               fontSize: 22,
+            //               fontWeight: FontWeight.bold,
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     );
+            //   },
+            // ),
           ),
         ),
       ],

@@ -69,6 +69,7 @@ class _MobileViewState extends State<_MobileView> {
                           deviceType: widget.deviceType,
                           isDeviceSelector: state.introModel.isDeviceSelector,
                           isDescription: state.introModel.isDescription,
+                          isMenuClicked: state.introModel.isMenuClicked,
                           onPressed: () =>
                               context.read<MobileCubit>().menuClicked(),
                           onHomePressed: () {
