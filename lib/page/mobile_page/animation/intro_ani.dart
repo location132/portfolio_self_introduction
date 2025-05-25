@@ -5,11 +5,14 @@ class TextMoveAnimation {
   late Animation<Offset> moveShow;
   late Animation<double> opacityShow;
 
-  TextMoveAnimation({required TickerProvider vsync, double beginDy = 0.5})
-      : showController = AnimationController(
-          vsync: vsync,
-          duration: const Duration(milliseconds: 620),
-        ) {
+  TextMoveAnimation({
+    required TickerProvider vsync,
+    double beginDy = 0.5,
+    int duration = 620,
+  }) : showController = AnimationController(
+         vsync: vsync,
+         duration: Duration(milliseconds: duration),
+       ) {
     moveShow = Tween<Offset>(
       begin: Offset(0, beginDy),
       end: const Offset(0, 0),

@@ -20,11 +20,9 @@ mixin _$IntroModel {
   bool get isDeviceSelector => throw _privateConstructorUsedError;
   bool get isDescription => throw _privateConstructorUsedError;
   bool get isTitelText => throw _privateConstructorUsedError;
-  bool get isFirstIntroText => throw _privateConstructorUsedError;
-  bool get isSubTitle => throw _privateConstructorUsedError; //웨이브 애니메이션
-  bool get isWaveAnimation => throw _privateConstructorUsedError;
-  bool get isWaveAnimationVisible =>
-      throw _privateConstructorUsedError; //메뉴 클릭 여부
+  bool get isFirstIntroText =>
+      throw _privateConstructorUsedError; // 인트로 배경화면 변경
+  bool get isIntroImage => throw _privateConstructorUsedError; //메뉴 클릭 여부
   bool get isMenuClicked => throw _privateConstructorUsedError; // 화면 전환
   bool get isPageTransition => throw _privateConstructorUsedError;
   bool get isTitelTextAniStart => throw _privateConstructorUsedError;
@@ -51,9 +49,7 @@ abstract class $IntroModelCopyWith<$Res> {
     bool isDescription,
     bool isTitelText,
     bool isFirstIntroText,
-    bool isSubTitle,
-    bool isWaveAnimation,
-    bool isWaveAnimationVisible,
+    bool isIntroImage,
     bool isMenuClicked,
     bool isPageTransition,
     bool isTitelTextAniStart,
@@ -82,9 +78,7 @@ class _$IntroModelCopyWithImpl<$Res, $Val extends IntroModel>
     Object? isDescription = null,
     Object? isTitelText = null,
     Object? isFirstIntroText = null,
-    Object? isSubTitle = null,
-    Object? isWaveAnimation = null,
-    Object? isWaveAnimationVisible = null,
+    Object? isIntroImage = null,
     Object? isMenuClicked = null,
     Object? isPageTransition = null,
     Object? isTitelTextAniStart = null,
@@ -114,20 +108,10 @@ class _$IntroModelCopyWithImpl<$Res, $Val extends IntroModel>
                     ? _value.isFirstIntroText
                     : isFirstIntroText // ignore: cast_nullable_to_non_nullable
                         as bool,
-            isSubTitle:
-                null == isSubTitle
-                    ? _value.isSubTitle
-                    : isSubTitle // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            isWaveAnimation:
-                null == isWaveAnimation
-                    ? _value.isWaveAnimation
-                    : isWaveAnimation // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            isWaveAnimationVisible:
-                null == isWaveAnimationVisible
-                    ? _value.isWaveAnimationVisible
-                    : isWaveAnimationVisible // ignore: cast_nullable_to_non_nullable
+            isIntroImage:
+                null == isIntroImage
+                    ? _value.isIntroImage
+                    : isIntroImage // ignore: cast_nullable_to_non_nullable
                         as bool,
             isMenuClicked:
                 null == isMenuClicked
@@ -179,9 +163,7 @@ abstract class _$$IntroModelImplCopyWith<$Res>
     bool isDescription,
     bool isTitelText,
     bool isFirstIntroText,
-    bool isSubTitle,
-    bool isWaveAnimation,
-    bool isWaveAnimationVisible,
+    bool isIntroImage,
     bool isMenuClicked,
     bool isPageTransition,
     bool isTitelTextAniStart,
@@ -209,9 +191,7 @@ class __$$IntroModelImplCopyWithImpl<$Res>
     Object? isDescription = null,
     Object? isTitelText = null,
     Object? isFirstIntroText = null,
-    Object? isSubTitle = null,
-    Object? isWaveAnimation = null,
-    Object? isWaveAnimationVisible = null,
+    Object? isIntroImage = null,
     Object? isMenuClicked = null,
     Object? isPageTransition = null,
     Object? isTitelTextAniStart = null,
@@ -241,20 +221,10 @@ class __$$IntroModelImplCopyWithImpl<$Res>
                 ? _value.isFirstIntroText
                 : isFirstIntroText // ignore: cast_nullable_to_non_nullable
                     as bool,
-        isSubTitle:
-            null == isSubTitle
-                ? _value.isSubTitle
-                : isSubTitle // ignore: cast_nullable_to_non_nullable
-                    as bool,
-        isWaveAnimation:
-            null == isWaveAnimation
-                ? _value.isWaveAnimation
-                : isWaveAnimation // ignore: cast_nullable_to_non_nullable
-                    as bool,
-        isWaveAnimationVisible:
-            null == isWaveAnimationVisible
-                ? _value.isWaveAnimationVisible
-                : isWaveAnimationVisible // ignore: cast_nullable_to_non_nullable
+        isIntroImage:
+            null == isIntroImage
+                ? _value.isIntroImage
+                : isIntroImage // ignore: cast_nullable_to_non_nullable
                     as bool,
         isMenuClicked:
             null == isMenuClicked
@@ -299,9 +269,7 @@ class _$IntroModelImpl implements _IntroModel {
     this.isDescription = false,
     this.isTitelText = false,
     this.isFirstIntroText = false,
-    this.isSubTitle = false,
-    this.isWaveAnimation = true,
-    this.isWaveAnimationVisible = false,
+    this.isIntroImage = false,
     this.isMenuClicked = false,
     this.isPageTransition = false,
     this.isTitelTextAniStart = false,
@@ -322,16 +290,10 @@ class _$IntroModelImpl implements _IntroModel {
   @override
   @JsonKey()
   final bool isFirstIntroText;
+  // 인트로 배경화면 변경
   @override
   @JsonKey()
-  final bool isSubTitle;
-  //웨이브 애니메이션
-  @override
-  @JsonKey()
-  final bool isWaveAnimation;
-  @override
-  @JsonKey()
-  final bool isWaveAnimationVisible;
+  final bool isIntroImage;
   //메뉴 클릭 여부
   @override
   @JsonKey()
@@ -356,7 +318,7 @@ class _$IntroModelImpl implements _IntroModel {
 
   @override
   String toString() {
-    return 'IntroModel(isDeviceSelector: $isDeviceSelector, isDescription: $isDescription, isTitelText: $isTitelText, isFirstIntroText: $isFirstIntroText, isSubTitle: $isSubTitle, isWaveAnimation: $isWaveAnimation, isWaveAnimationVisible: $isWaveAnimationVisible, isMenuClicked: $isMenuClicked, isPageTransition: $isPageTransition, isTitelTextAniStart: $isTitelTextAniStart, isChapterContainerAniStart: $isChapterContainerAniStart, isHome: $isHome, isMobileDialog: $isMobileDialog)';
+    return 'IntroModel(isDeviceSelector: $isDeviceSelector, isDescription: $isDescription, isTitelText: $isTitelText, isFirstIntroText: $isFirstIntroText, isIntroImage: $isIntroImage, isMenuClicked: $isMenuClicked, isPageTransition: $isPageTransition, isTitelTextAniStart: $isTitelTextAniStart, isChapterContainerAniStart: $isChapterContainerAniStart, isHome: $isHome, isMobileDialog: $isMobileDialog)';
   }
 
   @override
@@ -372,12 +334,8 @@ class _$IntroModelImpl implements _IntroModel {
                 other.isTitelText == isTitelText) &&
             (identical(other.isFirstIntroText, isFirstIntroText) ||
                 other.isFirstIntroText == isFirstIntroText) &&
-            (identical(other.isSubTitle, isSubTitle) ||
-                other.isSubTitle == isSubTitle) &&
-            (identical(other.isWaveAnimation, isWaveAnimation) ||
-                other.isWaveAnimation == isWaveAnimation) &&
-            (identical(other.isWaveAnimationVisible, isWaveAnimationVisible) ||
-                other.isWaveAnimationVisible == isWaveAnimationVisible) &&
+            (identical(other.isIntroImage, isIntroImage) ||
+                other.isIntroImage == isIntroImage) &&
             (identical(other.isMenuClicked, isMenuClicked) ||
                 other.isMenuClicked == isMenuClicked) &&
             (identical(other.isPageTransition, isPageTransition) ||
@@ -402,9 +360,7 @@ class _$IntroModelImpl implements _IntroModel {
     isDescription,
     isTitelText,
     isFirstIntroText,
-    isSubTitle,
-    isWaveAnimation,
-    isWaveAnimationVisible,
+    isIntroImage,
     isMenuClicked,
     isPageTransition,
     isTitelTextAniStart,
@@ -428,9 +384,7 @@ abstract class _IntroModel implements IntroModel {
     final bool isDescription,
     final bool isTitelText,
     final bool isFirstIntroText,
-    final bool isSubTitle,
-    final bool isWaveAnimation,
-    final bool isWaveAnimationVisible,
+    final bool isIntroImage,
     final bool isMenuClicked,
     final bool isPageTransition,
     final bool isTitelTextAniStart,
@@ -446,13 +400,9 @@ abstract class _IntroModel implements IntroModel {
   @override
   bool get isTitelText;
   @override
-  bool get isFirstIntroText;
+  bool get isFirstIntroText; // 인트로 배경화면 변경
   @override
-  bool get isSubTitle; //웨이브 애니메이션
-  @override
-  bool get isWaveAnimation;
-  @override
-  bool get isWaveAnimationVisible; //메뉴 클릭 여부
+  bool get isIntroImage; //메뉴 클릭 여부
   @override
   bool get isMenuClicked; // 화면 전환
   @override

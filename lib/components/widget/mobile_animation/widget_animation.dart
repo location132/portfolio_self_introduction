@@ -5,6 +5,7 @@ class WidgetAnimation extends StatefulWidget {
   final bool isStart;
   final bool isReverse;
   final double? beginDy;
+  final int? duration;
   final Widget child;
 
   const WidgetAnimation({
@@ -13,6 +14,7 @@ class WidgetAnimation extends StatefulWidget {
     required this.child,
     this.isReverse = false,
     this.beginDy = 0.5,
+    this.duration = 620,
   });
 
   @override
@@ -26,7 +28,11 @@ class _WidgetAnimationState extends State<WidgetAnimation>
   @override
   void initState() {
     super.initState();
-    _animation = TextMoveAnimation(vsync: this, beginDy: widget.beginDy ?? 0.5);
+    _animation = TextMoveAnimation(
+      vsync: this,
+      beginDy: widget.beginDy ?? 0.5,
+      duration: widget.duration ?? 620,
+    );
   }
 
   @override

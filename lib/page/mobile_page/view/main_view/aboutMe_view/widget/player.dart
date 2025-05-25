@@ -3,7 +3,12 @@ import 'dart:ui';
 
 class Player extends StatefulWidget {
   final bool isPlayerAniOpacity;
-  const Player({super.key, required this.isPlayerAniOpacity});
+  final String isPlayerText;
+  const Player({
+    super.key,
+    required this.isPlayerAniOpacity,
+    required this.isPlayerText,
+  });
 
   @override
   State<Player> createState() => _PlayerState();
@@ -122,8 +127,8 @@ class _PlayerState extends State<Player> with SingleTickerProviderStateMixin {
                   ),
                   child: Opacity(
                     opacity: _textOpacity.value,
-                    child: const Text(
-                      '자세한 내용이 궁금하다면 여기를 가볍게 터치해주세요.',
+                    child: Text(
+                      widget.isPlayerText,
                       textAlign: TextAlign.center,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -151,3 +156,5 @@ class _PlayerState extends State<Player> with SingleTickerProviderStateMixin {
     );
   }
 }
+
+/*'자세한 내용이 궁금하 다면 여기를 가볍게 터치해주세요.',*/

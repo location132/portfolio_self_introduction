@@ -46,12 +46,6 @@ class _MobileViewState extends State<_MobileView> {
   Widget build(BuildContext context) {
     return BlocBuilder<MobileCubit, MobileState>(
       builder: (context, state) {
-        if (state.introModel.isMobileDialog == MobileDialogType.active &&
-            widget.isMobileDevice) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            showMobileDialog(context);
-          });
-        }
         return Scaffold(
           body: Stack(
             children: [
@@ -62,15 +56,6 @@ class _MobileViewState extends State<_MobileView> {
                         : const ClampingScrollPhysics(),
                 controller: state.scrollModel.scrollController,
                 children: [
-                  // MainPage(
-                  //   cubit: context.read<MobileCubit>(),
-                  //   aboutMeState: state.aboutMeModel,
-                  //   isTitelTextAniStart: state.introModel.isTitelTextAniStart,
-                  //   isChapterContainerAniStart:
-                  //       state.introModel.isChapterContainerAniStart,
-                  // ),
-
-                  //------------------
                   Stack(
                     children: [
                       Column(
@@ -109,7 +94,6 @@ class _MobileViewState extends State<_MobileView> {
                                     )
                                     : IntroPage(
                                       key: const ValueKey('intro'),
-                                      deviceType: widget.deviceType,
                                       introModel: state.introModel,
                                     ),
                           ),
@@ -126,6 +110,7 @@ class _MobileViewState extends State<_MobileView> {
                 right: 0,
                 child: Player(
                   isPlayerAniOpacity: state.aboutMeModel.isPlayerAniOpacity,
+                  isPlayerText: state.isPlayerText,
                 ),
               ),
             ],

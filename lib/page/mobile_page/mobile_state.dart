@@ -13,5 +13,6 @@ class MobileState with _$MobileState {
     @Default(IntroModel()) IntroModel introModel,
     @Default(ScrollModel()) ScrollModel scrollModel,
     @Default(AboutMeModel()) AboutMeModel aboutMeModel,
+    @Default('') String isPlayerText,
   }) = _MobileState;
 }

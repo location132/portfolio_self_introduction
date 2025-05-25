@@ -34,12 +34,15 @@ class MainPage extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ChapterPage(
-              isTitelTextAniStart: isTitelTextAniStart,
-              isChapterContainerAniStart: isChapterContainerAniStart,
-              isBackGroundAniStart: aboutMeState.isBackGroundAniStart,
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: ChapterPage(
+                isTitelTextAniStart: isTitelTextAniStart,
+                isChapterContainerAniStart: isChapterContainerAniStart,
+                isBackGroundAniStart: aboutMeState.isBackGroundAniStart,
+              ),
             ),
-            const SizedBox(height: 90),
             Visibility(
               visible: aboutMeState.isVisible,
               child: VisibilityDetector(

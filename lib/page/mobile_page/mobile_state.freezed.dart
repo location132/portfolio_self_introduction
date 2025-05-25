@@ -21,6 +21,7 @@ mixin _$MobileState {
   IntroModel get introModel => throw _privateConstructorUsedError;
   ScrollModel get scrollModel => throw _privateConstructorUsedError;
   AboutMeModel get aboutMeModel => throw _privateConstructorUsedError;
+  String get isPlayerText => throw _privateConstructorUsedError;
 
   /// Create a copy of MobileState
   /// with the given fields replaced by the non-null parameter values.
@@ -41,6 +42,7 @@ abstract class $MobileStateCopyWith<$Res> {
     IntroModel introModel,
     ScrollModel scrollModel,
     AboutMeModel aboutMeModel,
+    String isPlayerText,
   });
 
   $InitModelCopyWith<$Res> get initModel;
@@ -68,6 +70,7 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
     Object? introModel = null,
     Object? scrollModel = null,
     Object? aboutMeModel = null,
+    Object? isPlayerText = null,
   }) {
     return _then(
       _value.copyWith(
@@ -91,6 +94,11 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
                     ? _value.aboutMeModel
                     : aboutMeModel // ignore: cast_nullable_to_non_nullable
                         as AboutMeModel,
+            isPlayerText:
+                null == isPlayerText
+                    ? _value.isPlayerText
+                    : isPlayerText // ignore: cast_nullable_to_non_nullable
+                        as String,
           )
           as $Val,
     );
@@ -151,6 +159,7 @@ abstract class _$$MobileStateImplCopyWith<$Res>
     IntroModel introModel,
     ScrollModel scrollModel,
     AboutMeModel aboutMeModel,
+    String isPlayerText,
   });
 
   @override
@@ -181,6 +190,7 @@ class __$$MobileStateImplCopyWithImpl<$Res>
     Object? introModel = null,
     Object? scrollModel = null,
     Object? aboutMeModel = null,
+    Object? isPlayerText = null,
   }) {
     return _then(
       _$MobileStateImpl(
@@ -204,6 +214,11 @@ class __$$MobileStateImplCopyWithImpl<$Res>
                 ? _value.aboutMeModel
                 : aboutMeModel // ignore: cast_nullable_to_non_nullable
                     as AboutMeModel,
+        isPlayerText:
+            null == isPlayerText
+                ? _value.isPlayerText
+                : isPlayerText // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -217,6 +232,7 @@ class _$MobileStateImpl implements _MobileState {
     this.introModel = const IntroModel(),
     this.scrollModel = const ScrollModel(),
     this.aboutMeModel = const AboutMeModel(),
+    this.isPlayerText = '',
   });
 
   @override
@@ -231,10 +247,13 @@ class _$MobileStateImpl implements _MobileState {
   @override
   @JsonKey()
   final AboutMeModel aboutMeModel;
+  @override
+  @JsonKey()
+  final String isPlayerText;
 
   @override
   String toString() {
-    return 'MobileState(initModel: $initModel, introModel: $introModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel)';
+    return 'MobileState(initModel: $initModel, introModel: $introModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel, isPlayerText: $isPlayerText)';
   }
 
   @override
@@ -249,7 +268,9 @@ class _$MobileStateImpl implements _MobileState {
             (identical(other.scrollModel, scrollModel) ||
                 other.scrollModel == scrollModel) &&
             (identical(other.aboutMeModel, aboutMeModel) ||
-                other.aboutMeModel == aboutMeModel));
+                other.aboutMeModel == aboutMeModel) &&
+            (identical(other.isPlayerText, isPlayerText) ||
+                other.isPlayerText == isPlayerText));
   }
 
   @override
@@ -259,6 +280,7 @@ class _$MobileStateImpl implements _MobileState {
     introModel,
     scrollModel,
     aboutMeModel,
+    isPlayerText,
   );
 
   /// Create a copy of MobileState
@@ -276,6 +298,7 @@ abstract class _MobileState implements MobileState {
     final IntroModel introModel,
     final ScrollModel scrollModel,
     final AboutMeModel aboutMeModel,
+    final String isPlayerText,
   }) = _$MobileStateImpl;
 
   @override
@@ -286,6 +309,8 @@ abstract class _MobileState implements MobileState {
   ScrollModel get scrollModel;
   @override
   AboutMeModel get aboutMeModel;
+  @override
+  String get isPlayerText;
 
   /// Create a copy of MobileState
   /// with the given fields replaced by the non-null parameter values.

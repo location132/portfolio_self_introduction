@@ -36,7 +36,7 @@ class MobileCubit extends Cubit<MobileState> {
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
       ),
     );
-    await Future.delayed(const Duration(milliseconds: 300));
+    await Future.delayed(const Duration(milliseconds: 100));
     emit(
       state.copyWith(
         initModel: state.initModel.copyWith(isMobileInit: true),
@@ -44,42 +44,23 @@ class MobileCubit extends Cubit<MobileState> {
       ),
     );
 
-    await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 300));
     emit(
       state.copyWith(
         introModel: state.introModel.copyWith(isDescription: true),
       ),
     );
-    await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 300));
     emit(
       state.copyWith(
         introModel: state.introModel.copyWith(
           isTitelText: true,
-          isFirstIntroText: true,
           isHome: false,
+          isFirstIntroText: true,
         ),
       ),
     );
-
     await Future.delayed(const Duration(seconds: 1));
-    if (state.introModel.isMobileDialog == MobileDialogType.none &&
-        isDescription) {
-      emit(
-        state.copyWith(
-          introModel: state.introModel.copyWith(
-            isMobileDialog: MobileDialogType.active,
-          ),
-        ),
-      );
-      await Future.delayed(const Duration(milliseconds: 100));
-      emit(
-        state.copyWith(
-          introModel: state.introModel.copyWith(
-            isMobileDialog: MobileDialogType.inactive,
-          ),
-        ),
-      );
-    }
     emit(
       state.copyWith(
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
@@ -112,26 +93,23 @@ class MobileCubit extends Cubit<MobileState> {
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
       ),
     );
+
     await Future.delayed(const Duration(milliseconds: 500));
     emit(
       state.copyWith(
         scrollModel: state.scrollModel.copyWith(isAtBottom: true),
-        introModel: state.introModel.copyWith(
-          isSubTitle: true,
-          isWaveAnimation: false,
-        ),
+        introModel: state.introModel.copyWith(isIntroImage: true),
+        isPlayerText: '지금 바로 시작합니다.',
       ),
     );
-
-    await Future.delayed(const Duration(milliseconds: 2500));
-
+    await Future.delayed(const Duration(milliseconds: 350));
+    aboutMePlayerAni(true);
+    await Future.delayed(const Duration(milliseconds: 2250));
+    aboutMePlayerAni(false);
     //=======================
     emit(
       state.copyWith(
-        introModel: state.introModel.copyWith(
-          isWaveAnimationVisible: true,
-          isPageTransition: true,
-        ),
+        introModel: state.introModel.copyWith(isPageTransition: true),
       ),
     );
 

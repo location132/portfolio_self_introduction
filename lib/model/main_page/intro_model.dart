@@ -9,11 +9,9 @@ class IntroModel with _$IntroModel {
     @Default(false) bool isDescription,
     @Default(false) bool isTitelText,
     @Default(false) bool isFirstIntroText,
-    @Default(false) bool isSubTitle,
 
-    //웨이브 애니메이션
-    @Default(true) bool isWaveAnimation,
-    @Default(false) bool isWaveAnimationVisible,
+    // 인트로 배경화면 변경
+    @Default(false) bool isIntroImage,
 
     //메뉴 클릭 여부
     @Default(false) bool isMenuClicked,

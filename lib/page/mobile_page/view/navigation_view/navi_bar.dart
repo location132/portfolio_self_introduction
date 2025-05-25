@@ -48,7 +48,11 @@ class _NaviBarState extends State<NaviBar> with SingleTickerProviderStateMixin {
             child: Container(
               width: double.infinity,
               color: const Color.fromARGB(255, 234, 233, 233),
-              padding: EdgeInsets.all(8.0.sh),
+              padding: EdgeInsets.only(
+                left: 8.0.sh,
+                right: 8.0.sh,
+                top: 8.0.sh,
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
