@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
-import 'package:self_introduction_flutter/model/main_page/intro_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/intro_view/intro_page.dart';
@@ -9,7 +8,6 @@ import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutM
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/main_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/navi_bar.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
-import 'package:self_introduction_flutter/service/mobile_dialog.dart';
 
 class MobilePage extends StatelessWidget {
   final String deviceType;
@@ -81,20 +79,28 @@ class _MobileViewState extends State<_MobileView> {
                             duration: const Duration(milliseconds: 1000),
                             child:
                                 state.introModel.isPageTransition
-                                    ? MainPage(
-                                      key: const ValueKey('main'),
-                                      cubit: context.read<MobileCubit>(),
-                                      aboutMeState: state.aboutMeModel,
-                                      isTitelTextAniStart:
-                                          state.introModel.isTitelTextAniStart,
-                                      isChapterContainerAniStart:
-                                          state
-                                              .introModel
-                                              .isChapterContainerAniStart,
+                                    ? Visibility(
+                                      visible: state.scrollModel.isAtBottom,
+                                      child: MainPage(
+                                        key: const ValueKey('main'),
+                                        cubit: context.read<MobileCubit>(),
+                                        aboutMeState: state.aboutMeModel,
+                                        isTitelTextAniStart:
+                                            state
+                                                .introModel
+                                                .isTitelTextAniStart,
+                                        isChapterContainerAniStart:
+                                            state
+                                                .introModel
+                                                .isChapterContainerAniStart,
+                                      ),
                                     )
-                                    : IntroPage(
-                                      key: const ValueKey('intro'),
-                                      introModel: state.introModel,
+                                    : Visibility(
+                                      visible: !state.aboutMeModel.isVisible,
+                                      child: IntroPage(
+                                        key: const ValueKey('intro'),
+                                        introModel: state.introModel,
+                                      ),
                                     ),
                           ),
                         ],

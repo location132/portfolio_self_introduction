@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:self_introduction_flutter/model/main_page/intro_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
 
@@ -102,9 +101,9 @@ class MobileCubit extends Cubit<MobileState> {
         isPlayerText: '지금 바로 시작합니다.',
       ),
     );
-    await Future.delayed(const Duration(milliseconds: 350));
+    await Future.delayed(const Duration(milliseconds: 550));
     aboutMePlayerAni(true);
-    await Future.delayed(const Duration(milliseconds: 2250));
+    await Future.delayed(const Duration(milliseconds: 1850));
     aboutMePlayerAni(false);
     //=======================
     emit(
@@ -136,6 +135,7 @@ class MobileCubit extends Cubit<MobileState> {
 
     emit(
       state.copyWith(
+        aboutMeModel: state.aboutMeModel.copyWith(isVisible: true),
         introModel: state.introModel.copyWith(
           isDescription: false,
           isDeviceSelector: false,
@@ -143,7 +143,6 @@ class MobileCubit extends Cubit<MobileState> {
           isFirstIntroText: false,
         ),
         initModel: state.initModel.copyWith(isMobileInit: false),
-        aboutMeModel: state.aboutMeModel.copyWith(isVisible: true),
       ),
     );
     final ctrl = state.scrollModel.scrollController;
