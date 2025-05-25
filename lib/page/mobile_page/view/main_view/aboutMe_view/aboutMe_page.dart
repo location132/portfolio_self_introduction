@@ -19,7 +19,7 @@ class AboutMePage extends StatelessWidget {
           isTitelTextAniStart: state.isTitleAniStart,
           isReverse: !state.isBackGroundAniStart,
           title: '일단 핵심부터',
-          color: Colors.white,
+          color: const Color.fromARGB(255, 255, 255, 255),
         ),
         AboutMeDescription(
           isBannerAniStart: state.isDescriptionAniStart,
@@ -28,7 +28,7 @@ class AboutMePage extends StatelessWidget {
         const SizedBox(height: 30),
         AnimatedOpacity(
           opacity: state.isTabBarAniOpacity ? 1.0 : 0.0,
-          duration: const Duration(seconds: 1),
+          duration: const Duration(milliseconds: 800),
           child: const SelectTap(),
         ),
       ],

@@ -5,6 +5,7 @@ import 'package:self_introduction_flutter/model/main_page/intro_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/intro_view/intro_page.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/widget/%08player.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/main_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/navi_bar.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
@@ -52,66 +53,80 @@ class _MobileViewState extends State<_MobileView> {
           });
         }
         return Scaffold(
-          body: ListView(
-            physics:
-                state.scrollModel.isScrollWaiting
-                    ? const NeverScrollableScrollPhysics()
-                    : const ClampingScrollPhysics(),
-            controller: state.scrollModel.scrollController,
+          body: Stack(
             children: [
-              // MainPage(
-              //   cubit: context.read<MobileCubit>(),
-              //   aboutMeState: state.aboutMeModel,
-              //   isTitelTextAniStart: state.introModel.isTitelTextAniStart,
-              //   isChapterContainerAniStart:
-              //       state.introModel.isChapterContainerAniStart,
-              // ),
-
-              //------------------
-              Stack(
+              ListView(
+                physics:
+                    state.scrollModel.isScrollWaiting
+                        ? const NeverScrollableScrollPhysics()
+                        : const ClampingScrollPhysics(),
+                controller: state.scrollModel.scrollController,
                 children: [
-                  Column(
+                  // MainPage(
+                  //   cubit: context.read<MobileCubit>(),
+                  //   aboutMeState: state.aboutMeModel,
+                  //   isTitelTextAniStart: state.introModel.isTitelTextAniStart,
+                  //   isChapterContainerAniStart:
+                  //       state.introModel.isChapterContainerAniStart,
+                  // ),
+
+                  //------------------
+                  Stack(
                     children: [
-                      AnimatedOpacity(
-                        opacity: state.initModel.isMobileInit ? 1.0 : 0.0,
-                        duration: const Duration(milliseconds: 600),
-                        child: NaviBar(
-                          deviceType: widget.deviceType,
-                          isDeviceSelector: state.introModel.isDeviceSelector,
-                          isDescription: state.introModel.isDescription,
-                          isMenuClicked: state.introModel.isMenuClicked,
-                          onPressed:
-                              () => context.read<MobileCubit>().menuClicked(),
-                          onHomePressed: () {
-                            context.read<MobileCubit>().goHome();
-                          },
-                        ),
+                      Column(
+                        children: [
+                          AnimatedOpacity(
+                            opacity: state.initModel.isMobileInit ? 1.0 : 0.0,
+                            duration: const Duration(milliseconds: 600),
+                            child: NaviBar(
+                              deviceType: widget.deviceType,
+                              isDeviceSelector:
+                                  state.introModel.isDeviceSelector,
+                              isDescription: state.introModel.isDescription,
+                              isMenuClicked: state.introModel.isMenuClicked,
+                              onPressed:
+                                  () =>
+                                      context.read<MobileCubit>().menuClicked(),
+                              onHomePressed: () {
+                                context.read<MobileCubit>().goHome();
+                              },
+                            ),
+                          ),
+                          AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 1000),
+                            child:
+                                state.introModel.isPageTransition
+                                    ? MainPage(
+                                      key: const ValueKey('main'),
+                                      cubit: context.read<MobileCubit>(),
+                                      aboutMeState: state.aboutMeModel,
+                                      isTitelTextAniStart:
+                                          state.introModel.isTitelTextAniStart,
+                                      isChapterContainerAniStart:
+                                          state
+                                              .introModel
+                                              .isChapterContainerAniStart,
+                                    )
+                                    : IntroPage(
+                                      key: const ValueKey('intro'),
+                                      deviceType: widget.deviceType,
+                                      introModel: state.introModel,
+                                    ),
+                          ),
+                        ],
                       ),
-                      AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 1000),
-                        child:
-                            state.introModel.isPageTransition
-                                ? MainPage(
-                                  key: const ValueKey('main'),
-                                  cubit: context.read<MobileCubit>(),
-                                  aboutMeState: state.aboutMeModel,
-                                  isTitelTextAniStart:
-                                      state.introModel.isTitelTextAniStart,
-                                  isChapterContainerAniStart:
-                                      state
-                                          .introModel
-                                          .isChapterContainerAniStart,
-                                )
-                                : IntroPage(
-                                  key: const ValueKey('intro'),
-                                  deviceType: widget.deviceType,
-                                  introModel: state.introModel,
-                                ),
-                      ),
+                      MenuScreen(isMenuClicked: state.introModel.isMenuClicked),
                     ],
                   ),
-                  MenuScreen(isMenuClicked: state.introModel.isMenuClicked),
                 ],
+              ),
+              Positioned(
+                bottom: 30,
+                left: 0,
+                right: 0,
+                child: Player(
+                  isPlayerAniOpacity: state.aboutMeModel.isPlayerAniOpacity,
+                ),
               ),
             ],
           ),

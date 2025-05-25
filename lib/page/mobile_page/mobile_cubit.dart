@@ -228,4 +228,14 @@ class MobileCubit extends Cubit<MobileState> {
       ),
     );
   }
+
+  // about me player ani
+  void aboutMePlayerAni(bool isStart) {
+    if (state.aboutMeModel.isPlayerAniOpacity == isStart) return;
+    emit(
+      state.copyWith(
+        aboutMeModel: state.aboutMeModel.copyWith(isPlayerAniOpacity: isStart),
+      ),
+    );
+  }
 }

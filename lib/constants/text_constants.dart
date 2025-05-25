@@ -148,11 +148,13 @@ class SelectTapTextConstants {
       '각종 시행작오가 있었던 과거의 시간들\n\n'
       '불가능이란 없고 뭐든지 할 수 있다는 마음을 가지게 해준 경험,\n'
       '이제 이 경험을 활용할 시간이 되었습니다.';
+  // static const String selectTapDescription2 = '';
 
   static const String selectTapTitle2 = '흩어진 상태를 하나로. ';
   static const String selectTapDescription2 =
-      '단순한 화면일수록 복잡한 흐름이 숨겨져 있습니다.\n'
-      '무엇이 어디서 변하고, 어떻게 이어지는지.\n\n'
+      '단순한 화면일수록 복잡한 흐름이\n숨겨져 있습니다.'
+      ' 무엇이 어디서 변하고, 어떻게 이어지는지.\n\n'
       '상태를 이해하고 정리하는 힘,\n'
-      '앱을 더 깊이 있게 만드는 시작이었습니다.';
+      '앱을 더 깊이 있게 만드는 시작이었습니다.\n\n'
+      '― Provider / Bloc / Cubit / setState';
 }

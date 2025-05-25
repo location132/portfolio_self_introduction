@@ -22,6 +22,7 @@ mixin _$AboutMeModel {
   bool get isTitleAniStart => throw _privateConstructorUsedError;
   bool get isDescriptionAniStart => throw _privateConstructorUsedError;
   bool get isTabBarAniOpacity => throw _privateConstructorUsedError;
+  bool get isPlayerAniOpacity => throw _privateConstructorUsedError;
 
   /// Create a copy of AboutMeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -43,6 +44,7 @@ abstract class $AboutMeModelCopyWith<$Res> {
     bool isTitleAniStart,
     bool isDescriptionAniStart,
     bool isTabBarAniOpacity,
+    bool isPlayerAniOpacity,
   });
 }
 
@@ -66,6 +68,7 @@ class _$AboutMeModelCopyWithImpl<$Res, $Val extends AboutMeModel>
     Object? isTitleAniStart = null,
     Object? isDescriptionAniStart = null,
     Object? isTabBarAniOpacity = null,
+    Object? isPlayerAniOpacity = null,
   }) {
     return _then(
       _value.copyWith(
@@ -94,6 +97,11 @@ class _$AboutMeModelCopyWithImpl<$Res, $Val extends AboutMeModel>
                     ? _value.isTabBarAniOpacity
                     : isTabBarAniOpacity // ignore: cast_nullable_to_non_nullable
                         as bool,
+            isPlayerAniOpacity:
+                null == isPlayerAniOpacity
+                    ? _value.isPlayerAniOpacity
+                    : isPlayerAniOpacity // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -115,6 +123,7 @@ abstract class _$$AboutMeModelImplCopyWith<$Res>
     bool isTitleAniStart,
     bool isDescriptionAniStart,
     bool isTabBarAniOpacity,
+    bool isPlayerAniOpacity,
   });
 }
 
@@ -137,6 +146,7 @@ class __$$AboutMeModelImplCopyWithImpl<$Res>
     Object? isTitleAniStart = null,
     Object? isDescriptionAniStart = null,
     Object? isTabBarAniOpacity = null,
+    Object? isPlayerAniOpacity = null,
   }) {
     return _then(
       _$AboutMeModelImpl(
@@ -165,6 +175,11 @@ class __$$AboutMeModelImplCopyWithImpl<$Res>
                 ? _value.isTabBarAniOpacity
                 : isTabBarAniOpacity // ignore: cast_nullable_to_non_nullable
                     as bool,
+        isPlayerAniOpacity:
+            null == isPlayerAniOpacity
+                ? _value.isPlayerAniOpacity
+                : isPlayerAniOpacity // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -179,6 +194,7 @@ class _$AboutMeModelImpl implements _AboutMeModel {
     this.isTitleAniStart = false,
     this.isDescriptionAniStart = false,
     this.isTabBarAniOpacity = false,
+    this.isPlayerAniOpacity = false,
   });
 
   @override
@@ -196,10 +212,13 @@ class _$AboutMeModelImpl implements _AboutMeModel {
   @override
   @JsonKey()
   final bool isTabBarAniOpacity;
+  @override
+  @JsonKey()
+  final bool isPlayerAniOpacity;
 
   @override
   String toString() {
-    return 'AboutMeModel(isVisible: $isVisible, isBackGroundAniStart: $isBackGroundAniStart, isTitleAniStart: $isTitleAniStart, isDescriptionAniStart: $isDescriptionAniStart, isTabBarAniOpacity: $isTabBarAniOpacity)';
+    return 'AboutMeModel(isVisible: $isVisible, isBackGroundAniStart: $isBackGroundAniStart, isTitleAniStart: $isTitleAniStart, isDescriptionAniStart: $isDescriptionAniStart, isTabBarAniOpacity: $isTabBarAniOpacity, isPlayerAniOpacity: $isPlayerAniOpacity)';
   }
 
   @override
@@ -216,7 +235,9 @@ class _$AboutMeModelImpl implements _AboutMeModel {
             (identical(other.isDescriptionAniStart, isDescriptionAniStart) ||
                 other.isDescriptionAniStart == isDescriptionAniStart) &&
             (identical(other.isTabBarAniOpacity, isTabBarAniOpacity) ||
-                other.isTabBarAniOpacity == isTabBarAniOpacity));
+                other.isTabBarAniOpacity == isTabBarAniOpacity) &&
+            (identical(other.isPlayerAniOpacity, isPlayerAniOpacity) ||
+                other.isPlayerAniOpacity == isPlayerAniOpacity));
   }
 
   @override
@@ -227,6 +248,7 @@ class _$AboutMeModelImpl implements _AboutMeModel {
     isTitleAniStart,
     isDescriptionAniStart,
     isTabBarAniOpacity,
+    isPlayerAniOpacity,
   );
 
   /// Create a copy of AboutMeModel
@@ -245,6 +267,7 @@ abstract class _AboutMeModel implements AboutMeModel {
     final bool isTitleAniStart,
     final bool isDescriptionAniStart,
     final bool isTabBarAniOpacity,
+    final bool isPlayerAniOpacity,
   }) = _$AboutMeModelImpl;
 
   @override
@@ -257,6 +280,8 @@ abstract class _AboutMeModel implements AboutMeModel {
   bool get isDescriptionAniStart;
   @override
   bool get isTabBarAniOpacity;
+  @override
+  bool get isPlayerAniOpacity;
 
   /// Create a copy of AboutMeModel
   /// with the given fields replaced by the non-null parameter values.

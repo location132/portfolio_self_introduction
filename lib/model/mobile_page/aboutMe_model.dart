@@ -10,5 +10,6 @@ class AboutMeModel with _$AboutMeModel {
     @Default(false) bool isTitleAniStart,
     @Default(false) bool isDescriptionAniStart,
     @Default(false) bool isTabBarAniOpacity,
+    @Default(false) bool isPlayerAniOpacity,
   }) = _AboutMeModel;
 }

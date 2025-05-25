@@ -70,14 +70,24 @@ class _ChapterCardState extends State<ChapterCard> {
               opacity: isSecondCardVisible ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 800),
               curve: Curves.easeInOut,
-              child: GestureDetector(onTap: () {}, child: const SecondCard()),
+              child: GestureDetector(
+                onTap: () {},
+                child: SecondCard(
+                  isBackGroundAniStart: widget.isBackGroundAniStart,
+                ),
+              ),
             ),
             const SizedBox(width: 22),
             AnimatedOpacity(
               opacity: isSecondCardVisible ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 800),
               curve: Curves.easeInOut,
-              child: GestureDetector(onTap: () {}, child: const ThirdCard()),
+              child: GestureDetector(
+                onTap: () {},
+                child: ThirdCard(
+                  isBackGroundAniStart: widget.isBackGroundAniStart,
+                ),
+              ),
             ),
             const SizedBox(width: 32),
           ],

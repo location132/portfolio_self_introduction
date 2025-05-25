@@ -42,20 +42,23 @@ class MainPage extends StatelessWidget {
             const SizedBox(height: 90),
             Visibility(
               visible: aboutMeState.isVisible,
-              child: Column(
-                children: [
-                  VisibilityDetector(
-                    key: const Key('aboutMe-view'),
-                    onVisibilityChanged: (VisibilityInfo info) {
-                      if (info.visibleFraction > 0.3) {
-                        cubit.aboutMeBackGroundColor(true);
-                      } else {
-                        cubit.aboutMeBackGroundColor(false);
-                      }
-                    },
-                    child: AboutMePage(state: aboutMeState, cubit: cubit),
-                  ),
-                ],
+              child: VisibilityDetector(
+                key: const Key('aboutMe-view'),
+                onVisibilityChanged: (VisibilityInfo info) {
+                  if (info.visibleFraction == 1 &&
+                      !aboutMeState.isPlayerAniOpacity) {
+                    cubit.aboutMePlayerAni(true);
+                  } else {
+                    cubit.aboutMePlayerAni(false);
+                  }
+
+                  if (info.visibleFraction > 0.3) {
+                    cubit.aboutMeBackGroundColor(true);
+                  } else {
+                    cubit.aboutMeBackGroundColor(false);
+                  }
+                },
+                child: AboutMePage(state: aboutMeState, cubit: cubit),
               ),
             ),
           ],

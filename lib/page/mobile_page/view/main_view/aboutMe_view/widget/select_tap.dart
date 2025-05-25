@@ -20,7 +20,6 @@ class SelectTap extends StatelessWidget {
               tabs: [
                 Tab(text: '코딩'),
                 Tab(text: '상태관리'),
-
                 Tab(text: '생명주기'),
                 Tab(text: '애니메이션'),
                 Tab(text: '협업툴'),
@@ -28,7 +27,7 @@ class SelectTap extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 300,
+              height: 350,
               child: TabBarView(
                 children: [
                   SelectTapItem(
@@ -82,9 +81,9 @@ class SelectTapItem extends StatelessWidget {
                 ),
                 TextSpan(
                   text: description,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
-                    color: Colors.grey[100],
+                    color: Color.fromARGB(255, 166, 166, 166),
                     height: 1.5,
                   ),
                 ),
