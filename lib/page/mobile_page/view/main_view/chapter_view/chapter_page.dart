@@ -23,10 +23,9 @@ class ChapterPage extends StatelessWidget {
           title: '알면 알수록, 이정원',
         ),
         const SizedBox(height: 30),
-        AnimatedOpacity(
-          opacity: isChapterContainerAniStart ? 1.0 : 0.0,
-          duration: const Duration(milliseconds: 600),
-          child: ChapterCard(isBackGroundAniStart: isBackGroundAniStart),
+        ChapterCard(
+          isChapterContainerAniStart: isChapterContainerAniStart,
+          isBackGroundAniStart: isBackGroundAniStart,
         ),
       ],
     );

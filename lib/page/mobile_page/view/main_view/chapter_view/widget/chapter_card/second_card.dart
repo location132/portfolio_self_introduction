@@ -11,9 +11,7 @@ class SecondCard extends StatelessWidget {
       width: 258,
       height: 501.3,
       child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(22),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
         clipBehavior: Clip.antiAlias,
         child: Stack(
           children: [
@@ -43,18 +41,12 @@ class SecondCard extends StatelessWidget {
                       children: [
                         Text(
                           ' ${ProfilePage1Constants.chapter2}',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                          ),
+                          style: TextStyle(color: Colors.white, fontSize: 12),
                         ),
                         SizedBox(height: 4),
                         Text(
                           ' ${ProfilePage1Constants.chapter2Title}',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
+                          style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                         SizedBox(height: 4),
                         Text(

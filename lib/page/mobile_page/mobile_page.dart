@@ -43,7 +43,6 @@ class _MobileView extends StatefulWidget {
 class _MobileViewState extends State<_MobileView> {
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.height);
     return BlocBuilder<MobileCubit, MobileState>(
       builder: (context, state) {
         if (state.introModel.isMobileDialog == MobileDialogType.active &&
@@ -57,7 +56,7 @@ class _MobileViewState extends State<_MobileView> {
             physics:
                 state.scrollModel.isScrollWaiting
                     ? const NeverScrollableScrollPhysics()
-                    : const AlwaysScrollableScrollPhysics(),
+                    : const ClampingScrollPhysics(),
             controller: state.scrollModel.scrollController,
             children: [
               // MainPage(
@@ -67,6 +66,8 @@ class _MobileViewState extends State<_MobileView> {
               //   isChapterContainerAniStart:
               //       state.introModel.isChapterContainerAniStart,
               // ),
+
+              //------------------
               Stack(
                 children: [
                   Column(

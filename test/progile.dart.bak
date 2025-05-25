@@ -1,59 +1,71 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/constants/text_constants.dart';
 
-class FirstCard extends StatelessWidget {
-  const FirstCard({super.key});
+class SelectTap extends StatelessWidget {
+  const SelectTap({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 258,
-      height: 501.3,
-      child: Card(
-        color: Colors.black,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(22),
-        ),
-        clipBehavior: Clip.antiAlias,
-        child: Stack(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: DefaultTabController(
+        length: 6,
+        child: Column(
           children: [
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Image.asset(
-                'assets/Images/Magic Studio Magic Expand L&P - MOBILE.png',
-                fit: BoxFit.cover,
-              ),
+            const TabBar(
+              isScrollable: true,
+              indicatorColor: Colors.white,
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.grey,
+              tabs: [
+                Tab(text: '코딩'),
+                Tab(text: '생명주기'),
+                Tab(text: '상태관리'),
+                Tab(text: '애니메이션'),
+                Tab(text: '협업툴'),
+                Tab(text: '사진편집'),
+              ],
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 16, top: 20, right: 16),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            SizedBox(
+              height: 300,
+              child: TabBarView(
                 children: [
-                  Text(
-                    ' ${ProfilePage1Constants.chapter1}',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RichText(
+                          textAlign: TextAlign.center,
+                          text: const TextSpan(
+                            children: [
+                              TextSpan(
+                                text: '2만줄 넘는 코딩시간. ',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    '회사와 함께 성장하기에 적절한 코딩시간입니다.\n'
+                                    '각종 시행작오가 있었던 과거의 시간들\n\n'
+                                    '불가능이란 없고 뭐든 할 수 있다는 마음을 가지게 해준 2만줄의 경험,\n'
+                                    '이제 이 경험을 활용할 시간이 되었습니다.',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(height: 4),
-                  Text(
-                    ' ${ProfilePage1Constants.chapter1Title}',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
-                  ),
-                  SizedBox(height: 4),
-                  Text(
-                    ProfilePage1Constants.chapter1Mobile,
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 222, 222, 222),
-                      fontSize: 10,
-                    ),
-                  ),
+                  const Center(child: Text('생명주기')),
+                  const Center(child: Text('상태관리')),
+                  const Center(child: Text('애니메이션')),
+                  const Center(child: Text('협업툴')),
+                  const Center(child: Text('사진편집')),
                 ],
               ),
             ),

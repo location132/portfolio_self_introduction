@@ -1,38 +1,95 @@
 import 'package:flutter/material.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
 
 class SelectTap extends StatelessWidget {
   const SelectTap({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 6,
-      child: Column(
-        children: [
-          SizedBox(
-            height: 300,
-            child: TabBarView(
-              children: [
-                Center(child: Text('코딩')),
-                Center(child: Text('사진 편집')),
-                Center(child: Text('STEM')),
-                Center(child: Text('비즈니스')),
-                Center(child: Text('그래픽 디자인')),
-                Center(child: Text('3D')),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      child: DefaultTabController(
+        length: 6,
+        child: Column(
+          children: [
+            TabBar(
+              isScrollable: true,
+              indicatorColor: Colors.white,
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.grey,
+              tabs: [
+                Tab(text: '코딩'),
+                Tab(text: '상태관리'),
+
+                Tab(text: '생명주기'),
+                Tab(text: '애니메이션'),
+                Tab(text: '협업툴'),
+                Tab(text: '사진편집'),
               ],
             ),
-          ),
-          TabBar(
-            isScrollable: true,
-            tabs: [
-              Tab(text: '코딩'),
-              Tab(text: '사진 편집'),
-              Tab(text: 'STEM'),
-              Tab(text: '비즈니스'),
-              Tab(text: '그래픽 디자인'),
-              Tab(text: '3D'),
-            ],
-            indicatorColor: Colors.white, // 선택 탭 하단선
+            SizedBox(
+              height: 300,
+              child: TabBarView(
+                children: [
+                  SelectTapItem(
+                    title: SelectTapTextConstants.selectTapTitle1,
+                    description: SelectTapTextConstants.selectTapDescription1,
+                  ),
+                  SelectTapItem(
+                    title: SelectTapTextConstants.selectTapTitle2,
+                    description: SelectTapTextConstants.selectTapDescription2,
+                  ),
+                  Center(child: Text('생명주기')),
+                  Center(child: Text('애니메이션')),
+                  Center(child: Text('협업툴')),
+                  Center(child: Text('사진편집')),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SelectTapItem extends StatelessWidget {
+  final String title;
+  final String description;
+  const SelectTapItem({
+    super.key,
+    required this.title,
+    required this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: title,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                TextSpan(
+                  text: description,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey[100],
+                    height: 1.5,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

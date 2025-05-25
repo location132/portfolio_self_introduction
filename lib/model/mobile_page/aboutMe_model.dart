@@ -9,5 +9,6 @@ class AboutMeModel with _$AboutMeModel {
     @Default(false) bool isBackGroundAniStart,
     @Default(false) bool isTitleAniStart,
     @Default(false) bool isDescriptionAniStart,
+    @Default(false) bool isTabBarAniOpacity,
   }) = _AboutMeModel;
 }

@@ -106,6 +106,7 @@ class MobileCubit extends Cubit<MobileState> {
 
   // 하단 스크롤에 도착하였을 때,
   void introAtBottom() async {
+    //=======================
     emit(
       state.copyWith(
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
@@ -122,9 +123,9 @@ class MobileCubit extends Cubit<MobileState> {
       ),
     );
 
-    //1328
-
     await Future.delayed(const Duration(milliseconds: 2500));
+
+    //=======================
     emit(
       state.copyWith(
         introModel: state.introModel.copyWith(
@@ -218,6 +219,12 @@ class MobileCubit extends Cubit<MobileState> {
         aboutMeModel: state.aboutMeModel.copyWith(
           isDescriptionAniStart: isStart,
         ),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 300));
+    emit(
+      state.copyWith(
+        aboutMeModel: state.aboutMeModel.copyWith(isTabBarAniOpacity: isStart),
       ),
     );
   }

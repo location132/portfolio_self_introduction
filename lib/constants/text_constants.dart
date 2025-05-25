@@ -100,7 +100,8 @@ class SkillTextConstants {
 //Description
 class DescriptionTextConstants {
   static const String descriptionTitle = 'DESCRIPTION';
-  static const String description = '전달하고 싶은 내용, 그리고 디테일들\n\n'
+  static const String description =
+      '전달하고 싶은 내용, 그리고 디테일들\n\n'
       'Description은 모든 과정이 어떻게 만들어졌는지 확인할 수 있는 공간입니다.\n'
       '최대한 많은 아이디어를 담은 모든 부분을 소개하겠습니다.';
 }
@@ -108,7 +109,8 @@ class DescriptionTextConstants {
 // About Me, DESCRIPTION
 class BannerDescriptionConstants {
   static const Map<String, String> bannerDescriptions = {
-    'About Me': '웹의 가장 처음은 Rive 애니메이션과 함께\n'
+    'About Me':
+        '웹의 가장 처음은 Rive 애니메이션과 함께\n'
         '저만의 장점과 목표를 보여주고 새로운 툴의 도전을 구현해보고 싶었습니다.\n\n'
         '각 모션과 트리거 속에는\n'
         '제가 목표로해온 개발 방식과 생각이 자연스럽게 녹아들게 구성하였으며,\n'
@@ -118,7 +120,8 @@ class BannerDescriptionConstants {
         '마우스를 올릴 때마다 부드럽게 반응하는 About Me 섹션은\n'
         '저의 장점과 강점을 자연스럽게 전달하기 위한 시도이며\n'
         '처음으로 시도해보는 도전을 보여줄 수 있는 저만의 작은 공간입니다.',
-    'Detail': '현재 보고 계신 Rive 애니메이션은 약 4일에 걸쳐 제작되었습니다.\n'
+    'Detail':
+        '현재 보고 계신 Rive 애니메이션은 약 4일에 걸쳐 제작되었습니다.\n'
         '처음으로 Rive를 제작하는 도전은 많은 시간이 걸렸지만\n'
         'Rive에 관해 공부해 더 발전한 Flutter 개발자가 되었습니다.\n\n'
         '작은 모션 그리고 디테일한 움직임에도 부드러운 전환을 위해 조정을 반복하며\n'
@@ -128,11 +131,28 @@ class BannerDescriptionConstants {
         '부드러운 선의 흐름과 템포를 만들기위해 설계하였습니다.\n\n'
         '이 설계를 통해 자칫 너무 많은 텍스트의 부담감을\n'
         '조금이라도 몰입할 수 있도록 구성하고자 노력했습니다.',
-    'Process': '현재 노션에 있는 내용을 웹사이트 firebase로 옮겨\n'
+    'Process':
+        '현재 노션에 있는 내용을 웹사이트 firebase로 옮겨\n'
         '작업을 진행중입니다.\n'
         '조금씩 완성되어 가는 모습을 기대해주세요.\n\n\n\n'
         'Rive 제작과정                         Flutter 제작과정',
   };
 
   static const List<String> menuItems = ['About Me', 'Detail', 'Process'];
+}
+
+class SelectTapTextConstants {
+  static const String selectTapTitle1 = '2만줄 넘는 코딩시간. ';
+  static const String selectTapDescription1 =
+      '회사와 성장하기에 너무좋은 코딩시간입니다.\n'
+      '각종 시행작오가 있었던 과거의 시간들\n\n'
+      '불가능이란 없고 뭐든지 할 수 있다는 마음을 가지게 해준 경험,\n'
+      '이제 이 경험을 활용할 시간이 되었습니다.';
+
+  static const String selectTapTitle2 = '흩어진 상태를 하나로. ';
+  static const String selectTapDescription2 =
+      '단순한 화면일수록 복잡한 흐름이 숨겨져 있습니다.\n'
+      '무엇이 어디서 변하고, 어떻게 이어지는지.\n\n'
+      '상태를 이해하고 정리하는 힘,\n'
+      '앱을 더 깊이 있게 만드는 시작이었습니다.';
 }
