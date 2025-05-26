@@ -21,8 +21,10 @@ class MobilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final logicalWidth = MediaQuery.of(context).size.width;
+    final isFoldable = logicalWidth >= 490;
     return ScreenUtilInit(
-      designSize: const Size(393, 852),
+      designSize: isFoldable ? const Size(523, 982) : const Size(393, 852),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
@@ -31,6 +33,7 @@ class MobilePage extends StatelessWidget {
           child: _MobileView(
             deviceType: deviceType,
             isMobileDevice: isMobileDevice,
+            isFoldable: isFoldable,
           ),
         );
       },
@@ -41,13 +44,26 @@ class MobilePage extends StatelessWidget {
 class _MobileView extends StatefulWidget {
   final String deviceType;
   final bool isMobileDevice;
-  const _MobileView({required this.deviceType, required this.isMobileDevice});
+  final bool isFoldable;
+  const _MobileView({
+    required this.deviceType,
+    required this.isMobileDevice,
+    required this.isFoldable,
+  });
 
   @override
   State<_MobileView> createState() => _MobileViewState();
 }
 
 class _MobileViewState extends State<_MobileView> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<MobileCubit>().isMobileFoldable(widget.isFoldable);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MobileCubit, MobileState>(
@@ -83,25 +99,30 @@ class _MobileViewState extends State<_MobileView> {
                               },
                             ),
                           ),
+
+                          // MainPage(
+                          //   key: const ValueKey('main'),
+                          //   cubit: context.read<MobileCubit>(),
+                          //   aboutMeState: state.aboutMeModel,
+                          //   isTitelTextAniStart:
+                          //       state.introModel.isTitelTextAniStart,
+                          //   isChapterContainerAniStart:
+                          //       state.introModel.isChapterContainerAniStart,
+                          // ),
                           AnimatedSwitcher(
                             duration: const Duration(milliseconds: 1000),
                             child:
                                 state.introModel.isPageTransition
-                                    ? Visibility(
-                                      visible: state.scrollModel.isAtBottom,
-                                      child: MainPage(
-                                        key: const ValueKey('main'),
-                                        cubit: context.read<MobileCubit>(),
-                                        aboutMeState: state.aboutMeModel,
-                                        isTitelTextAniStart:
-                                            state
-                                                .introModel
-                                                .isTitelTextAniStart,
-                                        isChapterContainerAniStart:
-                                            state
-                                                .introModel
-                                                .isChapterContainerAniStart,
-                                      ),
+                                    ? MainPage(
+                                      key: const ValueKey('main'),
+                                      cubit: context.read<MobileCubit>(),
+                                      aboutMeState: state.aboutMeModel,
+                                      isTitelTextAniStart:
+                                          state.introModel.isTitelTextAniStart,
+                                      isChapterContainerAniStart:
+                                          state
+                                              .introModel
+                                              .isChapterContainerAniStart,
                                     )
                                     : Visibility(
                                       visible: !state.aboutMeModel.isVisible,

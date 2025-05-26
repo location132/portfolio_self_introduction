@@ -32,12 +32,16 @@ class SelectTap extends StatelessWidget {
               child: TabBarView(
                 children: [
                   SelectTapItem(
+                    myStackTitle1: SelectTapTextConstants.myStackTitle1,
+                    myStack1: SelectTapTextConstants.myStack1,
                     title: SelectTapTextConstants.selectTapTitle1,
                     description: SelectTapTextConstants.selectTapDescription1,
+                    finalMessage: SelectTapTextConstants.selectTapFinalMessage,
                   ),
                   SelectTapItem(
                     title: SelectTapTextConstants.selectTapTitle2,
                     description: SelectTapTextConstants.selectTapDescription2,
+                    finalMessage: SelectTapTextConstants.selectTapFinalMessage,
                   ),
                   Center(child: Text('생명주기')),
                   Center(child: Text('애니메이션')),
@@ -54,22 +58,29 @@ class SelectTap extends StatelessWidget {
 }
 
 class SelectTapItem extends StatelessWidget {
+  final String? myStackTitle1;
+  final String? myStack1;
   final String title;
   final String description;
+  final String finalMessage;
+
   const SelectTapItem({
     super.key,
+    this.myStackTitle1,
+    this.myStack1,
     required this.title,
     required this.description,
+    required this.finalMessage,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          RichText(
-            textAlign: TextAlign.center,
+    return Column(
+      children: [
+        const SizedBox(height: 40),
+        Center(
+          child: RichText(
+            textAlign: TextAlign.left,
             text: TextSpan(
               children: [
                 TextSpan(
@@ -77,7 +88,6 @@ class SelectTapItem extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 12.0.sp,
-
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -89,7 +99,63 @@ class SelectTapItem extends StatelessWidget {
                     height: 1.5,
                   ),
                 ),
+                TextSpan(
+                  text: finalMessage,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12.0.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
+            ),
+          ),
+        ),
+        const SizedBox(height: 40),
+        MyStack(myStackTitle1: myStackTitle1, myStack1: myStack1),
+        const SizedBox(height: 20),
+      ],
+    );
+  }
+}
+
+class MyStack extends StatelessWidget {
+  final String? myStackTitle1;
+  final String? myStack1;
+  const MyStack({super.key, this.myStackTitle1, this.myStack1});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: Colors.white.withValues(alpha: 0.3),
+          width: 1,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 10),
+          Text(
+            myStackTitle1 ?? '',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 12.0.sp,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            myStack1 ?? '',
+            style: TextStyle(
+              fontSize: 12.0.sp,
+              color: const Color.fromARGB(255, 166, 166, 166),
+              height: 1.5,
             ),
           ),
         ],

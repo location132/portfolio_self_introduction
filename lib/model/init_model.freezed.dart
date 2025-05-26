@@ -22,7 +22,9 @@ mixin _$InitModel {
   double get mainViewHeight => throw _privateConstructorUsedError; // 로딩 남은시간()
   int get remainingTime => throw _privateConstructorUsedError; // 브라우저 확인
   bool get isChromeBrowser => throw _privateConstructorUsedError; //모바일 init 확인
-  bool get isMobileInit => throw _privateConstructorUsedError;
+  bool get isMobileInit =>
+      throw _privateConstructorUsedError; // 모바일 화면 폴드, 또는 웹
+  bool get isMobileFoldable => throw _privateConstructorUsedError;
 
   /// Create a copy of InitModel
   /// with the given fields replaced by the non-null parameter values.
@@ -42,6 +44,7 @@ abstract class $InitModelCopyWith<$Res> {
     int remainingTime,
     bool isChromeBrowser,
     bool isMobileInit,
+    bool isMobileFoldable,
   });
 }
 
@@ -65,6 +68,7 @@ class _$InitModelCopyWithImpl<$Res, $Val extends InitModel>
     Object? remainingTime = null,
     Object? isChromeBrowser = null,
     Object? isMobileInit = null,
+    Object? isMobileFoldable = null,
   }) {
     return _then(
       _value.copyWith(
@@ -93,6 +97,11 @@ class _$InitModelCopyWithImpl<$Res, $Val extends InitModel>
                     ? _value.isMobileInit
                     : isMobileInit // ignore: cast_nullable_to_non_nullable
                         as bool,
+            isMobileFoldable:
+                null == isMobileFoldable
+                    ? _value.isMobileFoldable
+                    : isMobileFoldable // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -114,6 +123,7 @@ abstract class _$$InitModelImplCopyWith<$Res>
     int remainingTime,
     bool isChromeBrowser,
     bool isMobileInit,
+    bool isMobileFoldable,
   });
 }
 
@@ -136,6 +146,7 @@ class __$$InitModelImplCopyWithImpl<$Res>
     Object? remainingTime = null,
     Object? isChromeBrowser = null,
     Object? isMobileInit = null,
+    Object? isMobileFoldable = null,
   }) {
     return _then(
       _$InitModelImpl(
@@ -164,6 +175,11 @@ class __$$InitModelImplCopyWithImpl<$Res>
                 ? _value.isMobileInit
                 : isMobileInit // ignore: cast_nullable_to_non_nullable
                     as bool,
+        isMobileFoldable:
+            null == isMobileFoldable
+                ? _value.isMobileFoldable
+                : isMobileFoldable // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -178,6 +194,7 @@ class _$InitModelImpl implements _InitModel {
     this.remainingTime = 4,
     this.isChromeBrowser = false,
     this.isMobileInit = false,
+    this.isMobileFoldable = false,
   });
 
   // 초기화 상태
@@ -200,10 +217,14 @@ class _$InitModelImpl implements _InitModel {
   @override
   @JsonKey()
   final bool isMobileInit;
+  // 모바일 화면 폴드, 또는 웹
+  @override
+  @JsonKey()
+  final bool isMobileFoldable;
 
   @override
   String toString() {
-    return 'InitModel(initState: $initState, mainViewHeight: $mainViewHeight, remainingTime: $remainingTime, isChromeBrowser: $isChromeBrowser, isMobileInit: $isMobileInit)';
+    return 'InitModel(initState: $initState, mainViewHeight: $mainViewHeight, remainingTime: $remainingTime, isChromeBrowser: $isChromeBrowser, isMobileInit: $isMobileInit, isMobileFoldable: $isMobileFoldable)';
   }
 
   @override
@@ -220,7 +241,9 @@ class _$InitModelImpl implements _InitModel {
             (identical(other.isChromeBrowser, isChromeBrowser) ||
                 other.isChromeBrowser == isChromeBrowser) &&
             (identical(other.isMobileInit, isMobileInit) ||
-                other.isMobileInit == isMobileInit));
+                other.isMobileInit == isMobileInit) &&
+            (identical(other.isMobileFoldable, isMobileFoldable) ||
+                other.isMobileFoldable == isMobileFoldable));
   }
 
   @override
@@ -231,6 +254,7 @@ class _$InitModelImpl implements _InitModel {
     remainingTime,
     isChromeBrowser,
     isMobileInit,
+    isMobileFoldable,
   );
 
   /// Create a copy of InitModel
@@ -249,6 +273,7 @@ abstract class _InitModel implements InitModel {
     final int remainingTime,
     final bool isChromeBrowser,
     final bool isMobileInit,
+    final bool isMobileFoldable,
   }) = _$InitModelImpl;
 
   // 초기화 상태
@@ -261,7 +286,9 @@ abstract class _InitModel implements InitModel {
   @override
   bool get isChromeBrowser; //모바일 init 확인
   @override
-  bool get isMobileInit;
+  bool get isMobileInit; // 모바일 화면 폴드, 또는 웹
+  @override
+  bool get isMobileFoldable;
 
   /// Create a copy of InitModel
   /// with the given fields replaced by the non-null parameter values.

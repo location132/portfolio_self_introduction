@@ -1,6 +1,7 @@
 //2줄 타이틀
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/page/mobile_page/animation/intro_ani.dart';
 
 class OneLineTitle extends StatefulWidget {
@@ -59,7 +60,7 @@ class _OneLineTitleState extends State<OneLineTitle>
           child: Text(
             widget.title,
             style: TextStyle(
-              fontSize: 25.0,
+              fontSize: 25.sp,
               color: widget.color ?? Colors.black,
               fontWeight: FontWeight.bold,
             ),

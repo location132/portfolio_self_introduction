@@ -96,7 +96,6 @@ class MobileCubit extends Cubit<MobileState> {
     await Future.delayed(const Duration(milliseconds: 500));
     emit(
       state.copyWith(
-        scrollModel: state.scrollModel.copyWith(isAtBottom: true),
         introModel: state.introModel.copyWith(isIntroImage: true),
         isPlayerText: '지금 바로 시작합니다.',
       ),
@@ -125,7 +124,7 @@ class MobileCubit extends Cubit<MobileState> {
         introModel: state.introModel.copyWith(isChapterContainerAniStart: true),
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
         aboutMeModel: state.aboutMeModel.copyWith(isVisible: true),
-        isPlayerText: '자세한 내용이 궁금하다면 여기를 클릭해주세요.',
+        isPlayerText: '옆으로 넘겨 다양한 내용을 확인하실 수 있습니다.',
       ),
     );
   }
@@ -182,9 +181,6 @@ class MobileCubit extends Cubit<MobileState> {
 
   // aboutMe ani
   void aboutMeAniStart(bool isStart) async {
-    if (isStart) {
-      await Future.delayed(const Duration(milliseconds: 300));
-    }
     emit(
       state.copyWith(
         aboutMeModel: state.aboutMeModel.copyWith(isTitleAniStart: isStart),
@@ -214,6 +210,16 @@ class MobileCubit extends Cubit<MobileState> {
     emit(
       state.copyWith(
         aboutMeModel: state.aboutMeModel.copyWith(isPlayerAniOpacity: isStart),
+      ),
+    );
+  }
+
+  // 모바일 화면 폴드, 또는 웹
+  void isMobileFoldable(bool isFoldable) {
+    if (state.initModel.isMobileFoldable == isFoldable) return;
+    emit(
+      state.copyWith(
+        initModel: state.initModel.copyWith(isMobileFoldable: isFoldable),
       ),
     );
   }

@@ -19,12 +19,12 @@ class InitModel with _$InitModel {
 
     //모바일 init 확인
     @Default(false) bool isMobileInit,
+
+    // 모바일 화면 폴드, 또는 웹
+    @Default(false) bool isMobileFoldable,
   }) = _InitModel;
 }
 
-enum InitState {
-  inactive,
-  active,
-}
+enum InitState { inactive, active }
 
 enum DeviceType { desktop, tablet, mobile }

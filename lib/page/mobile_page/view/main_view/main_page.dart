@@ -45,10 +45,10 @@ class MainPage extends StatelessWidget {
               child: VisibilityDetector(
                 key: const Key('aboutMe-view'),
                 onVisibilityChanged: (VisibilityInfo info) {
-                  if (info.visibleFraction > 0.5 &&
+                  if (info.visibleFraction > 0.7 &&
                       !aboutMeState.isPlayerAniOpacity) {
                     cubit.aboutMePlayerAni(true);
-                  } else if (info.visibleFraction < 0.5) {
+                  } else if (info.visibleFraction < 0.7) {
                     cubit.aboutMePlayerAni(false);
                   }
 

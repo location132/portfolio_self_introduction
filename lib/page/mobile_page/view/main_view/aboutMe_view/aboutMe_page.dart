@@ -31,6 +31,7 @@ class AboutMePage extends StatelessWidget {
           duration: const Duration(milliseconds: 800),
           child: const SelectTap(),
         ),
+        const SizedBox(height: 100),
       ],
     );
   }

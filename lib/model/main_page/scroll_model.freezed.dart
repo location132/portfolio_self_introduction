@@ -23,8 +23,7 @@ mixin _$ScrollModel {
   BannerState get bannerState => throw _privateConstructorUsedError;
   ProfileViewState get profileViewState => throw _privateConstructorUsedError;
   bool get isScrollWaiting => throw _privateConstructorUsedError;
-  bool get isScrollInit => throw _privateConstructorUsedError; //모바일에서 사용되는 모델
-  bool get isAtBottom => throw _privateConstructorUsedError;
+  bool get isScrollInit => throw _privateConstructorUsedError;
 
   /// Create a copy of ScrollModel
   /// with the given fields replaced by the non-null parameter values.
@@ -47,7 +46,6 @@ abstract class $ScrollModelCopyWith<$Res> {
     ProfileViewState profileViewState,
     bool isScrollWaiting,
     bool isScrollInit,
-    bool isAtBottom,
   });
 }
 
@@ -72,7 +70,6 @@ class _$ScrollModelCopyWithImpl<$Res, $Val extends ScrollModel>
     Object? profileViewState = null,
     Object? isScrollWaiting = null,
     Object? isScrollInit = null,
-    Object? isAtBottom = null,
   }) {
     return _then(
       _value.copyWith(
@@ -106,11 +103,6 @@ class _$ScrollModelCopyWithImpl<$Res, $Val extends ScrollModel>
                     ? _value.isScrollInit
                     : isScrollInit // ignore: cast_nullable_to_non_nullable
                         as bool,
-            isAtBottom:
-                null == isAtBottom
-                    ? _value.isAtBottom
-                    : isAtBottom // ignore: cast_nullable_to_non_nullable
-                        as bool,
           )
           as $Val,
     );
@@ -133,7 +125,6 @@ abstract class _$$ScrollModelImplCopyWith<$Res>
     ProfileViewState profileViewState,
     bool isScrollWaiting,
     bool isScrollInit,
-    bool isAtBottom,
   });
 }
 
@@ -157,7 +148,6 @@ class __$$ScrollModelImplCopyWithImpl<$Res>
     Object? profileViewState = null,
     Object? isScrollWaiting = null,
     Object? isScrollInit = null,
-    Object? isAtBottom = null,
   }) {
     return _then(
       _$ScrollModelImpl(
@@ -191,11 +181,6 @@ class __$$ScrollModelImplCopyWithImpl<$Res>
                 ? _value.isScrollInit
                 : isScrollInit // ignore: cast_nullable_to_non_nullable
                     as bool,
-        isAtBottom:
-            null == isAtBottom
-                ? _value.isAtBottom
-                : isAtBottom // ignore: cast_nullable_to_non_nullable
-                    as bool,
       ),
     );
   }
@@ -211,7 +196,6 @@ class _$ScrollModelImpl implements _ScrollModel {
     this.profileViewState = ProfileViewState.inactive,
     this.isScrollWaiting = false,
     this.isScrollInit = false,
-    this.isAtBottom = false,
   });
 
   @override
@@ -230,14 +214,10 @@ class _$ScrollModelImpl implements _ScrollModel {
   @override
   @JsonKey()
   final bool isScrollInit;
-  //모바일에서 사용되는 모델
-  @override
-  @JsonKey()
-  final bool isAtBottom;
 
   @override
   String toString() {
-    return 'ScrollModel(scrollController: $scrollController, subScrollController: $subScrollController, bannerState: $bannerState, profileViewState: $profileViewState, isScrollWaiting: $isScrollWaiting, isScrollInit: $isScrollInit, isAtBottom: $isAtBottom)';
+    return 'ScrollModel(scrollController: $scrollController, subScrollController: $subScrollController, bannerState: $bannerState, profileViewState: $profileViewState, isScrollWaiting: $isScrollWaiting, isScrollInit: $isScrollInit)';
   }
 
   @override
@@ -256,9 +236,7 @@ class _$ScrollModelImpl implements _ScrollModel {
             (identical(other.isScrollWaiting, isScrollWaiting) ||
                 other.isScrollWaiting == isScrollWaiting) &&
             (identical(other.isScrollInit, isScrollInit) ||
-                other.isScrollInit == isScrollInit) &&
-            (identical(other.isAtBottom, isAtBottom) ||
-                other.isAtBottom == isAtBottom));
+                other.isScrollInit == isScrollInit));
   }
 
   @override
@@ -270,7 +248,6 @@ class _$ScrollModelImpl implements _ScrollModel {
     profileViewState,
     isScrollWaiting,
     isScrollInit,
-    isAtBottom,
   );
 
   /// Create a copy of ScrollModel
@@ -290,7 +267,6 @@ abstract class _ScrollModel implements ScrollModel {
     final ProfileViewState profileViewState,
     final bool isScrollWaiting,
     final bool isScrollInit,
-    final bool isAtBottom,
   }) = _$ScrollModelImpl;
 
   @override
@@ -304,9 +280,7 @@ abstract class _ScrollModel implements ScrollModel {
   @override
   bool get isScrollWaiting;
   @override
-  bool get isScrollInit; //모바일에서 사용되는 모델
-  @override
-  bool get isAtBottom;
+  bool get isScrollInit;
 
   /// Create a copy of ScrollModel
   /// with the given fields replaced by the non-null parameter values.

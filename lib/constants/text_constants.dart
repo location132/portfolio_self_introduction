@@ -142,13 +142,18 @@ class BannerDescriptionConstants {
 }
 
 class SelectTapTextConstants {
+  static const String myStackTitle1 = '나의 개발 중심 기술';
+  static const String myStack1 =
+      'Flutter Web, Flutter Mobile, Firebase\n'
+      'MVVM, Clean Architecture Design, get_it(DI)\n'
+      'build_runner watch, SingleTon, injectable\n';
+
   static const String selectTapTitle1 = '2만줄 넘는 코딩시간. ';
   static const String selectTapDescription1 =
       '회사와 성장하기에 너무좋은 코딩시간입니다.\n'
-      '각종 시행작오가 있었던 과거의 시간들\n\n'
-      '불가능이란 없고 뭐든지 할 수 있다는 마음을 가지게 해준 경험,\n'
-      '이제 이 경험을 활용할 시간이 되었습니다.';
-  // static const String selectTapDescription2 = '';
+      '각종 시행작오가 있었던 과거의 시간들\n'
+      '불가능이란 없고 뭐든지 할 수 있다는 마음을 가지게 해준 경험,\n\n';
+  static const String selectTapFinalMessage = '이제 이 경험을 활용할 시간이 되었습니다.';
 
   static const String selectTapTitle2 = '흩어진 상태를 하나로. ';
   static const String selectTapDescription2 =
@@ -157,4 +162,36 @@ class SelectTapTextConstants {
       '상태를 이해하고 정리하는 힘,\n'
       '앱을 더 깊이 있게 만드는 시작이었습니다.\n\n'
       '― Provider / Bloc / Cubit / setState';
+
+  static const String selectTapTitle3 = '생명주기를 이해하는 힘. ';
+  static const String selectTapDescription3 =
+      'initState부터 dispose까지,\n'
+      '위젯의 생명주기를 정확히 이해하고 활용합니다.\n\n'
+      '메모리 누수 방지와 성능 최적화,\n'
+      '안정적인 앱을 만드는 기본기입니다.\n\n'
+      '― initState / build / dispose / didUpdateWidget';
+
+  static const String selectTapTitle4 = '생동감 있는 사용자 경험. ';
+  static const String selectTapDescription4 =
+      'Rive 애니메이션부터 Custom Animation까지,\n'
+      '사용자의 눈을 사로잡는 인터랙션을 구현합니다.\n\n'
+      '단순한 화면 전환이 아닌,\n'
+      '감정을 전달하는 애니메이션을 추구합니다.\n\n'
+      '― Rive / AnimationController / Tween / Hero';
+
+  static const String selectTapTitle5 = '함께 만들어가는 가치. ';
+  static const String selectTapDescription5 =
+      'Git을 통한 버전 관리부터 Figma 디자인 협업까지,\n'
+      '팀과 함께 성장하는 개발자입니다.\n\n'
+      '소통과 협업을 통해\n'
+      '더 나은 결과물을 만들어냅니다.\n\n'
+      '― Git / GitHub / Figma / Notion / Slack';
+
+  static const String selectTapTitle6 = '시각적 완성도를 추구. ';
+  static const String selectTapDescription6 =
+      '개발자이지만 디자인에도 관심이 많습니다.\n'
+      '사용자 중심의 UI/UX를 고민하며 개발합니다.\n\n'
+      '기능뿐만 아니라 시각적 아름다움까지,\n'
+      '완성도 높은 앱을 만들기 위해 노력합니다.\n\n'
+      '― Photoshop / Figma / UI/UX Design / Color Theory';
 }
