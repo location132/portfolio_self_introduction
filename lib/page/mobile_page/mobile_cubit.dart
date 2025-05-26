@@ -136,7 +136,7 @@ class MobileCubit extends Cubit<MobileState> {
         introModel: state.introModel.copyWith(isChapterContainerAniStart: true),
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
         aboutMeModel: state.aboutMeModel.copyWith(isVisible: true),
-        isPlayerText: '옆으로 넘겨 다양한 내용을 확인하실 수 있습니다.',
+        isPlayerText: '화면을 옆으로 넘겨 다양한 내용을 확인하실 수 있습니다.',
       ),
     );
   }

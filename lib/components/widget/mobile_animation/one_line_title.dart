@@ -1,5 +1,3 @@
-//2줄 타이틀
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/page/mobile_page/animation/intro_ani.dart';
@@ -9,12 +7,14 @@ class OneLineTitle extends StatefulWidget {
   final bool? isReverse;
   final String title;
   final Color? color;
+  final int? duration;
   const OneLineTitle({
     super.key,
     required this.isTitelTextAniStart,
     this.isReverse,
     required this.title,
     this.color,
+    this.duration,
   });
 
   @override
@@ -28,7 +28,10 @@ class _OneLineTitleState extends State<OneLineTitle>
   @override
   void initState() {
     super.initState();
-    _titleAnimation = TextMoveAnimation(vsync: this);
+    _titleAnimation = TextMoveAnimation(
+      vsync: this,
+      duration: widget.duration ?? 620,
+    );
   }
 
   @override

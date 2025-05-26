@@ -39,20 +39,19 @@ class MainPage extends StatelessWidget {
               isChapterContainerAniStart: isChapterContainerAniStart,
               isBackGroundAniStart: aboutMeState.isBackGroundAniStart,
             ),
-            const SizedBox(height: 90),
             Visibility(
               visible: aboutMeState.isVisible,
               child: VisibilityDetector(
                 key: const Key('aboutMe-view'),
                 onVisibilityChanged: (VisibilityInfo info) {
-                  if (info.visibleFraction > 0.7 &&
+                  if (info.visibleFraction > 0.6 &&
                       !aboutMeState.isPlayerAniOpacity) {
                     cubit.aboutMePlayerAni(true);
-                  } else if (info.visibleFraction < 0.7) {
+                  } else if (info.visibleFraction < 0.6) {
                     cubit.aboutMePlayerAni(false);
                   }
 
-                  if (info.visibleFraction > 0.3) {
+                  if (info.visibleFraction > 0.2) {
                     cubit.aboutMeBackGroundColor(true);
                   } else {
                     cubit.aboutMeBackGroundColor(false);

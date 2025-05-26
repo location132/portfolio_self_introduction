@@ -18,6 +18,7 @@ class AboutMeDescription extends StatelessWidget {
     return WidgetAnimation(
       isStart: isBannerAniStart,
       isReverse: isBackGroundAniStart,
+      duration: 420,
       beginDy: 0.2,
       child: Padding(
         padding: const EdgeInsets.only(left: 30),

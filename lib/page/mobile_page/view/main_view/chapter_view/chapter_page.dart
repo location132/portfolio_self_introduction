@@ -47,14 +47,12 @@ class _ChapterPageState extends State<ChapterPage> {
         ),
         const SizedBox(height: 30),
         AnimatedOpacity(
-          opacity: isChapterAniStart ? 1.0 : 0.0,
+          opacity: isChapterAniStart ? 1.0 : 0.1,
           duration: const Duration(milliseconds: 800),
           curve: Curves.easeInOut,
-          child: ChapterCard(
-            isChapterContainerAniStart: widget.isChapterContainerAniStart,
-            isBackGroundAniStart: widget.isBackGroundAniStart,
-          ),
+          child: ChapterCard(isBackGroundAniStart: widget.isBackGroundAniStart),
         ),
+        const SizedBox(height: 90),
       ],
     );
   }
