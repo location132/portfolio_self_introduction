@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
-import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/device_selector.dart';
 
 class NaviBar extends StatefulWidget {
@@ -35,24 +35,20 @@ class _NaviBarState extends State<NaviBar> with SingleTickerProviderStateMixin {
           onHomePressed: widget.onHomePressed,
           isMenuClicked: widget.isMenuClicked,
         ),
-        const SizedBox(height: 3),
+        SizedBox(height: 3.h),
         DeviceSelector(
           deviceType: widget.deviceType,
           isDeviceSelector: widget.isDeviceSelector,
         ),
-        const SizedBox(height: 30),
+        SizedBox(height: 30.h),
         AnimatedContainer(
           duration: const Duration(milliseconds: 500),
-          height: widget.isDescription ? 75.0 : 0,
+          height: widget.isDescription ? 100.h : 0,
           child: SingleChildScrollView(
             child: Container(
               width: double.infinity,
               color: const Color.fromARGB(255, 234, 233, 233),
-              padding: EdgeInsets.only(
-                left: 8.0.sh,
-                right: 8.0.sh,
-                top: 8.0.sh,
-              ),
+              padding: EdgeInsets.only(left: 8.w, right: 8.w, top: 8.h),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -60,18 +56,13 @@ class _NaviBarState extends State<NaviBar> with SingleTickerProviderStateMixin {
                     '2025년 포트폴리오 모바일 버전에서는\n'
                     '최적화를 위해 데스크탑View보다 적은 애니메이션을',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 11.0.responsiveFont(context)),
+                    style: TextStyle(fontSize: 11.0.sp),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Wrap(
+                    alignment: WrapAlignment.center,
                     children: [
-                      Text(
-                        '사용중입니다.',
-                        style: TextStyle(
-                          fontSize: 11.0.responsiveFont(context),
-                        ),
-                      ),
-                      SizedBox(width: 10.sw),
+                      Text('사용중입니다.', style: TextStyle(fontSize: 11.0.sp)),
+                      SizedBox(width: 10.w),
                       InkWell(
                         onTap: () {
                           debugPrint('더 알아보기 클릭됨');
@@ -80,7 +71,7 @@ class _NaviBarState extends State<NaviBar> with SingleTickerProviderStateMixin {
                           '더 알아보기 >',
                           style: TextStyle(
                             color: Colors.blue,
-                            fontSize: 11.0.responsiveFont(context),
+                            fontSize: 11.0.sp,
                           ),
                         ),
                       ),

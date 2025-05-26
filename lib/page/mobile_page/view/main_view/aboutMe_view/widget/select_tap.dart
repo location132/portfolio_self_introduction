@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
-import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 
 class SelectTap extends StatelessWidget {
   const SelectTap({super.key});
@@ -76,14 +76,15 @@ class SelectTapItem extends StatelessWidget {
                   text: title,
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 12.0.responsiveFont(context),
+                    fontSize: 12.0.sp,
+
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 TextSpan(
                   text: description,
                   style: TextStyle(
-                    fontSize: 12.0.responsiveFont(context),
+                    fontSize: 12.0.sp,
                     color: const Color.fromARGB(255, 166, 166, 166),
                     height: 1.5,
                   ),

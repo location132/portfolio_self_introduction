@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
@@ -20,12 +21,19 @@ class MobilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => di<MobileCubit>(),
-      child: _MobileView(
-        deviceType: deviceType,
-        isMobileDevice: isMobileDevice,
-      ),
+    return ScreenUtilInit(
+      designSize: const Size(393, 852),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return BlocProvider(
+          create: (context) => di<MobileCubit>(),
+          child: _MobileView(
+            deviceType: deviceType,
+            isMobileDevice: isMobileDevice,
+          ),
+        );
+      },
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/animation/menu_ani.dart';
@@ -86,29 +87,29 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
             height: widget.isMenuClicked ? maxHeight : 0,
             width: double.infinity,
             color: Colors.white,
-            // child: ListView.builder(
-            //   itemCount: menuItemAnimations.length,
-            //   padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-            //   itemBuilder: (context, index) {
-            //     final ani = menuItemAnimations[index];
-            //     return SlideTransition(
-            //       position: ani.animation.moveShow,
-            //       child: FadeTransition(
-            //         opacity: ani.animation.opacityShow,
-            //         child: Padding(
-            //           padding: const EdgeInsets.symmetric(vertical: 10),
-            //           child: Text(
-            //             ani.text,
-            //             style: const TextStyle(
-            //               fontSize: 22,
-            //               fontWeight: FontWeight.bold,
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     );
-            //   },
-            // ),
+            child: ListView.builder(
+              itemCount: menuItemAnimations.length,
+              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+              itemBuilder: (context, index) {
+                final ani = menuItemAnimations[index];
+                return SlideTransition(
+                  position: ani.animation.moveShow,
+                  child: FadeTransition(
+                    opacity: ani.animation.opacityShow,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Text(
+                        ani.text,
+                        style: TextStyle(
+                          fontSize: 18.0.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ],

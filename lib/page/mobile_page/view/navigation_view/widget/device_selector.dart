@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/animation/device_ani.dart';
 
@@ -57,15 +58,17 @@ class _DeviceSelectorState extends State<DeviceSelector>
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SvgPicture.asset('assets/Images/iphone.svg', height: 50),
+                SvgPicture.asset('assets/Images/iphone.svg', height: 50.h),
                 const SizedBox(height: 10),
                 Row(
                   children: [
                     const SizedBox(width: 10),
                     const Text('Mobile', style: labelStyle),
                     const SizedBox(width: 10),
-                    Text(widget.deviceType == 'mobile' ? '✓' : '',
-                        style: const TextStyle(color: Colors.green)),
+                    Text(
+                      widget.deviceType == 'mobile' ? '✓' : '',
+                      style: const TextStyle(color: Colors.green),
+                    ),
                   ],
                 ),
               ],
@@ -75,15 +78,17 @@ class _DeviceSelectorState extends State<DeviceSelector>
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SvgPicture.asset('assets/Images/ipad.svg', height: 50),
+                SvgPicture.asset('assets/Images/ipad.svg', height: 50.h),
                 const SizedBox(height: 10),
                 Row(
                   children: [
                     const SizedBox(width: 10),
                     const Text('Tablet', style: labelStyle),
                     const SizedBox(width: 10),
-                    Text(widget.deviceType == 'tablet' ? '✓' : '',
-                        style: const TextStyle(color: Colors.green)),
+                    Text(
+                      widget.deviceType == 'tablet' ? '✓' : '',
+                      style: const TextStyle(color: Colors.green),
+                    ),
                   ],
                 ),
               ],
@@ -93,15 +98,17 @@ class _DeviceSelectorState extends State<DeviceSelector>
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SvgPicture.asset('assets/Images/imac.svg', height: 50),
-                const SizedBox(height: 10),
+                SvgPicture.asset('assets/Images/imac.svg', height: 50.h),
+                SizedBox(height: 10.h),
                 Row(
                   children: [
                     const SizedBox(width: 10),
                     const Text('Desktop', style: labelStyle),
                     const SizedBox(width: 10),
-                    Text(widget.deviceType == 'desktop' ? '✓' : '',
-                        style: const TextStyle(color: Colors.green)),
+                    Text(
+                      widget.deviceType == 'desktop' ? '✓' : '',
+                      style: const TextStyle(color: Colors.green),
+                    ),
                   ],
                 ),
               ],

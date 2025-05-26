@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:ui';
-
-import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 
 class Player extends StatefulWidget {
   final bool isPlayerAniOpacity;
@@ -135,7 +134,7 @@ class _PlayerState extends State<Player> with SingleTickerProviderStateMixin {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 10.0.responsiveFont(context),
+                        fontSize: 10.0.sp,
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                         letterSpacing: -0.1,

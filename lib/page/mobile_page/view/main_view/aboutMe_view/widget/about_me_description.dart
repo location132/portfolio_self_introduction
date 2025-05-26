@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/components/widget/mobile_animation/widget_animation.dart';
-import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 
 class AboutMeDescription extends StatelessWidget {
   final bool isBannerAniStart;
@@ -27,7 +27,7 @@ class AboutMeDescription extends StatelessWidget {
             RichText(
               text: TextSpan(
                 style: TextStyle(
-                  fontSize: 14.0.responsiveFont(context),
+                  fontSize: 14.0.sp,
                   color: Colors.grey,
                   height: 1.5,
                 ),
@@ -41,7 +41,7 @@ class AboutMeDescription extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: 14.0.responsiveFont(context),
+                      fontSize: 14.0.sp,
                     ),
                   ),
                   const TextSpan(
