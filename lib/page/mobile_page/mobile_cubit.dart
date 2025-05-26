@@ -209,12 +209,6 @@ class MobileCubit extends Cubit<MobileState> {
         ),
       ),
     );
-    await Future.delayed(const Duration(milliseconds: 300));
-    emit(
-      state.copyWith(
-        aboutMeModel: state.aboutMeModel.copyWith(isTabBarAniOpacity: isStart),
-      ),
-    );
   }
 
   // about me player ani

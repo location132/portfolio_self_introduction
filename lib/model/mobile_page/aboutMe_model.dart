@@ -9,7 +9,6 @@ class AboutMeModel with _$AboutMeModel {
     @Default(false) bool isBackGroundAniStart,
     @Default(false) bool isTitleAniStart,
     @Default(false) bool isDescriptionAniStart,
-    @Default(false) bool isTabBarAniOpacity,
     @Default(false) bool isPlayerAniOpacity,
   }) = _AboutMeModel;
 }

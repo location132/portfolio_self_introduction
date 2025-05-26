@@ -44,10 +44,11 @@ class MainPage extends StatelessWidget {
               child: VisibilityDetector(
                 key: const Key('aboutMe-view'),
                 onVisibilityChanged: (VisibilityInfo info) {
-                  if (info.visibleFraction > 0.6 &&
+                  if (info.visibleFraction > 0.4 &&
                       !aboutMeState.isPlayerAniOpacity) {
                     cubit.aboutMePlayerAni(true);
-                  } else if (info.visibleFraction < 0.6) {
+                  } else if (info.visibleFraction < 0.1 &&
+                      aboutMeState.isPlayerAniOpacity) {
                     cubit.aboutMePlayerAni(false);
                   }
 
@@ -60,6 +61,7 @@ class MainPage extends StatelessWidget {
                 child: AboutMePage(state: aboutMeState, cubit: cubit),
               ),
             ),
+            SizedBox(height: MediaQuery.of(context).size.height),
           ],
         ),
       ],

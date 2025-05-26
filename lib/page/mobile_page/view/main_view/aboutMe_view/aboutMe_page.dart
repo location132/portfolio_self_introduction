@@ -28,7 +28,7 @@ class AboutMePage extends StatelessWidget {
         ),
         const SizedBox(height: 30),
         AnimatedOpacity(
-          opacity: state.isTabBarAniOpacity ? 1.0 : 0.0,
+          opacity: state.isTitleAniStart ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 400),
           child: const SelectTap(),
         ),
