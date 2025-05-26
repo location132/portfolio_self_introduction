@@ -13,6 +13,6 @@ class MobileState with _$MobileState {
     @Default(IntroModel()) IntroModel introModel,
     @Default(ScrollModel()) ScrollModel scrollModel,
     @Default(AboutMeModel()) AboutMeModel aboutMeModel,
-    @Default('') String isPlayerText,
+    @Default('잠시만 기다려주세요.') String isPlayerText,
   }) = _MobileState;
 }

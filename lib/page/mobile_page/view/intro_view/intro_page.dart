@@ -12,20 +12,9 @@ class IntroPage extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: [
-        Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/Images/intro_Image.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        IntroText(isFirstIntroText: introModel.isFirstIntroText),
         AnimatedOpacity(
-          opacity: introModel.isIntroImage ? 1.0 : 0.0,
-          duration: const Duration(seconds: 1),
+          opacity: introModel.isIntroImageChange2 ? 1.0 : 0.0,
+          duration: const Duration(milliseconds: 0),
           child: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
@@ -38,6 +27,24 @@ class IntroPage extends StatelessWidget {
           ),
         ),
 
+        AnimatedOpacity(
+          opacity:
+              !introModel.isIntroImageChange && introModel.isIntroImageinit
+                  ? 1.0
+                  : 0.0,
+          duration: const Duration(milliseconds: 1000),
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/Images/intro_Image.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ),
+        IntroText(isFirstIntroText: introModel.isFirstIntroText),
         Positioned.fill(
           child: TwoLineTitle(
             isTitelText: introModel.isTitelText,

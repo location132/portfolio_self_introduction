@@ -15,7 +15,7 @@ class _IntroTextState extends State<IntroText> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return WidgetAnimation(
       isStart: widget.isFirstIntroText,
-      duration: 800,
+      duration: 600,
       beginDy: 0.1,
       child: AnimatedOpacity(
         opacity: widget.isFirstIntroText ? 1.0 : 0.0,

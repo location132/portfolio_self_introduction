@@ -28,7 +28,7 @@ class _PlayerState extends State<Player> with SingleTickerProviderStateMixin {
     super.initState();
 
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 500),
       vsync: this,
     );
 
@@ -67,9 +67,13 @@ class _PlayerState extends State<Player> with SingleTickerProviderStateMixin {
   void didUpdateWidget(covariant Player oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.isPlayerAniOpacity) {
-      _controller.forward();
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        _controller.forward();
+      });
     } else {
-      _controller.reverse();
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        _controller.reverse();
+      });
     }
   }
 

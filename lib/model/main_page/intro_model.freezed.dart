@@ -22,7 +22,9 @@ mixin _$IntroModel {
   bool get isTitelText => throw _privateConstructorUsedError;
   bool get isFirstIntroText =>
       throw _privateConstructorUsedError; // 인트로 배경화면 변경
-  bool get isIntroImage => throw _privateConstructorUsedError; //메뉴 클릭 여부
+  bool get isIntroImageChange => throw _privateConstructorUsedError;
+  bool get isIntroImageinit => throw _privateConstructorUsedError;
+  bool get isIntroImageChange2 => throw _privateConstructorUsedError; //메뉴 클릭 여부
   bool get isMenuClicked => throw _privateConstructorUsedError; // 화면 전환
   bool get isPageTransition => throw _privateConstructorUsedError;
   bool get isTitelTextAniStart => throw _privateConstructorUsedError;
@@ -49,7 +51,9 @@ abstract class $IntroModelCopyWith<$Res> {
     bool isDescription,
     bool isTitelText,
     bool isFirstIntroText,
-    bool isIntroImage,
+    bool isIntroImageChange,
+    bool isIntroImageinit,
+    bool isIntroImageChange2,
     bool isMenuClicked,
     bool isPageTransition,
     bool isTitelTextAniStart,
@@ -78,7 +82,9 @@ class _$IntroModelCopyWithImpl<$Res, $Val extends IntroModel>
     Object? isDescription = null,
     Object? isTitelText = null,
     Object? isFirstIntroText = null,
-    Object? isIntroImage = null,
+    Object? isIntroImageChange = null,
+    Object? isIntroImageinit = null,
+    Object? isIntroImageChange2 = null,
     Object? isMenuClicked = null,
     Object? isPageTransition = null,
     Object? isTitelTextAniStart = null,
@@ -108,10 +114,20 @@ class _$IntroModelCopyWithImpl<$Res, $Val extends IntroModel>
                     ? _value.isFirstIntroText
                     : isFirstIntroText // ignore: cast_nullable_to_non_nullable
                         as bool,
-            isIntroImage:
-                null == isIntroImage
-                    ? _value.isIntroImage
-                    : isIntroImage // ignore: cast_nullable_to_non_nullable
+            isIntroImageChange:
+                null == isIntroImageChange
+                    ? _value.isIntroImageChange
+                    : isIntroImageChange // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isIntroImageinit:
+                null == isIntroImageinit
+                    ? _value.isIntroImageinit
+                    : isIntroImageinit // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isIntroImageChange2:
+                null == isIntroImageChange2
+                    ? _value.isIntroImageChange2
+                    : isIntroImageChange2 // ignore: cast_nullable_to_non_nullable
                         as bool,
             isMenuClicked:
                 null == isMenuClicked
@@ -163,7 +179,9 @@ abstract class _$$IntroModelImplCopyWith<$Res>
     bool isDescription,
     bool isTitelText,
     bool isFirstIntroText,
-    bool isIntroImage,
+    bool isIntroImageChange,
+    bool isIntroImageinit,
+    bool isIntroImageChange2,
     bool isMenuClicked,
     bool isPageTransition,
     bool isTitelTextAniStart,
@@ -191,7 +209,9 @@ class __$$IntroModelImplCopyWithImpl<$Res>
     Object? isDescription = null,
     Object? isTitelText = null,
     Object? isFirstIntroText = null,
-    Object? isIntroImage = null,
+    Object? isIntroImageChange = null,
+    Object? isIntroImageinit = null,
+    Object? isIntroImageChange2 = null,
     Object? isMenuClicked = null,
     Object? isPageTransition = null,
     Object? isTitelTextAniStart = null,
@@ -221,10 +241,20 @@ class __$$IntroModelImplCopyWithImpl<$Res>
                 ? _value.isFirstIntroText
                 : isFirstIntroText // ignore: cast_nullable_to_non_nullable
                     as bool,
-        isIntroImage:
-            null == isIntroImage
-                ? _value.isIntroImage
-                : isIntroImage // ignore: cast_nullable_to_non_nullable
+        isIntroImageChange:
+            null == isIntroImageChange
+                ? _value.isIntroImageChange
+                : isIntroImageChange // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isIntroImageinit:
+            null == isIntroImageinit
+                ? _value.isIntroImageinit
+                : isIntroImageinit // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isIntroImageChange2:
+            null == isIntroImageChange2
+                ? _value.isIntroImageChange2
+                : isIntroImageChange2 // ignore: cast_nullable_to_non_nullable
                     as bool,
         isMenuClicked:
             null == isMenuClicked
@@ -269,7 +299,9 @@ class _$IntroModelImpl implements _IntroModel {
     this.isDescription = false,
     this.isTitelText = false,
     this.isFirstIntroText = false,
-    this.isIntroImage = false,
+    this.isIntroImageChange = false,
+    this.isIntroImageinit = false,
+    this.isIntroImageChange2 = false,
     this.isMenuClicked = false,
     this.isPageTransition = false,
     this.isTitelTextAniStart = false,
@@ -293,7 +325,13 @@ class _$IntroModelImpl implements _IntroModel {
   // 인트로 배경화면 변경
   @override
   @JsonKey()
-  final bool isIntroImage;
+  final bool isIntroImageChange;
+  @override
+  @JsonKey()
+  final bool isIntroImageinit;
+  @override
+  @JsonKey()
+  final bool isIntroImageChange2;
   //메뉴 클릭 여부
   @override
   @JsonKey()
@@ -318,7 +356,7 @@ class _$IntroModelImpl implements _IntroModel {
 
   @override
   String toString() {
-    return 'IntroModel(isDeviceSelector: $isDeviceSelector, isDescription: $isDescription, isTitelText: $isTitelText, isFirstIntroText: $isFirstIntroText, isIntroImage: $isIntroImage, isMenuClicked: $isMenuClicked, isPageTransition: $isPageTransition, isTitelTextAniStart: $isTitelTextAniStart, isChapterContainerAniStart: $isChapterContainerAniStart, isHome: $isHome, isMobileDialog: $isMobileDialog)';
+    return 'IntroModel(isDeviceSelector: $isDeviceSelector, isDescription: $isDescription, isTitelText: $isTitelText, isFirstIntroText: $isFirstIntroText, isIntroImageChange: $isIntroImageChange, isIntroImageinit: $isIntroImageinit, isIntroImageChange2: $isIntroImageChange2, isMenuClicked: $isMenuClicked, isPageTransition: $isPageTransition, isTitelTextAniStart: $isTitelTextAniStart, isChapterContainerAniStart: $isChapterContainerAniStart, isHome: $isHome, isMobileDialog: $isMobileDialog)';
   }
 
   @override
@@ -334,8 +372,12 @@ class _$IntroModelImpl implements _IntroModel {
                 other.isTitelText == isTitelText) &&
             (identical(other.isFirstIntroText, isFirstIntroText) ||
                 other.isFirstIntroText == isFirstIntroText) &&
-            (identical(other.isIntroImage, isIntroImage) ||
-                other.isIntroImage == isIntroImage) &&
+            (identical(other.isIntroImageChange, isIntroImageChange) ||
+                other.isIntroImageChange == isIntroImageChange) &&
+            (identical(other.isIntroImageinit, isIntroImageinit) ||
+                other.isIntroImageinit == isIntroImageinit) &&
+            (identical(other.isIntroImageChange2, isIntroImageChange2) ||
+                other.isIntroImageChange2 == isIntroImageChange2) &&
             (identical(other.isMenuClicked, isMenuClicked) ||
                 other.isMenuClicked == isMenuClicked) &&
             (identical(other.isPageTransition, isPageTransition) ||
@@ -360,7 +402,9 @@ class _$IntroModelImpl implements _IntroModel {
     isDescription,
     isTitelText,
     isFirstIntroText,
-    isIntroImage,
+    isIntroImageChange,
+    isIntroImageinit,
+    isIntroImageChange2,
     isMenuClicked,
     isPageTransition,
     isTitelTextAniStart,
@@ -384,7 +428,9 @@ abstract class _IntroModel implements IntroModel {
     final bool isDescription,
     final bool isTitelText,
     final bool isFirstIntroText,
-    final bool isIntroImage,
+    final bool isIntroImageChange,
+    final bool isIntroImageinit,
+    final bool isIntroImageChange2,
     final bool isMenuClicked,
     final bool isPageTransition,
     final bool isTitelTextAniStart,
@@ -402,7 +448,11 @@ abstract class _IntroModel implements IntroModel {
   @override
   bool get isFirstIntroText; // 인트로 배경화면 변경
   @override
-  bool get isIntroImage; //메뉴 클릭 여부
+  bool get isIntroImageChange;
+  @override
+  bool get isIntroImageinit;
+  @override
+  bool get isIntroImageChange2; //메뉴 클릭 여부
   @override
   bool get isMenuClicked; // 화면 전환
   @override

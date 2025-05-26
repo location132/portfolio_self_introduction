@@ -35,21 +35,22 @@ class MobileCubit extends Cubit<MobileState> {
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
       ),
     );
-    await Future.delayed(const Duration(milliseconds: 100));
+    await Future.delayed(const Duration(milliseconds: 500));
+    aboutMePlayerAni(true);
+
     emit(
       state.copyWith(
         initModel: state.initModel.copyWith(isMobileInit: true),
         introModel: state.introModel.copyWith(isDeviceSelector: true),
       ),
     );
-
     await Future.delayed(const Duration(milliseconds: 300));
     emit(
       state.copyWith(
         introModel: state.introModel.copyWith(isDescription: true),
       ),
     );
-    await Future.delayed(const Duration(milliseconds: 300));
+    await Future.delayed(const Duration(milliseconds: 400));
     emit(
       state.copyWith(
         introModel: state.introModel.copyWith(
@@ -59,10 +60,18 @@ class MobileCubit extends Cubit<MobileState> {
         ),
       ),
     );
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(milliseconds: 500));
     emit(
       state.copyWith(
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
+        introModel: state.introModel.copyWith(isIntroImageinit: true),
+      ),
+    );
+    aboutMePlayerAni(false);
+    await Future.delayed(const Duration(milliseconds: 1100));
+    emit(
+      state.copyWith(
+        introModel: state.introModel.copyWith(isIntroImageChange2: true),
       ),
     );
   }
@@ -96,13 +105,16 @@ class MobileCubit extends Cubit<MobileState> {
     await Future.delayed(const Duration(milliseconds: 500));
     emit(
       state.copyWith(
-        introModel: state.introModel.copyWith(isIntroImage: true),
+        introModel: state.introModel.copyWith(
+          isIntroImageChange: true,
+          isFirstIntroText: false,
+        ),
         isPlayerText: '지금 바로 시작합니다.',
       ),
     );
-    await Future.delayed(const Duration(milliseconds: 550));
+    await Future.delayed(const Duration(milliseconds: 750));
     aboutMePlayerAni(true);
-    await Future.delayed(const Duration(milliseconds: 1850));
+    await Future.delayed(const Duration(milliseconds: 1750));
     aboutMePlayerAni(false);
     //=======================
     emit(

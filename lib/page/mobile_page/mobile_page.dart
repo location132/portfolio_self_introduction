@@ -5,7 +5,7 @@ import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/intro_view/intro_page.dart';
-import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/widget/%08player.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/widget/player.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/main_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/navi_bar.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
@@ -112,7 +112,8 @@ class _MobileViewState extends State<_MobileView> {
                           AnimatedOpacity(
                             opacity:
                                 state.introModel.isPageTransition ? 0.0 : 1.0,
-                            duration: const Duration(milliseconds: 1000),
+                            duration: const Duration(milliseconds: 600),
+                            curve: Curves.easeInOut,
                             child: Visibility(
                               visible: !state.aboutMeModel.isVisible,
                               child: IntroPage(
@@ -122,11 +123,12 @@ class _MobileViewState extends State<_MobileView> {
                             ),
                           ),
                           Visibility(
-                            visible: state.introModel.isIntroImage,
+                            visible: state.introModel.isIntroImageChange,
                             child: AnimatedOpacity(
                               opacity:
                                   state.introModel.isPageTransition ? 1.0 : 0.0,
-                              duration: const Duration(milliseconds: 1000),
+                              duration: const Duration(milliseconds: 600),
+                              curve: Curves.easeInOut,
                               child: MainPage(
                                 key: const ValueKey('main'),
                                 cubit: context.read<MobileCubit>(),

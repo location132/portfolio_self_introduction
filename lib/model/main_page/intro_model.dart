@@ -11,7 +11,9 @@ class IntroModel with _$IntroModel {
     @Default(false) bool isFirstIntroText,
 
     // 인트로 배경화면 변경
-    @Default(false) bool isIntroImage,
+    @Default(false) bool isIntroImageChange,
+    @Default(false) bool isIntroImageinit,
+    @Default(false) bool isIntroImageChange2,
 
     //메뉴 클릭 여부
     @Default(false) bool isMenuClicked,

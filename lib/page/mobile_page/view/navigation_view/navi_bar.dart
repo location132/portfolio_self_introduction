@@ -42,44 +42,47 @@ class _NaviBarState extends State<NaviBar> with SingleTickerProviderStateMixin {
         ),
         SizedBox(height: 30.h),
         AnimatedContainer(
-          duration: const Duration(milliseconds: 500),
+          duration: const Duration(milliseconds: 700),
           height: widget.isDescription ? 100.h : 0,
-          child: SingleChildScrollView(
-            child: Container(
-              width: double.infinity,
-              color: const Color.fromARGB(255, 234, 233, 233),
-              padding: EdgeInsets.only(left: 8.w, right: 8.w, top: 8.h),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    '2025년 포트폴리오 모바일 버전에서는\n'
-                    '최적화를 위해 데스크탑View보다 적은 애니메이션을',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 11.0.sp),
-                  ),
-                  Wrap(
-                    alignment: WrapAlignment.center,
-                    children: [
-                      Text('사용중입니다.', style: TextStyle(fontSize: 11.0.sp)),
-                      SizedBox(width: 10.w),
-                      InkWell(
-                        onTap: () {
-                          debugPrint('더 알아보기 클릭됨');
-                        },
-                        child: Text(
-                          '더 알아보기 >',
-                          style: TextStyle(
-                            color: Colors.blue,
-                            fontSize: 11.0.sp,
+          child: ListView(
+            physics: const NeverScrollableScrollPhysics(),
+            children: [
+              Container(
+                width: double.infinity,
+                color: const Color.fromARGB(255, 234, 233, 233),
+                padding: EdgeInsets.only(left: 8.w, right: 8.w, top: 8.h),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      '2025년 포트폴리오 모바일 버전에서는\n'
+                      '최적화를 위해 데스크탑View보다 적은 애니메이션을',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 11.0.sp),
+                    ),
+                    Wrap(
+                      alignment: WrapAlignment.center,
+                      children: [
+                        Text('사용중입니다.', style: TextStyle(fontSize: 11.0.sp)),
+                        SizedBox(width: 10.w),
+                        InkWell(
+                          onTap: () {
+                            debugPrint('더 알아보기 클릭됨');
+                          },
+                          child: Text(
+                            '더 알아보기 >',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontSize: 11.0.sp,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ],

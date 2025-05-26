@@ -232,7 +232,7 @@ class _$MobileStateImpl implements _MobileState {
     this.introModel = const IntroModel(),
     this.scrollModel = const ScrollModel(),
     this.aboutMeModel = const AboutMeModel(),
-    this.isPlayerText = '',
+    this.isPlayerText = '잠시만 기다려주세요.',
   });
 
   @override
