@@ -50,7 +50,10 @@ class _ChapterPageState extends State<ChapterPage> {
           opacity: isChapterAniStart ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 800),
           curve: Curves.easeInOut,
-          child: ChapterCard(isBackGroundAniStart: widget.isBackGroundAniStart),
+          child: ChapterCard(
+            isChapterContainerAniStart: widget.isChapterContainerAniStart,
+            isBackGroundAniStart: widget.isBackGroundAniStart,
+          ),
         ),
       ],
     );

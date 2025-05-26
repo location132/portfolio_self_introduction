@@ -109,28 +109,34 @@ class _MobileViewState extends State<_MobileView> {
                           //   isChapterContainerAniStart:
                           //       state.introModel.isChapterContainerAniStart,
                           // ),
-                          AnimatedSwitcher(
+                          AnimatedOpacity(
+                            opacity:
+                                state.introModel.isPageTransition ? 0.0 : 1.0,
                             duration: const Duration(milliseconds: 1000),
-                            child:
-                                state.introModel.isPageTransition
-                                    ? MainPage(
-                                      key: const ValueKey('main'),
-                                      cubit: context.read<MobileCubit>(),
-                                      aboutMeState: state.aboutMeModel,
-                                      isTitelTextAniStart:
-                                          state.introModel.isTitelTextAniStart,
-                                      isChapterContainerAniStart:
-                                          state
-                                              .introModel
-                                              .isChapterContainerAniStart,
-                                    )
-                                    : Visibility(
-                                      visible: !state.aboutMeModel.isVisible,
-                                      child: IntroPage(
-                                        key: const ValueKey('intro'),
-                                        introModel: state.introModel,
-                                      ),
-                                    ),
+                            child: Visibility(
+                              visible: !state.aboutMeModel.isVisible,
+                              child: IntroPage(
+                                key: const ValueKey('intro'),
+                                introModel: state.introModel,
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: state.introModel.isIntroImage,
+                            child: AnimatedOpacity(
+                              opacity:
+                                  state.introModel.isPageTransition ? 1.0 : 0.0,
+                              duration: const Duration(milliseconds: 1000),
+                              child: MainPage(
+                                key: const ValueKey('main'),
+                                cubit: context.read<MobileCubit>(),
+                                aboutMeState: state.aboutMeModel,
+                                isTitelTextAniStart:
+                                    state.introModel.isTitelTextAniStart,
+                                isChapterContainerAniStart:
+                                    state.introModel.isChapterContainerAniStart,
+                              ),
+                            ),
                           ),
                         ],
                       ),
