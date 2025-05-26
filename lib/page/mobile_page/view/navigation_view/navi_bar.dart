@@ -56,23 +56,32 @@ class _NaviBarState extends State<NaviBar> with SingleTickerProviderStateMixin {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text(
+                  Text(
                     '2025년 포트폴리오 모바일 버전에서는\n'
                     '최적화를 위해 데스크탑View보다 적은 애니메이션을',
                     textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 11.0.responsiveFont(context)),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('사용중입니다.'),
+                      Text(
+                        '사용중입니다.',
+                        style: TextStyle(
+                          fontSize: 11.0.responsiveFont(context),
+                        ),
+                      ),
                       SizedBox(width: 10.sw),
                       InkWell(
                         onTap: () {
                           debugPrint('더 알아보기 클릭됨');
                         },
-                        child: const Text(
+                        child: Text(
                           '더 알아보기 >',
-                          style: TextStyle(color: Colors.blue),
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontSize: 11.0.responsiveFont(context),
+                          ),
                         ),
                       ),
                     ],

@@ -34,24 +34,21 @@ class MainPage extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: ChapterPage(
-                isTitelTextAniStart: isTitelTextAniStart,
-                isChapterContainerAniStart: isChapterContainerAniStart,
-                isBackGroundAniStart: aboutMeState.isBackGroundAniStart,
-              ),
+            ChapterPage(
+              isTitelTextAniStart: isTitelTextAniStart,
+              isChapterContainerAniStart: isChapterContainerAniStart,
+              isBackGroundAniStart: aboutMeState.isBackGroundAniStart,
             ),
+            const SizedBox(height: 90),
             Visibility(
               visible: aboutMeState.isVisible,
               child: VisibilityDetector(
                 key: const Key('aboutMe-view'),
                 onVisibilityChanged: (VisibilityInfo info) {
-                  if (info.visibleFraction == 1 &&
+                  if (info.visibleFraction > 0.5 &&
                       !aboutMeState.isPlayerAniOpacity) {
                     cubit.aboutMePlayerAni(true);
-                  } else {
+                  } else if (info.visibleFraction < 0.5) {
                     cubit.aboutMePlayerAni(false);
                   }
 

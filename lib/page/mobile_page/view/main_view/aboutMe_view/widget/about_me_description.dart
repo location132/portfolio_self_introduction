@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/widget/mobile_animation/widget_animation.dart';
+import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 
 class AboutMeDescription extends StatelessWidget {
   final bool isBannerAniStart;
@@ -24,10 +25,14 @@ class AboutMeDescription extends StatelessWidget {
           children: [
             const SizedBox(height: 22),
             RichText(
-              text: const TextSpan(
-                style: TextStyle(fontSize: 14, color: Colors.grey, height: 1.5),
+              text: TextSpan(
+                style: TextStyle(
+                  fontSize: 14.0.responsiveFont(context),
+                  color: Colors.grey,
+                  height: 1.5,
+                ),
                 children: [
-                  TextSpan(
+                  const TextSpan(
                     text:
                         ' 이제는 곧잘 잘하는 Flutter 프레임워크에서 협업 툴까지,\n업무에 필요한 부분에대해 뭐든지 십분 해낼 수 있도록\n',
                   ),
@@ -36,9 +41,10 @@ class AboutMeDescription extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
+                      fontSize: 14.0.responsiveFont(context),
                     ),
                   ),
-                  TextSpan(
+                  const TextSpan(
                     text:
                         '\n\n여기에 다양한 개인퍼포먼스 프레임워크가 더해지는 순간\n프로젝트들은 그야말로 훨훨 날아오르죠.',
                   ),

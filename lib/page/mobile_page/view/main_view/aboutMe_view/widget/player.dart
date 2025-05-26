@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
+import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+
 class Player extends StatefulWidget {
   final bool isPlayerAniOpacity;
   final String isPlayerText;
@@ -101,24 +103,24 @@ class _PlayerState extends State<Player> with SingleTickerProviderStateMixin {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                        Colors.white.withOpacity(0.25),
-                        Colors.white.withOpacity(0.15),
+                        Colors.white.withValues(alpha: 0.25),
+                        Colors.white.withValues(alpha: 0.15),
                       ],
                     ),
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      color: Colors.white.withOpacity(0.3),
+                      color: Colors.white.withValues(alpha: 0.3),
                       width: 1,
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.3),
+                        color: Colors.black.withValues(alpha: 0.3),
                         blurRadius: 15 + _blur.value,
                         offset: const Offset(0, 8),
                         spreadRadius: 0,
                       ),
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
+                        color: Colors.black.withValues(alpha: 0.1),
                         blurRadius: 6 + (_blur.value * 0.3),
                         offset: const Offset(0, 2),
                         spreadRadius: -1,
@@ -133,11 +135,11 @@ class _PlayerState extends State<Player> with SingleTickerProviderStateMixin {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: 10.0.responsiveFont(context),
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                         letterSpacing: -0.1,
-                        shadows: [
+                        shadows: const [
                           Shadow(
                             offset: Offset(0, 1),
                             blurRadius: 2,
@@ -156,5 +158,3 @@ class _PlayerState extends State<Player> with SingleTickerProviderStateMixin {
     );
   }
 }
-
-/*'자세한 내용이 궁금하 다면 여기를 가볍게 터치해주세요.',*/

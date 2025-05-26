@@ -1,6 +1,7 @@
 //2줄 타이틀
 
 import 'package:flutter/material.dart';
+import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/mobile_page/animation/intro_ani.dart';
 
 class TwoLineTitle extends StatefulWidget {
@@ -63,8 +64,8 @@ class _TwoLineTitleState extends State<TwoLineTitle>
               opacity: _titleAnimation.opacityShow,
               child: Text(
                 widget.title,
-                style: const TextStyle(
-                  fontSize: 25.0,
+                style: TextStyle(
+                  fontSize: 20.0.responsiveFont(context),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -78,8 +79,8 @@ class _TwoLineTitleState extends State<TwoLineTitle>
                 opacity: _subTitleAnimation.opacityShow,
                 child: Text(
                   widget.subTitle,
-                  style: const TextStyle(
-                    fontSize: 15.0,
+                  style: TextStyle(
+                    fontSize: 13.0.responsiveFont(context),
                     fontWeight: FontWeight.bold,
                   ),
                 ),

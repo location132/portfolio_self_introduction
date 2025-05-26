@@ -125,6 +125,7 @@ class MobileCubit extends Cubit<MobileState> {
         introModel: state.introModel.copyWith(isChapterContainerAniStart: true),
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
         aboutMeModel: state.aboutMeModel.copyWith(isVisible: true),
+        isPlayerText: '자세한 내용이 궁금하다면 여기를 클릭해주세요.',
       ),
     );
   }
@@ -143,6 +144,7 @@ class MobileCubit extends Cubit<MobileState> {
           isFirstIntroText: false,
         ),
         initModel: state.initModel.copyWith(isMobileInit: false),
+        isPlayerText: '지금 바로 시작합니다.',
       ),
     );
     final ctrl = state.scrollModel.scrollController;
