@@ -18,7 +18,7 @@ class AboutMePage extends StatelessWidget {
         OneLineTitle(
           isTitelTextAniStart: state.isTitleAniStart,
           isReverse: !state.isBackGroundAniStart,
-          duration: 420,
+          duration: 620,
           title: '일단 핵심부터',
           color: const Color.fromARGB(255, 255, 255, 255),
         ),

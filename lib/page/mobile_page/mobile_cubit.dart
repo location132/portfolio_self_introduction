@@ -63,17 +63,17 @@ class MobileCubit extends Cubit<MobileState> {
     await Future.delayed(const Duration(milliseconds: 500));
     emit(
       state.copyWith(
-        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
         introModel: state.introModel.copyWith(isIntroImageinit: true),
       ),
     );
-    aboutMePlayerAni(false);
     await Future.delayed(const Duration(milliseconds: 1100));
     emit(
       state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
         introModel: state.introModel.copyWith(isIntroImageChange2: true),
       ),
     );
+    aboutMePlayerAni(false);
   }
 
   //메뉴 클릭
@@ -109,7 +109,7 @@ class MobileCubit extends Cubit<MobileState> {
           isIntroImageChange: true,
           isFirstIntroText: false,
         ),
-        isPlayerText: '지금 바로 시작합니다.',
+        isPlayerText: '제 소개 지금 바로 시작합니다!',
       ),
     );
     await Future.delayed(const Duration(milliseconds: 750));
@@ -136,7 +136,6 @@ class MobileCubit extends Cubit<MobileState> {
         introModel: state.introModel.copyWith(isChapterContainerAniStart: true),
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
         aboutMeModel: state.aboutMeModel.copyWith(isVisible: true),
-        isPlayerText: '화면을 옆으로 넘겨 다양한 내용을 확인하실 수 있습니다.',
       ),
     );
   }
@@ -182,8 +181,10 @@ class MobileCubit extends Cubit<MobileState> {
         aboutMeModel: state.aboutMeModel.copyWith(
           isBackGroundAniStart: isBackGroundAniStart,
         ),
+        isPlayerText: '화면을 옆으로 넘겨 다양한 이야기를 확인해보세요',
       ),
     );
+
     if (isBackGroundAniStart) {
       aboutMeAniStart(true);
     } else {
