@@ -54,18 +54,21 @@ class _OneLineTitleState extends State<OneLineTitle>
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 40.0, left: 32),
-      child: SlideTransition(
-        position: _titleAnimation.moveShow,
-        child: FadeTransition(
-          opacity: _titleAnimation.opacityShow,
-          child: Text(
-            widget.title,
-            style: TextStyle(
-              fontSize: 25.sp,
-              color: widget.color ?? Colors.black,
-              fontWeight: FontWeight.bold,
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 40.0, left: 32),
+        child: SlideTransition(
+          position: _titleAnimation.moveShow,
+          child: FadeTransition(
+            opacity: _titleAnimation.opacityShow,
+            child: Text(
+              widget.title,
+              style: TextStyle(
+                fontSize: 25.sp,
+                color: widget.color ?? Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),

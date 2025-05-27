@@ -18,24 +18,6 @@ class ChapterPage extends StatefulWidget {
 }
 
 class _ChapterPageState extends State<ChapterPage> {
-  bool isChapterAniStart = false;
-  @override
-  void didUpdateWidget(covariant ChapterPage oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    if (widget.isChapterContainerAniStart) {
-      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        setState(() {
-          isChapterAniStart = true;
-        });
-      });
-    } else {
-      setState(() {
-        isChapterAniStart = false;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -47,7 +29,7 @@ class _ChapterPageState extends State<ChapterPage> {
         ),
         const SizedBox(height: 30),
         AnimatedOpacity(
-          opacity: isChapterAniStart ? 1.0 : 0.1,
+          opacity: widget.isChapterContainerAniStart ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 800),
           curve: Curves.easeInOut,
           child: ChapterCard(isBackGroundAniStart: widget.isBackGroundAniStart),

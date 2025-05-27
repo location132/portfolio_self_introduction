@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'dart:ui';
 
 class Player extends StatefulWidget {
   final bool isPlayerAniOpacity;
@@ -17,7 +16,6 @@ class Player extends StatefulWidget {
 
 class _PlayerState extends State<Player> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-
   late Animation<double> _width;
   late Animation<double> _containerOpacity;
   late Animation<double> _textOpacity;
@@ -93,63 +91,41 @@ class _PlayerState extends State<Player> with SingleTickerProviderStateMixin {
           child: Center(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                child: Container(
-                  width: _width.value,
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 14,
-                    horizontal: 20,
+              child: Container(
+                width: _width.value,
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: Colors.white.withValues(alpha: 0.3),
+                    width: 1,
                   ),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Colors.white.withValues(alpha: 0.25),
-                        Colors.white.withValues(alpha: 0.15),
-                      ],
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.3),
+                      blurRadius: 15 + _blur.value,
+                      offset: const Offset(0, 8),
+                      spreadRadius: 0,
                     ),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: Colors.white.withValues(alpha: 0.3),
-                      width: 1,
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.1),
+                      blurRadius: 6 + (_blur.value * 0.3),
+                      offset: const Offset(0, 2),
+                      spreadRadius: -1,
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.3),
-                        blurRadius: 15 + _blur.value,
-                        offset: const Offset(0, 8),
-                        spreadRadius: 0,
-                      ),
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.1),
-                        blurRadius: 6 + (_blur.value * 0.3),
-                        offset: const Offset(0, 2),
-                        spreadRadius: -1,
-                      ),
-                    ],
-                  ),
-                  child: Opacity(
-                    opacity: _textOpacity.value,
-                    child: Text(
-                      widget.isPlayerText,
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 10.0.sp,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: -0.1,
-                        shadows: const [
-                          Shadow(
-                            offset: Offset(0, 1),
-                            blurRadius: 2,
-                            color: Colors.black26,
-                          ),
-                        ],
-                      ),
+                  ],
+                ),
+                child: Opacity(
+                  opacity: _textOpacity.value,
+                  child: Text(
+                    widget.isPlayerText,
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 12.0.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),

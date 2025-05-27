@@ -132,7 +132,6 @@ class SelectTapItem extends StatelessWidget {
         ),
         const SizedBox(height: 40),
         MyStack(myStackTitle: myStackTitle, myStack: myStack),
-        const SizedBox(height: 20),
       ],
     );
   }

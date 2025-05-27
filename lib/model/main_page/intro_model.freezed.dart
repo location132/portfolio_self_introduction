@@ -30,7 +30,7 @@ mixin _$IntroModel {
   bool get isTitelTextAniStart => throw _privateConstructorUsedError;
   bool get isChapterContainerAniStart => throw _privateConstructorUsedError;
   bool get isHome => throw _privateConstructorUsedError; // 모바일 디바이스 안내 다이얼로그
-  MobileDialogType get isMobileDialog => throw _privateConstructorUsedError;
+  bool get isIntroInActive => throw _privateConstructorUsedError;
 
   /// Create a copy of IntroModel
   /// with the given fields replaced by the non-null parameter values.
@@ -59,7 +59,7 @@ abstract class $IntroModelCopyWith<$Res> {
     bool isTitelTextAniStart,
     bool isChapterContainerAniStart,
     bool isHome,
-    MobileDialogType isMobileDialog,
+    bool isIntroInActive,
   });
 }
 
@@ -90,7 +90,7 @@ class _$IntroModelCopyWithImpl<$Res, $Val extends IntroModel>
     Object? isTitelTextAniStart = null,
     Object? isChapterContainerAniStart = null,
     Object? isHome = null,
-    Object? isMobileDialog = null,
+    Object? isIntroInActive = null,
   }) {
     return _then(
       _value.copyWith(
@@ -154,11 +154,11 @@ class _$IntroModelCopyWithImpl<$Res, $Val extends IntroModel>
                     ? _value.isHome
                     : isHome // ignore: cast_nullable_to_non_nullable
                         as bool,
-            isMobileDialog:
-                null == isMobileDialog
-                    ? _value.isMobileDialog
-                    : isMobileDialog // ignore: cast_nullable_to_non_nullable
-                        as MobileDialogType,
+            isIntroInActive:
+                null == isIntroInActive
+                    ? _value.isIntroInActive
+                    : isIntroInActive // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -187,7 +187,7 @@ abstract class _$$IntroModelImplCopyWith<$Res>
     bool isTitelTextAniStart,
     bool isChapterContainerAniStart,
     bool isHome,
-    MobileDialogType isMobileDialog,
+    bool isIntroInActive,
   });
 }
 
@@ -217,7 +217,7 @@ class __$$IntroModelImplCopyWithImpl<$Res>
     Object? isTitelTextAniStart = null,
     Object? isChapterContainerAniStart = null,
     Object? isHome = null,
-    Object? isMobileDialog = null,
+    Object? isIntroInActive = null,
   }) {
     return _then(
       _$IntroModelImpl(
@@ -281,11 +281,11 @@ class __$$IntroModelImplCopyWithImpl<$Res>
                 ? _value.isHome
                 : isHome // ignore: cast_nullable_to_non_nullable
                     as bool,
-        isMobileDialog:
-            null == isMobileDialog
-                ? _value.isMobileDialog
-                : isMobileDialog // ignore: cast_nullable_to_non_nullable
-                    as MobileDialogType,
+        isIntroInActive:
+            null == isIntroInActive
+                ? _value.isIntroInActive
+                : isIntroInActive // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -307,7 +307,7 @@ class _$IntroModelImpl implements _IntroModel {
     this.isTitelTextAniStart = false,
     this.isChapterContainerAniStart = false,
     this.isHome = false,
-    this.isMobileDialog = MobileDialogType.none,
+    this.isIntroInActive = false,
   });
 
   @override
@@ -352,11 +352,11 @@ class _$IntroModelImpl implements _IntroModel {
   // 모바일 디바이스 안내 다이얼로그
   @override
   @JsonKey()
-  final MobileDialogType isMobileDialog;
+  final bool isIntroInActive;
 
   @override
   String toString() {
-    return 'IntroModel(isDeviceSelector: $isDeviceSelector, isDescription: $isDescription, isTitelText: $isTitelText, isFirstIntroText: $isFirstIntroText, isIntroImageChange: $isIntroImageChange, isIntroImageinit: $isIntroImageinit, isIntroImageChange2: $isIntroImageChange2, isMenuClicked: $isMenuClicked, isPageTransition: $isPageTransition, isTitelTextAniStart: $isTitelTextAniStart, isChapterContainerAniStart: $isChapterContainerAniStart, isHome: $isHome, isMobileDialog: $isMobileDialog)';
+    return 'IntroModel(isDeviceSelector: $isDeviceSelector, isDescription: $isDescription, isTitelText: $isTitelText, isFirstIntroText: $isFirstIntroText, isIntroImageChange: $isIntroImageChange, isIntroImageinit: $isIntroImageinit, isIntroImageChange2: $isIntroImageChange2, isMenuClicked: $isMenuClicked, isPageTransition: $isPageTransition, isTitelTextAniStart: $isTitelTextAniStart, isChapterContainerAniStart: $isChapterContainerAniStart, isHome: $isHome, isIntroInActive: $isIntroInActive)';
   }
 
   @override
@@ -391,8 +391,8 @@ class _$IntroModelImpl implements _IntroModel {
                 other.isChapterContainerAniStart ==
                     isChapterContainerAniStart) &&
             (identical(other.isHome, isHome) || other.isHome == isHome) &&
-            (identical(other.isMobileDialog, isMobileDialog) ||
-                other.isMobileDialog == isMobileDialog));
+            (identical(other.isIntroInActive, isIntroInActive) ||
+                other.isIntroInActive == isIntroInActive));
   }
 
   @override
@@ -410,7 +410,7 @@ class _$IntroModelImpl implements _IntroModel {
     isTitelTextAniStart,
     isChapterContainerAniStart,
     isHome,
-    isMobileDialog,
+    isIntroInActive,
   );
 
   /// Create a copy of IntroModel
@@ -436,7 +436,7 @@ abstract class _IntroModel implements IntroModel {
     final bool isTitelTextAniStart,
     final bool isChapterContainerAniStart,
     final bool isHome,
-    final MobileDialogType isMobileDialog,
+    final bool isIntroInActive,
   }) = _$IntroModelImpl;
 
   @override
@@ -464,7 +464,7 @@ abstract class _IntroModel implements IntroModel {
   @override
   bool get isHome; // 모바일 디바이스 안내 다이얼로그
   @override
-  MobileDialogType get isMobileDialog;
+  bool get isIntroInActive;
 
   /// Create a copy of IntroModel
   /// with the given fields replaced by the non-null parameter values.

@@ -25,7 +25,7 @@ class IntroModel with _$IntroModel {
     @Default(false) bool isHome,
 
     // 모바일 디바이스 안내 다이얼로그
-    @Default(MobileDialogType.none) MobileDialogType isMobileDialog,
+    @Default(false) bool isIntroInActive,
   }) = _IntroModel;
 }
 

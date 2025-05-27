@@ -4,20 +4,13 @@ import 'package:self_introduction_flutter/components/widget/mobile_animation/wid
 
 class AboutMeDescription extends StatelessWidget {
   final bool isBannerAniStart;
-  final bool isBackGroundAniStart;
 
-  const AboutMeDescription({
-    super.key,
-
-    required this.isBannerAniStart,
-    required this.isBackGroundAniStart,
-  });
+  const AboutMeDescription({super.key, required this.isBannerAniStart});
 
   @override
   Widget build(BuildContext context) {
     return WidgetAnimation(
       isStart: isBannerAniStart,
-      isReverse: isBackGroundAniStart,
       duration: 420,
       beginDy: 0.2,
       child: Padding(

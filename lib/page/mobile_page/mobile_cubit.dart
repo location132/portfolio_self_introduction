@@ -67,13 +67,13 @@ class MobileCubit extends Cubit<MobileState> {
       ),
     );
     await Future.delayed(const Duration(milliseconds: 1100));
+    aboutMePlayerAni(false);
     emit(
       state.copyWith(
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
         introModel: state.introModel.copyWith(isIntroImageChange2: true),
       ),
     );
-    aboutMePlayerAni(false);
   }
 
   //메뉴 클릭
@@ -115,7 +115,6 @@ class MobileCubit extends Cubit<MobileState> {
     await Future.delayed(const Duration(milliseconds: 750));
     aboutMePlayerAni(true);
     await Future.delayed(const Duration(milliseconds: 1750));
-    aboutMePlayerAni(false);
     //=======================
     emit(
       state.copyWith(
@@ -126,16 +125,24 @@ class MobileCubit extends Cubit<MobileState> {
     await Future.delayed(const Duration(milliseconds: 400));
     emit(
       state.copyWith(
-        introModel: state.introModel.copyWith(isTitelTextAniStart: true),
+        introModel: state.introModel.copyWith(
+          isTitelTextAniStart: true,
+          isIntroInActive: true,
+        ),
       ),
     );
-
-    await Future.delayed(const Duration(milliseconds: 600));
+    await Future.delayed(const Duration(milliseconds: 300));
     emit(
       state.copyWith(
         introModel: state.introModel.copyWith(isChapterContainerAniStart: true),
-        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 900));
+    aboutMePlayerAni(false);
+    emit(
+      state.copyWith(
         aboutMeModel: state.aboutMeModel.copyWith(isVisible: true),
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
       ),
     );
   }
@@ -152,6 +159,7 @@ class MobileCubit extends Cubit<MobileState> {
           isDeviceSelector: false,
           isTitelText: false,
           isFirstIntroText: false,
+          isIntroInActive: false,
         ),
         initModel: state.initModel.copyWith(isMobileInit: false),
         isPlayerText: '지금 바로 시작합니다.',
@@ -217,6 +225,28 @@ class MobileCubit extends Cubit<MobileState> {
     emit(
       state.copyWith(
         aboutMeModel: state.aboutMeModel.copyWith(isPlayerAniOpacity: isStart),
+      ),
+    );
+  }
+
+  // detailMe ani
+  void detailMePageStart(bool isDetailMe) {
+    if (state.detailMeModel.isDetailMe == isDetailMe) return;
+
+    emit(
+      state.copyWith(
+        detailMeModel: state.detailMeModel.copyWith(isDetailMe: isDetailMe),
+      ),
+    );
+    aboutMePlayerAni(false);
+  }
+
+  // detailMe image ani
+  void detailMeImageAni() async {
+    await Future.delayed(const Duration(milliseconds: 300));
+    emit(
+      state.copyWith(
+        detailMeModel: state.detailMeModel.copyWith(isDetailMeRiveStart: true),
       ),
     );
   }

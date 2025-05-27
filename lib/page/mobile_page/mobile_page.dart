@@ -104,6 +104,7 @@ class _MobileViewState extends State<_MobileView> {
                           //   key: const ValueKey('main'),
                           //   cubit: context.read<MobileCubit>(),
                           //   aboutMeState: state.aboutMeModel,
+                          //   detailMeState: state.detailMeModel,
                           //   isTitelTextAniStart:
                           //       state.introModel.isTitelTextAniStart,
                           //   isChapterContainerAniStart:
@@ -115,7 +116,7 @@ class _MobileViewState extends State<_MobileView> {
                             duration: const Duration(milliseconds: 600),
                             curve: Curves.easeInOut,
                             child: Visibility(
-                              visible: !state.aboutMeModel.isVisible,
+                              visible: !state.introModel.isIntroInActive,
                               child: IntroPage(
                                 key: const ValueKey('intro'),
                                 introModel: state.introModel,
@@ -133,6 +134,7 @@ class _MobileViewState extends State<_MobileView> {
                                 key: const ValueKey('main'),
                                 cubit: context.read<MobileCubit>(),
                                 aboutMeState: state.aboutMeModel,
+                                detailMeState: state.detailMeModel,
                                 isTitelTextAniStart:
                                     state.introModel.isTitelTextAniStart,
                                 isChapterContainerAniStart:
