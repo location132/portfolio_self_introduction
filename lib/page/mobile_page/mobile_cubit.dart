@@ -249,16 +249,13 @@ class MobileCubit extends Cubit<MobileState> {
         detailMeModel: state.detailMeModel.copyWith(isDetailMeRiveStart: true),
       ),
     );
-    await Future.delayed(const Duration(milliseconds: 1500));
-    emit(
-      state.copyWith(
-        detailMeModel: state.detailMeModel.copyWith(isAppPageStart: true),
-      ),
-    );
     await Future.delayed(const Duration(milliseconds: 900));
     emit(
       state.copyWith(
-        detailMeModel: state.detailMeModel.copyWith(isAppPageTextStart: true),
+        detailMeModel: state.detailMeModel.copyWith(
+          isAppPageStart: true,
+          isAppPageTextStart: true,
+        ),
       ),
     );
   }

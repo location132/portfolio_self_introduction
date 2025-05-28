@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/rive/mobile_detail.dart';
 import 'package:self_introduction_flutter/components/widget/mobile_animation/one_line_title.dart';
 import 'package:self_introduction_flutter/model/mobile_page/detailMe_model.dart';
-import 'package:self_introduction_flutter/page/mobile_page/view/main_view/detail_view/widget/app_page.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/main_view/detail_view/app_screen.dart';
 
 class DetailmePage extends StatelessWidget {
   final DetailMeModel state;
@@ -31,7 +31,7 @@ class DetailmePage extends StatelessWidget {
           MobileDetailRive(isStartAni: state.isDetailMeRiveStart),
           Align(
             alignment: Alignment.bottomCenter,
-            child: AppPage(
+            child: AppScreen(
               isAppPageStart: state.isAppPageStart,
               isAppPageTextStart: state.isAppPageTextStart,
             ),

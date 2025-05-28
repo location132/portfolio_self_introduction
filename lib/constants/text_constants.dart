@@ -198,3 +198,37 @@ class SelectTapTextConstants {
   static const String myStack5 =
       '   Git    /    GitHubDesktop    /    Figma    /    Notion    /    Slack\n';
 }
+
+class PatternTextConstants {
+  static const List<Map<String, String>> patterns = [
+    {
+      'title': 'Clean Architecture Pattern',
+      'desc':
+          'Cubit → Service → Repository → (API: RemoteSource → Dio → Response) 또는 (로컬: LocalSource → Isar) → Model → State → View',
+    },
+    {
+      'title': 'DI Pattern',
+      'desc':
+          'get_it과 injectable 어노테이션을 통해 의존 객체를 자동 등록하여 전역에서 사용할 수 있도록 설계하고 있습니다.',
+    },
+    {
+      'title': 'Cubit Pattern',
+      'desc': 'View와 상태를 분리해 코드 가독성과 유지보수를 높입니다. 모든 프로젝트에 적용 중인 핵심 패턴입니다.',
+    },
+    {
+      'title': 'MVVM Pattern',
+      'desc':
+          'View와 모델을 freezed로 분리해 테스트 용이하고 유지보수가 용이합니다. 모든 프로젝트에 적용 중인 핵심 패턴입니다.',
+    },
+    {
+      'title': 'Singleton Pattern',
+      'desc': '전역에서 한 인스턴스를 공유해 무결성을 유지해 사용하고 있습니다.',
+    },
+  ];
+
+  static const String patternTitle = 'Pattern';
+  static const String click = '자세한 내용이 궁금하시다면 Click!';
+  static const String highlight = '  Highlight: ';
+  static const String highlightDescription =
+      ' 프로젝트를 진행할 때\n   제가 가장 많이 사용하는 패턴을 소개합니다.';
+}

@@ -6,6 +6,8 @@ import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/intro_view/intro_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/widget/player.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/main_view/detail_view/app_screen.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/main_view/detail_view/widget/app_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/main_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/navi_bar.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
@@ -99,17 +101,23 @@ class _MobileViewState extends State<_MobileView> {
                               },
                             ),
                           ),
-
-                          MainPage(
-                            key: const ValueKey('main'),
-                            cubit: context.read<MobileCubit>(),
-                            aboutMeState: state.aboutMeModel,
-                            detailMeState: state.detailMeModel,
-                            isTitelTextAniStart:
-                                state.introModel.isTitelTextAniStart,
-                            isChapterContainerAniStart:
-                                state.introModel.isChapterContainerAniStart,
+                          AppScreen(
+                            isAppPageStart: true,
+                            isAppPageTextStart: true,
                           ),
+                          //-----------
+                          // MainPage(
+                          //   key: const ValueKey('main'),
+                          //   cubit: context.read<MobileCubit>(),
+                          //   aboutMeState: state.aboutMeModel,
+                          //   detailMeState: state.detailMeModel,
+                          //   isTitelTextAniStart:
+                          //       state.introModel.isTitelTextAniStart,
+                          //   isChapterContainerAniStart:
+                          //       state.introModel.isChapterContainerAniStart,
+                          // ),
+
+                          //--------------------
                           // AnimatedOpacity(
                           //   opacity:
                           //       state.introModel.isPageTransition ? 0.0 : 1.0,

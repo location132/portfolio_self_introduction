@@ -1,146 +1,69 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:self_introduction_flutter/components/widget/mobile_animation/widget_animation.dart';
 
-class AppPage extends StatelessWidget {
-  final bool isAppPageStart;
-  final bool isAppPageTextStart;
-  const AppPage({
-    super.key,
-    required this.isAppPageStart,
-    required this.isAppPageTextStart,
-  });
+class SelectButton extends StatelessWidget {
+  const SelectButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final containerWidth = MediaQuery.of(context).size.height * 0.435;
-
-    return WidgetAnimation(
-      isStart: isAppPageStart,
-      beginDy: 0.07,
+    return Padding(
+      padding: const EdgeInsets.only(left: 15),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: MediaQuery.of(context).size.height * 0.15),
-          Container(
-            height: MediaQuery.of(context).size.height * 0.7,
-            width: containerWidth,
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                const SizedBox(height: 30),
-                Text(
-                  '개발 & 코딩 기술',
-                  style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildSkillCategory('상태관리 & 아키텍처', [
-                          'Cubit - 상태관리 패턴',
-                          'BLoC - 비즈니스 로직 분리',
-                          'MVVM - 아키텍처 패턴',
-                          'Provider - 상태관리',
-                        ]),
-                        const SizedBox(height: 25),
-                        _buildSkillCategory('네트워킹 & 데이터', [
-                          'DIO - HTTP 클라이언트',
-                          'JSON - 데이터 직렬화',
-                          'REST API - 서버 통신',
-                          'Freezed - 불변 클래스',
-                        ]),
-                        const SizedBox(height: 25),
-                        _buildSkillCategory('UI/UX & 애니메이션', [
-                          'Rive - 인터랙티브 애니메이션',
-                          'Custom Paint - 커스텀 그래픽',
-                          'Responsive Design - 반응형',
-                          'Flutter Animation - 애니메이션',
-                        ]),
-                        const SizedBox(height: 25),
-                        _buildSkillCategory('개발 도구 & 라이브러리', [
-                          'Get_it - 의존성 주입',
-                          'Injectable - DI 자동화',
-                          'ScreenUtil - 화면 대응',
-                          'Flutter SVG - 벡터 이미지',
-                        ]),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                AnimatedOpacity(
-                  opacity: isAppPageTextStart ? 1 : 0,
-                  duration: const Duration(milliseconds: 500),
-                  child: Text(
-                    '위의 기술들을 활용하여\n다양한 Flutter 프로젝트를\n개발하고 있습니다.',
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
+          Row(
+            children: [
+              Text(
+                '개발 & 패턴',
+                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(width: 10),
+              Text(
+                '상태관리',
+                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(width: 10),
+              Text(
+                '라이브러리',
+                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(width: 10),
+              Text(
+                '협업 툴',
+                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(width: 10),
+              Text(
+            ],
           ),
+          const SizedBox(height: 10),
+          Text(
+            'DI 패턴 ',
+            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            'Cubit 패턴',
+            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            'MVVM 패턴',
+            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            'Singleton 패턴',
+            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            'Clean Architecture',
+            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 10),
         ],
       ),
-    );
-  }
-
-  Widget _buildSkillCategory(String categoryTitle, List<String> skills) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          categoryTitle,
-          style: TextStyle(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.bold,
-            color: Colors.blue[700],
-          ),
-        ),
-        const SizedBox(height: 12),
-        ...skills
-            .map(
-              (skill) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(top: 8),
-                      width: 4,
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: Colors.blue[400],
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        skill,
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          color: Colors.black87,
-                          height: 1.4,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )
-            .toList(),
-      ],
     );
   }
 }
