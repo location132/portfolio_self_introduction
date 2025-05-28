@@ -39,41 +39,41 @@ class MainPage extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ChapterPage(
-              isTitelTextAniStart: isTitelTextAniStart,
-              isChapterContainerAniStart: isChapterContainerAniStart,
-              isBackGroundAniStart: aboutMeState.isBackGroundAniStart,
-            ),
+            // ChapterPage(
+            //   isTitelTextAniStart: isTitelTextAniStart,
+            //   isChapterContainerAniStart: isChapterContainerAniStart,
+            //   isBackGroundAniStart: aboutMeState.isBackGroundAniStart,
+            // ),
             Visibility(
               visible: aboutMeState.isVisible,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  VisibilityDetector(
-                    key: const Key('aboutMe-view'),
-                    onVisibilityChanged: (VisibilityInfo info) {
-                      if (info.visibleFraction > 0.3 &&
-                          !aboutMeState.isPlayerAniOpacity &&
-                          !detailMeState.isDetailMe) {
-                        cubit.aboutMePlayerAni(true);
-                      } else if (info.visibleFraction < 0.2 &&
-                          aboutMeState.isPlayerAniOpacity) {
-                        cubit.aboutMePlayerAni(false);
-                      }
+                  // VisibilityDetector(
+                  //   key: const Key('aboutMe-view'),
+                  //   onVisibilityChanged: (VisibilityInfo info) {
+                  //     if (info.visibleFraction > 0.3 &&
+                  //         !aboutMeState.isPlayerAniOpacity &&
+                  //         !detailMeState.isDetailMe) {
+                  //       cubit.aboutMePlayerAni(true);
+                  //     } else if (info.visibleFraction < 0.2 &&
+                  //         aboutMeState.isPlayerAniOpacity) {
+                  //       cubit.aboutMePlayerAni(false);
+                  //     }
 
-                      if (info.visibleFraction > 0.2 &&
-                          !aboutMeState.isBackGroundAniStart) {
-                        cubit.aboutMeBackGroundColor(true);
-                      } else if (info.visibleFraction < 0.2 &&
-                          aboutMeState.isBackGroundAniStart) {
-                        cubit.aboutMeBackGroundColor(false);
-                      }
-                    },
-                    child: AboutMePage(
-                      state: aboutMeState,
-                      isDetailMeRiveStart: detailMeState.isDetailMeRiveStart,
-                    ),
-                  ),
+                  //     if (info.visibleFraction > 0.2 &&
+                  //         !aboutMeState.isBackGroundAniStart) {
+                  //       cubit.aboutMeBackGroundColor(true);
+                  //     } else if (info.visibleFraction < 0.2 &&
+                  //         aboutMeState.isBackGroundAniStart) {
+                  //       cubit.aboutMeBackGroundColor(false);
+                  //     }
+                  //   },
+                  //   child: AboutMePage(
+                  //     state: aboutMeState,
+                  //     isDetailMeRiveStart: detailMeState.isDetailMeRiveStart,
+                  //   ),
+                  // ),
                   AnimatedOpacity(
                     opacity: detailMeState.isDetailMeRiveStart ? 1 : 0,
                     duration: const Duration(milliseconds: 500),
@@ -89,7 +89,7 @@ class MainPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 40),
                   VisibilityDetector(
                     key: const Key('detailMe-view'),
                     onVisibilityChanged: (VisibilityInfo info) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/rive/mobile_detail.dart';
 import 'package:self_introduction_flutter/components/widget/mobile_animation/one_line_title.dart';
 import 'package:self_introduction_flutter/model/mobile_page/detailMe_model.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/main_view/detail_view/widget/app_page.dart';
 
 class DetailmePage extends StatelessWidget {
   final DetailMeModel state;
@@ -9,8 +10,9 @@ class DetailmePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: MediaQuery.of(context).size.height,
+      constraints: const BoxConstraints(maxHeight: 1000),
       child: Stack(
         children: [
           Positioned(
@@ -27,6 +29,13 @@ class DetailmePage extends StatelessWidget {
             ),
           ),
           MobileDetailRive(isStartAni: state.isDetailMeRiveStart),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: AppPage(
+              isAppPageStart: state.isAppPageStart,
+              isAppPageTextStart: state.isAppPageTextStart,
+            ),
+          ),
         ],
       ),
     );

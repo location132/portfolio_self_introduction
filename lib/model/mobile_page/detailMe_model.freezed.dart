@@ -19,6 +19,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DetailMeModel {
   bool get isDetailMe => throw _privateConstructorUsedError;
   bool get isDetailMeRiveStart => throw _privateConstructorUsedError;
+  bool get isAppPageStart => throw _privateConstructorUsedError;
+  bool get isAppPageTextStart => throw _privateConstructorUsedError;
 
   /// Create a copy of DetailMeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +36,12 @@ abstract class $DetailMeModelCopyWith<$Res> {
     $Res Function(DetailMeModel) then,
   ) = _$DetailMeModelCopyWithImpl<$Res, DetailMeModel>;
   @useResult
-  $Res call({bool isDetailMe, bool isDetailMeRiveStart});
+  $Res call({
+    bool isDetailMe,
+    bool isDetailMeRiveStart,
+    bool isAppPageStart,
+    bool isAppPageTextStart,
+  });
 }
 
 /// @nodoc
@@ -51,7 +58,12 @@ class _$DetailMeModelCopyWithImpl<$Res, $Val extends DetailMeModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? isDetailMe = null, Object? isDetailMeRiveStart = null}) {
+  $Res call({
+    Object? isDetailMe = null,
+    Object? isDetailMeRiveStart = null,
+    Object? isAppPageStart = null,
+    Object? isAppPageTextStart = null,
+  }) {
     return _then(
       _value.copyWith(
             isDetailMe:
@@ -63,6 +75,16 @@ class _$DetailMeModelCopyWithImpl<$Res, $Val extends DetailMeModel>
                 null == isDetailMeRiveStart
                     ? _value.isDetailMeRiveStart
                     : isDetailMeRiveStart // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isAppPageStart:
+                null == isAppPageStart
+                    ? _value.isAppPageStart
+                    : isAppPageStart // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isAppPageTextStart:
+                null == isAppPageTextStart
+                    ? _value.isAppPageTextStart
+                    : isAppPageTextStart // ignore: cast_nullable_to_non_nullable
                         as bool,
           )
           as $Val,
@@ -79,7 +101,12 @@ abstract class _$$DetailMeModelImplCopyWith<$Res>
   ) = __$$DetailMeModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isDetailMe, bool isDetailMeRiveStart});
+  $Res call({
+    bool isDetailMe,
+    bool isDetailMeRiveStart,
+    bool isAppPageStart,
+    bool isAppPageTextStart,
+  });
 }
 
 /// @nodoc
@@ -95,7 +122,12 @@ class __$$DetailMeModelImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? isDetailMe = null, Object? isDetailMeRiveStart = null}) {
+  $Res call({
+    Object? isDetailMe = null,
+    Object? isDetailMeRiveStart = null,
+    Object? isAppPageStart = null,
+    Object? isAppPageTextStart = null,
+  }) {
     return _then(
       _$DetailMeModelImpl(
         isDetailMe:
@@ -108,6 +140,16 @@ class __$$DetailMeModelImplCopyWithImpl<$Res>
                 ? _value.isDetailMeRiveStart
                 : isDetailMeRiveStart // ignore: cast_nullable_to_non_nullable
                     as bool,
+        isAppPageStart:
+            null == isAppPageStart
+                ? _value.isAppPageStart
+                : isAppPageStart // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isAppPageTextStart:
+            null == isAppPageTextStart
+                ? _value.isAppPageTextStart
+                : isAppPageTextStart // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -119,6 +161,8 @@ class _$DetailMeModelImpl implements _DetailMeModel {
   const _$DetailMeModelImpl({
     this.isDetailMe = false,
     this.isDetailMeRiveStart = false,
+    this.isAppPageStart = false,
+    this.isAppPageTextStart = false,
   });
 
   @override
@@ -127,10 +171,16 @@ class _$DetailMeModelImpl implements _DetailMeModel {
   @override
   @JsonKey()
   final bool isDetailMeRiveStart;
+  @override
+  @JsonKey()
+  final bool isAppPageStart;
+  @override
+  @JsonKey()
+  final bool isAppPageTextStart;
 
   @override
   String toString() {
-    return 'DetailMeModel(isDetailMe: $isDetailMe, isDetailMeRiveStart: $isDetailMeRiveStart)';
+    return 'DetailMeModel(isDetailMe: $isDetailMe, isDetailMeRiveStart: $isDetailMeRiveStart, isAppPageStart: $isAppPageStart, isAppPageTextStart: $isAppPageTextStart)';
   }
 
   @override
@@ -141,11 +191,21 @@ class _$DetailMeModelImpl implements _DetailMeModel {
             (identical(other.isDetailMe, isDetailMe) ||
                 other.isDetailMe == isDetailMe) &&
             (identical(other.isDetailMeRiveStart, isDetailMeRiveStart) ||
-                other.isDetailMeRiveStart == isDetailMeRiveStart));
+                other.isDetailMeRiveStart == isDetailMeRiveStart) &&
+            (identical(other.isAppPageStart, isAppPageStart) ||
+                other.isAppPageStart == isAppPageStart) &&
+            (identical(other.isAppPageTextStart, isAppPageTextStart) ||
+                other.isAppPageTextStart == isAppPageTextStart));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isDetailMe, isDetailMeRiveStart);
+  int get hashCode => Object.hash(
+    runtimeType,
+    isDetailMe,
+    isDetailMeRiveStart,
+    isAppPageStart,
+    isAppPageTextStart,
+  );
 
   /// Create a copy of DetailMeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -160,12 +220,18 @@ abstract class _DetailMeModel implements DetailMeModel {
   const factory _DetailMeModel({
     final bool isDetailMe,
     final bool isDetailMeRiveStart,
+    final bool isAppPageStart,
+    final bool isAppPageTextStart,
   }) = _$DetailMeModelImpl;
 
   @override
   bool get isDetailMe;
   @override
   bool get isDetailMeRiveStart;
+  @override
+  bool get isAppPageStart;
+  @override
+  bool get isAppPageTextStart;
 
   /// Create a copy of DetailMeModel
   /// with the given fields replaced by the non-null parameter values.

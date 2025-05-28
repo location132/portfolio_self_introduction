@@ -7,5 +7,7 @@ class DetailMeModel with _$DetailMeModel {
   const factory DetailMeModel({
     @Default(false) bool isDetailMe,
     @Default(false) bool isDetailMeRiveStart,
+    @Default(false) bool isAppPageStart,
+    @Default(false) bool isAppPageTextStart,
   }) = _DetailMeModel;
 }
