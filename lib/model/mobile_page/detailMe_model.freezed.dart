@@ -20,7 +20,7 @@ mixin _$DetailMeModel {
   bool get isDetailMe => throw _privateConstructorUsedError;
   bool get isDetailMeRiveStart => throw _privateConstructorUsedError;
   bool get isAppPageStart => throw _privateConstructorUsedError;
-  bool get isAppPageTextStart => throw _privateConstructorUsedError;
+  bool get isAppPageScrollStart => throw _privateConstructorUsedError;
 
   /// Create a copy of DetailMeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -40,7 +40,7 @@ abstract class $DetailMeModelCopyWith<$Res> {
     bool isDetailMe,
     bool isDetailMeRiveStart,
     bool isAppPageStart,
-    bool isAppPageTextStart,
+    bool isAppPageScrollStart,
   });
 }
 
@@ -62,7 +62,7 @@ class _$DetailMeModelCopyWithImpl<$Res, $Val extends DetailMeModel>
     Object? isDetailMe = null,
     Object? isDetailMeRiveStart = null,
     Object? isAppPageStart = null,
-    Object? isAppPageTextStart = null,
+    Object? isAppPageScrollStart = null,
   }) {
     return _then(
       _value.copyWith(
@@ -81,10 +81,10 @@ class _$DetailMeModelCopyWithImpl<$Res, $Val extends DetailMeModel>
                     ? _value.isAppPageStart
                     : isAppPageStart // ignore: cast_nullable_to_non_nullable
                         as bool,
-            isAppPageTextStart:
-                null == isAppPageTextStart
-                    ? _value.isAppPageTextStart
-                    : isAppPageTextStart // ignore: cast_nullable_to_non_nullable
+            isAppPageScrollStart:
+                null == isAppPageScrollStart
+                    ? _value.isAppPageScrollStart
+                    : isAppPageScrollStart // ignore: cast_nullable_to_non_nullable
                         as bool,
           )
           as $Val,
@@ -105,7 +105,7 @@ abstract class _$$DetailMeModelImplCopyWith<$Res>
     bool isDetailMe,
     bool isDetailMeRiveStart,
     bool isAppPageStart,
-    bool isAppPageTextStart,
+    bool isAppPageScrollStart,
   });
 }
 
@@ -126,7 +126,7 @@ class __$$DetailMeModelImplCopyWithImpl<$Res>
     Object? isDetailMe = null,
     Object? isDetailMeRiveStart = null,
     Object? isAppPageStart = null,
-    Object? isAppPageTextStart = null,
+    Object? isAppPageScrollStart = null,
   }) {
     return _then(
       _$DetailMeModelImpl(
@@ -145,10 +145,10 @@ class __$$DetailMeModelImplCopyWithImpl<$Res>
                 ? _value.isAppPageStart
                 : isAppPageStart // ignore: cast_nullable_to_non_nullable
                     as bool,
-        isAppPageTextStart:
-            null == isAppPageTextStart
-                ? _value.isAppPageTextStart
-                : isAppPageTextStart // ignore: cast_nullable_to_non_nullable
+        isAppPageScrollStart:
+            null == isAppPageScrollStart
+                ? _value.isAppPageScrollStart
+                : isAppPageScrollStart // ignore: cast_nullable_to_non_nullable
                     as bool,
       ),
     );
@@ -162,7 +162,7 @@ class _$DetailMeModelImpl implements _DetailMeModel {
     this.isDetailMe = false,
     this.isDetailMeRiveStart = false,
     this.isAppPageStart = false,
-    this.isAppPageTextStart = false,
+    this.isAppPageScrollStart = false,
   });
 
   @override
@@ -176,11 +176,11 @@ class _$DetailMeModelImpl implements _DetailMeModel {
   final bool isAppPageStart;
   @override
   @JsonKey()
-  final bool isAppPageTextStart;
+  final bool isAppPageScrollStart;
 
   @override
   String toString() {
-    return 'DetailMeModel(isDetailMe: $isDetailMe, isDetailMeRiveStart: $isDetailMeRiveStart, isAppPageStart: $isAppPageStart, isAppPageTextStart: $isAppPageTextStart)';
+    return 'DetailMeModel(isDetailMe: $isDetailMe, isDetailMeRiveStart: $isDetailMeRiveStart, isAppPageStart: $isAppPageStart, isAppPageScrollStart: $isAppPageScrollStart)';
   }
 
   @override
@@ -194,8 +194,8 @@ class _$DetailMeModelImpl implements _DetailMeModel {
                 other.isDetailMeRiveStart == isDetailMeRiveStart) &&
             (identical(other.isAppPageStart, isAppPageStart) ||
                 other.isAppPageStart == isAppPageStart) &&
-            (identical(other.isAppPageTextStart, isAppPageTextStart) ||
-                other.isAppPageTextStart == isAppPageTextStart));
+            (identical(other.isAppPageScrollStart, isAppPageScrollStart) ||
+                other.isAppPageScrollStart == isAppPageScrollStart));
   }
 
   @override
@@ -204,7 +204,7 @@ class _$DetailMeModelImpl implements _DetailMeModel {
     isDetailMe,
     isDetailMeRiveStart,
     isAppPageStart,
-    isAppPageTextStart,
+    isAppPageScrollStart,
   );
 
   /// Create a copy of DetailMeModel
@@ -221,7 +221,7 @@ abstract class _DetailMeModel implements DetailMeModel {
     final bool isDetailMe,
     final bool isDetailMeRiveStart,
     final bool isAppPageStart,
-    final bool isAppPageTextStart,
+    final bool isAppPageScrollStart,
   }) = _$DetailMeModelImpl;
 
   @override
@@ -231,7 +231,7 @@ abstract class _DetailMeModel implements DetailMeModel {
   @override
   bool get isAppPageStart;
   @override
-  bool get isAppPageTextStart;
+  bool get isAppPageScrollStart;
 
   /// Create a copy of DetailMeModel
   /// with the given fields replaced by the non-null parameter values.

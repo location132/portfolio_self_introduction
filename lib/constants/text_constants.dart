@@ -199,7 +199,16 @@ class SelectTapTextConstants {
       '   Git    /    GitHubDesktop    /    Figma    /    Notion    /    Slack\n';
 }
 
-class PatternTextConstants {
+abstract class CardConstants {
+  static List<Map<String, String>> get items => [];
+  static String get title => '';
+  static String get subTitle => '';
+  static String get highlight => '';
+  static String get highlightDescription => '';
+  static List<int> get starredIndexes => [];
+}
+
+class PatternTextConstants extends CardConstants {
   static const List<Map<String, String>> patterns = [
     {
       'title': 'Clean Architecture Pattern',
@@ -226,9 +235,84 @@ class PatternTextConstants {
     },
   ];
 
-  static const String patternTitle = 'Pattern';
-  static const String click = '자세한 내용이 궁금하시다면 Click!';
-  static const String highlight = '  Highlight: ';
-  static const String highlightDescription =
+  static List<Map<String, String>> get items => patterns;
+  static String get title => 'Pattern';
+  static String get subTitle => '손에 익었어요!';
+  static String get highlight => '  Highlight: ';
+  static String get highlightDescription =>
       ' 프로젝트를 진행할 때\n   제가 가장 많이 사용하는 패턴을 소개합니다.';
+  static List<int> get starredIndexes => [0, 1];
+}
+
+class StateManagementConstants extends CardConstants {
+  static const List<Map<String, String>> _stateManagement = [
+    {
+      'title': 'BLoC/Cubit',
+      'desc': '2번째 프로젝트부터 사용하기 시작하고 현재 주력이 된 Cubit 상태관리입니다. 가장 자신있는 상태관리입니다.',
+    },
+    {
+      'title': 'Provider',
+      'desc':
+          '가장 처음 공부하고 채택한 상태관리입니다. 너무나 간편하지만, 2만줄이 넘는 제 코드에 적용하기엔 무리가 있었습니다.',
+    },
+    {'title': 'setState', 'desc': '못하면 플러터 간첩..ㅎ'},
+  ];
+
+  static List<Map<String, String>> get items => _stateManagement;
+  static String get title => '상태관리';
+  static String get subTitle => '자신있어요!';
+  static String get highlight => '  Highlight: ';
+  static String get highlightDescription =>
+      ' 프로젝트 규모에 따라 적절한 상태관리 패턴을 선택합니다.\n   2만줄이 넘는 잎사이 프로젝트에서는 무조건 Cubit!';
+  static List<int> get starredIndexes => [0];
+}
+
+class LifecycleConstants extends CardConstants {
+  static const List<Map<String, String>> _lifecycle = [
+    {
+      'title': '자신있는 생명주기',
+      'desc':
+          'initState  /  dispose  /  didUpdateWidget  /  didChangeDependencies',
+    },
+    {
+      'title': '조금만 사용해본 생명주기',
+      'desc': 'WidgetsBindingObserver\n        그리고\nAppLifecycleState',
+    },
+    {
+      'title': '한번도 사용안한 생명주기',
+      'desc':
+          'reassemble / deactivate / didHaveMemoryPressure 등 디버깅 및 시스템 이벤트용 생명주기',
+    },
+  ];
+
+  static List<Map<String, String>> get items => _lifecycle;
+  static String get title => '생명주기';
+  static String get subTitle => '몇개만 자신있어요';
+  static String get highlight => '  Highlight: ';
+  static String get highlightDescription =>
+      ' 생명주기를 정확히 이해하면\n   메모리 효율성과 성능을 크게 향상시킬 수 있습니다.';
+  static List<int> get starredIndexes => [];
+}
+
+class AnimationConstants extends CardConstants {
+  static const List<Map<String, String>> _animations = [
+    {
+      'title': 'Rive 애니메이션',
+      'desc':
+          'Rive를 활용해 간단한 애니메이션을 직접 만들고 있어요. 지금 보는 데스크탑 웹 그리고 Detail 페이지도 직접 만들었습니다.',
+    },
+    {
+      'title': 'Flutter Animation',
+      'desc':
+          'AnimationController를 사용해 여러가지 인터렉션을 구현하고 적용하고 있습니다. 어렵지만 재미있게 제작하고 있어요',
+    },
+  ];
+
+  static List<Map<String, String>> get items => _animations;
+  static String get title => '애니메이션';
+  static String get subTitle => '완벽하지는 않아요!';
+  static String get highlight => '  Highlight: ';
+  static String get highlightDescription =>
+      ' 복잡한 애니메이션은 못하지만, 흥미를 끌 수 있는\n   애니메이션은 직접 만들고 있습니다.';
+  static List<int> get starredIndexes => [];
 }

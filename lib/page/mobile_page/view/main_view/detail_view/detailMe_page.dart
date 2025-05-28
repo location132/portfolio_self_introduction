@@ -33,7 +33,7 @@ class DetailmePage extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: AppScreen(
               isAppPageStart: state.isAppPageStart,
-              isAppPageTextStart: state.isAppPageTextStart,
+              isAppPageScrollStart: state.isAppPageScrollStart,
             ),
           ),
         ],

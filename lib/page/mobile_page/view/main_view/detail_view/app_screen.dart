@@ -4,12 +4,11 @@ import 'package:self_introduction_flutter/page/mobile_page/view/main_view/detail
 
 class AppScreen extends StatefulWidget {
   final bool isAppPageStart;
-  final bool isAppPageTextStart;
-
+  final bool isAppPageScrollStart;
   const AppScreen({
     super.key,
     required this.isAppPageStart,
-    required this.isAppPageTextStart,
+    required this.isAppPageScrollStart,
   });
 
   @override
@@ -50,11 +49,16 @@ class _AppScreenState extends State<AppScreen> {
                   ? MediaQuery.of(context).size.height * 0.06
                   : MediaQuery.of(context).size.height * 0.09,
         ),
-        child: Container(
+        child: SizedBox(
           width: size.width,
           height: size.height,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-          child: FirstAppPage(width: size.width),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: FirstAppPage(
+              width: size.width,
+              isAppPageScrollStart: widget.isAppPageScrollStart,
+            ),
+          ),
         ),
       ),
     );

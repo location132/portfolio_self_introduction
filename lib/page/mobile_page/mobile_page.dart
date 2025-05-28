@@ -101,21 +101,18 @@ class _MobileViewState extends State<_MobileView> {
                               },
                             ),
                           ),
-                          AppScreen(
-                            isAppPageStart: true,
-                            isAppPageTextStart: true,
-                          ),
+
                           //-----------
-                          // MainPage(
-                          //   key: const ValueKey('main'),
-                          //   cubit: context.read<MobileCubit>(),
-                          //   aboutMeState: state.aboutMeModel,
-                          //   detailMeState: state.detailMeModel,
-                          //   isTitelTextAniStart:
-                          //       state.introModel.isTitelTextAniStart,
-                          //   isChapterContainerAniStart:
-                          //       state.introModel.isChapterContainerAniStart,
-                          // ),
+                          MainPage(
+                            key: const ValueKey('main'),
+                            cubit: context.read<MobileCubit>(),
+                            aboutMeState: state.aboutMeModel,
+                            detailMeState: state.detailMeModel,
+                            isTitelTextAniStart:
+                                state.introModel.isTitelTextAniStart,
+                            isChapterContainerAniStart:
+                                state.introModel.isChapterContainerAniStart,
+                          ),
 
                           //--------------------
                           // AnimatedOpacity(
