@@ -7,13 +7,13 @@ class SelectTap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: DefaultTabController(
         length: 5,
         child: Column(
           children: [
-            TabBar(
+            const TabBar(
               isScrollable: true,
               indicatorColor: Colors.white,
               labelColor: Colors.white,
@@ -27,8 +27,8 @@ class SelectTap extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 380,
-              child: TabBarView(
+              height: 400.h,
+              child: const TabBarView(
                 children: [
                   SelectTapItem(
                     myStackTitle: SelectTapTextConstants.myStackTitle1,
@@ -96,7 +96,10 @@ class SelectTapItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 20),
+        MyStack(myStackTitle: myStackTitle, myStack: myStack),
         const SizedBox(height: 40),
+
         Center(
           child: RichText(
             textAlign: TextAlign.left,
@@ -106,14 +109,14 @@ class SelectTapItem extends StatelessWidget {
                   text: title,
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 12.0.sp,
+                    fontSize: 14.0.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 TextSpan(
                   text: description,
                   style: TextStyle(
-                    fontSize: 12.0.sp,
+                    fontSize: 13.0.sp,
                     color: const Color.fromARGB(255, 166, 166, 166),
                     height: 1.5,
                   ),
@@ -122,7 +125,7 @@ class SelectTapItem extends StatelessWidget {
                   text: finalMessage,
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 12.0.sp,
+                    fontSize: 14.0.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -130,8 +133,6 @@ class SelectTapItem extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 40),
-        MyStack(myStackTitle: myStackTitle, myStack: myStack),
       ],
     );
   }
@@ -165,7 +166,7 @@ class MyStack extends StatelessWidget {
               myStackTitle ?? '',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 12.0.sp,
+                fontSize: 14.0.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),

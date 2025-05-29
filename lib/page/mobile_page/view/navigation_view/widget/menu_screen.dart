@@ -63,7 +63,7 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final double maxHeight = MediaQuery.of(context).size.height * 0.9;
+    final double maxHeight = MediaQuery.of(context).size.height;
     return Column(
       children: [
         Opacity(
@@ -89,7 +89,7 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
             color: Colors.white,
             child: ListView.builder(
               itemCount: menuItemAnimations.length,
-              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+              padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.w),
               itemBuilder: (context, index) {
                 final ani = menuItemAnimations[index];
                 return SlideTransition(
@@ -97,7 +97,7 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
                   child: FadeTransition(
                     opacity: ani.animation.opacityShow,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      padding: EdgeInsets.symmetric(vertical: 10.h),
                       child: Text(
                         ani.text,
                         style: TextStyle(

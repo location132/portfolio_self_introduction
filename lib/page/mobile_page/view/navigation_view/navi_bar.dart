@@ -40,10 +40,10 @@ class _NaviBarState extends State<NaviBar> with SingleTickerProviderStateMixin {
           deviceType: widget.deviceType,
           isDeviceSelector: widget.isDeviceSelector,
         ),
-        SizedBox(height: 30.h),
+        SizedBox(height: 10.h),
         AnimatedContainer(
           duration: const Duration(milliseconds: 700),
-          height: widget.isDescription ? 63.h : 0,
+          height: widget.isDescription ? 80.h : 0,
           child: ListView(
             physics: const NeverScrollableScrollPhysics(),
             children: [

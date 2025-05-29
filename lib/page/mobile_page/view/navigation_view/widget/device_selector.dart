@@ -42,8 +42,8 @@ class _DeviceSelectorState extends State<DeviceSelector>
 
   @override
   Widget build(BuildContext context) {
-    const labelStyle = TextStyle(
-      fontSize: 12,
+    final labelStyle = TextStyle(
+      fontSize: 12.sp,
       fontWeight: FontWeight.w600,
       color: Colors.black87,
     );
@@ -58,12 +58,12 @@ class _DeviceSelectorState extends State<DeviceSelector>
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SvgPicture.asset('assets/Images/iphone.svg', height: 50.h),
+                SvgPicture.asset('assets/Images/iphone.svg', height: 40.h),
                 const SizedBox(height: 10),
                 Row(
                   children: [
                     const SizedBox(width: 10),
-                    const Text('Mobile', style: labelStyle),
+                    Text('Mobile', style: labelStyle),
                     const SizedBox(width: 10),
                     Text(
                       widget.deviceType == 'mobile' ? '✓' : '',
@@ -78,12 +78,12 @@ class _DeviceSelectorState extends State<DeviceSelector>
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SvgPicture.asset('assets/Images/ipad.svg', height: 50.h),
+                SvgPicture.asset('assets/Images/ipad.svg', height: 40.h),
                 const SizedBox(height: 10),
                 Row(
                   children: [
                     const SizedBox(width: 10),
-                    const Text('Tablet', style: labelStyle),
+                    Text('Tablet', style: labelStyle),
                     const SizedBox(width: 10),
                     Text(
                       widget.deviceType == 'tablet' ? '✓' : '',
@@ -98,12 +98,12 @@ class _DeviceSelectorState extends State<DeviceSelector>
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SvgPicture.asset('assets/Images/imac.svg', height: 50.h),
+                SvgPicture.asset('assets/Images/imac.svg', height: 40.h),
                 SizedBox(height: 10.h),
                 Row(
                   children: [
                     const SizedBox(width: 10),
-                    const Text('Desktop', style: labelStyle),
+                    Text('Desktop', style: labelStyle),
                     const SizedBox(width: 10),
                     Text(
                       widget.deviceType == 'desktop' ? '✓' : '',

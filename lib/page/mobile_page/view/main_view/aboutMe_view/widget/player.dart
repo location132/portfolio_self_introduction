@@ -93,7 +93,7 @@ class _PlayerState extends State<Player> with SingleTickerProviderStateMixin {
               borderRadius: BorderRadius.circular(20),
               child: Container(
                 width: _width.value,
-                padding: const EdgeInsets.symmetric(vertical: 14),
+                padding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 10.w),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(

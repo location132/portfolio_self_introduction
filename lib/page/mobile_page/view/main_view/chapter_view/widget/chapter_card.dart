@@ -5,7 +5,12 @@ import 'package:self_introduction_flutter/page/mobile_page/view/main_view/chapte
 
 class ChapterCard extends StatefulWidget {
   final bool isBackGroundAniStart;
-  const ChapterCard({super.key, required this.isBackGroundAniStart});
+  final bool isMobileDevice;
+  const ChapterCard({
+    super.key,
+    required this.isBackGroundAniStart,
+    required this.isMobileDevice,
+  });
 
   @override
   State<ChapterCard> createState() => _ChapterCardState();
@@ -25,6 +30,7 @@ class _ChapterCardState extends State<ChapterCard> {
             GestureDetector(
               onTap: () {},
               child: FirstCard(
+                isMobileDevice: widget.isMobileDevice,
                 isBackGroundAniStart: widget.isBackGroundAniStart,
               ),
             ),

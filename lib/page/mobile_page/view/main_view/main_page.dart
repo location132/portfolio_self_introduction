@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:self_introduction_flutter/components/rive/my_skill_rive.dart';
 import 'package:self_introduction_flutter/model/mobile_page/aboutMe_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/detailMe_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
@@ -10,6 +9,7 @@ import 'package:self_introduction_flutter/page/mobile_page/view/main_view/detail
 import 'package:visibility_detector/visibility_detector.dart';
 
 class MainPage extends StatelessWidget {
+  final bool isMobileDevice;
   final AboutMeModel aboutMeState;
   final DetailMeModel detailMeState;
   final bool isTitelTextAniStart;
@@ -17,6 +17,7 @@ class MainPage extends StatelessWidget {
   final MobileCubit cubit;
   const MainPage({
     super.key,
+    required this.isMobileDevice,
     required this.aboutMeState,
     required this.detailMeState,
     required this.isTitelTextAniStart,
@@ -32,54 +33,82 @@ class MainPage extends StatelessWidget {
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 500),
             color:
-                aboutMeState.isBackGroundAniStart || detailMeState.isDetailMe
-                    ? Colors.black
-                    : Colors.transparent,
+                isMobileDevice
+                    ? aboutMeState.isBackGroundAniStart ||
+                            detailMeState.isDetailMe
+                        ? Colors.black
+                        : Colors.transparent
+                    : Colors.black,
           ),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ChapterPage(
-            //   isTitelTextAniStart: isTitelTextAniStart,
-            //   isChapterContainerAniStart: isChapterContainerAniStart,
-            //   isBackGroundAniStart: aboutMeState.isBackGroundAniStart,
-            // ),
+            ChapterPage(
+              isMobileDevice: isMobileDevice,
+              isTitelTextAniStart: isTitelTextAniStart,
+              isChapterContainerAniStart: isChapterContainerAniStart,
+              isBackGroundAniStart: aboutMeState.isBackGroundAniStart,
+            ),
             Visibility(
-              visible: aboutMeState.isVisible,
+              visible: isMobileDevice ? aboutMeState.isVisible : true,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // VisibilityDetector(
-                  //   key: const Key('aboutMe-view'),
-                  //   onVisibilityChanged: (VisibilityInfo info) {
-                  //     if (info.visibleFraction > 0.3 &&
-                  //         !aboutMeState.isPlayerAniOpacity &&
-                  //         !detailMeState.isDetailMe) {
-                  //       cubit.aboutMePlayerAni(true);
-                  //     } else if (info.visibleFraction < 0.2 &&
-                  //         aboutMeState.isPlayerAniOpacity) {
-                  //       cubit.aboutMePlayerAni(false);
-                  //     }
+                  VisibilityDetector(
+                    key: const Key('aboutMe-view'),
+                    onVisibilityChanged: (VisibilityInfo info) {
+                      if (isMobileDevice) {
+                        if (info.visibleFraction > 0.3 &&
+                            !aboutMeState.isPlayerAniOpacity &&
+                            !detailMeState.isDetailMe) {
+                          cubit.aboutMePlayerAni(true);
+                        } else if (info.visibleFraction < 0.2 &&
+                            aboutMeState.isPlayerAniOpacity) {
+                          cubit.aboutMePlayerAni(false);
+                        }
 
-                  //     if (info.visibleFraction > 0.2 &&
-                  //         !aboutMeState.isBackGroundAniStart) {
-                  //       cubit.aboutMeBackGroundColor(true);
-                  //     } else if (info.visibleFraction < 0.2 &&
-                  //         aboutMeState.isBackGroundAniStart) {
-                  //       cubit.aboutMeBackGroundColor(false);
-                  //     }
-                  //   },
-                  //   child: AboutMePage(
-                  //     state: aboutMeState,
-                  //     isDetailMeRiveStart: detailMeState.isDetailMeRiveStart,
-                  //   ),
-                  // ),
+                        if (info.visibleFraction > 0.2 &&
+                            !aboutMeState.isBackGroundAniStart) {
+                          cubit.aboutMeBackGroundColor(true);
+                        } else if (info.visibleFraction < 0.2 &&
+                            aboutMeState.isBackGroundAniStart) {
+                          cubit.aboutMeBackGroundColor(false);
+                        }
+                      } else {
+                        if (MediaQuery.of(context).size.width > 730) {
+                          cubit.aboutMeBackGroundColor(true);
+                          cubit.aboutMePlayerAni(true);
+                        } else {
+                          if (info.visibleFraction > 0.3 &&
+                              !aboutMeState.isPlayerAniOpacity &&
+                              !detailMeState.isDetailMe) {
+                            cubit.aboutMePlayerAni(true);
+                          } else if (info.visibleFraction < 0.2 &&
+                              aboutMeState.isPlayerAniOpacity) {
+                            cubit.aboutMePlayerAni(false);
+                          }
+
+                          if (info.visibleFraction > 0.2 &&
+                              !aboutMeState.isBackGroundAniStart) {
+                            cubit.aboutMeBackGroundColor(true);
+                          } else if (info.visibleFraction < 0.2 &&
+                              aboutMeState.isBackGroundAniStart) {
+                            cubit.aboutMeBackGroundColor(false);
+                          }
+                        }
+                      }
+                    },
+                    child: AboutMePage(
+                      state: aboutMeState,
+                      isDetailMeRiveStart: detailMeState.isDetailMeRiveStart,
+                    ),
+                  ),
                   AnimatedOpacity(
                     opacity: detailMeState.isDetailMeRiveStart ? 1 : 0,
                     duration: const Duration(milliseconds: 500),
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 20, left: 32),
+                      padding: EdgeInsets.only(top: 40.h, left: 32),
                       child: Text(
                         '더 자세히 살펴보기.',
                         style: TextStyle(

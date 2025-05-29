@@ -80,7 +80,7 @@ class _TwoLineTitleState extends State<TwoLineTitle>
                 child: Text(
                   widget.subTitle,
                   style: TextStyle(
-                    fontSize: 13.0.sp,
+                    fontSize: 15.0.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

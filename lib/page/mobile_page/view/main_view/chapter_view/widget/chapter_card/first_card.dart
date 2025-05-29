@@ -3,8 +3,13 @@ import 'package:glowy_borders/glowy_borders.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 
 class FirstCard extends StatelessWidget {
+  final bool isMobileDevice;
   final bool isBackGroundAniStart;
-  const FirstCard({super.key, required this.isBackGroundAniStart});
+  const FirstCard({
+    super.key,
+    required this.isMobileDevice,
+    required this.isBackGroundAniStart,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +57,7 @@ class FirstCard extends StatelessWidget {
       ),
     );
 
-    if (isBackGroundAniStart) {
+    if (isBackGroundAniStart || !isMobileDevice) {
       return AnimatedGradientBorder(
         borderRadius: BorderRadius.circular(24),
         animationTime: 3,

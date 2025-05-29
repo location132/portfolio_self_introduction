@@ -146,7 +146,7 @@ class SelectTapTextConstants {
   static const String myStack1 =
       '   Flutter Web,    Flutter Mobile,    Firebase\n'
       '      MVVM,    Clean Architecture Design,    get_it(DI)\n'
-      '   build_runner watch,    SingleTon,    injectable\n';
+      '   build_runner watch,    SingleTon,    injectable';
   static const String selectTapTitle1 = '2만줄 넘는 코딩시간. ';
   static const String selectTapDescription1 =
       '회사와 성장하기에 너무좋은 코딩시간입니다.\n'
@@ -172,14 +172,14 @@ class SelectTapTextConstants {
   static const String selectTapFinalMessage3 = '기본기를 지키는 것, 그것이 가장 강한 실력입니다.';
   static const String myStackTitle3 = 'Flutter는 흐름을 아는 사람을 좋아합니다';
   static const String myStack3 =
-      '개발 중 자주 사용하는 생명주기\ninitState  /  dispose  /  didUpdateWidget  /  didChangeDependencies\n\n'
+      '개발 중 자주 사용하는 생명주기\ninitState  /  dispose  /  didUpdateWidget  /  didChangeDependencies\n'
       '개발중 종종 사용하는 생명주기\nWidgetsBindingObserver 그리고 AppLifecycleState';
 
-  static const String selectTapTitle4 = '생동감 있는 사용자 경험.';
+  static const String selectTapTitle4 = '생동감 있는 사용자 경험. ';
   static const String selectTapDescription4 =
-      'Rive 애니메이션부터 Flutter Animation까지,\n'
+      'Rive 애니메이션부터\n Flutter Animation까지,'
       '사용자의 눈을 사로잡는 인터랙션을 구현합니다.\n\n'
-      '정적인 화면 전환이 아닌, 신경쓴 애니메이션\n\n';
+      '정적인 화면 전환이 아닌, 신경쓴 애니메이션\n';
   static const String selectTapFinalMessage4 = '어플리케이션을 더욱 생생하게 만드는 시작입니다';
   static const String myStackTitle4 = '저는 아래의 애니메이션 도구들을 능숙하게 다룹니다.';
   static const String myStack4 =

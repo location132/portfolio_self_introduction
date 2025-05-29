@@ -27,53 +27,53 @@ class MobileCubit extends Cubit<MobileState> {
 
   @postConstruct
   void init({bool isDescription = true}) async {
-    introAtBottom();
+    // introAtBottom();
     //TODO: 배포시 주석 해제
-    // emit(
-    //   state.copyWith(
-    //     introModel: state.introModel.copyWith(isHome: true),
-    //     scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
-    //   ),
-    // );
-    // await Future.delayed(const Duration(milliseconds: 500));
-    // aboutMePlayerAni(true);
+    emit(
+      state.copyWith(
+        introModel: state.introModel.copyWith(isHome: true),
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 500));
+    aboutMePlayerAni(true);
 
-    // emit(
-    //   state.copyWith(
-    //     initModel: state.initModel.copyWith(isMobileInit: true),
-    //     introModel: state.introModel.copyWith(isDeviceSelector: true),
-    //   ),
-    // );
-    // await Future.delayed(const Duration(milliseconds: 300));
-    // emit(
-    //   state.copyWith(
-    //     introModel: state.introModel.copyWith(isDescription: true),
-    //   ),
-    // );
-    // await Future.delayed(const Duration(milliseconds: 400));
-    // emit(
-    //   state.copyWith(
-    //     introModel: state.introModel.copyWith(
-    //       isTitelText: true,
-    //       isHome: false,
-    //       isFirstIntroText: true,
-    //     ),
-    //   ),
-    // );
-    // await Future.delayed(const Duration(milliseconds: 500));
-    // emit(
-    //   state.copyWith(
-    //     introModel: state.introModel.copyWith(isIntroImageinit: true),
-    //   ),
-    // );
-    // await Future.delayed(const Duration(milliseconds: 1100));
-    // aboutMePlayerAni(false);
-    // emit(
-    //   state.copyWith(
-    //     scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
-    //     introModel: state.introModel.copyWith(isIntroImageChange2: true),
-    //   ),
-    // );
+    emit(
+      state.copyWith(
+        initModel: state.initModel.copyWith(isMobileInit: true),
+        introModel: state.introModel.copyWith(isDeviceSelector: true),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 300));
+    emit(
+      state.copyWith(
+        introModel: state.introModel.copyWith(isDescription: true),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 400));
+    emit(
+      state.copyWith(
+        introModel: state.introModel.copyWith(
+          isTitelText: true,
+          isHome: false,
+          isFirstIntroText: true,
+        ),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 500));
+    emit(
+      state.copyWith(
+        introModel: state.introModel.copyWith(isIntroImageinit: true),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 1100));
+    aboutMePlayerAni(false);
+    emit(
+      state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
+        introModel: state.introModel.copyWith(isIntroImageChange2: true),
+      ),
+    );
   }
 
   //메뉴 클릭
@@ -96,25 +96,25 @@ class MobileCubit extends Cubit<MobileState> {
   // 하단 스크롤에 도착하였을 때,
   void introAtBottom() async {
     //=======================
-    // emit(
-    //   state.copyWith(
-    //     scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
-    //   ),
-    // );
+    emit(
+      state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+      ),
+    );
 
-    // await Future.delayed(const Duration(milliseconds: 500));
-    // emit(
-    //   state.copyWith(
-    //     introModel: state.introModel.copyWith(
-    //       isIntroImageChange: true,
-    //       isFirstIntroText: false,
-    //     ),
-    //     isPlayerText: '제 소개 지금 바로 시작합니다!',
-    //   ),
-    // );
-    // await Future.delayed(const Duration(milliseconds: 750));
-    // aboutMePlayerAni(true);
-    // await Future.delayed(const Duration(milliseconds: 1750));
+    await Future.delayed(const Duration(milliseconds: 500));
+    emit(
+      state.copyWith(
+        introModel: state.introModel.copyWith(
+          isIntroImageChange: true,
+          isFirstIntroText: false,
+        ),
+        isPlayerText: '제 소개 지금 바로 시작합니다!',
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 750));
+    aboutMePlayerAni(true);
+    await Future.delayed(const Duration(milliseconds: 1750));
     //=======================
     emit(
       state.copyWith(

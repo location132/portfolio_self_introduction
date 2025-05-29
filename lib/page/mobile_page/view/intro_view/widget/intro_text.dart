@@ -27,7 +27,7 @@ class _IntroTextState extends State<IntroText> with TickerProviderStateMixin {
             '\n많은 것을 공부하고 경험한 신입 개발자\n'
             '이정원입니다.',
             textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0.sp),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0.sp),
           ),
         ),
       ),
