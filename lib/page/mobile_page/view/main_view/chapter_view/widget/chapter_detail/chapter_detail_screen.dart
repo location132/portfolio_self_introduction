@@ -91,9 +91,6 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen>
                     ],
                   ),
                 ),
-
-                // 빈 공간 (나중에 콘텐츠 추가 예정)
-                const Expanded(child: SizedBox()),
               ],
             ),
           ),
