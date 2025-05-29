@@ -82,18 +82,14 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen>
             child: Stack(
               children: [
                 SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ChapterContents(
-                        state: widget.chapterState,
-                        onSimpleView: () {
-                          widget.onSimpleView();
-                        },
-                        onDetailView: () {
-                          widget.onDetailView();
-                        },
-                      ),
-                    ],
+                  child: ChapterContents(
+                    state: widget.chapterState,
+                    onSimpleView: () {
+                      widget.onSimpleView();
+                    },
+                    onDetailView: () {
+                      widget.onDetailView();
+                    },
                   ),
                 ),
                 CloseButtonWithIcon(onClose: widget.onClose),
