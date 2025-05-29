@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/model/mobile_page/aboutMe_model.dart';
+import 'package:self_introduction_flutter/model/mobile_page/chapter_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/detailMe_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/aboutMe_page.dart';
@@ -12,6 +13,7 @@ class MainPage extends StatelessWidget {
   final bool isMobileDevice;
   final AboutMeModel aboutMeState;
   final DetailMeModel detailMeState;
+  final ChapterModel chapterState;
   final bool isTitelTextAniStart;
   final bool isChapterContainerAniStart;
   final MobileCubit cubit;
@@ -20,6 +22,7 @@ class MainPage extends StatelessWidget {
     required this.isMobileDevice,
     required this.aboutMeState,
     required this.detailMeState,
+    required this.chapterState,
     required this.isTitelTextAniStart,
     required this.isChapterContainerAniStart,
     required this.cubit,
@@ -49,8 +52,8 @@ class MainPage extends StatelessWidget {
               isTitelTextAniStart: isTitelTextAniStart,
               isChapterContainerAniStart: isChapterContainerAniStart,
               isBackGroundAniStart: aboutMeState.isBackGroundAniStart,
-              onCardTap: () {
-                cubit.onChapterCardTap();
+              onCardTap: (int chapterIndex) {
+                cubit.showChapterDetail(chapterIndex);
               },
             ),
             Visibility(

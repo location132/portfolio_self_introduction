@@ -7,7 +7,7 @@ class ChapterPage extends StatefulWidget {
   final bool isTitelTextAniStart;
   final bool isChapterContainerAniStart;
   final bool isBackGroundAniStart;
-  final VoidCallback? onCardTap;
+  final Function(int)? onCardTap;
   const ChapterPage({
     super.key,
     required this.isMobileDevice,

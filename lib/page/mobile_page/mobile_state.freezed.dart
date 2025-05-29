@@ -22,6 +22,7 @@ mixin _$MobileState {
   ScrollModel get scrollModel => throw _privateConstructorUsedError;
   AboutMeModel get aboutMeModel => throw _privateConstructorUsedError;
   DetailMeModel get detailMeModel => throw _privateConstructorUsedError;
+  ChapterModel get chapterModel => throw _privateConstructorUsedError;
   String get isPlayerText => throw _privateConstructorUsedError;
 
   /// Create a copy of MobileState
@@ -44,6 +45,7 @@ abstract class $MobileStateCopyWith<$Res> {
     ScrollModel scrollModel,
     AboutMeModel aboutMeModel,
     DetailMeModel detailMeModel,
+    ChapterModel chapterModel,
     String isPlayerText,
   });
 
@@ -52,6 +54,7 @@ abstract class $MobileStateCopyWith<$Res> {
   $ScrollModelCopyWith<$Res> get scrollModel;
   $AboutMeModelCopyWith<$Res> get aboutMeModel;
   $DetailMeModelCopyWith<$Res> get detailMeModel;
+  $ChapterModelCopyWith<$Res> get chapterModel;
 }
 
 /// @nodoc
@@ -74,6 +77,7 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
     Object? scrollModel = null,
     Object? aboutMeModel = null,
     Object? detailMeModel = null,
+    Object? chapterModel = null,
     Object? isPlayerText = null,
   }) {
     return _then(
@@ -103,6 +107,11 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
                     ? _value.detailMeModel
                     : detailMeModel // ignore: cast_nullable_to_non_nullable
                         as DetailMeModel,
+            chapterModel:
+                null == chapterModel
+                    ? _value.chapterModel
+                    : chapterModel // ignore: cast_nullable_to_non_nullable
+                        as ChapterModel,
             isPlayerText:
                 null == isPlayerText
                     ? _value.isPlayerText
@@ -162,6 +171,16 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
       return _then(_value.copyWith(detailMeModel: value) as $Val);
     });
   }
+
+  /// Create a copy of MobileState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChapterModelCopyWith<$Res> get chapterModel {
+    return $ChapterModelCopyWith<$Res>(_value.chapterModel, (value) {
+      return _then(_value.copyWith(chapterModel: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -179,6 +198,7 @@ abstract class _$$MobileStateImplCopyWith<$Res>
     ScrollModel scrollModel,
     AboutMeModel aboutMeModel,
     DetailMeModel detailMeModel,
+    ChapterModel chapterModel,
     String isPlayerText,
   });
 
@@ -192,6 +212,8 @@ abstract class _$$MobileStateImplCopyWith<$Res>
   $AboutMeModelCopyWith<$Res> get aboutMeModel;
   @override
   $DetailMeModelCopyWith<$Res> get detailMeModel;
+  @override
+  $ChapterModelCopyWith<$Res> get chapterModel;
 }
 
 /// @nodoc
@@ -213,6 +235,7 @@ class __$$MobileStateImplCopyWithImpl<$Res>
     Object? scrollModel = null,
     Object? aboutMeModel = null,
     Object? detailMeModel = null,
+    Object? chapterModel = null,
     Object? isPlayerText = null,
   }) {
     return _then(
@@ -242,6 +265,11 @@ class __$$MobileStateImplCopyWithImpl<$Res>
                 ? _value.detailMeModel
                 : detailMeModel // ignore: cast_nullable_to_non_nullable
                     as DetailMeModel,
+        chapterModel:
+            null == chapterModel
+                ? _value.chapterModel
+                : chapterModel // ignore: cast_nullable_to_non_nullable
+                    as ChapterModel,
         isPlayerText:
             null == isPlayerText
                 ? _value.isPlayerText
@@ -261,6 +289,7 @@ class _$MobileStateImpl implements _MobileState {
     this.scrollModel = const ScrollModel(),
     this.aboutMeModel = const AboutMeModel(),
     this.detailMeModel = const DetailMeModel(),
+    this.chapterModel = const ChapterModel(),
     this.isPlayerText = '잠시만 기다려주세요.',
   });
 
@@ -281,11 +310,14 @@ class _$MobileStateImpl implements _MobileState {
   final DetailMeModel detailMeModel;
   @override
   @JsonKey()
+  final ChapterModel chapterModel;
+  @override
+  @JsonKey()
   final String isPlayerText;
 
   @override
   String toString() {
-    return 'MobileState(initModel: $initModel, introModel: $introModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel, detailMeModel: $detailMeModel, isPlayerText: $isPlayerText)';
+    return 'MobileState(initModel: $initModel, introModel: $introModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel, detailMeModel: $detailMeModel, chapterModel: $chapterModel, isPlayerText: $isPlayerText)';
   }
 
   @override
@@ -303,6 +335,8 @@ class _$MobileStateImpl implements _MobileState {
                 other.aboutMeModel == aboutMeModel) &&
             (identical(other.detailMeModel, detailMeModel) ||
                 other.detailMeModel == detailMeModel) &&
+            (identical(other.chapterModel, chapterModel) ||
+                other.chapterModel == chapterModel) &&
             (identical(other.isPlayerText, isPlayerText) ||
                 other.isPlayerText == isPlayerText));
   }
@@ -315,6 +349,7 @@ class _$MobileStateImpl implements _MobileState {
     scrollModel,
     aboutMeModel,
     detailMeModel,
+    chapterModel,
     isPlayerText,
   );
 
@@ -334,6 +369,7 @@ abstract class _MobileState implements MobileState {
     final ScrollModel scrollModel,
     final AboutMeModel aboutMeModel,
     final DetailMeModel detailMeModel,
+    final ChapterModel chapterModel,
     final String isPlayerText,
   }) = _$MobileStateImpl;
 
@@ -347,6 +383,8 @@ abstract class _MobileState implements MobileState {
   AboutMeModel get aboutMeModel;
   @override
   DetailMeModel get detailMeModel;
+  @override
+  ChapterModel get chapterModel;
   @override
   String get isPlayerText;
 
