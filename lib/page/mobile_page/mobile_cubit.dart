@@ -243,6 +243,11 @@ class MobileCubit extends Cubit<MobileState> {
 
   // detailMe image ani
   void detailMeImageAni() async {
+    emit(
+      state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+      ),
+    );
     await Future.delayed(const Duration(milliseconds: 300));
     emit(
       state.copyWith(
@@ -259,6 +264,7 @@ class MobileCubit extends Cubit<MobileState> {
     emit(
       state.copyWith(
         detailMeModel: state.detailMeModel.copyWith(isAppPageScrollStart: true),
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
       ),
     );
   }

@@ -64,12 +64,17 @@ class MyApp extends StatelessWidget {
           // ),
 
           // 모바일 화면
-          AnimatedOpacity(
-            duration: const Duration(milliseconds: 300),
+          Opacity(
             opacity: deviceType == 'mobile' ? 1.0 : 0.0,
-            child: MobilePage(
-              deviceType: deviceType,
-              isMobileDevice: isMobileDevice,
+            child: Container(
+              constraints: BoxConstraints(
+                maxWidth: 600,
+                maxHeight: MediaQuery.of(context).size.height,
+              ),
+              child: MobilePage(
+                deviceType: deviceType,
+                isMobileDevice: isMobileDevice,
+              ),
             ),
           ),
         ],
