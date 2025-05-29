@@ -82,7 +82,7 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
           alignment: Alignment.topCenter,
           child: AnimatedContainer(
             clipBehavior: Clip.hardEdge,
-            duration: const Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 500),
             curve: Curves.easeInOut,
             height: widget.isMenuClicked ? maxHeight : 0,
             width: double.infinity,
