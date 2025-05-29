@@ -9,11 +9,7 @@ import 'package:self_introduction_flutter/page/desktop_page/widgets/title_text.d
 class SkillView extends StatefulWidget {
   final DesktopState state;
   final Function(int) onTap;
-  const SkillView({
-    super.key,
-    required this.state,
-    required this.onTap,
-  });
+  const SkillView({super.key, required this.state, required this.onTap});
 
   @override
   State<SkillView> createState() => _SkillViewState();
@@ -33,11 +29,12 @@ class _SkillViewState extends State<SkillView> {
         Center(
           child: Container(
             constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width,
-                maxHeight: MediaQuery.of(context).size.height * 0.75),
-            child: ClipRect(
-              child: MySkillRive(state: widget.state),
+              maxWidth: MediaQuery.of(context).size.width,
+              maxHeight: MediaQuery.of(context).size.height * 0.75,
             ),
+            // child: ClipRect(
+            //   child: MySkillRive(state: widget.state),
+            // ),
           ),
         ),
         DescriptionButton(

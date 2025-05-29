@@ -17,13 +17,11 @@ class DetailDescription extends StatelessWidget {
               Text(
                 '기초 위에 실전을 더했고\n'
                 '실전 위에 퍼포먼스를 쌓았습니다',
-
                 style: TextStyle(fontSize: 14.sp, color: Colors.black87),
               ),
               const SizedBox(height: 3),
               Text(
                 '이제 저만의 개발 스타일을 소개하겠습니다.',
-
                 style: TextStyle(
                   fontSize: 14.sp,
                   height: 1.6,

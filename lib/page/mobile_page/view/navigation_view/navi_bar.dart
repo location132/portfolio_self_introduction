@@ -43,14 +43,14 @@ class _NaviBarState extends State<NaviBar> with SingleTickerProviderStateMixin {
         SizedBox(height: 30.h),
         AnimatedContainer(
           duration: const Duration(milliseconds: 700),
-          height: widget.isDescription ? 100.h : 0,
+          height: widget.isDescription ? 63.h : 0,
           child: ListView(
             physics: const NeverScrollableScrollPhysics(),
             children: [
               Container(
                 width: double.infinity,
                 color: const Color.fromARGB(255, 234, 233, 233),
-                padding: EdgeInsets.only(left: 8.w, right: 8.w, top: 8.h),
+                padding: EdgeInsets.all(12.w),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [

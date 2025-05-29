@@ -26,7 +26,8 @@ class MobilePage extends StatelessWidget {
     final logicalWidth = MediaQuery.of(context).size.width;
     final isFoldable = logicalWidth >= 490;
     return ScreenUtilInit(
-      designSize: isFoldable ? const Size(523, 982) : const Size(393, 852),
+      designSize: isFoldable ? const Size(770, 900) : const Size(450, 752),
+
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {

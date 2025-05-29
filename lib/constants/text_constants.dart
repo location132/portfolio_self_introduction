@@ -263,7 +263,7 @@ class StateManagementConstants extends CardConstants {
   static String get subTitle => '자신있어요!';
   static String get highlight => '  Highlight: ';
   static String get highlightDescription =>
-      ' 프로젝트 규모에 따라 적절한 상태관리 패턴을 선택합니다.\n   2만줄이 넘는 잎사이 프로젝트에서는 무조건 Cubit!';
+      ' 프로젝트 규모에 따라 적절한 패턴을\n   선택합니다. 2만줄이 넘는 잎사이에서는 무조건 Cubit!';
   static List<int> get starredIndexes => [0];
 }
 
@@ -276,7 +276,7 @@ class LifecycleConstants extends CardConstants {
     },
     {
       'title': '조금만 사용해본 생명주기',
-      'desc': 'WidgetsBindingObserver\n        그리고\nAppLifecycleState',
+      'desc': 'WidgetsBindingObserver\n그리고\nAppLifecycleState',
     },
     {
       'title': '한번도 사용안한 생명주기',
@@ -313,6 +313,6 @@ class AnimationConstants extends CardConstants {
   static String get subTitle => '완벽하지는 않아요!';
   static String get highlight => '  Highlight: ';
   static String get highlightDescription =>
-      ' 복잡한 애니메이션은 못하지만, 흥미를 끌 수 있는\n   애니메이션은 직접 만들고 있습니다.';
+      ' 복잡한 애니메이션은 못하지만,\n    흥미를 끌 수 있는 애니메이션은 직접 만들고 있습니다.';
   static List<int> get starredIndexes => [];
 }

@@ -72,7 +72,7 @@ class TechCardSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Row(
             children: [
               Text(
@@ -80,7 +80,7 @@ class TechCardSection extends StatelessWidget {
                 style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
               ),
               if (starredIndexes.isNotEmpty) ...[
-                const SizedBox(width: 8),
+                SizedBox(width: 8.w),
                 Icon(Icons.star, color: Colors.amber.shade400, size: 20),
               ],
               const Spacer(),
@@ -91,14 +91,14 @@ class TechCardSection extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: 12.h),
 
         SizedBox(
-          height: 160,
+          height: 160.h,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
             itemCount: items.length,
             itemBuilder: (context, index) {
               final item = items[index];
@@ -111,25 +111,24 @@ class TechCardSection extends StatelessWidget {
               }
 
               return Container(
-                width: 280,
-                margin: const EdgeInsets.only(right: 12),
+                width: 280.w,
+                margin: EdgeInsets.only(right: 12.w),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   color: Colors.white,
                   border: Border.all(color: Colors.black12),
                 ),
-                padding: const EdgeInsets.all(16),
+                padding: EdgeInsets.all(16.w),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 6,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.w,
+                        vertical: 6.h,
                       ),
                       decoration: BoxDecoration(
                         color: Colors.grey.shade100,
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(8.r),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
@@ -144,7 +143,7 @@ class TechCardSection extends StatelessWidget {
                             ),
                           ),
                           if (shouldShowCardStar) ...[
-                            const SizedBox(width: 6),
+                            SizedBox(width: 6.w),
                             Icon(
                               Icons.star,
                               color: Colors.amber.shade400,
@@ -154,15 +153,18 @@ class TechCardSection extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12.h),
                     Expanded(
-                      child: Text(
-                        item['desc']!,
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          color: Colors.black54,
-                          height: 1.5,
-                          fontWeight: FontWeight.w400,
+                      child: Center(
+                        child: Text(
+                          item['desc']!,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13.sp,
+                            color: Colors.black54,
+                            height: 1.5,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
                     ),
@@ -172,9 +174,9 @@ class TechCardSection extends StatelessWidget {
             },
           ),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: 12.h),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Text.rich(
             TextSpan(
               children: [
@@ -196,15 +198,5 @@ class TechCardSection extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-// 기존 PatternCardWithPattern은 호환성을 위해 유지
-class PatternCardWithPattern extends StatelessWidget {
-  const PatternCardWithPattern({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const TechCardSection(constantsType: PatternTextConstants);
   }
 }

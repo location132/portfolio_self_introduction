@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:self_introduction_flutter/components/rive/my_skill_rive.dart';
 import 'package:self_introduction_flutter/model/mobile_page/aboutMe_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/detailMe_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';

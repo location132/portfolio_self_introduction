@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/components/widget/mobile_animation/widget_animation.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/detail_view/widget/app_page.dart';
 
