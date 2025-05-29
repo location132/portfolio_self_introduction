@@ -7,12 +7,14 @@ class ChapterPage extends StatefulWidget {
   final bool isTitelTextAniStart;
   final bool isChapterContainerAniStart;
   final bool isBackGroundAniStart;
+  final VoidCallback? onCardTap;
   const ChapterPage({
     super.key,
     required this.isMobileDevice,
     required this.isTitelTextAniStart,
     required this.isChapterContainerAniStart,
     required this.isBackGroundAniStart,
+    this.onCardTap,
   });
 
   @override
@@ -38,6 +40,7 @@ class _ChapterPageState extends State<ChapterPage> {
           child: ChapterCard(
             isMobileDevice: widget.isMobileDevice,
             isBackGroundAniStart: widget.isBackGroundAniStart,
+            onCardTap: widget.onCardTap,
           ),
         ),
         const SizedBox(height: 90),

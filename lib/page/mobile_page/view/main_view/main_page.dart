@@ -49,6 +49,9 @@ class MainPage extends StatelessWidget {
               isTitelTextAniStart: isTitelTextAniStart,
               isChapterContainerAniStart: isChapterContainerAniStart,
               isBackGroundAniStart: aboutMeState.isBackGroundAniStart,
+              onCardTap: () {
+                cubit.onChapterCardTap();
+              },
             ),
             Visibility(
               visible: isMobileDevice ? aboutMeState.isVisible : true,

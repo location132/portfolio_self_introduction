@@ -6,10 +6,12 @@ import 'package:self_introduction_flutter/page/mobile_page/view/main_view/chapte
 class ChapterCard extends StatefulWidget {
   final bool isBackGroundAniStart;
   final bool isMobileDevice;
+  final VoidCallback? onCardTap;
   const ChapterCard({
     super.key,
     required this.isBackGroundAniStart,
     required this.isMobileDevice,
+    this.onCardTap,
   });
 
   @override
@@ -28,7 +30,9 @@ class _ChapterCardState extends State<ChapterCard> {
           children: [
             const SizedBox(width: 32),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                widget.onCardTap?.call();
+              },
               child: FirstCard(
                 isMobileDevice: widget.isMobileDevice,
                 isBackGroundAniStart: widget.isBackGroundAniStart,
@@ -36,14 +40,18 @@ class _ChapterCardState extends State<ChapterCard> {
             ),
             const SizedBox(width: 22),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                widget.onCardTap?.call();
+              },
               child: SecondCard(
                 isBackGroundAniStart: widget.isBackGroundAniStart,
               ),
             ),
             const SizedBox(width: 22),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                widget.onCardTap?.call();
+              },
               child: ThirdCard(
                 isBackGroundAniStart: widget.isBackGroundAniStart,
               ),
