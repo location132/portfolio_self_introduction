@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/model/mobile_page/chapter_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/chapter_view/animation/chapter_detail_animation.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/main_view/chapter_view/widget/chapter_detail/chapter_contents.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/main_view/chapter_view/widget/chapter_detail/close_button.dart';
 
 class ChapterDetailScreen extends StatefulWidget {
   final ChapterModel chapterState;
@@ -64,33 +66,19 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen>
         opacity: animation.opacityAnimation,
         child: Container(
           width: double.infinity,
-          height: double.infinity,
-          color: Colors.black,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            color: Colors.black.withValues(alpha: 0.85),
+          ),
           child: SafeArea(
-            child: Column(
+            child: Stack(
               children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 15,
-                  ),
-                  child: Row(
-                    children: [
-                      const Spacer(),
-                      GestureDetector(
-                        onTap: widget.onClose,
-                        child: Container(
-                          padding: const EdgeInsets.all(8),
-                          child: const Icon(
-                            Icons.close,
-                            color: Colors.white,
-                            size: 24,
-                          ),
-                        ),
-                      ),
-                    ],
+                SingleChildScrollView(
+                  child: Column(
+                    children: [ChapterContents(state: widget.chapterState)],
                   ),
                 ),
+                CloseButtonWithIcon(onClose: widget.onClose),
               ],
             ),
           ),

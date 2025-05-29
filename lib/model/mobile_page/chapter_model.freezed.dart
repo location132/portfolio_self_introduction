@@ -19,7 +19,15 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ChapterModel {
   bool get isChapterDetailVisible => throw _privateConstructorUsedError;
   bool get isChapterDetailAni => throw _privateConstructorUsedError;
-  int get selectedChapterIndex => throw _privateConstructorUsedError;
+  int get selectedChapterIndex =>
+      throw _privateConstructorUsedError; // 타이틀 애니메이션 활성화
+  bool get isChapterDetailAniTitle =>
+      throw _privateConstructorUsedError; // 내용 공간 애니메이션 활성화
+  bool get isChapterDetailAniContent =>
+      throw _privateConstructorUsedError; //내용 텍스트 애니메이션 활성화
+  bool get isChapterDetailAniText =>
+      throw _privateConstructorUsedError; // 챕터 설명 화면 애니메이션 활성화
+  bool get isChapterDescriptionAni => throw _privateConstructorUsedError;
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.
@@ -39,6 +47,10 @@ abstract class $ChapterModelCopyWith<$Res> {
     bool isChapterDetailVisible,
     bool isChapterDetailAni,
     int selectedChapterIndex,
+    bool isChapterDetailAniTitle,
+    bool isChapterDetailAniContent,
+    bool isChapterDetailAniText,
+    bool isChapterDescriptionAni,
   });
 }
 
@@ -60,6 +72,10 @@ class _$ChapterModelCopyWithImpl<$Res, $Val extends ChapterModel>
     Object? isChapterDetailVisible = null,
     Object? isChapterDetailAni = null,
     Object? selectedChapterIndex = null,
+    Object? isChapterDetailAniTitle = null,
+    Object? isChapterDetailAniContent = null,
+    Object? isChapterDetailAniText = null,
+    Object? isChapterDescriptionAni = null,
   }) {
     return _then(
       _value.copyWith(
@@ -78,6 +94,26 @@ class _$ChapterModelCopyWithImpl<$Res, $Val extends ChapterModel>
                     ? _value.selectedChapterIndex
                     : selectedChapterIndex // ignore: cast_nullable_to_non_nullable
                         as int,
+            isChapterDetailAniTitle:
+                null == isChapterDetailAniTitle
+                    ? _value.isChapterDetailAniTitle
+                    : isChapterDetailAniTitle // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isChapterDetailAniContent:
+                null == isChapterDetailAniContent
+                    ? _value.isChapterDetailAniContent
+                    : isChapterDetailAniContent // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isChapterDetailAniText:
+                null == isChapterDetailAniText
+                    ? _value.isChapterDetailAniText
+                    : isChapterDetailAniText // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isChapterDescriptionAni:
+                null == isChapterDescriptionAni
+                    ? _value.isChapterDescriptionAni
+                    : isChapterDescriptionAni // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -97,6 +133,10 @@ abstract class _$$ChapterModelImplCopyWith<$Res>
     bool isChapterDetailVisible,
     bool isChapterDetailAni,
     int selectedChapterIndex,
+    bool isChapterDetailAniTitle,
+    bool isChapterDetailAniContent,
+    bool isChapterDetailAniText,
+    bool isChapterDescriptionAni,
   });
 }
 
@@ -117,6 +157,10 @@ class __$$ChapterModelImplCopyWithImpl<$Res>
     Object? isChapterDetailVisible = null,
     Object? isChapterDetailAni = null,
     Object? selectedChapterIndex = null,
+    Object? isChapterDetailAniTitle = null,
+    Object? isChapterDetailAniContent = null,
+    Object? isChapterDetailAniText = null,
+    Object? isChapterDescriptionAni = null,
   }) {
     return _then(
       _$ChapterModelImpl(
@@ -135,6 +179,26 @@ class __$$ChapterModelImplCopyWithImpl<$Res>
                 ? _value.selectedChapterIndex
                 : selectedChapterIndex // ignore: cast_nullable_to_non_nullable
                     as int,
+        isChapterDetailAniTitle:
+            null == isChapterDetailAniTitle
+                ? _value.isChapterDetailAniTitle
+                : isChapterDetailAniTitle // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isChapterDetailAniContent:
+            null == isChapterDetailAniContent
+                ? _value.isChapterDetailAniContent
+                : isChapterDetailAniContent // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isChapterDetailAniText:
+            null == isChapterDetailAniText
+                ? _value.isChapterDetailAniText
+                : isChapterDetailAniText // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isChapterDescriptionAni:
+            null == isChapterDescriptionAni
+                ? _value.isChapterDescriptionAni
+                : isChapterDescriptionAni // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -147,6 +211,10 @@ class _$ChapterModelImpl implements _ChapterModel {
     this.isChapterDetailVisible = false,
     this.isChapterDetailAni = false,
     this.selectedChapterIndex = 0,
+    this.isChapterDetailAniTitle = false,
+    this.isChapterDetailAniContent = false,
+    this.isChapterDetailAniText = false,
+    this.isChapterDescriptionAni = false,
   });
 
   @override
@@ -158,10 +226,26 @@ class _$ChapterModelImpl implements _ChapterModel {
   @override
   @JsonKey()
   final int selectedChapterIndex;
+  // 타이틀 애니메이션 활성화
+  @override
+  @JsonKey()
+  final bool isChapterDetailAniTitle;
+  // 내용 공간 애니메이션 활성화
+  @override
+  @JsonKey()
+  final bool isChapterDetailAniContent;
+  //내용 텍스트 애니메이션 활성화
+  @override
+  @JsonKey()
+  final bool isChapterDetailAniText;
+  // 챕터 설명 화면 애니메이션 활성화
+  @override
+  @JsonKey()
+  final bool isChapterDescriptionAni;
 
   @override
   String toString() {
-    return 'ChapterModel(isChapterDetailVisible: $isChapterDetailVisible, isChapterDetailAni: $isChapterDetailAni, selectedChapterIndex: $selectedChapterIndex)';
+    return 'ChapterModel(isChapterDetailVisible: $isChapterDetailVisible, isChapterDetailAni: $isChapterDetailAni, selectedChapterIndex: $selectedChapterIndex, isChapterDetailAniTitle: $isChapterDetailAniTitle, isChapterDetailAniContent: $isChapterDetailAniContent, isChapterDetailAniText: $isChapterDetailAniText, isChapterDescriptionAni: $isChapterDescriptionAni)';
   }
 
   @override
@@ -174,7 +258,24 @@ class _$ChapterModelImpl implements _ChapterModel {
             (identical(other.isChapterDetailAni, isChapterDetailAni) ||
                 other.isChapterDetailAni == isChapterDetailAni) &&
             (identical(other.selectedChapterIndex, selectedChapterIndex) ||
-                other.selectedChapterIndex == selectedChapterIndex));
+                other.selectedChapterIndex == selectedChapterIndex) &&
+            (identical(
+                  other.isChapterDetailAniTitle,
+                  isChapterDetailAniTitle,
+                ) ||
+                other.isChapterDetailAniTitle == isChapterDetailAniTitle) &&
+            (identical(
+                  other.isChapterDetailAniContent,
+                  isChapterDetailAniContent,
+                ) ||
+                other.isChapterDetailAniContent == isChapterDetailAniContent) &&
+            (identical(other.isChapterDetailAniText, isChapterDetailAniText) ||
+                other.isChapterDetailAniText == isChapterDetailAniText) &&
+            (identical(
+                  other.isChapterDescriptionAni,
+                  isChapterDescriptionAni,
+                ) ||
+                other.isChapterDescriptionAni == isChapterDescriptionAni));
   }
 
   @override
@@ -183,6 +284,10 @@ class _$ChapterModelImpl implements _ChapterModel {
     isChapterDetailVisible,
     isChapterDetailAni,
     selectedChapterIndex,
+    isChapterDetailAniTitle,
+    isChapterDetailAniContent,
+    isChapterDetailAniText,
+    isChapterDescriptionAni,
   );
 
   /// Create a copy of ChapterModel
@@ -199,6 +304,10 @@ abstract class _ChapterModel implements ChapterModel {
     final bool isChapterDetailVisible,
     final bool isChapterDetailAni,
     final int selectedChapterIndex,
+    final bool isChapterDetailAniTitle,
+    final bool isChapterDetailAniContent,
+    final bool isChapterDetailAniText,
+    final bool isChapterDescriptionAni,
   }) = _$ChapterModelImpl;
 
   @override
@@ -206,7 +315,15 @@ abstract class _ChapterModel implements ChapterModel {
   @override
   bool get isChapterDetailAni;
   @override
-  int get selectedChapterIndex;
+  int get selectedChapterIndex; // 타이틀 애니메이션 활성화
+  @override
+  bool get isChapterDetailAniTitle; // 내용 공간 애니메이션 활성화
+  @override
+  bool get isChapterDetailAniContent; //내용 텍스트 애니메이션 활성화
+  @override
+  bool get isChapterDetailAniText; // 챕터 설명 화면 애니메이션 활성화
+  @override
+  bool get isChapterDescriptionAni;
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.

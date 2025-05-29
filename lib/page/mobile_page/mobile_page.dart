@@ -107,41 +107,53 @@ class _MobileViewState extends State<_MobileView> {
                             ),
                           ),
 
+                          MainPage(
+                            key: const ValueKey('main'),
+                            chapterState: state.chapterModel,
+                            cubit: context.read<MobileCubit>(),
+                            aboutMeState: state.aboutMeModel,
+                            detailMeState: state.detailMeModel,
+                            isTitelTextAniStart:
+                                state.introModel.isTitelTextAniStart,
+                            isChapterContainerAniStart:
+                                state.introModel.isChapterContainerAniStart,
+                            isMobileDevice: widget.isMobileDevice,
+                          ),
                           //--------------------
-                          AnimatedOpacity(
-                            opacity:
-                                state.introModel.isPageTransition ? 0.0 : 1.0,
-                            duration: const Duration(milliseconds: 600),
-                            curve: Curves.easeInOut,
-                            child: Visibility(
-                              visible: !state.introModel.isIntroInActive,
-                              child: IntroPage(
-                                key: const ValueKey('intro'),
-                                introModel: state.introModel,
-                              ),
-                            ),
-                          ),
-                          Visibility(
-                            visible: state.introModel.isIntroImageChange,
-                            child: AnimatedOpacity(
-                              opacity:
-                                  state.introModel.isPageTransition ? 1.0 : 0.0,
-                              duration: const Duration(milliseconds: 600),
-                              curve: Curves.easeInOut,
-                              child: MainPage(
-                                key: const ValueKey('main'),
-                                chapterState: state.chapterModel,
-                                cubit: context.read<MobileCubit>(),
-                                aboutMeState: state.aboutMeModel,
-                                detailMeState: state.detailMeModel,
-                                isTitelTextAniStart:
-                                    state.introModel.isTitelTextAniStart,
-                                isChapterContainerAniStart:
-                                    state.introModel.isChapterContainerAniStart,
-                                isMobileDevice: widget.isMobileDevice,
-                              ),
-                            ),
-                          ),
+                          // AnimatedOpacity(
+                          //   opacity:
+                          //       state.introModel.isPageTransition ? 0.0 : 1.0,
+                          //   duration: const Duration(milliseconds: 600),
+                          //   curve: Curves.easeInOut,
+                          //   child: Visibility(
+                          //     visible: !state.introModel.isIntroInActive,
+                          //     child: IntroPage(
+                          //       key: const ValueKey('intro'),
+                          //       introModel: state.introModel,
+                          //     ),
+                          //   ),
+                          // ),
+                          // Visibility(
+                          //   visible: state.introModel.isIntroImageChange,
+                          //   child: AnimatedOpacity(
+                          //     opacity:
+                          //         state.introModel.isPageTransition ? 1.0 : 0.0,
+                          //     duration: const Duration(milliseconds: 600),
+                          //     curve: Curves.easeInOut,
+                          //     child: MainPage(
+                          //       key: const ValueKey('main'),
+                          //       chapterState: state.chapterModel,
+                          //       cubit: context.read<MobileCubit>(),
+                          //       aboutMeState: state.aboutMeModel,
+                          //       detailMeState: state.detailMeModel,
+                          //       isTitelTextAniStart:
+                          //           state.introModel.isTitelTextAniStart,
+                          //       isChapterContainerAniStart:
+                          //           state.introModel.isChapterContainerAniStart,
+                          //       isMobileDevice: widget.isMobileDevice,
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                       MenuScreen(isMenuClicked: state.introModel.isMenuClicked),
@@ -160,7 +172,10 @@ class _MobileViewState extends State<_MobileView> {
                 ),
               ),
               // 챕터 상세 화면
-              Positioned.fill(
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
                 child: ChapterDetailScreen(
                   chapterState: state.chapterModel,
                   onClose: () {

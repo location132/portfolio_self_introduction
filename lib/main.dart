@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/page/desktop_page/desktop_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_page.dart';
 import 'package:self_introduction_flutter/service/main_service.dart';
 

@@ -7,7 +7,7 @@ class ChapterDetailAnimation {
 
   ChapterDetailAnimation({required TickerProvider vsync})
     : animationController = AnimationController(
-        duration: const Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 800),
         vsync: vsync,
       ) {
     slideAnimation = Tween<Offset>(
