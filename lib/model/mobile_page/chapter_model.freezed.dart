@@ -27,7 +27,11 @@ mixin _$ChapterModel {
       throw _privateConstructorUsedError; //내용 텍스트 애니메이션 활성화
   bool get isChapterDetailAniText =>
       throw _privateConstructorUsedError; // 챕터 설명 화면 애니메이션 활성화
-  bool get isChapterDescriptionAni => throw _privateConstructorUsedError;
+  bool get isChapterDescriptionAni =>
+      throw _privateConstructorUsedError; // 버튼 표시 여부
+  bool get isButtonVisible =>
+      throw _privateConstructorUsedError; // 상세 보기 상태 (true: 상세보기, false: 간략보기)
+  bool get isDetailedView => throw _privateConstructorUsedError;
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.
@@ -51,6 +55,8 @@ abstract class $ChapterModelCopyWith<$Res> {
     bool isChapterDetailAniContent,
     bool isChapterDetailAniText,
     bool isChapterDescriptionAni,
+    bool isButtonVisible,
+    bool isDetailedView,
   });
 }
 
@@ -76,6 +82,8 @@ class _$ChapterModelCopyWithImpl<$Res, $Val extends ChapterModel>
     Object? isChapterDetailAniContent = null,
     Object? isChapterDetailAniText = null,
     Object? isChapterDescriptionAni = null,
+    Object? isButtonVisible = null,
+    Object? isDetailedView = null,
   }) {
     return _then(
       _value.copyWith(
@@ -114,6 +122,16 @@ class _$ChapterModelCopyWithImpl<$Res, $Val extends ChapterModel>
                     ? _value.isChapterDescriptionAni
                     : isChapterDescriptionAni // ignore: cast_nullable_to_non_nullable
                         as bool,
+            isButtonVisible:
+                null == isButtonVisible
+                    ? _value.isButtonVisible
+                    : isButtonVisible // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isDetailedView:
+                null == isDetailedView
+                    ? _value.isDetailedView
+                    : isDetailedView // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -137,6 +155,8 @@ abstract class _$$ChapterModelImplCopyWith<$Res>
     bool isChapterDetailAniContent,
     bool isChapterDetailAniText,
     bool isChapterDescriptionAni,
+    bool isButtonVisible,
+    bool isDetailedView,
   });
 }
 
@@ -161,6 +181,8 @@ class __$$ChapterModelImplCopyWithImpl<$Res>
     Object? isChapterDetailAniContent = null,
     Object? isChapterDetailAniText = null,
     Object? isChapterDescriptionAni = null,
+    Object? isButtonVisible = null,
+    Object? isDetailedView = null,
   }) {
     return _then(
       _$ChapterModelImpl(
@@ -199,6 +221,16 @@ class __$$ChapterModelImplCopyWithImpl<$Res>
                 ? _value.isChapterDescriptionAni
                 : isChapterDescriptionAni // ignore: cast_nullable_to_non_nullable
                     as bool,
+        isButtonVisible:
+            null == isButtonVisible
+                ? _value.isButtonVisible
+                : isButtonVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isDetailedView:
+            null == isDetailedView
+                ? _value.isDetailedView
+                : isDetailedView // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -215,6 +247,8 @@ class _$ChapterModelImpl implements _ChapterModel {
     this.isChapterDetailAniContent = false,
     this.isChapterDetailAniText = false,
     this.isChapterDescriptionAni = false,
+    this.isButtonVisible = false,
+    this.isDetailedView = true,
   });
 
   @override
@@ -242,10 +276,18 @@ class _$ChapterModelImpl implements _ChapterModel {
   @override
   @JsonKey()
   final bool isChapterDescriptionAni;
+  // 버튼 표시 여부
+  @override
+  @JsonKey()
+  final bool isButtonVisible;
+  // 상세 보기 상태 (true: 상세보기, false: 간략보기)
+  @override
+  @JsonKey()
+  final bool isDetailedView;
 
   @override
   String toString() {
-    return 'ChapterModel(isChapterDetailVisible: $isChapterDetailVisible, isChapterDetailAni: $isChapterDetailAni, selectedChapterIndex: $selectedChapterIndex, isChapterDetailAniTitle: $isChapterDetailAniTitle, isChapterDetailAniContent: $isChapterDetailAniContent, isChapterDetailAniText: $isChapterDetailAniText, isChapterDescriptionAni: $isChapterDescriptionAni)';
+    return 'ChapterModel(isChapterDetailVisible: $isChapterDetailVisible, isChapterDetailAni: $isChapterDetailAni, selectedChapterIndex: $selectedChapterIndex, isChapterDetailAniTitle: $isChapterDetailAniTitle, isChapterDetailAniContent: $isChapterDetailAniContent, isChapterDetailAniText: $isChapterDetailAniText, isChapterDescriptionAni: $isChapterDescriptionAni, isButtonVisible: $isButtonVisible, isDetailedView: $isDetailedView)';
   }
 
   @override
@@ -275,7 +317,11 @@ class _$ChapterModelImpl implements _ChapterModel {
                   other.isChapterDescriptionAni,
                   isChapterDescriptionAni,
                 ) ||
-                other.isChapterDescriptionAni == isChapterDescriptionAni));
+                other.isChapterDescriptionAni == isChapterDescriptionAni) &&
+            (identical(other.isButtonVisible, isButtonVisible) ||
+                other.isButtonVisible == isButtonVisible) &&
+            (identical(other.isDetailedView, isDetailedView) ||
+                other.isDetailedView == isDetailedView));
   }
 
   @override
@@ -288,6 +334,8 @@ class _$ChapterModelImpl implements _ChapterModel {
     isChapterDetailAniContent,
     isChapterDetailAniText,
     isChapterDescriptionAni,
+    isButtonVisible,
+    isDetailedView,
   );
 
   /// Create a copy of ChapterModel
@@ -308,6 +356,8 @@ abstract class _ChapterModel implements ChapterModel {
     final bool isChapterDetailAniContent,
     final bool isChapterDetailAniText,
     final bool isChapterDescriptionAni,
+    final bool isButtonVisible,
+    final bool isDetailedView,
   }) = _$ChapterModelImpl;
 
   @override
@@ -323,7 +373,11 @@ abstract class _ChapterModel implements ChapterModel {
   @override
   bool get isChapterDetailAniText; // 챕터 설명 화면 애니메이션 활성화
   @override
-  bool get isChapterDescriptionAni;
+  bool get isChapterDescriptionAni; // 버튼 표시 여부
+  @override
+  bool get isButtonVisible; // 상세 보기 상태 (true: 상세보기, false: 간략보기)
+  @override
+  bool get isDetailedView;
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.

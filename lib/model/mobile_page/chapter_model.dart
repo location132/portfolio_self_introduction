@@ -18,5 +18,10 @@ class ChapterModel with _$ChapterModel {
 
     // 챕터 설명 화면 애니메이션 활성화
     @Default(false) bool isChapterDescriptionAni,
+
+    // 버튼 표시 여부
+    @Default(false) bool isButtonVisible,
+    // 상세 보기 상태 (true: 상세보기, false: 간략보기)
+    @Default(true) bool isDetailedView,
   }) = _ChapterModel;
 }

@@ -9,7 +9,14 @@ import 'package:self_introduction_flutter/page/mobile_page/view/main_view/chapte
 
 class ChapterContents extends StatelessWidget {
   final ChapterModel state;
-  const ChapterContents({super.key, required this.state});
+  final Function() onSimpleView;
+  final Function() onDetailView;
+  const ChapterContents({
+    super.key,
+    required this.state,
+    required this.onSimpleView,
+    required this.onDetailView,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +78,7 @@ class ChapterContents extends StatelessWidget {
               padding: EdgeInsets.only(left: 6.w, top: 20.h),
               child: AnimatedContainer(
                 height: state.isChapterDetailAniContent ? 100.h : 0.h,
-                duration: const Duration(milliseconds: 1200),
+                duration: const Duration(milliseconds: 800),
                 curve: Curves.easeInOut,
                 child: AnimatedOpacity(
                   opacity: state.isChapterDetailAniText ? 1 : 0,
@@ -97,7 +104,7 @@ class ChapterContents extends StatelessWidget {
               padding: EdgeInsets.only(left: 6.w, top: 10.h),
               child: AnimatedContainer(
                 height: state.isChapterDetailAniContent ? 100.h : 0.h,
-                duration: const Duration(milliseconds: 1200),
+                duration: const Duration(milliseconds: 800),
                 curve: Curves.easeInOut,
                 child: AnimatedOpacity(
                   opacity: state.isChapterDetailAniText ? 1 : 0,
@@ -158,10 +165,66 @@ class ChapterContents extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: 40.h),
 
-            SizedBox(height: 24.h),
+            if (state.isButtonVisible)
+              Stack(
+                children: [
+                  if (state.isDetailedView)
+                    AnimatedOpacity(
+                      opacity: 1,
+                      duration: const Duration(milliseconds: 600),
+                      curve: Curves.easeInOut,
+                      child: Center(
+                        child: TextButton.icon(
+                          onPressed: () {
+                            onSimpleView();
+                          },
+                          icon: Icon(
+                            Icons.expand_less,
+                            color: Colors.white,
+                            size: 18.sp,
+                          ),
+                          label: Text(
+                            '간략히 보기',
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
 
-            SizedBox(height: 60.h),
+                  if (!state.isDetailedView)
+                    AnimatedOpacity(
+                      opacity: 1,
+                      duration: const Duration(milliseconds: 600),
+                      curve: Curves.easeInOut,
+                      child: Center(
+                        child: TextButton.icon(
+                          onPressed: () {
+                            onDetailView();
+                          },
+                          icon: Icon(
+                            Icons.expand_more,
+                            color: Colors.white,
+                            size: 18.sp,
+                          ),
+                          label: Text(
+                            '자세히 보기',
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
           ],
         ),
       ),

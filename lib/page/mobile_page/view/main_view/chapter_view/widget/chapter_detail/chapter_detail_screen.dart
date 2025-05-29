@@ -7,11 +7,15 @@ import 'package:self_introduction_flutter/page/mobile_page/view/main_view/chapte
 class ChapterDetailScreen extends StatefulWidget {
   final ChapterModel chapterState;
   final VoidCallback onClose;
+  final Function() onSimpleView;
+  final Function() onDetailView;
 
   const ChapterDetailScreen({
     super.key,
     required this.chapterState,
     required this.onClose,
+    required this.onSimpleView,
+    required this.onDetailView,
   });
 
   @override
@@ -41,9 +45,13 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen>
     if (widget.chapterState.isChapterDetailAni !=
         oldWidget.chapterState.isChapterDetailAni) {
       if (widget.chapterState.isChapterDetailAni) {
-        animation.show();
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          animation.show();
+        });
       } else {
-        animation.hide();
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          animation.hide();
+        });
       }
     }
   }
@@ -75,7 +83,17 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen>
               children: [
                 SingleChildScrollView(
                   child: Column(
-                    children: [ChapterContents(state: widget.chapterState)],
+                    children: [
+                      ChapterContents(
+                        state: widget.chapterState,
+                        onSimpleView: () {
+                          widget.onSimpleView();
+                        },
+                        onDetailView: () {
+                          widget.onDetailView();
+                        },
+                      ),
+                    ],
                   ),
                 ),
                 CloseButtonWithIcon(onClose: widget.onClose),

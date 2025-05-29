@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
-import 'package:self_introduction_flutter/page/mobile_page/view/intro_view/intro_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/widget/player.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/chapter_view/widget/chapter_detail/chapter_detail_screen.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/main_page.dart';
@@ -180,6 +179,12 @@ class _MobileViewState extends State<_MobileView> {
                   chapterState: state.chapterModel,
                   onClose: () {
                     context.read<MobileCubit>().hideChapterDetail();
+                  },
+                  onSimpleView: () {
+                    context.read<MobileCubit>().chapterDetailSimpleView();
+                  },
+                  onDetailView: () {
+                    context.read<MobileCubit>().chapterDetailFullView();
                   },
                 ),
               ),

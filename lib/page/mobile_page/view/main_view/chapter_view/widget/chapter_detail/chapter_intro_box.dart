@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ChapterIntroBox extends StatelessWidget {
+class ChapterIntroBox extends StatefulWidget {
   final bool isChapterDescriptionAni;
   final bool isTextOpacity;
   const ChapterIntroBox({
@@ -11,11 +11,34 @@ class ChapterIntroBox extends StatelessWidget {
   });
 
   @override
+  State<ChapterIntroBox> createState() => _ChapterIntroBoxState();
+}
+
+class _ChapterIntroBoxState extends State<ChapterIntroBox> {
+  bool isSecondsAni = false;
+  bool isTextOpacity = false;
+
+  @override
+  void didUpdateWidget(covariant ChapterIntroBox oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isChapterDescriptionAni != widget.isChapterDescriptionAni) {
+      setState(() {
+        isSecondsAni = true;
+      });
+    }
+    if (oldWidget.isTextOpacity != widget.isTextOpacity) {
+      setState(() {
+        isTextOpacity = true;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 800),
       curve: Curves.easeInOut,
-      height: isChapterDescriptionAni ? 200.h : 0.h,
+      height: isSecondsAni ? 200.h : 0.h,
       padding: EdgeInsets.only(
         left: 10.w,
         right: 10.w,
@@ -45,8 +68,8 @@ class ChapterIntroBox extends StatelessWidget {
             SizedBox(height: 10.h),
             Center(
               child: Text(
-                '  챕터 1에서는 각종 세미나와 컨퍼런스에 참여한 이유를 확인하실 수 있습니다.\n\n'
-                '  세 가지로 구성된 작은 세미나 이야기는 제가 꿈꾸던 목표와 배운 점을 공유할 수 있도록 구성한 챕터입니다.',
+                '챕터 1에서는 각종 세미나와 컨퍼런스에 참여한 이유를 확인하실 수 있습니다.\n\n'
+                '세 가지로 구성된 작은 세미나 이야기는 제가 꿈꾸던 목표와 배운 점을 공유할 수 있도록 구성한 챕터입니다.',
                 style: TextStyle(
                   fontSize: 16.sp,
                   height: 1.6,

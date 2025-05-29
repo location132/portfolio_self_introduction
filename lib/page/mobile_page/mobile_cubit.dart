@@ -287,6 +287,8 @@ class MobileCubit extends Cubit<MobileState> {
         chapterModel: state.chapterModel.copyWith(
           isChapterDetailVisible: true,
           selectedChapterIndex: chapterIndex,
+          isDetailedView: true,
+          isButtonVisible: false,
         ),
         aboutMeModel: state.aboutMeModel.copyWith(isBackGroundAniStart: true),
       ),
@@ -320,6 +322,60 @@ class MobileCubit extends Cubit<MobileState> {
         chapterModel: state.chapterModel.copyWith(isChapterDetailAniText: true),
       ),
     );
+    await Future.delayed(const Duration(milliseconds: 1000));
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(isButtonVisible: true),
+      ),
+    );
+  }
+
+  // 챕터 상세 화면 간략히 보기
+  void chapterDetailSimpleView() {
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(
+          isChapterDetailAniText: false,
+          isChapterDetailAniContent: false,
+          isChapterDetailAniTitle: false,
+          isChapterDescriptionAni: false,
+          isDetailedView: false,
+        ),
+      ),
+    );
+  }
+
+  // 챕터 상세 화면 자세히 보기
+  void chapterDetailFullView() async {
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(isDetailedView: true),
+      ),
+    );
+    // 애니메이션 다시 실행
+    await Future.delayed(const Duration(milliseconds: 100));
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(
+          isChapterDetailAniTitle: true,
+        ),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 300));
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(
+          isChapterDetailAniContent: true,
+          isChapterDescriptionAni: true,
+        ),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 300));
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(isChapterDetailAniText: true),
+      ),
+    );
   }
 
   // 챕터 상세 화면 숨기기
@@ -340,6 +396,8 @@ class MobileCubit extends Cubit<MobileState> {
           isChapterDetailAniContent: false,
           isChapterDetailAniText: false,
           isChapterDescriptionAni: false,
+          isButtonVisible: false,
+          isDetailedView: true,
         ),
       ),
     );
