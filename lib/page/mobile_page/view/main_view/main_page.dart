@@ -38,7 +38,8 @@ class MainPage extends StatelessWidget {
             color:
                 isMobileDevice
                     ? aboutMeState.isBackGroundAniStart ||
-                            detailMeState.isDetailMe
+                            detailMeState.isDetailMe ||
+                            chapterState.isBackGroundAniStart
                         ? Colors.black
                         : Colors.transparent
                     : Colors.black,

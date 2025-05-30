@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/model/mobile_page/chapter_model.dart';
-import 'package:self_introduction_flutter/page/mobile_page/view/main_view/chapter_view/widget/chapter_detail/chapter_story.dart';
 
 class MobileChapter3 extends StatelessWidget {
   final ChapterModel state;
@@ -29,41 +28,11 @@ class MobileChapter3 extends StatelessWidget {
           curve: Curves.easeInOut,
           child: Column(
             children: [
-              // 1. 현재 이 프로젝트 - 포트폴리오 웹사이트
-              ChapterStory(
-                title: '지금 보고 계시는 이 포트폴리오',
-                isStart: state.isChapterDetailAniTitle,
-              ),
               Padding(
                 padding: EdgeInsets.only(left: 6.w, top: 20.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // 이미지 (회색 컨테이너)
-                    Center(
-                      child: Container(
-                        constraints: BoxConstraints(
-                          maxWidth: 420.w, // 갤럭시 폴드 대응
-                        ),
-                        margin: EdgeInsets.only(bottom: 20.h),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.r),
-                          color: Colors.grey[700],
-                          border: Border.all(
-                            color: Colors.grey[600]!,
-                            width: 1,
-                          ),
-                        ),
-                        height: 200.h,
-                        child: Center(
-                          child: Icon(
-                            Icons.image,
-                            color: Colors.grey[500],
-                            size: 48.sp,
-                          ),
-                        ),
-                      ),
-                    ),
                     // 제목
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 4.w),
@@ -103,41 +72,11 @@ class MobileChapter3 extends StatelessWidget {
 
               SizedBox(height: 60.h),
 
-              // 2. 기술적 성장과 도전
-              ChapterStory(
-                title: '계속 성장하는 패턴과 아키텍쳐',
-                isStart: state.isChapterDetailAniTitle,
-              ),
               Padding(
                 padding: EdgeInsets.only(left: 6.w, top: 20.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // 이미지 (회색 컨테이너)
-                    Center(
-                      child: Container(
-                        constraints: BoxConstraints(
-                          maxWidth: 420.w, // 갤럭시 폴드 대응
-                        ),
-                        margin: EdgeInsets.only(bottom: 20.h),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.r),
-                          color: Colors.grey[700],
-                          border: Border.all(
-                            color: Colors.grey[600]!,
-                            width: 1,
-                          ),
-                        ),
-                        height: 200.h,
-                        child: Center(
-                          child: Icon(
-                            Icons.image,
-                            color: Colors.grey[500],
-                            size: 48.sp,
-                          ),
-                        ),
-                      ),
-                    ),
                     // 제목
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 4.w),
@@ -177,43 +116,11 @@ class MobileChapter3 extends StatelessWidget {
               ),
 
               SizedBox(height: 60.h),
-
-              // 3. 현재의 나와 앞으로의 목표
-              ChapterStory(
-                title: '도움이 되는 더 다양한 툴들',
-                isStart: state.isChapterDetailAniTitle,
-              ),
               Padding(
                 padding: EdgeInsets.only(left: 6.w, top: 20.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // 이미지 (회색 컨테이너)
-                    Center(
-                      child: Container(
-                        constraints: BoxConstraints(
-                          maxWidth: 420.w, // 갤럭시 폴드 대응
-                        ),
-                        margin: EdgeInsets.only(bottom: 20.h),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.r),
-                          color: Colors.grey[700],
-                          border: Border.all(
-                            color: Colors.grey[600]!,
-                            width: 1,
-                          ),
-                        ),
-                        height: 200.h,
-                        child: Center(
-                          child: Icon(
-                            Icons.image,
-                            color: Colors.grey[500],
-                            size: 48.sp,
-                          ),
-                        ),
-                      ),
-                    ),
-                    // 제목
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 4.w),
                       child: Text(
@@ -228,7 +135,7 @@ class MobileChapter3 extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 16.h),
-                    // 설명
+
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 4.w),
                       child: Text(

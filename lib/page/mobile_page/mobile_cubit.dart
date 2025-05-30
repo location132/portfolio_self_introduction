@@ -290,8 +290,8 @@ class MobileCubit extends Cubit<MobileState> {
           selectedChapterIndex: chapterIndex,
           isButtonVisible: false,
           isChapterContentVisible: false,
+          isBackGroundAniStart: true,
         ),
-        aboutMeModel: state.aboutMeModel.copyWith(isBackGroundAniStart: true),
       ),
     );
     await Future.delayed(const Duration(milliseconds: 50));
@@ -349,6 +349,7 @@ class MobileCubit extends Cubit<MobileState> {
           isChapterDescriptionAni: false,
           isButtonVisible: false,
           isChapterContentVisible: false,
+          isBackGroundAniStart: false,
           chapterDetailButton: ChapterDetailButton.none,
         ),
       ),

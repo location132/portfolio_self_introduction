@@ -27,6 +27,9 @@ class ChapterModel with _$ChapterModel {
 
     // 자세히보기 간략히보기 버튼 표시 여부
     @Default(ChapterDetailButton.none) ChapterDetailButton chapterDetailButton,
+
+    // 백그라운드
+    @Default(false) bool isBackGroundAniStart,
   }) = _ChapterModel;
 }
 

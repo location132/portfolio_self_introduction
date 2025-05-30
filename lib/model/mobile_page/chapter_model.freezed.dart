@@ -34,7 +34,8 @@ mixin _$ChapterModel {
   bool get isChapterContentVisible =>
       throw _privateConstructorUsedError; // 자세히보기 간략히보기 버튼 표시 여부
   ChapterDetailButton get chapterDetailButton =>
-      throw _privateConstructorUsedError;
+      throw _privateConstructorUsedError; // 백그라운드
+  bool get isBackGroundAniStart => throw _privateConstructorUsedError;
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.
@@ -61,6 +62,7 @@ abstract class $ChapterModelCopyWith<$Res> {
     bool isButtonVisible,
     bool isChapterContentVisible,
     ChapterDetailButton chapterDetailButton,
+    bool isBackGroundAniStart,
   });
 }
 
@@ -89,6 +91,7 @@ class _$ChapterModelCopyWithImpl<$Res, $Val extends ChapterModel>
     Object? isButtonVisible = null,
     Object? isChapterContentVisible = null,
     Object? chapterDetailButton = null,
+    Object? isBackGroundAniStart = null,
   }) {
     return _then(
       _value.copyWith(
@@ -142,6 +145,11 @@ class _$ChapterModelCopyWithImpl<$Res, $Val extends ChapterModel>
                     ? _value.chapterDetailButton
                     : chapterDetailButton // ignore: cast_nullable_to_non_nullable
                         as ChapterDetailButton,
+            isBackGroundAniStart:
+                null == isBackGroundAniStart
+                    ? _value.isBackGroundAniStart
+                    : isBackGroundAniStart // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -168,6 +176,7 @@ abstract class _$$ChapterModelImplCopyWith<$Res>
     bool isButtonVisible,
     bool isChapterContentVisible,
     ChapterDetailButton chapterDetailButton,
+    bool isBackGroundAniStart,
   });
 }
 
@@ -195,6 +204,7 @@ class __$$ChapterModelImplCopyWithImpl<$Res>
     Object? isButtonVisible = null,
     Object? isChapterContentVisible = null,
     Object? chapterDetailButton = null,
+    Object? isBackGroundAniStart = null,
   }) {
     return _then(
       _$ChapterModelImpl(
@@ -248,6 +258,11 @@ class __$$ChapterModelImplCopyWithImpl<$Res>
                 ? _value.chapterDetailButton
                 : chapterDetailButton // ignore: cast_nullable_to_non_nullable
                     as ChapterDetailButton,
+        isBackGroundAniStart:
+            null == isBackGroundAniStart
+                ? _value.isBackGroundAniStart
+                : isBackGroundAniStart // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -267,6 +282,7 @@ class _$ChapterModelImpl implements _ChapterModel {
     this.isButtonVisible = false,
     this.isChapterContentVisible = false,
     this.chapterDetailButton = ChapterDetailButton.none,
+    this.isBackGroundAniStart = false,
   });
 
   @override
@@ -306,10 +322,14 @@ class _$ChapterModelImpl implements _ChapterModel {
   @override
   @JsonKey()
   final ChapterDetailButton chapterDetailButton;
+  // 백그라운드
+  @override
+  @JsonKey()
+  final bool isBackGroundAniStart;
 
   @override
   String toString() {
-    return 'ChapterModel(isChapterDetailVisible: $isChapterDetailVisible, isChapterDetailAni: $isChapterDetailAni, selectedChapterIndex: $selectedChapterIndex, isChapterDetailAniTitle: $isChapterDetailAniTitle, isChapterDetailAniContent: $isChapterDetailAniContent, isChapterDetailAniText: $isChapterDetailAniText, isChapterDescriptionAni: $isChapterDescriptionAni, isButtonVisible: $isButtonVisible, isChapterContentVisible: $isChapterContentVisible, chapterDetailButton: $chapterDetailButton)';
+    return 'ChapterModel(isChapterDetailVisible: $isChapterDetailVisible, isChapterDetailAni: $isChapterDetailAni, selectedChapterIndex: $selectedChapterIndex, isChapterDetailAniTitle: $isChapterDetailAniTitle, isChapterDetailAniContent: $isChapterDetailAniContent, isChapterDetailAniText: $isChapterDetailAniText, isChapterDescriptionAni: $isChapterDescriptionAni, isButtonVisible: $isButtonVisible, isChapterContentVisible: $isChapterContentVisible, chapterDetailButton: $chapterDetailButton, isBackGroundAniStart: $isBackGroundAniStart)';
   }
 
   @override
@@ -348,7 +368,9 @@ class _$ChapterModelImpl implements _ChapterModel {
                 ) ||
                 other.isChapterContentVisible == isChapterContentVisible) &&
             (identical(other.chapterDetailButton, chapterDetailButton) ||
-                other.chapterDetailButton == chapterDetailButton));
+                other.chapterDetailButton == chapterDetailButton) &&
+            (identical(other.isBackGroundAniStart, isBackGroundAniStart) ||
+                other.isBackGroundAniStart == isBackGroundAniStart));
   }
 
   @override
@@ -364,6 +386,7 @@ class _$ChapterModelImpl implements _ChapterModel {
     isButtonVisible,
     isChapterContentVisible,
     chapterDetailButton,
+    isBackGroundAniStart,
   );
 
   /// Create a copy of ChapterModel
@@ -387,6 +410,7 @@ abstract class _ChapterModel implements ChapterModel {
     final bool isButtonVisible,
     final bool isChapterContentVisible,
     final ChapterDetailButton chapterDetailButton,
+    final bool isBackGroundAniStart,
   }) = _$ChapterModelImpl;
 
   @override
@@ -408,7 +432,9 @@ abstract class _ChapterModel implements ChapterModel {
   @override
   bool get isChapterContentVisible; // 자세히보기 간략히보기 버튼 표시 여부
   @override
-  ChapterDetailButton get chapterDetailButton;
+  ChapterDetailButton get chapterDetailButton; // 백그라운드
+  @override
+  bool get isBackGroundAniStart;
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.
