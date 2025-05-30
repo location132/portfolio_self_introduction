@@ -7,15 +7,13 @@ import 'package:self_introduction_flutter/page/mobile_page/view/main_view/chapte
 class ChapterDetailScreen extends StatefulWidget {
   final ChapterModel chapterState;
   final VoidCallback onClose;
-  final Function() onSimpleView;
-  final Function() onDetailView;
+  final Function() chapterDetailButtonClicked;
 
   const ChapterDetailScreen({
     super.key,
     required this.chapterState,
     required this.onClose,
-    required this.onSimpleView,
-    required this.onDetailView,
+    required this.chapterDetailButtonClicked,
   });
 
   @override
@@ -81,16 +79,11 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen>
           child: SafeArea(
             child: Stack(
               children: [
-                SingleChildScrollView(
-                  child: ChapterContents(
-                    state: widget.chapterState,
-                    onSimpleView: () {
-                      widget.onSimpleView();
-                    },
-                    onDetailView: () {
-                      widget.onDetailView();
-                    },
-                  ),
+                ChapterContents(
+                  state: widget.chapterState,
+                  chapterDetailButtonClicked: () {
+                    widget.chapterDetailButtonClicked();
+                  },
                 ),
                 CloseButtonWithIcon(onClose: widget.onClose),
               ],

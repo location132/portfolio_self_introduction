@@ -30,10 +30,11 @@ mixin _$ChapterModel {
   bool get isChapterDescriptionAni =>
       throw _privateConstructorUsedError; // 버튼 표시 여부
   bool get isButtonVisible =>
-      throw _privateConstructorUsedError; // 상세 보기 상태 (true: 상세보기, false: 간략보기)
-  bool get isDetailedView =>
       throw _privateConstructorUsedError; // 챕터 컨텐츠 표시 여부 (3개 세미나 섹션 한번에 제어)
-  bool get isChapterContentVisible => throw _privateConstructorUsedError;
+  bool get isChapterContentVisible =>
+      throw _privateConstructorUsedError; // 자세히보기 간략히보기 버튼 표시 여부
+  ChapterDetailButton get chapterDetailButton =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.
@@ -58,8 +59,8 @@ abstract class $ChapterModelCopyWith<$Res> {
     bool isChapterDetailAniText,
     bool isChapterDescriptionAni,
     bool isButtonVisible,
-    bool isDetailedView,
     bool isChapterContentVisible,
+    ChapterDetailButton chapterDetailButton,
   });
 }
 
@@ -86,8 +87,8 @@ class _$ChapterModelCopyWithImpl<$Res, $Val extends ChapterModel>
     Object? isChapterDetailAniText = null,
     Object? isChapterDescriptionAni = null,
     Object? isButtonVisible = null,
-    Object? isDetailedView = null,
     Object? isChapterContentVisible = null,
+    Object? chapterDetailButton = null,
   }) {
     return _then(
       _value.copyWith(
@@ -131,16 +132,16 @@ class _$ChapterModelCopyWithImpl<$Res, $Val extends ChapterModel>
                     ? _value.isButtonVisible
                     : isButtonVisible // ignore: cast_nullable_to_non_nullable
                         as bool,
-            isDetailedView:
-                null == isDetailedView
-                    ? _value.isDetailedView
-                    : isDetailedView // ignore: cast_nullable_to_non_nullable
-                        as bool,
             isChapterContentVisible:
                 null == isChapterContentVisible
                     ? _value.isChapterContentVisible
                     : isChapterContentVisible // ignore: cast_nullable_to_non_nullable
                         as bool,
+            chapterDetailButton:
+                null == chapterDetailButton
+                    ? _value.chapterDetailButton
+                    : chapterDetailButton // ignore: cast_nullable_to_non_nullable
+                        as ChapterDetailButton,
           )
           as $Val,
     );
@@ -165,8 +166,8 @@ abstract class _$$ChapterModelImplCopyWith<$Res>
     bool isChapterDetailAniText,
     bool isChapterDescriptionAni,
     bool isButtonVisible,
-    bool isDetailedView,
     bool isChapterContentVisible,
+    ChapterDetailButton chapterDetailButton,
   });
 }
 
@@ -192,8 +193,8 @@ class __$$ChapterModelImplCopyWithImpl<$Res>
     Object? isChapterDetailAniText = null,
     Object? isChapterDescriptionAni = null,
     Object? isButtonVisible = null,
-    Object? isDetailedView = null,
     Object? isChapterContentVisible = null,
+    Object? chapterDetailButton = null,
   }) {
     return _then(
       _$ChapterModelImpl(
@@ -237,16 +238,16 @@ class __$$ChapterModelImplCopyWithImpl<$Res>
                 ? _value.isButtonVisible
                 : isButtonVisible // ignore: cast_nullable_to_non_nullable
                     as bool,
-        isDetailedView:
-            null == isDetailedView
-                ? _value.isDetailedView
-                : isDetailedView // ignore: cast_nullable_to_non_nullable
-                    as bool,
         isChapterContentVisible:
             null == isChapterContentVisible
                 ? _value.isChapterContentVisible
                 : isChapterContentVisible // ignore: cast_nullable_to_non_nullable
                     as bool,
+        chapterDetailButton:
+            null == chapterDetailButton
+                ? _value.chapterDetailButton
+                : chapterDetailButton // ignore: cast_nullable_to_non_nullable
+                    as ChapterDetailButton,
       ),
     );
   }
@@ -264,8 +265,8 @@ class _$ChapterModelImpl implements _ChapterModel {
     this.isChapterDetailAniText = false,
     this.isChapterDescriptionAni = false,
     this.isButtonVisible = false,
-    this.isDetailedView = true,
     this.isChapterContentVisible = false,
+    this.chapterDetailButton = ChapterDetailButton.none,
   });
 
   @override
@@ -297,18 +298,18 @@ class _$ChapterModelImpl implements _ChapterModel {
   @override
   @JsonKey()
   final bool isButtonVisible;
-  // 상세 보기 상태 (true: 상세보기, false: 간략보기)
-  @override
-  @JsonKey()
-  final bool isDetailedView;
   // 챕터 컨텐츠 표시 여부 (3개 세미나 섹션 한번에 제어)
   @override
   @JsonKey()
   final bool isChapterContentVisible;
+  // 자세히보기 간략히보기 버튼 표시 여부
+  @override
+  @JsonKey()
+  final ChapterDetailButton chapterDetailButton;
 
   @override
   String toString() {
-    return 'ChapterModel(isChapterDetailVisible: $isChapterDetailVisible, isChapterDetailAni: $isChapterDetailAni, selectedChapterIndex: $selectedChapterIndex, isChapterDetailAniTitle: $isChapterDetailAniTitle, isChapterDetailAniContent: $isChapterDetailAniContent, isChapterDetailAniText: $isChapterDetailAniText, isChapterDescriptionAni: $isChapterDescriptionAni, isButtonVisible: $isButtonVisible, isDetailedView: $isDetailedView, isChapterContentVisible: $isChapterContentVisible)';
+    return 'ChapterModel(isChapterDetailVisible: $isChapterDetailVisible, isChapterDetailAni: $isChapterDetailAni, selectedChapterIndex: $selectedChapterIndex, isChapterDetailAniTitle: $isChapterDetailAniTitle, isChapterDetailAniContent: $isChapterDetailAniContent, isChapterDetailAniText: $isChapterDetailAniText, isChapterDescriptionAni: $isChapterDescriptionAni, isButtonVisible: $isButtonVisible, isChapterContentVisible: $isChapterContentVisible, chapterDetailButton: $chapterDetailButton)';
   }
 
   @override
@@ -341,13 +342,13 @@ class _$ChapterModelImpl implements _ChapterModel {
                 other.isChapterDescriptionAni == isChapterDescriptionAni) &&
             (identical(other.isButtonVisible, isButtonVisible) ||
                 other.isButtonVisible == isButtonVisible) &&
-            (identical(other.isDetailedView, isDetailedView) ||
-                other.isDetailedView == isDetailedView) &&
             (identical(
                   other.isChapterContentVisible,
                   isChapterContentVisible,
                 ) ||
-                other.isChapterContentVisible == isChapterContentVisible));
+                other.isChapterContentVisible == isChapterContentVisible) &&
+            (identical(other.chapterDetailButton, chapterDetailButton) ||
+                other.chapterDetailButton == chapterDetailButton));
   }
 
   @override
@@ -361,8 +362,8 @@ class _$ChapterModelImpl implements _ChapterModel {
     isChapterDetailAniText,
     isChapterDescriptionAni,
     isButtonVisible,
-    isDetailedView,
     isChapterContentVisible,
+    chapterDetailButton,
   );
 
   /// Create a copy of ChapterModel
@@ -384,8 +385,8 @@ abstract class _ChapterModel implements ChapterModel {
     final bool isChapterDetailAniText,
     final bool isChapterDescriptionAni,
     final bool isButtonVisible,
-    final bool isDetailedView,
     final bool isChapterContentVisible,
+    final ChapterDetailButton chapterDetailButton,
   }) = _$ChapterModelImpl;
 
   @override
@@ -403,11 +404,11 @@ abstract class _ChapterModel implements ChapterModel {
   @override
   bool get isChapterDescriptionAni; // 버튼 표시 여부
   @override
-  bool get isButtonVisible; // 상세 보기 상태 (true: 상세보기, false: 간략보기)
+  bool get isButtonVisible; // 챕터 컨텐츠 표시 여부 (3개 세미나 섹션 한번에 제어)
   @override
-  bool get isDetailedView; // 챕터 컨텐츠 표시 여부 (3개 세미나 섹션 한번에 제어)
+  bool get isChapterContentVisible; // 자세히보기 간략히보기 버튼 표시 여부
   @override
-  bool get isChapterContentVisible;
+  ChapterDetailButton get chapterDetailButton;
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.

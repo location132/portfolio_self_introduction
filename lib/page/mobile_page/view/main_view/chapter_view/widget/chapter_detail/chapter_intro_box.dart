@@ -38,7 +38,7 @@ class _ChapterIntroBoxState extends State<ChapterIntroBox> {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 800),
       curve: Curves.easeInOut,
-      height: isSecondsAni ? 200.h : 0.h,
+      height: isSecondsAni ? 220.h : 0.h,
       padding: EdgeInsets.only(
         left: 10.w,
         right: 10.w,
@@ -68,8 +68,8 @@ class _ChapterIntroBoxState extends State<ChapterIntroBox> {
             SizedBox(height: 10.h),
             Center(
               child: Text(
-                '챕터 1에서는 각종 세미나와 컨퍼런스에 참여한 이유를 확인하실 수 있습니다.\n\n'
-                '세 가지로 구성된 작은 세미나 이야기는 제가 꿈꾸던 목표와 배운 점을 공유할 수 있도록 구성한 챕터입니다.',
+                '챕터 1에서는 각종 세미나와 컨퍼런스에 참여한\n이유를 확인하실 수 있습니다.\n\n'
+                '세 가지로 구성된 작은 세미나 이야기는\n제가 꿈꾸던 목표와 배운 점을 공유할 수 있도록 구성한 챕터입니다.',
                 style: TextStyle(
                   fontSize: 16.sp,
                   height: 1.6,

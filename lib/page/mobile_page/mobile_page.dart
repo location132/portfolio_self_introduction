@@ -180,11 +180,8 @@ class _MobileViewState extends State<_MobileView> {
                   onClose: () {
                     context.read<MobileCubit>().hideChapterDetail();
                   },
-                  onSimpleView: () {
-                    context.read<MobileCubit>().chapterDetailSimpleView();
-                  },
-                  onDetailView: () {
-                    context.read<MobileCubit>().chapterDetailFullView();
+                  chapterDetailButtonClicked: () {
+                    context.read<MobileCubit>().chapterDetailButtonClicked();
                   },
                 ),
               ),

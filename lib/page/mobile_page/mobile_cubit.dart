@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
+import 'package:self_introduction_flutter/model/mobile_page/chapter_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
 
 @injectable
@@ -287,7 +288,6 @@ class MobileCubit extends Cubit<MobileState> {
         chapterModel: state.chapterModel.copyWith(
           isChapterDetailVisible: true,
           selectedChapterIndex: chapterIndex,
-          isDetailedView: true,
           isButtonVisible: false,
           isChapterContentVisible: false,
         ),
@@ -320,64 +320,11 @@ class MobileCubit extends Cubit<MobileState> {
     await Future.delayed(const Duration(milliseconds: 800));
     emit(
       state.copyWith(
-        chapterModel: state.chapterModel.copyWith(isChapterDetailAniText: true),
-      ),
-    );
-    await Future.delayed(const Duration(milliseconds: 1000));
-    emit(
-      state.copyWith(
         chapterModel: state.chapterModel.copyWith(
-          isButtonVisible: true,
+          isChapterDetailAniText: true,
           isChapterContentVisible: true,
+          chapterDetailButton: ChapterDetailButton.detail,
         ),
-      ),
-    );
-  }
-
-  // 챕터 상세 화면 간략히 보기
-  void chapterDetailSimpleView() {
-    emit(
-      state.copyWith(
-        chapterModel: state.chapterModel.copyWith(
-          isChapterDetailAniText: false,
-          isChapterDetailAniContent: false,
-          isChapterDetailAniTitle: false,
-          isChapterDescriptionAni: false,
-          isDetailedView: false,
-        ),
-      ),
-    );
-  }
-
-  // 챕터 상세 화면 자세히 보기
-  void chapterDetailFullView() async {
-    emit(
-      state.copyWith(
-        chapterModel: state.chapterModel.copyWith(isDetailedView: true),
-      ),
-    );
-    // 애니메이션 다시 실행
-    await Future.delayed(const Duration(milliseconds: 100));
-    emit(
-      state.copyWith(
-        chapterModel: state.chapterModel.copyWith(
-          isChapterDetailAniTitle: true,
-        ),
-      ),
-    );
-    await Future.delayed(const Duration(milliseconds: 300));
-    emit(
-      state.copyWith(
-        chapterModel: state.chapterModel.copyWith(
-          isChapterDetailAniContent: true,
-          isChapterDescriptionAni: true,
-        ),
-      ),
-    );
-    await Future.delayed(const Duration(milliseconds: 300));
-    emit(
-      state.copyWith(
-        chapterModel: state.chapterModel.copyWith(isChapterDetailAniText: true),
       ),
     );
   }
@@ -401,10 +348,42 @@ class MobileCubit extends Cubit<MobileState> {
           isChapterDetailAniText: false,
           isChapterDescriptionAni: false,
           isButtonVisible: false,
-          isDetailedView: true,
           isChapterContentVisible: false,
+          chapterDetailButton: ChapterDetailButton.none,
         ),
       ),
     );
+  }
+
+  // 자세히보기 간략히 보기 버튼 클릭
+  void chapterDetailButtonClicked() {
+    if (state.chapterModel.chapterDetailButton == ChapterDetailButton.none) {
+      print('check ==> none');
+      return;
+    }
+
+    if (state.chapterModel.chapterDetailButton == ChapterDetailButton.detail) {
+      print('check ==> detail');
+      emit(
+        state.copyWith(
+          chapterModel: state.chapterModel.copyWith(
+            chapterDetailButton: ChapterDetailButton.simple,
+            isChapterDetailAniContent: false,
+          ),
+        ),
+      );
+      return;
+    } else if (state.chapterModel.chapterDetailButton ==
+        ChapterDetailButton.simple) {
+      print('check ==> simple');
+      emit(
+        state.copyWith(
+          chapterModel: state.chapterModel.copyWith(
+            chapterDetailButton: ChapterDetailButton.detail,
+            isChapterDetailAniContent: true,
+          ),
+        ),
+      );
+    }
   }
 }

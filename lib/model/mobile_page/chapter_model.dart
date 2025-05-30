@@ -21,10 +21,13 @@ class ChapterModel with _$ChapterModel {
 
     // 버튼 표시 여부
     @Default(false) bool isButtonVisible,
-    // 상세 보기 상태 (true: 상세보기, false: 간략보기)
-    @Default(true) bool isDetailedView,
 
     // 챕터 컨텐츠 표시 여부 (3개 세미나 섹션 한번에 제어)
     @Default(false) bool isChapterContentVisible,
+
+    // 자세히보기 간략히보기 버튼 표시 여부
+    @Default(ChapterDetailButton.none) ChapterDetailButton chapterDetailButton,
   }) = _ChapterModel;
 }
+
+enum ChapterDetailButton { none, simple, detail }
