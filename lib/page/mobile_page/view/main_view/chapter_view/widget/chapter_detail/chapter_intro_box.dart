@@ -4,10 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ChapterIntroBox extends StatefulWidget {
   final bool isChapterDescriptionAni;
   final bool isTextOpacity;
+  final int selectedChapterIndex;
   const ChapterIntroBox({
     super.key,
     required this.isChapterDescriptionAni,
     required this.isTextOpacity,
+    required this.selectedChapterIndex,
   });
 
   @override
@@ -68,8 +70,11 @@ class _ChapterIntroBoxState extends State<ChapterIntroBox> {
             SizedBox(height: 10.h),
             Center(
               child: Text(
-                '챕터 1에서는 각종 세미나와 컨퍼런스에 참여한\n이유를 확인하실 수 있습니다.\n\n'
-                '세 가지로 구성된 작은 세미나 이야기는\n제가 꿈꾸던 목표와 배운 점을 공유할 수 있도록 구성한 챕터입니다.',
+                widget.selectedChapterIndex == 0
+                    ? '챕터 1에서는 각종 세미나와 컨퍼런스에 참여한\n이유를 확인하실 수 있습니다.\n\n'
+                        '세 가지로 구성된 작은 세미나 이야기는\n제가 꿈꾸던 목표와 배운 점을 공유할 수 있도록 구성한 챕터입니다.'
+                    : '챕터 2에서는 대학생활의 프로젝트와 인턴 경험,\n성장을 위한 소중한 시간들을 확인하실 수 있습니다.\n\n'
+                        '기본 개념부터 시작해서 팀 프로젝트까지,\n저의 대학시절 개발 경험을 공유할 수 있도록 구성한 챕터입니다.',
                 style: TextStyle(
                   fontSize: 16.sp,
                   height: 1.6,
