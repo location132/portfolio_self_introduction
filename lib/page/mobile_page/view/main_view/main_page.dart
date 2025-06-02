@@ -4,11 +4,13 @@ import 'package:self_introduction_flutter/model/mobile_page/aboutMe_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/chapter_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/detailMe_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/skill_model.dart';
+import 'package:self_introduction_flutter/model/mobile_page/project_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/aboutMe_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/chapter_view/chapter_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/detail_view/detailMe_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/skill_view/skill_page.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/main_view/project_view/project_page.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class MainPage extends StatelessWidget {
@@ -17,6 +19,7 @@ class MainPage extends StatelessWidget {
   final DetailMeModel detailMeState;
   final ChapterModel chapterState;
   final SkillModel skillState;
+  final ProjectModel projectState;
   final bool isTitelTextAniStart;
   final bool isChapterContainerAniStart;
   final MobileCubit cubit;
@@ -27,6 +30,7 @@ class MainPage extends StatelessWidget {
     required this.detailMeState,
     required this.chapterState,
     required this.skillState,
+    required this.projectState,
     required this.isTitelTextAniStart,
     required this.isChapterContainerAniStart,
     required this.cubit,
@@ -44,7 +48,8 @@ class MainPage extends StatelessWidget {
                     ? aboutMeState.isBackGroundAniStart ||
                             detailMeState.isDetailMe ||
                             chapterState.isBackGroundAniStart ||
-                            skillState.isBackGroundAniStart
+                            skillState.isBackGroundAniStart ||
+                            projectState.isBackGroundAniStart
                         ? Colors.black
                         : Colors.transparent
                     : Colors.black,
@@ -153,11 +158,11 @@ class MainPage extends StatelessWidget {
                 ],
               ),
             ),
-            Column(
-              children: [
-                Visibility(
-                  visible: skillState.isSkillViewInit,
-                  child: VisibilityDetector(
+            Visibility(
+              visible: skillState.isSkillViewInit,
+              child: Column(
+                children: [
+                  VisibilityDetector(
                     key: const Key('skill-view'),
                     onVisibilityChanged: (VisibilityInfo info) {
                       if (info.visibleFraction > 0.2 &&
@@ -167,11 +172,22 @@ class MainPage extends StatelessWidget {
                     },
                     child: SkillPage(state: skillState),
                   ),
-                ),
-
-                // 여기에 내 프로젝트 추가
-              ],
+                  const SizedBox(height: 60),
+                  // 내 프로젝트
+                  VisibilityDetector(
+                    key: const Key('project-view'),
+                    onVisibilityChanged: (VisibilityInfo info) {
+                      if (info.visibleFraction > 0.2 &&
+                          !projectState.isBackGroundAniStart) {
+                        cubit.projectBackGroundColor(true);
+                      }
+                    },
+                    child: ProjectPage(state: projectState),
+                  ),
+                ],
+              ),
             ),
+            const SizedBox(height: 100),
           ],
         ),
       ],

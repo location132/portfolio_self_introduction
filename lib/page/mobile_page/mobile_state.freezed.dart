@@ -24,6 +24,7 @@ mixin _$MobileState {
   DetailMeModel get detailMeModel => throw _privateConstructorUsedError;
   ChapterModel get chapterModel => throw _privateConstructorUsedError;
   SkillModel get skillModel => throw _privateConstructorUsedError;
+  ProjectModel get projectModel => throw _privateConstructorUsedError;
   String get isPlayerText => throw _privateConstructorUsedError;
 
   /// Create a copy of MobileState
@@ -48,6 +49,7 @@ abstract class $MobileStateCopyWith<$Res> {
     DetailMeModel detailMeModel,
     ChapterModel chapterModel,
     SkillModel skillModel,
+    ProjectModel projectModel,
     String isPlayerText,
   });
 
@@ -58,6 +60,7 @@ abstract class $MobileStateCopyWith<$Res> {
   $DetailMeModelCopyWith<$Res> get detailMeModel;
   $ChapterModelCopyWith<$Res> get chapterModel;
   $SkillModelCopyWith<$Res> get skillModel;
+  $ProjectModelCopyWith<$Res> get projectModel;
 }
 
 /// @nodoc
@@ -82,6 +85,7 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
     Object? detailMeModel = null,
     Object? chapterModel = null,
     Object? skillModel = null,
+    Object? projectModel = null,
     Object? isPlayerText = null,
   }) {
     return _then(
@@ -121,6 +125,11 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
                     ? _value.skillModel
                     : skillModel // ignore: cast_nullable_to_non_nullable
                         as SkillModel,
+            projectModel:
+                null == projectModel
+                    ? _value.projectModel
+                    : projectModel // ignore: cast_nullable_to_non_nullable
+                        as ProjectModel,
             isPlayerText:
                 null == isPlayerText
                     ? _value.isPlayerText
@@ -200,6 +209,16 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
       return _then(_value.copyWith(skillModel: value) as $Val);
     });
   }
+
+  /// Create a copy of MobileState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProjectModelCopyWith<$Res> get projectModel {
+    return $ProjectModelCopyWith<$Res>(_value.projectModel, (value) {
+      return _then(_value.copyWith(projectModel: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -219,6 +238,7 @@ abstract class _$$MobileStateImplCopyWith<$Res>
     DetailMeModel detailMeModel,
     ChapterModel chapterModel,
     SkillModel skillModel,
+    ProjectModel projectModel,
     String isPlayerText,
   });
 
@@ -236,6 +256,8 @@ abstract class _$$MobileStateImplCopyWith<$Res>
   $ChapterModelCopyWith<$Res> get chapterModel;
   @override
   $SkillModelCopyWith<$Res> get skillModel;
+  @override
+  $ProjectModelCopyWith<$Res> get projectModel;
 }
 
 /// @nodoc
@@ -259,6 +281,7 @@ class __$$MobileStateImplCopyWithImpl<$Res>
     Object? detailMeModel = null,
     Object? chapterModel = null,
     Object? skillModel = null,
+    Object? projectModel = null,
     Object? isPlayerText = null,
   }) {
     return _then(
@@ -298,6 +321,11 @@ class __$$MobileStateImplCopyWithImpl<$Res>
                 ? _value.skillModel
                 : skillModel // ignore: cast_nullable_to_non_nullable
                     as SkillModel,
+        projectModel:
+            null == projectModel
+                ? _value.projectModel
+                : projectModel // ignore: cast_nullable_to_non_nullable
+                    as ProjectModel,
         isPlayerText:
             null == isPlayerText
                 ? _value.isPlayerText
@@ -319,6 +347,7 @@ class _$MobileStateImpl implements _MobileState {
     this.detailMeModel = const DetailMeModel(),
     this.chapterModel = const ChapterModel(),
     this.skillModel = const SkillModel(),
+    this.projectModel = const ProjectModel(),
     this.isPlayerText = '잠시만 기다려주세요.',
   });
 
@@ -345,11 +374,14 @@ class _$MobileStateImpl implements _MobileState {
   final SkillModel skillModel;
   @override
   @JsonKey()
+  final ProjectModel projectModel;
+  @override
+  @JsonKey()
   final String isPlayerText;
 
   @override
   String toString() {
-    return 'MobileState(initModel: $initModel, introModel: $introModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel, detailMeModel: $detailMeModel, chapterModel: $chapterModel, skillModel: $skillModel, isPlayerText: $isPlayerText)';
+    return 'MobileState(initModel: $initModel, introModel: $introModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel, detailMeModel: $detailMeModel, chapterModel: $chapterModel, skillModel: $skillModel, projectModel: $projectModel, isPlayerText: $isPlayerText)';
   }
 
   @override
@@ -371,6 +403,8 @@ class _$MobileStateImpl implements _MobileState {
                 other.chapterModel == chapterModel) &&
             (identical(other.skillModel, skillModel) ||
                 other.skillModel == skillModel) &&
+            (identical(other.projectModel, projectModel) ||
+                other.projectModel == projectModel) &&
             (identical(other.isPlayerText, isPlayerText) ||
                 other.isPlayerText == isPlayerText));
   }
@@ -385,6 +419,7 @@ class _$MobileStateImpl implements _MobileState {
     detailMeModel,
     chapterModel,
     skillModel,
+    projectModel,
     isPlayerText,
   );
 
@@ -406,6 +441,7 @@ abstract class _MobileState implements MobileState {
     final DetailMeModel detailMeModel,
     final ChapterModel chapterModel,
     final SkillModel skillModel,
+    final ProjectModel projectModel,
     final String isPlayerText,
   }) = _$MobileStateImpl;
 
@@ -423,6 +459,8 @@ abstract class _MobileState implements MobileState {
   ChapterModel get chapterModel;
   @override
   SkillModel get skillModel;
+  @override
+  ProjectModel get projectModel;
   @override
   String get isPlayerText;
 
