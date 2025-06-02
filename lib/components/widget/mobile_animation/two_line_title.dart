@@ -7,6 +7,9 @@ import 'package:self_introduction_flutter/page/mobile_page/animation/intro_ani.d
 class TwoLineTitle extends StatefulWidget {
   final bool isTitelText;
   final String title;
+  final Color? color;
+  final Color? subTitleColor;
+  final double? subTitleFontSize;
 
   final String subTitle;
   const TwoLineTitle({
@@ -14,6 +17,9 @@ class TwoLineTitle extends StatefulWidget {
     required this.isTitelText,
     required this.title,
     required this.subTitle,
+    this.color,
+    this.subTitleColor,
+    this.subTitleFontSize,
   });
 
   @override
@@ -67,6 +73,7 @@ class _TwoLineTitleState extends State<TwoLineTitle>
                 style: TextStyle(
                   fontSize: 20.0.sp,
                   fontWeight: FontWeight.bold,
+                  color: widget.color,
                 ),
               ),
             ),
@@ -80,8 +87,9 @@ class _TwoLineTitleState extends State<TwoLineTitle>
                 child: Text(
                   widget.subTitle,
                   style: TextStyle(
-                    fontSize: 15.0.sp,
+                    fontSize: widget.subTitleFontSize ?? 15.0.sp,
                     fontWeight: FontWeight.bold,
+                    color: widget.subTitleColor,
                   ),
                 ),
               ),

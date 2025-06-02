@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/intro_view/intro_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/widget/player.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/chapter_view/widget/chapter_detail/chapter_detail_screen.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/main_page.dart';
@@ -106,54 +107,42 @@ class _MobileViewState extends State<_MobileView> {
                             ),
                           ),
 
-                          MainPage(
-                            key: const ValueKey('main'),
-                            chapterState: state.chapterModel,
-                            cubit: context.read<MobileCubit>(),
-                            aboutMeState: state.aboutMeModel,
-                            detailMeState: state.detailMeModel,
-                            skillState: state.skillModel,
-                            isTitelTextAniStart:
-                                state.introModel.isTitelTextAniStart,
-                            isChapterContainerAniStart:
-                                state.introModel.isChapterContainerAniStart,
-                            isMobileDevice: widget.isMobileDevice,
+                          // --------------------
+                          AnimatedOpacity(
+                            opacity:
+                                state.introModel.isPageTransition ? 0.0 : 1.0,
+                            duration: const Duration(milliseconds: 600),
+                            curve: Curves.easeInOut,
+                            child: Visibility(
+                              visible: !state.introModel.isIntroInActive,
+                              child: IntroPage(
+                                key: const ValueKey('intro'),
+                                introModel: state.introModel,
+                              ),
+                            ),
                           ),
-                          //--------------------
-                          // AnimatedOpacity(
-                          //   opacity:
-                          //       state.introModel.isPageTransition ? 0.0 : 1.0,
-                          //   duration: const Duration(milliseconds: 600),
-                          //   curve: Curves.easeInOut,
-                          //   child: Visibility(
-                          //     visible: !state.introModel.isIntroInActive,
-                          //     child: IntroPage(
-                          //       key: const ValueKey('intro'),
-                          //       introModel: state.introModel,
-                          //     ),
-                          //   ),
-                          // ),
-                          // Visibility(
-                          //   visible: state.introModel.isIntroImageChange,
-                          //   child: AnimatedOpacity(
-                          //     opacity:
-                          //         state.introModel.isPageTransition ? 1.0 : 0.0,
-                          //     duration: const Duration(milliseconds: 600),
-                          //     curve: Curves.easeInOut,
-                          //     child: MainPage(
-                          //       key: const ValueKey('main'),
-                          //       chapterState: state.chapterModel,
-                          //       cubit: context.read<MobileCubit>(),
-                          //       aboutMeState: state.aboutMeModel,
-                          //       detailMeState: state.detailMeModel,
-                          //       isTitelTextAniStart:
-                          //           state.introModel.isTitelTextAniStart,
-                          //       isChapterContainerAniStart:
-                          //           state.introModel.isChapterContainerAniStart,
-                          //       isMobileDevice: widget.isMobileDevice,
-                          //     ),
-                          //   ),
-                          // ),
+                          Visibility(
+                            visible: state.introModel.isIntroImageChange,
+                            child: AnimatedOpacity(
+                              opacity:
+                                  state.introModel.isPageTransition ? 1.0 : 0.0,
+                              duration: const Duration(milliseconds: 600),
+                              curve: Curves.easeInOut,
+                              child: MainPage(
+                                key: const ValueKey('main'),
+                                chapterState: state.chapterModel,
+                                cubit: context.read<MobileCubit>(),
+                                aboutMeState: state.aboutMeModel,
+                                detailMeState: state.detailMeModel,
+                                skillState: state.skillModel,
+                                isTitelTextAniStart:
+                                    state.introModel.isTitelTextAniStart,
+                                isChapterContainerAniStart:
+                                    state.introModel.isChapterContainerAniStart,
+                                isMobileDevice: widget.isMobileDevice,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                       MenuScreen(isMenuClicked: state.introModel.isMenuClicked),

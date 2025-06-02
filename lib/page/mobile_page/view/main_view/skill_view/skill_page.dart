@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:self_introduction_flutter/components/widget/mobile_animation/one_line_title.dart';
+import 'package:self_introduction_flutter/components/widget/mobile_animation/two_line_title.dart';
 import 'package:self_introduction_flutter/model/mobile_page/skill_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/skill_view/widget/skill_overview.dart';
 
@@ -11,13 +11,16 @@ class SkillPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 60),
-        OneLineTitle(
-          isTitelTextAniStart: state.isTitleAniStart,
-          duration: 620,
+        TwoLineTitle(
+          isTitelText: state.isTitleAniStart,
           title: '이런 기술들을 사용해요',
-          color: const Color.fromARGB(255, 255, 255, 255),
+          subTitle: 'Flutter와 잘 어울리죠',
+          color: Colors.white,
+          subTitleColor: Colors.white,
+          subTitleFontSize: 17.sp,
         ),
         SizedBox(height: 40.h),
         Padding(
