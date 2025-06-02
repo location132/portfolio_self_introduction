@@ -180,7 +180,7 @@ class MainPage extends StatelessWidget {
                     child: TwoLineTitle(
                       isTitelText: projectState.isTitleAniStart,
                       title: '더 강력한 개발자로 UP',
-                      subTitle: '신입 프로젝트를 더욱 멋지게',
+                      subTitle: '   신입 프로젝트를 더욱 멋지게',
                       color: Colors.white,
                       subTitleColor: Colors.white,
                     ),
@@ -189,7 +189,7 @@ class MainPage extends StatelessWidget {
                   VisibilityDetector(
                     key: const Key('project-view'),
                     onVisibilityChanged: (VisibilityInfo info) {
-                      if (info.visibleFraction > 0.6 &&
+                      if (info.visibleFraction > 0.4 &&
                           !projectState.isBackGroundAniStart) {
                         cubit.projectBackGroundColor(true);
                       }

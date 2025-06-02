@@ -394,7 +394,6 @@ class MobileCubit extends Cubit<MobileState> {
       emit(
         state.copyWith(
           skillModel: state.skillModel.copyWith(isProgressAniStart: isStart),
-          projectModel: state.projectModel.copyWith(isProjectViewInit: true),
         ),
       );
     }
@@ -441,14 +440,13 @@ class MobileCubit extends Cubit<MobileState> {
   void showProjectDetail(String category) async {
     emit(
       state.copyWith(
-        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
         projectModel: state.projectModel.copyWith(
           isProjectDetailVisible: true,
           selectedProjectCategory: category,
         ),
       ),
     );
-    await Future.delayed(const Duration(milliseconds: 50));
+    await Future.delayed(const Duration(milliseconds: 400));
     emit(
       state.copyWith(
         projectModel: state.projectModel.copyWith(isProjectDetailAni: true),
@@ -464,10 +462,9 @@ class MobileCubit extends Cubit<MobileState> {
       ),
     );
 
-    await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 600));
     emit(
       state.copyWith(
-        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
         projectModel: state.projectModel.copyWith(
           isProjectDetailVisible: false,
           selectedProjectCategory: '',

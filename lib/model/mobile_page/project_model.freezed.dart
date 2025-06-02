@@ -17,11 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProjectModel {
-  bool get isVisible => throw _privateConstructorUsedError;
   bool get isBackGroundAniStart => throw _privateConstructorUsedError;
   bool get isTitleAniStart => throw _privateConstructorUsedError;
   bool get isProjectItemsAniStart => throw _privateConstructorUsedError;
-  bool get isProjectViewInit => throw _privateConstructorUsedError;
   bool get isProjectDetailVisible => throw _privateConstructorUsedError;
   bool get isProjectDetailAni => throw _privateConstructorUsedError;
   String get selectedProjectCategory => throw _privateConstructorUsedError;
@@ -41,11 +39,9 @@ abstract class $ProjectModelCopyWith<$Res> {
   ) = _$ProjectModelCopyWithImpl<$Res, ProjectModel>;
   @useResult
   $Res call({
-    bool isVisible,
     bool isBackGroundAniStart,
     bool isTitleAniStart,
     bool isProjectItemsAniStart,
-    bool isProjectViewInit,
     bool isProjectDetailVisible,
     bool isProjectDetailAni,
     String selectedProjectCategory,
@@ -67,22 +63,15 @@ class _$ProjectModelCopyWithImpl<$Res, $Val extends ProjectModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isVisible = null,
     Object? isBackGroundAniStart = null,
     Object? isTitleAniStart = null,
     Object? isProjectItemsAniStart = null,
-    Object? isProjectViewInit = null,
     Object? isProjectDetailVisible = null,
     Object? isProjectDetailAni = null,
     Object? selectedProjectCategory = null,
   }) {
     return _then(
       _value.copyWith(
-            isVisible:
-                null == isVisible
-                    ? _value.isVisible
-                    : isVisible // ignore: cast_nullable_to_non_nullable
-                        as bool,
             isBackGroundAniStart:
                 null == isBackGroundAniStart
                     ? _value.isBackGroundAniStart
@@ -97,11 +86,6 @@ class _$ProjectModelCopyWithImpl<$Res, $Val extends ProjectModel>
                 null == isProjectItemsAniStart
                     ? _value.isProjectItemsAniStart
                     : isProjectItemsAniStart // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            isProjectViewInit:
-                null == isProjectViewInit
-                    ? _value.isProjectViewInit
-                    : isProjectViewInit // ignore: cast_nullable_to_non_nullable
                         as bool,
             isProjectDetailVisible:
                 null == isProjectDetailVisible
@@ -134,11 +118,9 @@ abstract class _$$ProjectModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    bool isVisible,
     bool isBackGroundAniStart,
     bool isTitleAniStart,
     bool isProjectItemsAniStart,
-    bool isProjectViewInit,
     bool isProjectDetailVisible,
     bool isProjectDetailAni,
     String selectedProjectCategory,
@@ -159,22 +141,15 @@ class __$$ProjectModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isVisible = null,
     Object? isBackGroundAniStart = null,
     Object? isTitleAniStart = null,
     Object? isProjectItemsAniStart = null,
-    Object? isProjectViewInit = null,
     Object? isProjectDetailVisible = null,
     Object? isProjectDetailAni = null,
     Object? selectedProjectCategory = null,
   }) {
     return _then(
       _$ProjectModelImpl(
-        isVisible:
-            null == isVisible
-                ? _value.isVisible
-                : isVisible // ignore: cast_nullable_to_non_nullable
-                    as bool,
         isBackGroundAniStart:
             null == isBackGroundAniStart
                 ? _value.isBackGroundAniStart
@@ -189,11 +164,6 @@ class __$$ProjectModelImplCopyWithImpl<$Res>
             null == isProjectItemsAniStart
                 ? _value.isProjectItemsAniStart
                 : isProjectItemsAniStart // ignore: cast_nullable_to_non_nullable
-                    as bool,
-        isProjectViewInit:
-            null == isProjectViewInit
-                ? _value.isProjectViewInit
-                : isProjectViewInit // ignore: cast_nullable_to_non_nullable
                     as bool,
         isProjectDetailVisible:
             null == isProjectDetailVisible
@@ -219,19 +189,14 @@ class __$$ProjectModelImplCopyWithImpl<$Res>
 
 class _$ProjectModelImpl implements _ProjectModel {
   const _$ProjectModelImpl({
-    this.isVisible = false,
     this.isBackGroundAniStart = false,
     this.isTitleAniStart = false,
     this.isProjectItemsAniStart = false,
-    this.isProjectViewInit = false,
     this.isProjectDetailVisible = false,
     this.isProjectDetailAni = false,
     this.selectedProjectCategory = '',
   });
 
-  @override
-  @JsonKey()
-  final bool isVisible;
   @override
   @JsonKey()
   final bool isBackGroundAniStart;
@@ -241,9 +206,6 @@ class _$ProjectModelImpl implements _ProjectModel {
   @override
   @JsonKey()
   final bool isProjectItemsAniStart;
-  @override
-  @JsonKey()
-  final bool isProjectViewInit;
   @override
   @JsonKey()
   final bool isProjectDetailVisible;
@@ -256,7 +218,7 @@ class _$ProjectModelImpl implements _ProjectModel {
 
   @override
   String toString() {
-    return 'ProjectModel(isVisible: $isVisible, isBackGroundAniStart: $isBackGroundAniStart, isTitleAniStart: $isTitleAniStart, isProjectItemsAniStart: $isProjectItemsAniStart, isProjectViewInit: $isProjectViewInit, isProjectDetailVisible: $isProjectDetailVisible, isProjectDetailAni: $isProjectDetailAni, selectedProjectCategory: $selectedProjectCategory)';
+    return 'ProjectModel(isBackGroundAniStart: $isBackGroundAniStart, isTitleAniStart: $isTitleAniStart, isProjectItemsAniStart: $isProjectItemsAniStart, isProjectDetailVisible: $isProjectDetailVisible, isProjectDetailAni: $isProjectDetailAni, selectedProjectCategory: $selectedProjectCategory)';
   }
 
   @override
@@ -264,16 +226,12 @@ class _$ProjectModelImpl implements _ProjectModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectModelImpl &&
-            (identical(other.isVisible, isVisible) ||
-                other.isVisible == isVisible) &&
             (identical(other.isBackGroundAniStart, isBackGroundAniStart) ||
                 other.isBackGroundAniStart == isBackGroundAniStart) &&
             (identical(other.isTitleAniStart, isTitleAniStart) ||
                 other.isTitleAniStart == isTitleAniStart) &&
             (identical(other.isProjectItemsAniStart, isProjectItemsAniStart) ||
                 other.isProjectItemsAniStart == isProjectItemsAniStart) &&
-            (identical(other.isProjectViewInit, isProjectViewInit) ||
-                other.isProjectViewInit == isProjectViewInit) &&
             (identical(other.isProjectDetailVisible, isProjectDetailVisible) ||
                 other.isProjectDetailVisible == isProjectDetailVisible) &&
             (identical(other.isProjectDetailAni, isProjectDetailAni) ||
@@ -288,11 +246,9 @@ class _$ProjectModelImpl implements _ProjectModel {
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    isVisible,
     isBackGroundAniStart,
     isTitleAniStart,
     isProjectItemsAniStart,
-    isProjectViewInit,
     isProjectDetailVisible,
     isProjectDetailAni,
     selectedProjectCategory,
@@ -309,26 +265,20 @@ class _$ProjectModelImpl implements _ProjectModel {
 
 abstract class _ProjectModel implements ProjectModel {
   const factory _ProjectModel({
-    final bool isVisible,
     final bool isBackGroundAniStart,
     final bool isTitleAniStart,
     final bool isProjectItemsAniStart,
-    final bool isProjectViewInit,
     final bool isProjectDetailVisible,
     final bool isProjectDetailAni,
     final String selectedProjectCategory,
   }) = _$ProjectModelImpl;
 
   @override
-  bool get isVisible;
-  @override
   bool get isBackGroundAniStart;
   @override
   bool get isTitleAniStart;
   @override
   bool get isProjectItemsAniStart;
-  @override
-  bool get isProjectViewInit;
   @override
   bool get isProjectDetailVisible;
   @override
