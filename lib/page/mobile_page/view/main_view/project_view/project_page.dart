@@ -10,63 +10,68 @@ class ProjectPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 32.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 40.h),
-              AnimatedOpacity(
-                opacity: state.isProjectItemsAniStart ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 800),
-                child: Column(
-                  children: [
-                    ProjectCategorySection(
-                      title: 'Flutter',
-                      description: 'Flutter를 사용해 만든 모든 프로젝트를 소개합니다.',
-                      projectCount: '6개의 프로젝트',
-                      onButtonPressed: () {
-                        cubit.showProjectDetail('flutter');
-                      },
-                      isAnimationStart: state.isProjectItemsAniStart,
-                      animationDelay: 0,
-                    ),
+    return SizedBox(
+      height: MediaQuery.of(context).size.height,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 32.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 40.h),
+                AnimatedOpacity(
+                  opacity: state.isProjectItemsAniStart ? 1.0 : 0.0,
+                  duration: const Duration(milliseconds: 800),
+                  child: Column(
+                    children: [
+                      ProjectCategorySection(
+                        title: 'Flutter',
+                        description: 'Flutter를 사용해 만든 모든 프로젝트를 소개합니다.',
+                        projectCount: '6개의 프로젝트',
+                        onButtonPressed: () {
+                          cubit.showProjectDetail('flutter');
+                        },
+                        isAnimationStart: state.isProjectItemsAniStart,
+                        animationDelay: 0,
+                      ),
 
-                    SizedBox(height: 30.h),
+                      SizedBox(height: 30.h),
 
-                    ProjectCategorySection(
-                      title: 'Flutter in Rive',
-                      description: 'Rive 애니메이션과 Flutter의 완벽한 조합으로 만든 프로젝트입니다.',
-                      projectCount: '3개의 프로젝트',
-                      onButtonPressed: () {
-                        cubit.showProjectDetail('flutter_rive');
-                      },
-                      isAnimationStart: state.isProjectItemsAniStart,
-                      animationDelay: 200,
-                    ),
+                      ProjectCategorySection(
+                        title: 'Flutter in Rive',
+                        description:
+                            'Rive 애니메이션과 Flutter의 완벽한 조합으로 만든 프로젝트입니다.',
+                        projectCount: '3개의 프로젝트',
+                        onButtonPressed: () {
+                          cubit.showProjectDetail('flutter_rive');
+                        },
+                        isAnimationStart: state.isProjectItemsAniStart,
+                        animationDelay: 200,
+                      ),
 
-                    SizedBox(height: 30.h),
+                      SizedBox(height: 30.h),
 
-                    ProjectCategorySection(
-                      title: '앞으로 진행할 프로젝트',
-                      description: '새로운 도전을 준비하고 있습니다. 더 나은 개발자가 되기 위한 여정입니다.',
-                      projectCount: '4개의 계획',
-                      onButtonPressed: () {
-                        cubit.showProjectDetail('future');
-                      },
-                      isAnimationStart: state.isProjectItemsAniStart,
-                      animationDelay: 400,
-                    ),
-                  ],
+                      ProjectCategorySection(
+                        title: '앞으로 진행할 프로젝트',
+                        description:
+                            '새로운 도전을 준비하고 있습니다. 더 나은 개발자가 되기 위한 여정입니다.',
+                        projectCount: '4개의 계획',
+                        onButtonPressed: () {
+                          cubit.showProjectDetail('future');
+                        },
+                        isAnimationStart: state.isProjectItemsAniStart,
+                        animationDelay: 400,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

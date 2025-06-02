@@ -189,7 +189,7 @@ class MainPage extends StatelessWidget {
                   VisibilityDetector(
                     key: const Key('project-view'),
                     onVisibilityChanged: (VisibilityInfo info) {
-                      if (info.visibleFraction > 0.4 &&
+                      if (info.visibleFraction > 0.6 &&
                           !projectState.isBackGroundAniStart) {
                         cubit.projectBackGroundColor(true);
                       }
