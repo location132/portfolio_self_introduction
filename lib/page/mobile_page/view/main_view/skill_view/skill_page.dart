@@ -16,11 +16,10 @@ class SkillPage extends StatelessWidget {
         const SizedBox(height: 60),
         TwoLineTitle(
           isTitelText: state.isTitleAniStart,
-          title: '이런 기술들을 사용해요',
-          subTitle: 'Flutter와 잘 어울리죠',
+          title: 'Flutter와 어울리는',
+          subTitle: '   이런 기술들을 사용해요',
           color: Colors.white,
           subTitleColor: Colors.white,
-          subTitleFontSize: 17.sp,
         ),
         SizedBox(height: 40.h),
         Padding(

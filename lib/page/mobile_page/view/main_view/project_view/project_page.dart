@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:self_introduction_flutter/components/widget/mobile_animation/two_line_title.dart';
 import 'package:self_introduction_flutter/model/mobile_page/project_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 
@@ -14,14 +13,6 @@ class ProjectPage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TwoLineTitle(
-          isTitelText: state.isTitleAniStart,
-          title: '더 강력한 개발자로 UP',
-          subTitle: '신입 프로젝트를 더욱 멋지게',
-          color: Colors.white,
-          subTitleColor: Colors.white,
-          subTitleFontSize: 17.sp,
-        ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 32.w),
           child: Column(

@@ -71,7 +71,7 @@ class _TwoLineTitleState extends State<TwoLineTitle>
               child: Text(
                 widget.title,
                 style: TextStyle(
-                  fontSize: 20.0.sp,
+                  fontSize: 25.0.sp,
                   fontWeight: FontWeight.bold,
                   color: widget.color,
                 ),
@@ -87,7 +87,7 @@ class _TwoLineTitleState extends State<TwoLineTitle>
                 child: Text(
                   widget.subTitle,
                   style: TextStyle(
-                    fontSize: widget.subTitleFontSize ?? 15.0.sp,
+                    fontSize: widget.subTitleFontSize ?? 20.0.sp,
                     fontWeight: FontWeight.bold,
                     color: widget.subTitleColor,
                   ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:self_introduction_flutter/components/widget/mobile_animation/two_line_title.dart';
 import 'package:self_introduction_flutter/model/mobile_page/aboutMe_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/chapter_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/detailMe_model.dart';
@@ -174,11 +175,21 @@ class MainPage extends StatelessWidget {
                     child: SkillPage(state: skillState),
                   ),
                   const SizedBox(height: 40),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: TwoLineTitle(
+                      isTitelText: projectState.isTitleAniStart,
+                      title: '더 강력한 개발자로 UP',
+                      subTitle: '신입 프로젝트를 더욱 멋지게',
+                      color: Colors.white,
+                      subTitleColor: Colors.white,
+                    ),
+                  ),
                   // 내 프로젝트
                   VisibilityDetector(
                     key: const Key('project-view'),
                     onVisibilityChanged: (VisibilityInfo info) {
-                      if (info.visibleFraction > 0.2 &&
+                      if (info.visibleFraction > 0.4 &&
                           !projectState.isBackGroundAniStart) {
                         cubit.projectBackGroundColor(true);
                       }
