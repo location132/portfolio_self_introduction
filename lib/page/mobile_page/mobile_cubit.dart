@@ -437,6 +437,45 @@ class MobileCubit extends Cubit<MobileState> {
     );
   }
 
+  // 프로젝트 디테일 스크린 표시
+  void showProjectDetail(String category) async {
+    emit(
+      state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+        projectModel: state.projectModel.copyWith(
+          isProjectDetailVisible: true,
+          selectedProjectCategory: category,
+        ),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 50));
+    emit(
+      state.copyWith(
+        projectModel: state.projectModel.copyWith(isProjectDetailAni: true),
+      ),
+    );
+  }
+
+  // 프로젝트 디테일 스크린 숨기기
+  void hideProjectDetail() async {
+    emit(
+      state.copyWith(
+        projectModel: state.projectModel.copyWith(isProjectDetailAni: false),
+      ),
+    );
+
+    await Future.delayed(const Duration(milliseconds: 500));
+    emit(
+      state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
+        projectModel: state.projectModel.copyWith(
+          isProjectDetailVisible: false,
+          selectedProjectCategory: '',
+        ),
+      ),
+    );
+  }
+
   // 자세히보기 간략히 보기 버튼 클릭
   void chapterDetailButtonClicked() {
     if (state.chapterModel.chapterDetailButton == ChapterDetailButton.none) {

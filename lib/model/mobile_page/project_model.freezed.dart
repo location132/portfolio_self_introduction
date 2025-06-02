@@ -22,6 +22,9 @@ mixin _$ProjectModel {
   bool get isTitleAniStart => throw _privateConstructorUsedError;
   bool get isProjectItemsAniStart => throw _privateConstructorUsedError;
   bool get isProjectViewInit => throw _privateConstructorUsedError;
+  bool get isProjectDetailVisible => throw _privateConstructorUsedError;
+  bool get isProjectDetailAni => throw _privateConstructorUsedError;
+  String get selectedProjectCategory => throw _privateConstructorUsedError;
 
   /// Create a copy of ProjectModel
   /// with the given fields replaced by the non-null parameter values.
@@ -43,6 +46,9 @@ abstract class $ProjectModelCopyWith<$Res> {
     bool isTitleAniStart,
     bool isProjectItemsAniStart,
     bool isProjectViewInit,
+    bool isProjectDetailVisible,
+    bool isProjectDetailAni,
+    String selectedProjectCategory,
   });
 }
 
@@ -66,6 +72,9 @@ class _$ProjectModelCopyWithImpl<$Res, $Val extends ProjectModel>
     Object? isTitleAniStart = null,
     Object? isProjectItemsAniStart = null,
     Object? isProjectViewInit = null,
+    Object? isProjectDetailVisible = null,
+    Object? isProjectDetailAni = null,
+    Object? selectedProjectCategory = null,
   }) {
     return _then(
       _value.copyWith(
@@ -94,6 +103,21 @@ class _$ProjectModelCopyWithImpl<$Res, $Val extends ProjectModel>
                     ? _value.isProjectViewInit
                     : isProjectViewInit // ignore: cast_nullable_to_non_nullable
                         as bool,
+            isProjectDetailVisible:
+                null == isProjectDetailVisible
+                    ? _value.isProjectDetailVisible
+                    : isProjectDetailVisible // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isProjectDetailAni:
+                null == isProjectDetailAni
+                    ? _value.isProjectDetailAni
+                    : isProjectDetailAni // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            selectedProjectCategory:
+                null == selectedProjectCategory
+                    ? _value.selectedProjectCategory
+                    : selectedProjectCategory // ignore: cast_nullable_to_non_nullable
+                        as String,
           )
           as $Val,
     );
@@ -115,6 +139,9 @@ abstract class _$$ProjectModelImplCopyWith<$Res>
     bool isTitleAniStart,
     bool isProjectItemsAniStart,
     bool isProjectViewInit,
+    bool isProjectDetailVisible,
+    bool isProjectDetailAni,
+    String selectedProjectCategory,
   });
 }
 
@@ -137,6 +164,9 @@ class __$$ProjectModelImplCopyWithImpl<$Res>
     Object? isTitleAniStart = null,
     Object? isProjectItemsAniStart = null,
     Object? isProjectViewInit = null,
+    Object? isProjectDetailVisible = null,
+    Object? isProjectDetailAni = null,
+    Object? selectedProjectCategory = null,
   }) {
     return _then(
       _$ProjectModelImpl(
@@ -165,6 +195,21 @@ class __$$ProjectModelImplCopyWithImpl<$Res>
                 ? _value.isProjectViewInit
                 : isProjectViewInit // ignore: cast_nullable_to_non_nullable
                     as bool,
+        isProjectDetailVisible:
+            null == isProjectDetailVisible
+                ? _value.isProjectDetailVisible
+                : isProjectDetailVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isProjectDetailAni:
+            null == isProjectDetailAni
+                ? _value.isProjectDetailAni
+                : isProjectDetailAni // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        selectedProjectCategory:
+            null == selectedProjectCategory
+                ? _value.selectedProjectCategory
+                : selectedProjectCategory // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -179,6 +224,9 @@ class _$ProjectModelImpl implements _ProjectModel {
     this.isTitleAniStart = false,
     this.isProjectItemsAniStart = false,
     this.isProjectViewInit = false,
+    this.isProjectDetailVisible = false,
+    this.isProjectDetailAni = false,
+    this.selectedProjectCategory = '',
   });
 
   @override
@@ -196,10 +244,19 @@ class _$ProjectModelImpl implements _ProjectModel {
   @override
   @JsonKey()
   final bool isProjectViewInit;
+  @override
+  @JsonKey()
+  final bool isProjectDetailVisible;
+  @override
+  @JsonKey()
+  final bool isProjectDetailAni;
+  @override
+  @JsonKey()
+  final String selectedProjectCategory;
 
   @override
   String toString() {
-    return 'ProjectModel(isVisible: $isVisible, isBackGroundAniStart: $isBackGroundAniStart, isTitleAniStart: $isTitleAniStart, isProjectItemsAniStart: $isProjectItemsAniStart, isProjectViewInit: $isProjectViewInit)';
+    return 'ProjectModel(isVisible: $isVisible, isBackGroundAniStart: $isBackGroundAniStart, isTitleAniStart: $isTitleAniStart, isProjectItemsAniStart: $isProjectItemsAniStart, isProjectViewInit: $isProjectViewInit, isProjectDetailVisible: $isProjectDetailVisible, isProjectDetailAni: $isProjectDetailAni, selectedProjectCategory: $selectedProjectCategory)';
   }
 
   @override
@@ -216,7 +273,16 @@ class _$ProjectModelImpl implements _ProjectModel {
             (identical(other.isProjectItemsAniStart, isProjectItemsAniStart) ||
                 other.isProjectItemsAniStart == isProjectItemsAniStart) &&
             (identical(other.isProjectViewInit, isProjectViewInit) ||
-                other.isProjectViewInit == isProjectViewInit));
+                other.isProjectViewInit == isProjectViewInit) &&
+            (identical(other.isProjectDetailVisible, isProjectDetailVisible) ||
+                other.isProjectDetailVisible == isProjectDetailVisible) &&
+            (identical(other.isProjectDetailAni, isProjectDetailAni) ||
+                other.isProjectDetailAni == isProjectDetailAni) &&
+            (identical(
+                  other.selectedProjectCategory,
+                  selectedProjectCategory,
+                ) ||
+                other.selectedProjectCategory == selectedProjectCategory));
   }
 
   @override
@@ -227,6 +293,9 @@ class _$ProjectModelImpl implements _ProjectModel {
     isTitleAniStart,
     isProjectItemsAniStart,
     isProjectViewInit,
+    isProjectDetailVisible,
+    isProjectDetailAni,
+    selectedProjectCategory,
   );
 
   /// Create a copy of ProjectModel
@@ -245,6 +314,9 @@ abstract class _ProjectModel implements ProjectModel {
     final bool isTitleAniStart,
     final bool isProjectItemsAniStart,
     final bool isProjectViewInit,
+    final bool isProjectDetailVisible,
+    final bool isProjectDetailAni,
+    final String selectedProjectCategory,
   }) = _$ProjectModelImpl;
 
   @override
@@ -257,6 +329,12 @@ abstract class _ProjectModel implements ProjectModel {
   bool get isProjectItemsAniStart;
   @override
   bool get isProjectViewInit;
+  @override
+  bool get isProjectDetailVisible;
+  @override
+  bool get isProjectDetailAni;
+  @override
+  String get selectedProjectCategory;
 
   /// Create a copy of ProjectModel
   /// with the given fields replaced by the non-null parameter values.

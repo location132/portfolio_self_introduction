@@ -158,6 +158,7 @@ class MainPage extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 60),
             Visibility(
               visible: skillState.isSkillViewInit,
               child: Column(
@@ -172,7 +173,7 @@ class MainPage extends StatelessWidget {
                     },
                     child: SkillPage(state: skillState),
                   ),
-                  const SizedBox(height: 60),
+                  const SizedBox(height: 40),
                   // 내 프로젝트
                   VisibilityDetector(
                     key: const Key('project-view'),
@@ -182,7 +183,7 @@ class MainPage extends StatelessWidget {
                         cubit.projectBackGroundColor(true);
                       }
                     },
-                    child: ProjectPage(state: projectState),
+                    child: ProjectPage(state: projectState, cubit: cubit),
                   ),
                 ],
               ),

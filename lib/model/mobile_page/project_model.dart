@@ -10,5 +10,8 @@ class ProjectModel with _$ProjectModel {
     @Default(false) bool isTitleAniStart,
     @Default(false) bool isProjectItemsAniStart,
     @Default(false) bool isProjectViewInit,
+    @Default(false) bool isProjectDetailVisible,
+    @Default(false) bool isProjectDetailAni,
+    @Default('') String selectedProjectCategory,
   }) = _ProjectModel;
 }

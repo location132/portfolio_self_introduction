@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/components/widget/mobile_animation/two_line_title.dart';
 import 'package:self_introduction_flutter/model/mobile_page/project_model.dart';
+import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 
 class ProjectPage extends StatelessWidget {
   final ProjectModel state;
-  const ProjectPage({super.key, required this.state});
+  final MobileCubit cubit;
+  const ProjectPage({super.key, required this.state, required this.cubit});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,9 @@ class ProjectPage extends StatelessWidget {
                       title: 'Flutter',
                       description: 'Flutter를 사용해 만든 모든 프로젝트를 소개합니다.',
                       projectCount: '6개의 프로젝트',
-                      onButtonPressed: () {},
+                      onButtonPressed: () {
+                        cubit.showProjectDetail('flutter');
+                      },
                       isAnimationStart: state.isProjectItemsAniStart,
                       animationDelay: 0,
                     ),
@@ -46,7 +50,9 @@ class ProjectPage extends StatelessWidget {
                       title: 'Flutter in Rive',
                       description: 'Rive 애니메이션과 Flutter의 완벽한 조합으로 만든 프로젝트입니다.',
                       projectCount: '3개의 프로젝트',
-                      onButtonPressed: () {},
+                      onButtonPressed: () {
+                        cubit.showProjectDetail('flutter_rive');
+                      },
                       isAnimationStart: state.isProjectItemsAniStart,
                       animationDelay: 200,
                     ),
@@ -57,7 +63,9 @@ class ProjectPage extends StatelessWidget {
                       title: '앞으로 진행할 프로젝트',
                       description: '새로운 도전을 준비하고 있습니다. 더 나은 개발자가 되기 위한 여정입니다.',
                       projectCount: '4개의 계획',
-                      onButtonPressed: () {},
+                      onButtonPressed: () {
+                        cubit.showProjectDetail('future');
+                      },
                       isAnimationStart: state.isProjectItemsAniStart,
                       animationDelay: 400,
                     ),
