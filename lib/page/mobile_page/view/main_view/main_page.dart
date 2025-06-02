@@ -3,10 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/model/mobile_page/aboutMe_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/chapter_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/detailMe_model.dart';
+import 'package:self_introduction_flutter/model/mobile_page/skill_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/aboutMe_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/chapter_view/chapter_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/detail_view/detailMe_page.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/main_view/skill_view/skill_page.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class MainPage extends StatelessWidget {
@@ -14,6 +16,7 @@ class MainPage extends StatelessWidget {
   final AboutMeModel aboutMeState;
   final DetailMeModel detailMeState;
   final ChapterModel chapterState;
+  final SkillModel skillState;
   final bool isTitelTextAniStart;
   final bool isChapterContainerAniStart;
   final MobileCubit cubit;
@@ -23,6 +26,7 @@ class MainPage extends StatelessWidget {
     required this.aboutMeState,
     required this.detailMeState,
     required this.chapterState,
+    required this.skillState,
     required this.isTitelTextAniStart,
     required this.isChapterContainerAniStart,
     required this.cubit,
@@ -39,7 +43,8 @@ class MainPage extends StatelessWidget {
                 isMobileDevice
                     ? aboutMeState.isBackGroundAniStart ||
                             detailMeState.isDetailMe ||
-                            chapterState.isBackGroundAniStart
+                            chapterState.isBackGroundAniStart ||
+                            skillState.isBackGroundAniStart
                         ? Colors.black
                         : Colors.transparent
                     : Colors.black,
@@ -146,6 +151,19 @@ class MainPage extends StatelessWidget {
                     child: DetailmePage(state: detailMeState),
                   ),
                 ],
+              ),
+            ),
+            Visibility(
+              visible: skillState.isSkillViewInit,
+              child: VisibilityDetector(
+                key: const Key('skill-view'),
+                onVisibilityChanged: (VisibilityInfo info) {
+                  if (info.visibleFraction > 0.2 &&
+                      !skillState.isBackGroundAniStart) {
+                    cubit.skillBackGroundColor(true);
+                  }
+                },
+                child: SkillPage(state: skillState),
               ),
             ),
           ],

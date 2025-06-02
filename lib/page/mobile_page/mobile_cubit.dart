@@ -266,6 +266,7 @@ class MobileCubit extends Cubit<MobileState> {
       state.copyWith(
         detailMeModel: state.detailMeModel.copyWith(isAppPageScrollStart: true),
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
+        skillModel: state.skillModel.copyWith(isSkillViewInit: true),
       ),
     );
   }
@@ -356,15 +357,56 @@ class MobileCubit extends Cubit<MobileState> {
     );
   }
 
+  // 스킬 섹션 애니메이션
+  void skillBackGroundColor(bool isBackGroundAniStart) {
+    if (state.skillModel.isBackGroundAniStart == isBackGroundAniStart) return;
+    emit(
+      state.copyWith(
+        skillModel: state.skillModel.copyWith(
+          isBackGroundAniStart: isBackGroundAniStart,
+        ),
+      ),
+    );
+
+    if (isBackGroundAniStart) {
+      skillAniStart(true);
+    } else {
+      skillAniStart(false);
+    }
+  }
+
+  // 스킬 애니메이션 시작
+  void skillAniStart(bool isStart) async {
+    emit(
+      state.copyWith(
+        skillModel: state.skillModel.copyWith(isTitleAniStart: isStart),
+      ),
+    );
+    if (isStart) {
+      await Future.delayed(const Duration(milliseconds: 300));
+    }
+    emit(
+      state.copyWith(
+        skillModel: state.skillModel.copyWith(isSkillItemsAniStart: isStart),
+      ),
+    );
+    if (isStart) {
+      await Future.delayed(const Duration(milliseconds: 500));
+      emit(
+        state.copyWith(
+          skillModel: state.skillModel.copyWith(isProgressAniStart: isStart),
+        ),
+      );
+    }
+  }
+
   // 자세히보기 간략히 보기 버튼 클릭
   void chapterDetailButtonClicked() {
     if (state.chapterModel.chapterDetailButton == ChapterDetailButton.none) {
-      print('check ==> none');
       return;
     }
 
     if (state.chapterModel.chapterDetailButton == ChapterDetailButton.detail) {
-      print('check ==> detail');
       emit(
         state.copyWith(
           chapterModel: state.chapterModel.copyWith(
@@ -376,7 +418,6 @@ class MobileCubit extends Cubit<MobileState> {
       return;
     } else if (state.chapterModel.chapterDetailButton ==
         ChapterDetailButton.simple) {
-      print('check ==> simple');
       emit(
         state.copyWith(
           chapterModel: state.chapterModel.copyWith(

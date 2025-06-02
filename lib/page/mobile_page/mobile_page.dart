@@ -112,6 +112,7 @@ class _MobileViewState extends State<_MobileView> {
                             cubit: context.read<MobileCubit>(),
                             aboutMeState: state.aboutMeModel,
                             detailMeState: state.detailMeModel,
+                            skillState: state.skillModel,
                             isTitelTextAniStart:
                                 state.introModel.isTitelTextAniStart,
                             isChapterContainerAniStart:
