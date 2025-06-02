@@ -153,18 +153,24 @@ class MainPage extends StatelessWidget {
                 ],
               ),
             ),
-            Visibility(
-              visible: skillState.isSkillViewInit,
-              child: VisibilityDetector(
-                key: const Key('skill-view'),
-                onVisibilityChanged: (VisibilityInfo info) {
-                  if (info.visibleFraction > 0.2 &&
-                      !skillState.isBackGroundAniStart) {
-                    cubit.skillBackGroundColor(true);
-                  }
-                },
-                child: SkillPage(state: skillState),
-              ),
+            Column(
+              children: [
+                Visibility(
+                  visible: skillState.isSkillViewInit,
+                  child: VisibilityDetector(
+                    key: const Key('skill-view'),
+                    onVisibilityChanged: (VisibilityInfo info) {
+                      if (info.visibleFraction > 0.2 &&
+                          !skillState.isBackGroundAniStart) {
+                        cubit.skillBackGroundColor(true);
+                      }
+                    },
+                    child: SkillPage(state: skillState),
+                  ),
+                ),
+
+                // 여기에 내 프로젝트 추가
+              ],
             ),
           ],
         ),
