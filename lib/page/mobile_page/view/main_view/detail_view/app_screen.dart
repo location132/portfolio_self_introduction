@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/components/widget/mobile_animation/widget_animation.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/detail_view/widget/app_page.dart';
 
@@ -26,7 +25,6 @@ class _AppScreenState extends State<AppScreen> {
       final double height = width * 1.65;
       return Size(width, height);
     } else {
-      //갤럭시 폴드
       double width = MediaQuery.of(context).size.height * 0.4;
       if (width > 400) {
         width = 400;
