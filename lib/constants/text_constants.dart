@@ -24,7 +24,7 @@ class ProjectTextConstants {
   // 프로젝트 카테고리 설명
   static const String flutterDescription = 'Flutter를 사용해 만든 모든 프로젝트를 소개합니다.';
   static const String flutterRiveDescription =
-      'Rive 애니메이션과 Flutter 조합으로 만든 프로젝트입니다.';
+      '실제로 직접 만들어 넣은 Rive 애니메이션을 소개합니다.';
   static const String futureProjectDescription =
       '새로운 도전을 준비하고 있습니다. 목표와 언제 시작할지 정해두었습니다.';
 
