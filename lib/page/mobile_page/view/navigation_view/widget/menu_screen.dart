@@ -15,6 +15,7 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
   late List<MenuItemAnimation> menuItemAnimations;
   final List<String> menuTexts = [
+    '2025년 포트폴리오 모바일 버전에서는\n아래의 내용을 확인할 수 있습니다.',
     TextConstants.topNavBar1,
     TextConstants.topNavBar2,
     TextConstants.topNavBar3,
@@ -78,38 +79,56 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
             ),
           ),
         ),
+
         Align(
           alignment: Alignment.topCenter,
-          child: AnimatedContainer(
-            clipBehavior: Clip.hardEdge,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.easeInOut,
-            height: widget.isMenuClicked ? maxHeight : 0,
-            width: double.infinity,
-            color: Colors.white,
-            child: ListView.builder(
-              itemCount: menuItemAnimations.length,
-              padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.w),
-              itemBuilder: (context, index) {
-                final ani = menuItemAnimations[index];
-                return SlideTransition(
-                  position: ani.animation.moveShow,
-                  child: FadeTransition(
-                    opacity: ani.animation.opacityShow,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.h),
-                      child: Text(
-                        ani.text,
-                        style: TextStyle(
-                          fontSize: 18.0.sp,
-                          fontWeight: FontWeight.bold,
+          child: Column(
+            children: [
+              AnimatedContainer(
+                clipBehavior: Clip.hardEdge,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInOut,
+                height: widget.isMenuClicked ? maxHeight : 0,
+                width: double.infinity,
+                color: Colors.white,
+                child: ListView.builder(
+                  itemCount: menuItemAnimations.length,
+                  padding: EdgeInsets.symmetric(
+                    vertical: 30.h,
+                    horizontal: 20.w,
+                  ),
+                  itemBuilder: (context, index) {
+                    final ani = menuItemAnimations[index];
+                    return Padding(
+                      padding:
+                          index == 0
+                              ? const EdgeInsets.only(bottom: 30.0)
+                              : EdgeInsets.zero,
+                      child: SlideTransition(
+                        position: ani.animation.moveShow,
+                        child: FadeTransition(
+                          opacity: ani.animation.opacityShow,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 10.h),
+                            child: Text(
+                              ani.text,
+                              textAlign:
+                                  index == 0
+                                      ? TextAlign.center
+                                      : TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 18.0.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                );
-              },
-            ),
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         ),
       ],
