@@ -97,28 +97,44 @@ class ProjectDetailContent extends StatelessWidget {
       case 'flutter_rive':
         projects = [
           {
-            'title': '인터랙티브 캐릭터 앱',
-            'description': 'Rive 애니메이션을 활용한 인터랙티브 캐릭터 앱',
-            'tech': 'Flutter, Rive, Animation',
+            'title': '2025 포트폴리오 웹사이트',
+            'description':
+                '현재 보고 계신 포트폴리오 사이트입니다. Rive 애니메이션을 활용해 인터랙티브한 사용자 경험을 제공합니다.',
+            'tech': 'Flutter Web, Rive Animation, MVVM',
           },
           {
-            'title': '로딩 애니메이션 컬렉션',
-            'description': '다양한 Rive 기반 로딩 애니메이션 모음',
-            'tech': 'Flutter, Rive, Custom Animations',
+            'title': 'My Diary',
+            'description':
+                '시각디자인 학생과 함께한 협업 프로젝트로, Rive를 활용한 감정 표현 애니메이션이 특징입니다.',
+            'tech': 'Flutter, Rive, UI/UX Collaboration',
+          },
+          {
+            'title': '인터랙티브 캐릭터 앱',
+            'description':
+                'Rive 애니메이션을 활용한 인터랙티브 캐릭터 앱으로 터치 인터랙션에 따라 다양한 애니메이션이 재생됩니다.',
+            'tech': 'Flutter, Rive, Interactive Animation',
           },
         ];
         break;
       case 'future':
         projects = [
           {
-            'title': 'Flutter & AI 챗봇',
-            'description': 'OpenAI API를 활용한 AI 챗봇 애플리케이션',
-            'tech': 'Flutter, OpenAI API, WebSocket',
+            'title': '악보 넘기기',
+            'description':
+                '동생이 음악을 전공하며 2025년 대학생이 되었고, 손을 사용하지 않고도 악보를 넘길 수 있는 악보 뷰어 앱을 만들 계획입니다.',
+            'tech': '25년 7월 작업 시작 예정',
           },
           {
-            'title': 'Flutter & Firebase 소셜 앱',
-            'description': 'Firebase를 백엔드로 하는 소셜 네트워킹 앱',
-            'tech': 'Flutter, Firebase, Authentication',
+            'title': 'CCTV View',
+            'description':
+                '2025년 원주에서 시작한 작은 텃밭을 실시간으로 확인하고, 원격으로 물을 줄 수 있는 어플리케이션을 백엔드 개발자인 여자친구와 함께 개발할 예정입니다.',
+            'tech': '25년 11월 작업 시작 예정',
+          },
+          {
+            'title': '맞춤 건강 알림',
+            'description':
+                '복용 중인 약과 복용 시간을 기록하고, 필요한 약을 미리 알려주는 건강 도우미 앱을 만들 계획입니다.',
+            'tech': '26년 백엔드를 배우며 작업시작 예정',
           },
         ];
         break;
@@ -183,13 +199,42 @@ class ProjectDetailContent extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  project['title']!,
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
+                Row(
+                  children: [
+                    if (category == 'future')
+                      Container(
+                        margin: EdgeInsets.only(right: 8.w),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 6.w,
+                          vertical: 2.h,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4.r),
+                          border: Border.all(
+                            color: const Color.fromARGB(255, 204, 250, 248),
+                            width: 1,
+                          ),
+                        ),
+                        child: Text(
+                          '곧 시작합니다!',
+                          style: TextStyle(
+                            fontSize: 8.sp,
+                            color: const Color.fromARGB(255, 204, 250, 248),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    Expanded(
+                      child: Text(
+                        project['title']!,
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 8.h),
                 Expanded(
@@ -211,15 +256,30 @@ class ProjectDetailContent extends StatelessWidget {
                     borderRadius: BorderRadius.circular(6.r),
                     color: Colors.white.withValues(alpha: 0.05),
                   ),
-                  child: Text(
-                    project['tech']!,
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      color: Colors.white.withValues(alpha: 0.6),
-                      fontWeight: FontWeight.w500,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (category == 'future')
+                        Icon(
+                          Icons.schedule,
+                          size: 12.sp,
+                          color: const Color.fromARGB(255, 204, 250, 248),
+                        ),
+                      if (category == 'future') SizedBox(width: 4.w),
+                      Text(
+                        project['tech']!,
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color:
+                              category == 'future'
+                                  ? const Color.fromARGB(255, 204, 250, 248)
+                                  : Colors.white.withValues(alpha: 0.6),
+                          fontWeight: FontWeight.w500,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
                   ),
                 ),
               ],

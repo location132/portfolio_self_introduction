@@ -26,6 +26,7 @@ mixin _$MobileState {
   SkillModel get skillModel => throw _privateConstructorUsedError;
   ProjectModel get projectModel => throw _privateConstructorUsedError;
   String get isPlayerText => throw _privateConstructorUsedError;
+  bool get isBackGroundAniStart => throw _privateConstructorUsedError;
 
   /// Create a copy of MobileState
   /// with the given fields replaced by the non-null parameter values.
@@ -51,6 +52,7 @@ abstract class $MobileStateCopyWith<$Res> {
     SkillModel skillModel,
     ProjectModel projectModel,
     String isPlayerText,
+    bool isBackGroundAniStart,
   });
 
   $InitModelCopyWith<$Res> get initModel;
@@ -87,6 +89,7 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
     Object? skillModel = null,
     Object? projectModel = null,
     Object? isPlayerText = null,
+    Object? isBackGroundAniStart = null,
   }) {
     return _then(
       _value.copyWith(
@@ -135,6 +138,11 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
                     ? _value.isPlayerText
                     : isPlayerText // ignore: cast_nullable_to_non_nullable
                         as String,
+            isBackGroundAniStart:
+                null == isBackGroundAniStart
+                    ? _value.isBackGroundAniStart
+                    : isBackGroundAniStart // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -240,6 +248,7 @@ abstract class _$$MobileStateImplCopyWith<$Res>
     SkillModel skillModel,
     ProjectModel projectModel,
     String isPlayerText,
+    bool isBackGroundAniStart,
   });
 
   @override
@@ -283,6 +292,7 @@ class __$$MobileStateImplCopyWithImpl<$Res>
     Object? skillModel = null,
     Object? projectModel = null,
     Object? isPlayerText = null,
+    Object? isBackGroundAniStart = null,
   }) {
     return _then(
       _$MobileStateImpl(
@@ -331,6 +341,11 @@ class __$$MobileStateImplCopyWithImpl<$Res>
                 ? _value.isPlayerText
                 : isPlayerText // ignore: cast_nullable_to_non_nullable
                     as String,
+        isBackGroundAniStart:
+            null == isBackGroundAniStart
+                ? _value.isBackGroundAniStart
+                : isBackGroundAniStart // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -349,6 +364,7 @@ class _$MobileStateImpl implements _MobileState {
     this.skillModel = const SkillModel(),
     this.projectModel = const ProjectModel(),
     this.isPlayerText = MainPageTextConstants.defaultPlayerText,
+    this.isBackGroundAniStart = false,
   });
 
   @override
@@ -378,10 +394,13 @@ class _$MobileStateImpl implements _MobileState {
   @override
   @JsonKey()
   final String isPlayerText;
+  @override
+  @JsonKey()
+  final bool isBackGroundAniStart;
 
   @override
   String toString() {
-    return 'MobileState(initModel: $initModel, introModel: $introModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel, detailMeModel: $detailMeModel, chapterModel: $chapterModel, skillModel: $skillModel, projectModel: $projectModel, isPlayerText: $isPlayerText)';
+    return 'MobileState(initModel: $initModel, introModel: $introModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel, detailMeModel: $detailMeModel, chapterModel: $chapterModel, skillModel: $skillModel, projectModel: $projectModel, isPlayerText: $isPlayerText, isBackGroundAniStart: $isBackGroundAniStart)';
   }
 
   @override
@@ -406,7 +425,9 @@ class _$MobileStateImpl implements _MobileState {
             (identical(other.projectModel, projectModel) ||
                 other.projectModel == projectModel) &&
             (identical(other.isPlayerText, isPlayerText) ||
-                other.isPlayerText == isPlayerText));
+                other.isPlayerText == isPlayerText) &&
+            (identical(other.isBackGroundAniStart, isBackGroundAniStart) ||
+                other.isBackGroundAniStart == isBackGroundAniStart));
   }
 
   @override
@@ -421,6 +442,7 @@ class _$MobileStateImpl implements _MobileState {
     skillModel,
     projectModel,
     isPlayerText,
+    isBackGroundAniStart,
   );
 
   /// Create a copy of MobileState
@@ -443,6 +465,7 @@ abstract class _MobileState implements MobileState {
     final SkillModel skillModel,
     final ProjectModel projectModel,
     final String isPlayerText,
+    final bool isBackGroundAniStart,
   }) = _$MobileStateImpl;
 
   @override
@@ -463,6 +486,8 @@ abstract class _MobileState implements MobileState {
   ProjectModel get projectModel;
   @override
   String get isPlayerText;
+  @override
+  bool get isBackGroundAniStart;
 
   /// Create a copy of MobileState
   /// with the given fields replaced by the non-null parameter values.

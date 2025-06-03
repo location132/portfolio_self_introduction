@@ -155,6 +155,8 @@ class _MobileViewState extends State<_MobileView> {
                                     state.introModel.isTitelTextAniStart,
                                 isChapterContainerAniStart:
                                     state.introModel.isChapterContainerAniStart,
+                                isBackGroundAniStart:
+                                    state.isBackGroundAniStart,
                                 isMobileDevice: widget.isMobileDevice,
                               ),
                             ),

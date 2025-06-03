@@ -24,6 +24,7 @@ class MainPage extends StatelessWidget {
   final ProjectModel projectState;
   final bool isTitelTextAniStart;
   final bool isChapterContainerAniStart;
+  final bool isBackGroundAniStart;
   final MobileCubit cubit;
   const MainPage({
     super.key,
@@ -35,6 +36,7 @@ class MainPage extends StatelessWidget {
     required this.projectState,
     required this.isTitelTextAniStart,
     required this.isChapterContainerAniStart,
+    required this.isBackGroundAniStart,
     required this.cubit,
   });
 
@@ -46,15 +48,9 @@ class MainPage extends StatelessWidget {
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 500),
             color:
-                isMobileDevice
-                    ? aboutMeState.isBackGroundAniStart ||
-                            detailMeState.isDetailMe ||
-                            chapterState.isBackGroundAniStart ||
-                            skillState.isBackGroundAniStart ||
-                            projectState.isBackGroundAniStart
-                        ? Colors.black
-                        : Colors.transparent
-                    : Colors.black,
+                (isBackGroundAniStart && isMobileDevice) || !isMobileDevice
+                    ? Colors.black
+                    : Colors.transparent,
           ),
         ),
         Column(

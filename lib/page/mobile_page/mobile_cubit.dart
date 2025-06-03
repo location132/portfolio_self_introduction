@@ -184,12 +184,23 @@ class MobileCubit extends Cubit<MobileState> {
 
   void aboutMeBackGroundColor(bool isBackGroundAniStart) {
     if (state.aboutMeModel.isBackGroundAniStart == isBackGroundAniStart) return;
+
+    final updatedAboutMeModel = state.aboutMeModel.copyWith(
+      isBackGroundAniStart: isBackGroundAniStart,
+    );
+
+    final newGlobalState =
+        updatedAboutMeModel.isBackGroundAniStart ||
+        state.detailMeModel.isDetailMe ||
+        state.chapterModel.isBackGroundAniStart ||
+        state.skillModel.isBackGroundAniStart ||
+        state.projectModel.isBackGroundAniStart;
+
     emit(
       state.copyWith(
-        aboutMeModel: state.aboutMeModel.copyWith(
-          isBackGroundAniStart: isBackGroundAniStart,
-        ),
+        aboutMeModel: updatedAboutMeModel,
         isPlayerText: MainPageTextConstants.aboutMePlayerText,
+        isBackGroundAniStart: newGlobalState,
       ),
     );
 
@@ -238,6 +249,7 @@ class MobileCubit extends Cubit<MobileState> {
         detailMeModel: state.detailMeModel.copyWith(isDetailMe: isDetailMe),
       ),
     );
+    _updateGlobalBackgroundState();
     aboutMePlayerAni(false);
   }
 
@@ -294,6 +306,7 @@ class MobileCubit extends Cubit<MobileState> {
         ),
       ),
     );
+    _updateGlobalBackgroundState();
     await Future.delayed(const Duration(milliseconds: 50));
     emit(
       state.copyWith(
@@ -354,6 +367,7 @@ class MobileCubit extends Cubit<MobileState> {
         ),
       ),
     );
+    _updateGlobalBackgroundState();
   }
 
   // 스킬 섹션 애니메이션
@@ -366,6 +380,7 @@ class MobileCubit extends Cubit<MobileState> {
         ),
       ),
     );
+    _updateGlobalBackgroundState();
 
     if (isBackGroundAniStart) {
       skillAniStart(true);
@@ -409,6 +424,7 @@ class MobileCubit extends Cubit<MobileState> {
         ),
       ),
     );
+    _updateGlobalBackgroundState();
     if (state.projectModel.selectedProjectCategory != '') {
       print('check ==> ');
       aboutMePlayerAni(true);
@@ -506,6 +522,23 @@ class MobileCubit extends Cubit<MobileState> {
           ),
         ),
       );
+    }
+  }
+
+  // 전역 배경색 상태 계산
+  bool _calculateGlobalBackgroundState() {
+    return state.aboutMeModel.isBackGroundAniStart ||
+        state.detailMeModel.isDetailMe ||
+        state.chapterModel.isBackGroundAniStart ||
+        state.skillModel.isBackGroundAniStart ||
+        state.projectModel.isBackGroundAniStart;
+  }
+
+  // 전역 배경색 상태 업데이트
+  void _updateGlobalBackgroundState() {
+    final newState = _calculateGlobalBackgroundState();
+    if (state.isBackGroundAniStart != newState) {
+      emit(state.copyWith(isBackGroundAniStart: newState));
     }
   }
 }

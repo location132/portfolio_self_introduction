@@ -31,7 +31,7 @@ class ProjectTextConstants {
   // 프로젝트 개수
   static const String flutterProjectCount = '6개의 프로젝트';
   static const String flutterRiveProjectCount = '3개의 프로젝트';
-  static const String futureProjectCount = '4개의 계획';
+  static const String futureProjectCount = '3개의 계획';
 
   // 프로젝트 상세 제목
   static const String flutterDetailTitle = 'Flutter 프로젝트';

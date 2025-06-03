@@ -23,5 +23,6 @@ class MobileState with _$MobileState {
     @Default(SkillModel()) SkillModel skillModel,
     @Default(ProjectModel()) ProjectModel projectModel,
     @Default(MainPageTextConstants.defaultPlayerText) String isPlayerText,
+    @Default(false) bool isBackGroundAniStart,
   }) = _MobileState;
 }
