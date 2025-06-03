@@ -11,7 +11,7 @@ class TopNavBar extends StatelessWidget {
   final bool isMenuClicked;
   const TopNavBar({
     super.key,
-    this.deviceType = 'desktop',
+    this.deviceType,
     this.onPressed,
     this.onHomePressed,
     required this.isMenuClicked,
@@ -21,15 +21,12 @@ class TopNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     // 데스크탑
     if (deviceType == 'desktop') {
-      return Container(
-        color: const Color(0xFFF8F8F8),
-        child: Padding(
-          padding: EdgeInsets.only(top: 15.sh, bottom: 15.sh),
+      return Padding(
+        padding: EdgeInsets.only(top: 15.sh, bottom: 15.sh),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Spacer(),
-              SizedBox(width: 11.sw),
               Image.asset('assets/Images/flutter_bird.png', scale: 25),
               const NavItem(title: TextConstants.topNavBar1),
               const NavItem(title: TextConstants.topNavBar2),
@@ -38,7 +35,6 @@ class TopNavBar extends StatelessWidget {
               const NavItem(title: TextConstants.topNavBar5),
               const NavItem(title: TextConstants.topNavBar6),
               const NavItem(title: TextConstants.topNavBar7),
-              const Spacer(),
             ],
           ),
         ),
@@ -64,7 +60,7 @@ class TopNavBar extends StatelessWidget {
                   ),
                   const Spacer(),
                   MenuToggleButton(
-                    onPressed: onPressed!,
+                    onPressed: onPressed ?? () {},
                     isMenuClicked: isMenuClicked,
                   ),
                 ],

@@ -47,18 +47,6 @@ class _MainView extends StatefulWidget {
 
 class _MainViewState extends State<_MainView> {
   @override
-  void initState() {
-    super.initState();
-    print('check ==> initState11');
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    print('check ==> dispose');
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocBuilder<DesktopCubit, DesktopState>(
       builder: (context, state) {

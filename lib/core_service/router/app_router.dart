@@ -51,53 +51,49 @@ class ResponsiveHomePage extends StatefulWidget {
 
 class _ResponsiveHomePageState extends State<ResponsiveHomePage> {
   Timer? _debounceTimer;
-  String? _currentPageType;
-  Widget? _currentPage;
+  bool _showDesktop = false;
+  bool _isInitialized = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        _isInitialized = true;
+      });
+      _updateVisibilityWithDebounce();
+    });
+  }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _updatePageWithDebounce();
+    if (_isInitialized) {
+      _updateVisibilityWithDebounce();
+    }
   }
 
-  void _updatePageWithDebounce() {
+  void _updateVisibilityWithDebounce() {
     _debounceTimer?.cancel();
 
     _debounceTimer = Timer(const Duration(milliseconds: 300), () {
-      _updatePage();
+      if (mounted) {
+        _updateVisibility();
+      }
     });
   }
 
-  void _updatePage() {
-    final chromeBrowser = MainService().isChromeBrowser();
+  void _updateVisibility() {
     final mobileDevice = MainService().isMobileDevice();
     final width = MediaQuery.of(context).size.width;
     final deviceType = MainService().setScreenSize(width);
 
-    String newPageType;
-    Widget newPage;
+    final shouldShowDesktop = !mobileDevice && deviceType == 'desktop';
 
-    if (!mobileDevice && deviceType == 'desktop') {
-      newPageType = 'desktop';
-      newPage = DesktopPage(
-        isChromeBrowser: chromeBrowser,
-        deviceType: deviceType,
-      );
-    } else {
-      newPageType = 'mobile';
-      newPage = Container(
-        constraints: BoxConstraints(
-          maxWidth: 600,
-          maxHeight: MediaQuery.of(context).size.height,
-        ),
-        child: MobilePage(deviceType: deviceType, isMobileDevice: mobileDevice),
-      );
-    }
-
-    if (_currentPageType != newPageType) {
+    if (_showDesktop != shouldShowDesktop) {
       setState(() {
-        _currentPageType = newPageType;
-        _currentPage = newPage;
+        _showDesktop = shouldShowDesktop;
       });
     }
   }
@@ -110,10 +106,55 @@ class _ResponsiveHomePageState extends State<ResponsiveHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (_currentPage == null) {
-      _updatePage();
+    if (!_isInitialized) {
+      return const Material(child: Center(child: CircularProgressIndicator()));
     }
 
-    return _currentPage ?? const SizedBox();
+    final size = MediaQuery.of(context).size;
+    if (size.width <= 0 || size.height <= 0) {
+      return const Material(child: Center(child: CircularProgressIndicator()));
+    }
+
+    final chromeBrowser = MainService().isChromeBrowser();
+    final mobileDevice = MainService().isMobileDevice();
+    final width = size.width;
+    final deviceType = MainService().setScreenSize(width);
+    final height = size.height;
+
+    if (mobileDevice) {
+      return Container(
+        constraints: BoxConstraints(maxWidth: 600, maxHeight: height),
+        child: MobilePage(deviceType: deviceType, isMobileDevice: mobileDevice),
+      );
+    }
+
+    return Stack(
+      children: [
+        Opacity(
+          opacity: _showDesktop ? 0.0 : 1.0,
+          child: IgnorePointer(
+            ignoring: _showDesktop,
+            child: Container(
+              constraints: BoxConstraints(maxWidth: 600, maxHeight: height),
+              child: MobilePage(
+                deviceType: deviceType,
+                isMobileDevice: mobileDevice,
+              ),
+            ),
+          ),
+        ),
+
+        Opacity(
+          opacity: _showDesktop ? 1.0 : 0.0,
+          child: IgnorePointer(
+            ignoring: !_showDesktop,
+            child: DesktopPage(
+              isChromeBrowser: chromeBrowser,
+              deviceType: deviceType,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
