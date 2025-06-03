@@ -5,13 +5,13 @@ import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 
 class TopNavBar extends StatelessWidget {
-  final String deviceType;
+  final String? deviceType;
   final Function()? onPressed;
   final Function()? onHomePressed;
   final bool isMenuClicked;
   const TopNavBar({
     super.key,
-    required this.deviceType,
+    this.deviceType = 'desktop',
     this.onPressed,
     this.onHomePressed,
     required this.isMenuClicked,
@@ -43,38 +43,38 @@ class TopNavBar extends StatelessWidget {
           ),
         ),
       );
-    }
-
-    // 모바일
-    return Container(
-      color: Colors.transparent,
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 15.sh, horizontal: 40.sw),
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    onHomePressed?.call();
-                  },
-                  child: Image.asset(
-                    'assets/Images/flutter_bird.png',
-                    scale: 25,
+    } else {
+      // 모바일
+      return Container(
+        color: Colors.transparent,
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 15.sh, horizontal: 40.sw),
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      onHomePressed?.call();
+                    },
+                    child: Image.asset(
+                      'assets/Images/flutter_bird.png',
+                      scale: 25,
+                    ),
                   ),
-                ),
-                const Spacer(),
-                MenuToggleButton(
-                  onPressed: onPressed!,
-                  isMenuClicked: isMenuClicked,
-                ),
-              ],
+                  const Spacer(),
+                  MenuToggleButton(
+                    onPressed: onPressed!,
+                    isMenuClicked: isMenuClicked,
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 10.sh),
-        ],
-      ),
-    );
+            SizedBox(height: 10.sh),
+          ],
+        ),
+      );
+    }
   }
 }
 

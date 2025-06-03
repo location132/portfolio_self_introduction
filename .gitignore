@@ -45,3 +45,7 @@ app.*.map.json
 /android/app/release
 lib/service/intro_service.dart
 lib/service/main_service.dart
+lib/core_service/router/app_router_safe.dart
+lib/core_service/router/app_router.dart
+lib/core_service/router/app_router.dart
+lib/core_service/router/app_router.dart
