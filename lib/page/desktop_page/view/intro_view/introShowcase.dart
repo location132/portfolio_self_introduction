@@ -68,9 +68,7 @@ class _IntroshowcaseState extends State<Introshowcase> {
           child: AnimatedOpacity(
             opacity: Conditions.isInitStateLoaded(widget.state) ? 0 : 1,
             duration: const Duration(milliseconds: 720),
-            child: BottomMessage(
-              isChromeBrowser: widget.isChromeBrowser,
-            ),
+            child: BottomMessage(isChromeBrowser: widget.isChromeBrowser),
           ),
         ),
       ],
