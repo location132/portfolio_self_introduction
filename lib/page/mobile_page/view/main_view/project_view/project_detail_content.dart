@@ -170,11 +170,13 @@ class ProjectDetailContent extends StatelessWidget {
           child: Container(
             margin: EdgeInsets.only(bottom: 20.h),
             padding: EdgeInsets.all(16.w),
+            height: 150.h,
+            width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12.r),
               color: Colors.white.withValues(alpha: 0.03),
               border: Border.all(
-                color: Colors.white.withValues(alpha: 0.08),
+                color: const Color.fromARGB(255, 204, 250, 248),
                 width: 1,
               ),
             ),
@@ -190,15 +192,19 @@ class ProjectDetailContent extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 8.h),
-                Text(
-                  project['description']!,
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: Colors.white.withValues(alpha: 0.8),
-                    height: 1.4,
+                Expanded(
+                  child: Text(
+                    project['description']!,
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      color: Colors.white.withValues(alpha: 0.8),
+                      height: 1.4,
+                    ),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                SizedBox(height: 12.h),
+                SizedBox(height: 8.h),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                   decoration: BoxDecoration(
@@ -212,6 +218,8 @@ class ProjectDetailContent extends StatelessWidget {
                       color: Colors.white.withValues(alpha: 0.6),
                       fontWeight: FontWeight.w500,
                     ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
