@@ -14,61 +14,81 @@ import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 @injectable
 class DesktopCubit extends Cubit<DesktopState> {
   DesktopCubit()
-      : super(DesktopState(
+    : super(
+        DesktopState(
           scrollModel: ScrollModel(
             scrollController: ScrollController(),
             subScrollController: ScrollController(),
           ),
-        ));
+        ),
+      );
 
   @postConstruct
   void init() async {
     //TODO:  배포 후, 주석 해제
-    emit(state.copyWith(
-        initModel: state.initModel.copyWith(initState: InitState.active)));
+    emit(
+      state.copyWith(
+        initModel: state.initModel.copyWith(initState: InitState.active),
+      ),
+    );
     final controller = state.scrollModel.scrollController;
     isInitProfileView();
     await changeProfileViewHeight(controller);
-    emit(state.copyWith(
-        initModel: state.initModel.copyWith(initState: InitState.inactive)));
+    emit(
+      state.copyWith(
+        initModel: state.initModel.copyWith(initState: InitState.inactive),
+      ),
+    );
   }
 
   //브라우저 확인
   void isChromeBrowser(bool isChrome) {
-    emit(state.copyWith(
-        initModel: state.initModel.copyWith(isChromeBrowser: isChrome)));
+    emit(
+      state.copyWith(
+        initModel: state.initModel.copyWith(isChromeBrowser: isChrome),
+      ),
+    );
   }
 
   // 프로필 뷰 초기화
   void isInitProfileView() async {
     for (int i = 0; i < 16; i++) {
       await Future.delayed(const Duration(milliseconds: 200));
-      emit(state.copyWith(
-        profileModel: state.profileModel
-            .copyWith(scrollCount: state.profileModel.scrollCount + 1),
-      ));
+      emit(
+        state.copyWith(
+          profileModel: state.profileModel.copyWith(
+            scrollCount: state.profileModel.scrollCount + 1,
+          ),
+        ),
+      );
       if (state.profileModel.scrollCount == 9) {
         isImagePartActive();
         isTextPartActive();
       }
     }
 
-    emit(state.copyWith(
-      profileModel: state.profileModel.copyWith(
-        scrollCount: 0,
-        finalCount: 1,
-        previousCount: 0,
-        profileChapter2Model: state.profileModel.profileChapter2Model
-            .copyWith(isImagePartReverseActive: false),
+    emit(
+      state.copyWith(
+        profileModel: state.profileModel.copyWith(
+          scrollCount: 0,
+          finalCount: 1,
+          previousCount: 0,
+          profileChapter2Model: state.profileModel.profileChapter2Model
+              .copyWith(isImagePartReverseActive: false),
+        ),
       ),
-    ));
+    );
   }
 
   Future<void> changeProfileViewHeight(controller) async {
     //TODO: 배포 주석 해제
-    emit(state.copyWith(
-        initModel: state.initModel
-            .copyWith(remainingTime: state.initModel.remainingTime)));
+    emit(
+      state.copyWith(
+        initModel: state.initModel.copyWith(
+          remainingTime: state.initModel.remainingTime,
+        ),
+      ),
+    );
     await Future.delayed(Duration(seconds: state.initModel.remainingTime));
 
     void waitForAttachment() {
@@ -81,8 +101,11 @@ class DesktopCubit extends Cubit<DesktopState> {
               controller.jumpTo(limit);
             }
             if (limit != state.initModel.mainViewHeight) {
-              emit(state.copyWith(
-                  initModel: state.initModel.copyWith(mainViewHeight: limit)));
+              emit(
+                state.copyWith(
+                  initModel: state.initModel.copyWith(mainViewHeight: limit),
+                ),
+              );
             }
           });
         } else {
@@ -94,8 +117,10 @@ class DesktopCubit extends Cubit<DesktopState> {
     waitForAttachment();
   }
 
-  void awaitDuration(TickerProvider vsync,
-      {String message = TextConstants.welcomeMessage1}) async {
+  void awaitDuration(
+    TickerProvider vsync, {
+    String message = TextConstants.welcomeMessage1,
+  }) async {
     //TODO: 추 후, 주석 해제
     await Future.delayed(Duration(seconds: state.initModel.remainingTime));
 
@@ -113,7 +138,8 @@ class DesktopCubit extends Cubit<DesktopState> {
       characters.add(message[i]);
     }
     emit(
-        state.copyWith(startAnimation: StartAnimationModel(words: characters)));
+      state.copyWith(startAnimation: StartAnimationModel(words: characters)),
+    );
 
     List<AnimationController> newControllers = [];
     List<Animation<double>> newAnimations = [];
@@ -136,19 +162,27 @@ class DesktopCubit extends Cubit<DesktopState> {
         controller.forward();
       });
     }
-    emit(state.copyWith(
-      startAnimation: state.startAnimation!.copyWith(
-        controllers: newControllers,
-        animations: newAnimations,
+    emit(
+      state.copyWith(
+        startAnimation: state.startAnimation!.copyWith(
+          controllers: newControllers,
+          animations: newAnimations,
+        ),
       ),
-    ));
+    );
 
     if (message == TextConstants.welcomeMessage1) {
-      await endAnimations(vsync, TextConstants.welcomeMessage2,
-          const Duration(milliseconds: 4500));
+      await endAnimations(
+        vsync,
+        TextConstants.welcomeMessage2,
+        const Duration(milliseconds: 4500),
+      );
     } else {
-      await endAnimations(vsync, TextConstants.welcomeMessage1,
-          const Duration(milliseconds: 5500));
+      await endAnimations(
+        vsync,
+        TextConstants.welcomeMessage1,
+        const Duration(milliseconds: 5500),
+      );
     }
   }
 
@@ -164,44 +198,53 @@ class DesktopCubit extends Cubit<DesktopState> {
     }
     await Future.delayed(const Duration(seconds: 1));
 
-    initializeAnimations(
-      vsync,
-      message: message,
-    );
+    initializeAnimations(vsync, message: message);
   }
 
-//******************************************************* */
+  //******************************************************* */
 
   // 프로필 뷰 활성화
   Future<void> profileViewActive() async {
     await isTextPartDispose(isReverseTime: false);
-    emit(state.copyWith(
-      profileModel: state.profileModel.copyWith(
-        //TODO: 스크롤 카운트 변경
-        scrollCount: 1,
-        finalCount: 1,
-        previousCount: 0,
+    emit(
+      state.copyWith(
+        profileModel: state.profileModel.copyWith(
+          //TODO: 스크롤 카운트 변경
+          scrollCount: 1,
+          finalCount: 1,
+          previousCount: 0,
+        ),
+        scrollModel: state.scrollModel.copyWith(
+          profileViewState: ProfileViewState.active,
+        ),
       ),
-      scrollModel:
-          state.scrollModel.copyWith(profileViewState: ProfileViewState.active),
-    ));
+    );
     await Future.delayed(const Duration(seconds: 2));
-    emit(state.copyWith(
-      scrollModel: state.scrollModel.copyWith(isScrollInit: true),
-    ));
+    emit(
+      state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isScrollInit: true),
+      ),
+    );
   }
 
   //사용자 스크롤 감지
   void viewListener(String viewName) async {
     if (ProfileViewConditionUtils.isBannerScrollActive(viewName)) {
-      emit(state.copyWith(
-        scrollModel:
-            state.scrollModel.copyWith(bannerState: BannerState.activated),
-      ));
+      emit(
+        state.copyWith(
+          scrollModel: state.scrollModel.copyWith(
+            bannerState: BannerState.activated,
+          ),
+        ),
+      );
     } else if (ProfileViewConditionUtils.isUserScrollActive(viewName)) {
-      emit(state.copyWith(
-          mySkillModel:
-              state.mySkillModel.copyWith(status: MySkillViewStatus.active)));
+      emit(
+        state.copyWith(
+          mySkillModel: state.mySkillModel.copyWith(
+            status: MySkillViewStatus.active,
+          ),
+        ),
+      );
     }
   }
 
@@ -211,20 +254,30 @@ class DesktopCubit extends Cubit<DesktopState> {
     }
 
     if (!ProfileViewConditionUtils.isProfileCountZero(state)) {
-      emit(state.copyWith(
+      emit(
+        state.copyWith(
           profileModel: state.profileModel.copyWith(
-              previousCount: state.profileModel.scrollCount,
-              scrollCount: state.profileModel.scrollCount - 1),
-          scrollModel: state.scrollModel.copyWith(isScrollWaiting: true)));
+            previousCount: state.profileModel.scrollCount,
+            scrollCount: state.profileModel.scrollCount - 1,
+          ),
+          scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+        ),
+      );
 
       //-------------- 프로필 뷰 카운트가 0이라면 ---------------
       if (ProfileViewConditionUtils.isProfileCountZero(state)) {
-        emit(state.copyWith(
-            profileModel:
-                state.profileModel.copyWith(scrollCount: 0, previousCount: 1),
+        emit(
+          state.copyWith(
+            profileModel: state.profileModel.copyWith(
+              scrollCount: 0,
+              previousCount: 1,
+            ),
             scrollModel: state.scrollModel.copyWith(
-                profileViewState: ProfileViewState.inactive,
-                isScrollInit: false)));
+              profileViewState: ProfileViewState.inactive,
+              isScrollInit: false,
+            ),
+          ),
+        );
       }
 
       // 8번 페이지일 경우
@@ -252,8 +305,11 @@ class DesktopCubit extends Cubit<DesktopState> {
         await Future.delayed(const Duration(milliseconds: 1000));
       }
 
-      emit(state.copyWith(
-          scrollModel: state.scrollModel.copyWith(isScrollWaiting: false)));
+      emit(
+        state.copyWith(
+          scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
+        ),
+      );
     }
 
     return;
@@ -265,11 +321,15 @@ class DesktopCubit extends Cubit<DesktopState> {
       return;
     }
 
-    emit(state.copyWith(
+    emit(
+      state.copyWith(
         profileModel: state.profileModel.copyWith(
-            previousCount: state.profileModel.scrollCount,
-            scrollCount: state.profileModel.scrollCount + 1),
-        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true)));
+          previousCount: state.profileModel.scrollCount,
+          scrollCount: state.profileModel.scrollCount + 1,
+        ),
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+      ),
+    );
 
     // 9번 페이지일 경우
     if (state.profileModel.scrollCount == 9) {
@@ -280,9 +340,11 @@ class DesktopCubit extends Cubit<DesktopState> {
     }
 
     await Future.delayed(const Duration(milliseconds: 1500));
-    emit(state.copyWith(
-      scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
-    ));
+    emit(
+      state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
+      ),
+    );
 
     return;
   }
@@ -292,45 +354,55 @@ class DesktopCubit extends Cubit<DesktopState> {
     if (state.profileModel.isUserClick) {
       return;
     } else {
-      emit(state.copyWith(
-        profileModel: state.profileModel.copyWith(isUserClick: true),
-      ));
+      emit(
+        state.copyWith(
+          profileModel: state.profileModel.copyWith(isUserClick: true),
+        ),
+      );
       await Future.delayed(const Duration(seconds: 2));
-      emit(state.copyWith(
-        profileModel: state.profileModel.copyWith(isUserClick: false),
-      ));
+      emit(
+        state.copyWith(
+          profileModel: state.profileModel.copyWith(isUserClick: false),
+        ),
+      );
     }
   }
 
-// 이미지 파트 활성화
+  // 이미지 파트 활성화
   void isImagePartActive() {
-    emit(state.copyWith(
-      profileModel: state.profileModel.copyWith(
-        profileChapter2Model: state.profileModel.profileChapter2Model
-            .copyWith(isImagePartReverseActive: true),
+    emit(
+      state.copyWith(
+        profileModel: state.profileModel.copyWith(
+          profileChapter2Model: state.profileModel.profileChapter2Model
+              .copyWith(isImagePartReverseActive: true),
+        ),
       ),
-    ));
+    );
   }
 
   // 이미지 파트 리버스 활성화
   void isImagePartReverseActive() async {
     await Future.delayed(const Duration(milliseconds: 800));
-    emit(state.copyWith(
-      profileModel: state.profileModel.copyWith(
-        profileChapter2Model: state.profileModel.profileChapter2Model
-            .copyWith(isImagePartReverseActive: false),
+    emit(
+      state.copyWith(
+        profileModel: state.profileModel.copyWith(
+          profileChapter2Model: state.profileModel.profileChapter2Model
+              .copyWith(isImagePartReverseActive: false),
+        ),
       ),
-    ));
+    );
   }
 
   // 텍스트 파트 활성화 With 1번텍스트
   void isTextPartActive() {
-    emit(state.copyWith(
-      profileModel: state.profileModel.copyWith(
-        profileChapter2Model: state.profileModel.profileChapter2Model
-            .copyWith(isTextPartReverseActive: true),
+    emit(
+      state.copyWith(
+        profileModel: state.profileModel.copyWith(
+          profileChapter2Model: state.profileModel.profileChapter2Model
+              .copyWith(isTextPartReverseActive: true),
+        ),
       ),
-    ));
+    );
   }
 
   // 텍스트 파트 리버스 활성화 With 1번텍스트
@@ -339,12 +411,14 @@ class DesktopCubit extends Cubit<DesktopState> {
       await Future.delayed(const Duration(milliseconds: 700));
     }
 
-    emit(state.copyWith(
-      profileModel: state.profileModel.copyWith(
-        profileChapter2Model: state.profileModel.profileChapter2Model
-            .copyWith(isTextPartReverseActive: false),
+    emit(
+      state.copyWith(
+        profileModel: state.profileModel.copyWith(
+          profileChapter2Model: state.profileModel.profileChapter2Model
+              .copyWith(isTextPartReverseActive: false),
+        ),
       ),
-    ));
+    );
   }
 
   // 챕터 건너뛰기, 이어보기
@@ -367,45 +441,68 @@ class DesktopCubit extends Cubit<DesktopState> {
       await profileIsBottomScroll();
     } else {
       // 건너뛰기
-      emit(state.copyWith(
-        profileModel: state.profileModel.copyWith(
+      emit(
+        state.copyWith(
+          profileModel: state.profileModel.copyWith(
             isChapterSkip: true,
-            scrollCount: state.profileModel.scrollCount + 1),
-        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
-      ));
+            scrollCount: state.profileModel.scrollCount + 1,
+          ),
+          scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+        ),
+      );
       for (int i = 0; i < count; i++) {
         await Future.delayed(const Duration(milliseconds: 950));
-        emit(state.copyWith(
-          profileModel: state.profileModel
-              .copyWith(scrollCount: state.profileModel.scrollCount + 1),
-        ));
+        emit(
+          state.copyWith(
+            profileModel: state.profileModel.copyWith(
+              scrollCount: state.profileModel.scrollCount + 1,
+            ),
+          ),
+        );
       }
-      emit(state.copyWith(
-        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
-      ));
+      emit(
+        state.copyWith(
+          scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
+        ),
+      );
     }
   }
 
   //Description 버튼 클릭
   void descriptionButton(String descriptionName, bool isActive) {
     if (descriptionName == 'banner') {
-      emit(state.copyWith(
+      emit(
+        state.copyWith(
           descriptionModel: state.descriptionModel.copyWith(
-              bannerDescriptionState: isActive
-                  ? BannerDescriptionState.active
-                  : BannerDescriptionState.inactive)));
+            bannerDescriptionState:
+                isActive
+                    ? BannerDescriptionState.active
+                    : BannerDescriptionState.inactive,
+          ),
+        ),
+      );
     } else if (descriptionName == 'profile') {
-      emit(state.copyWith(
+      emit(
+        state.copyWith(
           descriptionModel: state.descriptionModel.copyWith(
-              profileDescriptionState: isActive
-                  ? ProfileDescriptionState.active
-                  : ProfileDescriptionState.inactive)));
+            profileDescriptionState:
+                isActive
+                    ? ProfileDescriptionState.active
+                    : ProfileDescriptionState.inactive,
+          ),
+        ),
+      );
     } else if (descriptionName == 'skill') {
-      emit(state.copyWith(
+      emit(
+        state.copyWith(
           descriptionModel: state.descriptionModel.copyWith(
-              skillDescriptionState: isActive
-                  ? SkillDescriptionState.active
-                  : SkillDescriptionState.inactive)));
+            skillDescriptionState:
+                isActive
+                    ? SkillDescriptionState.active
+                    : SkillDescriptionState.inactive,
+          ),
+        ),
+      );
     }
   }
 }
