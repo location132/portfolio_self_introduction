@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/components/widget/mobile_animation/two_line_title.dart';
 import 'package:self_introduction_flutter/model/mobile_page/aboutMe_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/chapter_model.dart';
@@ -76,6 +77,8 @@ class MainPage extends StatelessWidget {
                   VisibilityDetector(
                     key: const Key('aboutMe-view'),
                     onVisibilityChanged: (VisibilityInfo info) {
+                      if (projectState.isProjectDetailVisible) return;
+
                       if (isMobileDevice) {
                         if (info.visibleFraction > 0.3 &&
                             !aboutMeState.isPlayerAniOpacity &&
@@ -128,7 +131,7 @@ class MainPage extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.only(top: 40.h, left: 32),
                       child: Text(
-                        '더 자세히 살펴보기.',
+                        MainPageTextConstants.detailMeTitle,
                         style: TextStyle(
                           fontSize: 25.sp,
                           color: Colors.white,
@@ -159,11 +162,12 @@ class MainPage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 60),
+
             Visibility(
               visible: skillState.isSkillViewInit,
               child: Column(
                 children: [
+                  const SizedBox(height: 60),
                   VisibilityDetector(
                     key: const Key('skill-view'),
                     onVisibilityChanged: (VisibilityInfo info) {
@@ -179,8 +183,8 @@ class MainPage extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: TwoLineTitle(
                       isTitelText: projectState.isTitleAniStart,
-                      title: '더 강력한 개발자로 UP',
-                      subTitle: '   신입 프로젝트를 더욱 멋지게',
+                      title: MainPageTextConstants.projectSectionTitle,
+                      subTitle: MainPageTextConstants.projectSectionSubTitle,
                       color: Colors.white,
                       subTitleColor: Colors.white,
                     ),
@@ -190,16 +194,20 @@ class MainPage extends StatelessWidget {
                     key: const Key('project-view'),
                     onVisibilityChanged: (VisibilityInfo info) {
                       if (info.visibleFraction > 0.4 &&
+                          projectState.isProjectDetailVisible) {
+                        cubit.aboutMePlayerAni(true);
+                      }
+                      if (info.visibleFraction > 0.4 &&
                           !projectState.isBackGroundAniStart) {
                         cubit.projectBackGroundColor(true);
                       }
                     },
                     child: ProjectPage(state: projectState, cubit: cubit),
                   ),
+                  const SizedBox(height: 100),
                 ],
               ),
             ),
-            const SizedBox(height: 100),
           ],
         ),
       ],

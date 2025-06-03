@@ -15,6 +15,36 @@ class TextConstants {
   static const String topNavBar7 = '교육 및 강의';
 }
 
+class ProjectTextConstants {
+  // 프로젝트 카테고리 제목
+  static const String flutterTitle = 'Flutter';
+  static const String flutterRiveTitle = 'Flutter in Rive';
+  static const String futureProjectTitle = '앞으로 진행할 프로젝트';
+
+  // 프로젝트 카테고리 설명
+  static const String flutterDescription = 'Flutter를 사용해 만든 모든 프로젝트를 소개합니다.';
+  static const String flutterRiveDescription =
+      'Rive 애니메이션과 Flutter 조합으로 만든 프로젝트입니다.';
+  static const String futureProjectDescription =
+      '새로운 도전을 준비하고 있습니다. 목표와 언제 시작할지 정해두었습니다.';
+
+  // 프로젝트 개수
+  static const String flutterProjectCount = '6개의 프로젝트';
+  static const String flutterRiveProjectCount = '3개의 프로젝트';
+  static const String futureProjectCount = '4개의 계획';
+
+  // 프로젝트 상세 제목
+  static const String flutterDetailTitle = 'Flutter 프로젝트';
+  static const String flutterRiveDetailTitle = 'Flutter & Rive 프로젝트';
+  static const String futureProjectDetailTitle = '앞으로 진행할 프로젝트';
+
+  // 공통 텍스트
+  static const String backToProjectList = '프로젝트 목록으로 돌아가기';
+  static const String dividerText =
+      '아래는 실제 출시된 앱을 분석하고 개선 아이디어를 반영해보는 실전 리디자인 프로젝트입니다.';
+  static const String projectDetailPlayerText = '프로젝트 목록으로 돌아가기';
+}
+
 class IntroTextConstants {
   static const String introText1 = '2025';
   static const String introText2 = 'PORTFOLIO';
@@ -315,4 +345,17 @@ class AnimationConstants extends CardConstants {
   static String get highlightDescription =>
       ' 복잡한 애니메이션은 못하지만,\n    흥미를 끌 수 있는 애니메이션은 직접 만들고 있습니다.';
   static List<int> get starredIndexes => [];
+}
+
+class MainPageTextConstants {
+  // 제목들
+  static const String aboutMeTitle = '일단 핵심부터';
+  static const String detailMeTitle = '더 자세히 살펴보기.';
+  static const String projectSectionTitle = '더 강력한 개발자로 UP';
+  static const String projectSectionSubTitle = '   신입 프로젝트를 더욱 멋지게';
+
+  // 플레이어 텍스트
+  static const String aboutMePlayerText = '화면을 옆으로 넘겨 다양한 이야기를 확인해보세요';
+  static const String introPlayerText = '지금 바로 시작합니다.';
+  static const String defaultPlayerText = '잠시만 기다려주세요.';
 }

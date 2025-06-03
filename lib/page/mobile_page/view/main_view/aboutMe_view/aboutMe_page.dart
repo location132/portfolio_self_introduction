@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/components/widget/mobile_animation/one_line_title.dart';
 import 'package:self_introduction_flutter/model/mobile_page/aboutMe_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/widget/about_me_description.dart';
@@ -21,7 +22,7 @@ class AboutMePage extends StatelessWidget {
         OneLineTitle(
           isTitelTextAniStart: state.isTitleAniStart,
           duration: 620,
-          title: '일단 핵심부터',
+          title: MainPageTextConstants.aboutMeTitle,
           color: const Color.fromARGB(255, 255, 255, 255),
         ),
         AboutMeDescription(isBannerAniStart: state.isDescriptionAniStart),

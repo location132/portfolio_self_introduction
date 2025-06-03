@@ -348,7 +348,7 @@ class _$MobileStateImpl implements _MobileState {
     this.chapterModel = const ChapterModel(),
     this.skillModel = const SkillModel(),
     this.projectModel = const ProjectModel(),
-    this.isPlayerText = '잠시만 기다려주세요.',
+    this.isPlayerText = MainPageTextConstants.defaultPlayerText,
   });
 
   @override

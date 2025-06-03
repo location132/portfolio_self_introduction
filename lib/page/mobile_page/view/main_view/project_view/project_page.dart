@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/model/mobile_page/project_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/project_view/project_category_section.dart';
@@ -48,6 +49,7 @@ class _ProjectPageState extends State<ProjectPage>
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        // 프로젝트 목록
         AnimatedOpacity(
           opacity: widget.state.isProjectDetailVisible ? 0.0 : 1.0,
           duration: const Duration(milliseconds: 400),
@@ -65,9 +67,9 @@ class _ProjectPageState extends State<ProjectPage>
                   child: Column(
                     children: [
                       ProjectCategorySection(
-                        title: 'Flutter',
-                        description: 'Flutter를 사용해 만든 모든 프로젝트를 소개합니다.',
-                        projectCount: '4개의 프로젝트',
+                        title: ProjectTextConstants.flutterTitle,
+                        description: ProjectTextConstants.flutterDescription,
+                        projectCount: ProjectTextConstants.flutterProjectCount,
                         onButtonPressed: () {
                           widget.cubit.showProjectDetail('flutter');
                         },
@@ -80,12 +82,13 @@ class _ProjectPageState extends State<ProjectPage>
                       SizedBox(height: 30.h),
 
                       ProjectCategorySection(
-                        title: '선배 개발자 따라잡기',
+                        title: ProjectTextConstants.flutterRiveTitle,
                         description:
-                            '실제 출시된 앱을 분석하고 개선 아이디어를 반영해보는 실전 리디자인 프로젝트입니다.',
-                        projectCount: '2개의 프로젝트',
+                            ProjectTextConstants.flutterRiveDescription,
+                        projectCount:
+                            ProjectTextConstants.flutterRiveProjectCount,
                         onButtonPressed: () {
-                          widget.cubit.showProjectDetail('senior_developer');
+                          widget.cubit.showProjectDetail('flutter_rive');
                         },
                         isAnimationStart: widget.state.isProjectItemsAniStart,
                         animationDelay: 200,
@@ -96,30 +99,15 @@ class _ProjectPageState extends State<ProjectPage>
                       SizedBox(height: 30.h),
 
                       ProjectCategorySection(
-                        title: 'Flutter in Rive',
+                        title: ProjectTextConstants.futureProjectTitle,
                         description:
-                            'Rive 애니메이션과 Flutter의 완벽한 조합으로 만든 프로젝트입니다.',
-                        projectCount: '3개의 프로젝트',
-                        onButtonPressed: () {
-                          widget.cubit.showProjectDetail('flutter_rive');
-                        },
-                        isAnimationStart: widget.state.isProjectItemsAniStart,
-                        animationDelay: 400,
-                        isSelected: false,
-                        isDetailMode: false,
-                      ),
-
-                      SizedBox(height: 30.h),
-
-                      ProjectCategorySection(
-                        title: '앞으로 진행할 프로젝트',
-                        description: '새로운 도전을 준비하고 있습니다. 목표와 언제 시작할지 정해두었습니다.',
-                        projectCount: '4개의 계획',
+                            ProjectTextConstants.futureProjectDescription,
+                        projectCount: ProjectTextConstants.futureProjectCount,
                         onButtonPressed: () {
                           widget.cubit.showProjectDetail('future');
                         },
                         isAnimationStart: widget.state.isProjectItemsAniStart,
-                        animationDelay: 600,
+                        animationDelay: 400,
                         isSelected: false,
                         isDetailMode: false,
                       ),
@@ -133,63 +121,79 @@ class _ProjectPageState extends State<ProjectPage>
           ),
         ),
 
-        if (widget.state.isProjectDetailVisible)
-          SlideTransition(
+        // Flutter 프로젝트 상세
+        Visibility(
+          visible:
+              widget.state.isProjectDetailVisible &&
+              widget.state.selectedProjectCategory == 'flutter',
+          child: SlideTransition(
             position: _detailAnimation.slideAnimation,
             child: FadeTransition(
               opacity: _detailAnimation.opacityAnimation,
-              child: Container(
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height,
-                decoration: const BoxDecoration(color: Colors.black),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 32.w,
-                          vertical: 40.h,
-                        ),
-                        child: GestureDetector(
-                          onTap: () => widget.cubit.hideProjectDetail(),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.arrow_back_ios,
-                                color: Colors.white.withValues(alpha: 0.8),
-                                size: 16.w,
-                              ),
-                              SizedBox(width: 8.w),
-                              Text(
-                                '프로젝트 목록으로 돌아가기',
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: Colors.white.withValues(alpha: 0.8),
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 32.w),
-                        child: ProjectDetailContent(
-                          category: widget.state.selectedProjectCategory,
-                          isAnimationStart: widget.state.isProjectDetailAni,
-                        ),
-                      ),
-
-                      SizedBox(height: 100.h),
-                    ],
-                  ),
+              child: _buildProjectDetailContainer(
+                ProjectDetailContent(
+                  category: 'flutter',
+                  isAnimationStart: widget.state.isProjectDetailAni,
                 ),
               ),
             ),
           ),
+        ),
+
+        // Flutter Rive 프로젝트 상세
+        Visibility(
+          visible:
+              widget.state.isProjectDetailVisible &&
+              widget.state.selectedProjectCategory == 'flutter_rive',
+          child: SlideTransition(
+            position: _detailAnimation.slideAnimation,
+            child: FadeTransition(
+              opacity: _detailAnimation.opacityAnimation,
+              child: _buildProjectDetailContainer(
+                ProjectDetailContent(
+                  category: 'flutter_rive',
+                  isAnimationStart: widget.state.isProjectDetailAni,
+                ),
+              ),
+            ),
+          ),
+        ),
+
+        // 미래 프로젝트 상세
+        Visibility(
+          visible:
+              widget.state.isProjectDetailVisible &&
+              widget.state.selectedProjectCategory == 'future',
+          child: SlideTransition(
+            position: _detailAnimation.slideAnimation,
+            child: FadeTransition(
+              opacity: _detailAnimation.opacityAnimation,
+              child: _buildProjectDetailContainer(
+                ProjectDetailContent(
+                  category: 'future',
+                  isAnimationStart: widget.state.isProjectDetailAni,
+                ),
+              ),
+            ),
+          ),
+        ),
       ],
+    );
+  }
+
+  Widget _buildProjectDetailContainer(Widget child) {
+    return Container(
+      width: double.infinity,
+      decoration: const BoxDecoration(color: Colors.black),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 40.h),
+            child: child,
+          ),
+        ],
+      ),
     );
   }
 }

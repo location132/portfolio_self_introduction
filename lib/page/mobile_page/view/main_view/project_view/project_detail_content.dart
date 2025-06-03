@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/components/widget/mobile_animation/widget_animation.dart';
 
 class ProjectDetailContent extends StatelessWidget {
@@ -42,11 +43,11 @@ class ProjectDetailContent extends StatelessWidget {
   String _getCategoryTitle() {
     switch (category) {
       case 'flutter':
-        return 'Flutter 프로젝트';
+        return ProjectTextConstants.flutterDetailTitle;
       case 'flutter_rive':
-        return 'Flutter & Rive 프로젝트';
+        return ProjectTextConstants.flutterRiveDetailTitle;
       case 'future':
-        return '앞으로 진행할 프로젝트';
+        return ProjectTextConstants.futureProjectDetailTitle;
       default:
         return '프로젝트';
     }
@@ -61,14 +62,14 @@ class ProjectDetailContent extends StatelessWidget {
           {
             'title': '잎사이',
             'description':
-                '2만 줄 이상의 코드 규모에 MVVM 아키텍처를 적용하고, TestFlight를 통한 세미 배포를 진행한 프로젝트입니다.',
+                '2만 줄 이상의 코드 규모에 MVVM 아키텍처를 적용하고, TestFlight를 통해 협업한  프로젝트입니다.',
             'tech': 'MVVM, Clean Architecture, TestFlight',
           },
           {
             'title': 'NaverMap',
             'description':
                 'Service 계층, Isar(Local DB), DIO 등, Clean Architecture를 적용하여 설계한 지도 기반 Flutter 프로젝트입니다.',
-            'tech': 'Service, Isar, DIO, NaverMap',
+            'tech': 'Service_계층, Isar, DIO, NaverMap',
           },
           {
             'title': '클랭',
@@ -83,14 +84,12 @@ class ProjectDetailContent extends StatelessWidget {
           },
           {
             'title': '선배 개발자 따라잡기 - gsSHOP',
-            'description':
-                '실제 출시된 앱을 분석하고 개선 아이디어를 반영해보는 실전 리디자인 프로젝트입니다. 생명주기 개선을 통해 깜빡임 없는 매끄러운 화면 전환을 구현했습니다.',
+            'description': ' 생명주기 개선을 통해 깜빡임 없는 매끄러운 화면 전환을 구현했습니다.',
             'tech': '생명주기 공부',
           },
           {
             'title': '선배 개발자 따라잡기 - idus',
-            'description':
-                '실제 출시된 앱을 분석하고 개선 아이디어를 반영해보는 실전 리디자인 프로젝트입니다. 쉬머 효과와 자연스러운 콘텐츠 전환을 위한 애니메이션을 적용했습니다.',
+            'description': '쉬머 효과와 자연스러운 콘텐츠 전환을 위한 애니메이션을 적용했습니다.',
             'tech': 'UI/UX, Flutter Animation',
           },
         ];
@@ -125,65 +124,103 @@ class ProjectDetailContent extends StatelessWidget {
         break;
     }
 
-    return projects.asMap().entries.map((entry) {
-      int index = entry.key;
-      Map<String, String> project = entry.value;
+    List<Widget> projectWidgets = [];
 
-      return WidgetAnimation(
-        isStart: isAnimationStart,
-        beginDy: 0.5,
-        duration: 600 + (index * 100),
-        child: Container(
-          margin: EdgeInsets.only(bottom: 20.h),
-          padding: EdgeInsets.all(16.w),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12.r),
-            color: Colors.white.withValues(alpha: 0.03),
-            border: Border.all(
-              color: Colors.white.withValues(alpha: 0.08),
-              width: 1,
+    for (int index = 0; index < projects.length; index++) {
+      Map<String, String> project = projects[index];
+
+      if (category == 'flutter' && index == 4) {
+        projectWidgets.add(
+          WidgetAnimation(
+            isStart: isAnimationStart,
+            beginDy: 0.5,
+            duration: 600 + (index * 100),
+            child: Container(
+              margin: EdgeInsets.symmetric(vertical: 30.h),
+              child: Column(
+                children: [
+                  Container(
+                    height: 1,
+                    width: double.infinity,
+                    color: Colors.white.withValues(alpha: 0.1),
+                  ),
+                  SizedBox(height: 20.h),
+                  Text(
+                    ProjectTextConstants.dividerText,
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      color: Colors.white.withValues(alpha: 0.7),
+                      height: 1.4,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20.h),
+                ],
+              ),
             ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                project['title']!,
-                style: TextStyle(
-                  fontSize: 16.sp,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
+        );
+      }
+
+      projectWidgets.add(
+        WidgetAnimation(
+          isStart: isAnimationStart,
+          beginDy: 0.5,
+          duration: 600 + (index * 100),
+          child: Container(
+            margin: EdgeInsets.only(bottom: 20.h),
+            padding: EdgeInsets.all(16.w),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12.r),
+              color: Colors.white.withValues(alpha: 0.03),
+              border: Border.all(
+                color: Colors.white.withValues(alpha: 0.08),
+                width: 1,
               ),
-              SizedBox(height: 8.h),
-              Text(
-                project['description']!,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  color: Colors.white.withValues(alpha: 0.8),
-                  height: 1.4,
-                ),
-              ),
-              SizedBox(height: 12.h),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6.r),
-                  color: Colors.white.withValues(alpha: 0.05),
-                ),
-                child: Text(
-                  project['tech']!,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  project['title']!,
                   style: TextStyle(
-                    fontSize: 12.sp,
-                    color: Colors.white.withValues(alpha: 0.6),
-                    fontWeight: FontWeight.w500,
+                    fontSize: 16.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-              ),
-            ],
+                SizedBox(height: 8.h),
+                Text(
+                  project['description']!,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: Colors.white.withValues(alpha: 0.8),
+                    height: 1.4,
+                  ),
+                ),
+                SizedBox(height: 12.h),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6.r),
+                    color: Colors.white.withValues(alpha: 0.05),
+                  ),
+                  child: Text(
+                    project['tech']!,
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: Colors.white.withValues(alpha: 0.6),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       );
-    }).toList();
+    }
+
+    return projectWidgets;
   }
 }

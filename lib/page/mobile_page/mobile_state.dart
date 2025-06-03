@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/model/init_model.dart';
 import 'package:self_introduction_flutter/model/main_page/intro_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
@@ -21,6 +22,6 @@ class MobileState with _$MobileState {
     @Default(ChapterModel()) ChapterModel chapterModel,
     @Default(SkillModel()) SkillModel skillModel,
     @Default(ProjectModel()) ProjectModel projectModel,
-    @Default('잠시만 기다려주세요.') String isPlayerText,
+    @Default(MainPageTextConstants.defaultPlayerText) String isPlayerText,
   }) = _MobileState;
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/chapter_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
@@ -93,7 +94,6 @@ class MobileCubit extends Cubit<MobileState> {
     }
   }
 
-  // 하단 스크롤에 도착하였을 때,
   void introAtBottom() async {
     //=======================
     // emit(
@@ -162,7 +162,7 @@ class MobileCubit extends Cubit<MobileState> {
           isIntroInActive: false,
         ),
         initModel: state.initModel.copyWith(isMobileInit: false),
-        isPlayerText: '지금 바로 시작합니다.',
+        isPlayerText: MainPageTextConstants.introPlayerText,
       ),
     );
     final ctrl = state.scrollModel.scrollController;
@@ -189,7 +189,7 @@ class MobileCubit extends Cubit<MobileState> {
         aboutMeModel: state.aboutMeModel.copyWith(
           isBackGroundAniStart: isBackGroundAniStart,
         ),
-        isPlayerText: '화면을 옆으로 넘겨 다양한 이야기를 확인해보세요',
+        isPlayerText: MainPageTextConstants.aboutMePlayerText,
       ),
     );
 
@@ -269,8 +269,8 @@ class MobileCubit extends Cubit<MobileState> {
       ),
     );
   }
-
   // 모바일 화면 폴드, 또는 웹
+
   void isMobileFoldable(bool isFoldable) {
     if (state.initModel.isMobileFoldable == isFoldable) return;
     emit(
@@ -279,8 +279,8 @@ class MobileCubit extends Cubit<MobileState> {
       ),
     );
   }
-
   // 챕터 상세 화면 표시
+
   void showChapterDetail(int chapterIndex) async {
     emit(
       state.copyWith(
@@ -409,6 +409,10 @@ class MobileCubit extends Cubit<MobileState> {
         ),
       ),
     );
+    if (state.projectModel.selectedProjectCategory != '') {
+      print('check ==> ');
+      aboutMePlayerAni(true);
+    }
 
     if (isBackGroundAniStart) {
       projectAniStart(true);
@@ -438,12 +442,14 @@ class MobileCubit extends Cubit<MobileState> {
 
   // 프로젝트 디테일 스크린 표시
   void showProjectDetail(String category) async {
+    aboutMePlayerAni(true);
     emit(
       state.copyWith(
         projectModel: state.projectModel.copyWith(
           isProjectDetailVisible: true,
           selectedProjectCategory: category,
         ),
+        isPlayerText: ProjectTextConstants.backToProjectList,
       ),
     );
     await Future.delayed(const Duration(milliseconds: 400));
@@ -463,6 +469,7 @@ class MobileCubit extends Cubit<MobileState> {
     );
 
     await Future.delayed(const Duration(milliseconds: 600));
+    aboutMePlayerAni(false);
     emit(
       state.copyWith(
         projectModel: state.projectModel.copyWith(
