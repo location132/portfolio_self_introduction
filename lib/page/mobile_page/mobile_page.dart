@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
@@ -173,6 +174,14 @@ class _MobileViewState extends State<_MobileView> {
                 child: Player(
                   isPlayerAniOpacity: state.aboutMeModel.isPlayerAniOpacity,
                   isPlayerText: state.isPlayerText,
+                  onTap:
+                      (state.projectModel.isProjectDetailVisible &&
+                              state.isPlayerText ==
+                                  ProjectTextConstants.backToProjectList)
+                          ? () {
+                            context.read<MobileCubit>().hideProjectDetail();
+                          }
+                          : null,
                 ),
               ),
               // 챕터 상세 화면

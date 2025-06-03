@@ -72,7 +72,7 @@ class ProjectDetailContent extends StatelessWidget {
             'tech': 'Service_계층, Isar, DIO, NaverMap',
           },
           {
-            'title': '클랭',
+            'title': '클랭(KLANG)',
             'description': 'PM 역할을 수행하며 16명의 다양한 전공 팀원들과 함께한 협업 프로젝트입니다.',
             'tech': 'PM, Flutter, 비개발자 팀원과의 협업',
           },
@@ -170,7 +170,7 @@ class ProjectDetailContent extends StatelessWidget {
           child: Container(
             margin: EdgeInsets.only(bottom: 20.h),
             padding: EdgeInsets.all(16.w),
-            height: 150.h,
+            height: 160.h,
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12.r),
