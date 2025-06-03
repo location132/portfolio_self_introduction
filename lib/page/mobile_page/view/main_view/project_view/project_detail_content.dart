@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/components/widget/mobile_animation/widget_animation.dart';
 
@@ -34,7 +35,7 @@ class ProjectDetailContent extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20.h),
-          ..._getProjectItems(),
+          ..._getProjectItems(context),
         ],
       ),
     );
@@ -53,7 +54,7 @@ class ProjectDetailContent extends StatelessWidget {
     }
   }
 
-  List<Widget> _getProjectItems() {
+  List<Widget> _getProjectItems(BuildContext context) {
     List<Map<String, String>> projects = [];
 
     switch (category) {
@@ -183,106 +184,119 @@ class ProjectDetailContent extends StatelessWidget {
           isStart: isAnimationStart,
           beginDy: 0.5,
           duration: 600 + (index * 100),
-          child: Container(
-            margin: EdgeInsets.only(bottom: 20.h),
-            padding: EdgeInsets.all(16.w),
-            height: 160.h,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12.r),
-              color: Colors.white.withValues(alpha: 0.03),
-              border: Border.all(
-                color: const Color.fromARGB(255, 204, 250, 248),
-                width: 1,
+          child: GestureDetector(
+            onTap: () {
+              _navigateToProjectDetail(context, category, index);
+            },
+            child: Container(
+              margin: EdgeInsets.only(bottom: 20.h),
+              padding: EdgeInsets.all(16.w),
+              height: 160.h,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12.r),
+                color: Colors.white.withValues(alpha: 0.03),
+                border: Border.all(
+                  color: const Color.fromARGB(255, 204, 250, 248),
+                  width: 1,
+                ),
               ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    if (category == 'future')
-                      Container(
-                        margin: EdgeInsets.only(right: 8.w),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 6.w,
-                          vertical: 2.h,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4.r),
-                          border: Border.all(
-                            color: const Color.fromARGB(255, 204, 250, 248),
-                            width: 1,
-                          ),
-                        ),
-                        child: Text(
-                          '곧 시작합니다!',
-                          style: TextStyle(
-                            fontSize: 8.sp,
-                            color: const Color.fromARGB(255, 204, 250, 248),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    Expanded(
-                      child: Text(
-                        project['title']!,
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 8.h),
-                Expanded(
-                  child: Text(
-                    project['description']!,
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: Colors.white.withValues(alpha: 0.8),
-                      height: 1.4,
-                    ),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                SizedBox(height: 8.h),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6.r),
-                    color: Colors.white.withValues(alpha: 0.05),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
                     children: [
                       if (category == 'future')
-                        Icon(
-                          Icons.schedule,
-                          size: 12.sp,
-                          color: const Color.fromARGB(255, 204, 250, 248),
+                        Container(
+                          margin: EdgeInsets.only(right: 8.w),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 6.w,
+                            vertical: 2.h,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4.r),
+                            border: Border.all(
+                              color: const Color.fromARGB(255, 204, 250, 248),
+                              width: 1,
+                            ),
+                          ),
+                          child: Text(
+                            '곧 시작합니다!',
+                            style: TextStyle(
+                              fontSize: 8.sp,
+                              color: const Color.fromARGB(255, 204, 250, 248),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                      if (category == 'future') SizedBox(width: 4.w),
-                      Text(
-                        project['tech']!,
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          color:
-                              category == 'future'
-                                  ? const Color.fromARGB(255, 204, 250, 248)
-                                  : Colors.white.withValues(alpha: 0.6),
-                          fontWeight: FontWeight.w500,
+                      Expanded(
+                        child: Text(
+                          project['title']!,
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 14.sp,
+                        color: Colors.white.withValues(alpha: 0.5),
                       ),
                     ],
                   ),
-                ),
-              ],
+                  SizedBox(height: 8.h),
+                  Expanded(
+                    child: Text(
+                      project['description']!,
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        color: Colors.white.withValues(alpha: 0.8),
+                        height: 1.4,
+                      ),
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  SizedBox(height: 8.h),
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 8.w,
+                      vertical: 4.h,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.r),
+                      color: Colors.white.withValues(alpha: 0.05),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (category == 'future')
+                          Icon(
+                            Icons.schedule,
+                            size: 12.sp,
+                            color: const Color.fromARGB(255, 204, 250, 248),
+                          ),
+                        if (category == 'future') SizedBox(width: 4.w),
+                        Text(
+                          project['tech']!,
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            color:
+                                category == 'future'
+                                    ? const Color.fromARGB(255, 204, 250, 248)
+                                    : Colors.white.withValues(alpha: 0.6),
+                            fontWeight: FontWeight.w500,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -290,5 +304,27 @@ class ProjectDetailContent extends StatelessWidget {
     }
 
     return projectWidgets;
+  }
+
+  void _navigateToProjectDetail(
+    BuildContext context,
+    String category,
+    int index,
+  ) {
+    String route;
+    switch (category) {
+      case 'flutter':
+        route = '/flutter-projects';
+        break;
+      case 'flutter_rive':
+        route = '/flutter-rive-projects';
+        break;
+      case 'future':
+        route = '/future-projects';
+        break;
+      default:
+        route = '/flutter-projects';
+    }
+    context.push(route);
   }
 }
