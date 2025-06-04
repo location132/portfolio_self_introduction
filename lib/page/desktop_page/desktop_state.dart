@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:self_introduction_flutter/model/init_model.dart';
+import 'package:self_introduction_flutter/model/main_page/about_me_model.dart';
+import 'package:self_introduction_flutter/model/main_page/chapter_model.dart';
 import 'package:self_introduction_flutter/model/main_page/description_model.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
@@ -16,6 +18,9 @@ class DesktopState with _$DesktopState {
     //mySkill 모델
     @Default(MySkillModel()) MySkillModel mySkillModel,
 
+    //ChapterModel
+    @Default(ChapterModel()) ChapterModel chapterModel,
+
     //DescriptionModel
     @Default(DescriptionModel()) DescriptionModel descriptionModel,
 
@@ -23,6 +28,7 @@ class DesktopState with _$DesktopState {
     @Default(ScrollModel()) ScrollModel scrollModel,
 
     //ProfileModel
+    @Default(AboutMeModel()) AboutMeModel aboutMeModel,
 
     //InitModel
     @Default(InitModel()) InitModel initModel,

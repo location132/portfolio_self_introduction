@@ -2,17 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/core_service/util/slow_scroll_physics.dart';
-import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
-import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
-import 'package:self_introduction_flutter/page/desktop_page/view/banner_view/banner_view.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/banner_view/banner_page.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/chapter_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/intro_view/introShowcase.dart';
-import 'package:self_introduction_flutter/page/desktop_page/view/skill_view/skill_view.dart';
-import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/chapter_view.dart';
-import 'package:visibility_detector/visibility_detector.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/skill_view/skill_page.dart';
 
 class DesktopPage extends StatelessWidget {
   final bool isChromeBrowser;
@@ -82,79 +78,42 @@ class _MainViewState extends State<_MainView> {
                               ),
                             ),
                           ),
+
                           SliverToBoxAdapter(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Stack(
                               children: [
-                                VisibilityDetector(
-                                  key: const Key('banner-view'),
-                                  onVisibilityChanged: (VisibilityInfo info) {
-                                    if (info.visibleFraction > 0.2 &&
-                                        state.scrollModel.bannerState ==
-                                            BannerState.inactive) {
-                                      context.read<DesktopCubit>().viewListener(
-                                        'banner',
-                                      );
-                                    }
-                                  },
-                                  child: BannerView(
-                                    state: state,
-                                    isActive: (bool isActive) {
-                                      context
-                                          .read<DesktopCubit>()
-                                          .descriptionButton(
-                                            'banner',
-                                            isActive,
-                                          );
-                                    },
+                                Positioned.fill(
+                                  child: AnimatedOpacity(
+                                    opacity:
+                                        state
+                                                .chapterModel
+                                                .isBlackBackgroundColor
+                                            ? 1
+                                            : 0,
+                                    duration: const Duration(seconds: 1),
+                                    child: Container(color: Colors.black),
                                   ),
                                 ),
-                                SizedBox(height: 80.sh),
-                                VisibilityDetector(
-                                  key: const Key('chapter-view'),
-                                  onVisibilityChanged: (VisibilityInfo info) {
-                                    if (info.visibleFraction > 0.6 &&
-                                        state.scrollModel.chapterViewState ==
-                                            ChapterViewState.inactive) {
-                                      context.read<DesktopCubit>().viewListener(
-                                        'chapter',
-                                      );
-                                    }
-                                  },
-                                  child: DesktopChapterView(
-                                    onCardTap: (int index) {
-                                      print('Chapter $index clicked');
-                                    },
-                                    state: state,
-                                    onDescriptionActive: (bool isActive) {
-                                      context
-                                          .read<DesktopCubit>()
-                                          .descriptionButton(
-                                            'profile',
-                                            isActive,
-                                          );
-                                    },
-                                  ),
-                                ),
-                                VisibilityDetector(
-                                  key: const Key('skill-view'),
-                                  onVisibilityChanged: (VisibilityInfo info) {
-                                    if (info.visibleFraction > 0.4 &&
-                                        state.mySkillModel.status ==
-                                            MySkillViewStatus.inactive) {
-                                      context.read<DesktopCubit>().viewListener(
-                                        'skill',
-                                      );
-                                    }
-                                  },
-                                  child: SkillView(
-                                    state: state,
-                                    onTap: (int index) {
-                                      context
-                                          .read<DesktopCubit>()
-                                          .descriptionButton('skill', true);
-                                    },
-                                  ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    BannerPage(
+                                      state: state,
+                                      desktopCubit:
+                                          context.read<DesktopCubit>(),
+                                    ),
+
+                                    SkillPage(
+                                      state: state,
+                                      desktopCubit:
+                                          context.read<DesktopCubit>(),
+                                    ),
+                                    ChapterPage(
+                                      state: state,
+                                      desktopCubit:
+                                          context.read<DesktopCubit>(),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),

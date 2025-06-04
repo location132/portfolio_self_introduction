@@ -4,16 +4,23 @@ import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/model/main_page/description_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
+import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 import 'package:self_introduction_flutter/page/desktop_page/widgets/title_text.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/description_view/banner_description.dart';
-import 'package:self_introduction_flutter/page/desktop_page/widgets/web_player.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/widget/player.dart';
 
 class BannerView extends StatefulWidget {
   final Function(bool) isActive;
   final DesktopState state;
+  final DesktopCubit desktopCubit;
 
-  const BannerView({super.key, required this.state, required this.isActive});
+  const BannerView({
+    super.key,
+    required this.state,
+    required this.isActive,
+    required this.desktopCubit,
+  });
 
   @override
   State<BannerView> createState() => _BannerViewState();
@@ -55,13 +62,14 @@ class _BannerViewState extends State<BannerView> {
             ),
           ),
         ),
-        SizedBox(height: 40.sh),
-        WebPlayer(
-          playerText: '배너 조금 더 궁금하다면 Click!',
-          isPlayerAniOpacity:
-              widget.state.scrollModel.bannerState == BannerState.activated,
+        SizedBox(height: 80.sh),
+        Player(
+          isPlayerAniOpacity: widget.state.aboutMeModel.player,
+          isPlayerText: 'About Me 조금 더 궁금하다면 Click!',
+          duration: const Duration(milliseconds: 800),
+          fontSize: 14,
           onTap: () {
-            print('테스트');
+            widget.desktopCubit.playerActive('banner');
           },
         ),
       ],

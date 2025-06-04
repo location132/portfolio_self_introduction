@@ -1,3 +1,5 @@
+// 모바일 뿐 아니라 데스크탑에서도 사용중인 컴포넌트
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -5,11 +7,16 @@ class Player extends StatefulWidget {
   final bool isPlayerAniOpacity;
   final String isPlayerText;
   final VoidCallback? onTap;
+  final Duration? duration;
+  final double? fontSize;
+
   const Player({
     super.key,
     required this.isPlayerAniOpacity,
     required this.isPlayerText,
     this.onTap,
+    this.duration = const Duration(milliseconds: 500),
+    this.fontSize = 12,
   });
 
   @override
@@ -27,10 +34,7 @@ class _PlayerState extends State<Player> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 500),
-      vsync: this,
-    );
+    _controller = AnimationController(duration: widget.duration, vsync: this);
 
     const appleCurve = Cubic(0.2, 0.0, 0.2, 1.0);
 
@@ -130,7 +134,7 @@ class _PlayerState extends State<Player> with SingleTickerProviderStateMixin {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 12.0.sp,
+                        fontSize: widget.fontSize,
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                       ),

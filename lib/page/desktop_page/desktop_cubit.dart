@@ -212,6 +212,28 @@ class DesktopCubit extends Cubit<DesktopState> {
     }
   }
 
+  //검정색 배경화면 활성화
+  void blackBackgroundActive(bool isActive) async {
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(
+          isBlackBackgroundColor: isActive,
+        ),
+      ),
+    );
+    await Future.delayed(const Duration(seconds: 1));
+    descriptionButton('chapter', true);
+  }
+
+  //플레이어 활성화
+  void playerActive(String sectionName) {
+    if (sectionName == 'banner' && state.aboutMeModel.isPlayerActive == false) {
+      emit(
+        state.copyWith(aboutMeModel: state.aboutMeModel.copyWith(player: true)),
+      );
+    }
+  }
+
   //Description 버튼 클릭
   void descriptionButton(String descriptionName, bool isActive) {
     if (descriptionName == 'banner') {
@@ -225,7 +247,7 @@ class DesktopCubit extends Cubit<DesktopState> {
           ),
         ),
       );
-    } else if (descriptionName == 'profile') {
+    } else if (descriptionName == 'chapter') {
       emit(
         state.copyWith(
           descriptionModel: state.descriptionModel.copyWith(
@@ -250,16 +272,12 @@ class DesktopCubit extends Cubit<DesktopState> {
     }
   }
 
+  // 애니메이션 컨트롤러들 정리
   @override
   Future<void> close() async {
-    // 애니메이션 컨트롤러들 정리
     if (state.startAnimation != null) {
       for (var controller in state.startAnimation!.controllers) {
-        try {
-          controller.dispose();
-        } catch (e) {
-          print('Error disposing controller: $e');
-        }
+        controller.dispose();
       }
     }
     return super.close();

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
-import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 
 class MySkillRive extends StatefulWidget {
-  final DesktopState? state;
-  const MySkillRive({super.key, required this.state});
+  final bool isActive;
+  const MySkillRive({super.key, required this.isActive});
 
   @override
   State<MySkillRive> createState() => _MySkillRiveState();
@@ -42,8 +40,7 @@ class _MySkillRiveState extends State<MySkillRive> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.state?.mySkillModel.status == MySkillViewStatus.active &&
-        !_hasStarted) {
+    if (widget.isActive && !_hasStarted) {
       _startAni();
     }
     return RiveAnimation.asset(

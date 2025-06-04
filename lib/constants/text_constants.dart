@@ -86,15 +86,15 @@ class ProfilePage1Constants {
 class TitleTextConstants {
   static const String title1 = 'About Me.';
   static const String subTitle1 = '짧지만 깊게';
-  static const String description1 = '나를 담은 소개 애니메이션';
+  static const String description1 = ' 나를 담은 소개 애니메이션';
 
   static const String title2 = 'Who Am I.';
   static const String subTitle2 = '나를 소개하는';
   static const String description2 = '과거의 기록, 그리고 진행중인 이야기';
 
-  static const String title3 = 'My Skills.';
-  static const String subTitle3 = '나를 빛나게 하는';
-  static const String description3 = '나만의 개발 스타일 그리고 스택';
+  static const String title3 = 'Flutter.';
+  static const String subTitle3 = '와 어울리는';
+  static const String description3 = ' 이런 기술들을 사용해요';
 }
 
 class EducationTextConstants {

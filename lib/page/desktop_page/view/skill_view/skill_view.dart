@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/rive/my_skill_rive.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
-import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
-import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 import 'package:self_introduction_flutter/page/desktop_page/widgets/title_text.dart';
 
 class SkillView extends StatefulWidget {
-  final DesktopState state;
-  final Function(int) onTap;
-
-  const SkillView({super.key, required this.state, required this.onTap});
+  final bool isActive;
+  const SkillView({super.key, required this.isActive});
 
   @override
   State<SkillView> createState() => _SkillViewState();
@@ -26,8 +22,7 @@ class _SkillViewState extends State<SkillView> {
           title: TitleTextConstants.title3,
           subTitle: TitleTextConstants.subTitle3,
           description: TitleTextConstants.description3,
-          isVisible:
-              widget.state.mySkillModel.status == MySkillViewStatus.active,
+          isVisible: widget.isActive,
         ),
         Center(
           child: Container(
@@ -35,7 +30,7 @@ class _SkillViewState extends State<SkillView> {
               maxWidth: MediaQuery.of(context).size.width,
               maxHeight: MediaQuery.of(context).size.height * 0.75,
             ),
-            child: ClipRect(child: MySkillRive(state: widget.state)),
+            child: ClipRect(child: MySkillRive(isActive: widget.isActive)),
           ),
         ),
 
