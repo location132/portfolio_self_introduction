@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/components/condition_utils/profile_view_condition_utils.dart';
 import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/core_service/util/slow_scroll_physics.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
@@ -50,107 +50,122 @@ class _MainViewState extends State<_MainView> {
   Widget build(BuildContext context) {
     return BlocBuilder<DesktopCubit, DesktopState>(
       builder: (context, state) {
-        return Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Column(
-            children: [
-              TopNavBar(deviceType: widget.deviceType, isMenuClicked: false),
-              SizedBox(
-                height: MediaQuery.of(context).size.height - 83,
-                width: MediaQuery.of(context).size.width,
-                child: SlowScrollPhysics(
-                  state: state,
-                  child: CustomScrollView(
-                    controller: state.scrollModel.scrollController,
-                    physics: const NeverScrollableScrollPhysics(),
-                    slivers: [
-                      SliverAppBar(
-                        expandedHeight: MediaQuery.of(context).size.height,
-                        pinned: false,
-                        backgroundColor: Colors.transparent,
-                        flexibleSpace: FlexibleSpaceBar(
-                          background: Introshowcase(
-                            state: state,
-                            cubit: context.read<DesktopCubit>(),
-                            isChromeBrowser: widget.isChromeBrowser,
-                          ),
-                        ),
-                      ),
-                      SliverToBoxAdapter(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            VisibilityDetector(
-                              key: const Key('banner-view'),
-                              onVisibilityChanged: (VisibilityInfo info) {
-                                if (info.visibleFraction > 0.2 &&
-                                    state.scrollModel.bannerState ==
-                                        BannerState.inactive) {
-                                  context.read<DesktopCubit>().viewListener(
-                                    'banner',
-                                  );
-                                }
-                              },
-                              child: BannerView(
-                                state: state,
-                                isActive: (bool isActive) {
-                                  context
-                                      .read<DesktopCubit>()
-                                      .descriptionButton('banner', isActive);
-                                },
-                              ),
-                            ),
-                            VisibilityDetector(
-                              key: const Key('chapter-view'),
-                              onVisibilityChanged: (VisibilityInfo info) {
-                                if (info.visibleFraction > 0.3 &&
-                                    state.scrollModel.chapterViewState ==
-                                        ChapterViewState.inactive) {
-                                  context.read<DesktopCubit>().viewListener(
-                                    'chapter',
-                                  );
-                                }
-                              },
-                              child: DesktopChapterView(
-                                onCardTap: (int index) {
-                                  print('Chapter $index clicked');
-                                },
-                                state: state,
-                                onDescriptionActive: (bool isActive) {
-                                  context
-                                      .read<DesktopCubit>()
-                                      .descriptionButton('profile', isActive);
-                                },
-                              ),
-                            ),
-                            VisibilityDetector(
-                              key: const Key('skill-view'),
-                              onVisibilityChanged: (VisibilityInfo info) {
-                                if (info.visibleFraction > 0.3 &&
-                                    state.mySkillModel.status ==
-                                        MySkillViewStatus.inactive) {
-                                  context.read<DesktopCubit>().viewListener(
-                                    'skill',
-                                  );
-                                }
-                              },
-                              child: SkillView(
-                                state: state,
-                                onTap: (int index) {
-                                  context
-                                      .read<DesktopCubit>()
-                                      .descriptionButton('skill', true);
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+        return Center(
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 2500),
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: Column(
+                children: [
+                  TopNavBar(
+                    deviceType: widget.deviceType,
+                    isMenuClicked: false,
                   ),
-                ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height - 83,
+                    width: MediaQuery.of(context).size.width,
+                    child: SlowScrollPhysics(
+                      state: state,
+                      child: CustomScrollView(
+                        controller: state.scrollModel.scrollController,
+                        physics: const NeverScrollableScrollPhysics(),
+                        slivers: [
+                          SliverAppBar(
+                            expandedHeight: MediaQuery.of(context).size.height,
+                            pinned: false,
+                            backgroundColor: Colors.transparent,
+                            flexibleSpace: FlexibleSpaceBar(
+                              background: Introshowcase(
+                                state: state,
+                                cubit: context.read<DesktopCubit>(),
+                                isChromeBrowser: widget.isChromeBrowser,
+                              ),
+                            ),
+                          ),
+                          SliverToBoxAdapter(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                VisibilityDetector(
+                                  key: const Key('banner-view'),
+                                  onVisibilityChanged: (VisibilityInfo info) {
+                                    if (info.visibleFraction > 0.2 &&
+                                        state.scrollModel.bannerState ==
+                                            BannerState.inactive) {
+                                      context.read<DesktopCubit>().viewListener(
+                                        'banner',
+                                      );
+                                    }
+                                  },
+                                  child: BannerView(
+                                    state: state,
+                                    isActive: (bool isActive) {
+                                      context
+                                          .read<DesktopCubit>()
+                                          .descriptionButton(
+                                            'banner',
+                                            isActive,
+                                          );
+                                    },
+                                  ),
+                                ),
+                                SizedBox(height: 80.sh),
+                                VisibilityDetector(
+                                  key: const Key('chapter-view'),
+                                  onVisibilityChanged: (VisibilityInfo info) {
+                                    if (info.visibleFraction > 0.6 &&
+                                        state.scrollModel.chapterViewState ==
+                                            ChapterViewState.inactive) {
+                                      context.read<DesktopCubit>().viewListener(
+                                        'chapter',
+                                      );
+                                    }
+                                  },
+                                  child: DesktopChapterView(
+                                    onCardTap: (int index) {
+                                      print('Chapter $index clicked');
+                                    },
+                                    state: state,
+                                    onDescriptionActive: (bool isActive) {
+                                      context
+                                          .read<DesktopCubit>()
+                                          .descriptionButton(
+                                            'profile',
+                                            isActive,
+                                          );
+                                    },
+                                  ),
+                                ),
+                                VisibilityDetector(
+                                  key: const Key('skill-view'),
+                                  onVisibilityChanged: (VisibilityInfo info) {
+                                    if (info.visibleFraction > 0.4 &&
+                                        state.mySkillModel.status ==
+                                            MySkillViewStatus.inactive) {
+                                      context.read<DesktopCubit>().viewListener(
+                                        'skill',
+                                      );
+                                    }
+                                  },
+                                  child: SkillView(
+                                    state: state,
+                                    onTap: (int index) {
+                                      context
+                                          .read<DesktopCubit>()
+                                          .descriptionButton('skill', true);
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         );
       },

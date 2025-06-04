@@ -7,6 +7,7 @@ import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 import 'package:self_introduction_flutter/page/desktop_page/widgets/title_text.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/description_view/banner_description.dart';
+import 'package:self_introduction_flutter/page/desktop_page/widgets/web_player.dart';
 
 class BannerView extends StatefulWidget {
   final Function(bool) isActive;
@@ -53,6 +54,15 @@ class _BannerViewState extends State<BannerView> {
               ),
             ),
           ),
+        ),
+        SizedBox(height: 40.sh),
+        WebPlayer(
+          playerText: '배너 조금 더 궁금하다면 Click!',
+          isPlayerAniOpacity:
+              widget.state.scrollModel.bannerState == BannerState.activated,
+          onTap: () {
+            print('테스트');
+          },
         ),
       ],
     );
