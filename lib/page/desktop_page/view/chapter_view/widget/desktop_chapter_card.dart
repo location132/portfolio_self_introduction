@@ -43,59 +43,80 @@ class _DesktopChapterCardState extends State<DesktopChapterCard> {
   }
 
   Widget _buildFirstCard() {
-    return Stack(
-      children: [
-        Positioned.fill(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(24),
-            child: Image.asset(
-              'assets/Images/Magic Studio Magic Expand L&P - MOBILE.png',
-              fit: BoxFit.cover,
-              height: 250,
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+          ),
+        ],
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: AnimatedOpacity(
+              opacity: isHovered ? 0.0 : 1.0,
+              duration: const Duration(milliseconds: 500),
+              child: Image.asset(
+                'assets/Images/inactive_chapter_1.png',
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-        ),
-        const Padding(
-          padding: EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                ProfilePage1Constants.chapter1,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
+          Positioned.fill(
+            child: AnimatedOpacity(
+              opacity: isHovered ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 500),
+              child: Image.asset(
+                'assets/Images/active_chapter_1.png',
+                fit: BoxFit.cover,
               ),
-              SizedBox(height: 8),
-              Text(
-                ProfilePage1Constants.chapter1Title,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 12),
-              Text(
-                ProfilePage1Constants.chapter1Mobile,
-                style: TextStyle(
-                  color: Color.fromARGB(255, 222, 222, 222),
-                  fontSize: 14,
-                  height: 1.4,
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-      ],
+          const Padding(
+            padding: EdgeInsets.all(24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  ProfilePage1Constants.chapter1,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  ProfilePage1Constants.chapter1Title,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 12),
+                Text(
+                  ProfilePage1Constants.chapter1Mobile,
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 222, 222, 222),
+                    fontSize: 14,
+                    height: 1.4,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
+  //--
   Widget _buildSecondCard() {
     return Container(
       decoration: BoxDecoration(
@@ -112,11 +133,26 @@ class _DesktopChapterCardState extends State<DesktopChapterCard> {
       child: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset(
-              'assets/Images/phone_screen.webp',
-              fit: BoxFit.cover,
+            child: AnimatedOpacity(
+              opacity: isHovered ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 500),
+              child: Image.asset(
+                'assets/Images/phone_screen.webp',
+                fit: BoxFit.cover,
+              ),
             ),
           ),
+          Positioned.fill(
+            child: AnimatedOpacity(
+              opacity: isHovered ? 0.0 : 1.0,
+              duration: const Duration(milliseconds: 500),
+              child: Image.asset(
+                'assets/Images/inactive_chapter_2.png.jpeg',
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+
           Positioned(
             left: 0,
             right: 0,

@@ -71,11 +71,19 @@ class _SlowScrollPhysicsState extends State<SlowScrollPhysics> {
             }
 
             if (event is PointerScrollEvent) {
-              widget.state.scrollModel.scrollController?.position.jumpTo(
-                (widget.state.scrollModel.scrollController?.position.pixels ??
-                        0) +
-                    (event.scrollDelta.dy * 0.4),
-              );
+              final controller = widget.state.scrollModel.scrollController;
+              if (controller != null && controller.hasClients) {
+                final current = controller.position.pixels;
+                final max = controller.position.maxScrollExtent;
+                final min = controller.position.minScrollExtent;
+
+                final target = (current + event.scrollDelta.dy * 0.4).clamp(
+                  min,
+                  max,
+                );
+
+                controller.jumpTo(target);
+              }
             }
           },
           child: widget.child,

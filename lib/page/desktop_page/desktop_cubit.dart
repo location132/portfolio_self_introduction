@@ -222,7 +222,7 @@ class DesktopCubit extends Cubit<DesktopState> {
       ),
     );
     await Future.delayed(const Duration(seconds: 1));
-    descriptionButton('chapter', true);
+    viewListener('chapter');
   }
 
   //플레이어 활성화
