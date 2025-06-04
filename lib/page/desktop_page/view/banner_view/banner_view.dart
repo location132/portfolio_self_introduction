@@ -25,10 +25,11 @@ class _BannerViewState extends State<BannerView> {
     return Column(
       children: [
         SizedBox(height: 20.sh),
-        const TitleText(
+        TitleText(
           title: TitleTextConstants.title1,
           subTitle: TitleTextConstants.subTitle1,
           description: TitleTextConstants.description1,
+          isVisible: widget.state.scrollModel.isScrollEnabled,
         ),
         SizedBox(height: 10.sh),
         //배너

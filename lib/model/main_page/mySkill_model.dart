@@ -5,12 +5,8 @@ part 'mySkill_model.freezed.dart';
 @freezed
 class MySkillModel with _$MySkillModel {
   const factory MySkillModel({
-    @Default(MySkillViewStatus.init) MySkillViewStatus status,
+    @Default(MySkillViewStatus.inactive) MySkillViewStatus status,
   }) = _MySkillModel;
 }
 
-enum MySkillViewStatus {
-  init,
-  inactive,
-  active,
-}
+enum MySkillViewStatus { init, inactive, active }

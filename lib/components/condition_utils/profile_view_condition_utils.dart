@@ -14,6 +14,7 @@ class ProfileViewConditionUtils {
 
   //-- 사용자 스크롤 감지 조건 -- //
   static bool isBannerScrollActive(String viewName) => viewName == 'banner';
+  static bool isChapterScrollActive(String viewName) => viewName == 'chapter';
   static bool isProfileIsTopScrollActive(String viewName) =>
       viewName == 'profile_isTop';
   static bool isProfileIsBottomScrollActive(String viewName) =>

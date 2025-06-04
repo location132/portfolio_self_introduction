@@ -66,6 +66,10 @@ class _SlowScrollPhysicsState extends State<SlowScrollPhysics> {
     return kIsWeb
         ? Listener(
           onPointerSignal: (PointerSignalEvent event) {
+            if (!widget.state.scrollModel.isScrollEnabled) {
+              return;
+            }
+
             if (event is PointerScrollEvent) {
               widget.state.scrollModel.scrollController?.position.jumpTo(
                 (widget.state.scrollModel.scrollController?.position.pixels ??

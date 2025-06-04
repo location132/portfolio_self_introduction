@@ -80,7 +80,6 @@ class _MainViewState extends State<_MainView> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // 배너 뷰
                             VisibilityDetector(
                               key: const Key('banner-view'),
                               onVisibilityChanged: (VisibilityInfo info) {
@@ -101,19 +100,33 @@ class _MainViewState extends State<_MainView> {
                                 },
                               ),
                             ),
-                            // 챕터 뷰
-                            DesktopChapterView(
-                              onCardTap: (int index) {
-                                // TODO: 챕터 카드 클릭 처리
-                                print('Chapter $index clicked');
+                            VisibilityDetector(
+                              key: const Key('chapter-view'),
+                              onVisibilityChanged: (VisibilityInfo info) {
+                                if (info.visibleFraction > 0.3 &&
+                                    state.scrollModel.chapterViewState ==
+                                        ChapterViewState.inactive) {
+                                  context.read<DesktopCubit>().viewListener(
+                                    'chapter',
+                                  );
+                                }
                               },
+                              child: DesktopChapterView(
+                                onCardTap: (int index) {
+                                  print('Chapter $index clicked');
+                                },
+                                state: state,
+                                onDescriptionActive: (bool isActive) {
+                                  context
+                                      .read<DesktopCubit>()
+                                      .descriptionButton('profile', isActive);
+                                },
+                              ),
                             ),
-
-                            // 스킬 뷰
                             VisibilityDetector(
                               key: const Key('skill-view'),
                               onVisibilityChanged: (VisibilityInfo info) {
-                                if (info.visibleFraction > 0.8 &&
+                                if (info.visibleFraction > 0.3 &&
                                     state.mySkillModel.status ==
                                         MySkillViewStatus.inactive) {
                                   context.read<DesktopCubit>().viewListener(

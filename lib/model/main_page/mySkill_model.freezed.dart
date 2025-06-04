@@ -105,7 +105,7 @@ class __$$MySkillModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MySkillModelImpl implements _MySkillModel {
-  const _$MySkillModelImpl({this.status = MySkillViewStatus.init});
+  const _$MySkillModelImpl({this.status = MySkillViewStatus.inactive});
 
   @override
   @JsonKey()

@@ -24,19 +24,32 @@ class DesktopCubit extends Cubit<DesktopState> {
 
   @postConstruct
   void init() async {
-    //TODO:  배포 후, 주석 해제
-    emit(
-      state.copyWith(
-        initModel: state.initModel.copyWith(initState: InitState.active),
-      ),
-    );
-    final controller = state.scrollModel.scrollController;
-    await changeProfileViewHeight(controller);
-    emit(
-      state.copyWith(
-        initModel: state.initModel.copyWith(initState: InitState.inactive),
-      ),
-    );
+    try {
+      //TODO:  배포 후, 주석 해제
+      if (!isClosed) {
+        emit(
+          state.copyWith(
+            initModel: state.initModel.copyWith(initState: InitState.active),
+          ),
+        );
+      }
+
+      final controller = state.scrollModel.scrollController;
+      if (controller != null) {
+        await changeProfileViewHeight(controller);
+      }
+
+      if (!isClosed) {
+        emit(
+          state.copyWith(
+            initModel: state.initModel.copyWith(initState: InitState.inactive),
+            scrollModel: state.scrollModel.copyWith(isScrollEnabled: true),
+          ),
+        );
+      }
+    } catch (e) {
+      print('Error in init(): $e');
+    }
   }
 
   //브라우저 확인
@@ -75,14 +88,19 @@ class DesktopCubit extends Cubit<DesktopState> {
     TickerProvider vsync, {
     String message = TextConstants.welcomeMessage1,
   }) async {
+    if (isClosed) return;
+
     final List<String> characters = [];
 
     for (int i = 0; i < message.length; i++) {
       characters.add(message[i]);
     }
-    emit(
-      state.copyWith(startAnimation: StartAnimationModel(words: characters)),
-    );
+
+    if (!isClosed) {
+      emit(
+        state.copyWith(startAnimation: StartAnimationModel(words: characters)),
+      );
+    }
 
     List<AnimationController> newControllers = [];
     List<Animation<double>> newAnimations = [];
@@ -102,17 +120,22 @@ class DesktopCubit extends Cubit<DesktopState> {
       newAnimations.add(animation);
 
       Future.delayed(Duration(milliseconds: i * 25), () {
-        controller.forward();
+        if (!isClosed && controller.isAnimating == false) {
+          controller.forward();
+        }
       });
     }
-    emit(
-      state.copyWith(
-        startAnimation: state.startAnimation!.copyWith(
-          controllers: newControllers,
-          animations: newAnimations,
+
+    if (!isClosed && newControllers.isNotEmpty && newAnimations.isNotEmpty) {
+      emit(
+        state.copyWith(
+          startAnimation: state.startAnimation!.copyWith(
+            controllers: newControllers,
+            animations: newAnimations,
+          ),
         ),
-      ),
-    );
+      );
+    }
 
     if (message == TextConstants.welcomeMessage1) {
       await endAnimations(
@@ -135,24 +158,46 @@ class DesktopCubit extends Cubit<DesktopState> {
     String message,
     Duration duration,
   ) async {
+    if (isClosed) return;
+
     await Future.delayed(duration);
-    for (var controller in state.startAnimation!.controllers) {
-      controller.reverse();
+
+    if (!isClosed && state.startAnimation != null) {
+      for (var controller in state.startAnimation!.controllers) {
+        try {
+          controller.reverse();
+        } catch (e) {
+          print('Controller already disposed: $e');
+        }
+      }
     }
+
     await Future.delayed(const Duration(seconds: 1));
 
-    initializeAnimations(vsync, message: message);
+    if (!isClosed) {
+      initializeAnimations(vsync, message: message);
+    }
   }
 
   //******************************************************* */
 
   //사용자 스크롤 감지
   void viewListener(String viewName) async {
+    if (!state.scrollModel.isScrollEnabled || isClosed) return;
+
     if (ProfileViewConditionUtils.isBannerScrollActive(viewName)) {
       emit(
         state.copyWith(
           scrollModel: state.scrollModel.copyWith(
             bannerState: BannerState.activated,
+          ),
+        ),
+      );
+    } else if (ProfileViewConditionUtils.isChapterScrollActive(viewName)) {
+      emit(
+        state.copyWith(
+          scrollModel: state.scrollModel.copyWith(
+            chapterViewState: ChapterViewState.active,
           ),
         ),
       );
@@ -203,5 +248,20 @@ class DesktopCubit extends Cubit<DesktopState> {
         ),
       );
     }
+  }
+
+  @override
+  Future<void> close() async {
+    // 애니메이션 컨트롤러들 정리
+    if (state.startAnimation != null) {
+      for (var controller in state.startAnimation!.controllers) {
+        try {
+          controller.dispose();
+        } catch (e) {
+          print('Error disposing controller: $e');
+        }
+      }
+    }
+    return super.close();
   }
 }

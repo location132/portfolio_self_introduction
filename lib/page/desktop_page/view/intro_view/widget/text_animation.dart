@@ -30,30 +30,43 @@ class _TextAnimationState extends State<TextAnimation>
   Widget build(BuildContext context) {
     List<Widget> textWidgets = [];
     List<Widget> currentLineWidgets = [];
-    if (widget.state.startAnimation == null) {
+
+    if (widget.state.startAnimation == null ||
+        widget.state.startAnimation!.words.isEmpty ||
+        widget.state.startAnimation!.animations.isEmpty) {
       return const SizedBox();
-    } else {
-      for (int i = 0; i < widget.state.startAnimation!.words.length; i++) {
-        if (widget.state.startAnimation!.words[i] == '\n') {
-          if (currentLineWidgets.isNotEmpty) {
-            textWidgets.add(Row(
+    }
+
+    for (int i = 0; i < widget.state.startAnimation!.words.length; i++) {
+      if (widget.state.startAnimation!.words[i] == '\n') {
+        if (currentLineWidgets.isNotEmpty) {
+          textWidgets.add(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.from(currentLineWidgets),
-            ));
-            currentLineWidgets.clear();
-          }
-          textWidgets.add(const SizedBox(height: 20));
-        } else {
+            ),
+          );
+          currentLineWidgets.clear();
+        }
+        textWidgets.add(const SizedBox(height: 20));
+      } else {
+        // 애니메이션 인덱스가 유효한지 확인
+        if (i < widget.state.startAnimation!.animations.length) {
           currentLineWidgets.add(
             FadeTransition(
               opacity: widget.state.startAnimation!.animations[i],
               child: Text(
                 widget.state.startAnimation!.words[i],
-                style: const TextStyle(
-                  fontSize: 17,
-                  fontFamily: 'Pretendard',
-                ),
+                style: const TextStyle(fontSize: 17, fontFamily: 'Pretendard'),
               ),
+            ),
+          );
+        } else {
+          // 애니메이션이 없는 경우 일반 텍스트로 표시
+          currentLineWidgets.add(
+            Text(
+              widget.state.startAnimation!.words[i],
+              style: const TextStyle(fontSize: 17, fontFamily: 'Pretendard'),
             ),
           );
         }
@@ -61,12 +74,14 @@ class _TextAnimationState extends State<TextAnimation>
     }
 
     if (currentLineWidgets.isNotEmpty) {
-      textWidgets.add(Wrap(
-        alignment: WrapAlignment.center,
-        spacing: 2,
-        runSpacing: 4,
-        children: List.from(currentLineWidgets),
-      ));
+      textWidgets.add(
+        Wrap(
+          alignment: WrapAlignment.center,
+          spacing: 2,
+          runSpacing: 4,
+          children: List.from(currentLineWidgets),
+        ),
+      );
     }
 
     return Padding(
