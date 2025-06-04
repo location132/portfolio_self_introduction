@@ -5,6 +5,7 @@ import 'package:self_introduction_flutter/core_service/util/device_Info_size.dar
 class TitleText extends StatelessWidget {
   final String? title;
   final String? subTitle;
+  final double? titleFontSize;
   final String? description;
   final Color? color;
 
@@ -12,6 +13,7 @@ class TitleText extends StatelessWidget {
     super.key,
     this.title,
     this.subTitle,
+    this.titleFontSize,
     this.description,
     this.color,
   });
@@ -27,16 +29,13 @@ class TitleText extends StatelessWidget {
             children: [
               StyledText.heading(
                 text: title ?? '',
+                fontSize: titleFontSize ?? 38,
                 color: color,
               ),
-              StyledText.subHeading(
-                text: subTitle ?? '',
-              ),
+              StyledText.subHeading(text: subTitle ?? ''),
             ],
           ),
-          StyledText.subHeading(
-            text: description ?? '',
-          ),
+          StyledText.subHeading(text: description ?? ''),
         ],
       ),
     );

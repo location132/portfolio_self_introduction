@@ -24,12 +24,13 @@ class StyledText extends StatelessWidget {
 
   factory StyledText.heading({
     required String text,
+    double? fontSize,
     Color? color,
     TextAlign? textAlign,
   }) {
     return StyledText(
       text: text,
-      fontSize: 38,
+      fontSize: fontSize ?? 38,
       fontWeight: FontWeight.bold,
       color: color,
       textAlign: textAlign,

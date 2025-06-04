@@ -11,6 +11,7 @@ import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/banner_view/banner_view.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/intro_view/introShowcase.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/skill_view/skill_view.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/chapter_view.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class DesktopPage extends StatelessWidget {
@@ -79,63 +80,54 @@ class _MainViewState extends State<_MainView> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height,
-                            ),
-
                             // 배너 뷰
-                            Visibility(
-                              visible:
-                                  ProfileViewConditionUtils.isSkillViewActive(
-                                    state,
-                                  ),
-                              child: VisibilityDetector(
-                                key: const Key('banner-view'),
-                                onVisibilityChanged: (VisibilityInfo info) {
-                                  if (info.visibleFraction > 0.2 &&
-                                      state.scrollModel.bannerState ==
-                                          BannerState.inactive) {
-                                    context.read<DesktopCubit>().viewListener(
-                                      'banner',
-                                    );
-                                  }
+                            VisibilityDetector(
+                              key: const Key('banner-view'),
+                              onVisibilityChanged: (VisibilityInfo info) {
+                                if (info.visibleFraction > 0.2 &&
+                                    state.scrollModel.bannerState ==
+                                        BannerState.inactive) {
+                                  context.read<DesktopCubit>().viewListener(
+                                    'banner',
+                                  );
+                                }
+                              },
+                              child: BannerView(
+                                state: state,
+                                isActive: (bool isActive) {
+                                  context
+                                      .read<DesktopCubit>()
+                                      .descriptionButton('banner', isActive);
                                 },
-                                child: BannerView(
-                                  state: state,
-                                  isActive: (bool isActive) {
-                                    context
-                                        .read<DesktopCubit>()
-                                        .descriptionButton('banner', isActive);
-                                  },
-                                ),
                               ),
+                            ),
+                            // 챕터 뷰
+                            DesktopChapterView(
+                              onCardTap: (int index) {
+                                // TODO: 챕터 카드 클릭 처리
+                                print('Chapter $index clicked');
+                              },
                             ),
 
                             // 스킬 뷰
-                            Visibility(
-                              visible:
-                                  ProfileViewConditionUtils.isSkillViewActive(
-                                    state,
-                                  ),
-                              child: VisibilityDetector(
-                                key: const Key('skill-view'),
-                                onVisibilityChanged: (VisibilityInfo info) {
-                                  if (info.visibleFraction > 0.8 &&
-                                      state.mySkillModel.status ==
-                                          MySkillViewStatus.inactive) {
-                                    context.read<DesktopCubit>().viewListener(
-                                      'skill',
-                                    );
-                                  }
+                            VisibilityDetector(
+                              key: const Key('skill-view'),
+                              onVisibilityChanged: (VisibilityInfo info) {
+                                if (info.visibleFraction > 0.8 &&
+                                    state.mySkillModel.status ==
+                                        MySkillViewStatus.inactive) {
+                                  context.read<DesktopCubit>().viewListener(
+                                    'skill',
+                                  );
+                                }
+                              },
+                              child: SkillView(
+                                state: state,
+                                onTap: (int index) {
+                                  context
+                                      .read<DesktopCubit>()
+                                      .descriptionButton('skill', true);
                                 },
-                                child: SkillView(
-                                  state: state,
-                                  onTap: (int index) {
-                                    context
-                                        .read<DesktopCubit>()
-                                        .descriptionButton('skill', true);
-                                  },
-                                ),
                               ),
                             ),
                           ],
