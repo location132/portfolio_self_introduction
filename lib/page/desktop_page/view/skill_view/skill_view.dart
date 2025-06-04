@@ -2,11 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/rive/my_skill_rive.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
+import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 import 'package:self_introduction_flutter/page/desktop_page/widgets/title_text.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/widget/player.dart';
 
 class SkillView extends StatefulWidget {
+  final DesktopState state;
+  final DesktopCubit desktopCubit;
   final bool isActive;
-  const SkillView({super.key, required this.isActive});
+  const SkillView({
+    super.key,
+    required this.isActive,
+    required this.state,
+    required this.desktopCubit,
+  });
 
   @override
   State<SkillView> createState() => _SkillViewState();
@@ -28,13 +38,23 @@ class _SkillViewState extends State<SkillView> {
           child: Container(
             constraints: BoxConstraints(
               maxWidth: MediaQuery.of(context).size.width,
-              maxHeight: MediaQuery.of(context).size.height * 0.75,
+              maxHeight: 975,
+              minHeight: 800,
             ),
             child: ClipRect(child: MySkillRive(isActive: widget.isActive)),
           ),
         ),
 
-        SizedBox(height: 87.sh),
+        SizedBox(height: 80.sh),
+        Player(
+          isPlayerAniOpacity: widget.state.mySkillModel.isPlayerActive,
+          isPlayerText: 'About Me 조금 더 궁금하다면 Click!',
+          duration: const Duration(milliseconds: 800),
+          fontSize: 14,
+          onTap: () {
+            widget.desktopCubit.playerActive('banner');
+          },
+        ),
       ],
     );
   }

@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ChapterModel {
   bool get isBlackBackgroundColor => throw _privateConstructorUsedError;
+  bool get isChapterActive => throw _privateConstructorUsedError;
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +34,7 @@ abstract class $ChapterModelCopyWith<$Res> {
     $Res Function(ChapterModel) then,
   ) = _$ChapterModelCopyWithImpl<$Res, ChapterModel>;
   @useResult
-  $Res call({bool isBlackBackgroundColor});
+  $Res call({bool isBlackBackgroundColor, bool isChapterActive});
 }
 
 /// @nodoc
@@ -50,13 +51,21 @@ class _$ChapterModelCopyWithImpl<$Res, $Val extends ChapterModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? isBlackBackgroundColor = null}) {
+  $Res call({
+    Object? isBlackBackgroundColor = null,
+    Object? isChapterActive = null,
+  }) {
     return _then(
       _value.copyWith(
             isBlackBackgroundColor:
                 null == isBlackBackgroundColor
                     ? _value.isBlackBackgroundColor
                     : isBlackBackgroundColor // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isChapterActive:
+                null == isChapterActive
+                    ? _value.isChapterActive
+                    : isChapterActive // ignore: cast_nullable_to_non_nullable
                         as bool,
           )
           as $Val,
@@ -73,7 +82,7 @@ abstract class _$$ChapterModelImplCopyWith<$Res>
   ) = __$$ChapterModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isBlackBackgroundColor});
+  $Res call({bool isBlackBackgroundColor, bool isChapterActive});
 }
 
 /// @nodoc
@@ -89,13 +98,21 @@ class __$$ChapterModelImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? isBlackBackgroundColor = null}) {
+  $Res call({
+    Object? isBlackBackgroundColor = null,
+    Object? isChapterActive = null,
+  }) {
     return _then(
       _$ChapterModelImpl(
         isBlackBackgroundColor:
             null == isBlackBackgroundColor
                 ? _value.isBlackBackgroundColor
                 : isBlackBackgroundColor // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isChapterActive:
+            null == isChapterActive
+                ? _value.isChapterActive
+                : isChapterActive // ignore: cast_nullable_to_non_nullable
                     as bool,
       ),
     );
@@ -105,15 +122,21 @@ class __$$ChapterModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ChapterModelImpl implements _ChapterModel {
-  const _$ChapterModelImpl({this.isBlackBackgroundColor = false});
+  const _$ChapterModelImpl({
+    this.isBlackBackgroundColor = false,
+    this.isChapterActive = false,
+  });
 
   @override
   @JsonKey()
   final bool isBlackBackgroundColor;
+  @override
+  @JsonKey()
+  final bool isChapterActive;
 
   @override
   String toString() {
-    return 'ChapterModel(isBlackBackgroundColor: $isBlackBackgroundColor)';
+    return 'ChapterModel(isBlackBackgroundColor: $isBlackBackgroundColor, isChapterActive: $isChapterActive)';
   }
 
   @override
@@ -122,11 +145,14 @@ class _$ChapterModelImpl implements _ChapterModel {
         (other.runtimeType == runtimeType &&
             other is _$ChapterModelImpl &&
             (identical(other.isBlackBackgroundColor, isBlackBackgroundColor) ||
-                other.isBlackBackgroundColor == isBlackBackgroundColor));
+                other.isBlackBackgroundColor == isBlackBackgroundColor) &&
+            (identical(other.isChapterActive, isChapterActive) ||
+                other.isChapterActive == isChapterActive));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isBlackBackgroundColor);
+  int get hashCode =>
+      Object.hash(runtimeType, isBlackBackgroundColor, isChapterActive);
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.
@@ -138,11 +164,15 @@ class _$ChapterModelImpl implements _ChapterModel {
 }
 
 abstract class _ChapterModel implements ChapterModel {
-  const factory _ChapterModel({final bool isBlackBackgroundColor}) =
-      _$ChapterModelImpl;
+  const factory _ChapterModel({
+    final bool isBlackBackgroundColor,
+    final bool isChapterActive,
+  }) = _$ChapterModelImpl;
 
   @override
   bool get isBlackBackgroundColor;
+  @override
+  bool get isChapterActive;
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.

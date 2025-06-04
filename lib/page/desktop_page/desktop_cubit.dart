@@ -201,12 +201,18 @@ class DesktopCubit extends Cubit<DesktopState> {
           ),
         ),
       );
-    } else if (ProfileViewConditionUtils.isUserScrollActive(viewName)) {
+    } else if (ProfileViewConditionUtils.isSkillScrollActive(viewName)) {
       emit(
         state.copyWith(
           mySkillModel: state.mySkillModel.copyWith(
             status: MySkillViewStatus.active,
           ),
+        ),
+      );
+      await Future.delayed(const Duration(seconds: 1));
+      emit(
+        state.copyWith(
+          chapterModel: state.chapterModel.copyWith(isChapterActive: true),
         ),
       );
     }
@@ -230,6 +236,13 @@ class DesktopCubit extends Cubit<DesktopState> {
     if (sectionName == 'banner' && state.aboutMeModel.isPlayerActive == false) {
       emit(
         state.copyWith(aboutMeModel: state.aboutMeModel.copyWith(player: true)),
+      );
+    } else if (sectionName == 'skill' &&
+        state.mySkillModel.isPlayerActive == false) {
+      emit(
+        state.copyWith(
+          mySkillModel: state.mySkillModel.copyWith(isPlayerActive: true),
+        ),
       );
     }
   }

@@ -6,6 +6,7 @@ part 'mySkill_model.freezed.dart';
 class MySkillModel with _$MySkillModel {
   const factory MySkillModel({
     @Default(MySkillViewStatus.inactive) MySkillViewStatus status,
+    @Default(false) bool isPlayerActive,
   }) = _MySkillModel;
 }
 
