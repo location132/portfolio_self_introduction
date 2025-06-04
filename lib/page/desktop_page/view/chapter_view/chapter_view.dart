@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/components/widget/description_button.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/widget/desktop_chapter_card.dart';
 import 'package:self_introduction_flutter/page/desktop_page/widgets/title_text.dart';
@@ -63,94 +62,80 @@ class _DesktopChapterViewState extends State<DesktopChapterView>
               ChapterViewState.active,
         ),
         SizedBox(height: 40.sh),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(width: 20),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              clipBehavior: Clip.none,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const SizedBox(width: 120),
-                  SlideTransition(
-                    position: cardAnimation.cardAnimation1,
-                    child: FadeTransition(
-                      opacity: cardAnimation.cardOpacity1,
-                      child: Container(
-                        height: 501.3 * 1.3,
-                        width: 258 * 1.3,
-                        padding: const EdgeInsets.all(10),
-                        child: GestureDetector(
-                          onTap: () => widget.onCardTap?.call(3),
-                          child: const DesktopChapterCard(cardIndex: 3),
-                        ),
-                      ),
+        const SizedBox(width: 20),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          clipBehavior: Clip.none,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(width: 120),
+              SlideTransition(
+                position: cardAnimation.cardAnimation1,
+                child: FadeTransition(
+                  opacity: cardAnimation.cardOpacity1,
+                  child: Container(
+                    height: 501.3 * 1.3,
+                    width: 258 * 1.3,
+                    padding: const EdgeInsets.all(10),
+                    child: GestureDetector(
+                      onTap: () => widget.onCardTap?.call(3),
+                      child: const DesktopChapterCard(cardIndex: 3),
                     ),
                   ),
-                  const SizedBox(width: 20),
-                  SlideTransition(
-                    position: cardAnimation.cardAnimation2,
-                    child: FadeTransition(
-                      opacity: cardAnimation.cardOpacity2,
-                      child: Container(
-                        height: 501.3 * 1.3,
-                        width: 258 * 1.3,
-                        padding: const EdgeInsets.all(10),
-                        child: GestureDetector(
-                          onTap: () => widget.onCardTap?.call(0),
-                          child: const DesktopChapterCard(cardIndex: 0),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 20),
-                  SlideTransition(
-                    position: cardAnimation.cardAnimation3,
-                    child: FadeTransition(
-                      opacity: cardAnimation.cardOpacity3,
-                      child: Container(
-                        height: 501.3 * 1.3,
-                        width: 258 * 1.3,
-                        padding: const EdgeInsets.all(10),
-                        child: GestureDetector(
-                          onTap: () => widget.onCardTap?.call(1),
-                          child: const DesktopChapterCard(cardIndex: 1),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 20),
-                  SlideTransition(
-                    position: cardAnimation.cardAnimation4,
-                    child: FadeTransition(
-                      opacity: cardAnimation.cardOpacity4,
-                      child: Container(
-                        height: 501.3 * 1.3,
-                        width: 258 * 1.3,
-                        padding: const EdgeInsets.all(10),
-                        child: GestureDetector(
-                          onTap: () => widget.onCardTap?.call(2),
-                          child: const DesktopChapterCard(cardIndex: 2),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 80),
-                ],
+                ),
               ),
-            ),
-            const SizedBox(height: 60),
-            if (widget.state != null && widget.onDescriptionActive != null)
-              DescriptionButton(
-                onTap: () {
-                  widget.onDescriptionActive!(true);
-                },
-                state: widget.state!,
+              const SizedBox(width: 20),
+              SlideTransition(
+                position: cardAnimation.cardAnimation2,
+                child: FadeTransition(
+                  opacity: cardAnimation.cardOpacity2,
+                  child: Container(
+                    height: 501.3 * 1.3,
+                    width: 258 * 1.3,
+                    padding: const EdgeInsets.all(10),
+                    child: GestureDetector(
+                      onTap: () => widget.onCardTap?.call(0),
+                      child: const DesktopChapterCard(cardIndex: 0),
+                    ),
+                  ),
+                ),
               ),
-            const SizedBox(height: 40),
-          ],
+              const SizedBox(width: 20),
+              SlideTransition(
+                position: cardAnimation.cardAnimation3,
+                child: FadeTransition(
+                  opacity: cardAnimation.cardOpacity3,
+                  child: Container(
+                    height: 501.3 * 1.3,
+                    width: 258 * 1.3,
+                    padding: const EdgeInsets.all(10),
+                    child: GestureDetector(
+                      onTap: () => widget.onCardTap?.call(1),
+                      child: const DesktopChapterCard(cardIndex: 1),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 20),
+              SlideTransition(
+                position: cardAnimation.cardAnimation4,
+                child: FadeTransition(
+                  opacity: cardAnimation.cardOpacity4,
+                  child: Container(
+                    height: 501.3 * 1.3,
+                    width: 258 * 1.3,
+                    padding: const EdgeInsets.all(10),
+                    child: GestureDetector(
+                      onTap: () => widget.onCardTap?.call(2),
+                      child: const DesktopChapterCard(cardIndex: 2),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 80),
+            ],
+          ),
         ),
         SizedBox(height: 20.sh),
       ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/rive/my_skill_rive.dart';
-import 'package:self_introduction_flutter/components/widget/description_button.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
@@ -39,12 +38,7 @@ class _SkillViewState extends State<SkillView> {
             child: ClipRect(child: MySkillRive(state: widget.state)),
           ),
         ),
-        DescriptionButton(
-          onTap: () {
-            widget.onTap(1);
-          },
-          state: widget.state,
-        ),
+
         SizedBox(height: 87.sh),
       ],
     );
