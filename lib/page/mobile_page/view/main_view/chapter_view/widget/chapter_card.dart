@@ -43,18 +43,14 @@ class _ChapterCardState extends State<ChapterCard> {
               onTap: () {
                 widget.onCardTap?.call(1);
               },
-              child: SecondCard(
-                isBackGroundAniStart: widget.isBackGroundAniStart,
-              ),
+              child: const SecondCard(),
             ),
             const SizedBox(width: 22),
             GestureDetector(
               onTap: () {
                 widget.onCardTap?.call(2);
               },
-              child: ThirdCard(
-                isBackGroundAniStart: widget.isBackGroundAniStart,
-              ),
+              child: const ThirdCard(),
             ),
             const SizedBox(width: 32),
           ],

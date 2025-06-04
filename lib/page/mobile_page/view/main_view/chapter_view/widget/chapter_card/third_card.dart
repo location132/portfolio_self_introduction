@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 
 class ThirdCard extends StatelessWidget {
-  final bool isBackGroundAniStart;
-  const ThirdCard({super.key, required this.isBackGroundAniStart});
+  const ThirdCard({super.key});
 
   @override
   Widget build(BuildContext context) {

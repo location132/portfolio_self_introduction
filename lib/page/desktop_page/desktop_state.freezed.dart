@@ -26,8 +26,7 @@ mixin _$DesktopState {
       throw _privateConstructorUsedError; //ScrollModel
   ScrollModel get scrollModel =>
       throw _privateConstructorUsedError; //ProfileModel
-  ProfileModel get profileModel =>
-      throw _privateConstructorUsedError; //InitModel
+  //InitModel
   InitModel get initModel => throw _privateConstructorUsedError;
 
   /// Create a copy of DesktopState
@@ -49,7 +48,6 @@ abstract class $DesktopStateCopyWith<$Res> {
     MySkillModel mySkillModel,
     DescriptionModel descriptionModel,
     ScrollModel scrollModel,
-    ProfileModel profileModel,
     InitModel initModel,
   });
 
@@ -57,7 +55,6 @@ abstract class $DesktopStateCopyWith<$Res> {
   $MySkillModelCopyWith<$Res> get mySkillModel;
   $DescriptionModelCopyWith<$Res> get descriptionModel;
   $ScrollModelCopyWith<$Res> get scrollModel;
-  $ProfileModelCopyWith<$Res> get profileModel;
   $InitModelCopyWith<$Res> get initModel;
 }
 
@@ -80,7 +77,6 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
     Object? mySkillModel = null,
     Object? descriptionModel = null,
     Object? scrollModel = null,
-    Object? profileModel = null,
     Object? initModel = null,
   }) {
     return _then(
@@ -105,11 +101,6 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
                     ? _value.scrollModel
                     : scrollModel // ignore: cast_nullable_to_non_nullable
                         as ScrollModel,
-            profileModel:
-                null == profileModel
-                    ? _value.profileModel
-                    : profileModel // ignore: cast_nullable_to_non_nullable
-                        as ProfileModel,
             initModel:
                 null == initModel
                     ? _value.initModel
@@ -168,16 +159,6 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ProfileModelCopyWith<$Res> get profileModel {
-    return $ProfileModelCopyWith<$Res>(_value.profileModel, (value) {
-      return _then(_value.copyWith(profileModel: value) as $Val);
-    });
-  }
-
-  /// Create a copy of DesktopState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $InitModelCopyWith<$Res> get initModel {
     return $InitModelCopyWith<$Res>(_value.initModel, (value) {
       return _then(_value.copyWith(initModel: value) as $Val);
@@ -199,7 +180,6 @@ abstract class _$$DesktopStateImplCopyWith<$Res>
     MySkillModel mySkillModel,
     DescriptionModel descriptionModel,
     ScrollModel scrollModel,
-    ProfileModel profileModel,
     InitModel initModel,
   });
 
@@ -211,8 +191,6 @@ abstract class _$$DesktopStateImplCopyWith<$Res>
   $DescriptionModelCopyWith<$Res> get descriptionModel;
   @override
   $ScrollModelCopyWith<$Res> get scrollModel;
-  @override
-  $ProfileModelCopyWith<$Res> get profileModel;
   @override
   $InitModelCopyWith<$Res> get initModel;
 }
@@ -235,7 +213,6 @@ class __$$DesktopStateImplCopyWithImpl<$Res>
     Object? mySkillModel = null,
     Object? descriptionModel = null,
     Object? scrollModel = null,
-    Object? profileModel = null,
     Object? initModel = null,
   }) {
     return _then(
@@ -260,11 +237,6 @@ class __$$DesktopStateImplCopyWithImpl<$Res>
                 ? _value.scrollModel
                 : scrollModel // ignore: cast_nullable_to_non_nullable
                     as ScrollModel,
-        profileModel:
-            null == profileModel
-                ? _value.profileModel
-                : profileModel // ignore: cast_nullable_to_non_nullable
-                    as ProfileModel,
         initModel:
             null == initModel
                 ? _value.initModel
@@ -283,7 +255,6 @@ class _$DesktopStateImpl implements _DesktopState {
     this.mySkillModel = const MySkillModel(),
     this.descriptionModel = const DescriptionModel(),
     this.scrollModel = const ScrollModel(),
-    this.profileModel = const ProfileModel(),
     this.initModel = const InitModel(),
   });
 
@@ -303,9 +274,6 @@ class _$DesktopStateImpl implements _DesktopState {
   @JsonKey()
   final ScrollModel scrollModel;
   //ProfileModel
-  @override
-  @JsonKey()
-  final ProfileModel profileModel;
   //InitModel
   @override
   @JsonKey()
@@ -313,7 +281,7 @@ class _$DesktopStateImpl implements _DesktopState {
 
   @override
   String toString() {
-    return 'DesktopState(startAnimation: $startAnimation, mySkillModel: $mySkillModel, descriptionModel: $descriptionModel, scrollModel: $scrollModel, profileModel: $profileModel, initModel: $initModel)';
+    return 'DesktopState(startAnimation: $startAnimation, mySkillModel: $mySkillModel, descriptionModel: $descriptionModel, scrollModel: $scrollModel, initModel: $initModel)';
   }
 
   @override
@@ -329,8 +297,6 @@ class _$DesktopStateImpl implements _DesktopState {
                 other.descriptionModel == descriptionModel) &&
             (identical(other.scrollModel, scrollModel) ||
                 other.scrollModel == scrollModel) &&
-            (identical(other.profileModel, profileModel) ||
-                other.profileModel == profileModel) &&
             (identical(other.initModel, initModel) ||
                 other.initModel == initModel));
   }
@@ -342,7 +308,6 @@ class _$DesktopStateImpl implements _DesktopState {
     mySkillModel,
     descriptionModel,
     scrollModel,
-    profileModel,
     initModel,
   );
 
@@ -361,7 +326,6 @@ abstract class _DesktopState implements DesktopState {
     final MySkillModel mySkillModel,
     final DescriptionModel descriptionModel,
     final ScrollModel scrollModel,
-    final ProfileModel profileModel,
     final InitModel initModel,
   }) = _$DesktopStateImpl;
 
@@ -374,8 +338,7 @@ abstract class _DesktopState implements DesktopState {
   DescriptionModel get descriptionModel; //ScrollModel
   @override
   ScrollModel get scrollModel; //ProfileModel
-  @override
-  ProfileModel get profileModel; //InitModel
+  //InitModel
   @override
   InitModel get initModel;
 

@@ -8,7 +8,6 @@ import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
-import 'package:self_introduction_flutter/page/desktop_page/view/profile_view/profile_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/banner_view/banner_view.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/intro_view/introShowcase.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/skill_view/skill_view.dart';
@@ -50,14 +49,6 @@ class _MainViewState extends State<_MainView> {
   Widget build(BuildContext context) {
     return BlocBuilder<DesktopCubit, DesktopState>(
       builder: (context, state) {
-        if (state.initModel.mainViewHeight != 0.0 &&
-            state.initModel.mainViewHeight !=
-                state.scrollModel.scrollController!.position.maxScrollExtent) {
-          context.read<DesktopCubit>().changeProfileViewHeight(
-            state.scrollModel.scrollController,
-          );
-        }
-
         return Scaffold(
           backgroundColor: Colors.transparent,
           body: Column(
@@ -88,10 +79,10 @@ class _MainViewState extends State<_MainView> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ProfilePage(
-                              state: state,
-                              cubit: context.read<DesktopCubit>(),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height,
                             ),
+
                             // 배너 뷰
                             Visibility(
                               visible:

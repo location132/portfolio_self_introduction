@@ -4,14 +4,16 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:js' as js;
 
-import 'package:self_introduction_flutter/components/condition_utils/condition_utils.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 
 class SlowScrollPhysics extends StatefulWidget {
   final DesktopState state;
   final Widget child;
-  const SlowScrollPhysics(
-      {super.key, required this.state, required this.child});
+  const SlowScrollPhysics({
+    super.key,
+    required this.state,
+    required this.child,
+  });
 
   @override
   State<SlowScrollPhysics> createState() => _SlowScrollPhysicsState();
@@ -54,7 +56,7 @@ class _SlowScrollPhysicsState extends State<SlowScrollPhysics> {
         document.addEventListener('wheel', function(event) {
           event.preventDefault();
         }, { passive: false });
-      '''
+      ''',
       ]);
     }
   }
@@ -63,18 +65,17 @@ class _SlowScrollPhysicsState extends State<SlowScrollPhysics> {
   Widget build(BuildContext context) {
     return kIsWeb
         ? Listener(
-            onPointerSignal: (PointerSignalEvent event) {
-              if (event is PointerScrollEvent &&
-                  Conditions.isMainPageScrollActive(widget.state)) {
-                widget.state.scrollModel.scrollController?.position.jumpTo(
-                  (widget.state.scrollModel.scrollController?.position.pixels ??
-                          0) +
-                      (event.scrollDelta.dy * 0.4),
-                );
-              }
-            },
-            child: widget.child,
-          )
+          onPointerSignal: (PointerSignalEvent event) {
+            if (event is PointerScrollEvent) {
+              widget.state.scrollModel.scrollController?.position.jumpTo(
+                (widget.state.scrollModel.scrollController?.position.pixels ??
+                        0) +
+                    (event.scrollDelta.dy * 0.4),
+              );
+            }
+          },
+          child: widget.child,
+        )
         : widget.child;
   }
 }

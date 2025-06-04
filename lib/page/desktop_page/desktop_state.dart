@@ -2,7 +2,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:self_introduction_flutter/model/init_model.dart';
 import 'package:self_introduction_flutter/model/main_page/description_model.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
-import 'package:self_introduction_flutter/model/main_page/profile_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/model/main_page/start_animation_model.dart';
 
@@ -24,7 +23,6 @@ class DesktopState with _$DesktopState {
     @Default(ScrollModel()) ScrollModel scrollModel,
 
     //ProfileModel
-    @Default(ProfileModel()) ProfileModel profileModel,
 
     //InitModel
     @Default(InitModel()) InitModel initModel,

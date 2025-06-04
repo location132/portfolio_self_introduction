@@ -31,9 +31,4 @@ class Conditions {
       state.initModel.initState == InitState.active;
 
   // 메인 페이지 스크롤 활성화
-  static bool isMainPageScrollActive(DesktopState state) =>
-      state.initModel.initState == InitState.inactive &&
-          state.profileModel.scrollCount == 0 ||
-      state.profileModel.scrollCount == 4 &&
-          state.scrollModel.profileViewState == ProfileViewState.inactive;
 }
