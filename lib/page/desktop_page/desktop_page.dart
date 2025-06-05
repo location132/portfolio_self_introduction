@@ -97,22 +97,21 @@ class _MainViewState extends State<_MainView> {
                                   ),
                                 ),
                                 Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    BannerPage(
-                                      state: state,
-                                      desktopCubit:
-                                          context.read<DesktopCubit>(),
-                                    ),
+                                    // BannerPage(
+                                    //   state: state,
+                                    //   desktopCubit:
+                                    //       context.read<DesktopCubit>(),
+                                    // ),
 
-                                    SkillPage(
-                                      state: state,
-                                      desktopCubit:
-                                          context.read<DesktopCubit>(),
-                                    ),
+                                    // SkillPage(
+                                    //   state: state,
+                                    //   desktopCubit:
+                                    //       context.read<DesktopCubit>(),
+                                    // ),
                                     Visibility(
                                       visible:
-                                          state.chapterModel.isChapterActive,
+                                          !state.chapterModel.isChapterActive,
                                       child: VisibilityDetector(
                                         key: const Key('main-view'),
                                         onVisibilityChanged: (info) {
@@ -126,6 +125,8 @@ class _MainViewState extends State<_MainView> {
                                           }
                                         },
                                         child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             ChapterPage(
                                               state: state,

@@ -24,31 +24,27 @@ class DesktopCubit extends Cubit<DesktopState> {
 
   @postConstruct
   void init() async {
-    try {
-      //TODO:  배포 후, 주석 해제
-      if (!isClosed) {
-        emit(
-          state.copyWith(
-            initModel: state.initModel.copyWith(initState: InitState.active),
-          ),
-        );
-      }
+    //TODO:  배포 후, 주석 해제
+    // if (!isClosed) {
+    //   emit(
+    //     state.copyWith(
+    //       initModel: state.initModel.copyWith(initState: InitState.active),
+    //     ),
+    //   );
+    // }
 
-      final controller = state.scrollModel.scrollController;
-      if (controller != null) {
-        await changeProfileViewHeight(controller);
-      }
+    // final controller = state.scrollModel.scrollController;
+    // if (controller != null) {
+    //   await changeProfileViewHeight(controller);
+    // }
 
-      if (!isClosed) {
-        emit(
-          state.copyWith(
-            initModel: state.initModel.copyWith(initState: InitState.inactive),
-            scrollModel: state.scrollModel.copyWith(isScrollEnabled: true),
-          ),
-        );
-      }
-    } catch (e) {
-      print('Error in init(): $e');
+    if (!isClosed) {
+      emit(
+        state.copyWith(
+          initModel: state.initModel.copyWith(initState: InitState.inactive),
+          scrollModel: state.scrollModel.copyWith(isScrollEnabled: true),
+        ),
+      );
     }
   }
 

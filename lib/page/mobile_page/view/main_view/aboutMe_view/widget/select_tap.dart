@@ -28,30 +28,30 @@ class SelectTap extends StatelessWidget {
             ),
             SizedBox(
               height: 400.h,
-              child: TabBarView(
+              child: const TabBarView(
                 children: [
                   SelectTapTabItem(
-                    key: const ValueKey('coding'),
+                    key: ValueKey('coding'),
                     category: 'coding',
                     isAnimationStart: true,
                   ),
                   SelectTapTabItem(
-                    key: const ValueKey('state_management'),
+                    key: ValueKey('state_management'),
                     category: 'state_management',
                     isAnimationStart: true,
                   ),
                   SelectTapTabItem(
-                    key: const ValueKey('lifecycle'),
+                    key: ValueKey('lifecycle'),
                     category: 'lifecycle',
                     isAnimationStart: true,
                   ),
                   SelectTapTabItem(
-                    key: const ValueKey('animation'),
+                    key: ValueKey('animation'),
                     category: 'animation',
                     isAnimationStart: true,
                   ),
                   SelectTapTabItem(
-                    key: const ValueKey('collaboration'),
+                    key: ValueKey('collaboration'),
                     category: 'collaboration',
                     isAnimationStart: true,
                   ),

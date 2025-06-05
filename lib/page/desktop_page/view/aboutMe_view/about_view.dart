@@ -12,36 +12,34 @@ class DesktopAboutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 40),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TitleText(
-            title: '',
-            subTitle: '일단 핵심부터',
-            description: '',
-            titleFontSize: 34,
-            color: Colors.white,
-            isVisible:
-                state.scrollModel.chapterViewState == ChapterViewState.active,
-          ),
-          const SizedBox(height: 30),
-          AboutMeDescriptionDesktop(
+    return Column(
+      children: [
+        TitleText(
+          title: '일단 핵심부터',
+          subTitle: '',
+          description: '',
+          titleFontSize: 34,
+          color: Colors.white,
+          isVisible:
+              state.scrollModel.chapterViewState == ChapterViewState.active,
+        ),
+        const SizedBox(height: 30),
+        Center(
+          child: AboutMeDescriptionDesktop(
             isAniStart:
                 state.scrollModel.aboutMeViewState == AboutMeViewState.active,
           ),
-          const SizedBox(height: 30),
-          AnimatedOpacity(
-            opacity:
-                state.scrollModel.aboutMeViewState == AboutMeViewState.active
-                    ? 1.0
-                    : 0.0,
-            duration: const Duration(milliseconds: 400),
-            child: const SelectTapDesktop(),
-          ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 30),
+        AnimatedOpacity(
+          opacity:
+              state.scrollModel.aboutMeViewState == AboutMeViewState.active
+                  ? 1.0
+                  : 0.0,
+          duration: const Duration(milliseconds: 400),
+          child: const SelectTapDesktop(),
+        ),
+      ],
     );
   }
 }

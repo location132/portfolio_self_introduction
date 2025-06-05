@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/aboutMe_view/widget/my_stack.dart';
 
 class SelectTapDesktop extends StatelessWidget {
   const SelectTapDesktop({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 30),
       child: DefaultTabController(
         length: 5,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const TabBar(
+            TabBar(
               isScrollable: true,
               indicatorColor: Colors.white,
               labelColor: Colors.white,
+              tabAlignment: TabAlignment.center,
               unselectedLabelColor: Colors.grey,
               tabs: [
                 Tab(text: '코딩'),
@@ -27,31 +29,31 @@ class SelectTapDesktop extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 400.h,
+              height: 400,
               child: TabBarView(
                 children: [
                   SelectTapTabItem(
-                    key: const ValueKey('coding'),
+                    key: ValueKey('coding'),
                     category: 'coding',
                     isAnimationStart: true,
                   ),
                   SelectTapTabItem(
-                    key: const ValueKey('state_management'),
+                    key: ValueKey('state_management'),
                     category: 'state_management',
                     isAnimationStart: true,
                   ),
                   SelectTapTabItem(
-                    key: const ValueKey('lifecycle'),
+                    key: ValueKey('lifecycle'),
                     category: 'lifecycle',
                     isAnimationStart: true,
                   ),
                   SelectTapTabItem(
-                    key: const ValueKey('animation'),
+                    key: ValueKey('animation'),
                     category: 'animation',
                     isAnimationStart: true,
                   ),
                   SelectTapTabItem(
-                    key: const ValueKey('collaboration'),
+                    key: ValueKey('collaboration'),
                     category: 'collaboration',
                     isAnimationStart: true,
                   ),
@@ -257,24 +259,9 @@ class _SelectTapOverviewState extends State<SelectTapOverview>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const SizedBox(height: 20),
-
-        SlideTransition(
-          position: _slideAnimations[0],
-          child: FadeTransition(
-            opacity: _opacityAnimations[0],
-            child: MyStack(
-              myStackTitle: widget.data.myStackTitle,
-              myStack: widget.data.myStack,
-            ),
-          ),
-        ),
-
-        const SizedBox(height: 40),
-
         SlideTransition(
           position: _slideAnimations[1],
           child: FadeTransition(
@@ -286,25 +273,25 @@ class _SelectTapOverviewState extends State<SelectTapOverview>
                   children: [
                     TextSpan(
                       text: widget.data.title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 14.0.sp,
+                        fontSize: 16.0,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     TextSpan(
                       text: widget.data.description,
-                      style: TextStyle(
-                        fontSize: 13.0.sp,
-                        color: const Color.fromARGB(255, 166, 166, 166),
+                      style: const TextStyle(
+                        fontSize: 15.0,
+                        color: Color.fromARGB(255, 166, 166, 166),
                         height: 1.5,
                       ),
                     ),
                     TextSpan(
                       text: widget.data.finalMessage,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 14.0.sp,
+                        fontSize: 16.0,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -314,58 +301,23 @@ class _SelectTapOverviewState extends State<SelectTapOverview>
             ),
           ),
         ),
-      ],
-    );
-  }
-}
-
-class MyStack extends StatelessWidget {
-  final String? myStackTitle;
-  final String? myStack;
-  const MyStack({super.key, this.myStackTitle, this.myStack});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-        decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.1),
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-            color: Colors.white.withValues(alpha: 0.3),
-            width: 1,
+        const SizedBox(width: 140),
+        SlideTransition(
+          position: _slideAnimations[0],
+          child: FadeTransition(
+            opacity: _opacityAnimations[0],
+            child: Center(
+              child: SizedBox(
+                height: 200,
+                child: MyStack(
+                  myStackTitle: widget.data.myStackTitle,
+                  myStack: widget.data.myStack,
+                ),
+              ),
+            ),
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 10),
-            Text(
-              myStackTitle ?? '',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14.0.sp,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              myStack ?? '',
-              style: TextStyle(
-                fontSize: 12.0.sp,
-                color: const Color.fromARGB(255, 166, 166, 166),
-                height:
-                    myStackTitle == SelectTapTextConstants.myStackTitle3
-                        ? 1.5.sp
-                        : 2.2.sp,
-              ),
-            ),
-          ],
-        ),
-      ),
+      ],
     );
   }
 }
