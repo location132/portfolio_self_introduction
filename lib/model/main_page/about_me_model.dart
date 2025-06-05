@@ -4,8 +4,6 @@ part 'about_me_model.freezed.dart';
 
 @freezed
 class AboutMeModel with _$AboutMeModel {
-  const factory AboutMeModel({
-    @Default(false) bool player,
-    @Default(false) bool isPlayerActive,
-  }) = _AboutMeModel;
+  const factory AboutMeModel({@Default(false) bool isContentActive}) =
+      _AboutMeModel;
 }

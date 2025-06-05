@@ -25,7 +25,7 @@ class AboutMePage extends StatelessWidget {
           title: MainPageTextConstants.aboutMeTitle,
           color: const Color.fromARGB(255, 255, 255, 255),
         ),
-        AboutMeDescription(isBannerAniStart: state.isDescriptionAniStart),
+        AboutMeDescription(isAniStart: state.isDescriptionAniStart),
         const SizedBox(height: 30),
         AnimatedOpacity(
           opacity: state.isTitleAniStart ? 1.0 : 0.0,

@@ -7,8 +7,10 @@ import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/banner_view/banner_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/chapter_page.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/aboutMe_view/about_me_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/intro_view/introShowcase.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/skill_view/skill_page.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class DesktopPage extends StatelessWidget {
   final bool isChromeBrowser;
@@ -111,14 +113,33 @@ class _MainViewState extends State<_MainView> {
                                     Visibility(
                                       visible:
                                           state.chapterModel.isChapterActive,
-                                      child: Column(
-                                        children: [
-                                          ChapterPage(
-                                            state: state,
-                                            desktopCubit:
-                                                context.read<DesktopCubit>(),
-                                          ),
-                                        ],
+                                      child: VisibilityDetector(
+                                        key: const Key('main-view'),
+                                        onVisibilityChanged: (info) {
+                                          if (info.visibleFraction < 0.2 &&
+                                              state
+                                                  .chapterModel
+                                                  .isBlackBackgroundColor) {
+                                            context
+                                                .read<DesktopCubit>()
+                                                .blackBackgroundActive(false);
+                                          }
+                                        },
+                                        child: Column(
+                                          children: [
+                                            ChapterPage(
+                                              state: state,
+                                              desktopCubit:
+                                                  context.read<DesktopCubit>(),
+                                            ),
+                                            // 어비웃 미 페이지
+                                            AboutMePage(
+                                              state: state,
+                                              desktopCubit:
+                                                  context.read<DesktopCubit>(),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ],

@@ -209,17 +209,26 @@ class DesktopCubit extends Cubit<DesktopState> {
           ),
         ),
       );
-      await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(milliseconds: 1500));
       emit(
         state.copyWith(
           chapterModel: state.chapterModel.copyWith(isChapterActive: true),
         ),
       );
+    } else if (ProfileViewConditionUtils.isAboutMeScrollActive(viewName)) {
+      emit(
+        state.copyWith(
+          scrollModel: state.scrollModel.copyWith(
+            aboutMeViewState: AboutMeViewState.active,
+          ),
+        ),
+      );
+      await Future.delayed(const Duration(milliseconds: 500));
     }
   }
 
   //검정색 배경화면 활성화
-  void blackBackgroundActive(bool isActive) async {
+  void blackBackgroundActive(bool isActive) {
     emit(
       state.copyWith(
         chapterModel: state.chapterModel.copyWith(
@@ -227,15 +236,15 @@ class DesktopCubit extends Cubit<DesktopState> {
         ),
       ),
     );
-    await Future.delayed(const Duration(seconds: 1));
-    viewListener('chapter');
   }
 
   //플레이어 활성화
   void playerActive(String sectionName) {
-    if (sectionName == 'banner' && state.aboutMeModel.isPlayerActive == false) {
+    if (sectionName == 'banner' && state.bannerModel.isPlayerActive == false) {
       emit(
-        state.copyWith(aboutMeModel: state.aboutMeModel.copyWith(player: true)),
+        state.copyWith(
+          bannerModel: state.bannerModel.copyWith(isPlayerActive: true),
+        ),
       );
     } else if (sectionName == 'skill' &&
         state.mySkillModel.isPlayerActive == false) {

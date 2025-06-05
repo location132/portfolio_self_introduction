@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:glowy_borders/glowy_borders.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/widget/desktop_chapter_card.dart';
-import 'package:self_introduction_flutter/page/desktop_page/widgets/title_text.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/animation/chapter_card_animation.dart';
@@ -53,44 +52,6 @@ class _DesktopChapterViewState extends State<DesktopChapterView>
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Stack(
-          children: [
-            AnimatedOpacity(
-              opacity:
-                  widget.state?.chapterModel.isBlackBackgroundColor == true
-                      ? 1
-                      : 0,
-              duration: const Duration(seconds: 1),
-              child: TitleText(
-                title: '알면 알수록,',
-                subTitle: ' 이정원',
-                description: '',
-                titleFontSize: 34,
-                color: Colors.white,
-                isVisible:
-                    widget.state?.scrollModel.chapterViewState ==
-                    ChapterViewState.active,
-              ),
-            ),
-            AnimatedOpacity(
-              opacity:
-                  widget.state?.chapterModel.isBlackBackgroundColor == false
-                      ? 1
-                      : 0,
-              duration: const Duration(seconds: 1),
-              child: TitleText(
-                title: 'Flutter 신입은 역시,',
-                subTitle: '이정원',
-                description: '',
-                titleFontSize: 34,
-                color: Colors.black,
-                isVisible:
-                    widget.state?.scrollModel.chapterViewState ==
-                    ChapterViewState.active,
-              ),
-            ),
-          ],
-        ),
         SizedBox(height: 40.sh),
         const SizedBox(width: 20),
         SingleChildScrollView(

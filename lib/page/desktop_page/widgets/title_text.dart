@@ -10,7 +10,8 @@ class TitleText extends StatefulWidget {
   final Color? color;
   final Color? titleColor;
   final Color? subTitleColor;
-  final bool isVisible; // 애니메이션 트리거
+  final bool isVisible;
+  final bool? isOneLine;
 
   const TitleText({
     super.key,
@@ -22,6 +23,7 @@ class TitleText extends StatefulWidget {
     this.titleColor,
     this.subTitleColor,
     this.isVisible = true,
+    this.isOneLine = false,
   });
 
   @override
@@ -182,10 +184,25 @@ class _TitleTextState extends State<TitleText> with TickerProviderStateMixin {
                     ),
                   ),
                 ),
+              if (widget.isOneLine! &&
+                  widget.description != null &&
+                  widget.description!.isNotEmpty)
+                SlideTransition(
+                  position: _descriptionSlideAnimation,
+                  child: FadeTransition(
+                    opacity: _descriptionOpacityAnimation,
+                    child: StyledText.subHeading(
+                      text: widget.description!,
+                      color: widget.subTitleColor,
+                    ),
+                  ),
+                ),
             ],
           ),
 
-          if (widget.description != null && widget.description!.isNotEmpty)
+          if (!widget.isOneLine! &&
+              widget.description != null &&
+              widget.description!.isNotEmpty)
             SlideTransition(
               position: _descriptionSlideAnimation,
               child: FadeTransition(

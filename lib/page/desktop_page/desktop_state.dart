@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:self_introduction_flutter/model/init_model.dart';
 import 'package:self_introduction_flutter/model/main_page/about_me_model.dart';
+import 'package:self_introduction_flutter/model/main_page/banner_model.dart';
 import 'package:self_introduction_flutter/model/main_page/chapter_model.dart';
 import 'package:self_introduction_flutter/model/main_page/description_model.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
@@ -14,6 +15,9 @@ class DesktopState with _$DesktopState {
   const factory DesktopState({
     //StartAnimation 컨트롤러
     StartAnimationModel? startAnimation,
+
+    //BannerModel
+    @Default(BannerModel()) BannerModel bannerModel,
 
     //mySkill 모델
     @Default(MySkillModel()) MySkillModel mySkillModel,

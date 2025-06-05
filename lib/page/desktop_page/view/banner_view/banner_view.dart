@@ -64,7 +64,7 @@ class _BannerViewState extends State<BannerView> {
         ),
         SizedBox(height: 80.sh),
         Player(
-          isPlayerAniOpacity: widget.state.aboutMeModel.player,
+          isPlayerAniOpacity: widget.state.bannerModel.isPlayerActive,
           isPlayerText: 'About Me 조금 더 궁금하다면 Click!',
           duration: const Duration(milliseconds: 800),
           fontSize: 14,

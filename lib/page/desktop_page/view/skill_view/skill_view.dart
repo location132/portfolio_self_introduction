@@ -44,7 +44,45 @@ class _SkillViewState extends State<SkillView> {
           ),
         ),
 
-        SizedBox(height: 80.sh),
+        SizedBox(height: 140.sh),
+        Stack(
+          children: [
+            AnimatedOpacity(
+              opacity:
+                  widget.state.chapterModel.isBlackBackgroundColor == true
+                      ? 1
+                      : 0,
+              duration: const Duration(seconds: 1),
+              child: TitleText(
+                title: '알면,',
+                subTitle: ' 알수록',
+                description: ' 이정원',
+                titleFontSize: 34,
+                color: Colors.white,
+                isOneLine: true,
+                isVisible:
+                    widget.state.chapterModel.isBlackBackgroundColor == true,
+              ),
+            ),
+            AnimatedOpacity(
+              opacity:
+                  widget.state.chapterModel.isBlackBackgroundColor == false
+                      ? 1
+                      : 0,
+              duration: const Duration(milliseconds: 500),
+              child: TitleText(
+                title: 'Flutter',
+                subTitle: ' 신입은 역시,',
+                description: ' 이정원',
+                titleFontSize: 34,
+                color: Colors.black,
+                isOneLine: true,
+                isVisible:
+                    widget.state.chapterModel.isBlackBackgroundColor == false,
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }

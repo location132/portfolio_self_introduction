@@ -22,13 +22,14 @@ class ChapterPage extends StatelessWidget {
         SizedBox(height: 80.sh),
         VisibilityDetector(
           key: const Key('chapter-view'),
-          onVisibilityChanged: (VisibilityInfo info) {
+          onVisibilityChanged: (VisibilityInfo info) async {
             if (info.visibleFraction > 0.4 &&
                 !state.chapterModel.isBlackBackgroundColor) {
               context.read<DesktopCubit>().blackBackgroundActive(true);
-            } else if (info.visibleFraction < 0.4 &&
-                state.chapterModel.isBlackBackgroundColor) {
-              context.read<DesktopCubit>().blackBackgroundActive(false);
+              await Future.delayed(const Duration(seconds: 1));
+              if (context.mounted) {
+                context.read<DesktopCubit>().viewListener('chapter');
+              }
             }
           },
           child: DesktopChapterView(

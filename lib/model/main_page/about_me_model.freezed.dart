@@ -17,8 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AboutMeModel {
-  bool get player => throw _privateConstructorUsedError;
-  bool get isPlayerActive => throw _privateConstructorUsedError;
+  bool get isContentActive => throw _privateConstructorUsedError;
 
   /// Create a copy of AboutMeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +33,7 @@ abstract class $AboutMeModelCopyWith<$Res> {
     $Res Function(AboutMeModel) then,
   ) = _$AboutMeModelCopyWithImpl<$Res, AboutMeModel>;
   @useResult
-  $Res call({bool player, bool isPlayerActive});
+  $Res call({bool isContentActive});
 }
 
 /// @nodoc
@@ -51,18 +50,13 @@ class _$AboutMeModelCopyWithImpl<$Res, $Val extends AboutMeModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? player = null, Object? isPlayerActive = null}) {
+  $Res call({Object? isContentActive = null}) {
     return _then(
       _value.copyWith(
-            player:
-                null == player
-                    ? _value.player
-                    : player // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            isPlayerActive:
-                null == isPlayerActive
-                    ? _value.isPlayerActive
-                    : isPlayerActive // ignore: cast_nullable_to_non_nullable
+            isContentActive:
+                null == isContentActive
+                    ? _value.isContentActive
+                    : isContentActive // ignore: cast_nullable_to_non_nullable
                         as bool,
           )
           as $Val,
@@ -79,7 +73,7 @@ abstract class _$$AboutMeModelImplCopyWith<$Res>
   ) = __$$AboutMeModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool player, bool isPlayerActive});
+  $Res call({bool isContentActive});
 }
 
 /// @nodoc
@@ -95,18 +89,13 @@ class __$$AboutMeModelImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? player = null, Object? isPlayerActive = null}) {
+  $Res call({Object? isContentActive = null}) {
     return _then(
       _$AboutMeModelImpl(
-        player:
-            null == player
-                ? _value.player
-                : player // ignore: cast_nullable_to_non_nullable
-                    as bool,
-        isPlayerActive:
-            null == isPlayerActive
-                ? _value.isPlayerActive
-                : isPlayerActive // ignore: cast_nullable_to_non_nullable
+        isContentActive:
+            null == isContentActive
+                ? _value.isContentActive
+                : isContentActive // ignore: cast_nullable_to_non_nullable
                     as bool,
       ),
     );
@@ -116,18 +105,15 @@ class __$$AboutMeModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AboutMeModelImpl implements _AboutMeModel {
-  const _$AboutMeModelImpl({this.player = false, this.isPlayerActive = false});
+  const _$AboutMeModelImpl({this.isContentActive = false});
 
   @override
   @JsonKey()
-  final bool player;
-  @override
-  @JsonKey()
-  final bool isPlayerActive;
+  final bool isContentActive;
 
   @override
   String toString() {
-    return 'AboutMeModel(player: $player, isPlayerActive: $isPlayerActive)';
+    return 'AboutMeModel(isContentActive: $isContentActive)';
   }
 
   @override
@@ -135,13 +121,12 @@ class _$AboutMeModelImpl implements _AboutMeModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AboutMeModelImpl &&
-            (identical(other.player, player) || other.player == player) &&
-            (identical(other.isPlayerActive, isPlayerActive) ||
-                other.isPlayerActive == isPlayerActive));
+            (identical(other.isContentActive, isContentActive) ||
+                other.isContentActive == isContentActive));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, player, isPlayerActive);
+  int get hashCode => Object.hash(runtimeType, isContentActive);
 
   /// Create a copy of AboutMeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -153,13 +138,11 @@ class _$AboutMeModelImpl implements _AboutMeModel {
 }
 
 abstract class _AboutMeModel implements AboutMeModel {
-  const factory _AboutMeModel({final bool player, final bool isPlayerActive}) =
+  const factory _AboutMeModel({final bool isContentActive}) =
       _$AboutMeModelImpl;
 
   @override
-  bool get player;
-  @override
-  bool get isPlayerActive;
+  bool get isContentActive;
 
   /// Create a copy of AboutMeModel
   /// with the given fields replaced by the non-null parameter values.

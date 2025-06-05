@@ -16,6 +16,7 @@ class ProfileViewConditionUtils {
   static bool isBannerScrollActive(String viewName) => viewName == 'banner';
   static bool isChapterScrollActive(String viewName) => viewName == 'chapter';
   static bool isSkillScrollActive(String viewName) => viewName == 'skill';
+  static bool isAboutMeScrollActive(String viewName) => viewName == 'about';
 
   // 스킬 뷰 활성화
   static bool isSkillViewActive(DesktopState state) =>

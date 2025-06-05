@@ -15,6 +15,7 @@ class ScrollModel with _$ScrollModel {
     @Default(BannerState.inactive) BannerState bannerState,
     @Default(ProfileViewState.inactive) ProfileViewState profileViewState,
     @Default(ChapterViewState.inactive) ChapterViewState chapterViewState,
+    @Default(AboutMeViewState.inactive) AboutMeViewState aboutMeViewState,
     @Default(false) bool isScrollWaiting,
     @Default(false) bool isScrollInit,
     @Default(false) bool isScrollEnabled,
@@ -26,3 +27,5 @@ enum BannerState { inactive, activated }
 enum ProfileViewState { inactive, active }
 
 enum ChapterViewState { inactive, active }
+
+enum AboutMeViewState { inactive, active }

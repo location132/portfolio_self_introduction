@@ -19,6 +19,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DesktopState {
   //StartAnimation 컨트롤러
   StartAnimationModel? get startAnimation =>
+      throw _privateConstructorUsedError; //BannerModel
+  BannerModel get bannerModel =>
       throw _privateConstructorUsedError; //mySkill 모델
   MySkillModel get mySkillModel =>
       throw _privateConstructorUsedError; //ChapterModel
@@ -48,6 +50,7 @@ abstract class $DesktopStateCopyWith<$Res> {
   @useResult
   $Res call({
     StartAnimationModel? startAnimation,
+    BannerModel bannerModel,
     MySkillModel mySkillModel,
     ChapterModel chapterModel,
     DescriptionModel descriptionModel,
@@ -57,6 +60,7 @@ abstract class $DesktopStateCopyWith<$Res> {
   });
 
   $StartAnimationModelCopyWith<$Res>? get startAnimation;
+  $BannerModelCopyWith<$Res> get bannerModel;
   $MySkillModelCopyWith<$Res> get mySkillModel;
   $ChapterModelCopyWith<$Res> get chapterModel;
   $DescriptionModelCopyWith<$Res> get descriptionModel;
@@ -81,6 +85,7 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
   @override
   $Res call({
     Object? startAnimation = freezed,
+    Object? bannerModel = null,
     Object? mySkillModel = null,
     Object? chapterModel = null,
     Object? descriptionModel = null,
@@ -95,6 +100,11 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
                     ? _value.startAnimation
                     : startAnimation // ignore: cast_nullable_to_non_nullable
                         as StartAnimationModel?,
+            bannerModel:
+                null == bannerModel
+                    ? _value.bannerModel
+                    : bannerModel // ignore: cast_nullable_to_non_nullable
+                        as BannerModel,
             mySkillModel:
                 null == mySkillModel
                     ? _value.mySkillModel
@@ -141,6 +151,16 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
 
     return $StartAnimationModelCopyWith<$Res>(_value.startAnimation!, (value) {
       return _then(_value.copyWith(startAnimation: value) as $Val);
+    });
+  }
+
+  /// Create a copy of DesktopState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $BannerModelCopyWith<$Res> get bannerModel {
+    return $BannerModelCopyWith<$Res>(_value.bannerModel, (value) {
+      return _then(_value.copyWith(bannerModel: value) as $Val);
     });
   }
 
@@ -216,6 +236,7 @@ abstract class _$$DesktopStateImplCopyWith<$Res>
   @useResult
   $Res call({
     StartAnimationModel? startAnimation,
+    BannerModel bannerModel,
     MySkillModel mySkillModel,
     ChapterModel chapterModel,
     DescriptionModel descriptionModel,
@@ -226,6 +247,8 @@ abstract class _$$DesktopStateImplCopyWith<$Res>
 
   @override
   $StartAnimationModelCopyWith<$Res>? get startAnimation;
+  @override
+  $BannerModelCopyWith<$Res> get bannerModel;
   @override
   $MySkillModelCopyWith<$Res> get mySkillModel;
   @override
@@ -255,6 +278,7 @@ class __$$DesktopStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? startAnimation = freezed,
+    Object? bannerModel = null,
     Object? mySkillModel = null,
     Object? chapterModel = null,
     Object? descriptionModel = null,
@@ -269,6 +293,11 @@ class __$$DesktopStateImplCopyWithImpl<$Res>
                 ? _value.startAnimation
                 : startAnimation // ignore: cast_nullable_to_non_nullable
                     as StartAnimationModel?,
+        bannerModel:
+            null == bannerModel
+                ? _value.bannerModel
+                : bannerModel // ignore: cast_nullable_to_non_nullable
+                    as BannerModel,
         mySkillModel:
             null == mySkillModel
                 ? _value.mySkillModel
@@ -309,6 +338,7 @@ class __$$DesktopStateImplCopyWithImpl<$Res>
 class _$DesktopStateImpl implements _DesktopState {
   const _$DesktopStateImpl({
     this.startAnimation,
+    this.bannerModel = const BannerModel(),
     this.mySkillModel = const MySkillModel(),
     this.chapterModel = const ChapterModel(),
     this.descriptionModel = const DescriptionModel(),
@@ -320,6 +350,10 @@ class _$DesktopStateImpl implements _DesktopState {
   //StartAnimation 컨트롤러
   @override
   final StartAnimationModel? startAnimation;
+  //BannerModel
+  @override
+  @JsonKey()
+  final BannerModel bannerModel;
   //mySkill 모델
   @override
   @JsonKey()
@@ -347,7 +381,7 @@ class _$DesktopStateImpl implements _DesktopState {
 
   @override
   String toString() {
-    return 'DesktopState(startAnimation: $startAnimation, mySkillModel: $mySkillModel, chapterModel: $chapterModel, descriptionModel: $descriptionModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel, initModel: $initModel)';
+    return 'DesktopState(startAnimation: $startAnimation, bannerModel: $bannerModel, mySkillModel: $mySkillModel, chapterModel: $chapterModel, descriptionModel: $descriptionModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel, initModel: $initModel)';
   }
 
   @override
@@ -357,6 +391,8 @@ class _$DesktopStateImpl implements _DesktopState {
             other is _$DesktopStateImpl &&
             (identical(other.startAnimation, startAnimation) ||
                 other.startAnimation == startAnimation) &&
+            (identical(other.bannerModel, bannerModel) ||
+                other.bannerModel == bannerModel) &&
             (identical(other.mySkillModel, mySkillModel) ||
                 other.mySkillModel == mySkillModel) &&
             (identical(other.chapterModel, chapterModel) ||
@@ -375,6 +411,7 @@ class _$DesktopStateImpl implements _DesktopState {
   int get hashCode => Object.hash(
     runtimeType,
     startAnimation,
+    bannerModel,
     mySkillModel,
     chapterModel,
     descriptionModel,
@@ -395,6 +432,7 @@ class _$DesktopStateImpl implements _DesktopState {
 abstract class _DesktopState implements DesktopState {
   const factory _DesktopState({
     final StartAnimationModel? startAnimation,
+    final BannerModel bannerModel,
     final MySkillModel mySkillModel,
     final ChapterModel chapterModel,
     final DescriptionModel descriptionModel,
@@ -405,7 +443,9 @@ abstract class _DesktopState implements DesktopState {
 
   //StartAnimation 컨트롤러
   @override
-  StartAnimationModel? get startAnimation; //mySkill 모델
+  StartAnimationModel? get startAnimation; //BannerModel
+  @override
+  BannerModel get bannerModel; //mySkill 모델
   @override
   MySkillModel get mySkillModel; //ChapterModel
   @override

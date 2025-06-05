@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/components/widget/mobile_animation/widget_animation.dart';
 
-class AboutMeDescription extends StatelessWidget {
+class AboutMeDescriptionDesktop extends StatelessWidget {
   final bool isAniStart;
 
-  const AboutMeDescription({super.key, required this.isAniStart});
+  const AboutMeDescriptionDesktop({super.key, required this.isAniStart});
 
   @override
   Widget build(BuildContext context) {

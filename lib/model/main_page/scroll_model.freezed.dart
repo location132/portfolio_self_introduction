@@ -23,6 +23,7 @@ mixin _$ScrollModel {
   BannerState get bannerState => throw _privateConstructorUsedError;
   ProfileViewState get profileViewState => throw _privateConstructorUsedError;
   ChapterViewState get chapterViewState => throw _privateConstructorUsedError;
+  AboutMeViewState get aboutMeViewState => throw _privateConstructorUsedError;
   bool get isScrollWaiting => throw _privateConstructorUsedError;
   bool get isScrollInit => throw _privateConstructorUsedError;
   bool get isScrollEnabled => throw _privateConstructorUsedError;
@@ -47,6 +48,7 @@ abstract class $ScrollModelCopyWith<$Res> {
     BannerState bannerState,
     ProfileViewState profileViewState,
     ChapterViewState chapterViewState,
+    AboutMeViewState aboutMeViewState,
     bool isScrollWaiting,
     bool isScrollInit,
     bool isScrollEnabled,
@@ -73,6 +75,7 @@ class _$ScrollModelCopyWithImpl<$Res, $Val extends ScrollModel>
     Object? bannerState = null,
     Object? profileViewState = null,
     Object? chapterViewState = null,
+    Object? aboutMeViewState = null,
     Object? isScrollWaiting = null,
     Object? isScrollInit = null,
     Object? isScrollEnabled = null,
@@ -104,6 +107,11 @@ class _$ScrollModelCopyWithImpl<$Res, $Val extends ScrollModel>
                     ? _value.chapterViewState
                     : chapterViewState // ignore: cast_nullable_to_non_nullable
                         as ChapterViewState,
+            aboutMeViewState:
+                null == aboutMeViewState
+                    ? _value.aboutMeViewState
+                    : aboutMeViewState // ignore: cast_nullable_to_non_nullable
+                        as AboutMeViewState,
             isScrollWaiting:
                 null == isScrollWaiting
                     ? _value.isScrollWaiting
@@ -140,6 +148,7 @@ abstract class _$$ScrollModelImplCopyWith<$Res>
     BannerState bannerState,
     ProfileViewState profileViewState,
     ChapterViewState chapterViewState,
+    AboutMeViewState aboutMeViewState,
     bool isScrollWaiting,
     bool isScrollInit,
     bool isScrollEnabled,
@@ -165,6 +174,7 @@ class __$$ScrollModelImplCopyWithImpl<$Res>
     Object? bannerState = null,
     Object? profileViewState = null,
     Object? chapterViewState = null,
+    Object? aboutMeViewState = null,
     Object? isScrollWaiting = null,
     Object? isScrollInit = null,
     Object? isScrollEnabled = null,
@@ -196,6 +206,11 @@ class __$$ScrollModelImplCopyWithImpl<$Res>
                 ? _value.chapterViewState
                 : chapterViewState // ignore: cast_nullable_to_non_nullable
                     as ChapterViewState,
+        aboutMeViewState:
+            null == aboutMeViewState
+                ? _value.aboutMeViewState
+                : aboutMeViewState // ignore: cast_nullable_to_non_nullable
+                    as AboutMeViewState,
         isScrollWaiting:
             null == isScrollWaiting
                 ? _value.isScrollWaiting
@@ -225,6 +240,7 @@ class _$ScrollModelImpl implements _ScrollModel {
     this.bannerState = BannerState.inactive,
     this.profileViewState = ProfileViewState.inactive,
     this.chapterViewState = ChapterViewState.inactive,
+    this.aboutMeViewState = AboutMeViewState.inactive,
     this.isScrollWaiting = false,
     this.isScrollInit = false,
     this.isScrollEnabled = false,
@@ -245,6 +261,9 @@ class _$ScrollModelImpl implements _ScrollModel {
   final ChapterViewState chapterViewState;
   @override
   @JsonKey()
+  final AboutMeViewState aboutMeViewState;
+  @override
+  @JsonKey()
   final bool isScrollWaiting;
   @override
   @JsonKey()
@@ -255,7 +274,7 @@ class _$ScrollModelImpl implements _ScrollModel {
 
   @override
   String toString() {
-    return 'ScrollModel(scrollController: $scrollController, subScrollController: $subScrollController, bannerState: $bannerState, profileViewState: $profileViewState, chapterViewState: $chapterViewState, isScrollWaiting: $isScrollWaiting, isScrollInit: $isScrollInit, isScrollEnabled: $isScrollEnabled)';
+    return 'ScrollModel(scrollController: $scrollController, subScrollController: $subScrollController, bannerState: $bannerState, profileViewState: $profileViewState, chapterViewState: $chapterViewState, aboutMeViewState: $aboutMeViewState, isScrollWaiting: $isScrollWaiting, isScrollInit: $isScrollInit, isScrollEnabled: $isScrollEnabled)';
   }
 
   @override
@@ -273,6 +292,8 @@ class _$ScrollModelImpl implements _ScrollModel {
                 other.profileViewState == profileViewState) &&
             (identical(other.chapterViewState, chapterViewState) ||
                 other.chapterViewState == chapterViewState) &&
+            (identical(other.aboutMeViewState, aboutMeViewState) ||
+                other.aboutMeViewState == aboutMeViewState) &&
             (identical(other.isScrollWaiting, isScrollWaiting) ||
                 other.isScrollWaiting == isScrollWaiting) &&
             (identical(other.isScrollInit, isScrollInit) ||
@@ -289,6 +310,7 @@ class _$ScrollModelImpl implements _ScrollModel {
     bannerState,
     profileViewState,
     chapterViewState,
+    aboutMeViewState,
     isScrollWaiting,
     isScrollInit,
     isScrollEnabled,
@@ -310,6 +332,7 @@ abstract class _ScrollModel implements ScrollModel {
     final BannerState bannerState,
     final ProfileViewState profileViewState,
     final ChapterViewState chapterViewState,
+    final AboutMeViewState aboutMeViewState,
     final bool isScrollWaiting,
     final bool isScrollInit,
     final bool isScrollEnabled,
@@ -325,6 +348,8 @@ abstract class _ScrollModel implements ScrollModel {
   ProfileViewState get profileViewState;
   @override
   ChapterViewState get chapterViewState;
+  @override
+  AboutMeViewState get aboutMeViewState;
   @override
   bool get isScrollWaiting;
   @override
