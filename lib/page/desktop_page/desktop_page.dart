@@ -8,6 +8,7 @@ import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/banner_view/banner_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/chapter_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/aboutMe_view/about_me_page.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/detailMe_view/detail_me_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/intro_view/introShowcase.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/skill_view/skill_page.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -135,6 +136,12 @@ class _MainViewState extends State<_MainView> {
                                             ),
                                             // 어비웃 미 페이지
                                             AboutMePage(
+                                              state: state,
+                                              desktopCubit:
+                                                  context.read<DesktopCubit>(),
+                                            ),
+                                            // 더 자세히 살펴보기 페이지
+                                            DetailMePage(
                                               state: state,
                                               desktopCubit:
                                                   context.read<DesktopCubit>(),

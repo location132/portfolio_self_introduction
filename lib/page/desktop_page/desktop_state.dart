@@ -7,6 +7,7 @@ import 'package:self_introduction_flutter/model/main_page/description_model.dart
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/model/main_page/start_animation_model.dart';
+import 'package:self_introduction_flutter/model/main_page/detail_me_model.dart';
 
 part 'desktop_state.freezed.dart';
 
@@ -36,5 +37,8 @@ class DesktopState with _$DesktopState {
 
     //InitModel
     @Default(InitModel()) InitModel initModel,
+
+    //DetailMeModel
+    @Default(DetailMeModel()) DetailMeModel detailMeModel,
   }) = _DesktopState;
 }

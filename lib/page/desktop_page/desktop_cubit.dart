@@ -234,6 +234,27 @@ class DesktopCubit extends Cubit<DesktopState> {
     );
   }
 
+  //더 자세히 살펴보기 Rive 애니메이션 시작
+  void detailMeRiveStart() async {
+    emit(
+      state.copyWith(
+        detailMeModel: state.detailMeModel.copyWith(isDetailMeRiveStart: true),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 900));
+    emit(
+      state.copyWith(
+        detailMeModel: state.detailMeModel.copyWith(isAppPageStart: true),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 400));
+    emit(
+      state.copyWith(
+        detailMeModel: state.detailMeModel.copyWith(isAppPageScrollStart: true),
+      ),
+    );
+  }
+
   //플레이어 활성화
   void playerActive(String sectionName) {
     if (sectionName == 'banner' && state.bannerModel.isPlayerActive == false) {

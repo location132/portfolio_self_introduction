@@ -32,7 +32,8 @@ mixin _$DesktopState {
       throw _privateConstructorUsedError; //ProfileModel
   AboutMeModel get aboutMeModel =>
       throw _privateConstructorUsedError; //InitModel
-  InitModel get initModel => throw _privateConstructorUsedError;
+  InitModel get initModel => throw _privateConstructorUsedError; //DetailMeModel
+  DetailMeModel get detailMeModel => throw _privateConstructorUsedError;
 
   /// Create a copy of DesktopState
   /// with the given fields replaced by the non-null parameter values.
@@ -57,6 +58,7 @@ abstract class $DesktopStateCopyWith<$Res> {
     ScrollModel scrollModel,
     AboutMeModel aboutMeModel,
     InitModel initModel,
+    DetailMeModel detailMeModel,
   });
 
   $StartAnimationModelCopyWith<$Res>? get startAnimation;
@@ -67,6 +69,7 @@ abstract class $DesktopStateCopyWith<$Res> {
   $ScrollModelCopyWith<$Res> get scrollModel;
   $AboutMeModelCopyWith<$Res> get aboutMeModel;
   $InitModelCopyWith<$Res> get initModel;
+  $DetailMeModelCopyWith<$Res> get detailMeModel;
 }
 
 /// @nodoc
@@ -92,6 +95,7 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
     Object? scrollModel = null,
     Object? aboutMeModel = null,
     Object? initModel = null,
+    Object? detailMeModel = null,
   }) {
     return _then(
       _value.copyWith(
@@ -135,6 +139,11 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
                     ? _value.initModel
                     : initModel // ignore: cast_nullable_to_non_nullable
                         as InitModel,
+            detailMeModel:
+                null == detailMeModel
+                    ? _value.detailMeModel
+                    : detailMeModel // ignore: cast_nullable_to_non_nullable
+                        as DetailMeModel,
           )
           as $Val,
     );
@@ -223,6 +232,16 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
       return _then(_value.copyWith(initModel: value) as $Val);
     });
   }
+
+  /// Create a copy of DesktopState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DetailMeModelCopyWith<$Res> get detailMeModel {
+    return $DetailMeModelCopyWith<$Res>(_value.detailMeModel, (value) {
+      return _then(_value.copyWith(detailMeModel: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -243,6 +262,7 @@ abstract class _$$DesktopStateImplCopyWith<$Res>
     ScrollModel scrollModel,
     AboutMeModel aboutMeModel,
     InitModel initModel,
+    DetailMeModel detailMeModel,
   });
 
   @override
@@ -261,6 +281,8 @@ abstract class _$$DesktopStateImplCopyWith<$Res>
   $AboutMeModelCopyWith<$Res> get aboutMeModel;
   @override
   $InitModelCopyWith<$Res> get initModel;
+  @override
+  $DetailMeModelCopyWith<$Res> get detailMeModel;
 }
 
 /// @nodoc
@@ -285,6 +307,7 @@ class __$$DesktopStateImplCopyWithImpl<$Res>
     Object? scrollModel = null,
     Object? aboutMeModel = null,
     Object? initModel = null,
+    Object? detailMeModel = null,
   }) {
     return _then(
       _$DesktopStateImpl(
@@ -328,6 +351,11 @@ class __$$DesktopStateImplCopyWithImpl<$Res>
                 ? _value.initModel
                 : initModel // ignore: cast_nullable_to_non_nullable
                     as InitModel,
+        detailMeModel:
+            null == detailMeModel
+                ? _value.detailMeModel
+                : detailMeModel // ignore: cast_nullable_to_non_nullable
+                    as DetailMeModel,
       ),
     );
   }
@@ -345,6 +373,7 @@ class _$DesktopStateImpl implements _DesktopState {
     this.scrollModel = const ScrollModel(),
     this.aboutMeModel = const AboutMeModel(),
     this.initModel = const InitModel(),
+    this.detailMeModel = const DetailMeModel(),
   });
 
   //StartAnimation 컨트롤러
@@ -378,10 +407,14 @@ class _$DesktopStateImpl implements _DesktopState {
   @override
   @JsonKey()
   final InitModel initModel;
+  //DetailMeModel
+  @override
+  @JsonKey()
+  final DetailMeModel detailMeModel;
 
   @override
   String toString() {
-    return 'DesktopState(startAnimation: $startAnimation, bannerModel: $bannerModel, mySkillModel: $mySkillModel, chapterModel: $chapterModel, descriptionModel: $descriptionModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel, initModel: $initModel)';
+    return 'DesktopState(startAnimation: $startAnimation, bannerModel: $bannerModel, mySkillModel: $mySkillModel, chapterModel: $chapterModel, descriptionModel: $descriptionModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel, initModel: $initModel, detailMeModel: $detailMeModel)';
   }
 
   @override
@@ -404,7 +437,9 @@ class _$DesktopStateImpl implements _DesktopState {
             (identical(other.aboutMeModel, aboutMeModel) ||
                 other.aboutMeModel == aboutMeModel) &&
             (identical(other.initModel, initModel) ||
-                other.initModel == initModel));
+                other.initModel == initModel) &&
+            (identical(other.detailMeModel, detailMeModel) ||
+                other.detailMeModel == detailMeModel));
   }
 
   @override
@@ -418,6 +453,7 @@ class _$DesktopStateImpl implements _DesktopState {
     scrollModel,
     aboutMeModel,
     initModel,
+    detailMeModel,
   );
 
   /// Create a copy of DesktopState
@@ -439,6 +475,7 @@ abstract class _DesktopState implements DesktopState {
     final ScrollModel scrollModel,
     final AboutMeModel aboutMeModel,
     final InitModel initModel,
+    final DetailMeModel detailMeModel,
   }) = _$DesktopStateImpl;
 
   //StartAnimation 컨트롤러
@@ -457,7 +494,9 @@ abstract class _DesktopState implements DesktopState {
   @override
   AboutMeModel get aboutMeModel; //InitModel
   @override
-  InitModel get initModel;
+  InitModel get initModel; //DetailMeModel
+  @override
+  DetailMeModel get detailMeModel;
 
   /// Create a copy of DesktopState
   /// with the given fields replaced by the non-null parameter values.
