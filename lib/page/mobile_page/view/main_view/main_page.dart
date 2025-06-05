@@ -8,7 +8,7 @@ import 'package:self_introduction_flutter/model/mobile_page/detailMe_model.dart'
 import 'package:self_introduction_flutter/model/mobile_page/skill_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/project_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
-import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/aboutMe_page.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/about_me_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/chapter_view/chapter_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/detail_view/detailMe_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/skill_view/skill_page.dart';

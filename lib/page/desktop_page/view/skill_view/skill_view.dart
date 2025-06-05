@@ -5,7 +5,6 @@ import 'package:self_introduction_flutter/core_service/util/device_Info_size.dar
 import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 import 'package:self_introduction_flutter/page/desktop_page/widgets/title_text.dart';
-import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/widget/player.dart';
 
 class SkillView extends StatefulWidget {
   final DesktopState state;
@@ -46,15 +45,6 @@ class _SkillViewState extends State<SkillView> {
         ),
 
         SizedBox(height: 80.sh),
-        Player(
-          isPlayerAniOpacity: widget.state.mySkillModel.isPlayerActive,
-          isPlayerText: 'About Me 조금 더 궁금하다면 Click!',
-          duration: const Duration(milliseconds: 800),
-          fontSize: 14,
-          onTap: () {
-            widget.desktopCubit.playerActive('banner');
-          },
-        ),
       ],
     );
   }

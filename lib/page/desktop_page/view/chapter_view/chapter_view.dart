@@ -232,7 +232,7 @@ class _DesktopChapterViewState extends State<DesktopChapterView>
             ],
           ),
         ),
-        SizedBox(height: 20.sh),
+        SizedBox(height: 80.sh),
       ],
     );
   }

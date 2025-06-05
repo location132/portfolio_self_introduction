@@ -24,7 +24,7 @@ class FirstCard extends StatelessWidget {
             left: 0,
             right: 0,
             child: Image.asset(
-              'assets/Images/Magic Studio Magic Expand L&P - MOBILE.png',
+              'assets/Images/active_chapter_1.png',
               fit: BoxFit.cover,
             ),
           ),

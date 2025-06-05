@@ -111,10 +111,14 @@ class _MainViewState extends State<_MainView> {
                                     Visibility(
                                       visible:
                                           state.chapterModel.isChapterActive,
-                                      child: ChapterPage(
-                                        state: state,
-                                        desktopCubit:
-                                            context.read<DesktopCubit>(),
+                                      child: Column(
+                                        children: [
+                                          ChapterPage(
+                                            state: state,
+                                            desktopCubit:
+                                                context.read<DesktopCubit>(),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
