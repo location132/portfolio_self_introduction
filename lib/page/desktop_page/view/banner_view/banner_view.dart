@@ -47,30 +47,27 @@ class _BannerViewState extends State<BannerView> {
               BannerDescriptionState.active,
           child: SizedBox(
             height: 400,
-            child: AnimatedOpacity(
-              opacity:
-                  widget.state.descriptionModel.bannerDescriptionState ==
-                          BannerDescriptionState.active
-                      ? 0
-                      : 1,
-              duration: const Duration(milliseconds: 1200),
-              child: BannerRive(
-                isStartAni:
-                    widget.state.scrollModel.bannerState ==
-                    BannerState.activated,
-              ),
+            child: BannerRive(
+              isStartAni:
+                  widget.state.scrollModel.bannerState == BannerState.activated,
             ),
           ),
         ),
         SizedBox(height: 80.sh),
-        Player(
-          isPlayerAniOpacity: widget.state.bannerModel.isPlayerActive,
-          isPlayerText: 'About Me 조금 더 궁금하다면 Click!',
-          duration: const Duration(milliseconds: 800),
-          fontSize: 14,
-          onTap: () {
-            widget.desktopCubit.playerActive('banner');
-          },
+        Visibility(
+          visible:
+              widget.state.descriptionModel.bannerDescriptionState !=
+              BannerDescriptionState.active,
+          child: Player(
+            isPlayerAniOpacity: widget.state.bannerModel.isPlayerActive,
+            isPlayerText: 'About Me 조금 더 궁금하다면 Click!',
+            duration: const Duration(milliseconds: 800),
+            fontSize: 14,
+            onTap: () {
+              widget.desktopCubit.playerActive('banner', isActive: false);
+              widget.isActive(true);
+            },
+          ),
         ),
       ],
     );

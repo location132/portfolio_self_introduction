@@ -26,10 +26,6 @@ class BannerPage extends StatelessWidget {
                 state.scrollModel.bannerState == BannerState.inactive) {
               context.read<DesktopCubit>().viewListener('banner');
             }
-            if (info.visibleFraction > 0.6 &&
-                state.scrollModel.bannerState == BannerState.activated) {
-              context.read<DesktopCubit>().playerActive('banner');
-            }
           },
           child: BannerView(
             desktopCubit: desktopCubit,

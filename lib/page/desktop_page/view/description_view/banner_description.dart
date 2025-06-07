@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/condition_utils/condition_utils.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
-import 'package:self_introduction_flutter/page/desktop_page/view/banner_view/widgets/circle_menu.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/banner_view/widgets/banner_menu.dart';
 
 class SectionDescription extends StatefulWidget {
   final DesktopState state;
@@ -22,7 +22,6 @@ class _SectionDescriptionState extends State<SectionDescription>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<Offset> _offsetAnimation;
-  late final Animation<double> _fadeAnimation;
 
   bool _isSelected = false;
 
@@ -38,14 +37,8 @@ class _SectionDescriptionState extends State<SectionDescription>
     _offsetAnimation = Tween<Offset>(
       begin: const Offset(-1, 0.2),
       end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOutCubic,
-    ));
-
-    _fadeAnimation = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOutCubic,
+    ).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic),
     );
   }
 
@@ -76,43 +69,41 @@ class _SectionDescriptionState extends State<SectionDescription>
   Widget build(BuildContext context) {
     return SlideTransition(
       position: _offsetAnimation,
-      child: FadeTransition(
-        opacity: _fadeAnimation,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 800),
-          curve: Curves.easeInOut,
-          width: double.infinity,
-          height: _isSelected ? MediaQuery.of(context).size.height - 400 : 0,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color.fromARGB(255, 168, 216, 243),
-                Color.fromARGB(255, 127, 234, 161)
-              ],
-            ),
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(13),
-              bottomRight: Radius.circular(13),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 15,
-                offset: Offset(5, 5),
-              ),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 800),
+        curve: Curves.easeInOut,
+        width: double.infinity,
+        height: _isSelected ? 928 : 0,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color.fromARGB(255, 168, 216, 243),
+              Color.fromARGB(255, 127, 234, 161),
             ],
           ),
-          child: _isSelected
-              ? Center(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(13),
+            bottomRight: Radius.circular(13),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 15,
+              offset: Offset(5, 5),
+            ),
+          ],
+        ),
+        child:
+            _isSelected
+                ? Center(
                   child: MenuLayout(
                     isActive: widget.isActive,
                     state: widget.state,
                   ),
                 )
-              : const SizedBox.shrink(),
-        ),
+                : const SizedBox.shrink(),
       ),
     );
   }

@@ -186,6 +186,8 @@ class DesktopCubit extends Cubit<DesktopState> {
           ),
         ),
       );
+      await Future.delayed(const Duration(milliseconds: 500));
+      playerActive('banner', isActive: true);
     } else if (ProfileViewConditionUtils.isChapterScrollActive(viewName)) {
       emit(
         state.copyWith(
@@ -278,19 +280,18 @@ class DesktopCubit extends Cubit<DesktopState> {
     );
   }
 
-  //플레이어 활성화
-  void playerActive(String sectionName) {
-    if (sectionName == 'banner' && state.bannerModel.isPlayerActive == false) {
+  //플레이어 활성화/비활성화
+  void playerActive(String sectionName, {bool isActive = true}) {
+    if (sectionName == 'banner') {
       emit(
         state.copyWith(
-          bannerModel: state.bannerModel.copyWith(isPlayerActive: true),
+          bannerModel: state.bannerModel.copyWith(isPlayerActive: isActive),
         ),
       );
-    } else if (sectionName == 'skill' &&
-        state.mySkillModel.isPlayerActive == false) {
+    } else if (sectionName == 'skill') {
       emit(
         state.copyWith(
-          mySkillModel: state.mySkillModel.copyWith(isPlayerActive: true),
+          mySkillModel: state.mySkillModel.copyWith(isPlayerActive: isActive),
         ),
       );
     }
@@ -309,6 +310,9 @@ class DesktopCubit extends Cubit<DesktopState> {
           ),
         ),
       );
+      if (isActive == false) {
+        _delayedPlayerActivation();
+      }
     } else if (descriptionName == 'chapter') {
       emit(
         state.copyWith(
@@ -331,6 +335,14 @@ class DesktopCubit extends Cubit<DesktopState> {
           ),
         ),
       );
+    }
+  }
+
+  // 1초 딜레이 후 플레이어 활성화
+  void _delayedPlayerActivation() async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    if (!isClosed) {
+      playerActive('banner', isActive: true);
     }
   }
 
