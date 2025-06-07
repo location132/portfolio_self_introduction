@@ -19,6 +19,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BannerModel {
   bool get isPlayerActive => throw _privateConstructorUsedError;
   bool get player => throw _privateConstructorUsedError;
+  int get currentTitleIndex => throw _privateConstructorUsedError;
+  bool get isTitleChanging => throw _privateConstructorUsedError;
+  bool get isButtonVisible => throw _privateConstructorUsedError;
+  bool get isBannerActive => throw _privateConstructorUsedError;
 
   /// Create a copy of BannerModel
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +38,14 @@ abstract class $BannerModelCopyWith<$Res> {
     $Res Function(BannerModel) then,
   ) = _$BannerModelCopyWithImpl<$Res, BannerModel>;
   @useResult
-  $Res call({bool isPlayerActive, bool player});
+  $Res call({
+    bool isPlayerActive,
+    bool player,
+    int currentTitleIndex,
+    bool isTitleChanging,
+    bool isButtonVisible,
+    bool isBannerActive,
+  });
 }
 
 /// @nodoc
@@ -51,7 +62,14 @@ class _$BannerModelCopyWithImpl<$Res, $Val extends BannerModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? isPlayerActive = null, Object? player = null}) {
+  $Res call({
+    Object? isPlayerActive = null,
+    Object? player = null,
+    Object? currentTitleIndex = null,
+    Object? isTitleChanging = null,
+    Object? isButtonVisible = null,
+    Object? isBannerActive = null,
+  }) {
     return _then(
       _value.copyWith(
             isPlayerActive:
@@ -63,6 +81,26 @@ class _$BannerModelCopyWithImpl<$Res, $Val extends BannerModel>
                 null == player
                     ? _value.player
                     : player // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            currentTitleIndex:
+                null == currentTitleIndex
+                    ? _value.currentTitleIndex
+                    : currentTitleIndex // ignore: cast_nullable_to_non_nullable
+                        as int,
+            isTitleChanging:
+                null == isTitleChanging
+                    ? _value.isTitleChanging
+                    : isTitleChanging // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isButtonVisible:
+                null == isButtonVisible
+                    ? _value.isButtonVisible
+                    : isButtonVisible // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isBannerActive:
+                null == isBannerActive
+                    ? _value.isBannerActive
+                    : isBannerActive // ignore: cast_nullable_to_non_nullable
                         as bool,
           )
           as $Val,
@@ -79,7 +117,14 @@ abstract class _$$BannerModelImplCopyWith<$Res>
   ) = __$$BannerModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isPlayerActive, bool player});
+  $Res call({
+    bool isPlayerActive,
+    bool player,
+    int currentTitleIndex,
+    bool isTitleChanging,
+    bool isButtonVisible,
+    bool isBannerActive,
+  });
 }
 
 /// @nodoc
@@ -95,7 +140,14 @@ class __$$BannerModelImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? isPlayerActive = null, Object? player = null}) {
+  $Res call({
+    Object? isPlayerActive = null,
+    Object? player = null,
+    Object? currentTitleIndex = null,
+    Object? isTitleChanging = null,
+    Object? isButtonVisible = null,
+    Object? isBannerActive = null,
+  }) {
     return _then(
       _$BannerModelImpl(
         isPlayerActive:
@@ -108,6 +160,26 @@ class __$$BannerModelImplCopyWithImpl<$Res>
                 ? _value.player
                 : player // ignore: cast_nullable_to_non_nullable
                     as bool,
+        currentTitleIndex:
+            null == currentTitleIndex
+                ? _value.currentTitleIndex
+                : currentTitleIndex // ignore: cast_nullable_to_non_nullable
+                    as int,
+        isTitleChanging:
+            null == isTitleChanging
+                ? _value.isTitleChanging
+                : isTitleChanging // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isButtonVisible:
+            null == isButtonVisible
+                ? _value.isButtonVisible
+                : isButtonVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isBannerActive:
+            null == isBannerActive
+                ? _value.isBannerActive
+                : isBannerActive // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -116,7 +188,14 @@ class __$$BannerModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BannerModelImpl implements _BannerModel {
-  const _$BannerModelImpl({this.isPlayerActive = false, this.player = false});
+  const _$BannerModelImpl({
+    this.isPlayerActive = false,
+    this.player = false,
+    this.currentTitleIndex = 0,
+    this.isTitleChanging = false,
+    this.isButtonVisible = false,
+    this.isBannerActive = false,
+  });
 
   @override
   @JsonKey()
@@ -124,10 +203,22 @@ class _$BannerModelImpl implements _BannerModel {
   @override
   @JsonKey()
   final bool player;
+  @override
+  @JsonKey()
+  final int currentTitleIndex;
+  @override
+  @JsonKey()
+  final bool isTitleChanging;
+  @override
+  @JsonKey()
+  final bool isButtonVisible;
+  @override
+  @JsonKey()
+  final bool isBannerActive;
 
   @override
   String toString() {
-    return 'BannerModel(isPlayerActive: $isPlayerActive, player: $player)';
+    return 'BannerModel(isPlayerActive: $isPlayerActive, player: $player, currentTitleIndex: $currentTitleIndex, isTitleChanging: $isTitleChanging, isButtonVisible: $isButtonVisible, isBannerActive: $isBannerActive)';
   }
 
   @override
@@ -137,11 +228,27 @@ class _$BannerModelImpl implements _BannerModel {
             other is _$BannerModelImpl &&
             (identical(other.isPlayerActive, isPlayerActive) ||
                 other.isPlayerActive == isPlayerActive) &&
-            (identical(other.player, player) || other.player == player));
+            (identical(other.player, player) || other.player == player) &&
+            (identical(other.currentTitleIndex, currentTitleIndex) ||
+                other.currentTitleIndex == currentTitleIndex) &&
+            (identical(other.isTitleChanging, isTitleChanging) ||
+                other.isTitleChanging == isTitleChanging) &&
+            (identical(other.isButtonVisible, isButtonVisible) ||
+                other.isButtonVisible == isButtonVisible) &&
+            (identical(other.isBannerActive, isBannerActive) ||
+                other.isBannerActive == isBannerActive));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isPlayerActive, player);
+  int get hashCode => Object.hash(
+    runtimeType,
+    isPlayerActive,
+    player,
+    currentTitleIndex,
+    isTitleChanging,
+    isButtonVisible,
+    isBannerActive,
+  );
 
   /// Create a copy of BannerModel
   /// with the given fields replaced by the non-null parameter values.
@@ -153,13 +260,27 @@ class _$BannerModelImpl implements _BannerModel {
 }
 
 abstract class _BannerModel implements BannerModel {
-  const factory _BannerModel({final bool isPlayerActive, final bool player}) =
-      _$BannerModelImpl;
+  const factory _BannerModel({
+    final bool isPlayerActive,
+    final bool player,
+    final int currentTitleIndex,
+    final bool isTitleChanging,
+    final bool isButtonVisible,
+    final bool isBannerActive,
+  }) = _$BannerModelImpl;
 
   @override
   bool get isPlayerActive;
   @override
   bool get player;
+  @override
+  int get currentTitleIndex;
+  @override
+  bool get isTitleChanging;
+  @override
+  bool get isButtonVisible;
+  @override
+  bool get isBannerActive;
 
   /// Create a copy of BannerModel
   /// with the given fields replaced by the non-null parameter values.

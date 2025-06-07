@@ -111,6 +111,20 @@ class TitleTextConstants {
     {'title': 'Flutter', 'subTitle': ' 신입은 역시,', 'description': ' 이정원'},
     {'title': '알면,', 'subTitle': ' 알수록', 'description': ' 이정원'},
   ];
+
+  // 배너 섹션 제목들
+  static const List<Map<String, String>> bannerTitles = [
+    {
+      'title': 'Intro.',
+      'subTitle': ' 시작부터 다르게',
+      'description': ' 이어지는 About Me.',
+    },
+    {
+      'title': 'About Me.',
+      'subTitle': ' 짧지만 깊게',
+      'description': ' 나를 담은 소개 애니메이션',
+    },
+  ];
 }
 
 class EducationTextConstants {

@@ -181,13 +181,37 @@ class DesktopCubit extends Cubit<DesktopState> {
     if (ProfileViewConditionUtils.isBannerScrollActive(viewName)) {
       emit(
         state.copyWith(
-          scrollModel: state.scrollModel.copyWith(
-            bannerState: BannerState.activated,
+          bannerModel: state.bannerModel.copyWith(
+            isBannerActive: true,
+            currentTitleIndex: 1,
           ),
         ),
       );
+
+      await Future.delayed(const Duration(milliseconds: 400));
+      if (!isClosed) {
+        emit(
+          state.copyWith(
+            bannerModel: state.bannerModel.copyWith(isButtonVisible: true),
+          ),
+        );
+      }
+
+      await Future.delayed(const Duration(milliseconds: 600));
+      if (!isClosed) {
+        emit(
+          state.copyWith(
+            scrollModel: state.scrollModel.copyWith(
+              bannerState: BannerState.activated,
+            ),
+          ),
+        );
+      }
+
       await Future.delayed(const Duration(milliseconds: 500));
-      playerActive('banner', isActive: true);
+      if (!isClosed) {
+        playerActive('banner', isActive: true);
+      }
     } else if (ProfileViewConditionUtils.isChapterScrollActive(viewName)) {
       emit(
         state.copyWith(
@@ -420,6 +444,75 @@ class DesktopCubit extends Cubit<DesktopState> {
           ),
         ),
       );
+    }
+  }
+
+  // 배너 제목 이전으로 이동
+  void bannerTitlePrevious() async {
+    final currentIndex = state.bannerModel.currentTitleIndex;
+    if (currentIndex > 0 && state.bannerModel.isBannerActive) {
+      emit(
+        state.copyWith(
+          scrollModel: state.scrollModel.copyWith(
+            bannerState: BannerState.inactive,
+          ),
+          bannerModel: state.bannerModel.copyWith(isTitleChanging: true),
+        ),
+      );
+      emit(
+        state.copyWith(
+          bannerModel: state.bannerModel.copyWith(currentTitleIndex: 0),
+        ),
+      );
+
+      await Future.delayed(const Duration(milliseconds: 400));
+      if (!isClosed) {
+        emit(
+          state.copyWith(
+            bannerModel: state.bannerModel.copyWith(isTitleChanging: false),
+            scrollModel: state.scrollModel.copyWith(
+              bannerState: BannerState.activated,
+            ),
+          ),
+        );
+      }
+    }
+  }
+
+  // 배너 제목 다음으로 이동
+  void bannerTitleNext() async {
+    final currentIndex = state.bannerModel.currentTitleIndex;
+    const maxIndex = 1;
+    if (currentIndex < maxIndex && state.bannerModel.isBannerActive) {
+      emit(
+        state.copyWith(
+          scrollModel: state.scrollModel.copyWith(
+            bannerState: BannerState.inactive,
+          ),
+          bannerModel: state.bannerModel.copyWith(isTitleChanging: true),
+        ),
+      );
+
+      // 제목 변경
+      emit(
+        state.copyWith(
+          bannerModel: state.bannerModel.copyWith(
+            currentTitleIndex: 1, // 두 번째 제목으로 변경
+          ),
+        ),
+      );
+
+      await Future.delayed(const Duration(milliseconds: 400));
+      if (!isClosed) {
+        emit(
+          state.copyWith(
+            bannerModel: state.bannerModel.copyWith(isTitleChanging: false),
+            scrollModel: state.scrollModel.copyWith(
+              bannerState: BannerState.activated,
+            ),
+          ),
+        );
+      }
     }
   }
 
