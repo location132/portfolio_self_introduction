@@ -20,6 +20,7 @@ mixin _$ChapterModel {
   bool get isBlackBackgroundColor => throw _privateConstructorUsedError;
   bool get isChapterActive => throw _privateConstructorUsedError;
   int get currentTitleIndex => throw _privateConstructorUsedError;
+  bool get isManuallyChanged => throw _privateConstructorUsedError;
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.
@@ -39,6 +40,7 @@ abstract class $ChapterModelCopyWith<$Res> {
     bool isBlackBackgroundColor,
     bool isChapterActive,
     int currentTitleIndex,
+    bool isManuallyChanged,
   });
 }
 
@@ -60,6 +62,7 @@ class _$ChapterModelCopyWithImpl<$Res, $Val extends ChapterModel>
     Object? isBlackBackgroundColor = null,
     Object? isChapterActive = null,
     Object? currentTitleIndex = null,
+    Object? isManuallyChanged = null,
   }) {
     return _then(
       _value.copyWith(
@@ -78,6 +81,11 @@ class _$ChapterModelCopyWithImpl<$Res, $Val extends ChapterModel>
                     ? _value.currentTitleIndex
                     : currentTitleIndex // ignore: cast_nullable_to_non_nullable
                         as int,
+            isManuallyChanged:
+                null == isManuallyChanged
+                    ? _value.isManuallyChanged
+                    : isManuallyChanged // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -97,6 +105,7 @@ abstract class _$$ChapterModelImplCopyWith<$Res>
     bool isBlackBackgroundColor,
     bool isChapterActive,
     int currentTitleIndex,
+    bool isManuallyChanged,
   });
 }
 
@@ -117,6 +126,7 @@ class __$$ChapterModelImplCopyWithImpl<$Res>
     Object? isBlackBackgroundColor = null,
     Object? isChapterActive = null,
     Object? currentTitleIndex = null,
+    Object? isManuallyChanged = null,
   }) {
     return _then(
       _$ChapterModelImpl(
@@ -135,6 +145,11 @@ class __$$ChapterModelImplCopyWithImpl<$Res>
                 ? _value.currentTitleIndex
                 : currentTitleIndex // ignore: cast_nullable_to_non_nullable
                     as int,
+        isManuallyChanged:
+            null == isManuallyChanged
+                ? _value.isManuallyChanged
+                : isManuallyChanged // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -147,6 +162,7 @@ class _$ChapterModelImpl implements _ChapterModel {
     this.isBlackBackgroundColor = false,
     this.isChapterActive = false,
     this.currentTitleIndex = 0,
+    this.isManuallyChanged = false,
   });
 
   @override
@@ -158,10 +174,13 @@ class _$ChapterModelImpl implements _ChapterModel {
   @override
   @JsonKey()
   final int currentTitleIndex;
+  @override
+  @JsonKey()
+  final bool isManuallyChanged;
 
   @override
   String toString() {
-    return 'ChapterModel(isBlackBackgroundColor: $isBlackBackgroundColor, isChapterActive: $isChapterActive, currentTitleIndex: $currentTitleIndex)';
+    return 'ChapterModel(isBlackBackgroundColor: $isBlackBackgroundColor, isChapterActive: $isChapterActive, currentTitleIndex: $currentTitleIndex, isManuallyChanged: $isManuallyChanged)';
   }
 
   @override
@@ -174,7 +193,9 @@ class _$ChapterModelImpl implements _ChapterModel {
             (identical(other.isChapterActive, isChapterActive) ||
                 other.isChapterActive == isChapterActive) &&
             (identical(other.currentTitleIndex, currentTitleIndex) ||
-                other.currentTitleIndex == currentTitleIndex));
+                other.currentTitleIndex == currentTitleIndex) &&
+            (identical(other.isManuallyChanged, isManuallyChanged) ||
+                other.isManuallyChanged == isManuallyChanged));
   }
 
   @override
@@ -183,6 +204,7 @@ class _$ChapterModelImpl implements _ChapterModel {
     isBlackBackgroundColor,
     isChapterActive,
     currentTitleIndex,
+    isManuallyChanged,
   );
 
   /// Create a copy of ChapterModel
@@ -199,6 +221,7 @@ abstract class _ChapterModel implements ChapterModel {
     final bool isBlackBackgroundColor,
     final bool isChapterActive,
     final int currentTitleIndex,
+    final bool isManuallyChanged,
   }) = _$ChapterModelImpl;
 
   @override
@@ -207,6 +230,8 @@ abstract class _ChapterModel implements ChapterModel {
   bool get isChapterActive;
   @override
   int get currentTitleIndex;
+  @override
+  bool get isManuallyChanged;
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.

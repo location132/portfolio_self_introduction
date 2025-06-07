@@ -66,8 +66,7 @@ class _DesktopChapterViewState extends State<DesktopChapterView>
             onNext: () => widget.desktopCubit.chapterTitleNext(),
           ),
         ),
-        SizedBox(height: 40.sh),
-        const SizedBox(width: 20),
+        SizedBox(height: 40),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           clipBehavior: Clip.none,

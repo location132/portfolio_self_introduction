@@ -28,13 +28,29 @@ class ChapterTitle extends StatelessWidget {
         SizedBox(height: 120),
 
         AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 400),
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return FadeTransition(
+              opacity: animation,
+              child: SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0, 0.1),
+                  end: Offset.zero,
+                ).animate(
+                  CurvedAnimation(parent: animation, curve: Curves.easeOut),
+                ),
+                child: child,
+              ),
+            );
+          },
           child: TitleText(
-            key: ValueKey(currentTitleIndex),
+            key: ValueKey(
+              'chapter_title_${currentTitleIndex}_$isChapterActive',
+            ),
             title: currentTitle['title']!,
             subTitle: currentTitle['subTitle']!,
             description: currentTitle['description']!,
-            titleFontSize: 34,
+            titleFontSize: currentTitleIndex == 0 ? 35 : 33,
             color: isBlackBackground ? Colors.white : Colors.black,
             isOneLine: true,
             isVisible: true,

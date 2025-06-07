@@ -8,5 +8,6 @@ class ChapterModel with _$ChapterModel {
     @Default(false) bool isBlackBackgroundColor,
     @Default(false) bool isChapterActive,
     @Default(0) int currentTitleIndex,
+    @Default(false) bool isManuallyChanged,
   }) = _ChapterModel;
 }

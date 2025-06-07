@@ -239,6 +239,8 @@ class DesktopCubit extends Cubit<DesktopState> {
       state.copyWith(
         chapterModel: state.chapterModel.copyWith(
           isBlackBackgroundColor: isActive,
+          currentTitleIndex: isActive ? 1 : 0,
+          isManuallyChanged: false,
         ),
       ),
     );
@@ -398,6 +400,7 @@ class DesktopCubit extends Cubit<DesktopState> {
         state.copyWith(
           chapterModel: state.chapterModel.copyWith(
             currentTitleIndex: currentIndex - 1,
+            isManuallyChanged: true,
           ),
         ),
       );
@@ -407,12 +410,13 @@ class DesktopCubit extends Cubit<DesktopState> {
   // 챕터 제목 다음으로
   void chapterTitleNext() {
     final currentIndex = state.chapterModel.currentTitleIndex;
-    const maxIndex = 1; // 총 2개의 제목이 있다고 가정
+    const maxIndex = 1;
     if (currentIndex < maxIndex) {
       emit(
         state.copyWith(
           chapterModel: state.chapterModel.copyWith(
             currentTitleIndex: currentIndex + 1,
+            isManuallyChanged: true,
           ),
         ),
       );
