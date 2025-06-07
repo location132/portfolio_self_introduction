@@ -265,6 +265,17 @@ class DesktopCubit extends Cubit<DesktopState> {
     );
   }
 
+  //더 자세히 살펴보기 뷰의 가시성 업데이트
+  void updateDetailMeVisibility(double visibilityFraction) {
+    emit(
+      state.copyWith(
+        detailMeModel: state.detailMeModel.copyWith(
+          visibilityFraction: visibilityFraction,
+        ),
+      ),
+    );
+  }
+
   //플레이어 활성화
   void playerActive(String sectionName) {
     if (sectionName == 'banner' && state.bannerModel.isPlayerActive == false) {

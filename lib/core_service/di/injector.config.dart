@@ -22,8 +22,8 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    gh.factory<_i673.MobileCubit>(() => _i673.MobileCubit()..init());
     gh.factory<_i903.DesktopCubit>(() => _i903.DesktopCubit()..init());
+    gh.factory<_i673.MobileCubit>(() => _i673.MobileCubit()..init());
     return this;
   }
 }

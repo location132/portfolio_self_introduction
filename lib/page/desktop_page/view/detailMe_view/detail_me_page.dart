@@ -24,6 +24,7 @@ class DetailMePage extends StatelessWidget {
           key: const Key('detail-me-view'),
           onVisibilityChanged: (VisibilityInfo info) {
             if (MediaQuery.of(context).size.height > 1100) {
+              desktopCubit.updateDetailMeVisibility(info.visibleFraction);
               if (info.visibleFraction == 1 &&
                   !state.detailMeModel.isDetailMeRiveStart) {
                 desktopCubit.detailMeRiveStart();
@@ -31,6 +32,7 @@ class DetailMePage extends StatelessWidget {
             } else if (MediaQuery.of(context).size.height < 983) {
               desktopCubit.detailMeRiveEnd();
             } else {
+              desktopCubit.updateDetailMeVisibility(info.visibleFraction);
               if (info.visibleFraction > 0.8 &&
                   !state.detailMeModel.isDetailMeRiveStart) {
                 desktopCubit.detailMeRiveStart();

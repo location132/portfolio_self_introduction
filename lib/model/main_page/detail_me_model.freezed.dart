@@ -20,6 +20,7 @@ mixin _$DetailMeModel {
   bool get isDetailMeRiveStart => throw _privateConstructorUsedError;
   bool get isAppPageStart => throw _privateConstructorUsedError;
   bool get isAppPageScrollStart => throw _privateConstructorUsedError;
+  double get visibilityFraction => throw _privateConstructorUsedError;
 
   /// Create a copy of DetailMeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -39,6 +40,7 @@ abstract class $DetailMeModelCopyWith<$Res> {
     bool isDetailMeRiveStart,
     bool isAppPageStart,
     bool isAppPageScrollStart,
+    double visibilityFraction,
   });
 }
 
@@ -60,6 +62,7 @@ class _$DetailMeModelCopyWithImpl<$Res, $Val extends DetailMeModel>
     Object? isDetailMeRiveStart = null,
     Object? isAppPageStart = null,
     Object? isAppPageScrollStart = null,
+    Object? visibilityFraction = null,
   }) {
     return _then(
       _value.copyWith(
@@ -78,6 +81,11 @@ class _$DetailMeModelCopyWithImpl<$Res, $Val extends DetailMeModel>
                     ? _value.isAppPageScrollStart
                     : isAppPageScrollStart // ignore: cast_nullable_to_non_nullable
                         as bool,
+            visibilityFraction:
+                null == visibilityFraction
+                    ? _value.visibilityFraction
+                    : visibilityFraction // ignore: cast_nullable_to_non_nullable
+                        as double,
           )
           as $Val,
     );
@@ -97,6 +105,7 @@ abstract class _$$DetailMeModelImplCopyWith<$Res>
     bool isDetailMeRiveStart,
     bool isAppPageStart,
     bool isAppPageScrollStart,
+    double visibilityFraction,
   });
 }
 
@@ -117,6 +126,7 @@ class __$$DetailMeModelImplCopyWithImpl<$Res>
     Object? isDetailMeRiveStart = null,
     Object? isAppPageStart = null,
     Object? isAppPageScrollStart = null,
+    Object? visibilityFraction = null,
   }) {
     return _then(
       _$DetailMeModelImpl(
@@ -135,6 +145,11 @@ class __$$DetailMeModelImplCopyWithImpl<$Res>
                 ? _value.isAppPageScrollStart
                 : isAppPageScrollStart // ignore: cast_nullable_to_non_nullable
                     as bool,
+        visibilityFraction:
+            null == visibilityFraction
+                ? _value.visibilityFraction
+                : visibilityFraction // ignore: cast_nullable_to_non_nullable
+                    as double,
       ),
     );
   }
@@ -147,6 +162,7 @@ class _$DetailMeModelImpl implements _DetailMeModel {
     this.isDetailMeRiveStart = false,
     this.isAppPageStart = false,
     this.isAppPageScrollStart = false,
+    this.visibilityFraction = 0.0,
   });
 
   @override
@@ -158,10 +174,13 @@ class _$DetailMeModelImpl implements _DetailMeModel {
   @override
   @JsonKey()
   final bool isAppPageScrollStart;
+  @override
+  @JsonKey()
+  final double visibilityFraction;
 
   @override
   String toString() {
-    return 'DetailMeModel(isDetailMeRiveStart: $isDetailMeRiveStart, isAppPageStart: $isAppPageStart, isAppPageScrollStart: $isAppPageScrollStart)';
+    return 'DetailMeModel(isDetailMeRiveStart: $isDetailMeRiveStart, isAppPageStart: $isAppPageStart, isAppPageScrollStart: $isAppPageScrollStart, visibilityFraction: $visibilityFraction)';
   }
 
   @override
@@ -174,7 +193,9 @@ class _$DetailMeModelImpl implements _DetailMeModel {
             (identical(other.isAppPageStart, isAppPageStart) ||
                 other.isAppPageStart == isAppPageStart) &&
             (identical(other.isAppPageScrollStart, isAppPageScrollStart) ||
-                other.isAppPageScrollStart == isAppPageScrollStart));
+                other.isAppPageScrollStart == isAppPageScrollStart) &&
+            (identical(other.visibilityFraction, visibilityFraction) ||
+                other.visibilityFraction == visibilityFraction));
   }
 
   @override
@@ -183,6 +204,7 @@ class _$DetailMeModelImpl implements _DetailMeModel {
     isDetailMeRiveStart,
     isAppPageStart,
     isAppPageScrollStart,
+    visibilityFraction,
   );
 
   /// Create a copy of DetailMeModel
@@ -199,6 +221,7 @@ abstract class _DetailMeModel implements DetailMeModel {
     final bool isDetailMeRiveStart,
     final bool isAppPageStart,
     final bool isAppPageScrollStart,
+    final double visibilityFraction,
   }) = _$DetailMeModelImpl;
 
   @override
@@ -207,6 +230,8 @@ abstract class _DetailMeModel implements DetailMeModel {
   bool get isAppPageStart;
   @override
   bool get isAppPageScrollStart;
+  @override
+  double get visibilityFraction;
 
   /// Create a copy of DetailMeModel
   /// with the given fields replaced by the non-null parameter values.

@@ -70,6 +70,16 @@ class _SlowScrollPhysicsState extends State<SlowScrollPhysics> {
               return;
             }
 
+            if (MediaQuery.of(context).size.height > 1100) {
+              if (widget.state.detailMeModel.visibilityFraction == 1) {
+                return;
+              }
+            } else {
+              if (widget.state.detailMeModel.visibilityFraction > 0.7) {
+                return;
+              }
+            }
+
             if (event is PointerScrollEvent) {
               final controller = widget.state.scrollModel.scrollController;
               if (controller != null && controller.hasClients) {
