@@ -40,30 +40,22 @@ class ChapterCardAnimation {
     cardAnimation1 = Tween<Offset>(
       begin: const Offset(0, 0.3),
       end: Offset.zero,
-    ).animate(
-      CurvedAnimation(parent: cardController1, curve: Curves.easeOutBack),
-    );
+    ).animate(CurvedAnimation(parent: cardController1, curve: Curves.easeOut));
 
     cardAnimation2 = Tween<Offset>(
       begin: const Offset(0, 0.3),
       end: Offset.zero,
-    ).animate(
-      CurvedAnimation(parent: cardController2, curve: Curves.easeOutBack),
-    );
+    ).animate(CurvedAnimation(parent: cardController2, curve: Curves.easeOut));
 
     cardAnimation3 = Tween<Offset>(
       begin: const Offset(0, 0.3),
       end: Offset.zero,
-    ).animate(
-      CurvedAnimation(parent: cardController3, curve: Curves.easeOutBack),
-    );
+    ).animate(CurvedAnimation(parent: cardController3, curve: Curves.easeOut));
 
     cardAnimation4 = Tween<Offset>(
       begin: const Offset(0, 0.3),
       end: Offset.zero,
-    ).animate(
-      CurvedAnimation(parent: cardController4, curve: Curves.easeOutBack),
-    );
+    ).animate(CurvedAnimation(parent: cardController4, curve: Curves.easeOut));
 
     cardOpacity1 = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: cardController1, curve: Curves.easeInOut),
