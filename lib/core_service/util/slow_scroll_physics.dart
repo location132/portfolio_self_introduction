@@ -70,14 +70,9 @@ class _SlowScrollPhysicsState extends State<SlowScrollPhysics> {
               return;
             }
 
-            if (MediaQuery.of(context).size.height > 1100) {
-              if (widget.state.detailMeModel.visibilityFraction == 1) {
-                return;
-              }
-            } else {
-              if (widget.state.detailMeModel.visibilityFraction > 0.7) {
-                return;
-              }
+            // SlowScrollPhysics가 비활성화되어 있으면 스크롤 처리하지 않음
+            if (widget.state.detailMeModel.isSlowScrollDisabled) {
+              return;
             }
 
             if (event is PointerScrollEvent) {

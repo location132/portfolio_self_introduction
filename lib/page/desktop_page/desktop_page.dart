@@ -47,7 +47,6 @@ class _MainView extends StatefulWidget {
 class _MainViewState extends State<_MainView> {
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.height);
     return BlocBuilder<DesktopCubit, DesktopState>(
       builder: (context, state) {
         return Center(
@@ -69,15 +68,9 @@ class _MainViewState extends State<_MainView> {
                       child: CustomScrollView(
                         controller: state.scrollModel.scrollController,
                         physics:
-                            MediaQuery.of(context).size.height > 1100
-                                ? state.detailMeModel.visibilityFraction != 1
-                                    ? const NeverScrollableScrollPhysics()
-                                    : const ClampingScrollPhysics()
-                                : MediaQuery.of(context).size.height < 983
-                                ? const NeverScrollableScrollPhysics()
-                                : state.detailMeModel.visibilityFraction < 0.7
-                                ? const NeverScrollableScrollPhysics()
-                                : const ClampingScrollPhysics(),
+                            state.detailMeModel.isSlowScrollDisabled
+                                ? const ClampingScrollPhysics()
+                                : const NeverScrollableScrollPhysics(),
                         slivers: [
                           SliverAppBar(
                             expandedHeight: MediaQuery.of(context).size.height,
@@ -109,20 +102,20 @@ class _MainViewState extends State<_MainView> {
                                 ),
                                 Column(
                                   children: [
-                                    // BannerPage(
-                                    //   state: state,
-                                    //   desktopCubit:
-                                    //       context.read<DesktopCubit>(),
-                                    // ),
+                                    BannerPage(
+                                      state: state,
+                                      desktopCubit:
+                                          context.read<DesktopCubit>(),
+                                    ),
 
-                                    // SkillPage(
-                                    //   state: state,
-                                    //   desktopCubit:
-                                    //       context.read<DesktopCubit>(),
-                                    // ),
+                                    SkillPage(
+                                      state: state,
+                                      desktopCubit:
+                                          context.read<DesktopCubit>(),
+                                    ),
                                     Visibility(
                                       visible:
-                                          !state.chapterModel.isChapterActive,
+                                          state.chapterModel.isChapterActive,
                                       child: VisibilityDetector(
                                         key: const Key('main-view'),
                                         onVisibilityChanged: (info) {

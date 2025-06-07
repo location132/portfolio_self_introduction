@@ -22,18 +22,18 @@ class DesktopCubit extends Cubit<DesktopState> {
   @postConstruct
   void init() async {
     //TODO:  배포 후, 주석 해제
-    // if (!isClosed) {
-    //   emit(
-    //     state.copyWith(
-    //       initModel: state.initModel.copyWith(initState: InitState.active),
-    //     ),
-    //   );
-    // }
+    if (!isClosed) {
+      emit(
+        state.copyWith(
+          initModel: state.initModel.copyWith(initState: InitState.active),
+        ),
+      );
+    }
 
-    // final controller = state.scrollModel.scrollController;
-    // if (controller != null) {
-    //   await changeProfileViewHeight(controller);
-    // }
+    final controller = state.scrollModel.scrollController;
+    if (controller != null) {
+      await changeProfileViewHeight(controller);
+    }
 
     if (!isClosed) {
       emit(
@@ -265,12 +265,14 @@ class DesktopCubit extends Cubit<DesktopState> {
     );
   }
 
-  //더 자세히 살펴보기 뷰의 가시성 업데이트
-  void updateDetailMeVisibility(double visibilityFraction) {
+  //더 자세히 살펴보기 SlowScrollPhysics 비활성화
+  void updateSlowScrollState(bool shouldDisable) {
+    if (state.detailMeModel.isSlowScrollDisabled == shouldDisable) return;
+
     emit(
       state.copyWith(
         detailMeModel: state.detailMeModel.copyWith(
-          visibilityFraction: visibilityFraction,
+          isSlowScrollDisabled: shouldDisable,
         ),
       ),
     );

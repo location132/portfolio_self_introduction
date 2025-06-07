@@ -8,6 +8,6 @@ class DetailMeModel with _$DetailMeModel {
     @Default(false) bool isDetailMeRiveStart,
     @Default(false) bool isAppPageStart,
     @Default(false) bool isAppPageScrollStart,
-    @Default(0.0) double visibilityFraction,
+    @Default(false) bool isSlowScrollDisabled,
   }) = _DetailMeModel;
 }

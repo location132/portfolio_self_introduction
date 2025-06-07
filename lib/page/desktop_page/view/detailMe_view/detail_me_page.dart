@@ -23,21 +23,31 @@ class DetailMePage extends StatelessWidget {
         VisibilityDetector(
           key: const Key('detail-me-view'),
           onVisibilityChanged: (VisibilityInfo info) {
+            // 화면 높이별 SlowScrollPhysics 비활성화 임계값 체크
+            bool shouldDisableSlowScroll = false;
+
             if (MediaQuery.of(context).size.height > 1100) {
-              desktopCubit.updateDetailMeVisibility(info.visibleFraction);
+              shouldDisableSlowScroll = info.visibleFraction == 1;
+
               if (info.visibleFraction == 1 &&
                   !state.detailMeModel.isDetailMeRiveStart) {
                 desktopCubit.detailMeRiveStart();
               }
             } else if (MediaQuery.of(context).size.height < 983) {
+              shouldDisableSlowScroll =
+                  false; // 작은 화면에서는 항상 SlowScrollPhysics 활성화
               desktopCubit.detailMeRiveEnd();
             } else {
-              desktopCubit.updateDetailMeVisibility(info.visibleFraction);
+              shouldDisableSlowScroll = info.visibleFraction > 0.7;
+
               if (info.visibleFraction > 0.8 &&
                   !state.detailMeModel.isDetailMeRiveStart) {
                 desktopCubit.detailMeRiveStart();
               }
             }
+
+            // 상태가 변경될 때만 업데이트 (성능 최적화)
+            desktopCubit.updateSlowScrollState(shouldDisableSlowScroll);
           },
           child: DesktopDetailMeView(state: state),
         ),

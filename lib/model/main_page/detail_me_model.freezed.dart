@@ -20,7 +20,7 @@ mixin _$DetailMeModel {
   bool get isDetailMeRiveStart => throw _privateConstructorUsedError;
   bool get isAppPageStart => throw _privateConstructorUsedError;
   bool get isAppPageScrollStart => throw _privateConstructorUsedError;
-  double get visibilityFraction => throw _privateConstructorUsedError;
+  bool get isSlowScrollDisabled => throw _privateConstructorUsedError;
 
   /// Create a copy of DetailMeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -40,7 +40,7 @@ abstract class $DetailMeModelCopyWith<$Res> {
     bool isDetailMeRiveStart,
     bool isAppPageStart,
     bool isAppPageScrollStart,
-    double visibilityFraction,
+    bool isSlowScrollDisabled,
   });
 }
 
@@ -62,7 +62,7 @@ class _$DetailMeModelCopyWithImpl<$Res, $Val extends DetailMeModel>
     Object? isDetailMeRiveStart = null,
     Object? isAppPageStart = null,
     Object? isAppPageScrollStart = null,
-    Object? visibilityFraction = null,
+    Object? isSlowScrollDisabled = null,
   }) {
     return _then(
       _value.copyWith(
@@ -81,11 +81,11 @@ class _$DetailMeModelCopyWithImpl<$Res, $Val extends DetailMeModel>
                     ? _value.isAppPageScrollStart
                     : isAppPageScrollStart // ignore: cast_nullable_to_non_nullable
                         as bool,
-            visibilityFraction:
-                null == visibilityFraction
-                    ? _value.visibilityFraction
-                    : visibilityFraction // ignore: cast_nullable_to_non_nullable
-                        as double,
+            isSlowScrollDisabled:
+                null == isSlowScrollDisabled
+                    ? _value.isSlowScrollDisabled
+                    : isSlowScrollDisabled // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -105,7 +105,7 @@ abstract class _$$DetailMeModelImplCopyWith<$Res>
     bool isDetailMeRiveStart,
     bool isAppPageStart,
     bool isAppPageScrollStart,
-    double visibilityFraction,
+    bool isSlowScrollDisabled,
   });
 }
 
@@ -126,7 +126,7 @@ class __$$DetailMeModelImplCopyWithImpl<$Res>
     Object? isDetailMeRiveStart = null,
     Object? isAppPageStart = null,
     Object? isAppPageScrollStart = null,
-    Object? visibilityFraction = null,
+    Object? isSlowScrollDisabled = null,
   }) {
     return _then(
       _$DetailMeModelImpl(
@@ -145,11 +145,11 @@ class __$$DetailMeModelImplCopyWithImpl<$Res>
                 ? _value.isAppPageScrollStart
                 : isAppPageScrollStart // ignore: cast_nullable_to_non_nullable
                     as bool,
-        visibilityFraction:
-            null == visibilityFraction
-                ? _value.visibilityFraction
-                : visibilityFraction // ignore: cast_nullable_to_non_nullable
-                    as double,
+        isSlowScrollDisabled:
+            null == isSlowScrollDisabled
+                ? _value.isSlowScrollDisabled
+                : isSlowScrollDisabled // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -162,7 +162,7 @@ class _$DetailMeModelImpl implements _DetailMeModel {
     this.isDetailMeRiveStart = false,
     this.isAppPageStart = false,
     this.isAppPageScrollStart = false,
-    this.visibilityFraction = 0.0,
+    this.isSlowScrollDisabled = false,
   });
 
   @override
@@ -176,11 +176,11 @@ class _$DetailMeModelImpl implements _DetailMeModel {
   final bool isAppPageScrollStart;
   @override
   @JsonKey()
-  final double visibilityFraction;
+  final bool isSlowScrollDisabled;
 
   @override
   String toString() {
-    return 'DetailMeModel(isDetailMeRiveStart: $isDetailMeRiveStart, isAppPageStart: $isAppPageStart, isAppPageScrollStart: $isAppPageScrollStart, visibilityFraction: $visibilityFraction)';
+    return 'DetailMeModel(isDetailMeRiveStart: $isDetailMeRiveStart, isAppPageStart: $isAppPageStart, isAppPageScrollStart: $isAppPageScrollStart, isSlowScrollDisabled: $isSlowScrollDisabled)';
   }
 
   @override
@@ -194,8 +194,8 @@ class _$DetailMeModelImpl implements _DetailMeModel {
                 other.isAppPageStart == isAppPageStart) &&
             (identical(other.isAppPageScrollStart, isAppPageScrollStart) ||
                 other.isAppPageScrollStart == isAppPageScrollStart) &&
-            (identical(other.visibilityFraction, visibilityFraction) ||
-                other.visibilityFraction == visibilityFraction));
+            (identical(other.isSlowScrollDisabled, isSlowScrollDisabled) ||
+                other.isSlowScrollDisabled == isSlowScrollDisabled));
   }
 
   @override
@@ -204,7 +204,7 @@ class _$DetailMeModelImpl implements _DetailMeModel {
     isDetailMeRiveStart,
     isAppPageStart,
     isAppPageScrollStart,
-    visibilityFraction,
+    isSlowScrollDisabled,
   );
 
   /// Create a copy of DetailMeModel
@@ -221,7 +221,7 @@ abstract class _DetailMeModel implements DetailMeModel {
     final bool isDetailMeRiveStart,
     final bool isAppPageStart,
     final bool isAppPageScrollStart,
-    final double visibilityFraction,
+    final bool isSlowScrollDisabled,
   }) = _$DetailMeModelImpl;
 
   @override
@@ -231,7 +231,7 @@ abstract class _DetailMeModel implements DetailMeModel {
   @override
   bool get isAppPageScrollStart;
   @override
-  double get visibilityFraction;
+  bool get isSlowScrollDisabled;
 
   /// Create a copy of DetailMeModel
   /// with the given fields replaced by the non-null parameter values.
