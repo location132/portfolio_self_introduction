@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/model/main_page/description_model.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
-import 'package:self_introduction_flutter/page/desktop_page/widgets/animation/banner_menu_animation.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/banner_view/animation/banner_menu_animation.dart';
 
 class BannerMenuTablet extends StatefulWidget {
   final Function(bool) isActive;

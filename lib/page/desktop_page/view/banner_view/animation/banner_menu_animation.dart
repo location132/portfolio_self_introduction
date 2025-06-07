@@ -23,7 +23,7 @@ class BannerMenuAnimation {
 
     menuChangeController = AnimationController(
       vsync: vsync,
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 700),
     );
 
     _initializeAnimations();

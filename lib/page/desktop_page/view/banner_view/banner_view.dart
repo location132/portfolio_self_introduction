@@ -47,6 +47,7 @@ class _BannerViewState extends State<BannerView> {
               BannerDescriptionState.active,
           child: SizedBox(
             height: 400,
+
             child: BannerRive(
               isStartAni:
                   widget.state.scrollModel.bannerState == BannerState.activated,
