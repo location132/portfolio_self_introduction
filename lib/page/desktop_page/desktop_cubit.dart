@@ -188,7 +188,8 @@ class DesktopCubit extends Cubit<DesktopState> {
         ),
       );
 
-      await Future.delayed(const Duration(milliseconds: 400));
+      // 제목 애니메이션 완료 후 버튼 표시 (스킬과 동일한 1200ms)
+      await Future.delayed(const Duration(milliseconds: 1200));
       if (!isClosed) {
         emit(
           state.copyWith(
@@ -456,12 +457,50 @@ class DesktopCubit extends Cubit<DesktopState> {
           scrollModel: state.scrollModel.copyWith(
             bannerState: BannerState.inactive,
           ),
-          bannerModel: state.bannerModel.copyWith(isTitleChanging: true),
+          bannerModel: state.bannerModel.copyWith(
+            isTitleChanging: true,
+            riveOpacity: 0.0,
+            isPlayerActive: false,
+          ),
         ),
       );
+
+      await Future.delayed(const Duration(milliseconds: 300));
+      if (!isClosed) {
+        emit(
+          state.copyWith(
+            bannerModel: state.bannerModel.copyWith(
+              currentTitleIndex: 0,
+              isTitleChanging: false,
+            ),
+          ),
+        );
+      }
+
+      await Future.delayed(const Duration(milliseconds: 300));
+      if (!isClosed) {
+        emit(
+          state.copyWith(
+            bannerModel: state.bannerModel.copyWith(isRiveVisible: false),
+          ),
+        );
+      }
+    }
+  }
+
+  // 배너 제목 다음으로 이동
+  void bannerTitleNext() async {
+    final currentIndex = state.bannerModel.currentTitleIndex;
+    const maxIndex = 1;
+    if (currentIndex < maxIndex && state.bannerModel.isBannerActive) {
       emit(
         state.copyWith(
-          bannerModel: state.bannerModel.copyWith(currentTitleIndex: 0),
+          bannerModel: state.bannerModel.copyWith(
+            isTitleChanging: true,
+            currentTitleIndex: 1,
+            isRiveVisible: true,
+            riveOpacity: 1.0,
+          ),
         ),
       );
 
@@ -476,40 +515,12 @@ class DesktopCubit extends Cubit<DesktopState> {
           ),
         );
       }
-    }
-  }
 
-  // 배너 제목 다음으로 이동
-  void bannerTitleNext() async {
-    final currentIndex = state.bannerModel.currentTitleIndex;
-    const maxIndex = 1;
-    if (currentIndex < maxIndex && state.bannerModel.isBannerActive) {
-      emit(
-        state.copyWith(
-          scrollModel: state.scrollModel.copyWith(
-            bannerState: BannerState.inactive,
-          ),
-          bannerModel: state.bannerModel.copyWith(isTitleChanging: true),
-        ),
-      );
-
-      // 제목 변경
-      emit(
-        state.copyWith(
-          bannerModel: state.bannerModel.copyWith(
-            currentTitleIndex: 1, // 두 번째 제목으로 변경
-          ),
-        ),
-      );
-
-      await Future.delayed(const Duration(milliseconds: 400));
+      await Future.delayed(const Duration(milliseconds: 500));
       if (!isClosed) {
         emit(
           state.copyWith(
-            bannerModel: state.bannerModel.copyWith(isTitleChanging: false),
-            scrollModel: state.scrollModel.copyWith(
-              bannerState: BannerState.activated,
-            ),
+            bannerModel: state.bannerModel.copyWith(isPlayerActive: true),
           ),
         );
       }

@@ -23,6 +23,8 @@ mixin _$BannerModel {
   bool get isTitleChanging => throw _privateConstructorUsedError;
   bool get isButtonVisible => throw _privateConstructorUsedError;
   bool get isBannerActive => throw _privateConstructorUsedError;
+  double get riveOpacity => throw _privateConstructorUsedError;
+  bool get isRiveVisible => throw _privateConstructorUsedError;
 
   /// Create a copy of BannerModel
   /// with the given fields replaced by the non-null parameter values.
@@ -45,6 +47,8 @@ abstract class $BannerModelCopyWith<$Res> {
     bool isTitleChanging,
     bool isButtonVisible,
     bool isBannerActive,
+    double riveOpacity,
+    bool isRiveVisible,
   });
 }
 
@@ -69,6 +73,8 @@ class _$BannerModelCopyWithImpl<$Res, $Val extends BannerModel>
     Object? isTitleChanging = null,
     Object? isButtonVisible = null,
     Object? isBannerActive = null,
+    Object? riveOpacity = null,
+    Object? isRiveVisible = null,
   }) {
     return _then(
       _value.copyWith(
@@ -102,6 +108,16 @@ class _$BannerModelCopyWithImpl<$Res, $Val extends BannerModel>
                     ? _value.isBannerActive
                     : isBannerActive // ignore: cast_nullable_to_non_nullable
                         as bool,
+            riveOpacity:
+                null == riveOpacity
+                    ? _value.riveOpacity
+                    : riveOpacity // ignore: cast_nullable_to_non_nullable
+                        as double,
+            isRiveVisible:
+                null == isRiveVisible
+                    ? _value.isRiveVisible
+                    : isRiveVisible // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -124,6 +140,8 @@ abstract class _$$BannerModelImplCopyWith<$Res>
     bool isTitleChanging,
     bool isButtonVisible,
     bool isBannerActive,
+    double riveOpacity,
+    bool isRiveVisible,
   });
 }
 
@@ -147,6 +165,8 @@ class __$$BannerModelImplCopyWithImpl<$Res>
     Object? isTitleChanging = null,
     Object? isButtonVisible = null,
     Object? isBannerActive = null,
+    Object? riveOpacity = null,
+    Object? isRiveVisible = null,
   }) {
     return _then(
       _$BannerModelImpl(
@@ -180,6 +200,16 @@ class __$$BannerModelImplCopyWithImpl<$Res>
                 ? _value.isBannerActive
                 : isBannerActive // ignore: cast_nullable_to_non_nullable
                     as bool,
+        riveOpacity:
+            null == riveOpacity
+                ? _value.riveOpacity
+                : riveOpacity // ignore: cast_nullable_to_non_nullable
+                    as double,
+        isRiveVisible:
+            null == isRiveVisible
+                ? _value.isRiveVisible
+                : isRiveVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -195,6 +225,8 @@ class _$BannerModelImpl implements _BannerModel {
     this.isTitleChanging = false,
     this.isButtonVisible = false,
     this.isBannerActive = false,
+    this.riveOpacity = 1.0,
+    this.isRiveVisible = true,
   });
 
   @override
@@ -215,10 +247,16 @@ class _$BannerModelImpl implements _BannerModel {
   @override
   @JsonKey()
   final bool isBannerActive;
+  @override
+  @JsonKey()
+  final double riveOpacity;
+  @override
+  @JsonKey()
+  final bool isRiveVisible;
 
   @override
   String toString() {
-    return 'BannerModel(isPlayerActive: $isPlayerActive, player: $player, currentTitleIndex: $currentTitleIndex, isTitleChanging: $isTitleChanging, isButtonVisible: $isButtonVisible, isBannerActive: $isBannerActive)';
+    return 'BannerModel(isPlayerActive: $isPlayerActive, player: $player, currentTitleIndex: $currentTitleIndex, isTitleChanging: $isTitleChanging, isButtonVisible: $isButtonVisible, isBannerActive: $isBannerActive, riveOpacity: $riveOpacity, isRiveVisible: $isRiveVisible)';
   }
 
   @override
@@ -236,7 +274,11 @@ class _$BannerModelImpl implements _BannerModel {
             (identical(other.isButtonVisible, isButtonVisible) ||
                 other.isButtonVisible == isButtonVisible) &&
             (identical(other.isBannerActive, isBannerActive) ||
-                other.isBannerActive == isBannerActive));
+                other.isBannerActive == isBannerActive) &&
+            (identical(other.riveOpacity, riveOpacity) ||
+                other.riveOpacity == riveOpacity) &&
+            (identical(other.isRiveVisible, isRiveVisible) ||
+                other.isRiveVisible == isRiveVisible));
   }
 
   @override
@@ -248,6 +290,8 @@ class _$BannerModelImpl implements _BannerModel {
     isTitleChanging,
     isButtonVisible,
     isBannerActive,
+    riveOpacity,
+    isRiveVisible,
   );
 
   /// Create a copy of BannerModel
@@ -267,6 +311,8 @@ abstract class _BannerModel implements BannerModel {
     final bool isTitleChanging,
     final bool isButtonVisible,
     final bool isBannerActive,
+    final double riveOpacity,
+    final bool isRiveVisible,
   }) = _$BannerModelImpl;
 
   @override
@@ -281,6 +327,10 @@ abstract class _BannerModel implements BannerModel {
   bool get isButtonVisible;
   @override
   bool get isBannerActive;
+  @override
+  double get riveOpacity;
+  @override
+  bool get isRiveVisible;
 
   /// Create a copy of BannerModel
   /// with the given fields replaced by the non-null parameter values.

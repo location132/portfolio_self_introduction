@@ -47,12 +47,18 @@ class _BannerViewState extends State<BannerView> {
               BannerDescriptionState.active,
           child: SizedBox(
             height: 400,
-
-            child: BannerRive(
-              isStartAni:
-                  widget.state.scrollModel.bannerState ==
-                      BannerState.activated &&
-                  !widget.state.bannerModel.isTitleChanging,
+            child: Visibility(
+              visible: widget.state.bannerModel.isRiveVisible,
+              child: AnimatedOpacity(
+                opacity: widget.state.bannerModel.riveOpacity,
+                duration: const Duration(milliseconds: 600),
+                child: BannerRive(
+                  isStartAni:
+                      widget.state.scrollModel.bannerState ==
+                          BannerState.activated &&
+                      !widget.state.bannerModel.isTitleChanging,
+                ),
+              ),
             ),
           ),
         ),
