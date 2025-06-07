@@ -23,10 +23,18 @@ class DetailMePage extends StatelessWidget {
         VisibilityDetector(
           key: const Key('detail-me-view'),
           onVisibilityChanged: (VisibilityInfo info) {
-            if (info.visibleFraction == 1) {}
-            if (info.visibleFraction == 1 &&
-                !state.detailMeModel.isDetailMeRiveStart) {
-              desktopCubit.detailMeRiveStart();
+            if (MediaQuery.of(context).size.height > 1100) {
+              if (info.visibleFraction == 1 &&
+                  !state.detailMeModel.isDetailMeRiveStart) {
+                desktopCubit.detailMeRiveStart();
+              }
+            } else if (MediaQuery.of(context).size.height < 983) {
+              desktopCubit.detailMeRiveEnd();
+            } else {
+              if (info.visibleFraction > 0.8 &&
+                  !state.detailMeModel.isDetailMeRiveStart) {
+                desktopCubit.detailMeRiveStart();
+              }
             }
           },
           child: DesktopDetailMeView(state: state),

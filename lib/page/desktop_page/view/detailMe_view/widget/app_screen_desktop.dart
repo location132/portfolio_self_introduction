@@ -5,12 +5,11 @@ import 'package:self_introduction_flutter/page/desktop_page/view/detailMe_view/w
 class AppScreenDesktop extends StatefulWidget {
   final bool isAppPageStart;
   final bool isAppPageScrollStart;
-  final ScrollController controller;
+
   const AppScreenDesktop({
     super.key,
     required this.isAppPageStart,
     required this.isAppPageScrollStart,
-    required this.controller,
   });
 
   @override
@@ -19,6 +18,11 @@ class AppScreenDesktop extends StatefulWidget {
 
 class _AppScreenDesktopState extends State<AppScreenDesktop> {
   Size calculateSize(BuildContext context) {
+    if (MediaQuery.of(context).size.height < 1000) {
+      double width = 385;
+      final double height = width * 1.65;
+      return Size(width, height);
+    }
     double width = 390;
     final double height = width * 1.65;
     return Size(width, height);
@@ -39,11 +43,10 @@ class _AppScreenDesktopState extends State<AppScreenDesktop> {
           width: size.width,
           height: size.height,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(20),
             child: AppPageDesktop(
               width: size.width,
               isAppPageScrollStart: widget.isAppPageScrollStart,
-              controller: widget.controller,
             ),
           ),
         ),

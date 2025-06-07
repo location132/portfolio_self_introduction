@@ -18,8 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ScrollModel {
   ScrollController? get scrollController => throw _privateConstructorUsedError;
-  ScrollController? get subScrollController =>
-      throw _privateConstructorUsedError;
   BannerState get bannerState => throw _privateConstructorUsedError;
   ProfileViewState get profileViewState => throw _privateConstructorUsedError;
   ChapterViewState get chapterViewState => throw _privateConstructorUsedError;
@@ -44,7 +42,6 @@ abstract class $ScrollModelCopyWith<$Res> {
   @useResult
   $Res call({
     ScrollController? scrollController,
-    ScrollController? subScrollController,
     BannerState bannerState,
     ProfileViewState profileViewState,
     ChapterViewState chapterViewState,
@@ -71,7 +68,6 @@ class _$ScrollModelCopyWithImpl<$Res, $Val extends ScrollModel>
   @override
   $Res call({
     Object? scrollController = freezed,
-    Object? subScrollController = freezed,
     Object? bannerState = null,
     Object? profileViewState = null,
     Object? chapterViewState = null,
@@ -86,11 +82,6 @@ class _$ScrollModelCopyWithImpl<$Res, $Val extends ScrollModel>
                 freezed == scrollController
                     ? _value.scrollController
                     : scrollController // ignore: cast_nullable_to_non_nullable
-                        as ScrollController?,
-            subScrollController:
-                freezed == subScrollController
-                    ? _value.subScrollController
-                    : subScrollController // ignore: cast_nullable_to_non_nullable
                         as ScrollController?,
             bannerState:
                 null == bannerState
@@ -144,7 +135,6 @@ abstract class _$$ScrollModelImplCopyWith<$Res>
   @useResult
   $Res call({
     ScrollController? scrollController,
-    ScrollController? subScrollController,
     BannerState bannerState,
     ProfileViewState profileViewState,
     ChapterViewState chapterViewState,
@@ -170,7 +160,6 @@ class __$$ScrollModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? scrollController = freezed,
-    Object? subScrollController = freezed,
     Object? bannerState = null,
     Object? profileViewState = null,
     Object? chapterViewState = null,
@@ -185,11 +174,6 @@ class __$$ScrollModelImplCopyWithImpl<$Res>
             freezed == scrollController
                 ? _value.scrollController
                 : scrollController // ignore: cast_nullable_to_non_nullable
-                    as ScrollController?,
-        subScrollController:
-            freezed == subScrollController
-                ? _value.subScrollController
-                : subScrollController // ignore: cast_nullable_to_non_nullable
                     as ScrollController?,
         bannerState:
             null == bannerState
@@ -236,7 +220,6 @@ class __$$ScrollModelImplCopyWithImpl<$Res>
 class _$ScrollModelImpl implements _ScrollModel {
   const _$ScrollModelImpl({
     this.scrollController,
-    this.subScrollController,
     this.bannerState = BannerState.inactive,
     this.profileViewState = ProfileViewState.inactive,
     this.chapterViewState = ChapterViewState.inactive,
@@ -248,8 +231,6 @@ class _$ScrollModelImpl implements _ScrollModel {
 
   @override
   final ScrollController? scrollController;
-  @override
-  final ScrollController? subScrollController;
   @override
   @JsonKey()
   final BannerState bannerState;
@@ -274,7 +255,7 @@ class _$ScrollModelImpl implements _ScrollModel {
 
   @override
   String toString() {
-    return 'ScrollModel(scrollController: $scrollController, subScrollController: $subScrollController, bannerState: $bannerState, profileViewState: $profileViewState, chapterViewState: $chapterViewState, aboutMeViewState: $aboutMeViewState, isScrollWaiting: $isScrollWaiting, isScrollInit: $isScrollInit, isScrollEnabled: $isScrollEnabled)';
+    return 'ScrollModel(scrollController: $scrollController, bannerState: $bannerState, profileViewState: $profileViewState, chapterViewState: $chapterViewState, aboutMeViewState: $aboutMeViewState, isScrollWaiting: $isScrollWaiting, isScrollInit: $isScrollInit, isScrollEnabled: $isScrollEnabled)';
   }
 
   @override
@@ -284,8 +265,6 @@ class _$ScrollModelImpl implements _ScrollModel {
             other is _$ScrollModelImpl &&
             (identical(other.scrollController, scrollController) ||
                 other.scrollController == scrollController) &&
-            (identical(other.subScrollController, subScrollController) ||
-                other.subScrollController == subScrollController) &&
             (identical(other.bannerState, bannerState) ||
                 other.bannerState == bannerState) &&
             (identical(other.profileViewState, profileViewState) ||
@@ -306,7 +285,6 @@ class _$ScrollModelImpl implements _ScrollModel {
   int get hashCode => Object.hash(
     runtimeType,
     scrollController,
-    subScrollController,
     bannerState,
     profileViewState,
     chapterViewState,
@@ -328,7 +306,6 @@ class _$ScrollModelImpl implements _ScrollModel {
 abstract class _ScrollModel implements ScrollModel {
   const factory _ScrollModel({
     final ScrollController? scrollController,
-    final ScrollController? subScrollController,
     final BannerState bannerState,
     final ProfileViewState profileViewState,
     final ChapterViewState chapterViewState,
@@ -340,8 +317,6 @@ abstract class _ScrollModel implements ScrollModel {
 
   @override
   ScrollController? get scrollController;
-  @override
-  ScrollController? get subScrollController;
   @override
   BannerState get bannerState;
   @override

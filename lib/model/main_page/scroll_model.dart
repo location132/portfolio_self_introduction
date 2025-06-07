@@ -11,7 +11,7 @@ part 'scroll_model.freezed.dart';
 class ScrollModel with _$ScrollModel {
   const factory ScrollModel({
     ScrollController? scrollController,
-    ScrollController? subScrollController,
+
     @Default(BannerState.inactive) BannerState bannerState,
     @Default(ProfileViewState.inactive) ProfileViewState profileViewState,
     @Default(ChapterViewState.inactive) ChapterViewState chapterViewState,

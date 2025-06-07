@@ -6,19 +6,16 @@ import 'package:self_introduction_flutter/constants/text_constants.dart';
 class AppPageDesktop extends StatelessWidget {
   final double width;
   final bool isAppPageScrollStart;
-  final ScrollController controller;
 
   const AppPageDesktop({
     super.key,
     required this.width,
     required this.isAppPageScrollStart,
-    required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      controller: controller,
       physics:
           isAppPageScrollStart
               ? const ClampingScrollPhysics()

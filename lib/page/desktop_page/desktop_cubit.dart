@@ -15,10 +15,7 @@ class DesktopCubit extends Cubit<DesktopState> {
   DesktopCubit()
     : super(
         DesktopState(
-          scrollModel: ScrollModel(
-            scrollController: ScrollController(),
-            subScrollController: ScrollController(),
-          ),
+          scrollModel: ScrollModel(scrollController: ScrollController()),
         ),
       );
 
@@ -251,6 +248,19 @@ class DesktopCubit extends Cubit<DesktopState> {
     emit(
       state.copyWith(
         detailMeModel: state.detailMeModel.copyWith(isAppPageScrollStart: true),
+      ),
+    );
+  }
+
+  //더 자세히 살펴보기 Rive 애니메이션 종료
+  void detailMeRiveEnd() {
+    emit(
+      state.copyWith(
+        detailMeModel: state.detailMeModel.copyWith(
+          isAppPageScrollStart: false,
+          isDetailMeRiveStart: false,
+          isAppPageStart: false,
+        ),
       ),
     );
   }
