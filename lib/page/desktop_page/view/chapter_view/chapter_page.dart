@@ -43,6 +43,7 @@ class ChapterPage extends StatelessWidget {
                 isActive,
               );
             },
+            desktopCubit: desktopCubit,
           ),
         ),
       ],

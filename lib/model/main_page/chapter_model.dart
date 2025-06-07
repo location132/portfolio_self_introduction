@@ -7,5 +7,6 @@ class ChapterModel with _$ChapterModel {
   const factory ChapterModel({
     @Default(false) bool isBlackBackgroundColor,
     @Default(false) bool isChapterActive,
+    @Default(0) int currentTitleIndex,
   }) = _ChapterModel;
 }

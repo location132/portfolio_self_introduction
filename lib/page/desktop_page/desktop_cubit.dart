@@ -204,7 +204,18 @@ class DesktopCubit extends Cubit<DesktopState> {
           ),
         ),
       );
-      await Future.delayed(const Duration(milliseconds: 1500));
+
+      // 제목 애니메이션 완료 후 버튼 표시
+      await Future.delayed(const Duration(milliseconds: 1200));
+      if (!isClosed) {
+        emit(
+          state.copyWith(
+            mySkillModel: state.mySkillModel.copyWith(isButtonVisible: true),
+          ),
+        );
+      }
+
+      await Future.delayed(const Duration(milliseconds: 1300));
       emit(
         state.copyWith(
           chapterModel: state.chapterModel.copyWith(isChapterActive: true),
@@ -343,6 +354,68 @@ class DesktopCubit extends Cubit<DesktopState> {
     await Future.delayed(const Duration(milliseconds: 1000));
     if (!isClosed) {
       playerActive('banner', isActive: true);
+    }
+  }
+
+  // 스킬 제목 이전으로 이동
+  void skillTitlePrevious() {
+    if (state.mySkillModel.status != MySkillViewStatus.active) return;
+
+    final currentIndex = state.mySkillModel.currentTitleIndex;
+    if (currentIndex > 0) {
+      emit(
+        state.copyWith(
+          mySkillModel: state.mySkillModel.copyWith(
+            currentTitleIndex: currentIndex - 1,
+          ),
+        ),
+      );
+    }
+  }
+
+  // 스킬 제목 다음으로 이동
+  void skillTitleNext() {
+    if (state.mySkillModel.status != MySkillViewStatus.active) return;
+
+    final currentIndex = state.mySkillModel.currentTitleIndex;
+    const maxIndex = 1;
+    if (currentIndex < maxIndex) {
+      emit(
+        state.copyWith(
+          mySkillModel: state.mySkillModel.copyWith(
+            currentTitleIndex: currentIndex + 1,
+          ),
+        ),
+      );
+    }
+  }
+
+  // 챕터 제목 이전으로
+  void chapterTitlePrevious() {
+    final currentIndex = state.chapterModel.currentTitleIndex;
+    if (currentIndex > 0) {
+      emit(
+        state.copyWith(
+          chapterModel: state.chapterModel.copyWith(
+            currentTitleIndex: currentIndex - 1,
+          ),
+        ),
+      );
+    }
+  }
+
+  // 챕터 제목 다음으로
+  void chapterTitleNext() {
+    final currentIndex = state.chapterModel.currentTitleIndex;
+    const maxIndex = 1; // 총 2개의 제목이 있다고 가정
+    if (currentIndex < maxIndex) {
+      emit(
+        state.copyWith(
+          chapterModel: state.chapterModel.copyWith(
+            currentTitleIndex: currentIndex + 1,
+          ),
+        ),
+      );
     }
   }
 

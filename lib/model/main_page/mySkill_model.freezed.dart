@@ -19,6 +19,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MySkillModel {
   MySkillViewStatus get status => throw _privateConstructorUsedError;
   bool get isPlayerActive => throw _privateConstructorUsedError;
+  int get currentTitleIndex => throw _privateConstructorUsedError;
+  bool get isButtonVisible => throw _privateConstructorUsedError;
 
   /// Create a copy of MySkillModel
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +36,12 @@ abstract class $MySkillModelCopyWith<$Res> {
     $Res Function(MySkillModel) then,
   ) = _$MySkillModelCopyWithImpl<$Res, MySkillModel>;
   @useResult
-  $Res call({MySkillViewStatus status, bool isPlayerActive});
+  $Res call({
+    MySkillViewStatus status,
+    bool isPlayerActive,
+    int currentTitleIndex,
+    bool isButtonVisible,
+  });
 }
 
 /// @nodoc
@@ -51,7 +58,12 @@ class _$MySkillModelCopyWithImpl<$Res, $Val extends MySkillModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? status = null, Object? isPlayerActive = null}) {
+  $Res call({
+    Object? status = null,
+    Object? isPlayerActive = null,
+    Object? currentTitleIndex = null,
+    Object? isButtonVisible = null,
+  }) {
     return _then(
       _value.copyWith(
             status:
@@ -63,6 +75,16 @@ class _$MySkillModelCopyWithImpl<$Res, $Val extends MySkillModel>
                 null == isPlayerActive
                     ? _value.isPlayerActive
                     : isPlayerActive // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            currentTitleIndex:
+                null == currentTitleIndex
+                    ? _value.currentTitleIndex
+                    : currentTitleIndex // ignore: cast_nullable_to_non_nullable
+                        as int,
+            isButtonVisible:
+                null == isButtonVisible
+                    ? _value.isButtonVisible
+                    : isButtonVisible // ignore: cast_nullable_to_non_nullable
                         as bool,
           )
           as $Val,
@@ -79,7 +101,12 @@ abstract class _$$MySkillModelImplCopyWith<$Res>
   ) = __$$MySkillModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({MySkillViewStatus status, bool isPlayerActive});
+  $Res call({
+    MySkillViewStatus status,
+    bool isPlayerActive,
+    int currentTitleIndex,
+    bool isButtonVisible,
+  });
 }
 
 /// @nodoc
@@ -95,7 +122,12 @@ class __$$MySkillModelImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? status = null, Object? isPlayerActive = null}) {
+  $Res call({
+    Object? status = null,
+    Object? isPlayerActive = null,
+    Object? currentTitleIndex = null,
+    Object? isButtonVisible = null,
+  }) {
     return _then(
       _$MySkillModelImpl(
         status:
@@ -108,6 +140,16 @@ class __$$MySkillModelImplCopyWithImpl<$Res>
                 ? _value.isPlayerActive
                 : isPlayerActive // ignore: cast_nullable_to_non_nullable
                     as bool,
+        currentTitleIndex:
+            null == currentTitleIndex
+                ? _value.currentTitleIndex
+                : currentTitleIndex // ignore: cast_nullable_to_non_nullable
+                    as int,
+        isButtonVisible:
+            null == isButtonVisible
+                ? _value.isButtonVisible
+                : isButtonVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -119,6 +161,8 @@ class _$MySkillModelImpl implements _MySkillModel {
   const _$MySkillModelImpl({
     this.status = MySkillViewStatus.inactive,
     this.isPlayerActive = false,
+    this.currentTitleIndex = 1,
+    this.isButtonVisible = false,
   });
 
   @override
@@ -127,10 +171,16 @@ class _$MySkillModelImpl implements _MySkillModel {
   @override
   @JsonKey()
   final bool isPlayerActive;
+  @override
+  @JsonKey()
+  final int currentTitleIndex;
+  @override
+  @JsonKey()
+  final bool isButtonVisible;
 
   @override
   String toString() {
-    return 'MySkillModel(status: $status, isPlayerActive: $isPlayerActive)';
+    return 'MySkillModel(status: $status, isPlayerActive: $isPlayerActive, currentTitleIndex: $currentTitleIndex, isButtonVisible: $isButtonVisible)';
   }
 
   @override
@@ -140,11 +190,21 @@ class _$MySkillModelImpl implements _MySkillModel {
             other is _$MySkillModelImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.isPlayerActive, isPlayerActive) ||
-                other.isPlayerActive == isPlayerActive));
+                other.isPlayerActive == isPlayerActive) &&
+            (identical(other.currentTitleIndex, currentTitleIndex) ||
+                other.currentTitleIndex == currentTitleIndex) &&
+            (identical(other.isButtonVisible, isButtonVisible) ||
+                other.isButtonVisible == isButtonVisible));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, isPlayerActive);
+  int get hashCode => Object.hash(
+    runtimeType,
+    status,
+    isPlayerActive,
+    currentTitleIndex,
+    isButtonVisible,
+  );
 
   /// Create a copy of MySkillModel
   /// with the given fields replaced by the non-null parameter values.
@@ -159,12 +219,18 @@ abstract class _MySkillModel implements MySkillModel {
   const factory _MySkillModel({
     final MySkillViewStatus status,
     final bool isPlayerActive,
+    final int currentTitleIndex,
+    final bool isButtonVisible,
   }) = _$MySkillModelImpl;
 
   @override
   MySkillViewStatus get status;
   @override
   bool get isPlayerActive;
+  @override
+  int get currentTitleIndex;
+  @override
+  bool get isButtonVisible;
 
   /// Create a copy of MySkillModel
   /// with the given fields replaced by the non-null parameter values.

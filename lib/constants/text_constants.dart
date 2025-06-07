@@ -95,6 +95,22 @@ class TitleTextConstants {
   static const String title3 = 'Flutter.';
   static const String subTitle3 = '와 어울리는';
   static const String description3 = ' 이런 기술들을 사용해요';
+
+  // 스킬 섹션 제목들
+  static const List<Map<String, String>> skillTitles = [
+    {'title': 'Flutter.', 'subTitle': '와 어울리는', 'description': ' 이런 기술들을 사용해요'},
+    {
+      'title': 'Skill.',
+      'subTitle': ' 그래서 만들었어요',
+      'description': ' 개발자 이정원 스타일로',
+    },
+  ];
+
+  // 챕터 섹션 제목들
+  static const List<Map<String, String>> chapterTitles = [
+    {'title': 'Flutter', 'subTitle': ' 신입은 역시,', 'description': ' 이정원'},
+    {'title': '알면,', 'subTitle': ' 알수록', 'description': ' 이정원'},
+  ];
 }
 
 class EducationTextConstants {

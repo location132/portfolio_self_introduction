@@ -16,16 +16,12 @@ class SkillPage extends StatelessWidget {
     return VisibilityDetector(
       key: const Key('skill-view'),
       onVisibilityChanged: (VisibilityInfo info) {
-        if (info.visibleFraction > 0.7 &&
+        if (info.visibleFraction > 0.6 &&
             state.mySkillModel.status == MySkillViewStatus.inactive) {
           context.read<DesktopCubit>().viewListener('skill');
         }
       },
-      child: SkillView(
-        isActive: state.mySkillModel.status == MySkillViewStatus.active,
-        state: state,
-        desktopCubit: desktopCubit,
-      ),
+      child: SkillView(state: state, desktopCubit: desktopCubit),
     );
   }
 }

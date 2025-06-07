@@ -107,7 +107,7 @@ class _MainViewState extends State<_MainView> {
                                       desktopCubit:
                                           context.read<DesktopCubit>(),
                                     ),
-
+                                    SizedBox(height: 120),
                                     SkillPage(
                                       state: state,
                                       desktopCubit:

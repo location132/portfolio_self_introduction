@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:glowy_borders/glowy_borders.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/widget/chapter_title.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/widget/desktop_chapter_card.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
@@ -8,14 +10,16 @@ import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/an
 
 class DesktopChapterView extends StatefulWidget {
   final Function(int)? onCardTap;
-  final DesktopState? state;
+  final DesktopState state;
   final Function(bool)? onDescriptionActive;
+  final DesktopCubit desktopCubit;
 
   const DesktopChapterView({
     super.key,
     this.onCardTap,
-    this.state,
+    required this.state,
     this.onDescriptionActive,
+    required this.desktopCubit,
   });
 
   @override
@@ -35,8 +39,8 @@ class _DesktopChapterViewState extends State<DesktopChapterView>
   @override
   void didUpdateWidget(DesktopChapterView oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.state?.scrollModel.chapterViewState == ChapterViewState.active &&
-        oldWidget.state?.scrollModel.chapterViewState !=
+    if (widget.state.scrollModel.chapterViewState == ChapterViewState.active &&
+        oldWidget.state.scrollModel.chapterViewState !=
             ChapterViewState.active) {
       cardAnimation.startAnimations();
     }
@@ -52,6 +56,16 @@ class _DesktopChapterViewState extends State<DesktopChapterView>
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Visibility(
+          visible: MediaQuery.of(context).size.height < 900,
+          child: ChapterTitle(
+            isChapterActive: widget.state.chapterModel.isChapterActive,
+            isBlackBackground: widget.state.chapterModel.isBlackBackgroundColor,
+            currentTitleIndex: widget.state.chapterModel.currentTitleIndex,
+            onPrevious: () => widget.desktopCubit.chapterTitlePrevious(),
+            onNext: () => widget.desktopCubit.chapterTitleNext(),
+          ),
+        ),
         SizedBox(height: 40.sh),
         const SizedBox(width: 20),
         SingleChildScrollView(
