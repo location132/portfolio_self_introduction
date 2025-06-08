@@ -21,6 +21,9 @@ mixin _$MySkillModel {
   bool get isPlayerActive => throw _privateConstructorUsedError;
   int get currentTitleIndex => throw _privateConstructorUsedError;
   bool get isButtonVisible => throw _privateConstructorUsedError;
+  bool get isTitleChanging => throw _privateConstructorUsedError;
+  double get riveOpacity => throw _privateConstructorUsedError;
+  bool get isRiveVisible => throw _privateConstructorUsedError;
 
   /// Create a copy of MySkillModel
   /// with the given fields replaced by the non-null parameter values.
@@ -41,6 +44,9 @@ abstract class $MySkillModelCopyWith<$Res> {
     bool isPlayerActive,
     int currentTitleIndex,
     bool isButtonVisible,
+    bool isTitleChanging,
+    double riveOpacity,
+    bool isRiveVisible,
   });
 }
 
@@ -63,6 +69,9 @@ class _$MySkillModelCopyWithImpl<$Res, $Val extends MySkillModel>
     Object? isPlayerActive = null,
     Object? currentTitleIndex = null,
     Object? isButtonVisible = null,
+    Object? isTitleChanging = null,
+    Object? riveOpacity = null,
+    Object? isRiveVisible = null,
   }) {
     return _then(
       _value.copyWith(
@@ -86,6 +95,21 @@ class _$MySkillModelCopyWithImpl<$Res, $Val extends MySkillModel>
                     ? _value.isButtonVisible
                     : isButtonVisible // ignore: cast_nullable_to_non_nullable
                         as bool,
+            isTitleChanging:
+                null == isTitleChanging
+                    ? _value.isTitleChanging
+                    : isTitleChanging // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            riveOpacity:
+                null == riveOpacity
+                    ? _value.riveOpacity
+                    : riveOpacity // ignore: cast_nullable_to_non_nullable
+                        as double,
+            isRiveVisible:
+                null == isRiveVisible
+                    ? _value.isRiveVisible
+                    : isRiveVisible // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -106,6 +130,9 @@ abstract class _$$MySkillModelImplCopyWith<$Res>
     bool isPlayerActive,
     int currentTitleIndex,
     bool isButtonVisible,
+    bool isTitleChanging,
+    double riveOpacity,
+    bool isRiveVisible,
   });
 }
 
@@ -127,6 +154,9 @@ class __$$MySkillModelImplCopyWithImpl<$Res>
     Object? isPlayerActive = null,
     Object? currentTitleIndex = null,
     Object? isButtonVisible = null,
+    Object? isTitleChanging = null,
+    Object? riveOpacity = null,
+    Object? isRiveVisible = null,
   }) {
     return _then(
       _$MySkillModelImpl(
@@ -150,6 +180,21 @@ class __$$MySkillModelImplCopyWithImpl<$Res>
                 ? _value.isButtonVisible
                 : isButtonVisible // ignore: cast_nullable_to_non_nullable
                     as bool,
+        isTitleChanging:
+            null == isTitleChanging
+                ? _value.isTitleChanging
+                : isTitleChanging // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        riveOpacity:
+            null == riveOpacity
+                ? _value.riveOpacity
+                : riveOpacity // ignore: cast_nullable_to_non_nullable
+                    as double,
+        isRiveVisible:
+            null == isRiveVisible
+                ? _value.isRiveVisible
+                : isRiveVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -163,6 +208,9 @@ class _$MySkillModelImpl implements _MySkillModel {
     this.isPlayerActive = false,
     this.currentTitleIndex = 1,
     this.isButtonVisible = false,
+    this.isTitleChanging = false,
+    this.riveOpacity = 1.0,
+    this.isRiveVisible = true,
   });
 
   @override
@@ -177,10 +225,19 @@ class _$MySkillModelImpl implements _MySkillModel {
   @override
   @JsonKey()
   final bool isButtonVisible;
+  @override
+  @JsonKey()
+  final bool isTitleChanging;
+  @override
+  @JsonKey()
+  final double riveOpacity;
+  @override
+  @JsonKey()
+  final bool isRiveVisible;
 
   @override
   String toString() {
-    return 'MySkillModel(status: $status, isPlayerActive: $isPlayerActive, currentTitleIndex: $currentTitleIndex, isButtonVisible: $isButtonVisible)';
+    return 'MySkillModel(status: $status, isPlayerActive: $isPlayerActive, currentTitleIndex: $currentTitleIndex, isButtonVisible: $isButtonVisible, isTitleChanging: $isTitleChanging, riveOpacity: $riveOpacity, isRiveVisible: $isRiveVisible)';
   }
 
   @override
@@ -194,7 +251,13 @@ class _$MySkillModelImpl implements _MySkillModel {
             (identical(other.currentTitleIndex, currentTitleIndex) ||
                 other.currentTitleIndex == currentTitleIndex) &&
             (identical(other.isButtonVisible, isButtonVisible) ||
-                other.isButtonVisible == isButtonVisible));
+                other.isButtonVisible == isButtonVisible) &&
+            (identical(other.isTitleChanging, isTitleChanging) ||
+                other.isTitleChanging == isTitleChanging) &&
+            (identical(other.riveOpacity, riveOpacity) ||
+                other.riveOpacity == riveOpacity) &&
+            (identical(other.isRiveVisible, isRiveVisible) ||
+                other.isRiveVisible == isRiveVisible));
   }
 
   @override
@@ -204,6 +267,9 @@ class _$MySkillModelImpl implements _MySkillModel {
     isPlayerActive,
     currentTitleIndex,
     isButtonVisible,
+    isTitleChanging,
+    riveOpacity,
+    isRiveVisible,
   );
 
   /// Create a copy of MySkillModel
@@ -221,6 +287,9 @@ abstract class _MySkillModel implements MySkillModel {
     final bool isPlayerActive,
     final int currentTitleIndex,
     final bool isButtonVisible,
+    final bool isTitleChanging,
+    final double riveOpacity,
+    final bool isRiveVisible,
   }) = _$MySkillModelImpl;
 
   @override
@@ -231,6 +300,12 @@ abstract class _MySkillModel implements MySkillModel {
   int get currentTitleIndex;
   @override
   bool get isButtonVisible;
+  @override
+  bool get isTitleChanging;
+  @override
+  double get riveOpacity;
+  @override
+  bool get isRiveVisible;
 
   /// Create a copy of MySkillModel
   /// with the given fields replaced by the non-null parameter values.

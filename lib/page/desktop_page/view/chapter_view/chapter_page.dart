@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/chapter_view.dart';
@@ -19,7 +18,7 @@ class ChapterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 80.sh),
+        SizedBox(height: 80),
         VisibilityDetector(
           key: const Key('chapter-view'),
           onVisibilityChanged: (VisibilityInfo info) async {

@@ -113,13 +113,15 @@ class _MainViewState extends State<_MainView> {
                                       desktopCubit:
                                           context.read<DesktopCubit>(),
                                     ),
+                                    SizedBox(height: 60),
+
                                     Visibility(
                                       visible:
                                           state.chapterModel.isChapterActive,
                                       child: VisibilityDetector(
                                         key: const Key('main-view'),
                                         onVisibilityChanged: (info) {
-                                          if (info.visibleFraction < 0.2 &&
+                                          if (info.visibleFraction == 0 &&
                                               state
                                                   .chapterModel
                                                   .isBlackBackgroundColor) {

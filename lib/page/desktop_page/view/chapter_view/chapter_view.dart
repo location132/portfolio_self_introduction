@@ -56,15 +56,12 @@ class _DesktopChapterViewState extends State<DesktopChapterView>
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Visibility(
-          visible: MediaQuery.of(context).size.height < 900,
-          child: ChapterTitle(
-            isChapterActive: widget.state.chapterModel.isChapterActive,
-            isBlackBackground: widget.state.chapterModel.isBlackBackgroundColor,
-            currentTitleIndex: widget.state.chapterModel.currentTitleIndex,
-            onPrevious: () => widget.desktopCubit.chapterTitlePrevious(),
-            onNext: () => widget.desktopCubit.chapterTitleNext(),
-          ),
+        ChapterTitle(
+          isChapterActive: widget.state.chapterModel.isChapterActive,
+          isBlackBackground: widget.state.chapterModel.isBlackBackgroundColor,
+          currentTitleIndex: widget.state.chapterModel.currentTitleIndex,
+          onPrevious: () => widget.desktopCubit.chapterTitlePrevious(),
+          onNext: () => widget.desktopCubit.chapterTitleNext(),
         ),
         SizedBox(height: 40),
         SingleChildScrollView(

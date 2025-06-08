@@ -9,6 +9,9 @@ class MySkillModel with _$MySkillModel {
     @Default(false) bool isPlayerActive,
     @Default(1) int currentTitleIndex,
     @Default(false) bool isButtonVisible,
+    @Default(false) bool isTitleChanging,
+    @Default(1.0) double riveOpacity,
+    @Default(true) bool isRiveVisible,
   }) = _MySkillModel;
 }
 

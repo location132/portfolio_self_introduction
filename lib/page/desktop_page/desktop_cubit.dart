@@ -385,35 +385,92 @@ class DesktopCubit extends Cubit<DesktopState> {
   }
 
   // 스킬 제목 이전으로 이동
-  void skillTitlePrevious() {
-    if (state.mySkillModel.status != MySkillViewStatus.active) return;
-
+  void skillTitlePrevious() async {
     final currentIndex = state.mySkillModel.currentTitleIndex;
-    if (currentIndex > 0) {
+    if (currentIndex > 0 &&
+        state.mySkillModel.status == MySkillViewStatus.active) {
       emit(
         state.copyWith(
           mySkillModel: state.mySkillModel.copyWith(
-            currentTitleIndex: currentIndex - 1,
+            isTitleChanging: true,
+            riveOpacity: 0.0,
+            isPlayerActive: false,
           ),
         ),
       );
+
+      await Future.delayed(const Duration(milliseconds: 300));
+      if (!isClosed) {
+        emit(
+          state.copyWith(
+            mySkillModel: state.mySkillModel.copyWith(
+              currentTitleIndex: currentIndex - 1,
+              isTitleChanging: false,
+            ),
+          ),
+        );
+      }
+
+      await Future.delayed(const Duration(milliseconds: 300));
+      if (!isClosed) {
+        emit(
+          state.copyWith(
+            mySkillModel: state.mySkillModel.copyWith(
+              riveOpacity: currentIndex - 1 == 0 ? 0.0 : 1.0,
+              isRiveVisible: currentIndex - 1 != 0,
+            ),
+          ),
+        );
+      }
+
+      await Future.delayed(const Duration(milliseconds: 500));
+      if (!isClosed) {
+        emit(
+          state.copyWith(
+            mySkillModel: state.mySkillModel.copyWith(
+              isPlayerActive:
+                  state.mySkillModel.status == MySkillViewStatus.active,
+            ),
+          ),
+        );
+      }
     }
   }
 
   // 스킬 제목 다음으로 이동
-  void skillTitleNext() {
-    if (state.mySkillModel.status != MySkillViewStatus.active) return;
-
+  void skillTitleNext() async {
     final currentIndex = state.mySkillModel.currentTitleIndex;
     const maxIndex = 1;
-    if (currentIndex < maxIndex) {
+    if (currentIndex < maxIndex &&
+        state.mySkillModel.status == MySkillViewStatus.active) {
       emit(
         state.copyWith(
           mySkillModel: state.mySkillModel.copyWith(
+            isTitleChanging: true,
             currentTitleIndex: currentIndex + 1,
+            isRiveVisible: true,
+            riveOpacity: 1.0,
           ),
         ),
       );
+
+      await Future.delayed(const Duration(milliseconds: 400));
+      if (!isClosed) {
+        emit(
+          state.copyWith(
+            mySkillModel: state.mySkillModel.copyWith(isTitleChanging: false),
+          ),
+        );
+      }
+
+      await Future.delayed(const Duration(milliseconds: 500));
+      if (!isClosed) {
+        emit(
+          state.copyWith(
+            mySkillModel: state.mySkillModel.copyWith(isPlayerActive: true),
+          ),
+        );
+      }
     }
   }
 

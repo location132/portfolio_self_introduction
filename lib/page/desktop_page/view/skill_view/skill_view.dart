@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/rive/my_skill_rive.dart';
+import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
-import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/widget/chapter_title.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/skill_view/widget/skill_title.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/widget/player.dart';
 
 class SkillView extends StatefulWidget {
   final DesktopState state;
@@ -27,27 +28,37 @@ class _SkillViewState extends State<SkillView> {
           onPrevious: () => widget.desktopCubit.skillTitlePrevious(),
           onNext: () => widget.desktopCubit.skillTitleNext(),
         ),
-        Center(
-          child: SizedBox(
-            height: 800,
-            child: ClipRect(
-              child: MySkillRive(
-                isActive:
-                    widget.state.mySkillModel.status ==
-                    MySkillViewStatus.active,
+        SizedBox(
+          height: 800,
+          child: Visibility(
+            visible: widget.state.mySkillModel.isRiveVisible,
+            child: AnimatedOpacity(
+              opacity: widget.state.mySkillModel.riveOpacity,
+              duration: const Duration(milliseconds: 600),
+              child: Center(
+                child: ClipRect(
+                  child: MySkillRive(
+                    isActive:
+                        widget.state.mySkillModel.status ==
+                            MySkillViewStatus.active &&
+                        !widget.state.mySkillModel.isTitleChanging,
+                  ),
+                ),
               ),
             ),
           ),
         ),
-        Visibility(
-          visible: MediaQuery.of(context).size.height > 900,
-          child: ChapterTitle(
-            isChapterActive: widget.state.chapterModel.isChapterActive,
-            isBlackBackground: widget.state.chapterModel.isBlackBackgroundColor,
-            currentTitleIndex: widget.state.chapterModel.currentTitleIndex,
-            onPrevious: () => widget.desktopCubit.chapterTitlePrevious(),
-            onNext: () => widget.desktopCubit.chapterTitleNext(),
-          ),
+        SizedBox(height: 80.sh),
+
+        Player(
+          isPlayerAniOpacity:
+              widget.state.mySkillModel.status == MySkillViewStatus.active,
+          isPlayerText: 'Skill에 대해 더 알고 싶다면 Click!',
+          duration: const Duration(milliseconds: 800),
+          fontSize: 14,
+          onTap: () {
+            // 스킬 관련 액션 처리
+          },
         ),
       ],
     );
