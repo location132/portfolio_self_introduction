@@ -31,7 +31,7 @@ class SkillTitle extends StatelessWidget {
           children: [
             AnimatedOpacity(
               opacity: status == MySkillViewStatus.inactive ? 1 : 0,
-              duration: const Duration(seconds: 1),
+              duration: const Duration(milliseconds: 800),
               child: TitleText(
                 title: TitleTextConstants.title3,
                 subTitle: TitleTextConstants.subTitle3,
@@ -44,7 +44,7 @@ class SkillTitle extends StatelessWidget {
               opacity: status == MySkillViewStatus.active ? 1 : 0,
               duration: const Duration(seconds: 1),
               child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 800),
                 child: TitleText(
                   key: ValueKey(currentTitleIndex),
                   title: currentTitle['title']!,

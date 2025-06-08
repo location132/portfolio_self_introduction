@@ -28,13 +28,13 @@ class BannerTitle extends StatelessWidget {
         SizedBox(height: 120),
 
         AnimatedSwitcher(
-          duration: const Duration(milliseconds: 400),
+          duration: const Duration(milliseconds: 800),
           transitionBuilder: (Widget child, Animation<double> animation) {
             return FadeTransition(
               opacity: animation,
               child: SlideTransition(
                 position: Tween<Offset>(
-                  begin: const Offset(0, 0.1),
+                  begin: const Offset(0, 0.3),
                   end: Offset.zero,
                 ).animate(
                   CurvedAnimation(parent: animation, curve: Curves.easeOut),
