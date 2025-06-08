@@ -18,7 +18,6 @@ class ChapterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 80),
         VisibilityDetector(
           key: const Key('chapter-view'),
           onVisibilityChanged: (VisibilityInfo info) async {

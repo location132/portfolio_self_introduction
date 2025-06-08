@@ -22,7 +22,7 @@ class BannerPage extends StatelessWidget {
         VisibilityDetector(
           key: const Key('banner-view'),
           onVisibilityChanged: (VisibilityInfo info) {
-            if (info.visibleFraction > 0.4 &&
+            if (info.visibleFraction > 0.2 &&
                 state.scrollModel.bannerState == BannerState.inactive &&
                 !state.bannerModel.isBannerActive) {
               context.read<DesktopCubit>().viewListener('banner');

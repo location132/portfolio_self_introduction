@@ -113,7 +113,7 @@ class _MainViewState extends State<_MainView> {
                                       desktopCubit:
                                           context.read<DesktopCubit>(),
                                     ),
-                                    SizedBox(height: 60),
+                                    SizedBox(height: 20),
 
                                     Visibility(
                                       visible:

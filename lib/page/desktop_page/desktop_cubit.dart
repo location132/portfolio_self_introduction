@@ -189,7 +189,7 @@ class DesktopCubit extends Cubit<DesktopState> {
       );
 
       // 제목 애니메이션 완료 후 버튼 표시 (스킬과 동일한 1200ms)
-      await Future.delayed(const Duration(milliseconds: 1200));
+      await Future.delayed(const Duration(milliseconds: 400));
       if (!isClosed) {
         emit(
           state.copyWith(
@@ -198,7 +198,7 @@ class DesktopCubit extends Cubit<DesktopState> {
         );
       }
 
-      await Future.delayed(const Duration(milliseconds: 600));
+      await Future.delayed(const Duration(milliseconds: 400));
       if (!isClosed) {
         emit(
           state.copyWith(
@@ -209,7 +209,7 @@ class DesktopCubit extends Cubit<DesktopState> {
         );
       }
 
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 300));
       if (!isClosed) {
         playerActive('banner', isActive: true);
       }

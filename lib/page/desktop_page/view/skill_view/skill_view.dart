@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/rive/my_skill_rive.dart';
+import 'package:self_introduction_flutter/components/rive/scroll_rive.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
@@ -53,12 +54,19 @@ class _SkillViewState extends State<SkillView> {
         Player(
           isPlayerAniOpacity:
               widget.state.mySkillModel.status == MySkillViewStatus.active,
-          isPlayerText: 'Skill에 대해 더 알고 싶다면 Click!',
+          isPlayerText: '  모니터에 마우스를 호버, 클릭해 더 알아보세요!  ',
           duration: const Duration(milliseconds: 800),
           fontSize: 14,
-          onTap: () {
-            // 스킬 관련 액션 처리
-          },
+        ),
+        SizedBox(height: 40.sh),
+        AnimatedOpacity(
+          opacity:
+              widget.state.chapterModel.isChapterActive &&
+                      !widget.state.chapterModel.isBlackBackgroundColor
+                  ? 1
+                  : 0,
+          duration: const Duration(milliseconds: 600),
+          child: SizedBox(width: 50, height: 50, child: ScrollRive()),
         ),
       ],
     );
