@@ -15,6 +15,8 @@ class ProjectView extends StatefulWidget {
 }
 
 class _ProjectViewState extends State<ProjectView> {
+  bool _isProjectListAni = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,15 +26,24 @@ class _ProjectViewState extends State<ProjectView> {
         ProjectTitle(isTitleVisible: widget.state.isTitleAniStart),
         const SizedBox(height: 80),
         // 메뉴
-        ProjectMenuBar(state: widget.state, cubit: widget.cubit),
+        AnimatedOpacity(
+          opacity: widget.state.isProjectListAni ? 1.0 : 0.0,
+          duration: const Duration(milliseconds: 500),
+          onEnd: () {
+            setState(() {
+              _isProjectListAni = true;
+            });
+          },
+          child: ProjectMenuBar(state: widget.state, cubit: widget.cubit),
+        ),
         const SizedBox(height: 60),
 
         // 프로젝트
         Container(
           constraints: const BoxConstraints(minHeight: 1000),
           child: AnimatedOpacity(
-            opacity: widget.state.isProjectListAni ? 1.0 : 0.0,
-            duration: const Duration(milliseconds: 300),
+            opacity: _isProjectListAni ? 1.0 : 0.0,
+            duration: const Duration(milliseconds: 800),
             child: ProjectListContainer(
               key: ValueKey(widget.state.selectedProjectCategory),
               category: widget.state.selectedProjectCategory,

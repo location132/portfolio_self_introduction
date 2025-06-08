@@ -51,6 +51,10 @@ class _ProjectCardState extends State<ProjectCard> {
       return isHovered
           ? 'assets/Images/project_img/naver_map_2.gif'
           : 'assets/Images/project_img/naver_map_1.png';
+    } else if (title == '모바일 웹 프로젝트') {
+      return isHovered
+          ? 'assets/Images/project_img/web_project_mobile_1.png'
+          : 'assets/Images/project_img/web_project_mobile_2.png';
     } else {
       return isHovered
           ? 'assets/Images/project_img/groom_2.png'
@@ -84,7 +88,7 @@ class _ProjectCardState extends State<ProjectCard> {
             opacity: _isHovered ? 1.0 : 0.0,
             duration: const Duration(milliseconds: 300),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(50),
               child: Image.asset(
                 _getImagePath(true),
                 key: ValueKey('${title}_hover_$_gifInstanceKey'),

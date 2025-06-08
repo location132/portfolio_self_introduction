@@ -14,7 +14,7 @@ class ProjectPage extends StatelessWidget {
     return VisibilityDetector(
       key: const Key('project-view'),
       onVisibilityChanged: (VisibilityInfo info) {
-        if (info.visibleFraction > 0.3 && !state.isTitleAniStart) {
+        if (info.visibleFraction > 0.1 && !state.isTitleAniStart) {
           cubit.projectAniStart();
         }
       },

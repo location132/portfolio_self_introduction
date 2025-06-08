@@ -22,13 +22,13 @@ class DesktopCubit extends Cubit<DesktopState> {
   @postConstruct
   void init() async {
     //TODO:  배포 후, 주석 해제
-    if (!isClosed) {
-      emit(
-        state.copyWith(
-          initModel: state.initModel.copyWith(initState: InitState.active),
-        ),
-      );
-    }
+    // if (!isClosed) {
+    //   emit(
+    //     state.copyWith(
+    //       initModel: state.initModel.copyWith(initState: InitState.active),
+    //     ),
+    //   );
+    // }
 
     final controller = state.scrollModel.scrollController;
     if (controller != null) {
@@ -56,14 +56,14 @@ class DesktopCubit extends Cubit<DesktopState> {
 
   Future<void> changeProfileViewHeight(controller) async {
     //TODO: 배포 주석 해제
-    emit(
-      state.copyWith(
-        initModel: state.initModel.copyWith(
-          remainingTime: state.initModel.remainingTime,
-        ),
-      ),
-    );
-    await Future.delayed(Duration(seconds: state.initModel.remainingTime));
+    // emit(
+    //   state.copyWith(
+    //     initModel: state.initModel.copyWith(
+    //       remainingTime: state.initModel.remainingTime,
+    //     ),
+    //   ),
+    // );
+    // await Future.delayed(Duration(seconds: state.initModel.remainingTime));
   }
 
   void awaitDuration(
@@ -71,7 +71,7 @@ class DesktopCubit extends Cubit<DesktopState> {
     String message = TextConstants.welcomeMessage1,
   }) async {
     //TODO: 추 후, 주석 해제
-    await Future.delayed(Duration(seconds: state.initModel.remainingTime));
+    // await Future.delayed(Duration(seconds: state.initModel.remainingTime));
 
     initializeAnimations(vsync, message: message);
   }
