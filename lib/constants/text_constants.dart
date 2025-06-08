@@ -38,6 +38,87 @@ class ProjectTextConstants {
   static const String flutterRiveDetailTitle = 'Flutter & Rive 프로젝트';
   static const String futureProjectDetailTitle = '앞으로 진행할 프로젝트';
 
+  // 카테고리별 설명
+  static const String allCategoryTitle = '모든 프로젝트';
+  static const String allCategoryDescription =
+      'Flutter 프레임워크와 Rive 애니메이션을 활용한 다양한 프로젝트들을 소개합니다. 각 프로젝트마다 다른 아키텍처와 기술 스택을 적용하여 경험을 쌓았습니다.';
+  static const String flutterCategoryDescription =
+      'Flutter를 사용해 만든 모든 프로젝트들을 소개합니다. MVVM 아키텍처부터 Clean Architecture까지, 다양한 규모의 프로젝트들을 경험했습니다.';
+  static const String flutterRiveCategoryDescription =
+      'Flutter in Rive로 만든 정교한 애니메이션 프로젝트들을 소개합니다. 마우스 호버와 클릭 상호작용부터 복잡한 상태 관리까지 구현했습니다.';
+  static const String futureCategoryDescription =
+      '앞으로 진행할 프로젝트들을 소개합니다. 실생활에 도움이 될 수 있는 의미 있는 프로젝트들을 계획하고 있습니다.';
+
+  static const String flutterContainerCount = '4개의 프로젝트';
+  static const String flutterRiveContainerCount = '3개의 컨테이너';
+
+  static const String comingSoonBadge = '곧 시작!';
+
+  static const List<Map<String, String>> flutterProjects = [
+    {
+      'title': '잎사이',
+      'description':
+          '2만 줄 이상의 코드 규모에 MVVM 아키텍처를 적용하고, TestFlight를 통해 협업한 프로젝트입니다.',
+      'tech': 'MVVM, Clean Architecture, TestFlight',
+    },
+    {
+      'title': 'NaverMap',
+      'description':
+          'Service 계층, Isar(Local DB), DIO 등, Clean Architecture를 적용하여 설계한 지도 기반 Flutter 프로젝트입니다.',
+      'tech': 'Service_계층, Isar, DIO, NaverMap',
+    },
+    {
+      'title': '클랭(KLANG)',
+      'description': 'PM 역할을 수행하며 16명의 다양한 전공 팀원들과 함께한 협업 프로젝트입니다.',
+      'tech': 'PM, Flutter, 비개발자 팀원과의 협업',
+    },
+    {
+      'title': '구름 x 카카오 x 인프런',
+      'description': '웹, 앱, 서버를 함께 공부하는 학생들이 협업하여 만든 게시판 형태의 프로젝트입니다.',
+      'tech': '부트캠프, Collaboration, Service Planning',
+    },
+  ];
+
+  // Flutter in Rive 프로젝트 데이터
+  static const List<Map<String, String>> flutterRiveProjects = [
+    {
+      'title': 'About Me - With myDream',
+      'description': '사용자의 마우스 호버에 반응해 원하는 챕터로 이동할 수 있도록 만든 첫 Rive 프로젝트입니다.',
+      'tech': 'Pick - 첫 Rive 프로젝트',
+    },
+    {
+      'title': 'MySkill - in Web',
+      'description': '총 4일간 제작한 가장 긴 애니메이션으로, 초기 진입부터 부드러운 화면 전환이 이어집니다.',
+      'tech': 'Pick - 32개의 리스너, 16개의 포인터, 4개의 트리거',
+    },
+    {
+      'title': 'Detail Me',
+      'description': '빈 화면에서 핸드폰이 나타나고, 사용자가 원하는 구성으로 내용을 꾸밀 수 있도록 설계된 구조입니다.',
+      'tech': 'Pick - 다양한 연출에 쉽게 변형 가능한 범용적인 애니메이션',
+    },
+  ];
+
+  // 미래 프로젝트 데이터
+  static const List<Map<String, String>> futureProjects = [
+    {
+      'title': '악보 넘기기',
+      'description':
+          '동생이 음악을 전공하며 2025년 대학생이 되었고, 손을 사용하지 않고도 악보를 넘길 수 있는 악보 뷰어 앱을 만들 계획입니다.',
+      'tech': '25년 7월 작업 시작 예정',
+    },
+    {
+      'title': 'CCTV View',
+      'description':
+          '2025년 원주에서 시작한 작은 텃밭을 실시간으로 확인하고, 원격으로 물을 줄 수 있는 어플리케이션을 백엔드 개발자인 여자친구와 함께 개발할 예정입니다.',
+      'tech': '25년 11월 작업 시작 예정',
+    },
+    {
+      'title': '맞춤 건강 알림',
+      'description': '복용 중인 약과 복용 시간을 기록하고, 필요한 약을 미리 알려주는 건강 도우미 앱을 만들 계획입니다.',
+      'tech': '26년 백엔드를 배우며 작업시작 예정',
+    },
+  ];
+
   // 공통 텍스트
   static const String backToProjectList = '프로젝트 목록으로 돌아가기';
   static const String dividerText =

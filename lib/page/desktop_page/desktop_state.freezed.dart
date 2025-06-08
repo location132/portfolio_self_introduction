@@ -33,7 +33,9 @@ mixin _$DesktopState {
   AboutMeModel get aboutMeModel =>
       throw _privateConstructorUsedError; //InitModel
   InitModel get initModel => throw _privateConstructorUsedError; //DetailMeModel
-  DetailMeModel get detailMeModel => throw _privateConstructorUsedError;
+  DetailMeModel get detailMeModel =>
+      throw _privateConstructorUsedError; //ProjectModel
+  ProjectModel get projectModel => throw _privateConstructorUsedError;
 
   /// Create a copy of DesktopState
   /// with the given fields replaced by the non-null parameter values.
@@ -59,6 +61,7 @@ abstract class $DesktopStateCopyWith<$Res> {
     AboutMeModel aboutMeModel,
     InitModel initModel,
     DetailMeModel detailMeModel,
+    ProjectModel projectModel,
   });
 
   $StartAnimationModelCopyWith<$Res>? get startAnimation;
@@ -70,6 +73,7 @@ abstract class $DesktopStateCopyWith<$Res> {
   $AboutMeModelCopyWith<$Res> get aboutMeModel;
   $InitModelCopyWith<$Res> get initModel;
   $DetailMeModelCopyWith<$Res> get detailMeModel;
+  $ProjectModelCopyWith<$Res> get projectModel;
 }
 
 /// @nodoc
@@ -96,6 +100,7 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
     Object? aboutMeModel = null,
     Object? initModel = null,
     Object? detailMeModel = null,
+    Object? projectModel = null,
   }) {
     return _then(
       _value.copyWith(
@@ -144,6 +149,11 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
                     ? _value.detailMeModel
                     : detailMeModel // ignore: cast_nullable_to_non_nullable
                         as DetailMeModel,
+            projectModel:
+                null == projectModel
+                    ? _value.projectModel
+                    : projectModel // ignore: cast_nullable_to_non_nullable
+                        as ProjectModel,
           )
           as $Val,
     );
@@ -242,6 +252,16 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
       return _then(_value.copyWith(detailMeModel: value) as $Val);
     });
   }
+
+  /// Create a copy of DesktopState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProjectModelCopyWith<$Res> get projectModel {
+    return $ProjectModelCopyWith<$Res>(_value.projectModel, (value) {
+      return _then(_value.copyWith(projectModel: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -263,6 +283,7 @@ abstract class _$$DesktopStateImplCopyWith<$Res>
     AboutMeModel aboutMeModel,
     InitModel initModel,
     DetailMeModel detailMeModel,
+    ProjectModel projectModel,
   });
 
   @override
@@ -283,6 +304,8 @@ abstract class _$$DesktopStateImplCopyWith<$Res>
   $InitModelCopyWith<$Res> get initModel;
   @override
   $DetailMeModelCopyWith<$Res> get detailMeModel;
+  @override
+  $ProjectModelCopyWith<$Res> get projectModel;
 }
 
 /// @nodoc
@@ -308,6 +331,7 @@ class __$$DesktopStateImplCopyWithImpl<$Res>
     Object? aboutMeModel = null,
     Object? initModel = null,
     Object? detailMeModel = null,
+    Object? projectModel = null,
   }) {
     return _then(
       _$DesktopStateImpl(
@@ -356,6 +380,11 @@ class __$$DesktopStateImplCopyWithImpl<$Res>
                 ? _value.detailMeModel
                 : detailMeModel // ignore: cast_nullable_to_non_nullable
                     as DetailMeModel,
+        projectModel:
+            null == projectModel
+                ? _value.projectModel
+                : projectModel // ignore: cast_nullable_to_non_nullable
+                    as ProjectModel,
       ),
     );
   }
@@ -374,6 +403,7 @@ class _$DesktopStateImpl implements _DesktopState {
     this.aboutMeModel = const AboutMeModel(),
     this.initModel = const InitModel(),
     this.detailMeModel = const DetailMeModel(),
+    this.projectModel = const ProjectModel(),
   });
 
   //StartAnimation 컨트롤러
@@ -411,10 +441,14 @@ class _$DesktopStateImpl implements _DesktopState {
   @override
   @JsonKey()
   final DetailMeModel detailMeModel;
+  //ProjectModel
+  @override
+  @JsonKey()
+  final ProjectModel projectModel;
 
   @override
   String toString() {
-    return 'DesktopState(startAnimation: $startAnimation, bannerModel: $bannerModel, mySkillModel: $mySkillModel, chapterModel: $chapterModel, descriptionModel: $descriptionModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel, initModel: $initModel, detailMeModel: $detailMeModel)';
+    return 'DesktopState(startAnimation: $startAnimation, bannerModel: $bannerModel, mySkillModel: $mySkillModel, chapterModel: $chapterModel, descriptionModel: $descriptionModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel, initModel: $initModel, detailMeModel: $detailMeModel, projectModel: $projectModel)';
   }
 
   @override
@@ -439,7 +473,9 @@ class _$DesktopStateImpl implements _DesktopState {
             (identical(other.initModel, initModel) ||
                 other.initModel == initModel) &&
             (identical(other.detailMeModel, detailMeModel) ||
-                other.detailMeModel == detailMeModel));
+                other.detailMeModel == detailMeModel) &&
+            (identical(other.projectModel, projectModel) ||
+                other.projectModel == projectModel));
   }
 
   @override
@@ -454,6 +490,7 @@ class _$DesktopStateImpl implements _DesktopState {
     aboutMeModel,
     initModel,
     detailMeModel,
+    projectModel,
   );
 
   /// Create a copy of DesktopState
@@ -476,6 +513,7 @@ abstract class _DesktopState implements DesktopState {
     final AboutMeModel aboutMeModel,
     final InitModel initModel,
     final DetailMeModel detailMeModel,
+    final ProjectModel projectModel,
   }) = _$DesktopStateImpl;
 
   //StartAnimation 컨트롤러
@@ -496,7 +534,9 @@ abstract class _DesktopState implements DesktopState {
   @override
   InitModel get initModel; //DetailMeModel
   @override
-  DetailMeModel get detailMeModel;
+  DetailMeModel get detailMeModel; //ProjectModel
+  @override
+  ProjectModel get projectModel;
 
   /// Create a copy of DesktopState
   /// with the given fields replaced by the non-null parameter values.

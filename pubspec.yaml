@@ -40,6 +40,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/Images/
+    - assets/Images/project_img/
     - assets/rive/
     - assets/icons/
 

@@ -34,9 +34,20 @@ class _DesktopDetailMeViewState extends State<DesktopDetailMeView> {
 
         Stack(
           children: [
-            // Visibility(
-            //   visible: MediaQuery.of(context).size.height > 983,
-            // child:
+            Column(
+              children: [
+                SizedBox(height: 200),
+                Align(
+                  alignment: Alignment.center,
+                  child: AnimatedOpacity(
+                    opacity: MediaQuery.of(context).size.height < 983 ? 1 : 0,
+                    duration: const Duration(milliseconds: 700),
+                    child: const ErrorSize(),
+                  ),
+                ),
+                SizedBox(height: 200),
+              ],
+            ),
             SizedBox(
               height: 900,
               child: Stack(
@@ -64,21 +75,6 @@ class _DesktopDetailMeViewState extends State<DesktopDetailMeView> {
                   ),
                 ],
               ),
-              // ),
-            ),
-            Column(
-              children: [
-                SizedBox(height: 200),
-                Align(
-                  alignment: Alignment.center,
-                  child: AnimatedOpacity(
-                    opacity: MediaQuery.of(context).size.height < 983 ? 1 : 0,
-                    duration: const Duration(milliseconds: 700),
-                    child: const ErrorSize(),
-                  ),
-                ),
-                SizedBox(height: 200),
-              ],
             ),
           ],
         ),

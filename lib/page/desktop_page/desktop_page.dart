@@ -11,6 +11,7 @@ import 'package:self_introduction_flutter/page/desktop_page/view/aboutMe_view/ab
 import 'package:self_introduction_flutter/page/desktop_page/view/detailMe_view/detail_me_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/intro_view/introShowcase.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/skill_view/skill_page.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/project_view/project_page.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class DesktopPage extends StatelessWidget {
@@ -91,33 +92,33 @@ class _MainViewState extends State<_MainView> {
                                 Positioned.fill(
                                   child: AnimatedOpacity(
                                     opacity:
-                                        state
-                                                .chapterModel
-                                                .isBlackBackgroundColor
-                                            ? 1
-                                            : 0,
+                                        // state
+                                        //         .chapterModel
+                                        //         .isBlackBackgroundColor
+                                        // ?
+                                        1,
+                                    // : 0,
                                     duration: const Duration(seconds: 1),
                                     child: Container(color: Colors.black),
                                   ),
                                 ),
                                 Column(
                                   children: [
-                                    BannerPage(
-                                      state: state,
-                                      desktopCubit:
-                                          context.read<DesktopCubit>(),
-                                    ),
-                                    SizedBox(height: 120),
-                                    SkillPage(
-                                      state: state,
-                                      desktopCubit:
-                                          context.read<DesktopCubit>(),
-                                    ),
-                                    SizedBox(height: 20),
-
+                                    // BannerPage(
+                                    //   state: state,
+                                    //   desktopCubit:
+                                    //       context.read<DesktopCubit>(),
+                                    // ),
+                                    // SizedBox(height: 120),
+                                    // SkillPage(
+                                    //   state: state,
+                                    //   desktopCubit:
+                                    //       context.read<DesktopCubit>(),
+                                    // ),
+                                    // SizedBox(height: 20),
                                     Visibility(
                                       visible:
-                                          state.chapterModel.isChapterActive,
+                                          !state.chapterModel.isChapterActive,
                                       child: VisibilityDetector(
                                         key: const Key('main-view'),
                                         onVisibilityChanged: (info) {
@@ -134,21 +135,29 @@ class _MainViewState extends State<_MainView> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            ChapterPage(
-                                              state: state,
-                                              desktopCubit:
-                                                  context.read<DesktopCubit>(),
-                                            ),
-                                            // 어비웃 미 페이지
-                                            AboutMePage(
-                                              state: state,
-                                              desktopCubit:
-                                                  context.read<DesktopCubit>(),
-                                            ),
-                                            // 더 자세히 살펴보기 페이지
-                                            DetailMePage(
-                                              state: state,
-                                              desktopCubit:
+                                            // ChapterPage(
+                                            //   state: state,
+                                            //   desktopCubit:
+                                            //       context.read<DesktopCubit>(),
+                                            // ),
+                                            // // 어비웃 미 페이지
+                                            // AboutMePage(
+                                            //   state: state,
+                                            //   desktopCubit:
+                                            //       context.read<DesktopCubit>(),
+                                            // ),
+                                            // // 더 자세히 살펴보기 페이지
+                                            // DetailMePage(
+                                            //   state: state,
+                                            //   desktopCubit:
+                                            //       context.read<DesktopCubit>(),
+                                            // ),
+
+                                            //프로젝트 페이지
+                                            // SizedBox(height: 120),
+                                            ProjectPage(
+                                              state: state.projectModel,
+                                              cubit:
                                                   context.read<DesktopCubit>(),
                                             ),
                                           ],

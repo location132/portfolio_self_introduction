@@ -8,6 +8,7 @@ import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/model/main_page/start_animation_model.dart';
 import 'package:self_introduction_flutter/model/main_page/detail_me_model.dart';
+import 'package:self_introduction_flutter/model/main_page/project_model.dart';
 
 part 'desktop_state.freezed.dart';
 
@@ -40,5 +41,8 @@ class DesktopState with _$DesktopState {
 
     //DetailMeModel
     @Default(DetailMeModel()) DetailMeModel detailMeModel,
+
+    //ProjectModel
+    @Default(ProjectModel()) ProjectModel projectModel,
   }) = _DesktopState;
 }

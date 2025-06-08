@@ -584,6 +584,88 @@ class DesktopCubit extends Cubit<DesktopState> {
     }
   }
 
+  // 프로젝트 애니메이션 시작
+  void projectAniStart() async {
+    emit(
+      state.copyWith(
+        projectModel: state.projectModel.copyWith(
+          isTitleAniStart: true,
+          selectedProjectCategory: 'All',
+          isProjectListVisible: true,
+          isProjectListAni: true, // 바로 애니메이션 시작하도록 변경
+        ),
+      ),
+    );
+  }
+
+  // 프로젝트 카테고리 선택
+  void selectProjectCategory(String category) async {
+    if (state.projectModel.selectedProjectCategory == category) {
+      return;
+    }
+
+    if (state.projectModel.isProjectListVisible) {
+      emit(
+        state.copyWith(
+          projectModel: state.projectModel.copyWith(isProjectListAni: false),
+        ),
+      );
+      await Future.delayed(const Duration(milliseconds: 300));
+    }
+
+    emit(
+      state.copyWith(
+        projectModel: state.projectModel.copyWith(
+          selectedProjectCategory: category,
+          isProjectListVisible: true,
+        ),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 100));
+    emit(
+      state.copyWith(
+        projectModel: state.projectModel.copyWith(isProjectListAni: true),
+      ),
+    );
+  }
+
+  // 프로젝트 디테일 스크린 표시
+  void showProjectDetail(String category) async {
+    emit(
+      state.copyWith(
+        projectModel: state.projectModel.copyWith(
+          isProjectDetailVisible: true,
+          selectedProjectCategory: category,
+        ),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 400));
+    emit(
+      state.copyWith(
+        projectModel: state.projectModel.copyWith(isProjectDetailAni: true),
+      ),
+    );
+  }
+
+  // 프로젝트 디테일 스크린 숨기기
+  void hideProjectDetail() async {
+    emit(
+      state.copyWith(
+        projectModel: state.projectModel.copyWith(isProjectDetailAni: false),
+      ),
+    );
+
+    await Future.delayed(const Duration(milliseconds: 600));
+    emit(
+      state.copyWith(
+        projectModel: state.projectModel.copyWith(
+          isProjectDetailVisible: false,
+          selectedProjectCategory: '',
+        ),
+      ),
+    );
+  }
+
   // 애니메이션 컨트롤러들 정리
   @override
   Future<void> close() async {
