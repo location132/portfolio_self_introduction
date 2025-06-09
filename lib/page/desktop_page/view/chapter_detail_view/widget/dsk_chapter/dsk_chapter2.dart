@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/model/main_page/chapter_model.dart';
-import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/chapter_detail/dsk_chapter_story.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/chapter_detail_view/dsk_chapter_story.dart';
 
-class DskChapter1 extends StatelessWidget {
+class DskChapter2 extends StatelessWidget {
   final ChapterModel state;
-  const DskChapter1({super.key, required this.state});
+  const DskChapter2({super.key, required this.state});
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +23,16 @@ class DskChapter1 extends StatelessWidget {
 
         SizedBox(height: 40.h),
 
-        // 3개 세미나 섹션을 한번에 애니메이션
+        // 3개 대학 경험 섹션을 한번에 애니메이션
         AnimatedOpacity(
           opacity: state.isChapterContentVisible ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 800),
           curve: Curves.easeInOut,
           child: Column(
             children: [
-              // 1. 판교 디지털센터 groom 강연
+              // 1. 처음 개발 수업
               DskChapterStory(
-                title: '판교 디지털센터 groom 강연',
+                title: '입학 후, 처음 개발 강의를 수강했던 날',
                 isStart: state.isChapterDetailAniTitle,
               ),
               Padding(
@@ -59,7 +59,7 @@ class DskChapter1 extends StatelessWidget {
                         ),
                         clipBehavior: Clip.hardEdge,
                         child: Image.asset(
-                          'assets/Images/SeminarImage_groom.jpeg',
+                          'assets/images/story_3.png',
                           width: double.infinity,
                           height: 200.h,
                           fit: BoxFit.cover,
@@ -70,7 +70,7 @@ class DskChapter1 extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 4.w),
                       child: Text(
-                        '참여의 의미, 그 안에서 발견하는 나.',
+                        '기본 개념조차 잡히지 않았던 우리.',
                         style: TextStyle(
                           fontSize: 20.sp,
                           fontWeight: FontWeight.w600,
@@ -85,9 +85,9 @@ class DskChapter1 extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 4.w),
                       child: Text(
-                        '하루하루 쌓아가는 작은 지식과 강연에서의 배움을 통해, 기업과 함께 새로운 도전에 나설 때,\n\n'
-                        '"기술적으로 불가능할 것 같습니다." 라는 부정적인 마인드보다는 "이 파트, 제가 도전해보겠습니다." 같은 긍정적인 태도를 갖기 위해,\n\n'
-                        '저는 다양한 세미나와 컨퍼런스에 꾸준히 참여하고 있습니다.',
+                        '기본 개념조차 잡히지 않았던 저와 동기들, Unix 수업 시간에 처음 들은 cd와 ls.\n\n'
+                        '하지만 이게 왜 필요한지, 어디에 쓰이는 건지 몰랐던 우리.\n\n'
+                        '궁금증만 커져가던 시간 속에서, 우리는 서로를 붙잡고, 매일 스터디에 모였습니다.',
                         style: TextStyle(
                           fontSize: 16.sp,
                           height: 1.5,
@@ -103,9 +103,9 @@ class DskChapter1 extends StatelessWidget {
 
               SizedBox(height: 60.h),
 
-              // 2. 선배 개발자의 조언 with 커뮤니케이션
+              // 2. 첫 프로젝트 경험
               DskChapterStory(
-                title: '선배 개발자의 조언 with 커뮤니케이션',
+                title: '우리손으로 뭔가를 해보겠다는 노력',
                 isStart: state.isChapterDetailAniTitle,
               ),
               Padding(
@@ -132,7 +132,7 @@ class DskChapter1 extends StatelessWidget {
                         ),
                         clipBehavior: Clip.hardEdge,
                         child: Image.asset(
-                          'assets/Images/pdc_groom.jpg',
+                          'assets/images/story_1.png',
                           width: double.infinity,
                           height: 200.h,
                           fit: BoxFit.cover,
@@ -143,7 +143,7 @@ class DskChapter1 extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 4.w),
                       child: Text(
-                        '의견의 다름은 가능성의 씨앗입니다.',
+                        '하나의 프로젝트라는 꿈으로 이어졌습니다.',
                         style: TextStyle(
                           fontSize: 20.sp,
                           fontWeight: FontWeight.w600,
@@ -158,9 +158,8 @@ class DskChapter1 extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 4.w),
                       child: Text(
-                        '예전엔 말하는 사람이 되길 원했습니다. 지금은 듣는 사람이 되길 노력하고 있습니다.\n\n'
-                        '다른 의견 속에서 더 나은 성장 그리고 목표를 발견하게 되었기 때문입니다.\n\n'
-                        '저는 믿고있습니다. 의견의 다름은 가능성 그리고 성장할 수 있는 씨앗의 첫 단계라는 것을.',
+                        '처음엔 학생 몇 명이 모여 만든 엉망진창의 결과물. 완성도는 부족했지만,\n\n'
+                        '우리 손으로 무언가를 만들어냈다는 그 기쁨은, 현재도 제가 개발공부를 하고, 계속 공부할 수 있도록 만들어주었습니다.',
                         style: TextStyle(
                           fontSize: 16.sp,
                           height: 1.5,
@@ -176,9 +175,9 @@ class DskChapter1 extends StatelessWidget {
 
               SizedBox(height: 60.h),
 
-              // 3. 송도 Future<Flutter> 2024
+              // 3. PM 경험과 팀 프로젝트
               DskChapterStory(
-                title: '송도 Future<Flutter> 2024',
+                title: 'Klang 프로젝트와 잎사이 프로젝트',
                 isStart: state.isChapterDetailAniTitle,
               ),
               Padding(
@@ -205,7 +204,7 @@ class DskChapter1 extends StatelessWidget {
                         ),
                         clipBehavior: Clip.hardEdge,
                         child: Image.asset(
-                          'assets/Images/SeminarImage_flutter.jpg',
+                          'assets/images/story_2.png',
                           width: double.infinity,
                           height: 200.h,
                           fit: BoxFit.cover,
@@ -216,7 +215,7 @@ class DskChapter1 extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 4.w),
                       child: Text(
-                        '도와주는 기술 속에서도 저는 중심이길 원합니다.',
+                        'Flutter 개발자로서의 가장 커다란 대학 경험.',
                         style: TextStyle(
                           fontSize: 20.sp,
                           fontWeight: FontWeight.w600,
@@ -231,8 +230,9 @@ class DskChapter1 extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 4.w),
                       child: Text(
-                        '인공지능은 개발자를 더 단순하게 만들며, 많은 것을 대신해주고 있습니다. 저는 그 편리함 속에서 놓쳐버린 기본기와 목표를 붙잡고 싶었습니다.\n\n'
-                        '세미나에 참여하는 이유는 성장과 목표 그리고 중심점을 되찾는 시간이기 때문입니다.',
+                        '9명의 개발자, 3명의 디자이너, 1명의 보안 전문가, 그리고 3명의 경영학 전공 친구들과 함께\n\n'
+                        '기획부터 디자인 · 개발까지 진행하며 하나의 작은 서비스를 우리 손으로 만들어내는 PM경험을 해보기도 했습니다.\n\n'
+                        '저는 이 모든 경험들이 저를 여기까지 올라오게 만들어준 Flutter 개발자로서의 가장 커다란 대학 경험이라 생각합니다.',
                         style: TextStyle(
                           fontSize: 16.sp,
                           height: 1.5,

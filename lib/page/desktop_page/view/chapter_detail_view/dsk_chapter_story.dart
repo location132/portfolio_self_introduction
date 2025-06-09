@@ -25,6 +25,7 @@ class DskChapterStory extends StatelessWidget {
             color: const Color.fromARGB(255, 210, 255, 254),
             height: 1.3,
           ),
+          textAlign: TextAlign.left,
         ),
       ),
     );

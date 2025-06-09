@@ -11,7 +11,7 @@ import 'package:self_introduction_flutter/page/desktop_page/view/aboutMe_view/ab
 import 'package:self_introduction_flutter/page/desktop_page/view/detailMe_view/detail_me_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/intro_view/introShowcase.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/skill_view/skill_page.dart';
-import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/chapter_detail/dsk_chapter_detail_screen.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/chapter_detail_view/dsk_chapter_detail_screen.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class DesktopPage extends StatelessWidget {
