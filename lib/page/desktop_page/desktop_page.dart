@@ -92,33 +92,32 @@ class _MainViewState extends State<_MainView> {
                                 Positioned.fill(
                                   child: AnimatedOpacity(
                                     opacity:
-                                        // state
-                                        //         .chapterModel
-                                        //         .isBlackBackgroundColor
-                                        // ?
-                                        1,
-                                    // : 0,
+                                        state
+                                                .chapterModel
+                                                .isBlackBackgroundColor
+                                            ? 1
+                                            : 0,
                                     duration: const Duration(seconds: 1),
                                     child: Container(color: Colors.black),
                                   ),
                                 ),
                                 Column(
                                   children: [
-                                    // BannerPage(
-                                    //   state: state,
-                                    //   desktopCubit:
-                                    //       context.read<DesktopCubit>(),
-                                    // ),
-                                    // SizedBox(height: 120),
-                                    // SkillPage(
-                                    //   state: state,
-                                    //   desktopCubit:
-                                    //       context.read<DesktopCubit>(),
-                                    // ),
-                                    // SizedBox(height: 20),
+                                    BannerPage(
+                                      state: state,
+                                      desktopCubit:
+                                          context.read<DesktopCubit>(),
+                                    ),
+                                    SizedBox(height: 120),
+                                    SkillPage(
+                                      state: state,
+                                      desktopCubit:
+                                          context.read<DesktopCubit>(),
+                                    ),
+                                    SizedBox(height: 20),
                                     Visibility(
                                       visible:
-                                          !state.chapterModel.isChapterActive,
+                                          state.chapterModel.isChapterActive,
                                       child: VisibilityDetector(
                                         key: const Key('main-view'),
                                         onVisibilityChanged: (info) {
@@ -135,26 +134,26 @@ class _MainViewState extends State<_MainView> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            // ChapterPage(
-                                            //   state: state,
-                                            //   desktopCubit:
-                                            //       context.read<DesktopCubit>(),
-                                            // ),
-                                            // // 어비웃 미 페이지
-                                            // AboutMePage(
-                                            //   state: state,
-                                            //   desktopCubit:
-                                            //       context.read<DesktopCubit>(),
-                                            // ),
-                                            // // 더 자세히 살펴보기 페이지
-                                            // DetailMePage(
-                                            //   state: state,
-                                            //   desktopCubit:
-                                            //       context.read<DesktopCubit>(),
-                                            // ),
+                                            ChapterPage(
+                                              state: state,
+                                              desktopCubit:
+                                                  context.read<DesktopCubit>(),
+                                            ),
+                                            // 어비웃 미 페이지
+                                            AboutMePage(
+                                              state: state,
+                                              desktopCubit:
+                                                  context.read<DesktopCubit>(),
+                                            ),
+                                            // 더 자세히 살펴보기 페이지
+                                            DetailMePage(
+                                              state: state,
+                                              desktopCubit:
+                                                  context.read<DesktopCubit>(),
+                                            ),
 
-                                            //프로젝트 페이지
-                                            // SizedBox(height: 120),
+                                            // 프로젝트 페이지
+                                            SizedBox(height: 120),
                                             ProjectPage(
                                               state: state.projectModel,
                                               cubit:

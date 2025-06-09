@@ -163,7 +163,6 @@ class _ProjectCardState extends State<ProjectCard> {
           width: 330,
           margin: const EdgeInsets.only(right: 20),
           decoration: BoxDecoration(
-            color: Colors.white.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color:
@@ -172,16 +171,6 @@ class _ProjectCardState extends State<ProjectCard> {
                       : Colors.white.withValues(alpha: 0.1),
               width: _isHovered ? 2 : 1,
             ),
-            boxShadow:
-                _isHovered
-                    ? [
-                      BoxShadow(
-                        color: Colors.white.withValues(alpha: 0.1),
-                        blurRadius: 20,
-                        spreadRadius: 2,
-                      ),
-                    ]
-                    : null,
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),

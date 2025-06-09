@@ -28,16 +28,7 @@ class BannerPage extends StatelessWidget {
               context.read<DesktopCubit>().viewListener('banner');
             }
           },
-          child: BannerView(
-            desktopCubit: desktopCubit,
-            state: state,
-            isActive: (bool isActive) {
-              context.read<DesktopCubit>().descriptionButton(
-                'banner',
-                isActive,
-              );
-            },
-          ),
+          child: BannerView(desktopCubit: desktopCubit, state: state),
         ),
       ],
     );

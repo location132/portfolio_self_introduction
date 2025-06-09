@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:self_introduction_flutter/components/condition_utils/profile_view_condition_utils.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/model/init_model.dart';
-import 'package:self_introduction_flutter/model/main_page/description_model.dart';
+
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/model/main_page/start_animation_model.dart';
@@ -22,13 +22,13 @@ class DesktopCubit extends Cubit<DesktopState> {
   @postConstruct
   void init() async {
     //TODO:  배포 후, 주석 해제
-    // if (!isClosed) {
-    //   emit(
-    //     state.copyWith(
-    //       initModel: state.initModel.copyWith(initState: InitState.active),
-    //     ),
-    //   );
-    // }
+    if (!isClosed) {
+      emit(
+        state.copyWith(
+          initModel: state.initModel.copyWith(initState: InitState.active),
+        ),
+      );
+    }
 
     final controller = state.scrollModel.scrollController;
     if (controller != null) {
@@ -56,14 +56,14 @@ class DesktopCubit extends Cubit<DesktopState> {
 
   Future<void> changeProfileViewHeight(controller) async {
     //TODO: 배포 주석 해제
-    // emit(
-    //   state.copyWith(
-    //     initModel: state.initModel.copyWith(
-    //       remainingTime: state.initModel.remainingTime,
-    //     ),
-    //   ),
-    // );
-    // await Future.delayed(Duration(seconds: state.initModel.remainingTime));
+    emit(
+      state.copyWith(
+        initModel: state.initModel.copyWith(
+          remainingTime: state.initModel.remainingTime,
+        ),
+      ),
+    );
+    await Future.delayed(Duration(seconds: state.initModel.remainingTime));
   }
 
   void awaitDuration(
@@ -71,7 +71,7 @@ class DesktopCubit extends Cubit<DesktopState> {
     String message = TextConstants.welcomeMessage1,
   }) async {
     //TODO: 추 후, 주석 해제
-    // await Future.delayed(Duration(seconds: state.initModel.remainingTime));
+    await Future.delayed(Duration(seconds: state.initModel.remainingTime));
 
     initializeAnimations(vsync, message: message);
   }
@@ -332,55 +332,6 @@ class DesktopCubit extends Cubit<DesktopState> {
           mySkillModel: state.mySkillModel.copyWith(isPlayerActive: isActive),
         ),
       );
-    }
-  }
-
-  //Description 버튼 클릭
-  void descriptionButton(String descriptionName, bool isActive) {
-    if (descriptionName == 'banner') {
-      emit(
-        state.copyWith(
-          descriptionModel: state.descriptionModel.copyWith(
-            bannerDescriptionState:
-                isActive
-                    ? BannerDescriptionState.active
-                    : BannerDescriptionState.inactive,
-          ),
-        ),
-      );
-      if (isActive == false) {
-        _delayedPlayerActivation();
-      }
-    } else if (descriptionName == 'chapter') {
-      emit(
-        state.copyWith(
-          descriptionModel: state.descriptionModel.copyWith(
-            profileDescriptionState:
-                isActive
-                    ? ProfileDescriptionState.active
-                    : ProfileDescriptionState.inactive,
-          ),
-        ),
-      );
-    } else if (descriptionName == 'skill') {
-      emit(
-        state.copyWith(
-          descriptionModel: state.descriptionModel.copyWith(
-            skillDescriptionState:
-                isActive
-                    ? SkillDescriptionState.active
-                    : SkillDescriptionState.inactive,
-          ),
-        ),
-      );
-    }
-  }
-
-  // 1초 딜레이 후 플레이어 활성화
-  void _delayedPlayerActivation() async {
-    await Future.delayed(const Duration(milliseconds: 1000));
-    if (!isClosed) {
-      playerActive('banner', isActive: true);
     }
   }
 

@@ -35,12 +35,7 @@ class ChapterPage extends StatelessWidget {
               print('Chapter $index clicked');
             },
             state: state,
-            onDescriptionActive: (bool isActive) {
-              context.read<DesktopCubit>().descriptionButton(
-                'profile',
-                isActive,
-              );
-            },
+
             desktopCubit: desktopCubit,
           ),
         ),

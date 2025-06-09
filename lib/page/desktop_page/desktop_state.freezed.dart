@@ -25,8 +25,6 @@ mixin _$DesktopState {
   MySkillModel get mySkillModel =>
       throw _privateConstructorUsedError; //ChapterModel
   ChapterModel get chapterModel =>
-      throw _privateConstructorUsedError; //DescriptionModel
-  DescriptionModel get descriptionModel =>
       throw _privateConstructorUsedError; //ScrollModel
   ScrollModel get scrollModel =>
       throw _privateConstructorUsedError; //ProfileModel
@@ -56,7 +54,6 @@ abstract class $DesktopStateCopyWith<$Res> {
     BannerModel bannerModel,
     MySkillModel mySkillModel,
     ChapterModel chapterModel,
-    DescriptionModel descriptionModel,
     ScrollModel scrollModel,
     AboutMeModel aboutMeModel,
     InitModel initModel,
@@ -68,7 +65,6 @@ abstract class $DesktopStateCopyWith<$Res> {
   $BannerModelCopyWith<$Res> get bannerModel;
   $MySkillModelCopyWith<$Res> get mySkillModel;
   $ChapterModelCopyWith<$Res> get chapterModel;
-  $DescriptionModelCopyWith<$Res> get descriptionModel;
   $ScrollModelCopyWith<$Res> get scrollModel;
   $AboutMeModelCopyWith<$Res> get aboutMeModel;
   $InitModelCopyWith<$Res> get initModel;
@@ -95,7 +91,6 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
     Object? bannerModel = null,
     Object? mySkillModel = null,
     Object? chapterModel = null,
-    Object? descriptionModel = null,
     Object? scrollModel = null,
     Object? aboutMeModel = null,
     Object? initModel = null,
@@ -124,11 +119,6 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
                     ? _value.chapterModel
                     : chapterModel // ignore: cast_nullable_to_non_nullable
                         as ChapterModel,
-            descriptionModel:
-                null == descriptionModel
-                    ? _value.descriptionModel
-                    : descriptionModel // ignore: cast_nullable_to_non_nullable
-                        as DescriptionModel,
             scrollModel:
                 null == scrollModel
                     ? _value.scrollModel
@@ -207,16 +197,6 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $DescriptionModelCopyWith<$Res> get descriptionModel {
-    return $DescriptionModelCopyWith<$Res>(_value.descriptionModel, (value) {
-      return _then(_value.copyWith(descriptionModel: value) as $Val);
-    });
-  }
-
-  /// Create a copy of DesktopState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $ScrollModelCopyWith<$Res> get scrollModel {
     return $ScrollModelCopyWith<$Res>(_value.scrollModel, (value) {
       return _then(_value.copyWith(scrollModel: value) as $Val);
@@ -278,7 +258,6 @@ abstract class _$$DesktopStateImplCopyWith<$Res>
     BannerModel bannerModel,
     MySkillModel mySkillModel,
     ChapterModel chapterModel,
-    DescriptionModel descriptionModel,
     ScrollModel scrollModel,
     AboutMeModel aboutMeModel,
     InitModel initModel,
@@ -294,8 +273,6 @@ abstract class _$$DesktopStateImplCopyWith<$Res>
   $MySkillModelCopyWith<$Res> get mySkillModel;
   @override
   $ChapterModelCopyWith<$Res> get chapterModel;
-  @override
-  $DescriptionModelCopyWith<$Res> get descriptionModel;
   @override
   $ScrollModelCopyWith<$Res> get scrollModel;
   @override
@@ -326,7 +303,6 @@ class __$$DesktopStateImplCopyWithImpl<$Res>
     Object? bannerModel = null,
     Object? mySkillModel = null,
     Object? chapterModel = null,
-    Object? descriptionModel = null,
     Object? scrollModel = null,
     Object? aboutMeModel = null,
     Object? initModel = null,
@@ -355,11 +331,6 @@ class __$$DesktopStateImplCopyWithImpl<$Res>
                 ? _value.chapterModel
                 : chapterModel // ignore: cast_nullable_to_non_nullable
                     as ChapterModel,
-        descriptionModel:
-            null == descriptionModel
-                ? _value.descriptionModel
-                : descriptionModel // ignore: cast_nullable_to_non_nullable
-                    as DescriptionModel,
         scrollModel:
             null == scrollModel
                 ? _value.scrollModel
@@ -398,7 +369,6 @@ class _$DesktopStateImpl implements _DesktopState {
     this.bannerModel = const BannerModel(),
     this.mySkillModel = const MySkillModel(),
     this.chapterModel = const ChapterModel(),
-    this.descriptionModel = const DescriptionModel(),
     this.scrollModel = const ScrollModel(),
     this.aboutMeModel = const AboutMeModel(),
     this.initModel = const InitModel(),
@@ -421,10 +391,6 @@ class _$DesktopStateImpl implements _DesktopState {
   @override
   @JsonKey()
   final ChapterModel chapterModel;
-  //DescriptionModel
-  @override
-  @JsonKey()
-  final DescriptionModel descriptionModel;
   //ScrollModel
   @override
   @JsonKey()
@@ -448,7 +414,7 @@ class _$DesktopStateImpl implements _DesktopState {
 
   @override
   String toString() {
-    return 'DesktopState(startAnimation: $startAnimation, bannerModel: $bannerModel, mySkillModel: $mySkillModel, chapterModel: $chapterModel, descriptionModel: $descriptionModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel, initModel: $initModel, detailMeModel: $detailMeModel, projectModel: $projectModel)';
+    return 'DesktopState(startAnimation: $startAnimation, bannerModel: $bannerModel, mySkillModel: $mySkillModel, chapterModel: $chapterModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel, initModel: $initModel, detailMeModel: $detailMeModel, projectModel: $projectModel)';
   }
 
   @override
@@ -464,8 +430,6 @@ class _$DesktopStateImpl implements _DesktopState {
                 other.mySkillModel == mySkillModel) &&
             (identical(other.chapterModel, chapterModel) ||
                 other.chapterModel == chapterModel) &&
-            (identical(other.descriptionModel, descriptionModel) ||
-                other.descriptionModel == descriptionModel) &&
             (identical(other.scrollModel, scrollModel) ||
                 other.scrollModel == scrollModel) &&
             (identical(other.aboutMeModel, aboutMeModel) ||
@@ -485,7 +449,6 @@ class _$DesktopStateImpl implements _DesktopState {
     bannerModel,
     mySkillModel,
     chapterModel,
-    descriptionModel,
     scrollModel,
     aboutMeModel,
     initModel,
@@ -508,7 +471,6 @@ abstract class _DesktopState implements DesktopState {
     final BannerModel bannerModel,
     final MySkillModel mySkillModel,
     final ChapterModel chapterModel,
-    final DescriptionModel descriptionModel,
     final ScrollModel scrollModel,
     final AboutMeModel aboutMeModel,
     final InitModel initModel,
@@ -524,9 +486,7 @@ abstract class _DesktopState implements DesktopState {
   @override
   MySkillModel get mySkillModel; //ChapterModel
   @override
-  ChapterModel get chapterModel; //DescriptionModel
-  @override
-  DescriptionModel get descriptionModel; //ScrollModel
+  ChapterModel get chapterModel; //ScrollModel
   @override
   ScrollModel get scrollModel; //ProfileModel
   @override

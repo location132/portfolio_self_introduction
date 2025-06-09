@@ -11,14 +11,12 @@ import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/an
 class DesktopChapterView extends StatefulWidget {
   final Function(int)? onCardTap;
   final DesktopState state;
-  final Function(bool)? onDescriptionActive;
   final DesktopCubit desktopCubit;
 
   const DesktopChapterView({
     super.key,
     this.onCardTap,
     required this.state,
-    this.onDescriptionActive,
     required this.desktopCubit,
   });
 

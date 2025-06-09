@@ -3,7 +3,7 @@ import 'package:self_introduction_flutter/model/init_model.dart';
 import 'package:self_introduction_flutter/model/main_page/about_me_model.dart';
 import 'package:self_introduction_flutter/model/main_page/banner_model.dart';
 import 'package:self_introduction_flutter/model/main_page/chapter_model.dart';
-import 'package:self_introduction_flutter/model/main_page/description_model.dart';
+
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/model/main_page/start_animation_model.dart';
@@ -26,9 +26,6 @@ class DesktopState with _$DesktopState {
 
     //ChapterModel
     @Default(ChapterModel()) ChapterModel chapterModel,
-
-    //DescriptionModel
-    @Default(DescriptionModel()) DescriptionModel descriptionModel,
 
     //ScrollModel
     @Default(ScrollModel()) ScrollModel scrollModel,
