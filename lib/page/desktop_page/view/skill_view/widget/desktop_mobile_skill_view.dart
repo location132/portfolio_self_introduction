@@ -36,6 +36,7 @@ class DesktopMobileSkillView extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 300,
+                  width: 600,
                   child: TabBarView(
                     children: [
                       DesktopSkillTabItem(

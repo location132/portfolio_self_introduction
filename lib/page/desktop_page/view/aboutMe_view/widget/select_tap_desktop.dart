@@ -28,36 +28,39 @@ class SelectTapDesktop extends StatelessWidget {
                 Tab(text: '협업툴'),
               ],
             ),
-            SizedBox(
-              height: 400,
-              child: TabBarView(
-                children: [
-                  SelectTapTabItem(
-                    key: ValueKey('coding'),
-                    category: 'coding',
-                    isAnimationStart: true,
-                  ),
-                  SelectTapTabItem(
-                    key: ValueKey('state_management'),
-                    category: 'state_management',
-                    isAnimationStart: true,
-                  ),
-                  SelectTapTabItem(
-                    key: ValueKey('lifecycle'),
-                    category: 'lifecycle',
-                    isAnimationStart: true,
-                  ),
-                  SelectTapTabItem(
-                    key: ValueKey('animation'),
-                    category: 'animation',
-                    isAnimationStart: true,
-                  ),
-                  SelectTapTabItem(
-                    key: ValueKey('collaboration'),
-                    category: 'collaboration',
-                    isAnimationStart: true,
-                  ),
-                ],
+            Center(
+              child: SizedBox(
+                height: 400,
+                width: 1100,
+                child: TabBarView(
+                  children: [
+                    SelectTapTabItem(
+                      key: ValueKey('coding'),
+                      category: 'coding',
+                      isAnimationStart: true,
+                    ),
+                    SelectTapTabItem(
+                      key: ValueKey('state_management'),
+                      category: 'state_management',
+                      isAnimationStart: true,
+                    ),
+                    SelectTapTabItem(
+                      key: ValueKey('lifecycle'),
+                      category: 'lifecycle',
+                      isAnimationStart: true,
+                    ),
+                    SelectTapTabItem(
+                      key: ValueKey('animation'),
+                      category: 'animation',
+                      isAnimationStart: true,
+                    ),
+                    SelectTapTabItem(
+                      key: ValueKey('collaboration'),
+                      category: 'collaboration',
+                      isAnimationStart: true,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

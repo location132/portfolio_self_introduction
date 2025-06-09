@@ -149,10 +149,10 @@ class _MainViewState extends State<_MainView> {
 
                                         // 프로젝트 페이지
                                         SizedBox(height: 120),
-                                        ProjectPage(
-                                          state: state.projectModel,
-                                          cubit: context.read<DesktopCubit>(),
-                                        ),
+                                        // ProjectPage(
+                                        //   state: state.projectModel,
+                                        //   cubit: context.read<DesktopCubit>(),
+                                        // ),
                                       ],
                                     ),
                                   ],

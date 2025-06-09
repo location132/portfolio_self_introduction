@@ -30,8 +30,14 @@ class _SkillViewState extends State<SkillView> {
           onPrevious: () => widget.desktopCubit.skillTitlePrevious(),
           onNext: () => widget.desktopCubit.skillTitleNext(),
         ),
-        SizedBox(
-          height: 800,
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 600),
+          height:
+              widget.state.mySkillModel.status == MySkillViewStatus.active &&
+                      widget.state.mySkillModel.currentTitleIndex == 0 &&
+                      !widget.state.mySkillModel.isTitleChanging
+                  ? 650
+                  : 800,
           child: Stack(
             children: [
               Visibility(
@@ -51,12 +57,18 @@ class _SkillViewState extends State<SkillView> {
                   ),
                 ),
               ),
-              DesktopMobileSkillView(
-                isVisible:
-                    widget.state.mySkillModel.status ==
-                        MySkillViewStatus.active &&
-                    widget.state.mySkillModel.currentTitleIndex == 0 &&
-                    !widget.state.mySkillModel.isTitleChanging,
+              Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 200),
+                  child: DesktopMobileSkillView(
+                    isVisible:
+                        widget.state.mySkillModel.status ==
+                            MySkillViewStatus.active &&
+                        widget.state.mySkillModel.currentTitleIndex == 0 &&
+                        !widget.state.mySkillModel.isTitleChanging,
+                  ),
+                ),
               ),
             ],
           ),
