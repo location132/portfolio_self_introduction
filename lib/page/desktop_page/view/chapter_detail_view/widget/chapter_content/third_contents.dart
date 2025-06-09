@@ -11,6 +11,11 @@ class ThirdContents extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        AnimatedContainer(
+          height: state.isChapterDetailAniContent ? 0.h : 200.h,
+          duration: const Duration(milliseconds: 800),
+          curve: Curves.easeInOut,
+        ),
         DskChapterStory(
           title: '매년 도전하는 개발, 2025년은 Web',
           isStart: state.isChapterDetailAniTitle,
