@@ -55,6 +55,22 @@ class _ProjectCardState extends State<ProjectCard> {
       return isHovered
           ? 'assets/Images/project_img/web_project_mobile_1.png'
           : 'assets/Images/project_img/web_project_mobile_2.png';
+    } else if (title == 'About Me - With myDream') {
+      return isHovered
+          ? 'assets/Images/project_img/rive_pro2_2.png'
+          : 'assets/Images/project_img/rive_pro2_1.png';
+    } else if (title == 'MySkill - in Web') {
+      return isHovered
+          ? 'assets/Images/project_img/rive_pro1_2.png'
+          : 'assets/Images/project_img/rive_pro1_1.png';
+    } else if (title == 'Detail Me') {
+      return isHovered
+          ? 'assets/Images/project_img/rive_pro3_2.png'
+          : 'assets/Images/project_img/rive_pro3_1.png';
+    } else if (title == '악보 넘기기' ||
+        title == 'CCTV View' ||
+        title == '맞춤 건강 알림') {
+      return '';
     } else {
       return isHovered
           ? 'assets/Images/project_img/groom_2.png'
@@ -64,6 +80,37 @@ class _ProjectCardState extends State<ProjectCard> {
 
   Widget _buildImage() {
     final title = widget.project['title'] ?? '';
+
+    // 미래 프로젝트들은 Coming Soon 스타일로 표시
+    if (title == '악보 넘기기' || title == 'CCTV View' || title == '맞춤 건강 알림') {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          color: Colors.grey.withValues(alpha: 0.1),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.access_time_outlined,
+                  size: 80,
+                  color: Colors.white.withValues(alpha: 0.6),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'Coming Soon',
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.white.withValues(alpha: 0.8),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),

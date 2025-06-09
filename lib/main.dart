@@ -4,6 +4,7 @@ import 'package:self_introduction_flutter/core_service/util/device_Info_size.dar
 import 'package:self_introduction_flutter/core_service/router/app_router.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   Injector.init();
 
   runApp(const MyApp());

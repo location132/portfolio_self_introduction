@@ -39,16 +39,28 @@ class _SquareProjectCardState extends State<SquareProjectCard> {
     } else if (title == '선배 개발자 따라잡기 With IDUS') {
       return 'assets/Images/project_img/idus_logo.png';
     }
-    return 'assets/Images/project_img/gsshop_logo.jpeg';
+    return 'assets/Images/project_img/rive_flutter.png';
   }
 
   Widget _buildImage() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
-      child: Image.asset(
-        _getImagePath(),
-        fit: BoxFit.cover,
-        alignment: Alignment.center,
+      child: Container(
+        color: Colors.white,
+        child: Padding(
+          padding:
+              _getImagePath() == 'assets/Images/project_img/rive_flutter.png'
+                  ? const EdgeInsets.symmetric(vertical: 20)
+                  : const EdgeInsets.all(0),
+          child: Image.asset(
+            _getImagePath(),
+            fit: BoxFit.contain,
+            alignment:
+                _getImagePath() == 'assets/Images/project_img/rive_flutter.png'
+                    ? Alignment.topCenter
+                    : Alignment.center,
+          ),
+        ),
       ),
     );
   }

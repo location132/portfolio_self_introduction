@@ -47,12 +47,12 @@ class ProjectTextConstants {
   static const String flutterRiveCategoryDescription =
       'Flutter in Rive로 만든 정교한 애니메이션 프로젝트들을 소개합니다. 마우스 호버와 클릭 상호작용부터 복잡한 상태 관리까지 구현했습니다.';
   static const String futureCategoryDescription =
-      '앞으로 진행할 프로젝트들을 소개합니다. 실생활에 도움이 될 수 있는 의미 있는 프로젝트들을 계획하고 있습니다.';
+      '앞으로 진행할 프로젝트들은 저와 주변 사람들이 원하는 프로젝트를 계획하고 있습니다.';
 
   static const String flutterContainerCount = '4개의 App 프로젝트';
   static const String flutterContainerCount2 = '2개의 웹 프로젝트';
   static const String flutterContainerCount3 = '2개의 선배 개발자 따라잡기 프로젝트';
-  static const String flutterRiveContainerCount = '3개의 컨테이너';
+  static const String flutterRiveContainerCount = '3개의 Rive 프로젝트';
 
   static const String comingSoonBadge = '곧 시작!';
 
