@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/rive/banner_rive.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
-import 'package:self_introduction_flutter/page/desktop_page/view/banner_view/widgets/banner_title.dart';
+import 'package:self_introduction_flutter/page/desktop_page/widgets/title_text.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/widget/player.dart';
 
 class BannerView extends StatefulWidget {
@@ -27,12 +28,14 @@ class _BannerViewState extends State<BannerView> {
     return Column(
       children: [
         SizedBox(height: 20.sh),
-        BannerTitle(
-          isBannerActive: widget.state.bannerModel.isBannerActive,
-          currentTitleIndex: widget.state.bannerModel.currentTitleIndex,
-          isButtonVisible: widget.state.bannerModel.isButtonVisible,
-          onPrevious: () => widget.desktopCubit.bannerTitlePrevious(),
-          onNext: () => widget.desktopCubit.bannerTitleNext(),
+        TitleText(
+          title: TitleTextConstants.title1,
+          subTitle: TitleTextConstants.subTitle1,
+          description: TitleTextConstants.description1,
+          titleFontSize: 35,
+          color: Colors.black,
+          isOneLine: false,
+          isVisible: true,
         ),
         SizedBox(height: 10.sh),
         //배너

@@ -37,6 +37,8 @@ class SkillTitle extends StatelessWidget {
                 subTitle: TitleTextConstants.subTitle3,
                 description: TitleTextConstants.description3,
                 isVisible: status == MySkillViewStatus.inactive,
+
+                color: Colors.white,
               ),
             ),
 
@@ -51,6 +53,7 @@ class SkillTitle extends StatelessWidget {
                   subTitle: currentTitle['subTitle']!,
                   description: currentTitle['description']!,
                   isVisible: status == MySkillViewStatus.active,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -82,7 +85,7 @@ class SkillTitle extends StatelessWidget {
                       ),
                       margin: const EdgeInsets.only(right: 12),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black54, width: 1),
+                        border: Border.all(color: Colors.white54, width: 1),
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.white.withValues(alpha: 0.1),
                       ),
@@ -92,7 +95,7 @@ class SkillTitle extends StatelessWidget {
                           Icon(
                             Icons.arrow_back_ios,
                             size: 16,
-                            color: Colors.black87,
+                            color: Colors.white,
                           ),
                         ],
                       ),
@@ -131,7 +134,7 @@ class SkillTitle extends StatelessWidget {
                       ),
                       margin: const EdgeInsets.only(left: 12),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black54, width: 1),
+                        border: Border.all(color: Colors.white54, width: 1),
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.white.withValues(alpha: 0.1),
                       ),
@@ -141,7 +144,7 @@ class SkillTitle extends StatelessWidget {
                           Icon(
                             Icons.arrow_forward_ios,
                             size: 16,
-                            color: Colors.black87,
+                            color: Colors.white,
                           ),
                         ],
                       ),

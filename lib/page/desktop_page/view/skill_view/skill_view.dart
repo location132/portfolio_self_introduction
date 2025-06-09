@@ -6,6 +6,7 @@ import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/skill_view/widget/skill_title.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/skill_view/widget/desktop_mobile_skill_view.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/widget/player.dart';
 
 class SkillView extends StatefulWidget {
@@ -31,29 +32,41 @@ class _SkillViewState extends State<SkillView> {
         ),
         SizedBox(
           height: 800,
-          child: Visibility(
-            visible: widget.state.mySkillModel.isRiveVisible,
-            child: AnimatedOpacity(
-              opacity: widget.state.mySkillModel.riveOpacity,
-              duration: const Duration(milliseconds: 600),
-              child: Center(
-                child: ClipRect(
-                  child: MySkillRive(
-                    isActive:
-                        widget.state.mySkillModel.status ==
-                            MySkillViewStatus.active &&
-                        !widget.state.mySkillModel.isTitleChanging,
+          child: Stack(
+            children: [
+              Visibility(
+                visible: widget.state.mySkillModel.isRiveVisible,
+                child: AnimatedOpacity(
+                  opacity: widget.state.mySkillModel.riveOpacity,
+                  duration: const Duration(milliseconds: 600),
+                  child: Center(
+                    child: ClipRect(
+                      child: MySkillRive(
+                        isActive:
+                            widget.state.mySkillModel.status ==
+                                MySkillViewStatus.active &&
+                            !widget.state.mySkillModel.isTitleChanging,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
+              DesktopMobileSkillView(
+                isVisible:
+                    widget.state.mySkillModel.status ==
+                        MySkillViewStatus.active &&
+                    widget.state.mySkillModel.currentTitleIndex == 0 &&
+                    !widget.state.mySkillModel.isTitleChanging,
+              ),
+            ],
           ),
         ),
         SizedBox(height: 80.sh),
 
         Player(
           isPlayerAniOpacity:
-              widget.state.mySkillModel.status == MySkillViewStatus.active,
+              widget.state.mySkillModel.status == MySkillViewStatus.active &&
+              widget.state.mySkillModel.currentTitleIndex != 0,
           isPlayerText: '  모니터에 마우스를 호버, 클릭해 더 알아보세요!  ',
           duration: const Duration(milliseconds: 800),
           fontSize: 14,

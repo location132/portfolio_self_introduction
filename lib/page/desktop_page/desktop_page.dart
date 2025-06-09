@@ -103,65 +103,57 @@ class _MainViewState extends State<_MainView> {
                                 ),
                                 Column(
                                   children: [
-                                    BannerPage(
-                                      state: state,
-                                      desktopCubit:
-                                          context.read<DesktopCubit>(),
+                                    VisibilityDetector(
+                                      key: const Key('main-view'),
+                                      onVisibilityChanged: (info) {
+                                        context
+                                            .read<DesktopCubit>()
+                                            .setBackgroundForSection(
+                                              'banner',
+                                              info.visibleFraction > 0.7,
+                                            );
+                                      },
+                                      child: BannerPage(
+                                        state: state,
+                                        desktopCubit:
+                                            context.read<DesktopCubit>(),
+                                      ),
                                     ),
                                     SizedBox(height: 120),
-                                    SkillPage(
-                                      state: state,
-                                      desktopCubit:
-                                          context.read<DesktopCubit>(),
-                                    ),
-                                    SizedBox(height: 20),
-                                    Visibility(
-                                      visible:
-                                          state.chapterModel.isChapterActive,
-                                      child: VisibilityDetector(
-                                        key: const Key('main-view'),
-                                        onVisibilityChanged: (info) {
-                                          if (info.visibleFraction == 0 &&
-                                              state
-                                                  .chapterModel
-                                                  .isBlackBackgroundColor) {
-                                            context
-                                                .read<DesktopCubit>()
-                                                .blackBackgroundActive(false);
-                                          }
-                                        },
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            ChapterPage(
-                                              state: state,
-                                              desktopCubit:
-                                                  context.read<DesktopCubit>(),
-                                            ),
-                                            // 어비웃 미 페이지
-                                            AboutMePage(
-                                              state: state,
-                                              desktopCubit:
-                                                  context.read<DesktopCubit>(),
-                                            ),
-                                            // 더 자세히 살펴보기 페이지
-                                            DetailMePage(
-                                              state: state,
-                                              desktopCubit:
-                                                  context.read<DesktopCubit>(),
-                                            ),
-
-                                            // 프로젝트 페이지
-                                            SizedBox(height: 120),
-                                            ProjectPage(
-                                              state: state.projectModel,
-                                              cubit:
-                                                  context.read<DesktopCubit>(),
-                                            ),
-                                          ],
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        ChapterPage(
+                                          state: state,
+                                          desktopCubit:
+                                              context.read<DesktopCubit>(),
                                         ),
-                                      ),
+                                        SkillPage(
+                                          state: state,
+                                          desktopCubit:
+                                              context.read<DesktopCubit>(),
+                                        ),
+                                        // 어비웃 미 페이지
+                                        AboutMePage(
+                                          state: state,
+                                          desktopCubit:
+                                              context.read<DesktopCubit>(),
+                                        ),
+                                        // 더 자세히 살펴보기 페이지
+                                        DetailMePage(
+                                          state: state,
+                                          desktopCubit:
+                                              context.read<DesktopCubit>(),
+                                        ),
+
+                                        // 프로젝트 페이지
+                                        SizedBox(height: 120),
+                                        ProjectPage(
+                                          state: state.projectModel,
+                                          cubit: context.read<DesktopCubit>(),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),

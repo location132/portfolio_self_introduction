@@ -21,9 +21,13 @@ class ChapterPage extends StatelessWidget {
         VisibilityDetector(
           key: const Key('chapter-view'),
           onVisibilityChanged: (VisibilityInfo info) async {
-            if (info.visibleFraction > 0.4 &&
+            context.read<DesktopCubit>().setBackgroundForSection(
+              'chapter',
+              info.visibleFraction > 0.5,
+            );
+
+            if (info.visibleFraction > 0.5 &&
                 !state.chapterModel.isBlackBackgroundColor) {
-              context.read<DesktopCubit>().blackBackgroundActive(true);
               await Future.delayed(const Duration(seconds: 1));
               if (context.mounted) {
                 context.read<DesktopCubit>().viewListener('chapter');

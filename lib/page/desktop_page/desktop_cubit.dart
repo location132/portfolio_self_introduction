@@ -188,16 +188,6 @@ class DesktopCubit extends Cubit<DesktopState> {
         ),
       );
 
-      // 제목 애니메이션 완료 후 버튼 표시 (스킬과 동일한 1200ms)
-      await Future.delayed(const Duration(milliseconds: 400));
-      if (!isClosed) {
-        emit(
-          state.copyWith(
-            bannerModel: state.bannerModel.copyWith(isButtonVisible: true),
-          ),
-        );
-      }
-
       await Future.delayed(const Duration(milliseconds: 400));
       if (!isClosed) {
         emit(
@@ -260,6 +250,9 @@ class DesktopCubit extends Cubit<DesktopState> {
 
   //검정색 배경화면 활성화
   void blackBackgroundActive(bool isActive) {
+    // 이미 같은 상태면 중복 호출 방지
+    if (state.chapterModel.isBlackBackgroundColor == isActive) return;
+
     emit(
       state.copyWith(
         chapterModel: state.chapterModel.copyWith(
@@ -269,6 +262,22 @@ class DesktopCubit extends Cubit<DesktopState> {
         ),
       ),
     );
+  }
+
+  //섹션별 배경화면 제어 (더 안전한 방법)
+  void setBackgroundForSection(String sectionName, bool isVisible) {
+    switch (sectionName) {
+      case 'banner':
+        if (isVisible && state.chapterModel.isBlackBackgroundColor) {
+          blackBackgroundActive(false);
+        }
+        break;
+      case 'chapter':
+        if (isVisible && !state.chapterModel.isBlackBackgroundColor) {
+          blackBackgroundActive(true);
+        }
+        break;
+    }
   }
 
   //더 자세히 살펴보기 Rive 애니메이션 시작
