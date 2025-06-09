@@ -20,7 +20,20 @@ mixin _$ChapterModel {
   bool get isBlackBackgroundColor => throw _privateConstructorUsedError;
   bool get isChapterActive => throw _privateConstructorUsedError;
   int get currentTitleIndex => throw _privateConstructorUsedError;
-  bool get isManuallyChanged => throw _privateConstructorUsedError;
+  bool get isManuallyChanged =>
+      throw _privateConstructorUsedError; // 챕터 디테일 관련 필드들
+  bool get isChapterDetailVisible => throw _privateConstructorUsedError;
+  bool get isChapterDetailAni => throw _privateConstructorUsedError;
+  int get selectedChapterIndex => throw _privateConstructorUsedError;
+  bool get isChapterDetailAniTitle => throw _privateConstructorUsedError;
+  bool get isChapterDetailAniContent => throw _privateConstructorUsedError;
+  bool get isChapterDetailAniText => throw _privateConstructorUsedError;
+  bool get isChapterDescriptionAni => throw _privateConstructorUsedError;
+  bool get isButtonVisible => throw _privateConstructorUsedError;
+  bool get isChapterContentVisible => throw _privateConstructorUsedError;
+  ChapterDetailButton get chapterDetailButton =>
+      throw _privateConstructorUsedError;
+  bool get isBackGroundAniStart => throw _privateConstructorUsedError;
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.
@@ -41,6 +54,17 @@ abstract class $ChapterModelCopyWith<$Res> {
     bool isChapterActive,
     int currentTitleIndex,
     bool isManuallyChanged,
+    bool isChapterDetailVisible,
+    bool isChapterDetailAni,
+    int selectedChapterIndex,
+    bool isChapterDetailAniTitle,
+    bool isChapterDetailAniContent,
+    bool isChapterDetailAniText,
+    bool isChapterDescriptionAni,
+    bool isButtonVisible,
+    bool isChapterContentVisible,
+    ChapterDetailButton chapterDetailButton,
+    bool isBackGroundAniStart,
   });
 }
 
@@ -63,6 +87,17 @@ class _$ChapterModelCopyWithImpl<$Res, $Val extends ChapterModel>
     Object? isChapterActive = null,
     Object? currentTitleIndex = null,
     Object? isManuallyChanged = null,
+    Object? isChapterDetailVisible = null,
+    Object? isChapterDetailAni = null,
+    Object? selectedChapterIndex = null,
+    Object? isChapterDetailAniTitle = null,
+    Object? isChapterDetailAniContent = null,
+    Object? isChapterDetailAniText = null,
+    Object? isChapterDescriptionAni = null,
+    Object? isButtonVisible = null,
+    Object? isChapterContentVisible = null,
+    Object? chapterDetailButton = null,
+    Object? isBackGroundAniStart = null,
   }) {
     return _then(
       _value.copyWith(
@@ -86,6 +121,61 @@ class _$ChapterModelCopyWithImpl<$Res, $Val extends ChapterModel>
                     ? _value.isManuallyChanged
                     : isManuallyChanged // ignore: cast_nullable_to_non_nullable
                         as bool,
+            isChapterDetailVisible:
+                null == isChapterDetailVisible
+                    ? _value.isChapterDetailVisible
+                    : isChapterDetailVisible // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isChapterDetailAni:
+                null == isChapterDetailAni
+                    ? _value.isChapterDetailAni
+                    : isChapterDetailAni // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            selectedChapterIndex:
+                null == selectedChapterIndex
+                    ? _value.selectedChapterIndex
+                    : selectedChapterIndex // ignore: cast_nullable_to_non_nullable
+                        as int,
+            isChapterDetailAniTitle:
+                null == isChapterDetailAniTitle
+                    ? _value.isChapterDetailAniTitle
+                    : isChapterDetailAniTitle // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isChapterDetailAniContent:
+                null == isChapterDetailAniContent
+                    ? _value.isChapterDetailAniContent
+                    : isChapterDetailAniContent // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isChapterDetailAniText:
+                null == isChapterDetailAniText
+                    ? _value.isChapterDetailAniText
+                    : isChapterDetailAniText // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isChapterDescriptionAni:
+                null == isChapterDescriptionAni
+                    ? _value.isChapterDescriptionAni
+                    : isChapterDescriptionAni // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isButtonVisible:
+                null == isButtonVisible
+                    ? _value.isButtonVisible
+                    : isButtonVisible // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isChapterContentVisible:
+                null == isChapterContentVisible
+                    ? _value.isChapterContentVisible
+                    : isChapterContentVisible // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            chapterDetailButton:
+                null == chapterDetailButton
+                    ? _value.chapterDetailButton
+                    : chapterDetailButton // ignore: cast_nullable_to_non_nullable
+                        as ChapterDetailButton,
+            isBackGroundAniStart:
+                null == isBackGroundAniStart
+                    ? _value.isBackGroundAniStart
+                    : isBackGroundAniStart // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -106,6 +196,17 @@ abstract class _$$ChapterModelImplCopyWith<$Res>
     bool isChapterActive,
     int currentTitleIndex,
     bool isManuallyChanged,
+    bool isChapterDetailVisible,
+    bool isChapterDetailAni,
+    int selectedChapterIndex,
+    bool isChapterDetailAniTitle,
+    bool isChapterDetailAniContent,
+    bool isChapterDetailAniText,
+    bool isChapterDescriptionAni,
+    bool isButtonVisible,
+    bool isChapterContentVisible,
+    ChapterDetailButton chapterDetailButton,
+    bool isBackGroundAniStart,
   });
 }
 
@@ -127,6 +228,17 @@ class __$$ChapterModelImplCopyWithImpl<$Res>
     Object? isChapterActive = null,
     Object? currentTitleIndex = null,
     Object? isManuallyChanged = null,
+    Object? isChapterDetailVisible = null,
+    Object? isChapterDetailAni = null,
+    Object? selectedChapterIndex = null,
+    Object? isChapterDetailAniTitle = null,
+    Object? isChapterDetailAniContent = null,
+    Object? isChapterDetailAniText = null,
+    Object? isChapterDescriptionAni = null,
+    Object? isButtonVisible = null,
+    Object? isChapterContentVisible = null,
+    Object? chapterDetailButton = null,
+    Object? isBackGroundAniStart = null,
   }) {
     return _then(
       _$ChapterModelImpl(
@@ -150,6 +262,61 @@ class __$$ChapterModelImplCopyWithImpl<$Res>
                 ? _value.isManuallyChanged
                 : isManuallyChanged // ignore: cast_nullable_to_non_nullable
                     as bool,
+        isChapterDetailVisible:
+            null == isChapterDetailVisible
+                ? _value.isChapterDetailVisible
+                : isChapterDetailVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isChapterDetailAni:
+            null == isChapterDetailAni
+                ? _value.isChapterDetailAni
+                : isChapterDetailAni // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        selectedChapterIndex:
+            null == selectedChapterIndex
+                ? _value.selectedChapterIndex
+                : selectedChapterIndex // ignore: cast_nullable_to_non_nullable
+                    as int,
+        isChapterDetailAniTitle:
+            null == isChapterDetailAniTitle
+                ? _value.isChapterDetailAniTitle
+                : isChapterDetailAniTitle // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isChapterDetailAniContent:
+            null == isChapterDetailAniContent
+                ? _value.isChapterDetailAniContent
+                : isChapterDetailAniContent // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isChapterDetailAniText:
+            null == isChapterDetailAniText
+                ? _value.isChapterDetailAniText
+                : isChapterDetailAniText // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isChapterDescriptionAni:
+            null == isChapterDescriptionAni
+                ? _value.isChapterDescriptionAni
+                : isChapterDescriptionAni // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isButtonVisible:
+            null == isButtonVisible
+                ? _value.isButtonVisible
+                : isButtonVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isChapterContentVisible:
+            null == isChapterContentVisible
+                ? _value.isChapterContentVisible
+                : isChapterContentVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        chapterDetailButton:
+            null == chapterDetailButton
+                ? _value.chapterDetailButton
+                : chapterDetailButton // ignore: cast_nullable_to_non_nullable
+                    as ChapterDetailButton,
+        isBackGroundAniStart:
+            null == isBackGroundAniStart
+                ? _value.isBackGroundAniStart
+                : isBackGroundAniStart // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -163,6 +330,17 @@ class _$ChapterModelImpl implements _ChapterModel {
     this.isChapterActive = false,
     this.currentTitleIndex = 0,
     this.isManuallyChanged = false,
+    this.isChapterDetailVisible = false,
+    this.isChapterDetailAni = false,
+    this.selectedChapterIndex = 0,
+    this.isChapterDetailAniTitle = false,
+    this.isChapterDetailAniContent = false,
+    this.isChapterDetailAniText = false,
+    this.isChapterDescriptionAni = false,
+    this.isButtonVisible = false,
+    this.isChapterContentVisible = false,
+    this.chapterDetailButton = ChapterDetailButton.none,
+    this.isBackGroundAniStart = false,
   });
 
   @override
@@ -177,10 +355,44 @@ class _$ChapterModelImpl implements _ChapterModel {
   @override
   @JsonKey()
   final bool isManuallyChanged;
+  // 챕터 디테일 관련 필드들
+  @override
+  @JsonKey()
+  final bool isChapterDetailVisible;
+  @override
+  @JsonKey()
+  final bool isChapterDetailAni;
+  @override
+  @JsonKey()
+  final int selectedChapterIndex;
+  @override
+  @JsonKey()
+  final bool isChapterDetailAniTitle;
+  @override
+  @JsonKey()
+  final bool isChapterDetailAniContent;
+  @override
+  @JsonKey()
+  final bool isChapterDetailAniText;
+  @override
+  @JsonKey()
+  final bool isChapterDescriptionAni;
+  @override
+  @JsonKey()
+  final bool isButtonVisible;
+  @override
+  @JsonKey()
+  final bool isChapterContentVisible;
+  @override
+  @JsonKey()
+  final ChapterDetailButton chapterDetailButton;
+  @override
+  @JsonKey()
+  final bool isBackGroundAniStart;
 
   @override
   String toString() {
-    return 'ChapterModel(isBlackBackgroundColor: $isBlackBackgroundColor, isChapterActive: $isChapterActive, currentTitleIndex: $currentTitleIndex, isManuallyChanged: $isManuallyChanged)';
+    return 'ChapterModel(isBlackBackgroundColor: $isBlackBackgroundColor, isChapterActive: $isChapterActive, currentTitleIndex: $currentTitleIndex, isManuallyChanged: $isManuallyChanged, isChapterDetailVisible: $isChapterDetailVisible, isChapterDetailAni: $isChapterDetailAni, selectedChapterIndex: $selectedChapterIndex, isChapterDetailAniTitle: $isChapterDetailAniTitle, isChapterDetailAniContent: $isChapterDetailAniContent, isChapterDetailAniText: $isChapterDetailAniText, isChapterDescriptionAni: $isChapterDescriptionAni, isButtonVisible: $isButtonVisible, isChapterContentVisible: $isChapterContentVisible, chapterDetailButton: $chapterDetailButton, isBackGroundAniStart: $isBackGroundAniStart)';
   }
 
   @override
@@ -195,7 +407,41 @@ class _$ChapterModelImpl implements _ChapterModel {
             (identical(other.currentTitleIndex, currentTitleIndex) ||
                 other.currentTitleIndex == currentTitleIndex) &&
             (identical(other.isManuallyChanged, isManuallyChanged) ||
-                other.isManuallyChanged == isManuallyChanged));
+                other.isManuallyChanged == isManuallyChanged) &&
+            (identical(other.isChapterDetailVisible, isChapterDetailVisible) ||
+                other.isChapterDetailVisible == isChapterDetailVisible) &&
+            (identical(other.isChapterDetailAni, isChapterDetailAni) ||
+                other.isChapterDetailAni == isChapterDetailAni) &&
+            (identical(other.selectedChapterIndex, selectedChapterIndex) ||
+                other.selectedChapterIndex == selectedChapterIndex) &&
+            (identical(
+                  other.isChapterDetailAniTitle,
+                  isChapterDetailAniTitle,
+                ) ||
+                other.isChapterDetailAniTitle == isChapterDetailAniTitle) &&
+            (identical(
+                  other.isChapterDetailAniContent,
+                  isChapterDetailAniContent,
+                ) ||
+                other.isChapterDetailAniContent == isChapterDetailAniContent) &&
+            (identical(other.isChapterDetailAniText, isChapterDetailAniText) ||
+                other.isChapterDetailAniText == isChapterDetailAniText) &&
+            (identical(
+                  other.isChapterDescriptionAni,
+                  isChapterDescriptionAni,
+                ) ||
+                other.isChapterDescriptionAni == isChapterDescriptionAni) &&
+            (identical(other.isButtonVisible, isButtonVisible) ||
+                other.isButtonVisible == isButtonVisible) &&
+            (identical(
+                  other.isChapterContentVisible,
+                  isChapterContentVisible,
+                ) ||
+                other.isChapterContentVisible == isChapterContentVisible) &&
+            (identical(other.chapterDetailButton, chapterDetailButton) ||
+                other.chapterDetailButton == chapterDetailButton) &&
+            (identical(other.isBackGroundAniStart, isBackGroundAniStart) ||
+                other.isBackGroundAniStart == isBackGroundAniStart));
   }
 
   @override
@@ -205,6 +451,17 @@ class _$ChapterModelImpl implements _ChapterModel {
     isChapterActive,
     currentTitleIndex,
     isManuallyChanged,
+    isChapterDetailVisible,
+    isChapterDetailAni,
+    selectedChapterIndex,
+    isChapterDetailAniTitle,
+    isChapterDetailAniContent,
+    isChapterDetailAniText,
+    isChapterDescriptionAni,
+    isButtonVisible,
+    isChapterContentVisible,
+    chapterDetailButton,
+    isBackGroundAniStart,
   );
 
   /// Create a copy of ChapterModel
@@ -222,6 +479,17 @@ abstract class _ChapterModel implements ChapterModel {
     final bool isChapterActive,
     final int currentTitleIndex,
     final bool isManuallyChanged,
+    final bool isChapterDetailVisible,
+    final bool isChapterDetailAni,
+    final int selectedChapterIndex,
+    final bool isChapterDetailAniTitle,
+    final bool isChapterDetailAniContent,
+    final bool isChapterDetailAniText,
+    final bool isChapterDescriptionAni,
+    final bool isButtonVisible,
+    final bool isChapterContentVisible,
+    final ChapterDetailButton chapterDetailButton,
+    final bool isBackGroundAniStart,
   }) = _$ChapterModelImpl;
 
   @override
@@ -231,7 +499,29 @@ abstract class _ChapterModel implements ChapterModel {
   @override
   int get currentTitleIndex;
   @override
-  bool get isManuallyChanged;
+  bool get isManuallyChanged; // 챕터 디테일 관련 필드들
+  @override
+  bool get isChapterDetailVisible;
+  @override
+  bool get isChapterDetailAni;
+  @override
+  int get selectedChapterIndex;
+  @override
+  bool get isChapterDetailAniTitle;
+  @override
+  bool get isChapterDetailAniContent;
+  @override
+  bool get isChapterDetailAniText;
+  @override
+  bool get isChapterDescriptionAni;
+  @override
+  bool get isButtonVisible;
+  @override
+  bool get isChapterContentVisible;
+  @override
+  ChapterDetailButton get chapterDetailButton;
+  @override
+  bool get isBackGroundAniStart;
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.

@@ -8,6 +8,7 @@ import 'package:self_introduction_flutter/model/init_model.dart';
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/model/main_page/start_animation_model.dart';
+import 'package:self_introduction_flutter/model/main_page/chapter_model.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
 
 @injectable
@@ -624,6 +625,112 @@ class DesktopCubit extends Cubit<DesktopState> {
         ),
       ),
     );
+  }
+
+  // 챕터 상세 화면 표시
+  void showChapterDetail(int chapterIndex) async {
+    emit(
+      state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
+        chapterModel: state.chapterModel.copyWith(
+          isChapterDetailVisible: true,
+          selectedChapterIndex: chapterIndex,
+          isButtonVisible: false,
+          isChapterContentVisible: false,
+          isBackGroundAniStart: true,
+        ),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 50));
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(isChapterDetailAni: true),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 600));
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(
+          isChapterDetailAniTitle: true,
+        ),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 800));
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(
+          isChapterDetailAniContent: true,
+          isChapterDescriptionAni: true,
+        ),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 800));
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(
+          isChapterDetailAniText: true,
+          isChapterContentVisible: true,
+          chapterDetailButton: ChapterDetailButton.detail,
+          isButtonVisible: true,
+        ),
+      ),
+    );
+  }
+
+  // 챕터 상세 화면 숨기기
+  void hideChapterDetail() async {
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(isChapterDetailAni: false),
+      ),
+    );
+
+    await Future.delayed(const Duration(milliseconds: 500));
+    emit(
+      state.copyWith(
+        scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
+        chapterModel: state.chapterModel.copyWith(
+          isChapterDetailVisible: false,
+          isChapterDetailAniTitle: false,
+          isChapterDetailAniContent: false,
+          isChapterDetailAniText: false,
+          isChapterDescriptionAni: false,
+          isButtonVisible: false,
+          isChapterContentVisible: false,
+          isBackGroundAniStart: false,
+          chapterDetailButton: ChapterDetailButton.none,
+        ),
+      ),
+    );
+  }
+
+  // 챕터 디테일 버튼 클릭
+  void chapterDetailButtonClicked() {
+    if (state.chapterModel.chapterDetailButton == ChapterDetailButton.none) {
+      return;
+    }
+
+    if (state.chapterModel.chapterDetailButton == ChapterDetailButton.detail) {
+      emit(
+        state.copyWith(
+          chapterModel: state.chapterModel.copyWith(
+            chapterDetailButton: ChapterDetailButton.simple,
+            isChapterDetailAniContent: false,
+          ),
+        ),
+      );
+      return;
+    } else if (state.chapterModel.chapterDetailButton ==
+        ChapterDetailButton.simple) {
+      emit(
+        state.copyWith(
+          chapterModel: state.chapterModel.copyWith(
+            chapterDetailButton: ChapterDetailButton.detail,
+            isChapterDetailAniContent: true,
+          ),
+        ),
+      );
+    }
   }
 
   // 애니메이션 컨트롤러들 정리

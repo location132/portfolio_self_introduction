@@ -36,10 +36,9 @@ class ChapterPage extends StatelessWidget {
           },
           child: DesktopChapterView(
             onCardTap: (int index) {
-              print('Chapter $index clicked');
+              context.read<DesktopCubit>().showChapterDetail(index);
             },
             state: state,
-
             desktopCubit: desktopCubit,
           ),
         ),

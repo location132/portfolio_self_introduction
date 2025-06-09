@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:glowy_borders/glowy_borders.dart';
-import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/widget/chapter_title.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/widget/desktop_chapter_card.dart';
@@ -201,7 +200,7 @@ class _DesktopChapterViewState extends State<DesktopChapterView>
             ],
           ),
         ),
-        SizedBox(height: 80.sh),
+        SizedBox(height: 80),
       ],
     );
   }

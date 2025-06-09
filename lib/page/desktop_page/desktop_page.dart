@@ -11,7 +11,7 @@ import 'package:self_introduction_flutter/page/desktop_page/view/aboutMe_view/ab
 import 'package:self_introduction_flutter/page/desktop_page/view/detailMe_view/detail_me_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/intro_view/introShowcase.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/skill_view/skill_page.dart';
-import 'package:self_introduction_flutter/page/desktop_page/view/project_view/project_page.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/chapter_detail/dsk_chapter_detail_screen.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class DesktopPage extends StatelessWidget {
@@ -55,113 +55,135 @@ class _MainViewState extends State<_MainView> {
             constraints: const BoxConstraints(maxWidth: 2500),
             child: Scaffold(
               backgroundColor: Colors.transparent,
-              body: Column(
+              body: Stack(
                 children: [
-                  TopNavBar(
-                    deviceType: widget.deviceType,
-                    isMenuClicked: false,
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height - 83,
-                    width: MediaQuery.of(context).size.width,
-                    child: SlowScrollPhysics(
-                      state: state,
-                      child: CustomScrollView(
-                        controller: state.scrollModel.scrollController,
-                        physics:
-                            state.detailMeModel.isSlowScrollDisabled
-                                ? const ClampingScrollPhysics()
-                                : const NeverScrollableScrollPhysics(),
-                        slivers: [
-                          SliverAppBar(
-                            expandedHeight: MediaQuery.of(context).size.height,
-                            pinned: false,
-                            backgroundColor: Colors.transparent,
-                            flexibleSpace: FlexibleSpaceBar(
-                              background: Introshowcase(
-                                state: state,
-                                cubit: context.read<DesktopCubit>(),
-                                isChromeBrowser: widget.isChromeBrowser,
-                              ),
-                            ),
-                          ),
-
-                          SliverToBoxAdapter(
-                            child: Stack(
-                              children: [
-                                Positioned.fill(
-                                  child: AnimatedOpacity(
-                                    opacity:
-                                        state
-                                                .chapterModel
-                                                .isBlackBackgroundColor
-                                            ? 1
-                                            : 0,
-                                    duration: const Duration(seconds: 1),
-                                    child: Container(color: Colors.black),
+                  Column(
+                    children: [
+                      TopNavBar(
+                        deviceType: widget.deviceType,
+                        isMenuClicked: false,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height - 83,
+                        width: MediaQuery.of(context).size.width,
+                        child: SlowScrollPhysics(
+                          state: state,
+                          child: CustomScrollView(
+                            controller: state.scrollModel.scrollController,
+                            physics:
+                                state.detailMeModel.isSlowScrollDisabled
+                                    ? const ClampingScrollPhysics()
+                                    : const NeverScrollableScrollPhysics(),
+                            slivers: [
+                              SliverAppBar(
+                                expandedHeight:
+                                    MediaQuery.of(context).size.height,
+                                pinned: false,
+                                backgroundColor: Colors.transparent,
+                                flexibleSpace: FlexibleSpaceBar(
+                                  background: Introshowcase(
+                                    state: state,
+                                    cubit: context.read<DesktopCubit>(),
+                                    isChromeBrowser: widget.isChromeBrowser,
                                   ),
                                 ),
-                                Column(
+                              ),
+
+                              SliverToBoxAdapter(
+                                child: Stack(
                                   children: [
-                                    VisibilityDetector(
-                                      key: const Key('main-view'),
-                                      onVisibilityChanged: (info) {
-                                        context
-                                            .read<DesktopCubit>()
-                                            .setBackgroundForSection(
-                                              'banner',
-                                              info.visibleFraction > 0.7,
-                                            );
-                                      },
-                                      child: BannerPage(
-                                        state: state,
-                                        desktopCubit:
-                                            context.read<DesktopCubit>(),
+                                    Positioned.fill(
+                                      child: AnimatedOpacity(
+                                        opacity:
+                                            state
+                                                    .chapterModel
+                                                    .isBlackBackgroundColor
+                                                ? 1
+                                                : 0,
+                                        duration: const Duration(seconds: 1),
+                                        child: Container(color: Colors.black),
                                       ),
                                     ),
-                                    SizedBox(height: 120),
                                     Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
                                       children: [
-                                        ChapterPage(
-                                          state: state,
-                                          desktopCubit:
-                                              context.read<DesktopCubit>(),
+                                        VisibilityDetector(
+                                          key: const Key('main-view'),
+                                          onVisibilityChanged: (info) {
+                                            context
+                                                .read<DesktopCubit>()
+                                                .setBackgroundForSection(
+                                                  'banner',
+                                                  info.visibleFraction > 0.7,
+                                                );
+                                          },
+                                          child: BannerPage(
+                                            state: state,
+                                            desktopCubit:
+                                                context.read<DesktopCubit>(),
+                                          ),
                                         ),
-                                        SkillPage(
-                                          state: state,
-                                          desktopCubit:
-                                              context.read<DesktopCubit>(),
-                                        ),
-                                        // 어비웃 미 페이지
-                                        AboutMePage(
-                                          state: state,
-                                          desktopCubit:
-                                              context.read<DesktopCubit>(),
-                                        ),
-                                        // 더 자세히 살펴보기 페이지
-                                        DetailMePage(
-                                          state: state,
-                                          desktopCubit:
-                                              context.read<DesktopCubit>(),
-                                        ),
-
-                                        // 프로젝트 페이지
                                         SizedBox(height: 120),
-                                        // ProjectPage(
-                                        //   state: state.projectModel,
-                                        //   cubit: context.read<DesktopCubit>(),
-                                        // ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            ChapterPage(
+                                              state: state,
+                                              desktopCubit:
+                                                  context.read<DesktopCubit>(),
+                                            ),
+                                            SkillPage(
+                                              state: state,
+                                              desktopCubit:
+                                                  context.read<DesktopCubit>(),
+                                            ),
+                                            // 어비웃 미 페이지
+                                            AboutMePage(
+                                              state: state,
+                                              desktopCubit:
+                                                  context.read<DesktopCubit>(),
+                                            ),
+                                            // 더 자세히 살펴보기 페이지
+                                            DetailMePage(
+                                              state: state,
+                                              desktopCubit:
+                                                  context.read<DesktopCubit>(),
+                                            ),
+
+                                            // 프로젝트 페이지
+                                            SizedBox(height: 120),
+                                            // ProjectPage(
+                                            //   state: state.projectModel,
+                                            //   cubit: context.read<DesktopCubit>(),
+                                            // ),
+                                          ],
+                                        ),
                                       ],
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
+                    ],
+                  ),
+                  // 챕터 상세 화면
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: DskChapterDetailScreen(
+                      chapterState: state.chapterModel,
+                      onClose: () {
+                        context.read<DesktopCubit>().hideChapterDetail();
+                      },
+                      chapterDetailButtonClicked: () {
+                        context
+                            .read<DesktopCubit>()
+                            .chapterDetailButtonClicked();
+                      },
                     ),
                   ),
                 ],
