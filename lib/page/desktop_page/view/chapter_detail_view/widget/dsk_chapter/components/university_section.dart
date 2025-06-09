@@ -23,7 +23,7 @@ class UniversitySection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          flex: 5,
+          flex: 7,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -32,7 +32,7 @@ class UniversitySection extends StatelessWidget {
                 child: DskChapterStory(title: title, isStart: isStart),
               ),
               Container(
-                height: 300.h,
+                height: 400.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16.r),
                   boxShadow: [
@@ -56,11 +56,12 @@ class UniversitySection extends StatelessWidget {
         ),
         SizedBox(width: 40.w),
         Expanded(
-          flex: 6,
+          flex: 5,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 50.h),
+              SizedBox(height: 100.h),
               Text(
                 contentTitle,
                 style: TextStyle(
@@ -98,7 +99,7 @@ class UniversitySection extends StatelessWidget {
           child: DskChapterStory(title: title, isStart: isStart),
         ),
         Container(
-          height: 250.h,
+          height: 320.h,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.r),

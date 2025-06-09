@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/model/main_page/chapter_model.dart';
+import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_detail_view/widget/dsk_chapter/components/university_section.dart';
 
 class DskChapter2 extends StatelessWidget {
@@ -9,11 +11,18 @@ class DskChapter2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentIndex = state.currentChapter2Index;
+    final sections = state.chapter2Sections;
+    final cubit = context.read<DesktopCubit>();
+
+    if (sections.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     return Column(
       children: [
         SizedBox(height: 60.h),
 
-        // 구분선
         Container(
           width: double.infinity,
           height: 1,
@@ -23,46 +32,71 @@ class DskChapter2 extends StatelessWidget {
 
         SizedBox(height: 40.h),
 
-        // 3개 대학 경험 섹션을 한번에 애니메이션
         AnimatedOpacity(
           opacity: state.isChapterContentVisible ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 800),
           curve: Curves.easeInOut,
-          child: Column(
-            children: [
-              UniversitySection(
-                title: '입학 후, 처음 개발 강의를 수강했던 날',
-                imagePath: 'assets/images/story_3.png',
-                contentTitle: '기본 개념조차 잡히지 않았던 우리.',
-                description:
-                    '기본 개념조차 잡히지 않았던 저와 동기들, Unix 수업 시간에 처음 들은 cd와 ls.\n\n'
-                    '하지만 이게 왜 필요한지, 어디에 쓰이는 건지 몰랐던 우리.\n\n'
-                    '궁금증만 커져가던 시간 속에서, 우리는 서로를 붙잡고, 매일 스터디에 모였습니다.',
-                isStart: state.isChapterDetailAniTitle,
-              ),
-
-              UniversitySection(
-                title: '우리손으로 뭔가를 해보겠다는 노력',
-                imagePath: 'assets/images/story_1.png',
-                contentTitle: '하나의 프로젝트라는 꿈으로 이어졌습니다.',
-                description:
-                    '처음엔 학생 몇 명이 모여 만든 엉망진창의 결과물. 완성도는 부족했지만,\n\n'
-                    '우리 손으로 무언가를 만들어냈다는 그 기쁨은, 현재도 제가 개발공부를 하고, 계속 공부할 수 있도록 만들어주었습니다.',
-                isStart: state.isChapterDetailAniTitle,
-              ),
-
-              UniversitySection(
-                title: 'Klang 프로젝트와 잎사이 프로젝트',
-                imagePath: 'assets/images/story_2.png',
-                contentTitle: 'Flutter 개발자로서의 가장 커다란 대학 경험.',
-                description:
-                    '9명의 개발자, 3명의 디자이너, 1명의 보안 전문가, 그리고 3명의 경영학 전공 친구들과 함께\n\n'
-                    '기획부터 디자인 · 개발까지 진행하며 하나의 작은 서비스를 우리 손으로 만들어내는 PM경험을 해보기도 했습니다.\n\n'
-                    '저는 이 모든 경험들이 저를 여기까지 올라오게 만들어준 Flutter 개발자로서의 가장 커다란 대학 경험이라 생각합니다.',
-                isStart: state.isChapterDetailAniTitle,
-              ),
-            ],
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 600),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              return FadeTransition(
+                opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
+                  CurvedAnimation(parent: animation, curve: Curves.easeInOut),
+                ),
+                child: child,
+              );
+            },
+            child: UniversitySection(
+              key: ValueKey(currentIndex),
+              title: sections[currentIndex]['title']!,
+              imagePath: sections[currentIndex]['imagePath']!,
+              contentTitle: sections[currentIndex]['contentTitle']!,
+              description: sections[currentIndex]['description']!,
+              isStart: true,
+            ),
           ),
+        ),
+
+        SizedBox(height: 20.h),
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (currentIndex > 0)
+              ElevatedButton(
+                onPressed: () => cubit.chapter2NavigatePrevious(),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white.withValues(alpha: 0.1),
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 24.w,
+                    vertical: 12.h,
+                  ),
+                  shape: const StadiumBorder(),
+                ),
+                child: Text('이전'),
+              ),
+            if (currentIndex > 0 && currentIndex < sections.length - 1)
+              SizedBox(width: 16.w),
+            if (currentIndex == 0 && currentIndex < sections.length - 1)
+              SizedBox.shrink(),
+            if (currentIndex < sections.length - 1)
+              ElevatedButton(
+                onPressed: () => cubit.chapter2NavigateNext(),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white.withValues(alpha: 0.1),
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 24.w,
+                    vertical: 12.h,
+                  ),
+                  shape: const StadiumBorder(),
+                ),
+                child: Text('다음'),
+              ),
+          ],
         ),
       ],
     );

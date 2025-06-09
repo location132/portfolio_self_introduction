@@ -629,6 +629,39 @@ class DesktopCubit extends Cubit<DesktopState> {
 
   // 챕터 상세 화면 표시
   void showChapterDetail(int chapterIndex) async {
+    // 챕터2인 경우 섹션 데이터 초기화
+    List<Map<String, String>> chapter2Sections = [];
+    if (chapterIndex == 1) {
+      chapter2Sections = [
+        {
+          'title': '입학 후, 처음 개발 강의를 수강했던 날',
+          'imagePath': 'assets/images/story_3.png',
+          'contentTitle': '기본 개념조차 잡히지 않았던 우리.',
+          'description':
+              '기본 개념조차 잡히지 않았던 저와 동기들, Unix 수업 시간에 처음 들은 cd와 ls.\n\n'
+              '하지만 이게 왜 필요한지, 어디에 쓰이는 건지 몰랐던 우리.\n\n'
+              '궁금증만 커져가던 시간 속에서, 우리는 서로를 붙잡고, 매일 스터디에 모였습니다.',
+        },
+        {
+          'title': '우리손으로 뭔가를 해보겠다는 노력',
+          'imagePath': 'assets/images/story_1.png',
+          'contentTitle': '하나의 프로젝트라는 꿈으로 이어졌습니다.',
+          'description':
+              '처음엔 학생 몇 명이 모여 만든 엉망진창의 결과물. 완성도는 부족했지만,\n\n'
+              '우리 손으로 무언가를 만들어냈다는 그 기쁨은, 현재도 제가 개발공부를 하고, 계속 공부할 수 있도록 만들어주었습니다.',
+        },
+        {
+          'title': 'Klang 프로젝트와 잎사이 프로젝트',
+          'imagePath': 'assets/images/story_2.png',
+          'contentTitle': 'Flutter 개발자로서의 가장 커다란 대학 경험.',
+          'description':
+              '9명의 개발자, 3명의 디자이너, 1명의 보안 전문가, 그리고 3명의 경영학 전공 친구들과 함께\n\n'
+              '기획부터 디자인 · 개발까지 진행하며 하나의 작은 서비스를 우리 손으로 만들어내는 PM경험을 해보기도 했습니다.\n\n'
+              '저는 이 모든 경험들이 저를 여기까지 올라오게 만들어준 Flutter 개발자로서의 가장 커다란 대학 경험이라 생각합니다.',
+        },
+      ];
+    }
+
     emit(
       state.copyWith(
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: true),
@@ -638,6 +671,8 @@ class DesktopCubit extends Cubit<DesktopState> {
           isButtonVisible: false,
           isChapterContentVisible: false,
           isBackGroundAniStart: true,
+          currentChapter2Index: 0,
+          chapter2Sections: chapter2Sections,
         ),
       ),
     );
@@ -647,7 +682,7 @@ class DesktopCubit extends Cubit<DesktopState> {
         chapterModel: state.chapterModel.copyWith(isChapterDetailAni: true),
       ),
     );
-    await Future.delayed(const Duration(milliseconds: 600));
+    await Future.delayed(const Duration(milliseconds: 300));
     emit(
       state.copyWith(
         chapterModel: state.chapterModel.copyWith(
@@ -727,6 +762,35 @@ class DesktopCubit extends Cubit<DesktopState> {
           chapterModel: state.chapterModel.copyWith(
             chapterDetailButton: ChapterDetailButton.detail,
             isChapterDetailAniContent: true,
+          ),
+        ),
+      );
+    }
+  }
+
+  // 챕터2 이전 섹션으로 이동
+  void chapter2NavigatePrevious() {
+    final currentIndex = state.chapterModel.currentChapter2Index;
+    if (currentIndex > 0) {
+      emit(
+        state.copyWith(
+          chapterModel: state.chapterModel.copyWith(
+            currentChapter2Index: currentIndex - 1,
+          ),
+        ),
+      );
+    }
+  }
+
+  // 챕터2 다음 섹션으로 이동
+  void chapter2NavigateNext() {
+    final currentIndex = state.chapterModel.currentChapter2Index;
+    final maxIndex = state.chapterModel.chapter2Sections.length - 1;
+    if (currentIndex < maxIndex) {
+      emit(
+        state.copyWith(
+          chapterModel: state.chapterModel.copyWith(
+            currentChapter2Index: currentIndex + 1,
           ),
         ),
       );

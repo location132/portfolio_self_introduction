@@ -33,7 +33,11 @@ mixin _$ChapterModel {
   bool get isChapterContentVisible => throw _privateConstructorUsedError;
   ChapterDetailButton get chapterDetailButton =>
       throw _privateConstructorUsedError;
-  bool get isBackGroundAniStart => throw _privateConstructorUsedError;
+  bool get isBackGroundAniStart =>
+      throw _privateConstructorUsedError; // 챕터2 섹션 관련 필드들
+  int get currentChapter2Index => throw _privateConstructorUsedError;
+  List<Map<String, String>> get chapter2Sections =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.
@@ -65,6 +69,8 @@ abstract class $ChapterModelCopyWith<$Res> {
     bool isChapterContentVisible,
     ChapterDetailButton chapterDetailButton,
     bool isBackGroundAniStart,
+    int currentChapter2Index,
+    List<Map<String, String>> chapter2Sections,
   });
 }
 
@@ -98,6 +104,8 @@ class _$ChapterModelCopyWithImpl<$Res, $Val extends ChapterModel>
     Object? isChapterContentVisible = null,
     Object? chapterDetailButton = null,
     Object? isBackGroundAniStart = null,
+    Object? currentChapter2Index = null,
+    Object? chapter2Sections = null,
   }) {
     return _then(
       _value.copyWith(
@@ -176,6 +184,16 @@ class _$ChapterModelCopyWithImpl<$Res, $Val extends ChapterModel>
                     ? _value.isBackGroundAniStart
                     : isBackGroundAniStart // ignore: cast_nullable_to_non_nullable
                         as bool,
+            currentChapter2Index:
+                null == currentChapter2Index
+                    ? _value.currentChapter2Index
+                    : currentChapter2Index // ignore: cast_nullable_to_non_nullable
+                        as int,
+            chapter2Sections:
+                null == chapter2Sections
+                    ? _value.chapter2Sections
+                    : chapter2Sections // ignore: cast_nullable_to_non_nullable
+                        as List<Map<String, String>>,
           )
           as $Val,
     );
@@ -207,6 +225,8 @@ abstract class _$$ChapterModelImplCopyWith<$Res>
     bool isChapterContentVisible,
     ChapterDetailButton chapterDetailButton,
     bool isBackGroundAniStart,
+    int currentChapter2Index,
+    List<Map<String, String>> chapter2Sections,
   });
 }
 
@@ -239,6 +259,8 @@ class __$$ChapterModelImplCopyWithImpl<$Res>
     Object? isChapterContentVisible = null,
     Object? chapterDetailButton = null,
     Object? isBackGroundAniStart = null,
+    Object? currentChapter2Index = null,
+    Object? chapter2Sections = null,
   }) {
     return _then(
       _$ChapterModelImpl(
@@ -317,6 +339,16 @@ class __$$ChapterModelImplCopyWithImpl<$Res>
                 ? _value.isBackGroundAniStart
                 : isBackGroundAniStart // ignore: cast_nullable_to_non_nullable
                     as bool,
+        currentChapter2Index:
+            null == currentChapter2Index
+                ? _value.currentChapter2Index
+                : currentChapter2Index // ignore: cast_nullable_to_non_nullable
+                    as int,
+        chapter2Sections:
+            null == chapter2Sections
+                ? _value._chapter2Sections
+                : chapter2Sections // ignore: cast_nullable_to_non_nullable
+                    as List<Map<String, String>>,
       ),
     );
   }
@@ -341,7 +373,9 @@ class _$ChapterModelImpl implements _ChapterModel {
     this.isChapterContentVisible = false,
     this.chapterDetailButton = ChapterDetailButton.none,
     this.isBackGroundAniStart = false,
-  });
+    this.currentChapter2Index = 0,
+    final List<Map<String, String>> chapter2Sections = const [],
+  }) : _chapter2Sections = chapter2Sections;
 
   @override
   @JsonKey()
@@ -389,10 +423,23 @@ class _$ChapterModelImpl implements _ChapterModel {
   @override
   @JsonKey()
   final bool isBackGroundAniStart;
+  // 챕터2 섹션 관련 필드들
+  @override
+  @JsonKey()
+  final int currentChapter2Index;
+  final List<Map<String, String>> _chapter2Sections;
+  @override
+  @JsonKey()
+  List<Map<String, String>> get chapter2Sections {
+    if (_chapter2Sections is EqualUnmodifiableListView)
+      return _chapter2Sections;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_chapter2Sections);
+  }
 
   @override
   String toString() {
-    return 'ChapterModel(isBlackBackgroundColor: $isBlackBackgroundColor, isChapterActive: $isChapterActive, currentTitleIndex: $currentTitleIndex, isManuallyChanged: $isManuallyChanged, isChapterDetailVisible: $isChapterDetailVisible, isChapterDetailAni: $isChapterDetailAni, selectedChapterIndex: $selectedChapterIndex, isChapterDetailAniTitle: $isChapterDetailAniTitle, isChapterDetailAniContent: $isChapterDetailAniContent, isChapterDetailAniText: $isChapterDetailAniText, isChapterDescriptionAni: $isChapterDescriptionAni, isButtonVisible: $isButtonVisible, isChapterContentVisible: $isChapterContentVisible, chapterDetailButton: $chapterDetailButton, isBackGroundAniStart: $isBackGroundAniStart)';
+    return 'ChapterModel(isBlackBackgroundColor: $isBlackBackgroundColor, isChapterActive: $isChapterActive, currentTitleIndex: $currentTitleIndex, isManuallyChanged: $isManuallyChanged, isChapterDetailVisible: $isChapterDetailVisible, isChapterDetailAni: $isChapterDetailAni, selectedChapterIndex: $selectedChapterIndex, isChapterDetailAniTitle: $isChapterDetailAniTitle, isChapterDetailAniContent: $isChapterDetailAniContent, isChapterDetailAniText: $isChapterDetailAniText, isChapterDescriptionAni: $isChapterDescriptionAni, isButtonVisible: $isButtonVisible, isChapterContentVisible: $isChapterContentVisible, chapterDetailButton: $chapterDetailButton, isBackGroundAniStart: $isBackGroundAniStart, currentChapter2Index: $currentChapter2Index, chapter2Sections: $chapter2Sections)';
   }
 
   @override
@@ -441,7 +488,13 @@ class _$ChapterModelImpl implements _ChapterModel {
             (identical(other.chapterDetailButton, chapterDetailButton) ||
                 other.chapterDetailButton == chapterDetailButton) &&
             (identical(other.isBackGroundAniStart, isBackGroundAniStart) ||
-                other.isBackGroundAniStart == isBackGroundAniStart));
+                other.isBackGroundAniStart == isBackGroundAniStart) &&
+            (identical(other.currentChapter2Index, currentChapter2Index) ||
+                other.currentChapter2Index == currentChapter2Index) &&
+            const DeepCollectionEquality().equals(
+              other._chapter2Sections,
+              _chapter2Sections,
+            ));
   }
 
   @override
@@ -462,6 +515,8 @@ class _$ChapterModelImpl implements _ChapterModel {
     isChapterContentVisible,
     chapterDetailButton,
     isBackGroundAniStart,
+    currentChapter2Index,
+    const DeepCollectionEquality().hash(_chapter2Sections),
   );
 
   /// Create a copy of ChapterModel
@@ -490,6 +545,8 @@ abstract class _ChapterModel implements ChapterModel {
     final bool isChapterContentVisible,
     final ChapterDetailButton chapterDetailButton,
     final bool isBackGroundAniStart,
+    final int currentChapter2Index,
+    final List<Map<String, String>> chapter2Sections,
   }) = _$ChapterModelImpl;
 
   @override
@@ -521,7 +578,11 @@ abstract class _ChapterModel implements ChapterModel {
   @override
   ChapterDetailButton get chapterDetailButton;
   @override
-  bool get isBackGroundAniStart;
+  bool get isBackGroundAniStart; // 챕터2 섹션 관련 필드들
+  @override
+  int get currentChapter2Index;
+  @override
+  List<Map<String, String>> get chapter2Sections;
 
   /// Create a copy of ChapterModel
   /// with the given fields replaced by the non-null parameter values.

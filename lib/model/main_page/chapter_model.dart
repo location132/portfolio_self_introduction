@@ -22,6 +22,10 @@ class ChapterModel with _$ChapterModel {
     @Default(false) bool isChapterContentVisible,
     @Default(ChapterDetailButton.none) ChapterDetailButton chapterDetailButton,
     @Default(false) bool isBackGroundAniStart,
+
+    // 챕터2 섹션 관련 필드들
+    @Default(0) int currentChapter2Index,
+    @Default([]) List<Map<String, String>> chapter2Sections,
   }) = _ChapterModel;
 }
 
