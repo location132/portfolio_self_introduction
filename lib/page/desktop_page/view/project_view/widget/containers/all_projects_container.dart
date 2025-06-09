@@ -28,6 +28,7 @@ class AllProjectsContainer extends StatelessWidget {
         SeniorChallengeSection(isVisible: isVisible),
         _buildDivider(),
         FlutterRiveSection(isVisible: isVisible),
+        _buildDivider(),
       ],
     );
   }

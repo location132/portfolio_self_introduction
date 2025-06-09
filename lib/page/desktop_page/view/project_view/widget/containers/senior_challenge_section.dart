@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/project_view/widget/components/category_header.dart';
-import 'package:self_introduction_flutter/page/desktop_page/view/project_view/widget/components/project_card.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/project_view/widget/components/square_project_card.dart';
 
 class SeniorChallengeSection extends StatelessWidget {
   final bool isVisible;
@@ -17,7 +17,7 @@ class SeniorChallengeSection extends StatelessWidget {
           count: ProjectTextConstants.flutterContainerCount3,
         ),
         Container(
-          height: 620,
+          height: 320,
           margin: const EdgeInsets.only(bottom: 40),
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -25,17 +25,17 @@ class SeniorChallengeSection extends StatelessWidget {
             itemBuilder: (context, index) {
               final seniorChallengeProjects = [
                 {
-                  'title': '선배 개발자 따라잡기 1',
-                  'description': '실제 출시된 앱을 분석하고 개선 아이디어를 반영한 프로젝트입니다.',
-                  'tech': 'App Analysis, UI/UX Improvement',
+                  'title': '선배 개발자 따라잡기 With GS_SHOP',
+                  'description': '검색창의 과도한 번쩍 거림 현상을 개선해본 프로젝트입니다.',
+                  'tech': '#데이터 캐싱, #생명주기 개선, #상태관리 개선',
                 },
                 {
-                  'title': '선배 개발자 따라잡기 2',
-                  'description': '현업 개발자의 코드를 분석하고 더 나은 아키텍처를 적용한 프로젝트입니다.',
-                  'tech': 'Code Analysis, Architecture Improvement',
+                  'title': '선배 개발자 따라잡기 With IDUS',
+                  'description': '쉬머효과와 페이지의 자연스러운 전환',
+                  'tech': '#Shimmer, #Skeleton, #Animation Opacity',
                 },
               ];
-              return ProjectCard(
+              return SquareProjectCard(
                 project: seniorChallengeProjects[index],
                 isVisible: isVisible,
                 index: index,
