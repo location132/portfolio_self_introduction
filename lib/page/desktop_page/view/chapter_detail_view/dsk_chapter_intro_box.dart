@@ -39,7 +39,6 @@ class _DskChapterIntroBoxState extends State<DskChapterIntroBox> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        // 화면이 작으면 왼쪽 정렬, 크면 중앙 정렬 유지
         final isSmallScreen = constraints.maxWidth < 900;
 
         Widget content = Container(
@@ -76,24 +75,22 @@ class _DskChapterIntroBoxState extends State<DskChapterIntroBox> {
                     ),
                   ),
                   SizedBox(height: 16.h),
-                  Center(
-                    child: Text(
-                      widget.selectedChapterIndex == 0
-                          ? '챕터 1에서는 각종 세미나와 컨퍼런스에 참여한\n이유를 확인하실 수 있습니다.\n\n'
-                              '세 가지로 구성된 작은 세미나 이야기는\n제가 꿈꾸던 목표와 배운 점을 공유할 수 있도록 구성한 챕터입니다.'
-                          : widget.selectedChapterIndex == 1
-                          ? '챕터 2에서는 대학생활의 프로젝트와 인턴 경험,\n성장을 위한 소중한 시간들을 확인하실 수 있습니다.\n\n'
-                              '기본 개념부터 시작해서 팀 프로젝트까지,\n저의 대학시절 개발 경험을 공유할 수 있도록 구성한 챕터입니다.'
-                          : '챕터 3에서는 새로운 성장의 방향과\n앞으로의 목표를 확인하실 수 있습니다.\n\n'
-                              '아직 부족한 지금도, 계속해서 고민하고 시도하며\n성장하고 있는 저의 짧은 이야기를 공유할 수 있도록 구성한 챕터입니다.',
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        height: 1.6,
-                        color: Colors.grey[300],
-                        fontWeight: FontWeight.w400,
-                      ),
-                      textAlign: TextAlign.center,
+                  Text(
+                    widget.selectedChapterIndex == 0
+                        ? '챕터 1에서는 각종 세미나와 컨퍼런스에 참여한\n이유를 확인하실 수 있습니다.\n\n'
+                            '세 가지로 구성된 작은 세미나 이야기는\n제가 꿈꾸던 목표와 배운 점을 공유할 수 있도록 구성한 챕터입니다.'
+                        : widget.selectedChapterIndex == 1
+                        ? '챕터 2에서는 대학생활의 프로젝트와 인턴 경험,\n성장을 위한 소중한 시간들을 확인하실 수 있습니다.\n\n'
+                            '기본 개념부터 시작해서 팀 프로젝트까지,\n저의 대학시절 개발 경험을 공유할 수 있도록 구성한 챕터입니다.'
+                        : '챕터 3에서는 새로운 성장의 방향과\n앞으로의 목표를 확인하실 수 있습니다.\n\n'
+                            '아직 부족한 지금도, 계속해서 고민하고 시도하며\n성장하고 있는 저의 짧은 이야기를 공유할 수 있도록 구성한 챕터입니다.',
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      height: 1.6,
+                      color: Colors.grey[300],
+                      fontWeight: FontWeight.w400,
                     ),
+                    textAlign: TextAlign.left,
                   ),
                 ],
               ),

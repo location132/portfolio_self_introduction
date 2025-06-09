@@ -61,7 +61,7 @@ class SeminarHorizontalLayout extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 50.h),
+              SizedBox(height: 80.h),
               Text(
                 contentTitle,
                 style: TextStyle(

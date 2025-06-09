@@ -21,33 +21,41 @@ class SeminarSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isWideScreen = MediaQuery.of(context).size.width >= 1200.w;
+
     return Column(
       children: [
-        LayoutBuilder(
-          builder: (context, constraints) {
-            final isWideScreen = constraints.maxWidth >= 1200;
-
-            return Container(
-              constraints: const BoxConstraints(maxWidth: 1200),
-              margin: EdgeInsets.symmetric(horizontal: 20.w),
-              child:
-                  isWideScreen
-                      ? SeminarHorizontalLayout(
-                        title: title,
-                        imagePath: imagePath,
-                        contentTitle: contentTitle,
-                        description: description,
-                        isStart: isStart,
-                      )
-                      : SeminarVerticalLayout(
-                        title: title,
-                        imagePath: imagePath,
-                        contentTitle: contentTitle,
-                        description: description,
-                        isStart: isStart,
-                      ),
-            );
-          },
+        Container(
+          constraints: const BoxConstraints(maxWidth: 1200),
+          margin: EdgeInsets.symmetric(horizontal: 20.w),
+          child: Stack(
+            children: [
+              AnimatedOpacity(
+                opacity: isWideScreen ? 1 : 0,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInOut,
+                child: SeminarHorizontalLayout(
+                  title: title,
+                  imagePath: imagePath,
+                  contentTitle: contentTitle,
+                  description: description,
+                  isStart: isStart,
+                ),
+              ),
+              AnimatedOpacity(
+                opacity: isWideScreen ? 0 : 1,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInOut,
+                child: SeminarVerticalLayout(
+                  title: title,
+                  imagePath: imagePath,
+                  contentTitle: contentTitle,
+                  description: description,
+                  isStart: isStart,
+                ),
+              ),
+            ],
+          ),
         ),
         SizedBox(height: 60.h),
       ],

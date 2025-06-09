@@ -71,7 +71,6 @@ class _DskChapterDetailScreenState extends State<DskChapterDetailScreen>
       child: FadeTransition(
         opacity: animation.opacityAnimation,
         child: Container(
-          width: double.infinity,
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             color: Colors.black.withValues(alpha: 0.85),

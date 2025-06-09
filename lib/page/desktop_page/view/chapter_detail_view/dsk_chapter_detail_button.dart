@@ -26,7 +26,7 @@ class DskChapterDetailButtonWidget extends StatelessWidget {
                 chapterDetailButtonClicked();
               },
               icon:
-                  state.chapterDetailButton == ChapterDetailButton.detail
+                  state.chapterDetailButton != ChapterDetailButton.detail
                       ? Icon(
                         Icons.expand_less,
                         color: Colors.white,
