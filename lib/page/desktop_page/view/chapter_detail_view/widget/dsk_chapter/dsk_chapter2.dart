@@ -66,7 +66,7 @@ class DskChapter2 extends StatelessWidget {
               ElevatedButton(
                 onPressed: () => cubit.chapter2NavigatePrevious(),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white.withValues(alpha: 0.1),
+                  backgroundColor: Colors.white.withAlpha(25),
                   foregroundColor: Colors.white,
                   elevation: 0,
                   padding: EdgeInsets.symmetric(
@@ -75,17 +75,26 @@ class DskChapter2 extends StatelessWidget {
                   ),
                   shape: const StadiumBorder(),
                 ),
-                child: Text('이전'),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.chevron_left, size: 20.w),
+                    SizedBox(width: 8.w),
+                    Text('이전'),
+                  ],
+                ),
               ),
+
             if (currentIndex > 0 && currentIndex < sections.length - 1)
               SizedBox(width: 16.w),
             if (currentIndex == 0 && currentIndex < sections.length - 1)
               SizedBox.shrink(),
+
             if (currentIndex < sections.length - 1)
               ElevatedButton(
                 onPressed: () => cubit.chapter2NavigateNext(),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white.withValues(alpha: 0.1),
+                  backgroundColor: Colors.white.withAlpha(25),
                   foregroundColor: Colors.white,
                   elevation: 0,
                   padding: EdgeInsets.symmetric(
@@ -94,7 +103,14 @@ class DskChapter2 extends StatelessWidget {
                   ),
                   shape: const StadiumBorder(),
                 ),
-                child: Text('다음'),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text('다음'),
+                    SizedBox(width: 8.w),
+                    Icon(Icons.chevron_right, size: 20.w),
+                  ],
+                ),
               ),
           ],
         ),

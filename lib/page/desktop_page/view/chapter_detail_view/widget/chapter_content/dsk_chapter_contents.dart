@@ -51,9 +51,6 @@ class DskChapterContents extends StatelessWidget {
                             ),
                             const SizedBox(height: 80),
                             DskChapterIntroBox(
-                              isChapterDescriptionAni:
-                                  state.isChapterDescriptionAni,
-                              isTextOpacity: state.isChapterDetailAniText,
                               selectedChapterIndex: state.selectedChapterIndex,
                             ),
                           ],
@@ -77,9 +74,6 @@ class DskChapterContents extends StatelessWidget {
                         ChapterDetailTitle(state: state),
                         SizedBox(height: 32.h),
                         DskChapterIntroBox(
-                          isChapterDescriptionAni:
-                              state.isChapterDescriptionAni,
-                          isTextOpacity: state.isChapterDetailAniText,
                           selectedChapterIndex: state.selectedChapterIndex,
                         ),
                         SizedBox(height: 32.h),

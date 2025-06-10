@@ -10,6 +10,7 @@ import 'package:self_introduction_flutter/page/desktop_page/view/chapter_view/ch
 import 'package:self_introduction_flutter/page/desktop_page/view/aboutMe_view/about_me_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/detailMe_view/detail_me_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/intro_view/introShowcase.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/project_view/project_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/skill_view/skill_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_detail_view/dsk_chapter_detail_screen.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -151,11 +152,26 @@ class _MainViewState extends State<_MainView> {
                                             ),
 
                                             // 프로젝트 페이지
-                                            SizedBox(height: 120),
-                                            // ProjectPage(
-                                            //   state: state.projectModel,
-                                            //   cubit: context.read<DesktopCubit>(),
-                                            // ),
+                                            Visibility(
+                                              visible:
+                                                  state
+                                                      .detailMeModel
+                                                      .isAppPageScrollStart,
+                                              child: Column(
+                                                children: [
+                                                  SizedBox(height: 120),
+
+                                                  ProjectPage(
+                                                    state: state.projectModel,
+                                                    cubit:
+                                                        context
+                                                            .read<
+                                                              DesktopCubit
+                                                            >(),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ],
