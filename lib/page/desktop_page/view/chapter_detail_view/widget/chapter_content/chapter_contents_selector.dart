@@ -3,6 +3,7 @@ import 'package:self_introduction_flutter/model/main_page/chapter_model.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_detail_view/widget/chapter_content/first_contents.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_detail_view/widget/chapter_content/second_contents.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_detail_view/widget/chapter_content/third_contents.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/chapter_detail_view/widget/chapter_content/spotlight_contents.dart';
 
 class ChapterContentsSelector extends StatelessWidget {
   final ChapterModel state;
@@ -17,6 +18,8 @@ class ChapterContentsSelector extends StatelessWidget {
       return SecondContents(state: state);
     } else if (state.selectedChapterIndex == 2) {
       return ThirdContents(state: state);
+    } else if (state.selectedChapterIndex == 3) {
+      return SpotlightContents(state: state);
     }
     return const SizedBox.shrink();
   }

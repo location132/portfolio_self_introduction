@@ -8,6 +8,7 @@ import 'package:self_introduction_flutter/page/desktop_page/view/chapter_detail_
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_detail_view/widget/dsk_chapter/dsk_chapter1.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_detail_view/widget/dsk_chapter/dsk_chapter2.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_detail_view/widget/dsk_chapter/dsk_chapter3.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/chapter_detail_view/widget/dsk_chapter/dsk_spotlight.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/chapter_detail_view/widget/chapter_content/chapter_contents_selector.dart';
 
 class DskChapterContents extends StatelessWidget {
@@ -95,7 +96,9 @@ class DskChapterContents extends StatelessWidget {
             else if (state.selectedChapterIndex == 1)
               DskChapter2(state: state)
             else if (state.selectedChapterIndex == 2)
-              DskChapter3(state: state),
+              DskChapter3(state: state)
+            else if (state.selectedChapterIndex == 3)
+              DskSpotlight(state: state),
           ],
         ),
       ),
