@@ -38,8 +38,40 @@ class _ProjectCardState extends State<ProjectCard> {
   }
 
   void _onProjectTap(BuildContext context) {
-    // 모든 프로젝트는 메인 프로젝트 페이지로 이동
-    context.go('/projects');
+    final title = widget.project['title'] ?? '';
+
+    if (title == '악보 넘기기' || title == 'CCTV View' || title == '맞춤 건강 알림') {
+      return;
+    }
+
+    String route;
+    switch (title) {
+      case '잎사이':
+        route = '/project/ifsai';
+        break;
+      case 'NaverMap':
+        route = '/project/navermap';
+        break;
+      case '클랭(KLANG)':
+        route = '/project/klang';
+        break;
+      case '구름 x 카카오 x 인프런':
+        route = '/project/groom';
+        break;
+      case 'About Me - With myDream':
+        route = '/project/about-me';
+        break;
+      case 'MySkill - in Web':
+        route = '/project/myskill';
+        break;
+      case 'Detail Me':
+        route = '/project/detail-me';
+        break;
+      default:
+        route = '/projects';
+    }
+
+    context.push(route);
   }
 
   String _getImagePath(bool isHovered) {

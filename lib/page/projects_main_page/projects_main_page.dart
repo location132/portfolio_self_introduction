@@ -83,25 +83,24 @@ class _ProjectsMainView extends StatelessWidget {
                                 color: Colors.black,
                               ),
                             ),
-                            Positioned(
-                              top: 120,
-                              left: 0,
-                              right: 0,
-                              bottom: 0,
-                              child: SingleChildScrollView(
-                                child: ProjectPage(
-                                  state: state.projectModel,
-                                  onCategorySelected: (category) {
-                                    context
-                                        .read<ProjectsMainCubit>()
-                                        .selectProjectCategory(category);
-                                  },
-                                  projectAniStart: () {
-                                    context
-                                        .read<ProjectsMainCubit>()
-                                        .startProjectAnimation();
-                                  },
-                                ),
+                            SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  SizedBox(height: 120),
+                                  ProjectPage(
+                                    state: state.projectModel,
+                                    onCategorySelected: (category) {
+                                      context
+                                          .read<ProjectsMainCubit>()
+                                          .selectProjectCategory(category);
+                                    },
+                                    projectAniStart: () {
+                                      context
+                                          .read<ProjectsMainCubit>()
+                                          .startProjectAnimation();
+                                    },
+                                  ),
+                                ],
                               ),
                             ),
                           ],
