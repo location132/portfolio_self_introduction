@@ -3,13 +3,12 @@ import 'package:self_introduction_flutter/service/intro_service.dart';
 
 class LoadingMessage extends StatefulWidget {
   final bool isChromeBrowser;
-  // final bool isPad;
+
   final void Function(bool isChrome) isChromeBrowserWithCubit;
   const LoadingMessage({
     super.key,
     required this.isChromeBrowser,
     required this.isChromeBrowserWithCubit,
-    // required this.isPad,
   });
 
   @override

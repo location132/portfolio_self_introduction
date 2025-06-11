@@ -23,13 +23,13 @@ class DesktopCubit extends Cubit<DesktopState> {
   @postConstruct
   void init() async {
     //TODO:  배포 후, 주석 해제
-    // if (!isClosed) {
-    //   emit(
-    //     state.copyWith(
-    //       initModel: state.initModel.copyWith(initState: InitState.active),
-    //     ),
-    //   );
-    // }
+    if (!isClosed) {
+      emit(
+        state.copyWith(
+          initModel: state.initModel.copyWith(initState: InitState.active),
+        ),
+      );
+    }
 
     final controller = state.scrollModel.scrollController;
     if (controller != null) {
@@ -57,120 +57,34 @@ class DesktopCubit extends Cubit<DesktopState> {
 
   Future<void> changeProfileViewHeight(controller) async {
     //TODO: 배포 주석 해제
-    // emit(
-    //   state.copyWith(
-    //     initModel: state.initModel.copyWith(
-    //       remainingTime: state.initModel.remainingTime,
-    //     ),
-    //   ),
-    // );
-    // await Future.delayed(Duration(seconds: state.initModel.remainingTime));
-  }
-
-  void awaitDuration(
-    TickerProvider vsync, {
-    String message = TextConstants.welcomeMessage1,
-  }) async {
-    //TODO: 추 후, 주석 해제
-    // await Future.delayed(Duration(seconds: state.initModel.remainingTime));
-
-    initializeAnimations(vsync, message: message);
-  }
-
-  // text 애니메이션 시작
-  Future<void> initializeAnimations(
-    TickerProvider vsync, {
-    String message = TextConstants.welcomeMessage1,
-  }) async {
-    if (isClosed) return;
-
-    final List<String> characters = [];
-
-    for (int i = 0; i < message.length; i++) {
-      characters.add(message[i]);
-    }
-
-    if (!isClosed) {
-      emit(
-        state.copyWith(startAnimation: StartAnimationModel(words: characters)),
-      );
-    }
-
-    List<AnimationController> newControllers = [];
-    List<Animation<double>> newAnimations = [];
-
-    for (int i = 0; i < state.startAnimation!.words.length; i++) {
-      final controller = AnimationController(
-        vsync: vsync,
-        duration: const Duration(milliseconds: 820),
-      );
-
-      final animation = CurvedAnimation(
-        parent: controller,
-        curve: Curves.easeIn,
-      );
-
-      newControllers.add(controller);
-      newAnimations.add(animation);
-
-      Future.delayed(Duration(milliseconds: i * 25), () {
-        if (!isClosed && controller.isAnimating == false) {
-          controller.forward();
-        }
-      });
-    }
-
-    if (!isClosed && newControllers.isNotEmpty && newAnimations.isNotEmpty) {
-      emit(
-        state.copyWith(
-          startAnimation: state.startAnimation!.copyWith(
-            controllers: newControllers,
-            animations: newAnimations,
-          ),
+    emit(
+      state.copyWith(
+        initModel: state.initModel.copyWith(
+          remainingTime: state.initModel.remainingTime,
         ),
-      );
-    }
-
-    if (message == TextConstants.welcomeMessage1) {
-      await endAnimations(
-        vsync,
-        TextConstants.welcomeMessage2,
-        const Duration(milliseconds: 4500),
-      );
-    } else {
-      await endAnimations(
-        vsync,
-        TextConstants.welcomeMessage1,
-        const Duration(milliseconds: 5500),
-      );
-    }
+      ),
+    );
+    await Future.delayed(Duration(seconds: state.initModel.remainingTime));
   }
 
-  // text애니메이션 종료
-  Future<void> endAnimations(
-    TickerProvider vsync,
-    String message,
-    Duration duration,
-  ) async {
-    if (isClosed) return;
+  void test1(List<String> characters) {
+    emit(
+      state.copyWith(startAnimation: StartAnimationModel(words: characters)),
+    );
+  }
 
-    await Future.delayed(duration);
-
-    if (!isClosed && state.startAnimation != null) {
-      for (var controller in state.startAnimation!.controllers) {
-        try {
-          controller.reverse();
-        } catch (e) {
-          print('Controller already disposed: $e');
-        }
-      }
-    }
-
-    await Future.delayed(const Duration(seconds: 1));
-
-    if (!isClosed) {
-      initializeAnimations(vsync, message: message);
-    }
+  void test2(
+    List<AnimationController> newControllers,
+    List<Animation<double>> newAnimations,
+  ) {
+    emit(
+      state.copyWith(
+        startAnimation: state.startAnimation!.copyWith(
+          controllers: newControllers,
+          animations: newAnimations,
+        ),
+      ),
+    );
   }
 
   //******************************************************* */

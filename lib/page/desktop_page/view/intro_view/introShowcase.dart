@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/condition_utils/condition_utils.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
+import 'package:self_introduction_flutter/model/init_model.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_state.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/intro_view/animation/intro_ani.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/intro_view/widget/bottom_message.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/intro_view/widget/loading_message.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/intro_view/widget/text_animation.dart';
@@ -45,13 +47,17 @@ class _IntroshowcaseState extends State<Introshowcase> {
             duration: const Duration(milliseconds: 720),
             child: TextAnimation(
               state: widget.state,
-              initializeAnimations: widget.cubit.awaitDuration,
+              initializeAnimations:
+                  IntroAnimation(
+                    state: widget.state,
+                    cubit: widget.cubit,
+                  ).awaitDuration,
             ),
           ),
         ),
         // 로딩 메시지
         AnimatedOpacity(
-          opacity: Conditions.isInitStateLoaded(widget.state) ? 1 : 0,
+          opacity: widget.state.initModel.initState == InitState.active ? 1 : 0,
           duration: const Duration(milliseconds: 720),
           child: Center(
             child: LoadingMessage(
@@ -75,3 +81,10 @@ class _IntroshowcaseState extends State<Introshowcase> {
     );
   }
 }
+/*
+ initializeAnimations:
+                  IntroAnimation(
+                    state: widget.state,
+                    cubit: widget.cubit,
+                  ).awaitDuration,
+ */
