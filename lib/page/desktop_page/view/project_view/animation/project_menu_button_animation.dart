@@ -23,6 +23,19 @@ class ProjectMenuButtonAnimation {
     scaleController.reverse();
   }
 
+  void onTapDown() {
+    startPressAnimation();
+  }
+
+  void onTapUp(VoidCallback onPressed) {
+    endPressAnimation();
+    onPressed();
+  }
+
+  void onTapCancel() {
+    endPressAnimation();
+  }
+
   void dispose() {
     scaleController.dispose();
   }

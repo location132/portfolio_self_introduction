@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
+import 'package:self_introduction_flutter/page/desktop_page/view/project_view/animation/project_menu_button_animation.dart';
 
 class ProjectMenuButton extends StatefulWidget {
   final String title;
@@ -25,169 +26,67 @@ class ProjectMenuButton extends StatefulWidget {
 
 class _ProjectMenuButtonState extends State<ProjectMenuButton>
     with SingleTickerProviderStateMixin {
-  bool _isHovered = false;
-  late AnimationController _scaleController;
-  late Animation<double> _scaleAnimation;
+  late ProjectMenuButtonAnimation _animation;
 
   @override
   void initState() {
     super.initState();
-    _scaleController = AnimationController(
-      duration: const Duration(milliseconds: 150),
-      vsync: this,
-    );
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.95).animate(
-      CurvedAnimation(parent: _scaleController, curve: Curves.easeInOut),
-    );
+    _animation = ProjectMenuButtonAnimation(vsync: this);
   }
 
   @override
   void dispose() {
-    _scaleController.dispose();
+    _animation.dispose();
     super.dispose();
-  }
-
-  void _onHoverStart() {
-    setState(() {
-      _isHovered = true;
-    });
-  }
-
-  void _onHoverEnd() {
-    setState(() {
-      _isHovered = false;
-    });
-  }
-
-  void _onTapDown() {
-    setState(() {});
-    _scaleController.forward();
-  }
-
-  void _onTapUp() {
-    setState(() {});
-    _scaleController.reverse();
-    widget.onPressed();
-  }
-
-  void _onTapCancel() {
-    setState(() {});
-    _scaleController.reverse();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      onEnter: (_) => _onHoverStart(),
-      onExit: (_) => _onHoverEnd(),
-      child: GestureDetector(
-        onTapDown: (_) => _onTapDown(),
-        onTapUp: (_) => _onTapUp(),
-        onTapCancel: _onTapCancel,
-        child: ScaleTransition(
-          scale: _scaleAnimation,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.easeInOut,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            decoration: BoxDecoration(
-              color: _getBackgroundColor(),
-              borderRadius: BorderRadius.circular(25),
-              border: Border.all(
-                color: _getBorderColor(),
-                width: _getBorderWidth(),
-              ),
-              boxShadow: _getBoxShadow(),
+    return GestureDetector(
+      onTapDown: (_) => _animation.onTapDown(),
+      onTapUp: (_) => _animation.onTapUp(widget.onPressed),
+      onTapCancel: _animation.onTapCancel,
+      child: ScaleTransition(
+        scale: _animation.scaleAnimation,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          decoration: BoxDecoration(
+            color:
+                widget.isSelected
+                    ? Colors.white.withValues(alpha: 0.1)
+                    : Colors.transparent,
+            borderRadius: BorderRadius.circular(25),
+            border: Border.all(
+              color:
+                  widget.isSelected
+                      ? Colors.white
+                      : Colors.white.withValues(alpha: 0.3),
+              width: widget.isSelected ? 1.5 : 1.0,
             ),
-            child: AnimatedDefaultTextStyle(
-              duration: const Duration(milliseconds: 200),
-              curve: Curves.easeInOut,
-              style: TextStyle(
-                fontSize: _getFontSize(),
-                color: _getTextColor(),
-                fontWeight: FontWeight.w600,
-              ),
-              child: Text(_getShortTitle()),
+          ),
+          child: Text(
+            widget.category == 'All'
+                ? ProjectTextConstants.allCategoryTitle
+                : widget.category == 'flutter'
+                ? ProjectTextConstants.flutterTitle
+                : widget.category == 'flutter_rive'
+                ? ProjectTextConstants.flutterRiveTitle
+                : widget.category == 'future'
+                ? ProjectTextConstants.futureProjectTitle
+                : widget.title,
+            style: TextStyle(
+              fontSize: 16.0,
+              color:
+                  widget.isSelected
+                      ? Colors.white
+                      : Colors.white.withValues(alpha: 0.6),
+              fontWeight: FontWeight.w600,
             ),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
           ),
         ),
       ),
     );
-  }
-
-  Color _getBackgroundColor() {
-    if (widget.isSelected) {
-      return _isHovered
-          ? Colors.white.withValues(alpha: 0.15)
-          : Colors.white.withValues(alpha: 0.1);
-    }
-    if (_isHovered) {
-      return Colors.white.withValues(alpha: 0.08);
-    }
-    return Colors.transparent;
-  }
-
-  Color _getBorderColor() {
-    if (widget.isSelected) {
-      return _isHovered ? Colors.white.withValues(alpha: 0.9) : Colors.white;
-    }
-    if (_isHovered) {
-      return Colors.white.withValues(alpha: 0.6);
-    }
-    return Colors.white.withValues(alpha: 0.3);
-  }
-
-  double _getBorderWidth() {
-    if (widget.isSelected || _isHovered) {
-      return 1.5;
-    }
-    return 1.0;
-  }
-
-  Color _getTextColor() {
-    if (widget.isSelected) {
-      return Colors.white;
-    }
-    if (_isHovered) {
-      return Colors.white.withValues(alpha: 0.9);
-    }
-    return Colors.white.withValues(alpha: 0.6);
-  }
-
-  double _getFontSize() {
-    if (_isHovered && !widget.isSelected) {
-      return 16.5;
-    }
-    return 16.0;
-  }
-
-  List<BoxShadow> _getBoxShadow() {
-    if (_isHovered) {
-      return [
-        BoxShadow(
-          color: Colors.white.withValues(alpha: 0.1),
-          blurRadius: 8,
-          offset: const Offset(0, 2),
-        ),
-      ];
-    }
-    return [];
-  }
-
-  String _getShortTitle() {
-    if (widget.category == 'All') {
-      return ProjectTextConstants.allCategoryTitle;
-    }
-    if (widget.category == 'flutter') {
-      return ProjectTextConstants.flutterTitle;
-    }
-    if (widget.category == 'flutter_rive') {
-      return ProjectTextConstants.flutterRiveTitle;
-    }
-    if (widget.category == 'future') {
-      return ProjectTextConstants.futureProjectTitle;
-    }
-    return widget.title;
   }
 }

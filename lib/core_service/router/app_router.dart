@@ -7,6 +7,7 @@ import 'package:self_introduction_flutter/page/projects_main_page/projects_main_
 import 'package:self_introduction_flutter/page/project_detail_page/flutter_projects_page.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/flutter_rive_projects_page.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/future_projects_page.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/individual_project_page.dart';
 import 'package:self_introduction_flutter/service/main_service.dart';
 
 class AppRouter {
@@ -75,6 +76,14 @@ class AppRouter {
         name: 'future-projects',
         builder: (context, state) {
           return const FutureProjectsPage();
+        },
+      ),
+      GoRoute(
+        path: '/project/:id',
+        name: 'individual-project',
+        builder: (context, state) {
+          final projectId = state.pathParameters['id'] ?? '';
+          return IndividualProjectPage(projectId: projectId);
         },
       ),
     ],
