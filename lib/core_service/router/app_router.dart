@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'dart:async';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_page.dart';
+import 'package:self_introduction_flutter/page/projects_page/projects_main_page.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/flutter_projects_page.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/flutter_rive_projects_page.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/future_projects_page.dart';
@@ -16,6 +17,13 @@ class AppRouter {
         path: '/',
         name: 'home',
         builder: (context, state) => const ResponsiveHomePage(),
+      ),
+      GoRoute(
+        path: '/projects',
+        name: 'projects',
+        builder: (context, state) {
+          return const ProjectsMainPage();
+        },
       ),
       GoRoute(
         path: '/flutter-projects',

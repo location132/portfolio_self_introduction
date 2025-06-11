@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:self_introduction_flutter/components/condition_utils/profile_view_condition_utils.dart';
-import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/model/init_model.dart';
-
 import 'package:self_introduction_flutter/model/main_page/mySkill_model.dart';
 import 'package:self_introduction_flutter/model/main_page/scroll_model.dart';
 import 'package:self_introduction_flutter/model/main_page/start_animation_model.dart';
@@ -67,13 +65,13 @@ class DesktopCubit extends Cubit<DesktopState> {
     await Future.delayed(Duration(seconds: state.initModel.remainingTime));
   }
 
-  void test1(List<String> characters) {
+  void textAnimation(List<String> characters) {
     emit(
       state.copyWith(startAnimation: StartAnimationModel(words: characters)),
     );
   }
 
-  void test2(
+  void textAnimationController(
     List<AnimationController> newControllers,
     List<Animation<double>> newAnimations,
   ) {

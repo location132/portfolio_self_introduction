@@ -57,16 +57,19 @@ class _SkillViewState extends State<SkillView> {
                   ),
                 ),
               ),
-              Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 200),
-                  child: DesktopMobileSkillView(
-                    isVisible:
-                        widget.state.mySkillModel.status ==
-                            MySkillViewStatus.active &&
-                        widget.state.mySkillModel.currentTitleIndex == 0 &&
-                        !widget.state.mySkillModel.isTitleChanging,
+              IgnorePointer(
+                ignoring: widget.state.mySkillModel.isRiveVisible,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 200),
+                    child: DesktopMobileSkillView(
+                      isVisible:
+                          widget.state.mySkillModel.status ==
+                              MySkillViewStatus.active &&
+                          widget.state.mySkillModel.currentTitleIndex == 0 &&
+                          !widget.state.mySkillModel.isTitleChanging,
+                    ),
                   ),
                 ),
               ),

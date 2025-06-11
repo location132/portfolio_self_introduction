@@ -1,6 +1,7 @@
 // TODO: 클래스가 3개나 있다니 아주 안좋다. 추 후 교체하자
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 
@@ -86,6 +87,9 @@ class NavItem extends StatelessWidget {
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
           onTap: () {
+            if (title == TextConstants.topNavBar2) {
+              context.go('/projects');
+            }
             debugPrint("$title 클릭됨");
           },
           child: Text(

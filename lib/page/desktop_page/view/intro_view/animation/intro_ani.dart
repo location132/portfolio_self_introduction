@@ -32,7 +32,7 @@ class IntroAnimation {
       characters.add(message[i]);
     }
 
-    cubit.test1(characters);
+    cubit.textAnimation(characters);
 
     List<AnimationController> newControllers = [];
     List<Animation<double>> newAnimations = [];
@@ -61,7 +61,7 @@ class IntroAnimation {
     if (!cubit.isClosed &&
         newControllers.isNotEmpty &&
         newAnimations.isNotEmpty) {
-      cubit.test2(newControllers, newAnimations);
+      cubit.textAnimationController(newControllers, newAnimations);
     }
 
     if (message == TextConstants.welcomeMessage1) {
