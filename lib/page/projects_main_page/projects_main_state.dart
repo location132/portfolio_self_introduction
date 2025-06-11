@@ -8,5 +8,8 @@ class ProjectsMainState with _$ProjectsMainState {
   const factory ProjectsMainState({
     // 프로젝트 모델
     @Default(ProjectModel()) ProjectModel projectModel,
+
+    //네비게이션 애니메이션 상태
+    @Default(false) bool isNaviAniStart,
   }) = _ProjectsMainState;
 }

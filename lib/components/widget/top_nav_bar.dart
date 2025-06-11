@@ -29,7 +29,15 @@ class TopNavBar extends StatelessWidget {
           child: Row(
             children: [
               Image.asset('assets/Images/flutter_bird.png', scale: 25),
-              const NavItem(title: TextConstants.topNavBar1),
+              GestureDetector(
+                onTap: () {
+                  context.go('/');
+                },
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: const NavItem(title: TextConstants.topNavBar1),
+                ),
+              ),
               const NavItem(title: TextConstants.topNavBar2),
               const NavItem(title: TextConstants.topNavBar3),
               const NavItem(title: TextConstants.topNavBar4),
@@ -53,6 +61,7 @@ class TopNavBar extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       onHomePressed?.call();
+                      context.go('/');
                     },
                     child: Image.asset(
                       'assets/Images/flutter_bird.png',
@@ -87,7 +96,12 @@ class NavItem extends StatelessWidget {
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
           onTap: () {
-            if (title == TextConstants.topNavBar2) {
+            // 자기소개서 클릭 시 메인 페이지로 이동
+            if (title == TextConstants.topNavBar1) {
+              context.go('/');
+            }
+            // 프로젝트 클릭 시 프로젝트 페이지로 이동
+            else if (title == TextConstants.topNavBar2) {
               context.go('/projects');
             }
             debugPrint("$title 클릭됨");

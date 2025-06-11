@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/components/widget/mobile_animation/widget_animation.dart';
+import 'package:self_introduction_flutter/components/widget/animation/widget_animation.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/detailMe_view/widget/app_page_desktop.dart';
 
 class AppScreenDesktop extends StatefulWidget {

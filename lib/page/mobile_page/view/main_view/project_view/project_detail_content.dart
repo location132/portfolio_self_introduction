@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
-import 'package:self_introduction_flutter/components/widget/mobile_animation/widget_animation.dart';
+import 'package:self_introduction_flutter/components/widget/animation/widget_animation.dart';
 
 class ProjectDetailContent extends StatelessWidget {
   final String category;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/components/widget/mobile_animation/widget_animation.dart';
+import 'package:self_introduction_flutter/components/widget/animation/widget_animation.dart';
 
 class AboutMeDescriptionDesktop extends StatelessWidget {
   final bool isAniStart;
