@@ -38,6 +38,7 @@ class MobileCubit extends Cubit<MobileState> {
       ),
     );
     await Future.delayed(const Duration(milliseconds: 500));
+    if (isClosed) return;
     aboutMePlayerAni(true);
     emit(
       state.copyWith(
@@ -46,12 +47,14 @@ class MobileCubit extends Cubit<MobileState> {
       ),
     );
     await Future.delayed(const Duration(milliseconds: 300));
+    if (isClosed) return;
     emit(
       state.copyWith(
         introModel: state.introModel.copyWith(isDescription: true),
       ),
     );
     await Future.delayed(const Duration(milliseconds: 400));
+    if (isClosed) return;
     emit(
       state.copyWith(
         introModel: state.introModel.copyWith(
@@ -62,12 +65,14 @@ class MobileCubit extends Cubit<MobileState> {
       ),
     );
     await Future.delayed(const Duration(milliseconds: 500));
+    if (isClosed) return;
     emit(
       state.copyWith(
         introModel: state.introModel.copyWith(isIntroImageinit: true),
       ),
     );
     await Future.delayed(const Duration(milliseconds: 1100));
+    if (isClosed) return;
     aboutMePlayerAni(false);
     emit(
       state.copyWith(

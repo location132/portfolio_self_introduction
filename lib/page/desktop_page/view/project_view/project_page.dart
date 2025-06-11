@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/model/main_page/project_model.dart';
-import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/project_view/project_view.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class ProjectPage extends StatelessWidget {
   final ProjectModel state;
-  final DesktopCubit cubit;
-  const ProjectPage({super.key, required this.state, required this.cubit});
+  final Function(String) onCategorySelected;
+  final Function() projectAniStart;
+  const ProjectPage({
+    super.key,
+    required this.state,
+    required this.onCategorySelected,
+    required this.projectAniStart,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +20,10 @@ class ProjectPage extends StatelessWidget {
       key: const Key('project-view'),
       onVisibilityChanged: (VisibilityInfo info) {
         if (info.visibleFraction > 0.1 && !state.isTitleAniStart) {
-          cubit.projectAniStart();
+          projectAniStart();
         }
       },
-      child: ProjectView(state: state, cubit: cubit),
+      child: ProjectView(state: state, onCategorySelected: onCategorySelected),
     );
   }
 }

@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:self_introduction_flutter/model/main_page/project_model.dart';
-import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/project_view/widget/menu/project_menu_button.dart';
 
 class ProjectMenuBar extends StatelessWidget {
   final ProjectModel state;
-  final DesktopCubit cubit;
-  const ProjectMenuBar({super.key, required this.state, required this.cubit});
+  final Function(String category) onCategorySelected;
+
+  const ProjectMenuBar({
+    super.key,
+    required this.state,
+    required this.onCategorySelected,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +37,7 @@ class ProjectMenuBar extends StatelessWidget {
               projectCount: '0',
               category: 'All',
               isSelected: state.selectedProjectCategory == 'All',
-              onPressed: () => cubit.selectProjectCategory('All'),
+              onPressed: () => onCategorySelected('All'),
             ),
             const SizedBox(width: 22),
 
@@ -43,7 +47,7 @@ class ProjectMenuBar extends StatelessWidget {
               projectCount: ProjectTextConstants.flutterProjectCount,
               category: 'flutter',
               isSelected: state.selectedProjectCategory == 'flutter',
-              onPressed: () => cubit.selectProjectCategory('flutter'),
+              onPressed: () => onCategorySelected('flutter'),
             ),
             const SizedBox(width: 22),
 
@@ -53,7 +57,7 @@ class ProjectMenuBar extends StatelessWidget {
               projectCount: ProjectTextConstants.flutterRiveProjectCount,
               category: 'flutter_rive',
               isSelected: state.selectedProjectCategory == 'flutter_rive',
-              onPressed: () => cubit.selectProjectCategory('flutter_rive'),
+              onPressed: () => onCategorySelected('flutter_rive'),
             ),
             const SizedBox(width: 22),
 
@@ -63,7 +67,7 @@ class ProjectMenuBar extends StatelessWidget {
               projectCount: ProjectTextConstants.futureProjectCount,
               category: 'future',
               isSelected: state.selectedProjectCategory == 'future',
-              onPressed: () => cubit.selectProjectCategory('future'),
+              onPressed: () => onCategorySelected('future'),
             ),
           ],
         ),

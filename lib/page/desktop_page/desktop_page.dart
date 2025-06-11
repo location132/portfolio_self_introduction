@@ -163,11 +163,21 @@ class _MainViewState extends State<_MainView> {
 
                                                   ProjectPage(
                                                     state: state.projectModel,
-                                                    cubit:
-                                                        context
+                                                    onCategorySelected:
+                                                        (category) => context
                                                             .read<
                                                               DesktopCubit
-                                                            >(),
+                                                            >()
+                                                            .selectProjectCategory(
+                                                              category,
+                                                            ),
+                                                    projectAniStart:
+                                                        () =>
+                                                            context
+                                                                .read<
+                                                                  DesktopCubit
+                                                                >()
+                                                                .projectAniStart(),
                                                   ),
                                                 ],
                                               ),

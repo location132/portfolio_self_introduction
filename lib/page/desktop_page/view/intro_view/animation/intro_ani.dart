@@ -53,7 +53,11 @@ class IntroAnimation {
 
       Future.delayed(Duration(milliseconds: i * 25), () {
         if (!cubit.isClosed && controller.isAnimating == false) {
-          controller.forward();
+          try {
+            controller.forward();
+          } catch (e) {
+            print('Error starting animation: $e');
+          }
         }
       });
     }
@@ -92,9 +96,11 @@ class IntroAnimation {
     if (!cubit.isClosed && cubit.state.startAnimation != null) {
       for (var controller in cubit.state.startAnimation!.controllers) {
         try {
-          controller.reverse();
+          if (controller.isAnimating) {
+            controller.reverse();
+          }
         } catch (e) {
-          print('Controller already disposed: $e');
+          print('Controller already disposed or error reversing: $e');
         }
       }
     }

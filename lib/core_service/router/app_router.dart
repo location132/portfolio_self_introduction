@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'dart:async';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_page.dart';
-import 'package:self_introduction_flutter/page/projects_page/projects_main_page.dart';
+import 'package:self_introduction_flutter/page/projects_main_page/projects_main_page.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/flutter_projects_page.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/flutter_rive_projects_page.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/future_projects_page.dart';
@@ -16,14 +16,45 @@ class AppRouter {
       GoRoute(
         path: '/',
         name: 'home',
-        builder: (context, state) => const ResponsiveHomePage(),
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              child: const ResponsiveHomePage(),
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                return FadeTransition(opacity: animation, child: child);
+              },
+              transitionDuration: const Duration(milliseconds: 300),
+            ),
       ),
       GoRoute(
         path: '/projects',
         name: 'projects',
-        builder: (context, state) {
-          return const ProjectsMainPage();
-        },
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              child: const ProjectsMainPage(),
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                final tween = Tween<Offset>(
+                  begin: const Offset(1, 0),
+                  end: Offset.zero,
+                ).chain(CurveTween(curve: Curves.easeInOut));
+                return SlideTransition(
+                  position: animation.drive(tween),
+                  child: child,
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 400),
+            ),
       ),
       GoRoute(
         path: '/flutter-projects',
@@ -67,19 +98,17 @@ class _ResponsiveHomePageState extends State<ResponsiveHomePage> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      _updateVisibility();
       setState(() {
         _isInitialized = true;
       });
-      _updateVisibilityWithDebounce();
     });
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (_isInitialized) {
-      _updateVisibilityWithDebounce();
-    }
+    _updateVisibilityWithDebounce();
   }
 
   void _updateVisibilityWithDebounce() {

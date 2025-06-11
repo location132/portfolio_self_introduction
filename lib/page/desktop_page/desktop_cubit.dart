@@ -714,7 +714,14 @@ class DesktopCubit extends Cubit<DesktopState> {
   Future<void> close() async {
     if (state.startAnimation != null) {
       for (var controller in state.startAnimation!.controllers) {
-        controller.dispose();
+        try {
+          if (controller.isAnimating) {
+            controller.stop();
+          }
+          controller.dispose();
+        } catch (e) {
+          print('Error disposing controller: $e');
+        }
       }
     }
     return super.close();

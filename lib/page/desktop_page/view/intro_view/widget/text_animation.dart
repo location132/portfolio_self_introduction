@@ -27,6 +27,22 @@ class _TextAnimationState extends State<TextAnimation>
   }
 
   @override
+  void dispose() {
+    if (widget.state.startAnimation != null) {
+      for (var controller in widget.state.startAnimation!.controllers) {
+        try {
+          if (controller.isAnimating) {
+            controller.stop();
+          }
+        } catch (e) {
+          print('Error stopping animation controller: $e');
+        }
+      }
+    }
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     List<Widget> textWidgets = [];
     List<Widget> currentLineWidgets = [];

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/model/main_page/project_model.dart';
-import 'package:self_introduction_flutter/page/desktop_page/desktop_cubit.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/project_view/widget/menu/project_menu_bar.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/project_view/widget/project_title.dart';
 import 'package:self_introduction_flutter/page/desktop_page/view/project_view/widget/project_list_container.dart';
 
 class ProjectView extends StatefulWidget {
   final ProjectModel state;
-  final DesktopCubit cubit;
-  const ProjectView({super.key, required this.state, required this.cubit});
+  final Function(String) onCategorySelected;
+  const ProjectView({
+    super.key,
+    required this.state,
+    required this.onCategorySelected,
+  });
 
   @override
   State<ProjectView> createState() => _ProjectViewState();
@@ -34,7 +37,10 @@ class _ProjectViewState extends State<ProjectView> {
               _isProjectListAni = true;
             });
           },
-          child: ProjectMenuBar(state: widget.state, cubit: widget.cubit),
+          child: ProjectMenuBar(
+            state: widget.state,
+            onCategorySelected: widget.onCategorySelected,
+          ),
         ),
         const SizedBox(height: 60),
 
