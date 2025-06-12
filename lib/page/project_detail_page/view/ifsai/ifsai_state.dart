@@ -18,7 +18,10 @@ class IfsaiState with _$IfsaiState {
     @Default(50.0) double mainTitleTranslateY,
     @Default(50.0) double descriptionTranslateY,
     // 배경색과 텍스트 색상 관련 상태
-    @Default(0.0) double backgroundDarkness, // 0.0(흰색) ~ 1.0(검정색)
-    @Default(Colors.black) Color textColor, // 텍스트 색상
+    @Default(0.0) double backgroundDarkness,
+    @Default(Colors.black) Color textColor,
+
+    @Default(false) bool isPlayerVisible,
+    @Default('궁금한 기술을 클릭해주세요') String playerText,
   }) = _IfsaiState;
 }

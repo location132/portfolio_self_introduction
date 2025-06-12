@@ -4,7 +4,11 @@ import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/model/project_detail/ifsai_model.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_cubit.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_state.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_content2.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_contents.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_detail_section.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_player.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class IfsaiDetailPage extends StatelessWidget {
   const IfsaiDetailPage({super.key});
@@ -48,19 +52,34 @@ class IfsaiDetailView extends StatelessWidget {
                 children: [
                   SizedBox(height: MediaQuery.of(context).size.height - 83),
                   SizedBox(height: 950),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 2,
-                    color: Color.lerp(
-                      Colors.white,
-                      Colors.black,
-                      state.backgroundDarkness,
-                    ),
-                    child: const Center(
-                      child: Text(
-                        '여기서부터 실제 뷰가 시작됩니다.',
-                        style: TextStyle(fontSize: 18, color: Colors.grey),
+                  Column(
+                    children: [
+                      VisibilityDetector(
+                        key: const Key('project-contents-view'),
+                        onVisibilityChanged: (VisibilityInfo info) {
+                          if (info.visibleFraction > 0.1 &&
+                              !state.isPlayerVisible) {
+                            context.read<IfsaiCubit>().setPlayerVisible(true);
+                          } else if (info.visibleFraction < 0.1 &&
+                              state.isPlayerVisible) {
+                            context.read<IfsaiCubit>().setPlayerVisible(false);
+                          }
+                        },
+                        child: ProjectContents(state: state),
                       ),
-                    ),
+
+                      SizedBox(height: 200),
+                      VisibilityDetector(
+                        key: const Key('project-content2-view'),
+                        onVisibilityChanged: (VisibilityInfo info) {
+                          if (info.visibleFraction > 0.1 &&
+                              !state.isPlayerVisible) {
+                            context.read<IfsaiCubit>().setPlayerVisible(false);
+                          }
+                        },
+                        child: ProjectContent2(),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -80,6 +99,16 @@ class IfsaiDetailView extends StatelessWidget {
               setScrollEnabled:
                   (isEnabled) =>
                       context.read<IfsaiCubit>().setScrollEnabled(isEnabled),
+            ),
+
+            Positioned(
+              bottom: 30,
+              left: 0,
+              right: 0,
+              child: ProjectPlayer(
+                isPlayerAniOpacity: state.isPlayerVisible,
+                isPlayerText: state.playerText,
+              ),
             ),
           ],
         );

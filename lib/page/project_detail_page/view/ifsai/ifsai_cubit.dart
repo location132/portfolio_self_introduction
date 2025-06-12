@@ -5,18 +5,35 @@ import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/if
 
 @injectable
 class IfsaiCubit extends Cubit<IfsaiState> {
+  bool _listenerAdded = false;
+
   IfsaiCubit() : super(IfsaiState(scrollController: ScrollController())) {
     _addScrollListener();
   }
 
   void _addScrollListener() {
-    state.scrollController?.addListener(_onScroll);
+    if (!_listenerAdded && state.scrollController != null) {
+      state.scrollController!.addListener(_onScroll);
+      _listenerAdded = true;
+    }
   }
 
-  void _onScroll() {
-    if (isClosed) return;
+  // Player
+  void setPlayerVisible(bool isVisible) {
+    if (state.isPlayerVisible != isVisible) {
+      emit(state.copyWith(isPlayerVisible: isVisible));
+    }
+  }
 
-    final scrollOffset = state.scrollController?.offset ?? 0.0;
+  // Scroll 처음 시작 시, 스크롤에 따른 애니메이션 정의 한거, 나중에 리펙 들어가자
+  void _onScroll() {
+    if (isClosed ||
+        state.scrollController == null ||
+        !state.scrollController!.hasClients) {
+      return;
+    }
+
+    final scrollOffset = state.scrollController!.offset;
 
     const double titleFollowStart = 1500.0;
     double titleOffset = 0.0;
@@ -77,29 +94,57 @@ class IfsaiCubit extends Cubit<IfsaiState> {
       titleOpacity = 0.0;
     }
 
-    emit(
-      state.copyWith(
-        titleScale: titleScale,
-        titleOpacity: titleOpacity,
-        mainTitleOpacity: mainTitleOpacity,
-        descriptionOpacity: descriptionOpacity,
-        titleOffset: titleOffset,
-        scrollDescriptionOpacity: scrollDescriptionOpacity,
-        mainTitleTranslateY: mainTitleTranslateY,
-        descriptionTranslateY: descriptionTranslateY,
-        backgroundDarkness: backgroundDarkness,
-        textColor: textColor,
-      ),
+    final newState = state.copyWith(
+      titleScale: titleScale,
+      titleOpacity: titleOpacity,
+      mainTitleOpacity: mainTitleOpacity,
+      descriptionOpacity: descriptionOpacity,
+      titleOffset: titleOffset,
+      scrollDescriptionOpacity: scrollDescriptionOpacity,
+      mainTitleTranslateY: mainTitleTranslateY,
+      descriptionTranslateY: descriptionTranslateY,
+      backgroundDarkness: backgroundDarkness,
+      textColor: textColor,
     );
+
+    if (_shouldEmitState(newState)) {
+      emit(newState);
+    }
+  }
+
+  bool _shouldEmitState(IfsaiState newState) {
+    const double epsilon = 0.001;
+
+    return (state.titleScale - newState.titleScale).abs() > epsilon ||
+        (state.titleOpacity - newState.titleOpacity).abs() > epsilon ||
+        (state.mainTitleOpacity - newState.mainTitleOpacity).abs() > epsilon ||
+        (state.descriptionOpacity - newState.descriptionOpacity).abs() >
+            epsilon ||
+        (state.titleOffset - newState.titleOffset).abs() > epsilon ||
+        (state.scrollDescriptionOpacity - newState.scrollDescriptionOpacity)
+                .abs() >
+            epsilon ||
+        (state.mainTitleTranslateY - newState.mainTitleTranslateY).abs() >
+            epsilon ||
+        (state.descriptionTranslateY - newState.descriptionTranslateY).abs() >
+            epsilon ||
+        (state.backgroundDarkness - newState.backgroundDarkness).abs() >
+            epsilon ||
+        state.textColor != newState.textColor;
   }
 
   void setScrollEnabled(bool enabled) {
-    emit(state.copyWith(isScrollEnabled: enabled));
+    if (state.isScrollEnabled != enabled) {
+      emit(state.copyWith(isScrollEnabled: enabled));
+    }
   }
 
   @override
   Future<void> close() {
-    state.scrollController?.removeListener(_onScroll);
+    if (_listenerAdded && state.scrollController != null) {
+      state.scrollController!.removeListener(_onScroll);
+      _listenerAdded = false;
+    }
     state.scrollController?.dispose();
     return super.close();
   }

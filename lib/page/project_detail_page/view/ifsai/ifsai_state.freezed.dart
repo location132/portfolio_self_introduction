@@ -31,7 +31,11 @@ mixin _$IfsaiState {
       throw _privateConstructorUsedError; // 배경색과 텍스트 색상 관련 상태
   double get backgroundDarkness =>
       throw _privateConstructorUsedError; // 0.0(흰색) ~ 1.0(검정색)
-  Color get textColor => throw _privateConstructorUsedError;
+  Color get textColor => throw _privateConstructorUsedError; // 텍스트 색상
+  // Player 관련 상태
+  bool get isPlayerVisible =>
+      throw _privateConstructorUsedError; // Player 표시 여부
+  String get playerText => throw _privateConstructorUsedError;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.
@@ -60,6 +64,8 @@ abstract class $IfsaiStateCopyWith<$Res> {
     double descriptionTranslateY,
     double backgroundDarkness,
     Color textColor,
+    bool isPlayerVisible,
+    String playerText,
   });
 }
 
@@ -90,6 +96,8 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
     Object? descriptionTranslateY = null,
     Object? backgroundDarkness = null,
     Object? textColor = null,
+    Object? isPlayerVisible = null,
+    Object? playerText = null,
   }) {
     return _then(
       _value.copyWith(
@@ -153,6 +161,16 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
                     ? _value.textColor
                     : textColor // ignore: cast_nullable_to_non_nullable
                         as Color,
+            isPlayerVisible:
+                null == isPlayerVisible
+                    ? _value.isPlayerVisible
+                    : isPlayerVisible // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            playerText:
+                null == playerText
+                    ? _value.playerText
+                    : playerText // ignore: cast_nullable_to_non_nullable
+                        as String,
           )
           as $Val,
     );
@@ -181,6 +199,8 @@ abstract class _$$IfsaiStateImplCopyWith<$Res>
     double descriptionTranslateY,
     double backgroundDarkness,
     Color textColor,
+    bool isPlayerVisible,
+    String playerText,
   });
 }
 
@@ -210,6 +230,8 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
     Object? descriptionTranslateY = null,
     Object? backgroundDarkness = null,
     Object? textColor = null,
+    Object? isPlayerVisible = null,
+    Object? playerText = null,
   }) {
     return _then(
       _$IfsaiStateImpl(
@@ -273,6 +295,16 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
                 ? _value.textColor
                 : textColor // ignore: cast_nullable_to_non_nullable
                     as Color,
+        isPlayerVisible:
+            null == isPlayerVisible
+                ? _value.isPlayerVisible
+                : isPlayerVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        playerText:
+            null == playerText
+                ? _value.playerText
+                : playerText // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -294,6 +326,8 @@ class _$IfsaiStateImpl implements _IfsaiState {
     this.descriptionTranslateY = 50.0,
     this.backgroundDarkness = 0.0,
     this.textColor = Colors.black,
+    this.isPlayerVisible = false,
+    this.playerText = '궁금한 기술을 클릭해주세요',
   });
 
   @override
@@ -334,10 +368,19 @@ class _$IfsaiStateImpl implements _IfsaiState {
   @override
   @JsonKey()
   final Color textColor;
+  // 텍스트 색상
+  // Player 관련 상태
+  @override
+  @JsonKey()
+  final bool isPlayerVisible;
+  // Player 표시 여부
+  @override
+  @JsonKey()
+  final String playerText;
 
   @override
   String toString() {
-    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor)';
+    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText)';
   }
 
   @override
@@ -371,7 +414,11 @@ class _$IfsaiStateImpl implements _IfsaiState {
             (identical(other.backgroundDarkness, backgroundDarkness) ||
                 other.backgroundDarkness == backgroundDarkness) &&
             (identical(other.textColor, textColor) ||
-                other.textColor == textColor));
+                other.textColor == textColor) &&
+            (identical(other.isPlayerVisible, isPlayerVisible) ||
+                other.isPlayerVisible == isPlayerVisible) &&
+            (identical(other.playerText, playerText) ||
+                other.playerText == playerText));
   }
 
   @override
@@ -389,6 +436,8 @@ class _$IfsaiStateImpl implements _IfsaiState {
     descriptionTranslateY,
     backgroundDarkness,
     textColor,
+    isPlayerVisible,
+    playerText,
   );
 
   /// Create a copy of IfsaiState
@@ -414,6 +463,8 @@ abstract class _IfsaiState implements IfsaiState {
     final double descriptionTranslateY,
     final double backgroundDarkness,
     final Color textColor,
+    final bool isPlayerVisible,
+    final String playerText,
   }) = _$IfsaiStateImpl;
 
   @override
@@ -439,7 +490,12 @@ abstract class _IfsaiState implements IfsaiState {
   @override
   double get backgroundDarkness; // 0.0(흰색) ~ 1.0(검정색)
   @override
-  Color get textColor;
+  Color get textColor; // 텍스트 색상
+  // Player 관련 상태
+  @override
+  bool get isPlayerVisible; // Player 표시 여부
+  @override
+  String get playerText;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.
