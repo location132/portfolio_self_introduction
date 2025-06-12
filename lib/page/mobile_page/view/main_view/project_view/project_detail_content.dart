@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/components/widget/animation/widget_animation.dart';
 
@@ -185,9 +184,6 @@ class ProjectDetailContent extends StatelessWidget {
           beginDy: 0.5,
           duration: 600 + (index * 100),
           child: GestureDetector(
-            onTap: () {
-              _navigateToProjectDetail(context, category, index);
-            },
             child: Container(
               margin: EdgeInsets.only(bottom: 20.h),
               padding: EdgeInsets.all(16.w),
@@ -304,27 +300,5 @@ class ProjectDetailContent extends StatelessWidget {
     }
 
     return projectWidgets;
-  }
-
-  void _navigateToProjectDetail(
-    BuildContext context,
-    String category,
-    int index,
-  ) {
-    String route;
-    switch (category) {
-      case 'flutter':
-        route = '/flutter-projects';
-        break;
-      case 'flutter_rive':
-        route = '/flutter-rive-projects';
-        break;
-      case 'future':
-        route = '/future-projects';
-        break;
-      default:
-        route = '/flutter-projects';
-    }
-    context.push(route);
   }
 }

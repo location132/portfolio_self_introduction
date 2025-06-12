@@ -4,10 +4,8 @@ import 'dart:async';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_page.dart';
 import 'package:self_introduction_flutter/page/projects_main_page/projects_main_page.dart';
-import 'package:self_introduction_flutter/page/project_detail_page/flutter_projects_page.dart';
-import 'package:self_introduction_flutter/page/project_detail_page/flutter_rive_projects_page.dart';
-import 'package:self_introduction_flutter/page/project_detail_page/future_projects_page.dart';
-import 'package:self_introduction_flutter/page/project_detail_page/individual_project_page.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/project_detail_page.dart';
+
 import 'package:self_introduction_flutter/service/main_service.dart';
 
 class AppRouter {
@@ -58,33 +56,29 @@ class AppRouter {
             ),
       ),
       GoRoute(
-        path: '/flutter-projects',
-        name: 'flutter-projects',
-        builder: (context, state) {
-          return const FlutterProjectsPage();
-        },
-      ),
-      GoRoute(
-        path: '/flutter-rive-projects',
-        name: 'flutter-rive-projects',
-        builder: (context, state) {
-          return const FlutterRiveProjectsPage();
-        },
-      ),
-      GoRoute(
-        path: '/future-projects',
-        name: 'future-projects',
-        builder: (context, state) {
-          return const FutureProjectsPage();
-        },
-      ),
-      GoRoute(
-        path: '/project/:id',
-        name: 'individual-project',
-        builder: (context, state) {
-          final projectId = state.pathParameters['id'] ?? '';
-          return IndividualProjectPage(projectId: projectId);
-        },
+        path: '/project/ifsai',
+        name: 'ifsai_detail',
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              child: ProjectDetailPage(projectName: 'ifsai'),
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                final tween = Tween<Offset>(
+                  begin: const Offset(0, 1),
+                  end: Offset.zero,
+                ).chain(CurveTween(curve: Curves.easeInOut));
+                return SlideTransition(
+                  position: animation.drive(tween),
+                  child: FadeTransition(opacity: animation, child: child),
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 800),
+            ),
       ),
     ],
   );

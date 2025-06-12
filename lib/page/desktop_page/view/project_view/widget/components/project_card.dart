@@ -26,6 +26,7 @@ class ProjectCard extends StatefulWidget {
 class _ProjectCardState extends State<ProjectCard> {
   bool _isHovered = false;
   int _gifInstanceKey = 0;
+  bool _isCalled = false;
 
   void _onHover(bool isHovered) {
     setState(() {
@@ -37,9 +38,15 @@ class _ProjectCardState extends State<ProjectCard> {
     });
   }
 
-  void _onProjectTap(BuildContext context) {
-    final title = widget.project['title'] ?? '';
+  void _onProjectTap(BuildContext context) async {
+    if (_isCalled) {
+      return;
+    }
+    setState(() {
+      _isCalled = true;
+    });
 
+    final title = widget.project['title'] ?? '';
     if (title == '악보 넘기기' || title == 'CCTV View' || title == '맞춤 건강 알림') {
       return;
     }
@@ -70,8 +77,10 @@ class _ProjectCardState extends State<ProjectCard> {
       default:
         route = '/projects';
     }
-
     context.push(route);
+    setState(() {
+      _isCalled = false;
+    });
   }
 
   String _getImagePath(bool isHovered) {
@@ -196,7 +205,9 @@ class _ProjectCardState extends State<ProjectCard> {
         onExit: (_) => _onHover(false),
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
-          onTap: () => _onProjectTap(context),
+          onTap: () {
+            _onProjectTap(context);
+          },
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),
             width: 330,
