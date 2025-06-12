@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/widget/animation/widget_animation.dart';
 import 'package:self_introduction_flutter/model/project_detail/ifsai_model.dart';
-import 'package:self_introduction_flutter/page/project_detail_page/animation/ifsai_title_animation.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/animation/ifsai_title_animation.dart';
 
 class ProjectDetailTitle extends StatefulWidget {
   final IfsaiModel model;
