@@ -37,7 +37,7 @@ class IfsaiDetailView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: MediaQuery.of(context).size.height - 83),
-                  SizedBox(height: 750),
+                  SizedBox(height: 950),
                   Container(
                     height: MediaQuery.of(context).size.height * 2,
                     color: Colors.red,
@@ -59,6 +59,9 @@ class IfsaiDetailView extends StatelessWidget {
               titleOpacity: state.titleOpacity,
               titleScale: state.titleScale,
               titleOffset: state.titleOffset,
+              scrollDescriptionOpacity: state.scrollDescriptionOpacity,
+              mainTitleTranslateY: state.mainTitleTranslateY,
+              descriptionTranslateY: state.descriptionTranslateY,
               setScrollEnabled:
                   (isEnabled) =>
                       context.read<IfsaiCubit>().setScrollEnabled(isEnabled),

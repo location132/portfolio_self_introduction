@@ -14,5 +14,8 @@ class IfsaiState with _$IfsaiState {
     @Default(0.0) double mainTitleOpacity,
     @Default(0.0) double descriptionOpacity,
     @Default(0.0) double titleOffset,
+    @Default(1.0) double scrollDescriptionOpacity,
+    @Default(50.0) double mainTitleTranslateY,
+    @Default(50.0) double descriptionTranslateY,
   }) = _IfsaiState;
 }

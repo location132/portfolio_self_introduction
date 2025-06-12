@@ -25,6 +25,9 @@ mixin _$IfsaiState {
   double get mainTitleOpacity => throw _privateConstructorUsedError;
   double get descriptionOpacity => throw _privateConstructorUsedError;
   double get titleOffset => throw _privateConstructorUsedError;
+  double get scrollDescriptionOpacity => throw _privateConstructorUsedError;
+  double get mainTitleTranslateY => throw _privateConstructorUsedError;
+  double get descriptionTranslateY => throw _privateConstructorUsedError;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.
@@ -48,6 +51,9 @@ abstract class $IfsaiStateCopyWith<$Res> {
     double mainTitleOpacity,
     double descriptionOpacity,
     double titleOffset,
+    double scrollDescriptionOpacity,
+    double mainTitleTranslateY,
+    double descriptionTranslateY,
   });
 }
 
@@ -73,6 +79,9 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
     Object? mainTitleOpacity = null,
     Object? descriptionOpacity = null,
     Object? titleOffset = null,
+    Object? scrollDescriptionOpacity = null,
+    Object? mainTitleTranslateY = null,
+    Object? descriptionTranslateY = null,
   }) {
     return _then(
       _value.copyWith(
@@ -111,6 +120,21 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
                     ? _value.titleOffset
                     : titleOffset // ignore: cast_nullable_to_non_nullable
                         as double,
+            scrollDescriptionOpacity:
+                null == scrollDescriptionOpacity
+                    ? _value.scrollDescriptionOpacity
+                    : scrollDescriptionOpacity // ignore: cast_nullable_to_non_nullable
+                        as double,
+            mainTitleTranslateY:
+                null == mainTitleTranslateY
+                    ? _value.mainTitleTranslateY
+                    : mainTitleTranslateY // ignore: cast_nullable_to_non_nullable
+                        as double,
+            descriptionTranslateY:
+                null == descriptionTranslateY
+                    ? _value.descriptionTranslateY
+                    : descriptionTranslateY // ignore: cast_nullable_to_non_nullable
+                        as double,
           )
           as $Val,
     );
@@ -134,6 +158,9 @@ abstract class _$$IfsaiStateImplCopyWith<$Res>
     double mainTitleOpacity,
     double descriptionOpacity,
     double titleOffset,
+    double scrollDescriptionOpacity,
+    double mainTitleTranslateY,
+    double descriptionTranslateY,
   });
 }
 
@@ -158,6 +185,9 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
     Object? mainTitleOpacity = null,
     Object? descriptionOpacity = null,
     Object? titleOffset = null,
+    Object? scrollDescriptionOpacity = null,
+    Object? mainTitleTranslateY = null,
+    Object? descriptionTranslateY = null,
   }) {
     return _then(
       _$IfsaiStateImpl(
@@ -196,6 +226,21 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
                 ? _value.titleOffset
                 : titleOffset // ignore: cast_nullable_to_non_nullable
                     as double,
+        scrollDescriptionOpacity:
+            null == scrollDescriptionOpacity
+                ? _value.scrollDescriptionOpacity
+                : scrollDescriptionOpacity // ignore: cast_nullable_to_non_nullable
+                    as double,
+        mainTitleTranslateY:
+            null == mainTitleTranslateY
+                ? _value.mainTitleTranslateY
+                : mainTitleTranslateY // ignore: cast_nullable_to_non_nullable
+                    as double,
+        descriptionTranslateY:
+            null == descriptionTranslateY
+                ? _value.descriptionTranslateY
+                : descriptionTranslateY // ignore: cast_nullable_to_non_nullable
+                    as double,
       ),
     );
   }
@@ -212,6 +257,9 @@ class _$IfsaiStateImpl implements _IfsaiState {
     this.mainTitleOpacity = 0.0,
     this.descriptionOpacity = 0.0,
     this.titleOffset = 0.0,
+    this.scrollDescriptionOpacity = 1.0,
+    this.mainTitleTranslateY = 50.0,
+    this.descriptionTranslateY = 50.0,
   });
 
   @override
@@ -235,10 +283,19 @@ class _$IfsaiStateImpl implements _IfsaiState {
   @override
   @JsonKey()
   final double titleOffset;
+  @override
+  @JsonKey()
+  final double scrollDescriptionOpacity;
+  @override
+  @JsonKey()
+  final double mainTitleTranslateY;
+  @override
+  @JsonKey()
+  final double descriptionTranslateY;
 
   @override
   String toString() {
-    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset)';
+    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY)';
   }
 
   @override
@@ -259,7 +316,16 @@ class _$IfsaiStateImpl implements _IfsaiState {
             (identical(other.descriptionOpacity, descriptionOpacity) ||
                 other.descriptionOpacity == descriptionOpacity) &&
             (identical(other.titleOffset, titleOffset) ||
-                other.titleOffset == titleOffset));
+                other.titleOffset == titleOffset) &&
+            (identical(
+                  other.scrollDescriptionOpacity,
+                  scrollDescriptionOpacity,
+                ) ||
+                other.scrollDescriptionOpacity == scrollDescriptionOpacity) &&
+            (identical(other.mainTitleTranslateY, mainTitleTranslateY) ||
+                other.mainTitleTranslateY == mainTitleTranslateY) &&
+            (identical(other.descriptionTranslateY, descriptionTranslateY) ||
+                other.descriptionTranslateY == descriptionTranslateY));
   }
 
   @override
@@ -272,6 +338,9 @@ class _$IfsaiStateImpl implements _IfsaiState {
     mainTitleOpacity,
     descriptionOpacity,
     titleOffset,
+    scrollDescriptionOpacity,
+    mainTitleTranslateY,
+    descriptionTranslateY,
   );
 
   /// Create a copy of IfsaiState
@@ -292,6 +361,9 @@ abstract class _IfsaiState implements IfsaiState {
     final double mainTitleOpacity,
     final double descriptionOpacity,
     final double titleOffset,
+    final double scrollDescriptionOpacity,
+    final double mainTitleTranslateY,
+    final double descriptionTranslateY,
   }) = _$IfsaiStateImpl;
 
   @override
@@ -308,6 +380,12 @@ abstract class _IfsaiState implements IfsaiState {
   double get descriptionOpacity;
   @override
   double get titleOffset;
+  @override
+  double get scrollDescriptionOpacity;
+  @override
+  double get mainTitleTranslateY;
+  @override
+  double get descriptionTranslateY;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.

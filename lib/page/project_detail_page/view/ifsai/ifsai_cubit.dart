@@ -18,67 +18,65 @@ class IfsaiCubit extends Cubit<IfsaiState> {
 
     final scrollOffset = state.scrollController?.offset ?? 0.0;
 
-    const double titleFollowStart = 1300.0;
+    const double titleFollowStart = 1500.0;
     double titleOffset = 0.0;
 
     if (scrollOffset > titleFollowStart) {
       titleOffset = -(scrollOffset - titleFollowStart);
     }
 
-    if (scrollOffset <= 0) {
-      emit(
-        state.copyWith(
-          titleScale: 1.0,
-          titleOpacity: 1.0,
-          mainTitleOpacity: 0.0,
-          descriptionOpacity: 0.0,
-          titleOffset: titleOffset,
-        ),
-      );
-    } else if (scrollOffset < 800) {
-      final progress = scrollOffset / 800;
-      emit(
-        state.copyWith(
-          titleScale: 1.0 + (0.5 * progress),
-          titleOpacity: 1.0 - progress,
-          mainTitleOpacity: 0.0,
-          descriptionOpacity: 0.0,
-          titleOffset: titleOffset,
-        ),
-      );
-    } else if (scrollOffset < 1000) {
-      final progress = (scrollOffset - 800) / 200;
-      emit(
-        state.copyWith(
-          titleScale: 1.5,
-          titleOpacity: 0.0,
-          mainTitleOpacity: progress,
-          descriptionOpacity: 0.0,
-          titleOffset: titleOffset,
-        ),
-      );
-    } else if (scrollOffset < 1200) {
-      final progress = (scrollOffset - 1000) / 200;
-      emit(
-        state.copyWith(
-          titleScale: 1.5,
-          titleOpacity: 0.0,
-          mainTitleOpacity: 1.0,
-          descriptionOpacity: progress,
-          titleOffset: titleOffset,
-        ),
-      );
-    } else {
-      emit(
-        state.copyWith(
-          titleScale: 1.5,
-          titleOpacity: 0.0,
-          mainTitleOpacity: 1.0,
-          descriptionOpacity: 1.0,
-          titleOffset: titleOffset,
-        ),
-      );
+    double scrollDescriptionOpacity = 1.0;
+    if (scrollOffset > 0 && scrollOffset < 200) {
+      scrollDescriptionOpacity = 1.0 - (scrollOffset / 200);
+    } else if (scrollOffset >= 200) {
+      scrollDescriptionOpacity = 0.0;
     }
+
+    double mainTitleOpacity = 0.0;
+    double mainTitleTranslateY = 50.0;
+    if (scrollOffset > 800 && scrollOffset < 1100) {
+      final progress = (scrollOffset - 800) / 300;
+      mainTitleOpacity = progress;
+      mainTitleTranslateY = 50.0 * (1.0 - progress);
+    } else if (scrollOffset >= 1100) {
+      mainTitleOpacity = 1.0;
+      mainTitleTranslateY = 0.0;
+    }
+
+    double descriptionOpacity = 0.0;
+    double descriptionTranslateY = 50.0;
+    if (scrollOffset > 1100 && scrollOffset < 1400) {
+      final progress = (scrollOffset - 1100) / 300;
+      descriptionOpacity = progress;
+      descriptionTranslateY = 50.0 * (1.0 - progress);
+    } else if (scrollOffset >= 1400) {
+      descriptionOpacity = 1.0;
+      descriptionTranslateY = 0.0;
+    }
+
+    double titleScale = 1.0;
+    double titleOpacity = 1.0;
+    if (scrollOffset > 0 && scrollOffset < 800) {
+      final progress = scrollOffset / 800;
+      titleScale = 1.0 + (0.5 * progress);
+      titleOpacity = 1.0 - progress;
+    } else if (scrollOffset >= 800) {
+      titleScale = 1.5;
+      titleOpacity = 0.0;
+    }
+
+    emit(
+      state.copyWith(
+        titleScale: titleScale,
+        titleOpacity: titleOpacity,
+        mainTitleOpacity: mainTitleOpacity,
+        descriptionOpacity: descriptionOpacity,
+        titleOffset: titleOffset,
+        scrollDescriptionOpacity: scrollDescriptionOpacity,
+        mainTitleTranslateY: mainTitleTranslateY,
+        descriptionTranslateY: descriptionTranslateY,
+      ),
+    );
   }
 
   void setScrollEnabled(bool enabled) {

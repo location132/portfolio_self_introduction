@@ -5,11 +5,13 @@ import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/an
 
 class ProjectDetailTitle extends StatefulWidget {
   final IfsaiModel model;
+  final double scrollDescriptionOpacity;
   final Function(bool) onScrollChange;
 
   const ProjectDetailTitle({
     super.key,
     required this.model,
+    required this.scrollDescriptionOpacity,
     required this.onScrollChange,
   });
 
@@ -172,14 +174,18 @@ class _ProjectDetailTitleState extends State<ProjectDetailTitle>
             alignment: Alignment.center,
             child: Padding(
               padding: const EdgeInsets.only(bottom: 120.0),
-              child: WidgetAnimation(
-                isStart: _isDescriptionStart,
-                child: Text(
-                  '지루하지않게 저에 관해서 궁금한 것만 보여드리겠습니다.',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: Colors.black,
+              child: AnimatedOpacity(
+                duration: const Duration(milliseconds: 16),
+                opacity: widget.scrollDescriptionOpacity,
+                child: WidgetAnimation(
+                  isStart: _isDescriptionStart,
+                  child: Text(
+                    '지루하지않게 저에 관해서 궁금한 것만 보여드리겠습니다.',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),
