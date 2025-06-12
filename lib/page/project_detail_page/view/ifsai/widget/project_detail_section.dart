@@ -12,6 +12,7 @@ class ProjectDetailSection extends StatelessWidget {
   final double scrollDescriptionOpacity;
   final double mainTitleTranslateY;
   final double descriptionTranslateY;
+  final Color textColor;
   final Function(bool) setScrollEnabled;
 
   const ProjectDetailSection({
@@ -25,6 +26,7 @@ class ProjectDetailSection extends StatelessWidget {
     required this.scrollDescriptionOpacity,
     required this.mainTitleTranslateY,
     required this.descriptionTranslateY,
+    required this.textColor,
     required this.setScrollEnabled,
   });
 
@@ -61,12 +63,12 @@ class ProjectDetailSection extends StatelessWidget {
                 child: AnimatedOpacity(
                   duration: const Duration(milliseconds: 16),
                   opacity: mainTitleOpacity,
-                  child: const Center(
+                  child: Center(
                     child: Text(
                       '바로 핵심부터',
                       style: TextStyle(
                         fontSize: 34,
-                        color: Colors.black,
+                        color: textColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -79,7 +81,7 @@ class ProjectDetailSection extends StatelessWidget {
                 child: AnimatedOpacity(
                   duration: const Duration(milliseconds: 16),
                   opacity: descriptionOpacity,
-                  child: const Center(
+                  child: Center(
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Text(
@@ -87,7 +89,7 @@ class ProjectDetailSection extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
-                          color: Colors.black,
+                          color: textColor,
                           height: 1.5,
                         ),
                       ),

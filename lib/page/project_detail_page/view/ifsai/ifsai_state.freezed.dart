@@ -27,7 +27,11 @@ mixin _$IfsaiState {
   double get titleOffset => throw _privateConstructorUsedError;
   double get scrollDescriptionOpacity => throw _privateConstructorUsedError;
   double get mainTitleTranslateY => throw _privateConstructorUsedError;
-  double get descriptionTranslateY => throw _privateConstructorUsedError;
+  double get descriptionTranslateY =>
+      throw _privateConstructorUsedError; // 배경색과 텍스트 색상 관련 상태
+  double get backgroundDarkness =>
+      throw _privateConstructorUsedError; // 0.0(흰색) ~ 1.0(검정색)
+  Color get textColor => throw _privateConstructorUsedError;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.
@@ -54,6 +58,8 @@ abstract class $IfsaiStateCopyWith<$Res> {
     double scrollDescriptionOpacity,
     double mainTitleTranslateY,
     double descriptionTranslateY,
+    double backgroundDarkness,
+    Color textColor,
   });
 }
 
@@ -82,6 +88,8 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
     Object? scrollDescriptionOpacity = null,
     Object? mainTitleTranslateY = null,
     Object? descriptionTranslateY = null,
+    Object? backgroundDarkness = null,
+    Object? textColor = null,
   }) {
     return _then(
       _value.copyWith(
@@ -135,6 +143,16 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
                     ? _value.descriptionTranslateY
                     : descriptionTranslateY // ignore: cast_nullable_to_non_nullable
                         as double,
+            backgroundDarkness:
+                null == backgroundDarkness
+                    ? _value.backgroundDarkness
+                    : backgroundDarkness // ignore: cast_nullable_to_non_nullable
+                        as double,
+            textColor:
+                null == textColor
+                    ? _value.textColor
+                    : textColor // ignore: cast_nullable_to_non_nullable
+                        as Color,
           )
           as $Val,
     );
@@ -161,6 +179,8 @@ abstract class _$$IfsaiStateImplCopyWith<$Res>
     double scrollDescriptionOpacity,
     double mainTitleTranslateY,
     double descriptionTranslateY,
+    double backgroundDarkness,
+    Color textColor,
   });
 }
 
@@ -188,6 +208,8 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
     Object? scrollDescriptionOpacity = null,
     Object? mainTitleTranslateY = null,
     Object? descriptionTranslateY = null,
+    Object? backgroundDarkness = null,
+    Object? textColor = null,
   }) {
     return _then(
       _$IfsaiStateImpl(
@@ -241,6 +263,16 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
                 ? _value.descriptionTranslateY
                 : descriptionTranslateY // ignore: cast_nullable_to_non_nullable
                     as double,
+        backgroundDarkness:
+            null == backgroundDarkness
+                ? _value.backgroundDarkness
+                : backgroundDarkness // ignore: cast_nullable_to_non_nullable
+                    as double,
+        textColor:
+            null == textColor
+                ? _value.textColor
+                : textColor // ignore: cast_nullable_to_non_nullable
+                    as Color,
       ),
     );
   }
@@ -260,6 +292,8 @@ class _$IfsaiStateImpl implements _IfsaiState {
     this.scrollDescriptionOpacity = 1.0,
     this.mainTitleTranslateY = 50.0,
     this.descriptionTranslateY = 50.0,
+    this.backgroundDarkness = 0.0,
+    this.textColor = Colors.black,
   });
 
   @override
@@ -292,10 +326,18 @@ class _$IfsaiStateImpl implements _IfsaiState {
   @override
   @JsonKey()
   final double descriptionTranslateY;
+  // 배경색과 텍스트 색상 관련 상태
+  @override
+  @JsonKey()
+  final double backgroundDarkness;
+  // 0.0(흰색) ~ 1.0(검정색)
+  @override
+  @JsonKey()
+  final Color textColor;
 
   @override
   String toString() {
-    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY)';
+    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor)';
   }
 
   @override
@@ -325,7 +367,11 @@ class _$IfsaiStateImpl implements _IfsaiState {
             (identical(other.mainTitleTranslateY, mainTitleTranslateY) ||
                 other.mainTitleTranslateY == mainTitleTranslateY) &&
             (identical(other.descriptionTranslateY, descriptionTranslateY) ||
-                other.descriptionTranslateY == descriptionTranslateY));
+                other.descriptionTranslateY == descriptionTranslateY) &&
+            (identical(other.backgroundDarkness, backgroundDarkness) ||
+                other.backgroundDarkness == backgroundDarkness) &&
+            (identical(other.textColor, textColor) ||
+                other.textColor == textColor));
   }
 
   @override
@@ -341,6 +387,8 @@ class _$IfsaiStateImpl implements _IfsaiState {
     scrollDescriptionOpacity,
     mainTitleTranslateY,
     descriptionTranslateY,
+    backgroundDarkness,
+    textColor,
   );
 
   /// Create a copy of IfsaiState
@@ -364,6 +412,8 @@ abstract class _IfsaiState implements IfsaiState {
     final double scrollDescriptionOpacity,
     final double mainTitleTranslateY,
     final double descriptionTranslateY,
+    final double backgroundDarkness,
+    final Color textColor,
   }) = _$IfsaiStateImpl;
 
   @override
@@ -385,7 +435,11 @@ abstract class _IfsaiState implements IfsaiState {
   @override
   double get mainTitleTranslateY;
   @override
-  double get descriptionTranslateY;
+  double get descriptionTranslateY; // 배경색과 텍스트 색상 관련 상태
+  @override
+  double get backgroundDarkness; // 0.0(흰색) ~ 1.0(검정색)
+  @override
+  Color get textColor;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.

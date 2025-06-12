@@ -17,5 +17,8 @@ class IfsaiState with _$IfsaiState {
     @Default(1.0) double scrollDescriptionOpacity,
     @Default(50.0) double mainTitleTranslateY,
     @Default(50.0) double descriptionTranslateY,
+    // 배경색과 텍스트 색상 관련 상태
+    @Default(0.0) double backgroundDarkness, // 0.0(흰색) ~ 1.0(검정색)
+    @Default(Colors.black) Color textColor, // 텍스트 색상
   }) = _IfsaiState;
 }

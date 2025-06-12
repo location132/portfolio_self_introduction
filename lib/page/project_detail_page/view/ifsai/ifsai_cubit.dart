@@ -32,6 +32,18 @@ class IfsaiCubit extends Cubit<IfsaiState> {
       scrollDescriptionOpacity = 0.0;
     }
 
+    double backgroundDarkness = 0.0;
+    Color textColor = Colors.black;
+    if (scrollOffset > 800 && scrollOffset < 1400) {
+      backgroundDarkness = (scrollOffset - 800) / 600;
+      final colorProgress = backgroundDarkness;
+      textColor =
+          Color.lerp(Colors.black, Colors.white, colorProgress) ?? Colors.black;
+    } else if (scrollOffset >= 1400) {
+      backgroundDarkness = 1.0;
+      textColor = Colors.white;
+    }
+
     double mainTitleOpacity = 0.0;
     double mainTitleTranslateY = 50.0;
     if (scrollOffset > 800 && scrollOffset < 1100) {
@@ -75,6 +87,8 @@ class IfsaiCubit extends Cubit<IfsaiState> {
         scrollDescriptionOpacity: scrollDescriptionOpacity,
         mainTitleTranslateY: mainTitleTranslateY,
         descriptionTranslateY: descriptionTranslateY,
+        backgroundDarkness: backgroundDarkness,
+        textColor: textColor,
       ),
     );
   }
@@ -85,7 +99,6 @@ class IfsaiCubit extends Cubit<IfsaiState> {
 
   @override
   Future<void> close() {
-    // 페이지 나갈 때 리스너 정리 및 메모리 해제
     state.scrollController?.removeListener(_onScroll);
     state.scrollController?.dispose();
     return super.close();

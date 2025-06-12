@@ -27,6 +27,16 @@ class IfsaiDetailView extends StatelessWidget {
       builder: (context, state) {
         return Stack(
           children: [
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: Color.lerp(
+                Colors.white,
+                Colors.black,
+                state.backgroundDarkness,
+              ),
+            ),
+
             SingleChildScrollView(
               controller: state.scrollController,
               physics:
@@ -40,7 +50,11 @@ class IfsaiDetailView extends StatelessWidget {
                   SizedBox(height: 950),
                   Container(
                     height: MediaQuery.of(context).size.height * 2,
-                    color: Colors.red,
+                    color: Color.lerp(
+                      Colors.white,
+                      Colors.black,
+                      state.backgroundDarkness,
+                    ),
                     child: const Center(
                       child: Text(
                         '여기서부터 실제 뷰가 시작됩니다.',
@@ -62,6 +76,7 @@ class IfsaiDetailView extends StatelessWidget {
               scrollDescriptionOpacity: state.scrollDescriptionOpacity,
               mainTitleTranslateY: state.mainTitleTranslateY,
               descriptionTranslateY: state.descriptionTranslateY,
+              textColor: state.textColor,
               setScrollEnabled:
                   (isEnabled) =>
                       context.read<IfsaiCubit>().setScrollEnabled(isEnabled),
