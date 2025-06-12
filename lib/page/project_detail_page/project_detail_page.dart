@@ -70,7 +70,7 @@ class _ProjectDetailView extends StatelessWidget {
                           child: WidgetAnimation(
                             beginDy: 0.02,
                             isStart: state.isLoaded,
-                            child: IfsaiDetailView(),
+                            child: IfsaiDetailPage(),
                           ),
                         ),
                       ],

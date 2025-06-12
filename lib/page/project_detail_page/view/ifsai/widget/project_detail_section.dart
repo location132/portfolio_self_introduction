@@ -8,6 +8,7 @@ class ProjectDetailSection extends StatelessWidget {
   final double descriptionOpacity;
   final double titleOpacity;
   final double titleScale;
+  final double titleOffset;
   final Function(bool) setScrollEnabled;
 
   const ProjectDetailSection({
@@ -17,6 +18,7 @@ class ProjectDetailSection extends StatelessWidget {
     required this.descriptionOpacity,
     required this.titleOpacity,
     required this.titleScale,
+    required this.titleOffset,
     required this.setScrollEnabled,
   });
 
@@ -25,7 +27,7 @@ class ProjectDetailSection extends StatelessWidget {
     return Stack(
       children: [
         Positioned(
-          top: 0,
+          top: titleOffset,
           left: 0,
           right: 0,
           child: AnimatedOpacity(
@@ -42,7 +44,7 @@ class ProjectDetailSection extends StatelessWidget {
         ),
 
         Positioned(
-          top: MediaQuery.of(context).size.height * 0.4,
+          top: MediaQuery.of(context).size.height * 0.4 + titleOffset,
           left: 0,
           right: 0,
           child: Column(

@@ -37,8 +37,10 @@ class IfsaiDetailView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: MediaQuery.of(context).size.height - 83),
+                  SizedBox(height: 750),
                   Container(
                     height: MediaQuery.of(context).size.height * 2,
+                    color: Colors.red,
                     child: const Center(
                       child: Text(
                         '여기서부터 실제 뷰가 시작됩니다.',
@@ -56,6 +58,7 @@ class IfsaiDetailView extends StatelessWidget {
               descriptionOpacity: state.descriptionOpacity,
               titleOpacity: state.titleOpacity,
               titleScale: state.titleScale,
+              titleOffset: state.titleOffset,
               setScrollEnabled:
                   (isEnabled) =>
                       context.read<IfsaiCubit>().setScrollEnabled(isEnabled),

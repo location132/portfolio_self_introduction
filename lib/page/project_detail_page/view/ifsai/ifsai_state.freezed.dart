@@ -24,6 +24,7 @@ mixin _$IfsaiState {
   double get titleOpacity => throw _privateConstructorUsedError;
   double get mainTitleOpacity => throw _privateConstructorUsedError;
   double get descriptionOpacity => throw _privateConstructorUsedError;
+  double get titleOffset => throw _privateConstructorUsedError;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.
@@ -46,6 +47,7 @@ abstract class $IfsaiStateCopyWith<$Res> {
     double titleOpacity,
     double mainTitleOpacity,
     double descriptionOpacity,
+    double titleOffset,
   });
 }
 
@@ -70,6 +72,7 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
     Object? titleOpacity = null,
     Object? mainTitleOpacity = null,
     Object? descriptionOpacity = null,
+    Object? titleOffset = null,
   }) {
     return _then(
       _value.copyWith(
@@ -103,6 +106,11 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
                     ? _value.descriptionOpacity
                     : descriptionOpacity // ignore: cast_nullable_to_non_nullable
                         as double,
+            titleOffset:
+                null == titleOffset
+                    ? _value.titleOffset
+                    : titleOffset // ignore: cast_nullable_to_non_nullable
+                        as double,
           )
           as $Val,
     );
@@ -125,6 +133,7 @@ abstract class _$$IfsaiStateImplCopyWith<$Res>
     double titleOpacity,
     double mainTitleOpacity,
     double descriptionOpacity,
+    double titleOffset,
   });
 }
 
@@ -148,6 +157,7 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
     Object? titleOpacity = null,
     Object? mainTitleOpacity = null,
     Object? descriptionOpacity = null,
+    Object? titleOffset = null,
   }) {
     return _then(
       _$IfsaiStateImpl(
@@ -181,6 +191,11 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
                 ? _value.descriptionOpacity
                 : descriptionOpacity // ignore: cast_nullable_to_non_nullable
                     as double,
+        titleOffset:
+            null == titleOffset
+                ? _value.titleOffset
+                : titleOffset // ignore: cast_nullable_to_non_nullable
+                    as double,
       ),
     );
   }
@@ -196,6 +211,7 @@ class _$IfsaiStateImpl implements _IfsaiState {
     this.titleOpacity = 1.0,
     this.mainTitleOpacity = 0.0,
     this.descriptionOpacity = 0.0,
+    this.titleOffset = 0.0,
   });
 
   @override
@@ -216,10 +232,13 @@ class _$IfsaiStateImpl implements _IfsaiState {
   @override
   @JsonKey()
   final double descriptionOpacity;
+  @override
+  @JsonKey()
+  final double titleOffset;
 
   @override
   String toString() {
-    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity)';
+    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset)';
   }
 
   @override
@@ -238,7 +257,9 @@ class _$IfsaiStateImpl implements _IfsaiState {
             (identical(other.mainTitleOpacity, mainTitleOpacity) ||
                 other.mainTitleOpacity == mainTitleOpacity) &&
             (identical(other.descriptionOpacity, descriptionOpacity) ||
-                other.descriptionOpacity == descriptionOpacity));
+                other.descriptionOpacity == descriptionOpacity) &&
+            (identical(other.titleOffset, titleOffset) ||
+                other.titleOffset == titleOffset));
   }
 
   @override
@@ -250,6 +271,7 @@ class _$IfsaiStateImpl implements _IfsaiState {
     titleOpacity,
     mainTitleOpacity,
     descriptionOpacity,
+    titleOffset,
   );
 
   /// Create a copy of IfsaiState
@@ -269,6 +291,7 @@ abstract class _IfsaiState implements IfsaiState {
     final double titleOpacity,
     final double mainTitleOpacity,
     final double descriptionOpacity,
+    final double titleOffset,
   }) = _$IfsaiStateImpl;
 
   @override
@@ -283,6 +306,8 @@ abstract class _IfsaiState implements IfsaiState {
   double get mainTitleOpacity;
   @override
   double get descriptionOpacity;
+  @override
+  double get titleOffset;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.

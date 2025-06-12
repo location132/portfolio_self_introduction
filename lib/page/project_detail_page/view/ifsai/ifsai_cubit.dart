@@ -18,6 +18,13 @@ class IfsaiCubit extends Cubit<IfsaiState> {
 
     final scrollOffset = state.scrollController?.offset ?? 0.0;
 
+    const double titleFollowStart = 1300.0;
+    double titleOffset = 0.0;
+
+    if (scrollOffset > titleFollowStart) {
+      titleOffset = -(scrollOffset - titleFollowStart);
+    }
+
     if (scrollOffset <= 0) {
       emit(
         state.copyWith(
@@ -25,6 +32,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
           titleOpacity: 1.0,
           mainTitleOpacity: 0.0,
           descriptionOpacity: 0.0,
+          titleOffset: titleOffset,
         ),
       );
     } else if (scrollOffset < 800) {
@@ -35,6 +43,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
           titleOpacity: 1.0 - progress,
           mainTitleOpacity: 0.0,
           descriptionOpacity: 0.0,
+          titleOffset: titleOffset,
         ),
       );
     } else if (scrollOffset < 1000) {
@@ -45,6 +54,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
           titleOpacity: 0.0,
           mainTitleOpacity: progress,
           descriptionOpacity: 0.0,
+          titleOffset: titleOffset,
         ),
       );
     } else if (scrollOffset < 1200) {
@@ -55,6 +65,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
           titleOpacity: 0.0,
           mainTitleOpacity: 1.0,
           descriptionOpacity: progress,
+          titleOffset: titleOffset,
         ),
       );
     } else {
@@ -64,6 +75,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
           titleOpacity: 0.0,
           mainTitleOpacity: 1.0,
           descriptionOpacity: 1.0,
+          titleOffset: titleOffset,
         ),
       );
     }
