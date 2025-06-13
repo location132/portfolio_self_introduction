@@ -35,8 +35,8 @@ class IfsaiState with _$IfsaiState {
     @Default(false) bool isBackgroundVisible,
     @Default(false) bool hasBackgroundStartedPlaying,
 
-    // 라이브러리 섹션 애니메이션 관련 상태
-    AnimationController? libraryAnimationController,
-    @Default(false) bool isLibrarySectionExpanded,
+    // 라이브러리 카드 애니메이션 상태
+    @Default(false) bool isLibraryCardsAnimationStarted,
+    @Default(false) bool isLibraryDetailVisible,
   }) = _IfsaiState;
 }

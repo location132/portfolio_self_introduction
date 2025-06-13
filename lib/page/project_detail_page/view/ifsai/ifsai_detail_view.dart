@@ -10,7 +10,7 @@ import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/wi
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_detail_section.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_player.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/service_tabs_widget.dart';
-import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/libraries/library_section.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/libraries_widget/library_section.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class IfsaiDetailPage extends StatelessWidget {
@@ -118,8 +118,21 @@ class IfsaiDetailView extends StatelessWidget {
                       ),
                       SizedBox(height: 200),
 
-                      LibrarySection(state: state),
-                      SizedBox(height: 200),
+                      VisibilityDetector(
+                        key: const Key('library-section-view'),
+                        onVisibilityChanged: (info) {
+                          if (info.visibleFraction > 0.8) {
+                            context
+                                .read<IfsaiCubit>()
+                                .setLibraryCardsAnimationStarted(true);
+                          } else {
+                            context
+                                .read<IfsaiCubit>()
+                                .setLibraryCardsAnimationStarted(false);
+                          }
+                        },
+                        child: LibrarySection(state: state),
+                      ),
                     ],
                   ),
                 ],

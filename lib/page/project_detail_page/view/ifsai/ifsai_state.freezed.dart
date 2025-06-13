@@ -44,10 +44,9 @@ mixin _$IfsaiState {
   bool get isBackgroundVideoInitialized => throw _privateConstructorUsedError;
   bool get isBackgroundVisible => throw _privateConstructorUsedError;
   bool get hasBackgroundStartedPlaying =>
-      throw _privateConstructorUsedError; // 라이브러리 섹션 애니메이션 관련 상태
-  AnimationController? get libraryAnimationController =>
-      throw _privateConstructorUsedError;
-  bool get isLibrarySectionExpanded => throw _privateConstructorUsedError;
+      throw _privateConstructorUsedError; // 라이브러리 카드 애니메이션 상태
+  bool get isLibraryCardsAnimationStarted => throw _privateConstructorUsedError;
+  bool get isLibraryDetailVisible => throw _privateConstructorUsedError;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.
@@ -86,8 +85,8 @@ abstract class $IfsaiStateCopyWith<$Res> {
     bool isBackgroundVideoInitialized,
     bool isBackgroundVisible,
     bool hasBackgroundStartedPlaying,
-    AnimationController? libraryAnimationController,
-    bool isLibrarySectionExpanded,
+    bool isLibraryCardsAnimationStarted,
+    bool isLibraryDetailVisible,
   });
 }
 
@@ -128,8 +127,8 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
     Object? isBackgroundVideoInitialized = null,
     Object? isBackgroundVisible = null,
     Object? hasBackgroundStartedPlaying = null,
-    Object? libraryAnimationController = freezed,
-    Object? isLibrarySectionExpanded = null,
+    Object? isLibraryCardsAnimationStarted = null,
+    Object? isLibraryDetailVisible = null,
   }) {
     return _then(
       _value.copyWith(
@@ -243,15 +242,15 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
                     ? _value.hasBackgroundStartedPlaying
                     : hasBackgroundStartedPlaying // ignore: cast_nullable_to_non_nullable
                         as bool,
-            libraryAnimationController:
-                freezed == libraryAnimationController
-                    ? _value.libraryAnimationController
-                    : libraryAnimationController // ignore: cast_nullable_to_non_nullable
-                        as AnimationController?,
-            isLibrarySectionExpanded:
-                null == isLibrarySectionExpanded
-                    ? _value.isLibrarySectionExpanded
-                    : isLibrarySectionExpanded // ignore: cast_nullable_to_non_nullable
+            isLibraryCardsAnimationStarted:
+                null == isLibraryCardsAnimationStarted
+                    ? _value.isLibraryCardsAnimationStarted
+                    : isLibraryCardsAnimationStarted // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isLibraryDetailVisible:
+                null == isLibraryDetailVisible
+                    ? _value.isLibraryDetailVisible
+                    : isLibraryDetailVisible // ignore: cast_nullable_to_non_nullable
                         as bool,
           )
           as $Val,
@@ -291,8 +290,8 @@ abstract class _$$IfsaiStateImplCopyWith<$Res>
     bool isBackgroundVideoInitialized,
     bool isBackgroundVisible,
     bool hasBackgroundStartedPlaying,
-    AnimationController? libraryAnimationController,
-    bool isLibrarySectionExpanded,
+    bool isLibraryCardsAnimationStarted,
+    bool isLibraryDetailVisible,
   });
 }
 
@@ -332,8 +331,8 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
     Object? isBackgroundVideoInitialized = null,
     Object? isBackgroundVisible = null,
     Object? hasBackgroundStartedPlaying = null,
-    Object? libraryAnimationController = freezed,
-    Object? isLibrarySectionExpanded = null,
+    Object? isLibraryCardsAnimationStarted = null,
+    Object? isLibraryDetailVisible = null,
   }) {
     return _then(
       _$IfsaiStateImpl(
@@ -447,15 +446,15 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
                 ? _value.hasBackgroundStartedPlaying
                 : hasBackgroundStartedPlaying // ignore: cast_nullable_to_non_nullable
                     as bool,
-        libraryAnimationController:
-            freezed == libraryAnimationController
-                ? _value.libraryAnimationController
-                : libraryAnimationController // ignore: cast_nullable_to_non_nullable
-                    as AnimationController?,
-        isLibrarySectionExpanded:
-            null == isLibrarySectionExpanded
-                ? _value.isLibrarySectionExpanded
-                : isLibrarySectionExpanded // ignore: cast_nullable_to_non_nullable
+        isLibraryCardsAnimationStarted:
+            null == isLibraryCardsAnimationStarted
+                ? _value.isLibraryCardsAnimationStarted
+                : isLibraryCardsAnimationStarted // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isLibraryDetailVisible:
+            null == isLibraryDetailVisible
+                ? _value.isLibraryDetailVisible
+                : isLibraryDetailVisible // ignore: cast_nullable_to_non_nullable
                     as bool,
       ),
     );
@@ -488,8 +487,8 @@ class _$IfsaiStateImpl implements _IfsaiState {
     this.isBackgroundVideoInitialized = false,
     this.isBackgroundVisible = false,
     this.hasBackgroundStartedPlaying = false,
-    this.libraryAnimationController,
-    this.isLibrarySectionExpanded = false,
+    this.isLibraryCardsAnimationStarted = false,
+    this.isLibraryDetailVisible = false,
   });
 
   @override
@@ -558,16 +557,17 @@ class _$IfsaiStateImpl implements _IfsaiState {
   @override
   @JsonKey()
   final bool hasBackgroundStartedPlaying;
-  // 라이브러리 섹션 애니메이션 관련 상태
-  @override
-  final AnimationController? libraryAnimationController;
+  // 라이브러리 카드 애니메이션 상태
   @override
   @JsonKey()
-  final bool isLibrarySectionExpanded;
+  final bool isLibraryCardsAnimationStarted;
+  @override
+  @JsonKey()
+  final bool isLibraryDetailVisible;
 
   @override
   String toString() {
-    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText, isPlayerLongText: $isPlayerLongText, isPlayerWhiteBackground: $isPlayerWhiteBackground, backgroundVideoController: $backgroundVideoController, backgroundFadeController: $backgroundFadeController, isBackgroundVideoCompleted: $isBackgroundVideoCompleted, isBackgroundVideoInitialized: $isBackgroundVideoInitialized, isBackgroundVisible: $isBackgroundVisible, hasBackgroundStartedPlaying: $hasBackgroundStartedPlaying, libraryAnimationController: $libraryAnimationController, isLibrarySectionExpanded: $isLibrarySectionExpanded)';
+    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText, isPlayerLongText: $isPlayerLongText, isPlayerWhiteBackground: $isPlayerWhiteBackground, backgroundVideoController: $backgroundVideoController, backgroundFadeController: $backgroundFadeController, isBackgroundVideoCompleted: $isBackgroundVideoCompleted, isBackgroundVideoInitialized: $isBackgroundVideoInitialized, isBackgroundVisible: $isBackgroundVisible, hasBackgroundStartedPlaying: $hasBackgroundStartedPlaying, isLibraryCardsAnimationStarted: $isLibraryCardsAnimationStarted, isLibraryDetailVisible: $isLibraryDetailVisible)';
   }
 
   @override
@@ -644,16 +644,13 @@ class _$IfsaiStateImpl implements _IfsaiState {
                 other.hasBackgroundStartedPlaying ==
                     hasBackgroundStartedPlaying) &&
             (identical(
-                  other.libraryAnimationController,
-                  libraryAnimationController,
+                  other.isLibraryCardsAnimationStarted,
+                  isLibraryCardsAnimationStarted,
                 ) ||
-                other.libraryAnimationController ==
-                    libraryAnimationController) &&
-            (identical(
-                  other.isLibrarySectionExpanded,
-                  isLibrarySectionExpanded,
-                ) ||
-                other.isLibrarySectionExpanded == isLibrarySectionExpanded));
+                other.isLibraryCardsAnimationStarted ==
+                    isLibraryCardsAnimationStarted) &&
+            (identical(other.isLibraryDetailVisible, isLibraryDetailVisible) ||
+                other.isLibraryDetailVisible == isLibraryDetailVisible));
   }
 
   @override
@@ -681,8 +678,8 @@ class _$IfsaiStateImpl implements _IfsaiState {
     isBackgroundVideoInitialized,
     isBackgroundVisible,
     hasBackgroundStartedPlaying,
-    libraryAnimationController,
-    isLibrarySectionExpanded,
+    isLibraryCardsAnimationStarted,
+    isLibraryDetailVisible,
   ]);
 
   /// Create a copy of IfsaiState
@@ -718,8 +715,8 @@ abstract class _IfsaiState implements IfsaiState {
     final bool isBackgroundVideoInitialized,
     final bool isBackgroundVisible,
     final bool hasBackgroundStartedPlaying,
-    final AnimationController? libraryAnimationController,
-    final bool isLibrarySectionExpanded,
+    final bool isLibraryCardsAnimationStarted,
+    final bool isLibraryDetailVisible,
   }) = _$IfsaiStateImpl;
 
   @override
@@ -765,11 +762,11 @@ abstract class _IfsaiState implements IfsaiState {
   @override
   bool get isBackgroundVisible;
   @override
-  bool get hasBackgroundStartedPlaying; // 라이브러리 섹션 애니메이션 관련 상태
+  bool get hasBackgroundStartedPlaying; // 라이브러리 카드 애니메이션 상태
   @override
-  AnimationController? get libraryAnimationController;
+  bool get isLibraryCardsAnimationStarted;
   @override
-  bool get isLibrarySectionExpanded;
+  bool get isLibraryDetailVisible;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.

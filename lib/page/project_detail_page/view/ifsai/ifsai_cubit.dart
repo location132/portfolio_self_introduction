@@ -50,7 +50,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
   Future<void> initializeBackgroundVideo() async {
     final videoController = VideoPlayerController.networkUrl(
       Uri.parse(
-        'https://file.notion.so/f/f/8a6d4b3e-9912-4416-be2e-c8115e4e6c6a/7bca6010-3e17-4634-8a80-52a3241f7390/Generated_video_1-2.mp4?table=block&id=211c603e-2ebd-8099-aa5e-c8dcf87b75bf&spaceId=8a6d4b3e-9912-4416-be2e-c8115e4e6c6a&expirationTimestamp=1749808800000&signature=1UdgawHgJssCvfk0yOjv3mRDJ33eBIUL1FmnenfSDpw&downloadName=Generated+video+1-2.mp4',
+        'https://kr.object.ncloudstorage.com/web0314/Web2025_ifsai.mp4',
       ),
     );
 
@@ -74,6 +74,18 @@ class IfsaiCubit extends Cubit<IfsaiState> {
         emit(state.copyWith(isBackgroundVideoCompleted: true));
         state.backgroundFadeController?.forward();
       }
+    }
+  }
+
+  // Library Cards Animation
+  void setLibraryCardsAnimationStarted(bool isStarted) {
+    if (state.isLibraryCardsAnimationStarted != isStarted) {
+      emit(
+        state.copyWith(
+          isLibraryCardsAnimationStarted: isStarted,
+          isLibraryDetailVisible: isStarted,
+        ),
+      );
     }
   }
 
@@ -130,7 +142,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
 
     final videoController = VideoPlayerController.networkUrl(
       Uri.parse(
-        'https://file.notion.so/f/f/8a6d4b3e-9912-4416-be2e-c8115e4e6c6a/7bca6010-3e17-4634-8a80-52a3241f7390/Generated_video_1-2.mp4?table=block&id=211c603e-2ebd-8099-aa5e-c8dcf87b75bf&spaceId=8a6d4b3e-9912-4416-be2e-c8115e4e6c6a&expirationTimestamp=1749808800000&signature=1UdgawHgJssCvfk0yOjv3mRDJ33eBIUL1FmnenfSDpw&downloadName=Generated+video+1-2.mp4',
+        'https://kr.object.ncloudstorage.com/web0314/Web2025_ifsai.mp4',
       ),
     );
 

@@ -2,14 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_state.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_card.dart';
 
-class ProjectContents extends StatelessWidget {
+class ProjectContents extends StatefulWidget {
   final IfsaiState state;
   const ProjectContents({super.key, required this.state});
 
   @override
+  State<ProjectContents> createState() => _ProjectContentsState();
+}
+
+class _ProjectContentsState extends State<ProjectContents> {
+  @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.lerp(Colors.white, Colors.black, state.backgroundDarkness),
+      color: Color.lerp(
+        Colors.white,
+        Colors.black,
+        widget.state.backgroundDarkness,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: const [
