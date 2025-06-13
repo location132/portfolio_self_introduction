@@ -28,11 +28,11 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     gh.factory<_i903.DesktopCubit>(() => _i903.DesktopCubit()..init());
     gh.factory<_i673.MobileCubit>(() => _i673.MobileCubit()..init());
+    gh.factory<_i595.ProjectDetailCubit>(() => _i595.ProjectDetailCubit());
+    gh.factory<_i685.IfsaiCubit>(() => _i685.IfsaiCubit());
     gh.factory<_i68.ProjectsMainCubit>(
       () => _i68.ProjectsMainCubit()..pageInit(),
     );
-    gh.factory<_i595.ProjectDetailCubit>(() => _i595.ProjectDetailCubit());
-    gh.factory<_i685.IfsaiCubit>(() => _i685.IfsaiCubit());
     gh.singleton<_i112.IntroService>(() => _i112.IntroService());
     return this;
   }

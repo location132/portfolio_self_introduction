@@ -27,6 +27,7 @@ dependencies:
   glowy_borders: ^1.0.2
   flutter_screenutil: ^5.9.3
   go_router: ^14.7.1
+  video_player: ^2.10.0
   
   
 

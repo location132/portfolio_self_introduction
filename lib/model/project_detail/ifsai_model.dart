@@ -62,7 +62,7 @@ class IfsaiModel with _$IfsaiModel {
     @Default([
       '복잡한 상태 관리를 위한 Clean Architecture 적용',
       'MVVM 패턴으로 코드 가독성 향상',
-      '2만 줄 이상의 대규모 코드베이스 관리',
+      '5만줄 이상의 대규모 코드베이스 관리',
       '실시간 데이터 동기화 문제 해결',
       'TestFlight를 통한 협업 배포 경험',
     ])

@@ -62,7 +62,7 @@ class ProjectDetailContent extends StatelessWidget {
           {
             'title': '잎사이',
             'description':
-                '2만 줄 이상의 코드 규모에 MVVM 아키텍처를 적용하고, TestFlight를 통해 협업한  프로젝트입니다.',
+                '5만 줄 이상의 코드 규모에 MVVM 아키텍처를 적용하고, TestFlight를 통해 협업한  프로젝트입니다.',
             'tech': 'MVVM, Clean Architecture, TestFlight',
           },
           {

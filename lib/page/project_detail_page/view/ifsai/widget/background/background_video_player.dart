@@ -1,0 +1,204 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:video_player/video_player.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_cubit.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_state.dart';
+
+class BackgroundVideoPlayer extends StatefulWidget {
+  final IfsaiState state;
+
+  const BackgroundVideoPlayer({super.key, required this.state});
+
+  @override
+  State<BackgroundVideoPlayer> createState() => _BackgroundVideoPlayerState();
+}
+
+class _BackgroundVideoPlayerState extends State<BackgroundVideoPlayer>
+    with TickerProviderStateMixin {
+  late AnimationController _fadeController;
+  late Animation<double> _fadeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _fadeController = AnimationController(
+      duration: const Duration(milliseconds: 1000),
+      vsync: this,
+    );
+
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _fadeController, curve: Curves.easeInOut),
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<IfsaiCubit>().setBackgroundFadeController(_fadeController);
+      context.read<IfsaiCubit>().initializeBackgroundVideo();
+    });
+  }
+
+  @override
+  void dispose() {
+    _fadeController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          width: 600,
+          height: 340,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Stack(
+              children: [
+                if (!(widget.state.isBackgroundVideoInitialized &&
+                    !widget.state.isBackgroundVideoCompleted &&
+                    widget.state.hasBackgroundStartedPlaying))
+                  AnimatedBuilder(
+                    animation: _fadeAnimation,
+                    builder: (context, child) {
+                      return Opacity(
+                        opacity:
+                            widget.state.isBackgroundVideoCompleted
+                                ? _fadeAnimation.value
+                                : 1.0,
+                        child: Stack(
+                          children: [
+                            SizedBox.expand(
+                              child: Image.asset(
+                                'assets/Images/ifsai_img/cpu.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Positioned(
+                              right: 20,
+                              bottom: 20,
+                              child: GestureDetector(
+                                onTap:
+                                    () =>
+                                        context
+                                            .read<IfsaiCubit>()
+                                            .replayBackgroundVideo(),
+                                child: Container(
+                                  width: 60,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black.withValues(alpha: 0.7),
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: Colors.white.withValues(
+                                        alpha: 0.8,
+                                      ),
+                                      width: 2,
+                                    ),
+                                  ),
+                                  child: const Icon(
+                                    Icons.play_arrow,
+                                    color: Colors.white,
+                                    size: 30,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+
+                if (widget.state.isBackgroundVideoInitialized &&
+                    !widget.state.isBackgroundVideoCompleted &&
+                    widget.state.hasBackgroundStartedPlaying &&
+                    widget.state.backgroundVideoController != null)
+                  Stack(
+                    children: [
+                      SizedBox.expand(
+                        child: FittedBox(
+                          fit: BoxFit.cover,
+                          child: SizedBox(
+                            width:
+                                widget
+                                    .state
+                                    .backgroundVideoController!
+                                    .value
+                                    .size
+                                    .width,
+                            height:
+                                widget
+                                    .state
+                                    .backgroundVideoController!
+                                    .value
+                                    .size
+                                    .height,
+                            child: VideoPlayer(
+                              widget.state.backgroundVideoController!,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 0,
+                        top: 0,
+                        bottom: 0,
+                        width: 100,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [
+                                Colors.black.withValues(alpha: 0.8),
+                                Colors.transparent,
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        right: 0,
+                        top: 0,
+                        bottom: 0,
+                        width: 100,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
+                              colors: [
+                                Colors.black.withValues(alpha: 0.8),
+                                Colors.transparent,
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                if (!widget.state.isBackgroundVideoInitialized)
+                  Container(
+                    color: Colors.black.withValues(alpha: 0.3),
+                    child: const Center(
+                      child: CircularProgressIndicator(color: Colors.white),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          '해당 영상은 잎사이(IFSAI)를 쉽게 설명하기 위해 제작하였습니다.',
+          style: TextStyle(
+            color: Colors.white.withValues(alpha: 0.8),
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ],
+    );
+  }
+}

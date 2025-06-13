@@ -4,12 +4,16 @@ class ProjectPlayer extends StatefulWidget {
   final bool isPlayerAniOpacity;
   final String isPlayerText;
   final Duration? duration;
+  final bool isLongText;
+  final bool isWhiteBackground;
 
   const ProjectPlayer({
     super.key,
     required this.isPlayerAniOpacity,
     required this.isPlayerText,
     this.duration = const Duration(milliseconds: 500),
+    this.isLongText = false,
+    this.isWhiteBackground = false,
   });
 
   @override
@@ -32,7 +36,7 @@ class _ProjectPlayerState extends State<ProjectPlayer>
 
     _width = Tween<double>(
       begin: 0,
-      end: 320,
+      end: widget.isLongText ? 700 : 320,
     ).animate(CurvedAnimation(parent: _controller, curve: appleCurve));
 
     _opacity = Tween<double>(begin: 0, end: 1).animate(
@@ -46,6 +50,18 @@ class _ProjectPlayerState extends State<ProjectPlayer>
   @override
   void didUpdateWidget(covariant ProjectPlayer oldWidget) {
     super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.isLongText != widget.isLongText) {
+      _width = Tween<double>(
+        begin: 0,
+        end: widget.isLongText ? 500 : 320,
+      ).animate(
+        CurvedAnimation(
+          parent: _controller,
+          curve: const Cubic(0.2, 0.0, 0.2, 1.0),
+        ),
+      );
+    }
 
     if (oldWidget.isPlayerAniOpacity != widget.isPlayerAniOpacity) {
       if (widget.isPlayerAniOpacity) {

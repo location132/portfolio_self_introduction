@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_state.dart';
+import 'package:video_player/video_player.dart';
 
 @injectable
 class IfsaiCubit extends Cubit<IfsaiState> {
@@ -21,8 +22,134 @@ class IfsaiCubit extends Cubit<IfsaiState> {
   // Player
   void setPlayerVisible(bool isVisible) {
     if (state.isPlayerVisible != isVisible) {
-      emit(state.copyWith(isPlayerVisible: isVisible));
+      emit(
+        state.copyWith(
+          isPlayerVisible: isVisible,
+          isPlayerLongText: false,
+          playerText: isVisible ? '궁금한 기술을 클릭해주세요' : state.playerText,
+        ),
+      );
     }
+  }
+
+  void setBackgroundSectionVisible(bool isVisible) {
+    if (isVisible) {
+      emit(
+        state.copyWith(
+          isPlayerVisible: true,
+          isPlayerLongText: true,
+          playerText: '위 기능은 실제 백그라운드로 구현한 기능입니다.',
+        ),
+      );
+    } else {
+      emit(state.copyWith(isPlayerVisible: false));
+    }
+  }
+
+  // Background Video Methods
+  Future<void> initializeBackgroundVideo() async {
+    final videoController = VideoPlayerController.networkUrl(
+      Uri.parse(
+        'https://file.notion.so/f/f/8a6d4b3e-9912-4416-be2e-c8115e4e6c6a/7bca6010-3e17-4634-8a80-52a3241f7390/Generated_video_1-2.mp4?table=block&id=211c603e-2ebd-8099-aa5e-c8dcf87b75bf&spaceId=8a6d4b3e-9912-4416-be2e-c8115e4e6c6a&expirationTimestamp=1749808800000&signature=1UdgawHgJssCvfk0yOjv3mRDJ33eBIUL1FmnenfSDpw&downloadName=Generated+video+1-2.mp4',
+      ),
+    );
+
+    await videoController.initialize();
+    emit(
+      state.copyWith(
+        backgroundVideoController: videoController,
+        isBackgroundVideoInitialized: true,
+      ),
+    );
+
+    videoController.addListener(_backgroundVideoListener);
+  }
+
+  void _backgroundVideoListener() {
+    if (state.backgroundVideoController != null &&
+        state.backgroundVideoController!.value.position >=
+            state.backgroundVideoController!.value.duration &&
+        state.backgroundVideoController!.value.duration > Duration.zero) {
+      if (!state.isBackgroundVideoCompleted) {
+        emit(state.copyWith(isBackgroundVideoCompleted: true));
+        state.backgroundFadeController?.forward();
+      }
+    }
+  }
+
+  void onBackgroundVisibilityChanged() {
+    emit(
+      state.copyWith(
+        isBackgroundVisible: true,
+        hasBackgroundStartedPlaying: true,
+      ),
+    );
+    state.backgroundVideoController?.play();
+  }
+
+  Future<void> replayBackgroundVideo() async {
+    if (!state.isBackgroundVideoInitialized ||
+        state.backgroundVideoController == null) {
+      return;
+    }
+
+    await state.backgroundVideoController!.pause();
+    await state.backgroundVideoController!.seekTo(Duration.zero);
+
+    emit(
+      state.copyWith(
+        isBackgroundVideoCompleted: false,
+        hasBackgroundStartedPlaying: true,
+      ),
+    );
+
+    state.backgroundFadeController?.reset();
+
+    await Future.delayed(const Duration(milliseconds: 100));
+
+    try {
+      await state.backgroundVideoController!.play();
+      await Future.delayed(const Duration(milliseconds: 500));
+    } catch (e) {
+      _reinitializeBackgroundVideo();
+    }
+  }
+
+  Future<void> _reinitializeBackgroundVideo() async {
+    if (state.backgroundVideoController != null) {
+      state.backgroundVideoController!.removeListener(_backgroundVideoListener);
+      await state.backgroundVideoController!.dispose();
+    }
+
+    emit(
+      state.copyWith(
+        backgroundVideoController: null,
+        isBackgroundVideoInitialized: false,
+      ),
+    );
+
+    final videoController = VideoPlayerController.networkUrl(
+      Uri.parse(
+        'https://file.notion.so/f/f/8a6d4b3e-9912-4416-be2e-c8115e4e6c6a/7bca6010-3e17-4634-8a80-52a3241f7390/Generated_video_1-2.mp4?table=block&id=211c603e-2ebd-8099-aa5e-c8dcf87b75bf&spaceId=8a6d4b3e-9912-4416-be2e-c8115e4e6c6a&expirationTimestamp=1749808800000&signature=1UdgawHgJssCvfk0yOjv3mRDJ33eBIUL1FmnenfSDpw&downloadName=Generated+video+1-2.mp4',
+      ),
+    );
+
+    await videoController.initialize();
+    emit(
+      state.copyWith(
+        backgroundVideoController: videoController,
+        isBackgroundVideoInitialized: true,
+        isBackgroundVideoCompleted: false,
+        hasBackgroundStartedPlaying: true,
+      ),
+    );
+
+    videoController.addListener(_backgroundVideoListener);
+    await videoController.play();
+  }
+
+  void setBackgroundFadeController(AnimationController controller) {
+    emit(state.copyWith(backgroundFadeController: controller));
   }
 
   // Scroll 처음 시작 시, 스크롤에 따른 애니메이션 정의 한거, 나중에 리펙 들어가자

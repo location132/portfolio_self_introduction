@@ -4,11 +4,13 @@ import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/model/project_detail/ifsai_model.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_cubit.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_state.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/background/bg_view.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_content2.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_contents.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_detail_section.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_player.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/service_tabs_widget.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/libraries/library_section.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class IfsaiDetailPage extends StatelessWidget {
@@ -80,10 +82,43 @@ class IfsaiDetailView extends StatelessWidget {
                         },
                         child: ProjectContent2(),
                       ),
-                      SizedBox(height: 200),
+                      SizedBox(height: 300),
 
                       // Service 탭바 위젯
                       const ServiceTabsWidget(),
+                      SizedBox(height: 200),
+
+                      // 백그라운드 섹션
+                      VisibilityDetector(
+                        key: const Key('background-video'),
+                        onVisibilityChanged: (info) {
+                          if (info.visibleFraction > 0.2 &&
+                              !state.hasBackgroundStartedPlaying &&
+                              state.isBackgroundVideoInitialized) {
+                            context
+                                .read<IfsaiCubit>()
+                                .onBackgroundVisibilityChanged();
+                          }
+
+                          if (info.visibleFraction > 0.3) {
+                            context
+                                .read<IfsaiCubit>()
+                                .setBackgroundSectionVisible(true);
+                          } else {
+                            context
+                                .read<IfsaiCubit>()
+                                .setBackgroundSectionVisible(false);
+                          }
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(horizontal: 40),
+                          child: BgView(state: state),
+                        ),
+                      ),
+                      SizedBox(height: 200),
+
+                      LibrarySection(state: state),
                       SizedBox(height: 200),
                     ],
                   ),
@@ -114,6 +149,8 @@ class IfsaiDetailView extends StatelessWidget {
               child: ProjectPlayer(
                 isPlayerAniOpacity: state.isPlayerVisible,
                 isPlayerText: state.playerText,
+                isLongText: state.isPlayerLongText,
+                isWhiteBackground: state.isPlayerWhiteBackground,
               ),
             ),
           ],

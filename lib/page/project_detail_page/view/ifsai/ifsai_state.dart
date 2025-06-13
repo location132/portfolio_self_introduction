@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:video_player/video_player.dart';
 
 part 'ifsai_state.freezed.dart';
 
@@ -23,5 +24,19 @@ class IfsaiState with _$IfsaiState {
 
     @Default(false) bool isPlayerVisible,
     @Default('궁금한 기술을 클릭해주세요') String playerText,
+    @Default(false) bool isPlayerLongText,
+    @Default(false) bool isPlayerWhiteBackground,
+
+    // 백그라운드 비디오 관련 상태
+    VideoPlayerController? backgroundVideoController,
+    AnimationController? backgroundFadeController,
+    @Default(false) bool isBackgroundVideoCompleted,
+    @Default(false) bool isBackgroundVideoInitialized,
+    @Default(false) bool isBackgroundVisible,
+    @Default(false) bool hasBackgroundStartedPlaying,
+
+    // 라이브러리 섹션 애니메이션 관련 상태
+    AnimationController? libraryAnimationController,
+    @Default(false) bool isLibrarySectionExpanded,
   }) = _IfsaiState;
 }

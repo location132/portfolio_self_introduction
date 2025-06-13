@@ -60,7 +60,7 @@ class ProjectTextConstants {
     {
       'title': '잎사이',
       'description':
-          '2만 줄 이상의 코드 규모에 MVVM 아키텍처를 적용하고, TestFlight를 통해 협업한 프로젝트입니다.',
+          '50688 줄의 코드 규모에 MVVM 아키텍처를 적용하고, TestFlight를 통해 협업한 프로젝트입니다.',
       'tech': 'MVVM, Clean Architecture, TestFlight',
     },
     {
@@ -289,7 +289,7 @@ class SelectTapTextConstants {
       '   Flutter Web,    Flutter Mobile,    Firebase\n'
       '      MVVM,    Clean Architecture Design,    get_it(DI)\n'
       '   build_runner watch,    SingleTon,    injectable';
-  static const String selectTapTitle1 = '2만줄 넘는 코딩시간. ';
+  static const String selectTapTitle1 = ' 50688줄 넘는 코딩시간. ';
   static const String selectTapDescription1 =
       '회사와 성장하기에 너무좋은 코딩시간입니다.\n'
       '각종 시행작오가 있었던 과거의 시간들\n'
@@ -395,7 +395,7 @@ class StateManagementConstants extends CardConstants {
     {
       'title': 'Provider',
       'desc':
-          '가장 처음 공부하고 채택한 상태관리입니다. 너무나 간편하지만, 2만줄이 넘는 제 코드에 적용하기엔 무리가 있었습니다.',
+          '가장 처음 공부하고 채택한 상태관리입니다. 너무나 간편하지만,  5만줄이 넘는 제 코드에 적용하기엔 무리가 있었습니다.',
     },
     {'title': 'setState', 'desc': '못하면 플러터 간첩..ㅎ'},
   ];
@@ -405,7 +405,7 @@ class StateManagementConstants extends CardConstants {
   static String get subTitle => '자신있어요!';
   static String get highlight => '  Highlight: ';
   static String get highlightDescription =>
-      ' 프로젝트 규모에 따라 적절한 패턴을\n   선택합니다. 2만줄이 넘는 잎사이에서는 무조건 Cubit!';
+      ' 프로젝트 규모에 따라 적절한 패턴을\n   선택합니다.  5만줄이 넘는 잎사이에서는 무조건 Cubit!';
   static List<int> get starredIndexes => [0];
 }
 

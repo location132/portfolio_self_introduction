@@ -29,13 +29,25 @@ mixin _$IfsaiState {
   double get mainTitleTranslateY => throw _privateConstructorUsedError;
   double get descriptionTranslateY =>
       throw _privateConstructorUsedError; // 배경색과 텍스트 색상 관련 상태
-  double get backgroundDarkness =>
-      throw _privateConstructorUsedError; // 0.0(흰색) ~ 1.0(검정색)
-  Color get textColor => throw _privateConstructorUsedError; // 텍스트 색상
-  // Player 관련 상태
-  bool get isPlayerVisible =>
-      throw _privateConstructorUsedError; // Player 표시 여부
+  double get backgroundDarkness => throw _privateConstructorUsedError;
+  Color get textColor => throw _privateConstructorUsedError;
+  bool get isPlayerVisible => throw _privateConstructorUsedError;
   String get playerText => throw _privateConstructorUsedError;
+  bool get isPlayerLongText => throw _privateConstructorUsedError;
+  bool get isPlayerWhiteBackground =>
+      throw _privateConstructorUsedError; // 백그라운드 비디오 관련 상태
+  VideoPlayerController? get backgroundVideoController =>
+      throw _privateConstructorUsedError;
+  AnimationController? get backgroundFadeController =>
+      throw _privateConstructorUsedError;
+  bool get isBackgroundVideoCompleted => throw _privateConstructorUsedError;
+  bool get isBackgroundVideoInitialized => throw _privateConstructorUsedError;
+  bool get isBackgroundVisible => throw _privateConstructorUsedError;
+  bool get hasBackgroundStartedPlaying =>
+      throw _privateConstructorUsedError; // 라이브러리 섹션 애니메이션 관련 상태
+  AnimationController? get libraryAnimationController =>
+      throw _privateConstructorUsedError;
+  bool get isLibrarySectionExpanded => throw _privateConstructorUsedError;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.
@@ -66,6 +78,16 @@ abstract class $IfsaiStateCopyWith<$Res> {
     Color textColor,
     bool isPlayerVisible,
     String playerText,
+    bool isPlayerLongText,
+    bool isPlayerWhiteBackground,
+    VideoPlayerController? backgroundVideoController,
+    AnimationController? backgroundFadeController,
+    bool isBackgroundVideoCompleted,
+    bool isBackgroundVideoInitialized,
+    bool isBackgroundVisible,
+    bool hasBackgroundStartedPlaying,
+    AnimationController? libraryAnimationController,
+    bool isLibrarySectionExpanded,
   });
 }
 
@@ -98,6 +120,16 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
     Object? textColor = null,
     Object? isPlayerVisible = null,
     Object? playerText = null,
+    Object? isPlayerLongText = null,
+    Object? isPlayerWhiteBackground = null,
+    Object? backgroundVideoController = freezed,
+    Object? backgroundFadeController = freezed,
+    Object? isBackgroundVideoCompleted = null,
+    Object? isBackgroundVideoInitialized = null,
+    Object? isBackgroundVisible = null,
+    Object? hasBackgroundStartedPlaying = null,
+    Object? libraryAnimationController = freezed,
+    Object? isLibrarySectionExpanded = null,
   }) {
     return _then(
       _value.copyWith(
@@ -171,6 +203,56 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
                     ? _value.playerText
                     : playerText // ignore: cast_nullable_to_non_nullable
                         as String,
+            isPlayerLongText:
+                null == isPlayerLongText
+                    ? _value.isPlayerLongText
+                    : isPlayerLongText // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isPlayerWhiteBackground:
+                null == isPlayerWhiteBackground
+                    ? _value.isPlayerWhiteBackground
+                    : isPlayerWhiteBackground // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            backgroundVideoController:
+                freezed == backgroundVideoController
+                    ? _value.backgroundVideoController
+                    : backgroundVideoController // ignore: cast_nullable_to_non_nullable
+                        as VideoPlayerController?,
+            backgroundFadeController:
+                freezed == backgroundFadeController
+                    ? _value.backgroundFadeController
+                    : backgroundFadeController // ignore: cast_nullable_to_non_nullable
+                        as AnimationController?,
+            isBackgroundVideoCompleted:
+                null == isBackgroundVideoCompleted
+                    ? _value.isBackgroundVideoCompleted
+                    : isBackgroundVideoCompleted // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isBackgroundVideoInitialized:
+                null == isBackgroundVideoInitialized
+                    ? _value.isBackgroundVideoInitialized
+                    : isBackgroundVideoInitialized // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isBackgroundVisible:
+                null == isBackgroundVisible
+                    ? _value.isBackgroundVisible
+                    : isBackgroundVisible // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            hasBackgroundStartedPlaying:
+                null == hasBackgroundStartedPlaying
+                    ? _value.hasBackgroundStartedPlaying
+                    : hasBackgroundStartedPlaying // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            libraryAnimationController:
+                freezed == libraryAnimationController
+                    ? _value.libraryAnimationController
+                    : libraryAnimationController // ignore: cast_nullable_to_non_nullable
+                        as AnimationController?,
+            isLibrarySectionExpanded:
+                null == isLibrarySectionExpanded
+                    ? _value.isLibrarySectionExpanded
+                    : isLibrarySectionExpanded // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -201,6 +283,16 @@ abstract class _$$IfsaiStateImplCopyWith<$Res>
     Color textColor,
     bool isPlayerVisible,
     String playerText,
+    bool isPlayerLongText,
+    bool isPlayerWhiteBackground,
+    VideoPlayerController? backgroundVideoController,
+    AnimationController? backgroundFadeController,
+    bool isBackgroundVideoCompleted,
+    bool isBackgroundVideoInitialized,
+    bool isBackgroundVisible,
+    bool hasBackgroundStartedPlaying,
+    AnimationController? libraryAnimationController,
+    bool isLibrarySectionExpanded,
   });
 }
 
@@ -232,6 +324,16 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
     Object? textColor = null,
     Object? isPlayerVisible = null,
     Object? playerText = null,
+    Object? isPlayerLongText = null,
+    Object? isPlayerWhiteBackground = null,
+    Object? backgroundVideoController = freezed,
+    Object? backgroundFadeController = freezed,
+    Object? isBackgroundVideoCompleted = null,
+    Object? isBackgroundVideoInitialized = null,
+    Object? isBackgroundVisible = null,
+    Object? hasBackgroundStartedPlaying = null,
+    Object? libraryAnimationController = freezed,
+    Object? isLibrarySectionExpanded = null,
   }) {
     return _then(
       _$IfsaiStateImpl(
@@ -305,6 +407,56 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
                 ? _value.playerText
                 : playerText // ignore: cast_nullable_to_non_nullable
                     as String,
+        isPlayerLongText:
+            null == isPlayerLongText
+                ? _value.isPlayerLongText
+                : isPlayerLongText // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isPlayerWhiteBackground:
+            null == isPlayerWhiteBackground
+                ? _value.isPlayerWhiteBackground
+                : isPlayerWhiteBackground // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        backgroundVideoController:
+            freezed == backgroundVideoController
+                ? _value.backgroundVideoController
+                : backgroundVideoController // ignore: cast_nullable_to_non_nullable
+                    as VideoPlayerController?,
+        backgroundFadeController:
+            freezed == backgroundFadeController
+                ? _value.backgroundFadeController
+                : backgroundFadeController // ignore: cast_nullable_to_non_nullable
+                    as AnimationController?,
+        isBackgroundVideoCompleted:
+            null == isBackgroundVideoCompleted
+                ? _value.isBackgroundVideoCompleted
+                : isBackgroundVideoCompleted // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isBackgroundVideoInitialized:
+            null == isBackgroundVideoInitialized
+                ? _value.isBackgroundVideoInitialized
+                : isBackgroundVideoInitialized // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isBackgroundVisible:
+            null == isBackgroundVisible
+                ? _value.isBackgroundVisible
+                : isBackgroundVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        hasBackgroundStartedPlaying:
+            null == hasBackgroundStartedPlaying
+                ? _value.hasBackgroundStartedPlaying
+                : hasBackgroundStartedPlaying // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        libraryAnimationController:
+            freezed == libraryAnimationController
+                ? _value.libraryAnimationController
+                : libraryAnimationController // ignore: cast_nullable_to_non_nullable
+                    as AnimationController?,
+        isLibrarySectionExpanded:
+            null == isLibrarySectionExpanded
+                ? _value.isLibrarySectionExpanded
+                : isLibrarySectionExpanded // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -328,6 +480,16 @@ class _$IfsaiStateImpl implements _IfsaiState {
     this.textColor = Colors.black,
     this.isPlayerVisible = false,
     this.playerText = '궁금한 기술을 클릭해주세요',
+    this.isPlayerLongText = false,
+    this.isPlayerWhiteBackground = false,
+    this.backgroundVideoController,
+    this.backgroundFadeController,
+    this.isBackgroundVideoCompleted = false,
+    this.isBackgroundVideoInitialized = false,
+    this.isBackgroundVisible = false,
+    this.hasBackgroundStartedPlaying = false,
+    this.libraryAnimationController,
+    this.isLibrarySectionExpanded = false,
   });
 
   @override
@@ -364,23 +526,48 @@ class _$IfsaiStateImpl implements _IfsaiState {
   @override
   @JsonKey()
   final double backgroundDarkness;
-  // 0.0(흰색) ~ 1.0(검정색)
   @override
   @JsonKey()
   final Color textColor;
-  // 텍스트 색상
-  // Player 관련 상태
   @override
   @JsonKey()
   final bool isPlayerVisible;
-  // Player 표시 여부
   @override
   @JsonKey()
   final String playerText;
+  @override
+  @JsonKey()
+  final bool isPlayerLongText;
+  @override
+  @JsonKey()
+  final bool isPlayerWhiteBackground;
+  // 백그라운드 비디오 관련 상태
+  @override
+  final VideoPlayerController? backgroundVideoController;
+  @override
+  final AnimationController? backgroundFadeController;
+  @override
+  @JsonKey()
+  final bool isBackgroundVideoCompleted;
+  @override
+  @JsonKey()
+  final bool isBackgroundVideoInitialized;
+  @override
+  @JsonKey()
+  final bool isBackgroundVisible;
+  @override
+  @JsonKey()
+  final bool hasBackgroundStartedPlaying;
+  // 라이브러리 섹션 애니메이션 관련 상태
+  @override
+  final AnimationController? libraryAnimationController;
+  @override
+  @JsonKey()
+  final bool isLibrarySectionExpanded;
 
   @override
   String toString() {
-    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText)';
+    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText, isPlayerLongText: $isPlayerLongText, isPlayerWhiteBackground: $isPlayerWhiteBackground, backgroundVideoController: $backgroundVideoController, backgroundFadeController: $backgroundFadeController, isBackgroundVideoCompleted: $isBackgroundVideoCompleted, isBackgroundVideoInitialized: $isBackgroundVideoInitialized, isBackgroundVisible: $isBackgroundVisible, hasBackgroundStartedPlaying: $hasBackgroundStartedPlaying, libraryAnimationController: $libraryAnimationController, isLibrarySectionExpanded: $isLibrarySectionExpanded)';
   }
 
   @override
@@ -418,11 +605,59 @@ class _$IfsaiStateImpl implements _IfsaiState {
             (identical(other.isPlayerVisible, isPlayerVisible) ||
                 other.isPlayerVisible == isPlayerVisible) &&
             (identical(other.playerText, playerText) ||
-                other.playerText == playerText));
+                other.playerText == playerText) &&
+            (identical(other.isPlayerLongText, isPlayerLongText) ||
+                other.isPlayerLongText == isPlayerLongText) &&
+            (identical(
+                  other.isPlayerWhiteBackground,
+                  isPlayerWhiteBackground,
+                ) ||
+                other.isPlayerWhiteBackground == isPlayerWhiteBackground) &&
+            (identical(
+                  other.backgroundVideoController,
+                  backgroundVideoController,
+                ) ||
+                other.backgroundVideoController == backgroundVideoController) &&
+            (identical(
+                  other.backgroundFadeController,
+                  backgroundFadeController,
+                ) ||
+                other.backgroundFadeController == backgroundFadeController) &&
+            (identical(
+                  other.isBackgroundVideoCompleted,
+                  isBackgroundVideoCompleted,
+                ) ||
+                other.isBackgroundVideoCompleted ==
+                    isBackgroundVideoCompleted) &&
+            (identical(
+                  other.isBackgroundVideoInitialized,
+                  isBackgroundVideoInitialized,
+                ) ||
+                other.isBackgroundVideoInitialized ==
+                    isBackgroundVideoInitialized) &&
+            (identical(other.isBackgroundVisible, isBackgroundVisible) ||
+                other.isBackgroundVisible == isBackgroundVisible) &&
+            (identical(
+                  other.hasBackgroundStartedPlaying,
+                  hasBackgroundStartedPlaying,
+                ) ||
+                other.hasBackgroundStartedPlaying ==
+                    hasBackgroundStartedPlaying) &&
+            (identical(
+                  other.libraryAnimationController,
+                  libraryAnimationController,
+                ) ||
+                other.libraryAnimationController ==
+                    libraryAnimationController) &&
+            (identical(
+                  other.isLibrarySectionExpanded,
+                  isLibrarySectionExpanded,
+                ) ||
+                other.isLibrarySectionExpanded == isLibrarySectionExpanded));
   }
 
   @override
-  int get hashCode => Object.hash(
+  int get hashCode => Object.hashAll([
     runtimeType,
     isScrollEnabled,
     scrollController,
@@ -438,7 +673,17 @@ class _$IfsaiStateImpl implements _IfsaiState {
     textColor,
     isPlayerVisible,
     playerText,
-  );
+    isPlayerLongText,
+    isPlayerWhiteBackground,
+    backgroundVideoController,
+    backgroundFadeController,
+    isBackgroundVideoCompleted,
+    isBackgroundVideoInitialized,
+    isBackgroundVisible,
+    hasBackgroundStartedPlaying,
+    libraryAnimationController,
+    isLibrarySectionExpanded,
+  ]);
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.
@@ -465,6 +710,16 @@ abstract class _IfsaiState implements IfsaiState {
     final Color textColor,
     final bool isPlayerVisible,
     final String playerText,
+    final bool isPlayerLongText,
+    final bool isPlayerWhiteBackground,
+    final VideoPlayerController? backgroundVideoController,
+    final AnimationController? backgroundFadeController,
+    final bool isBackgroundVideoCompleted,
+    final bool isBackgroundVideoInitialized,
+    final bool isBackgroundVisible,
+    final bool hasBackgroundStartedPlaying,
+    final AnimationController? libraryAnimationController,
+    final bool isLibrarySectionExpanded,
   }) = _$IfsaiStateImpl;
 
   @override
@@ -488,14 +743,33 @@ abstract class _IfsaiState implements IfsaiState {
   @override
   double get descriptionTranslateY; // 배경색과 텍스트 색상 관련 상태
   @override
-  double get backgroundDarkness; // 0.0(흰색) ~ 1.0(검정색)
+  double get backgroundDarkness;
   @override
-  Color get textColor; // 텍스트 색상
-  // Player 관련 상태
+  Color get textColor;
   @override
-  bool get isPlayerVisible; // Player 표시 여부
+  bool get isPlayerVisible;
   @override
   String get playerText;
+  @override
+  bool get isPlayerLongText;
+  @override
+  bool get isPlayerWhiteBackground; // 백그라운드 비디오 관련 상태
+  @override
+  VideoPlayerController? get backgroundVideoController;
+  @override
+  AnimationController? get backgroundFadeController;
+  @override
+  bool get isBackgroundVideoCompleted;
+  @override
+  bool get isBackgroundVideoInitialized;
+  @override
+  bool get isBackgroundVisible;
+  @override
+  bool get hasBackgroundStartedPlaying; // 라이브러리 섹션 애니메이션 관련 상태
+  @override
+  AnimationController? get libraryAnimationController;
+  @override
+  bool get isLibrarySectionExpanded;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.
