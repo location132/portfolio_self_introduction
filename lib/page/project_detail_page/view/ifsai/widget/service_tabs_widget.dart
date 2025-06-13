@@ -116,7 +116,6 @@ class _ServiceTabsWidgetState extends State<ServiceTabsWidget>
 
     _tabController.addListener(_onTabChanged);
 
-    // 초기 애니메이션 시작
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _serviceTabAnimation.startAnimation();
     });

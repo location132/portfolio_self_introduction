@@ -57,22 +57,17 @@ class ProjectCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 60),
-            ...techStack
-                .map(
-                  (tech) => Column(
-                    children: [
-                      Text(
-                        '• $tech',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                    ],
+            ...techStack.map(
+              (tech) => Column(
+                children: [
+                  Text(
+                    '• $tech',
+                    style: const TextStyle(color: Colors.white, fontSize: 16),
                   ),
-                )
-                .toList(),
+                  const SizedBox(height: 10),
+                ],
+              ),
+            ),
             const SizedBox(height: 50),
             Text(
               bottomDescription,

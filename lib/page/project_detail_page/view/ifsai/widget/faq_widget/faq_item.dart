@@ -63,12 +63,11 @@ class _FaqItemState extends State<FaqItem> with SingleTickerProviderStateMixin {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
             child: Row(
               children: [
-                // 질문 텍스트
                 Expanded(
                   child: Text(
                     widget.question,
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 118, 239, 241),
                       fontSize: 18,
                       fontWeight: FontWeight.w400,
                       height: 1.4,
@@ -78,12 +77,11 @@ class _FaqItemState extends State<FaqItem> with SingleTickerProviderStateMixin {
 
                 const SizedBox(width: 16),
 
-                // 펼치기/접기 아이콘
                 AnimatedBuilder(
                   animation: _rotationAnimation,
                   builder: (context, child) {
                     return Transform.rotate(
-                      angle: _rotationAnimation.value * 3.14159, // 180도 회전
+                      angle: _rotationAnimation.value * 3.14159,
                       child: const Icon(
                         Icons.keyboard_arrow_down,
                         color: Colors.white,
@@ -98,26 +96,25 @@ class _FaqItemState extends State<FaqItem> with SingleTickerProviderStateMixin {
         ),
 
         // 답변 영역 (아코디언)
-        AnimatedCrossFade(
-          firstChild: const SizedBox.shrink(),
-          secondChild: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
-            child: Text(
-              widget.answer,
-              style: TextStyle(
-                color: Colors.grey[300],
-                fontSize: 16,
-                fontWeight: FontWeight.w300,
-                height: 1.6,
-              ),
-            ),
-          ),
-          crossFadeState:
-              _isExpanded
-                  ? CrossFadeState.showSecond
-                  : CrossFadeState.showFirst,
+        AnimatedSize(
           duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+          child:
+              _isExpanded
+                  ? Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+                    child: Text(
+                      widget.answer,
+                      style: TextStyle(
+                        color: Colors.grey[300],
+                        fontSize: 16,
+                        fontWeight: FontWeight.w300,
+                        height: 1.6,
+                      ),
+                    ),
+                  )
+                  : const SizedBox.shrink(),
         ),
 
         // 구분선 (마지막 항목이 아닌 경우에만 표시)

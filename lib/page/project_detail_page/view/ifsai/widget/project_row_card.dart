@@ -26,7 +26,6 @@ class ProjectRowCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // 제목
         Text(
           title,
           textAlign: TextAlign.center,
@@ -38,8 +37,6 @@ class ProjectRowCard extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 60),
-
-        // 중앙 이미지
         SizedBox(
           width: 400,
           child: ClipRRect(
@@ -53,8 +50,6 @@ class ProjectRowCard extends StatelessWidget {
           style: const TextStyle(color: Colors.grey, fontSize: 14),
         ),
         const SizedBox(height: 80),
-
-        // 5개 Row로 배치된 기술 카테고리들
         SizedBox(
           width: 1500,
           child: Wrap(
@@ -78,21 +73,19 @@ class ProjectRowCard extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 16),
-                            ...category.items
-                                .map(
-                                  (item) => Padding(
-                                    padding: const EdgeInsets.only(bottom: 8),
-                                    child: Text(
-                                      '• $item',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        height: 1.4,
-                                      ),
-                                    ),
+                            ...category.items.map(
+                              (item) => Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: Text(
+                                  '• $item',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    height: 1.4,
                                   ),
-                                )
-                                .toList(),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),

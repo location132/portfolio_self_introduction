@@ -15,33 +15,31 @@ class ProjectContent2 extends StatelessWidget {
           title: '인증 & 보안',
           items: [
             'OAuth 2.0 기반 로그인',
-            'Google / Kakao / Naver 소셜 로그인',
+            'Google / Kakao / Naver\n소셜 로그인',
             'JWT Token 처리',
-            'Flutter Jailbreak Detection - 탈옥 탐지',
-            'Flutter Secure Storage - 민감정보 저장',
+            'Flutter Jailbreak Detection',
+            'Flutter Secure Storage',
           ],
         ),
         TechCategory(
           title: '네트워크 & API',
           items: [
             'Dio - 커스텀 HTTP 클라이언트',
-            'Dio Interceptor / Cache Interceptor',
+            'Dio Interceptor',
+            'Cache Interceptor',
             'Build Runner - 모델 자동 생성',
           ],
-        ),
-        TechCategory(
-          title: '위치 & 지도',
-          items: ['Naver Map', 'Kakao Map', 'Geolocator', 'Permission Handler'],
         ),
         TechCategory(
           title: 'UI/UX & 애니메이션',
           items: [
             'Rive Animation - 커스텀 인터랙션',
-            'TweenAnimationBuilder / AnimatedContainer - 기본 애니메이션',
+            'TweenAnimationBuilder',
+            '기본 애니메이션',
             'Shimmer - 로딩 스켈레톤',
             'Custom Refresh Indicator',
-            'CachedNetworkImage - 이미지 캐싱',
-            'ImagePicker - 이미지 업로드',
+            'CachedNetworkImage',
+            'ImagePicker',
           ],
         ),
         TechCategory(
@@ -52,6 +50,10 @@ class ProjectContent2 extends StatelessWidget {
             'Flutter Dotenv - 환경변수 관리',
             'Cookie Manager',
           ],
+        ),
+        TechCategory(
+          title: '위치 & 지도',
+          items: ['Naver Map', 'Kakao Map', 'Geolocator', 'Permission Handler'],
         ),
       ],
     );

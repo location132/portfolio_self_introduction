@@ -59,7 +59,6 @@ class IfsaiDetailView extends StatelessWidget {
                   SizedBox(height: 950),
                   Column(
                     children: [
-                      TerminalWidget(),
                       VisibilityDetector(
                         key: const Key('project-contents-view'),
                         onVisibilityChanged: (VisibilityInfo info) {
@@ -85,12 +84,12 @@ class IfsaiDetailView extends StatelessWidget {
                         },
                         child: ProjectContent2(),
                       ),
-                      SizedBox(height: 300),
-
+                      SizedBox(height: 200),
+                      TerminalWidget(),
+                      SizedBox(height: 200),
                       // Service 탭바 위젯
                       const ServiceTabsWidget(),
                       SizedBox(height: 200),
-
                       // 백그라운드 섹션
                       VisibilityDetector(
                         key: const Key('background-video'),

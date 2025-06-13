@@ -19,12 +19,8 @@ class FaqView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 100),
-
               FaqTitle(currentTitleIndex: state.currentFaqTitleIndex),
-
-              const SizedBox(height: 80),
-
+              const SizedBox(height: 150),
               Container(
                 constraints: const BoxConstraints(maxWidth: 800),
                 child: Column(
