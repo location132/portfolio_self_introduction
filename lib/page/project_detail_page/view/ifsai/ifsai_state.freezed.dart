@@ -46,7 +46,10 @@ mixin _$IfsaiState {
   bool get hasBackgroundStartedPlaying =>
       throw _privateConstructorUsedError; // 라이브러리 카드 애니메이션 상태
   bool get isLibraryCardsAnimationStarted => throw _privateConstructorUsedError;
-  bool get isLibraryDetailVisible => throw _privateConstructorUsedError;
+  bool get isLibraryDetailVisible =>
+      throw _privateConstructorUsedError; // FAQ 관련 상태
+  int get currentFaqTitleIndex => throw _privateConstructorUsedError;
+  bool get isInFaqSection => throw _privateConstructorUsedError;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.
@@ -87,6 +90,8 @@ abstract class $IfsaiStateCopyWith<$Res> {
     bool hasBackgroundStartedPlaying,
     bool isLibraryCardsAnimationStarted,
     bool isLibraryDetailVisible,
+    int currentFaqTitleIndex,
+    bool isInFaqSection,
   });
 }
 
@@ -129,6 +134,8 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
     Object? hasBackgroundStartedPlaying = null,
     Object? isLibraryCardsAnimationStarted = null,
     Object? isLibraryDetailVisible = null,
+    Object? currentFaqTitleIndex = null,
+    Object? isInFaqSection = null,
   }) {
     return _then(
       _value.copyWith(
@@ -252,6 +259,16 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
                     ? _value.isLibraryDetailVisible
                     : isLibraryDetailVisible // ignore: cast_nullable_to_non_nullable
                         as bool,
+            currentFaqTitleIndex:
+                null == currentFaqTitleIndex
+                    ? _value.currentFaqTitleIndex
+                    : currentFaqTitleIndex // ignore: cast_nullable_to_non_nullable
+                        as int,
+            isInFaqSection:
+                null == isInFaqSection
+                    ? _value.isInFaqSection
+                    : isInFaqSection // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -292,6 +309,8 @@ abstract class _$$IfsaiStateImplCopyWith<$Res>
     bool hasBackgroundStartedPlaying,
     bool isLibraryCardsAnimationStarted,
     bool isLibraryDetailVisible,
+    int currentFaqTitleIndex,
+    bool isInFaqSection,
   });
 }
 
@@ -333,6 +352,8 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
     Object? hasBackgroundStartedPlaying = null,
     Object? isLibraryCardsAnimationStarted = null,
     Object? isLibraryDetailVisible = null,
+    Object? currentFaqTitleIndex = null,
+    Object? isInFaqSection = null,
   }) {
     return _then(
       _$IfsaiStateImpl(
@@ -456,6 +477,16 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
                 ? _value.isLibraryDetailVisible
                 : isLibraryDetailVisible // ignore: cast_nullable_to_non_nullable
                     as bool,
+        currentFaqTitleIndex:
+            null == currentFaqTitleIndex
+                ? _value.currentFaqTitleIndex
+                : currentFaqTitleIndex // ignore: cast_nullable_to_non_nullable
+                    as int,
+        isInFaqSection:
+            null == isInFaqSection
+                ? _value.isInFaqSection
+                : isInFaqSection // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -489,6 +520,8 @@ class _$IfsaiStateImpl implements _IfsaiState {
     this.hasBackgroundStartedPlaying = false,
     this.isLibraryCardsAnimationStarted = false,
     this.isLibraryDetailVisible = false,
+    this.currentFaqTitleIndex = 0,
+    this.isInFaqSection = false,
   });
 
   @override
@@ -564,10 +597,17 @@ class _$IfsaiStateImpl implements _IfsaiState {
   @override
   @JsonKey()
   final bool isLibraryDetailVisible;
+  // FAQ 관련 상태
+  @override
+  @JsonKey()
+  final int currentFaqTitleIndex;
+  @override
+  @JsonKey()
+  final bool isInFaqSection;
 
   @override
   String toString() {
-    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText, isPlayerLongText: $isPlayerLongText, isPlayerWhiteBackground: $isPlayerWhiteBackground, backgroundVideoController: $backgroundVideoController, backgroundFadeController: $backgroundFadeController, isBackgroundVideoCompleted: $isBackgroundVideoCompleted, isBackgroundVideoInitialized: $isBackgroundVideoInitialized, isBackgroundVisible: $isBackgroundVisible, hasBackgroundStartedPlaying: $hasBackgroundStartedPlaying, isLibraryCardsAnimationStarted: $isLibraryCardsAnimationStarted, isLibraryDetailVisible: $isLibraryDetailVisible)';
+    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText, isPlayerLongText: $isPlayerLongText, isPlayerWhiteBackground: $isPlayerWhiteBackground, backgroundVideoController: $backgroundVideoController, backgroundFadeController: $backgroundFadeController, isBackgroundVideoCompleted: $isBackgroundVideoCompleted, isBackgroundVideoInitialized: $isBackgroundVideoInitialized, isBackgroundVisible: $isBackgroundVisible, hasBackgroundStartedPlaying: $hasBackgroundStartedPlaying, isLibraryCardsAnimationStarted: $isLibraryCardsAnimationStarted, isLibraryDetailVisible: $isLibraryDetailVisible, currentFaqTitleIndex: $currentFaqTitleIndex, isInFaqSection: $isInFaqSection)';
   }
 
   @override
@@ -650,7 +690,11 @@ class _$IfsaiStateImpl implements _IfsaiState {
                 other.isLibraryCardsAnimationStarted ==
                     isLibraryCardsAnimationStarted) &&
             (identical(other.isLibraryDetailVisible, isLibraryDetailVisible) ||
-                other.isLibraryDetailVisible == isLibraryDetailVisible));
+                other.isLibraryDetailVisible == isLibraryDetailVisible) &&
+            (identical(other.currentFaqTitleIndex, currentFaqTitleIndex) ||
+                other.currentFaqTitleIndex == currentFaqTitleIndex) &&
+            (identical(other.isInFaqSection, isInFaqSection) ||
+                other.isInFaqSection == isInFaqSection));
   }
 
   @override
@@ -680,6 +724,8 @@ class _$IfsaiStateImpl implements _IfsaiState {
     hasBackgroundStartedPlaying,
     isLibraryCardsAnimationStarted,
     isLibraryDetailVisible,
+    currentFaqTitleIndex,
+    isInFaqSection,
   ]);
 
   /// Create a copy of IfsaiState
@@ -717,6 +763,8 @@ abstract class _IfsaiState implements IfsaiState {
     final bool hasBackgroundStartedPlaying,
     final bool isLibraryCardsAnimationStarted,
     final bool isLibraryDetailVisible,
+    final int currentFaqTitleIndex,
+    final bool isInFaqSection,
   }) = _$IfsaiStateImpl;
 
   @override
@@ -766,7 +814,11 @@ abstract class _IfsaiState implements IfsaiState {
   @override
   bool get isLibraryCardsAnimationStarted;
   @override
-  bool get isLibraryDetailVisible;
+  bool get isLibraryDetailVisible; // FAQ 관련 상태
+  @override
+  int get currentFaqTitleIndex;
+  @override
+  bool get isInFaqSection;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.

@@ -278,6 +278,26 @@ class IfsaiCubit extends Cubit<IfsaiState> {
     }
   }
 
+  // FAQ 관련 메서드들
+  void onFaqVisibilityChanged(int titleIndex) {
+    if (state.currentFaqTitleIndex != titleIndex) {
+      emit(
+        state.copyWith(currentFaqTitleIndex: titleIndex, isInFaqSection: true),
+      );
+    }
+  }
+
+  void onFaqSectionVisibilityChanged(bool isVisible) {
+    if (state.isInFaqSection != isVisible) {
+      emit(
+        state.copyWith(
+          isInFaqSection: isVisible,
+          currentFaqTitleIndex: isVisible ? state.currentFaqTitleIndex : 0,
+        ),
+      );
+    }
+  }
+
   @override
   Future<void> close() {
     if (_listenerAdded && state.scrollController != null) {

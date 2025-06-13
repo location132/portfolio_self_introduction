@@ -38,5 +38,9 @@ class IfsaiState with _$IfsaiState {
     // 라이브러리 카드 애니메이션 상태
     @Default(false) bool isLibraryCardsAnimationStarted,
     @Default(false) bool isLibraryDetailVisible,
+
+    // FAQ 관련 상태
+    @Default(0) int currentFaqTitleIndex,
+    @Default(false) bool isInFaqSection,
   }) = _IfsaiState;
 }

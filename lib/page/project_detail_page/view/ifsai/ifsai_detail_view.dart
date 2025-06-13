@@ -5,12 +5,14 @@ import 'package:self_introduction_flutter/model/project_detail/ifsai_model.dart'
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_cubit.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_state.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/background/bg_view.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/faq_widget/faq_view.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_content2.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_contents.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_detail_section.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_player.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/service_tabs_widget.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/libraries_widget/library_section.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/terminal_widget/terminal_view.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class IfsaiDetailPage extends StatelessWidget {
@@ -57,6 +59,7 @@ class IfsaiDetailView extends StatelessWidget {
                   SizedBox(height: 950),
                   Column(
                     children: [
+                      TerminalWidget(),
                       VisibilityDetector(
                         key: const Key('project-contents-view'),
                         onVisibilityChanged: (VisibilityInfo info) {
@@ -104,6 +107,9 @@ class IfsaiDetailView extends StatelessWidget {
                             context
                                 .read<IfsaiCubit>()
                                 .setBackgroundSectionVisible(true);
+                            context
+                                .read<IfsaiCubit>()
+                                .setLibraryCardsAnimationStarted(false);
                           } else {
                             context
                                 .read<IfsaiCubit>()
@@ -118,6 +124,7 @@ class IfsaiDetailView extends StatelessWidget {
                       ),
                       SizedBox(height: 200),
 
+                      // 라이브러리 섹션
                       VisibilityDetector(
                         key: const Key('library-section-view'),
                         onVisibilityChanged: (info) {
@@ -125,13 +132,28 @@ class IfsaiDetailView extends StatelessWidget {
                             context
                                 .read<IfsaiCubit>()
                                 .setLibraryCardsAnimationStarted(true);
-                          } else {
-                            context
-                                .read<IfsaiCubit>()
-                                .setLibraryCardsAnimationStarted(false);
                           }
                         },
                         child: LibrarySection(state: state),
+                      ),
+
+                      SizedBox(height: 200),
+
+                      // FAQ
+                      VisibilityDetector(
+                        key: const Key('faq-view'),
+                        onVisibilityChanged: (info) {
+                          if (info.visibleFraction < 0.6) {
+                            context.read<IfsaiCubit>().onFaqVisibilityChanged(
+                              0,
+                            );
+                          } else {
+                            context.read<IfsaiCubit>().onFaqVisibilityChanged(
+                              1,
+                            );
+                          }
+                        },
+                        child: FaqView(),
                       ),
                     ],
                   ),

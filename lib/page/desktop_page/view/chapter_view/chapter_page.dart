@@ -21,16 +21,19 @@ class ChapterPage extends StatelessWidget {
         VisibilityDetector(
           key: const Key('chapter-view'),
           onVisibilityChanged: (VisibilityInfo info) async {
-            context.read<DesktopCubit>().setBackgroundForSection(
-              'chapter',
-              info.visibleFraction > 0.5,
-            );
-
-            if (info.visibleFraction > 0.5 &&
-                !state.chapterModel.isBlackBackgroundColor) {
-              await Future.delayed(const Duration(seconds: 1));
-              if (context.mounted) {
-                context.read<DesktopCubit>().viewListener('chapter');
+            if (context.mounted) {
+              context.read<DesktopCubit>().setBackgroundForSection(
+                'chapter',
+                info.visibleFraction > 0.5,
+              );
+            }
+            if (context.mounted) {
+              if (info.visibleFraction > 0.5 &&
+                  !state.chapterModel.isBlackBackgroundColor) {
+                await Future.delayed(const Duration(seconds: 1));
+                if (context.mounted) {
+                  context.read<DesktopCubit>().viewListener('chapter');
+                }
               }
             }
           },
