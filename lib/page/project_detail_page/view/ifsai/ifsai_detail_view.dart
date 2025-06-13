@@ -8,6 +8,7 @@ import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/wi
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_contents.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_detail_section.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_player.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/service_tabs_widget.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class IfsaiDetailPage extends StatelessWidget {
@@ -43,10 +44,10 @@ class IfsaiDetailView extends StatelessWidget {
 
             SingleChildScrollView(
               controller: state.scrollController,
-              physics:
-                  state.isScrollEnabled
-                      ? const BouncingScrollPhysics()
-                      : const NeverScrollableScrollPhysics(),
+              // physics:
+              //     state.isScrollEnabled
+              //         ? const BouncingScrollPhysics()
+              //         : const NeverScrollableScrollPhysics(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -79,6 +80,11 @@ class IfsaiDetailView extends StatelessWidget {
                         },
                         child: ProjectContent2(),
                       ),
+                      SizedBox(height: 200),
+
+                      // Service 탭바 위젯
+                      const ServiceTabsWidget(),
+                      SizedBox(height: 200),
                     ],
                   ),
                 ],

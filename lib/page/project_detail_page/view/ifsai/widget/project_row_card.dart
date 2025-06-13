@@ -12,7 +12,6 @@ class ProjectRowCard extends StatelessWidget {
   final String imageDescription;
   final String title;
   final List<TechCategory> techCategories;
-  final String bottomDescription;
 
   const ProjectRowCard({
     super.key,
@@ -20,7 +19,6 @@ class ProjectRowCard extends StatelessWidget {
     required this.imageDescription,
     required this.title,
     required this.techCategories,
-    required this.bottomDescription,
   });
 
   @override
@@ -100,18 +98,6 @@ class ProjectRowCard extends StatelessWidget {
                       ),
                     )
                     .toList(),
-          ),
-        ),
-        const SizedBox(height: 60),
-
-        // 하단 설명
-        Text(
-          bottomDescription,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 15,
-            height: 1.5,
           ),
         ),
       ],

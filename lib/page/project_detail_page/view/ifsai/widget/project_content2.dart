@@ -54,7 +54,6 @@ class ProjectContent2 extends StatelessWidget {
           ],
         ),
       ],
-      bottomDescription: '위 기술은 클릭하지 말아주세요..\n금방 정리 후, 상세하게 볼 수 있게 준비할게요',
     );
   }
 }
