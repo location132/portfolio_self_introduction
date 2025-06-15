@@ -524,3 +524,293 @@ class MainPageTextConstants {
   static const String introPlayerText = '지금 바로 시작합니다.';
   static const String defaultPlayerText = '잠시만 기다려주세요.';
 }
+
+class TerminalTextConstants {
+  static const String terminalTitle = '파일 구조\n어떻게 작성했는지 확인하실 수 있어요';
+  static const String clipboardTitle = '명령어 클립보드';
+  static const String terminalHeader = 'Terminal';
+  static const String copyButtonText = '복사';
+  static const String executeButtonText = '붙여넣기 & 실행';
+  static const String executingText = '실행 중...';
+  static const String copySuccessMessage = '복사 완료';
+  static const String terminalPrompt =
+      'jung_won@Lee-Jungwon-MacBookAir IFSAI-Flutter % ';
+  static const String commandExecutedMessage = 'Command executed successfully.';
+  static const String invalidCommandMessage = '위 클립보드에서 복사 가능한 명령어만 입력해주세요';
+
+  static const List<Map<String, String>> clipboardCommands = [
+    {
+      'title': '총 코드 라인 수',
+      'command': 'find lib -name "*.dart" | wc -l',
+      'description': '전체 Dart 파일의 총 라인수를 확인합니다',
+    },
+    {
+      'title': '코드 라인 수 계산',
+      'command': 'find lib -name "*.dart" | xargs wc -l',
+      'description': '각 파일별 코드 라인 수를 계산합니다',
+    },
+  ];
+
+  static const String totalLinesOutput = '50688';
+  static const String detailedLinesOutput =
+      '''      53 lib/coreService/isar/naver_map/naver_map_data_service.dart
+      39 lib/coreService/isar/naver_map/naver_map_category_service.dart
+      79 lib/coreService/isar/naver_map/data/naver_map_data.dart
+    2700 lib/coreService/isar/naver_map/data/naver_map_data.g.dart
+     657 lib/coreService/isar/naver_map/data/naver_map_category.g.dart
+      18 lib/coreService/isar/naver_map/data/naver_map_version.dart
+      19 lib/coreService/isar/naver_map/data/naver_map_category.dart
+     686 lib/coreService/isar/naver_map/data/naver_map_version.g.dart
+      46 lib/coreService/isar/naver_map/naver_map_version_service.dart
+      28 lib/coreService/isar/isar_init_service.dart
+      28 lib/coreService/isar/app_version/app_version_service.dart
+      21 lib/coreService/isar/app_version/data/version.dart
+     434 lib/coreService/isar/app_version/data/version.g.dart
+     497 lib/coreService/provider.dart
+      89 lib/coreService/routes.dart
+      24 lib/coreService/core/di/injector.dart
+     148 lib/coreService/core/di/injector.config.dart
+      69 lib/coreService/core/utils/verifty_form.dart
+      21 lib/coreService/core/utils/responsive_size.dart
+       1 lib/coreService/core/utils/image_url_helper.dart
+      45 lib/coreService/core/utils/scroll_controller_mixin.dart
+      62 lib/coreService/core/dio/dio_core.dart
+      63 lib/coreService/core/dio/dio_interceptor_cache.dart
+      95 lib/coreService/core/service/location_service.dart
+      24 lib/coreService/core/permission/permission_handler.dart
+      37 lib/coreService/widgetifsai_button_components/wide_green_button.dart
+     153 lib/coreService/widget/custom_appbar.dart
+     111 lib/coreService/widget/searchbar.dart
+      27 lib/coreService/widget/banner.dart
+     180 lib/coreService/widget/store_components/store_info_summary.dart
+      86 lib/coreService/widget/store_components/store_quantity_controller.dart
+     266 lib/coreService/widget/store_components/store_menu_category_detail.dart
+      86 lib/coreService/widget/store_components/store_menu_category.dart
+      68 lib/coreService/widget/store_components/store_rating_summary.dart
+     338 lib/coreService/widget/store_container.dart
+     278 lib/coreService/widget/bottom_navigation.dart
+     105 lib/coreService/widget/mypage_filter_button.dart
+     125 lib/coreService/widget/paginationIndicator.dart
+     148 lib/coreService/Shimmer_loading/loding_gif_IFSAI.dart
+     516 lib/coreService/Shimmer_loading/main_shimmer.dart
+      39 lib/coreService/Sharedpreferences.dart
+      22 lib/coreService/kakao_api_service.dart
+     137 lib/coreService/Dialog/myCart_dialog.dart
+     110 lib/coreService/Dialog/my_page_event_end_dialog.dart
+      94 lib/coreService/Dialog/start_service_maintenance_notice.dart
+     190 lib/coreService/Dialog/login_dialog.dart
+     135 lib/coreService/Dialog/my_page_review_delete_dialog.dart
+     135 lib/coreService/Dialog/my_page_orderlist_delete_dialog.dart
+     158 lib/coreService/Dialog/partnership_request_delete_diaglog.dart
+     136 lib/coreService/Dialog/partnership_request_save_dialog.dart
+     295 lib/coreService/Dialog/locationPermissionDialog.dart
+     100 lib/coreService/Dialog/partnership_request_email_different_dialog.dart
+      48 lib/coreService/theme.dart
+       8 lib/coreService/bloc/page_navigation/page_state.dart
+      21 lib/coreService/bloc/page_navigation/page_bloc.dart
+      11 lib/coreService/bloc/page_navigation/page_event.dart
+     134 lib/repository/cart_api/cart_reomte_response.dart
+      21 lib/repository/cart_api/cart_reomte_service.dart
+      21 lib/repository/cart_api/cart_reomte_source.dart
+    1311 lib/repository/cart_api/cart_reomte_response.freezed.dart
+      23 lib/repository/cart_api/cart_remote_repository.dart
+     119 lib/repository/cart_api/cart_reomte_response.g.dart
+      31 lib/repository/naver_map_api/naver_map_remote_repository.dart
+      64 lib/repository/naver_map_api/nver_map_response.g.dart
+      16 lib/repository/naver_map_api/naver_map_remote_source.dart
+      32 lib/repository/naver_map_api/naver_map_local_source.dart
+     650 lib/repository/naver_map_api/nver_map_response.freezed.dart
+      74 lib/repository/naver_map_api/nver_map_response.dart
+      25 lib/repository/menu_option_api/menu_option_remote_service.dart
+      61 lib/repository/menu_option_api/menu_option_remote_response.g.dart
+      67 lib/repository/menu_option_api/menu_option_remote_response.dart
+      25 lib/repository/menu_option_api/menu_option_remote_repository.dart
+      21 lib/repository/menu_option_api/menu_option_remote_source.dart
+     594 lib/repository/menu_option_api/menu_option_remote_response.freezed.dart
+      44 lib/repository/affiliated_store_api/affiliated_store_remote_response.g.dart
+      81 lib/repository/affiliated_store_api/affiliated_store_remote_response.dart
+     600 lib/repository/affiliated_store_api/affiliated_store_remote_response.freezed.dart
+      21 lib/repository/affiliated_store_api/affiliated_store_remote_repository.dart
+      22 lib/repository/affiliated_store_api/affiliated_store_remote_source.dart
+      21 lib/repository/affiliated_store_api/affiliated_store_remote_service.dart
+      13 lib/repository/start_api/start_reomte_source.dart
+     198 lib/repository/start_api/start_remote_response.freezed.dart
+      31 lib/repository/start_api/start_remote_local.dart
+      43 lib/repository/start_api/start_remote_repository.dart
+      23 lib/repository/start_api/start_remote_response.g.dart
+      27 lib/repository/start_api/start_remote_response.dart
+     210 lib/Page/7_partnership_request_page/1.partnership_mainPage/7.1.1._partnership_request_category.dart
+     599 lib/Page/7_partnership_request_page/1.partnership_mainPage/7.1_partnership_request_screen.dart
+     334 lib/Page/7_partnership_request_page/1.partnership_mainPage/7.1.2_partnership_request_customContainerBoard.dart
+      92 lib/Page/7_partnership_request_page/2.partnership_formpage/7.2.1_partnership_request_form_textfield.dart
+     108 lib/Page/7_partnership_request_page/2.partnership_formpage/7.2.2_partnership_request_form_button.dart
+     603 lib/Page/7_partnership_request_page/2.partnership_formpage/7.2_partnership_request_form.dart
+      96 lib/Page/7_partnership_request_page/4.partnership_detail_page/7.4.2_partnership_detail_title.dart
+     259 lib/Page/7_partnership_request_page/4.partnership_detail_page/7.4.1_parthership_detail_comment.dart
+     193 lib/Page/7_partnership_request_page/4.partnership_detail_page/7.4.3_partnership_detail_userinfo.dart
+     481 lib/Page/7_partnership_request_page/4.partnership_detail_page/7.4_partnership_detail_page.dart
+     179 lib/Page/7_partnership_request_page/3.partnership_formpage_detail/7.3.2_partnership_kakaoMap.dart
+     109 lib/Page/7_partnership_request_page/3.partnership_formpage_detail/7.3_partnership_search.dart
+      63 lib/Page/7_partnership_request_page/3.partnership_formpage_detail/7.3.1_partnership_searchScreen.dart
+     561 lib/Page/7_partnership_request_page/0.partnership_dio/partnership_screen_dio.dart
+     594 lib/Page/7_partnership_request_page/7.5_parthership_request_change_form.dart
+     382 lib/Page/8_detail_store/8.6_detail_coupons.dart
+     192 lib/Page/8_detail_store/8.1_detail_store_title.dart
+      68 lib/Page/8_detail_store/8.3_detail_store_event.dart
+     198 lib/Page/8_detail_store/8.4_detail_store_appbarcategory.dart
+     141 lib/Page/8_detail_store/8.4.1_detail_store_appbarcategory_Icon.dart
+     100 lib/Page/8_detail_store/8.2_detail_store_notice.dart
+      16 lib/Page/8_detail_store/menu_option/bottomSheet_menu_state.dart
+     231 lib/Page/8_detail_store/menu_option/bottomSheet_menu_state.freezed.dart
+     208 lib/Page/8_detail_store/menu_option/bottomSheet_menu_page.dart
+      57 lib/Page/8_detail_store/menu_option/widget/bottomSheet_classification.dart
+     108 lib/Page/8_detail_store/menu_option/widget/bottomSheet_title.dart
+     271 lib/Page/8_detail_store/menu_option/widget/bottomSheet_classification_options.dart
+      82 lib/Page/8_detail_store/menu_option/bottomSheet_menu_cubit.dart
+     366 lib/Page/8_detail_store/8_detail_store.dart
+     268 lib/Page/8_detail_store/detail_store_dio/detail_dio.dart
+     274 lib/Page/2_login_page/login_dio/login_dio.dart
+     204 lib/Page/2_login_page/2_login.dart
+      80 lib/Page/2_login_page/2.1_login_error.dart
+      40 lib/Page/2_login_page/snsLogin/apple_login.dart
+     200 lib/Page/2_login_page/snsLogin/kakao_login.dart
+     145 lib/Page/2_login_page/snsLogin/naver_login.dart
+     141 lib/Page/2_login_page/snsLogin/google_login.dart
+     376 lib/Page/4_main_page/main_dio/main_screen_dio.dart
+     363 lib/Page/4_main_page/4.1_main_logo_searchbar.dart
+     248 lib/Page/4_main_page/4.5_main_new_store.dart
+     613 lib/Page/4_main_page/4_main_screen.dart
+      34 lib/Page/4_main_page/4.7_main_hot_promotion.dart
+     223 lib/Page/4_main_page/4.6.1_main_best_review_contauner.dart
+      26 lib/Page/4_main_page/components/main_Add_banner.dart
+      27 lib/Page/4_main_page/components/main_SmoothPageIndicator.dart
+      62 lib/Page/4_main_page/components/main_title_overview.dart
+      32 lib/Page/4_main_page/components/main_container.dart
+     119 lib/Page/4_main_page/4.6_main_best_review.dart
+      93 lib/Page/4_main_page/4.3_main_category.dart
+      26 lib/Page/4_main_page/4.2_main_adBanner.dart
+      83 lib/Page/4_main_page/4.9_main_tourist_attractions.dart
+     108 lib/Page/4_main_page/4.0_main_page.dart
+     403 lib/Page/4_main_page/4.10_main_quest.dart
+     411 lib/Page/4_main_page/4.4.1_main_top_12_container.dart
+     360 lib/Page/4_main_page/main_detail_page/1_detail_new_store.dart
+     356 lib/Page/4_main_page/main_detail_page/4_detail_quest.dart
+     376 lib/Page/4_main_page/main_detail_page/3.2_detail_category_eating.dart
+     197 lib/Page/4_main_page/main_detail_page/0_detail_join_us.dart
+     274 lib/Page/4_main_page/main_detail_page/2_detail_top_12.dart
+     519 lib/Page/4_main_page/main_detail_page/5_detail_all_quest.dart
+     549 lib/Page/4_main_page/main_detail_page/3.1_detail_category_attraction.dart
+     189 lib/Page/4_main_page/4.11_join_us.dart
+      94 lib/Page/4_main_page/4.9.1_main_tourist_container.dart
+     196 lib/Page/4_main_page/4.4_main_top12.dart
+     385 lib/Page/4_main_page/4.10.1_main_quest_guest.dart
+     580 lib/Page/12_naver_map/page/NaverMapApp_state.freezed.dart
+      67 lib/Page/12_naver_map/page/NaverMapApp_state.dart
+      62 lib/Page/12_naver_map/page/widget/market_widget.dart
+      80 lib/Page/12_naver_map/page/widget/top_category.dart
+      69 lib/Page/12_naver_map/page/widget/search_category_section.dart
+      29 lib/Page/12_naver_map/page/widget/current_location_button.dart
+      88 lib/Page/12_naver_map/page/widget/naver_map_widget.dart
+     156 lib/Page/12_naver_map/page/NaverMapApp_page.dart
+     482 lib/Page/12_naver_map/page/NaverMapApp_cubit.dart
+     457 lib/Page/12_naver_map/page/bottom_sheet/widget/long_panel.dart
+     133 lib/Page/12_naver_map/page/bottom_sheet/widget/short_panel.dart
+      66 lib/Page/12_naver_map/page/bottom_sheet/bottom_panel.dart
+      62 lib/Page/12_naver_map/dio/naver_map_dio.dart
+      84 lib/Page/12_naver_map/service/naver_map_service.dart
+      53 lib/Page/12_naver_map/service/naver_map_overlay.dart
+      83 lib/Page/14_affiliated_store/dio/affiliated_dio.dart
+     263 lib/Page/14_affiliated_store/pages/affiliated_page/affiliated_store_state.freezed.dart
+      23 lib/Page/14_affiliated_store/pages/affiliated_page/affiliated_store_state.dart
+      71 lib/Page/14_affiliated_store/pages/affiliated_page/affiliated_store_cubit.dart
+     128 lib/Page/14_affiliated_store/pages/affiliated_page/affiliated_store_page.dart
+     240 lib/Page/14_affiliated_store/pages/affiliated_page/widgets/store_container.dart
+     437 lib/Page/6_search_results_page/6_search_results_screen.dart
+      52 lib/Page/6_search_results_page/search_result_dio/search_screen_dio.dart
+     159 lib/Page/15_invite_page/15.2_invite_container.dart
+     196 lib/Page/15_invite_page/15.1_invite_detail_page.dart
+     228 lib/Page/3_student_email_page/3.3_error_dialog.dart
+     314 lib/Page/3_student_email_page/3.2_student_email_check.dart
+     217 lib/Page/3_student_email_page/3.7_loginChageToSns/3.7.1_students_snstoggle_naver.dart
+     263 lib/Page/3_student_email_page/3.7_loginChageToSns/3.7.2_students_snstoggle_kakao.dart
+     180 lib/Page/3_student_email_page/3.7_student_account_transfer_dialog.dart
+     112 lib/Page/3_student_email_page/3.4_success_dialog.dart
+     154 lib/Page/3_student_email_page/3_student_identity_detail.dart
+     367 lib/Page/3_student_email_page/3.1_student_email.dart
+     116 lib/Page/3_student_email_page/3.6_students_success_screen.dart
+     213 lib/Page/3_student_email_page/3.5_email_error_dialog.dart
+     254 lib/Page/11_shopping_cart/core/shopping_cart_dio/my_shopping_cart_dio.dart
+     164 lib/Page/11_shopping_cart/core/shopping_cart_provider/my_shopping_cart_state.dart
+      98 lib/Page/11_shopping_cart/pages/shopping_page/shopping_cart_cubit.dart
+     143 lib/Page/11_shopping_cart/pages/shopping_page/widget/recommended_side_menu.dart
+     260 lib/Page/11_shopping_cart/pages/shopping_page/widget/11.2_my_shopping_cart_menulistview.dart
+     108 lib/Page/11_shopping_cart/pages/shopping_page/widget/11.1_my_shopping_cart_storelistview.dart
+     284 lib/Page/11_shopping_cart/pages/shopping_page/shopping_cart_page.dart
+     202 lib/Page/11_shopping_cart/pages/shopping_page/shopping_cart_state.freezed.dart
+      18 lib/Page/11_shopping_cart/pages/shopping_page/shopping_cart_state.dart
+     234 lib/Page/11_shopping_cart/pages/shopping_option_page/shopping_option_state.freezed.dart
+     116 lib/Page/11_shopping_cart/pages/shopping_option_page/widget/shopping_Item_detail_card.dart
+     133 lib/Page/11_shopping_cart/pages/shopping_option_page/shopping_option_page.dart
+      88 lib/Page/11_shopping_cart/pages/shopping_option_page/shopping_option_cubit.dart
+      17 lib/Page/11_shopping_cart/pages/shopping_option_page/shopping_option_state.dart
+     165 lib/Page/5_search_page/5.2_search_logic.dart
+     157 lib/Page/5_search_page/5.2.3_search_logic_category.dart
+     231 lib/Page/5_search_page/search_dio/search_screen_dio.dart
+     129 lib/Page/5_search_page/5.2.4_search_logic_trending.dart
+     115 lib/Page/5_search_page/5.2.2_search_logic_keywords.dart
+     106 lib/Page/5_search_page/5.1.1_searcscreen.dart
+     311 lib/Page/5_search_page/5.2.1_search_logic_history.dart
+      51 lib/Page/9_store_review/9.5_store_review_content.dart
+     195 lib/Page/9_store_review/9.2_store_review_summary.dart
+     176 lib/Page/9_store_review/9.3_store_reivew_photo_review.dart
+     309 lib/Page/9_store_review/9.6.1_store_review_content_detail.dart
+      91 lib/Page/9_store_review/9.4_store_review_navigator.dart
+     115 lib/Page/9_store_review/9.1_store_review_container.dart
+     321 lib/Page/9_store_review/9.6_store_review_best_content_detail.dart
+     192 lib/Page/9_store_review/store_review_dio/store_review_dio.dart
+     114 lib/Page/9_store_review/9.7_store_review_photo_review_detail.dart
+     324 lib/Page/9_store_review/9.8_store_review_content_dialog.dart
+      20 lib/Page/1_start_page/page/start_state.dart
+     192 lib/Page/1_start_page/page/start_state.freezed.dart
+      48 lib/Page/1_start_page/page/start_cubit.dart
+     157 lib/Page/1_start_page/page/start_page.dart
+      46 lib/Page/1_start_pageservice/start_reomte_service.dart
+     268 lib/Page/10_my_page/10.13_my_page_review_detail.dart
+      68 lib/Page/10_my_page/10.12_my_page_review_fix_back.dart
+     234 lib/Page/10_my_page/10.7_my_page_orderlist.dart
+      83 lib/Page/10_my_page/10.9_my_page_review.dart
+     339 lib/Page/10_my_page/10.5_my_coupon.dart
+     240 lib/Page/10_my_page/10.14.2_my_page_myinfo_editmode.dart
+     191 lib/Page/10_my_page/10.9.1_my_page_review_write_list.dart
+     179 lib/Page/10_my_page/10.9.2_my_page_review_already_write_list.dart
+     297 lib/Page/10_my_page/10.1_my_page_notice.dart
+     189 lib/Page/10_my_page/10.14.1_my_page_myinfo_viewmode.dart
+     230 lib/Page/10_my_page/10.2_my_page_notice_detail.dart
+     228 lib/Page/10_my_page/10.10_my_page_review_write_comp.dart
+     419 lib/Page/10_my_page/10.6_my_wishlist.dart
+     254 lib/Page/10_my_page/10.3_my_page_event.dart
+      70 lib/Page/10_my_page/10.11_my_page_review_write_back.dart
+      81 lib/Page/10_my_page/10.14_my_page_myinfo.dart
+     425 lib/Page/10_my_page/10.8_my_page_orderlist_detail.dart
+     286 lib/Page/10_my_page/10.15_my_page_setting.dart
+     716 lib/Page/10_my_page/10_my_page.dart
+     333 lib/Page/10_my_page/my_page_dio/my_page_dio.dart
+     178 lib/Page/10_my_page/10.4_my_page_event_detail.dart
+     334 lib/Page/13_join_us/13.2_join_us_request_page.dart
+     121 lib/Page/13_join_us/13.1.2_join_us_detail_comment.dart
+     436 lib/Page/13_join_us/13.1_join_us_detail_page.dart
+     180 lib/main.dart
+     152 lib/model/location.freezed.dart
+     523 lib/model/menus_option.freezed.dart
+     173 lib/model/ifsai.freezed.dart
+      12 lib/model/ifsai.dart
+     925 lib/model/cart.freezed.dart
+      30 lib/model/menus_option.dart
+      11 lib/model/location.dart
+      24 lib/model/market.dart
+     450 lib/model/affiliated_store.freezed.dart
+     447 lib/model/market.freezed.dart
+      53 lib/model/cart.dart
+      24 lib/model/affiliated_store.dart
+   50688 total''';
+}

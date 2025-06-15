@@ -85,7 +85,7 @@ class IfsaiDetailView extends StatelessWidget {
                         child: ProjectContent2(),
                       ),
                       SizedBox(height: 200),
-                      TerminalWidget(),
+                      TerminalView(),
                       SizedBox(height: 200),
                       // Service 탭바 위젯
                       const ServiceTabsWidget(),

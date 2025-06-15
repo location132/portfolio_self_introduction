@@ -8,7 +8,7 @@ class ProjectContent2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProjectRowCard(
       imagePath: 'assets/Images/ifsai_img/web_project_3.png',
-      imageDescription: '프로젝트 화면의 일부분입니다.',
+      imageDescription: '아래의 기술은 잎사이 프로젝트에 적용된 기술입니다!',
       title: '다양한 기술로\n완성도 높은 앱을 만들어요',
       techCategories: const [
         TechCategory(

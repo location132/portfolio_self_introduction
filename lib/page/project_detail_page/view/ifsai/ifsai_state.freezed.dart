@@ -49,7 +49,9 @@ mixin _$IfsaiState {
   bool get isLibraryDetailVisible =>
       throw _privateConstructorUsedError; // FAQ 관련 상태
   int get currentFaqTitleIndex => throw _privateConstructorUsedError;
-  bool get isInFaqSection => throw _privateConstructorUsedError;
+  bool get isInFaqSection => throw _privateConstructorUsedError; // 터미널 관련 상태
+  String get terminalOutput => throw _privateConstructorUsedError;
+  bool get isTerminalExecuting => throw _privateConstructorUsedError;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.
@@ -92,6 +94,8 @@ abstract class $IfsaiStateCopyWith<$Res> {
     bool isLibraryDetailVisible,
     int currentFaqTitleIndex,
     bool isInFaqSection,
+    String terminalOutput,
+    bool isTerminalExecuting,
   });
 }
 
@@ -136,6 +140,8 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
     Object? isLibraryDetailVisible = null,
     Object? currentFaqTitleIndex = null,
     Object? isInFaqSection = null,
+    Object? terminalOutput = null,
+    Object? isTerminalExecuting = null,
   }) {
     return _then(
       _value.copyWith(
@@ -269,6 +275,16 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
                     ? _value.isInFaqSection
                     : isInFaqSection // ignore: cast_nullable_to_non_nullable
                         as bool,
+            terminalOutput:
+                null == terminalOutput
+                    ? _value.terminalOutput
+                    : terminalOutput // ignore: cast_nullable_to_non_nullable
+                        as String,
+            isTerminalExecuting:
+                null == isTerminalExecuting
+                    ? _value.isTerminalExecuting
+                    : isTerminalExecuting // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -311,6 +327,8 @@ abstract class _$$IfsaiStateImplCopyWith<$Res>
     bool isLibraryDetailVisible,
     int currentFaqTitleIndex,
     bool isInFaqSection,
+    String terminalOutput,
+    bool isTerminalExecuting,
   });
 }
 
@@ -354,6 +372,8 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
     Object? isLibraryDetailVisible = null,
     Object? currentFaqTitleIndex = null,
     Object? isInFaqSection = null,
+    Object? terminalOutput = null,
+    Object? isTerminalExecuting = null,
   }) {
     return _then(
       _$IfsaiStateImpl(
@@ -487,6 +507,16 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
                 ? _value.isInFaqSection
                 : isInFaqSection // ignore: cast_nullable_to_non_nullable
                     as bool,
+        terminalOutput:
+            null == terminalOutput
+                ? _value.terminalOutput
+                : terminalOutput // ignore: cast_nullable_to_non_nullable
+                    as String,
+        isTerminalExecuting:
+            null == isTerminalExecuting
+                ? _value.isTerminalExecuting
+                : isTerminalExecuting // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -522,6 +552,8 @@ class _$IfsaiStateImpl implements _IfsaiState {
     this.isLibraryDetailVisible = false,
     this.currentFaqTitleIndex = 0,
     this.isInFaqSection = false,
+    this.terminalOutput = '',
+    this.isTerminalExecuting = false,
   });
 
   @override
@@ -604,10 +636,17 @@ class _$IfsaiStateImpl implements _IfsaiState {
   @override
   @JsonKey()
   final bool isInFaqSection;
+  // 터미널 관련 상태
+  @override
+  @JsonKey()
+  final String terminalOutput;
+  @override
+  @JsonKey()
+  final bool isTerminalExecuting;
 
   @override
   String toString() {
-    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText, isPlayerLongText: $isPlayerLongText, isPlayerWhiteBackground: $isPlayerWhiteBackground, backgroundVideoController: $backgroundVideoController, backgroundFadeController: $backgroundFadeController, isBackgroundVideoCompleted: $isBackgroundVideoCompleted, isBackgroundVideoInitialized: $isBackgroundVideoInitialized, isBackgroundVisible: $isBackgroundVisible, hasBackgroundStartedPlaying: $hasBackgroundStartedPlaying, isLibraryCardsAnimationStarted: $isLibraryCardsAnimationStarted, isLibraryDetailVisible: $isLibraryDetailVisible, currentFaqTitleIndex: $currentFaqTitleIndex, isInFaqSection: $isInFaqSection)';
+    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText, isPlayerLongText: $isPlayerLongText, isPlayerWhiteBackground: $isPlayerWhiteBackground, backgroundVideoController: $backgroundVideoController, backgroundFadeController: $backgroundFadeController, isBackgroundVideoCompleted: $isBackgroundVideoCompleted, isBackgroundVideoInitialized: $isBackgroundVideoInitialized, isBackgroundVisible: $isBackgroundVisible, hasBackgroundStartedPlaying: $hasBackgroundStartedPlaying, isLibraryCardsAnimationStarted: $isLibraryCardsAnimationStarted, isLibraryDetailVisible: $isLibraryDetailVisible, currentFaqTitleIndex: $currentFaqTitleIndex, isInFaqSection: $isInFaqSection, terminalOutput: $terminalOutput, isTerminalExecuting: $isTerminalExecuting)';
   }
 
   @override
@@ -694,7 +733,11 @@ class _$IfsaiStateImpl implements _IfsaiState {
             (identical(other.currentFaqTitleIndex, currentFaqTitleIndex) ||
                 other.currentFaqTitleIndex == currentFaqTitleIndex) &&
             (identical(other.isInFaqSection, isInFaqSection) ||
-                other.isInFaqSection == isInFaqSection));
+                other.isInFaqSection == isInFaqSection) &&
+            (identical(other.terminalOutput, terminalOutput) ||
+                other.terminalOutput == terminalOutput) &&
+            (identical(other.isTerminalExecuting, isTerminalExecuting) ||
+                other.isTerminalExecuting == isTerminalExecuting));
   }
 
   @override
@@ -726,6 +769,8 @@ class _$IfsaiStateImpl implements _IfsaiState {
     isLibraryDetailVisible,
     currentFaqTitleIndex,
     isInFaqSection,
+    terminalOutput,
+    isTerminalExecuting,
   ]);
 
   /// Create a copy of IfsaiState
@@ -765,6 +810,8 @@ abstract class _IfsaiState implements IfsaiState {
     final bool isLibraryDetailVisible,
     final int currentFaqTitleIndex,
     final bool isInFaqSection,
+    final String terminalOutput,
+    final bool isTerminalExecuting,
   }) = _$IfsaiStateImpl;
 
   @override
@@ -818,7 +865,11 @@ abstract class _IfsaiState implements IfsaiState {
   @override
   int get currentFaqTitleIndex;
   @override
-  bool get isInFaqSection;
+  bool get isInFaqSection; // 터미널 관련 상태
+  @override
+  String get terminalOutput;
+  @override
+  bool get isTerminalExecuting;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.

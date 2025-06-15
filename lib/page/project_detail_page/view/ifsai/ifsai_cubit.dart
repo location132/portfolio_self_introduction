@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_state.dart';
 import 'package:video_player/video_player.dart';
 
@@ -77,7 +79,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
     }
   }
 
-  // Library Cards Animation
+  // 라브 카
   void setLibraryCardsAnimationStarted(bool isStarted) {
     if (state.isLibraryCardsAnimationStarted != isStarted) {
       emit(
@@ -296,6 +298,49 @@ class IfsaiCubit extends Cubit<IfsaiState> {
         ),
       );
     }
+  }
+
+  // 터미널
+  void initializeTerminal() {
+    emit(state.copyWith(terminalOutput: TerminalTextConstants.terminalPrompt));
+  }
+
+  Future<void> copyToClipboard(String command) async {
+    await Clipboard.setData(ClipboardData(text: command));
+  }
+
+  Future<void> pasteAndExecuteTerminalCommand() async {
+    final clipboardData = await Clipboard.getData('text/plain');
+    if (clipboardData?.text != null) {
+      final command = clipboardData!.text!;
+
+      emit(
+        state.copyWith(
+          isTerminalExecuting: true,
+          terminalOutput: '${state.terminalOutput}$command\n',
+        ),
+      );
+
+      await Future.delayed(const Duration(milliseconds: 1000));
+
+      final output = _simulateCommandOutput(command);
+      emit(
+        state.copyWith(
+          isTerminalExecuting: false,
+          terminalOutput:
+              '${state.terminalOutput}$output\n${TerminalTextConstants.terminalPrompt}',
+        ),
+      );
+    }
+  }
+
+  String _simulateCommandOutput(String command) {
+    if (command.contains('find lib -name "*.dart" | wc -l')) {
+      return TerminalTextConstants.totalLinesOutput;
+    } else if (command.contains('find lib -name "*.dart" | xargs wc -l')) {
+      return TerminalTextConstants.detailedLinesOutput;
+    }
+    return TerminalTextConstants.invalidCommandMessage;
   }
 
   @override

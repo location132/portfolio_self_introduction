@@ -42,5 +42,9 @@ class IfsaiState with _$IfsaiState {
     // FAQ 관련 상태
     @Default(0) int currentFaqTitleIndex,
     @Default(false) bool isInFaqSection,
+
+    // 터미널 관련 상태
+    @Default('') String terminalOutput,
+    @Default(false) bool isTerminalExecuting,
   }) = _IfsaiState;
 }
