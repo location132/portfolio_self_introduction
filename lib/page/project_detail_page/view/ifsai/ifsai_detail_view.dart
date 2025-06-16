@@ -56,7 +56,9 @@ class IfsaiDetailView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: MediaQuery.of(context).size.height - 83),
-                  SizedBox(height: 950),
+                  SizedBox(
+                    height: (-0.5 * MediaQuery.of(context).size.height + 1650),
+                  ),
                   Column(
                     children: [
                       VisibilityDetector(

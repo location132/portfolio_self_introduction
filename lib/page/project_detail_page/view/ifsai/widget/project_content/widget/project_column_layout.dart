@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'project_row_layout.dart';
-import 'project_column_layout.dart';
+import 'project_image_section.dart';
+import 'project_text_section.dart';
 
-class ProjectCardWith1 extends StatelessWidget {
+class ProjectColumnLayout extends StatelessWidget {
   final String imagePath;
   final String imageDescription;
   final String title;
@@ -10,7 +10,7 @@ class ProjectCardWith1 extends StatelessWidget {
   final String bottomDescription;
   final bool isCardStarted;
 
-  const ProjectCardWith1({
+  const ProjectColumnLayout({
     super.key,
     required this.imagePath,
     required this.imageDescription,
@@ -23,33 +23,36 @@ class ProjectCardWith1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final isLargeScreen = screenWidth > 1200;
-    final isMediumScreen = screenWidth > 768;
+    final contentWidth = (screenWidth * 0.9).clamp(280.0, 600.0);
+    final imageWidth = (screenWidth * 0.7).clamp(250.0, 400.0);
 
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(
-        horizontal: isLargeScreen ? 80 : (isMediumScreen ? 40 : 20),
-      ),
-      child:
-          isLargeScreen
-              ? ProjectRowLayout(
+    return Center(
+      child: SizedBox(
+        width: contentWidth,
+        child: Column(
+          children: [
+            SizedBox(
+              width: imageWidth,
+              child: ProjectImageSection(
                 imagePath: imagePath,
                 imageDescription: imageDescription,
-                title: title,
-                techStack: techStack,
-                bottomDescription: bottomDescription,
-                isCardStarted: isCardStarted,
-                isReversed: false,
-              )
-              : ProjectColumnLayout(
-                imagePath: imagePath,
-                imageDescription: imageDescription,
-                title: title,
-                techStack: techStack,
-                bottomDescription: bottomDescription,
-                isCardStarted: isCardStarted,
+                width: imageWidth,
               ),
+            ),
+            const SizedBox(height: 40),
+            Center(
+              child: ProjectTextSection(
+                title: title,
+                techStack: techStack,
+                bottomDescription: bottomDescription,
+                isCardStarted: isCardStarted,
+                width: contentWidth,
+                isCenter: true,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

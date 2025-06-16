@@ -40,12 +40,11 @@ class _ProjectContent2State extends State<ProjectContent2> {
             title: '다양한 기술로\n완성도 높은 앱을 만들어요',
           ),
           //  텍스트
-          WidgetAnimation(
-            isStart: widget.isProjectCard3Visible,
-            beginDy: 0.4,
-            duration: 1000,
-            child: SizedBox(
-              width: 1500,
+          if (MediaQuery.of(context).size.width > 1250) ...[
+            WidgetAnimation(
+              isStart: widget.isProjectCard3Visible,
+              beginDy: 0.4,
+              duration: 1000,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,7 +105,85 @@ class _ProjectContent2State extends State<ProjectContent2> {
                 ],
               ),
             ),
-          ),
+          ],
+          if (MediaQuery.of(context).size.width <= 1250) ...[
+            WidgetAnimation(
+              isStart: widget.isProjectCard3Visible,
+              beginDy: 0.4,
+              duration: 1000,
+              child: Column(
+                children: [
+                  // 첫 번째 줄 - 3개 카드
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      ProjectRowCard(
+                        title: '인증 & 보안',
+                        items: [
+                          'OAuth 2.0 기반 로그인',
+                          'Google / Kakao / Naver\n소셜 로그인',
+                          'JWT Token 처리',
+                          'Flutter Jailbreak Detection',
+                          'Flutter Secure Storage',
+                        ],
+                      ),
+                      SizedBox(width: 30),
+                      ProjectRowCard(
+                        title: '네트워크 & API',
+                        items: [
+                          'Dio - 커스텀 HTTP 클라이언트',
+                          'Dio Interceptor',
+                          'Cache Interceptor',
+                          'Build Runner - 모델 자동 생성',
+                        ],
+                      ),
+                      SizedBox(width: 30),
+                      ProjectRowCard(
+                        title: 'UI/UX & 애니메이션',
+                        items: [
+                          'Rive Animation - 커스텀 인터랙션',
+                          'TweenAnimationBuilder',
+                          '기본 애니메이션',
+                          'Shimmer - 로딩 스켈레톤',
+                          'Custom Refresh Indicator',
+                          'CachedNetworkImage',
+                          'ImagePicker',
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 30),
+                  // 두 번째 줄 - 2개 카드
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      ProjectRowCard(
+                        title: '기타 기능',
+                        items: [
+                          'URL Launcher - 외부 링크',
+                          'Flutter Compass - 나침반 기능',
+                          'Flutter Dotenv - 환경변수 관리',
+                          'Cookie Manager',
+                        ],
+                      ),
+                      SizedBox(width: 30),
+                      ProjectRowCard(
+                        title: '위치 & 지도',
+                        items: [
+                          'Naver Map',
+                          'Kakao Map',
+                          'Geolocator',
+                          'Permission Handler',
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
         ],
       ),
     );
