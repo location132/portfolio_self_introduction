@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:video_player/video_player.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_cubit.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_state.dart';
+import 'package:video_player/video_player.dart';
 
 class BackgroundVideoPlayer extends StatefulWidget {
   final IfsaiState state;

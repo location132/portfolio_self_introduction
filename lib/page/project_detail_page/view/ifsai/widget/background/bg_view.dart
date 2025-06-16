@@ -22,11 +22,16 @@ class BgView extends StatelessWidget {
           children: [
             BackgroundVideoPlayer(state: state),
             const SizedBox(width: 60),
-            const BackgroundDescription(),
+            BackgroundDescription(
+              isTitleVisible: state.isBackgrounTitleVisible,
+              isContentVisible: state.isBackgroundContentVisible,
+            ),
           ],
         ),
         const SizedBox(height: 80),
-        const BackgroundFeaturesGrid(),
+        BackgroundFeaturesGrid(
+          isBackgroundFeatureVisible: state.isBackgroundFeatureVisible,
+        ),
       ],
     );
   }

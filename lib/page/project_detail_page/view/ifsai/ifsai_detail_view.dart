@@ -114,6 +114,12 @@ class IfsaiDetailView extends StatelessWidget {
                                 .read<IfsaiCubit>()
                                 .onBackgroundVisibilityChanged();
                           }
+                          if (info.visibleFraction > 0.5 &&
+                              !state.isBackgrounTitleVisible) {
+                            context
+                                .read<IfsaiCubit>()
+                                .onBackgroundWidgetVisibilityChanged();
+                          }
 
                           if (info.visibleFraction > 0.3) {
                             context

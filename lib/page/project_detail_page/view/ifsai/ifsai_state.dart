@@ -52,5 +52,8 @@ class IfsaiState with _$IfsaiState {
     @Default(false) bool isProjectCard2Visible,
     @Default(false) bool isProjectCard3Visible,
     @Default(false) bool isServiceTabVisible,
+    @Default(false) bool isBackgrounTitleVisible,
+    @Default(false) bool isBackgroundContentVisible,
+    @Default(false) bool isBackgroundFeatureVisible,
   }) = _IfsaiState;
 }

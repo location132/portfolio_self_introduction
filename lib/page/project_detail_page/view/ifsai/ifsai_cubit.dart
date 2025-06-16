@@ -379,4 +379,19 @@ class IfsaiCubit extends Cubit<IfsaiState> {
   void onServiceTabVisibilityChanged() {
     emit(state.copyWith(isServiceTabVisible: true));
   }
+
+  // 백그라운드 위젯
+  void onBackgroundWidgetVisibilityChanged() async {
+    emit(state.copyWith(isBackgrounTitleVisible: true));
+    await Future.delayed(const Duration(milliseconds: 800));
+    if (isClosed) {
+      return;
+    }
+    emit(state.copyWith(isBackgroundContentVisible: true));
+    await Future.delayed(const Duration(milliseconds: 800));
+    if (isClosed) {
+      return;
+    }
+    emit(state.copyWith(isBackgroundFeatureVisible: true));
+  }
 }

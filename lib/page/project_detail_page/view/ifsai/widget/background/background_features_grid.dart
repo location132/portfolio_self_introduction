@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:self_introduction_flutter/components/widget/animation/widget_animation.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/background/background_feature_card.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/background/animation/background_grid_animation.dart';
 
 class BackgroundFeaturesGrid extends StatefulWidget {
-  const BackgroundFeaturesGrid({super.key});
+  final bool isBackgroundFeatureVisible;
+  const BackgroundFeaturesGrid({
+    super.key,
+    required this.isBackgroundFeatureVisible,
+  });
 
   @override
   State<BackgroundFeaturesGrid> createState() => _BackgroundFeaturesGridState();
@@ -154,55 +159,63 @@ class _BackgroundFeaturesGridState extends State<BackgroundFeaturesGrid>
       },
     ];
 
-    // 처음에는 6개만 보여주고, 확장시 전체 표시
     final visibleFeatures =
         _animation.isExpanded ? features : features.take(6).toList();
 
-    return Stack(
-      children: [
-        Column(
-          children: [
-            for (int row = 0; row < (visibleFeatures.length / 3).ceil(); row++)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 24),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    for (int col = 0; col < 3; col++)
-                      if (row * 3 + col < visibleFeatures.length)
-                        Padding(
-                          padding: EdgeInsets.only(right: col < 2 ? 24 : 0),
-                          child: _animation.buildAnimatedCard(
-                            child: BackgroundFeatureCard(
-                              title:
-                                  visibleFeatures[row * 3 + col]['title']
-                                      as String,
-                              subtitle:
-                                  visibleFeatures[row * 3 + col]['subtitle']
-                                      as String,
-                              icon:
-                                  visibleFeatures[row * 3 + col]['icon']
-                                      as IconData,
-                              features:
-                                  visibleFeatures[row * 3 + col]['features']
-                                      as List<String>,
+    return WidgetAnimation(
+      isStart: widget.isBackgroundFeatureVisible,
+      duration: 1000,
+      beginDy: 0.05,
+      child: Stack(
+        children: [
+          Column(
+            children: [
+              for (
+                int row = 0;
+                row < (visibleFeatures.length / 3).ceil();
+                row++
+              )
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 24),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      for (int col = 0; col < 3; col++)
+                        if (row * 3 + col < visibleFeatures.length)
+                          Padding(
+                            padding: EdgeInsets.only(right: col < 2 ? 24 : 0),
+                            child: _animation.buildAnimatedCard(
+                              child: BackgroundFeatureCard(
+                                title:
+                                    visibleFeatures[row * 3 + col]['title']
+                                        as String,
+                                subtitle:
+                                    visibleFeatures[row * 3 + col]['subtitle']
+                                        as String,
+                                icon:
+                                    visibleFeatures[row * 3 + col]['icon']
+                                        as IconData,
+                                features:
+                                    visibleFeatures[row * 3 + col]['features']
+                                        as List<String>,
+                              ),
+                              row: row,
+                              shouldAnimate:
+                                  _animation.isExpanded ? row >= 2 : false,
                             ),
-                            row: row,
-                            shouldAnimate:
-                                _animation.isExpanded ? row >= 2 : false,
                           ),
-                        ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
 
-            const SizedBox(height: 24),
-            _animation.buildExpandButton(onTap: _handleToggle),
-          ],
-        ),
+              const SizedBox(height: 24),
+              _animation.buildExpandButton(onTap: _handleToggle),
+            ],
+          ),
 
-        _animation.buildGradientOverlay(),
-      ],
+          _animation.buildGradientOverlay(),
+        ],
+      ),
     );
   }
 }

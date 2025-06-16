@@ -57,6 +57,9 @@ mixin _$IfsaiState {
   bool get isProjectCard2Visible => throw _privateConstructorUsedError;
   bool get isProjectCard3Visible => throw _privateConstructorUsedError;
   bool get isServiceTabVisible => throw _privateConstructorUsedError;
+  bool get isBackgrounTitleVisible => throw _privateConstructorUsedError;
+  bool get isBackgroundContentVisible => throw _privateConstructorUsedError;
+  bool get isBackgroundFeatureVisible => throw _privateConstructorUsedError;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.
@@ -105,6 +108,9 @@ abstract class $IfsaiStateCopyWith<$Res> {
     bool isProjectCard2Visible,
     bool isProjectCard3Visible,
     bool isServiceTabVisible,
+    bool isBackgrounTitleVisible,
+    bool isBackgroundContentVisible,
+    bool isBackgroundFeatureVisible,
   });
 }
 
@@ -155,6 +161,9 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
     Object? isProjectCard2Visible = null,
     Object? isProjectCard3Visible = null,
     Object? isServiceTabVisible = null,
+    Object? isBackgrounTitleVisible = null,
+    Object? isBackgroundContentVisible = null,
+    Object? isBackgroundFeatureVisible = null,
   }) {
     return _then(
       _value.copyWith(
@@ -318,6 +327,21 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
                     ? _value.isServiceTabVisible
                     : isServiceTabVisible // ignore: cast_nullable_to_non_nullable
                         as bool,
+            isBackgrounTitleVisible:
+                null == isBackgrounTitleVisible
+                    ? _value.isBackgrounTitleVisible
+                    : isBackgrounTitleVisible // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isBackgroundContentVisible:
+                null == isBackgroundContentVisible
+                    ? _value.isBackgroundContentVisible
+                    : isBackgroundContentVisible // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isBackgroundFeatureVisible:
+                null == isBackgroundFeatureVisible
+                    ? _value.isBackgroundFeatureVisible
+                    : isBackgroundFeatureVisible // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -366,6 +390,9 @@ abstract class _$$IfsaiStateImplCopyWith<$Res>
     bool isProjectCard2Visible,
     bool isProjectCard3Visible,
     bool isServiceTabVisible,
+    bool isBackgrounTitleVisible,
+    bool isBackgroundContentVisible,
+    bool isBackgroundFeatureVisible,
   });
 }
 
@@ -415,6 +442,9 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
     Object? isProjectCard2Visible = null,
     Object? isProjectCard3Visible = null,
     Object? isServiceTabVisible = null,
+    Object? isBackgrounTitleVisible = null,
+    Object? isBackgroundContentVisible = null,
+    Object? isBackgroundFeatureVisible = null,
   }) {
     return _then(
       _$IfsaiStateImpl(
@@ -578,6 +608,21 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
                 ? _value.isServiceTabVisible
                 : isServiceTabVisible // ignore: cast_nullable_to_non_nullable
                     as bool,
+        isBackgrounTitleVisible:
+            null == isBackgrounTitleVisible
+                ? _value.isBackgrounTitleVisible
+                : isBackgrounTitleVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isBackgroundContentVisible:
+            null == isBackgroundContentVisible
+                ? _value.isBackgroundContentVisible
+                : isBackgroundContentVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isBackgroundFeatureVisible:
+            null == isBackgroundFeatureVisible
+                ? _value.isBackgroundFeatureVisible
+                : isBackgroundFeatureVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -619,6 +664,9 @@ class _$IfsaiStateImpl implements _IfsaiState {
     this.isProjectCard2Visible = false,
     this.isProjectCard3Visible = false,
     this.isServiceTabVisible = false,
+    this.isBackgrounTitleVisible = false,
+    this.isBackgroundContentVisible = false,
+    this.isBackgroundFeatureVisible = false,
   });
 
   @override
@@ -721,10 +769,19 @@ class _$IfsaiStateImpl implements _IfsaiState {
   @override
   @JsonKey()
   final bool isServiceTabVisible;
+  @override
+  @JsonKey()
+  final bool isBackgrounTitleVisible;
+  @override
+  @JsonKey()
+  final bool isBackgroundContentVisible;
+  @override
+  @JsonKey()
+  final bool isBackgroundFeatureVisible;
 
   @override
   String toString() {
-    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText, isPlayerLongText: $isPlayerLongText, isPlayerWhiteBackground: $isPlayerWhiteBackground, backgroundVideoController: $backgroundVideoController, backgroundFadeController: $backgroundFadeController, isBackgroundVideoCompleted: $isBackgroundVideoCompleted, isBackgroundVideoInitialized: $isBackgroundVideoInitialized, isBackgroundVisible: $isBackgroundVisible, hasBackgroundStartedPlaying: $hasBackgroundStartedPlaying, isLibraryCardsAnimationStarted: $isLibraryCardsAnimationStarted, isLibraryDetailVisible: $isLibraryDetailVisible, currentFaqTitleIndex: $currentFaqTitleIndex, isInFaqSection: $isInFaqSection, terminalOutput: $terminalOutput, isTerminalExecuting: $isTerminalExecuting, isProjectCard1Visible: $isProjectCard1Visible, isProjectCard2Visible: $isProjectCard2Visible, isProjectCard3Visible: $isProjectCard3Visible, isServiceTabVisible: $isServiceTabVisible)';
+    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText, isPlayerLongText: $isPlayerLongText, isPlayerWhiteBackground: $isPlayerWhiteBackground, backgroundVideoController: $backgroundVideoController, backgroundFadeController: $backgroundFadeController, isBackgroundVideoCompleted: $isBackgroundVideoCompleted, isBackgroundVideoInitialized: $isBackgroundVideoInitialized, isBackgroundVisible: $isBackgroundVisible, hasBackgroundStartedPlaying: $hasBackgroundStartedPlaying, isLibraryCardsAnimationStarted: $isLibraryCardsAnimationStarted, isLibraryDetailVisible: $isLibraryDetailVisible, currentFaqTitleIndex: $currentFaqTitleIndex, isInFaqSection: $isInFaqSection, terminalOutput: $terminalOutput, isTerminalExecuting: $isTerminalExecuting, isProjectCard1Visible: $isProjectCard1Visible, isProjectCard2Visible: $isProjectCard2Visible, isProjectCard3Visible: $isProjectCard3Visible, isServiceTabVisible: $isServiceTabVisible, isBackgrounTitleVisible: $isBackgrounTitleVisible, isBackgroundContentVisible: $isBackgroundContentVisible, isBackgroundFeatureVisible: $isBackgroundFeatureVisible)';
   }
 
   @override
@@ -823,7 +880,24 @@ class _$IfsaiStateImpl implements _IfsaiState {
             (identical(other.isProjectCard3Visible, isProjectCard3Visible) ||
                 other.isProjectCard3Visible == isProjectCard3Visible) &&
             (identical(other.isServiceTabVisible, isServiceTabVisible) ||
-                other.isServiceTabVisible == isServiceTabVisible));
+                other.isServiceTabVisible == isServiceTabVisible) &&
+            (identical(
+                  other.isBackgrounTitleVisible,
+                  isBackgrounTitleVisible,
+                ) ||
+                other.isBackgrounTitleVisible == isBackgrounTitleVisible) &&
+            (identical(
+                  other.isBackgroundContentVisible,
+                  isBackgroundContentVisible,
+                ) ||
+                other.isBackgroundContentVisible ==
+                    isBackgroundContentVisible) &&
+            (identical(
+                  other.isBackgroundFeatureVisible,
+                  isBackgroundFeatureVisible,
+                ) ||
+                other.isBackgroundFeatureVisible ==
+                    isBackgroundFeatureVisible));
   }
 
   @override
@@ -861,6 +935,9 @@ class _$IfsaiStateImpl implements _IfsaiState {
     isProjectCard2Visible,
     isProjectCard3Visible,
     isServiceTabVisible,
+    isBackgrounTitleVisible,
+    isBackgroundContentVisible,
+    isBackgroundFeatureVisible,
   ]);
 
   /// Create a copy of IfsaiState
@@ -906,6 +983,9 @@ abstract class _IfsaiState implements IfsaiState {
     final bool isProjectCard2Visible,
     final bool isProjectCard3Visible,
     final bool isServiceTabVisible,
+    final bool isBackgrounTitleVisible,
+    final bool isBackgroundContentVisible,
+    final bool isBackgroundFeatureVisible,
   }) = _$IfsaiStateImpl;
 
   @override
@@ -972,6 +1052,12 @@ abstract class _IfsaiState implements IfsaiState {
   bool get isProjectCard3Visible;
   @override
   bool get isServiceTabVisible;
+  @override
+  bool get isBackgrounTitleVisible;
+  @override
+  bool get isBackgroundContentVisible;
+  @override
+  bool get isBackgroundFeatureVisible;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.
