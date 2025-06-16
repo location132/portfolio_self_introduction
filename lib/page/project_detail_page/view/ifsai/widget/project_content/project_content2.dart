@@ -27,7 +27,7 @@ class _ProjectContent2State extends State<ProjectContent2> {
     return VisibilityDetector(
       key: Key('project-content2-view'),
       onVisibilityChanged: (VisibilityInfo info) {
-        if (info.visibleFraction > 0.8 && !widget.isProjectCard3Visible) {
+        if (info.visibleFraction > 0.5 && !widget.isProjectCard3Visible) {
           widget.cubit.onProjectCard3VisibilityChanged();
         }
       },

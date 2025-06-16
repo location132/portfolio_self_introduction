@@ -542,16 +542,364 @@ class TerminalTextConstants {
     {
       'title': '총 코드 라인 수',
       'command': 'find lib -name "*.dart" | wc -l',
-      'description': '전체 Dart 파일의 총 라인수를 확인합니다',
+      'description': '전체 라인수를 소개하겠습니다.',
     },
     {
       'title': '코드 라인 수 계산',
       'command': 'find lib -name "*.dart" | xargs wc -l',
-      'description': '각 파일별 코드 라인 수를 계산합니다',
+      'description': '파일과 코드 라인 수를 소개하겠습니다.',
+    },
+    {
+      'title': '프로젝트 구조',
+      'command': 'tree lib',
+      'description': '트리형태로 저의 파일을 소개하겠습니다.',
     },
   ];
 
   static const String totalLinesOutput = '50688';
+  static const String treeLibOutput = '''lib
+├── coreService
+│   ├── bloc
+│   │   └── page_navigation
+│   │       ├── page_bloc.dart
+│   │       ├── page_event.dart
+│   │       └── page_state.dart
+│   ├── core
+│   │   ├── di
+│   │   │   ├── injector.config.dart
+│   │   │   └── injector.dart
+│   │   ├── dio
+│   │   │   ├── dio_core.dart
+│   │   │   └── dio_interceptor_cache.dart
+│   │   ├── permission
+│   │   │   └── permission_handler.dart
+│   │   ├── service
+│   │   │   └── location_service.dart
+│   │   └── utils
+│   │       ├── image_url_helper.dart
+│   │       ├── responsive_size.dart
+│   │       ├── scroll_controller_mixin.dart
+│   │       └── verifty_form.dart
+│   ├── Dialog
+│   │   ├── locationPermissionDialog.dart
+│   │   ├── login_dialog.dart
+│   │   ├── my_page_event_end_dialog.dart
+│   │   ├── my_page_orderlist_delete_dialog.dart
+│   │   ├── my_page_review_delete_dialog.dart
+│   │   ├── myCart_dialog.dart
+│   │   ├── partnership_request_delete_diaglog.dart
+│   │   ├── partnership_request_email_different_dialog.dart
+│   │   ├── partnership_request_save_dialog.dart
+│   │   └── start_service_maintenance_notice.dart
+│   ├── isar
+│   │   ├── app_version
+│   │   │   ├── app_version_service.dart
+│   │   │   └── data
+│   │   │       ├── version.dart
+│   │   │       └── version.g.dart
+│   │   ├── isar_init_service.dart
+│   │   └── naver_map
+│   │       ├── data
+│   │       │   ├── naver_map_category.dart
+│   │       │   ├── naver_map_category.g.dart
+│   │       │   ├── naver_map_data.dart
+│   │       │   ├── naver_map_data.g.dart
+│   │       │   ├── naver_map_version.dart
+│   │       │   └── naver_map_version.g.dart
+│   │       ├── naver_map_category_service.dart
+│   │       ├── naver_map_data_service.dart
+│   │       └── naver_map_version_service.dart
+│   ├── kakao_api_service.dart
+│   ├── provider.dart
+│   ├── routes.dart
+│   ├── Sharedpreferences.dart
+│   ├── Shimmer_loading
+│   │   ├── loding_gif_IFSAI.dart
+│   │   └── main_shimmer.dart
+│   ├── theme.dart
+│   └── widget
+│       ├── banner.dart
+│       ├── bottom_navigation.dart
+│       ├── custom_appbar.dart
+│       ├── \\010ifsai_button_components
+│       │   └── wide_green_button.dart
+│       ├── mypage_filter_button.dart
+│       ├── paginationIndicator.dart
+│       ├── searchbar.dart
+│       ├── store_components
+│       │   ├── store_info_summary.dart
+│       │   ├── store_menu_category_detail.dart
+│       │   ├── store_menu_category.dart
+│       │   ├── store_quantity_controller.dart
+│       │   └── store_rating_summary.dart
+│       └── store_container.dart
+├── main.dart
+├── model
+│   ├── affiliated_store.dart
+│   ├── affiliated_store.freezed.dart
+│   ├── cart.dart
+│   ├── cart.freezed.dart
+│   ├── ifsai.dart
+│   ├── ifsai.freezed.dart
+│   ├── location.dart
+│   ├── location.freezed.dart
+│   ├── market.dart
+│   ├── market.freezed.dart
+│   ├── menus_option.dart
+│   └── menus_option.freezed.dart
+├── Page
+│   ├── 1_start_page
+│   │   ├── page
+│   │   │   ├── start_cubit.dart
+│   │   │   ├── start_page.dart
+│   │   │   ├── start_state.dart
+│   │   │   └── start_state.freezed.dart
+│   │   └── \\010service
+│   │       └── start_reomte_service.dart
+│   ├── 10_my_page
+│   │   ├── 10_my_page.dart
+│   │   ├── 10.1_my_page_notice.dart
+│   │   ├── 10.10_my_page_review_write_comp.dart
+│   │   ├── 10.11_my_page_review_write_back.dart
+│   │   ├── 10.12_my_page_review_fix_back.dart
+│   │   ├── 10.13_my_page_review_detail.dart
+│   │   ├── 10.14_my_page_myinfo.dart
+│   │   ├── 10.14.1_my_page_myinfo_viewmode.dart
+│   │   ├── 10.14.2_my_page_myinfo_editmode.dart
+│   │   ├── 10.15_my_page_setting.dart
+│   │   ├── 10.2_my_page_notice_detail.dart
+│   │   ├── 10.3_my_page_event.dart
+│   │   ├── 10.4_my_page_event_detail.dart
+│   │   ├── 10.5_my_coupon.dart
+│   │   ├── 10.6_my_wishlist.dart
+│   │   ├── 10.7_my_page_orderlist.dart
+│   │   ├── 10.8_my_page_orderlist_detail.dart
+│   │   ├── 10.9_my_page_review.dart
+│   │   ├── 10.9.1_my_page_review_write_list.dart
+│   │   ├── 10.9.2_my_page_review_already_write_list.dart
+│   │   └── my_page_dio
+│   │       └── my_page_dio.dart
+│   ├── 11_shopping_cart
+│   │   ├── core
+│   │   │   ├── shopping_cart_dio
+│   │   │   │   └── my_shopping_cart_dio.dart
+│   │   │   └── shopping_cart_provider
+│   │   │       └── my_shopping_cart_state.dart
+│   │   └── pages
+│   │       ├── shopping_option_page
+│   │       │   ├── shopping_option_cubit.dart
+│   │       │   ├── shopping_option_page.dart
+│   │       │   ├── shopping_option_state.dart
+│   │       │   ├── shopping_option_state.freezed.dart
+│   │       │   └── widget
+│   │       │       └── shopping_Item_detail_card.dart
+│   │       └── shopping_page
+│   │           ├── shopping_cart_cubit.dart
+│   │           ├── shopping_cart_page.dart
+│   │           ├── shopping_cart_state.dart
+│   │           ├── shopping_cart_state.freezed.dart
+│   │           └── widget
+│   │               ├── 11.1_my_shopping_cart_storelistview.dart
+│   │               ├── 11.2_my_shopping_cart_menulistview.dart
+│   │               └── recommended_side_menu.dart
+│   ├── 12_naver_map
+│   │   ├── dio
+│   │   │   └── naver_map_dio.dart
+│   │   ├── page
+│   │   │   ├── bottom_sheet
+│   │   │   │   ├── bottom_panel.dart
+│   │   │   │   └── widget
+│   │   │   │       ├── long_panel.dart
+│   │   │   │       └── short_panel.dart
+│   │   │   ├── NaverMapApp_cubit.dart
+│   │   │   ├── NaverMapApp_page.dart
+│   │   │   ├── NaverMapApp_state.dart
+│   │   │   ├── NaverMapApp_state.freezed.dart
+│   │   │   └── widget
+│   │   │       ├── current_location_button.dart
+│   │   │       ├── market_widget.dart
+│   │   │       ├── naver_map_widget.dart
+│   │   │       ├── search_category_section.dart
+│   │   │       └── top_category.dart
+│   │   └── service
+│   │       ├── naver_map_overlay.dart
+│   │       └── naver_map_service.dart
+│   ├── 13_join_us
+│   │   ├── 13.1_join_us_detail_page.dart
+│   │   ├── 13.1.2_join_us_detail_comment.dart
+│   │   └── 13.2_join_us_request_page.dart
+│   ├── 14_affiliated_store
+│   │   ├── dio
+│   │   │   └── affiliated_dio.dart
+│   │   └── pages
+│   │       ├── affiliated_detail_page
+│   │       └── affiliated_page
+│   │           ├── affiliated_store_cubit.dart
+│   │           ├── affiliated_store_page.dart
+│   │           ├── affiliated_store_state.dart
+│   │           ├── affiliated_store_state.freezed.dart
+│   │           └── widgets
+│   │               └── store_container.dart
+│   ├── 15_invite_page
+│   │   ├── 15.1_invite_detail_page.dart
+│   │   └── 15.2_invite_container.dart
+│   ├── 2_login_page
+│   │   ├── 2_login.dart
+│   │   ├── 2.1_login_error.dart
+│   │   ├── login_dio
+│   │   │   └── login_dio.dart
+│   │   └── snsLogin
+│   │       ├── apple_login.dart
+│   │       ├── google_login.dart
+│   │       ├── kakao_login.dart
+│   │       └── naver_login.dart
+│   ├── 3_student_email_page
+│   │   ├── 3_student_identity_detail.dart
+│   │   ├── 3.1_student_email.dart
+│   │   ├── 3.2_student_email_check.dart
+│   │   ├── 3.3_error_dialog.dart
+│   │   ├── 3.4_success_dialog.dart
+│   │   ├── 3.5_email_error_dialog.dart
+│   │   ├── 3.6_students_success_screen.dart
+│   │   ├── 3.7_loginChageToSns
+│   │   │   ├── 3.7.1_students_snstoggle_naver.dart
+│   │   │   └── 3.7.2_students_snstoggle_kakao.dart
+│   │   └── 3.7_student_account_transfer_dialog.dart
+│   ├── 4_main_page
+│   │   ├── 4_main_screen.dart
+│   │   ├── 4.0_main_page.dart
+│   │   ├── 4.1_main_logo_searchbar.dart
+│   │   ├── 4.10_main_quest.dart
+│   │   ├── 4.10.1_main_quest_guest.dart
+│   │   ├── 4.11_join_us.dart
+│   │   ├── 4.2_main_adBanner.dart
+│   │   ├── 4.3_main_category.dart
+│   │   ├── 4.4_main_top12.dart
+│   │   ├── 4.4.1_main_top_12_container.dart
+│   │   ├── 4.5_main_new_store.dart
+│   │   ├── 4.6_main_best_review.dart
+│   │   ├── 4.6.1_main_best_review_contauner.dart
+│   │   ├── 4.7_main_hot_promotion.dart
+│   │   ├── 4.9_main_tourist_attractions.dart
+│   │   ├── 4.9.1_main_tourist_container.dart
+│   │   ├── components
+│   │   │   ├── main_Add_banner.dart
+│   │   │   ├── main_container.dart
+│   │   │   ├── main_SmoothPageIndicator.dart
+│   │   │   └── main_title_overview.dart
+│   │   ├── main_detail_page
+│   │   │   ├── 0_detail_join_us.dart
+│   │   │   ├── 1_detail_new_store.dart
+│   │   │   ├── 2_detail_top_12.dart
+│   │   │   ├── 3.1_detail_category_attraction.dart
+│   │   │   ├── 3.2_detail_category_eating.dart
+│   │   │   ├── 3.2_FoodAndBeveragePage
+│   │   │   │   └── service
+│   │   │   ├── 4_detail_quest.dart
+│   │   │   └── 5_detail_all_quest.dart
+│   │   └── main_dio
+│   │       └── main_screen_dio.dart
+│   ├── 5_search_page
+│   │   ├── 5.1.1_searcscreen.dart
+│   │   ├── 5.2_search_logic.dart
+│   │   ├── 5.2.1_search_logic_history.dart
+│   │   ├── 5.2.2_search_logic_keywords.dart
+│   │   ├── 5.2.3_search_logic_category.dart
+│   │   ├── 5.2.4_search_logic_trending.dart
+│   │   └── search_dio
+│   │       └── search_screen_dio.dart
+│   ├── 6_search_results_page
+│   │   ├── 6_search_results_screen.dart
+│   │   └── search_result_dio
+│   │       └── search_screen_dio.dart
+│   ├── 7_partnership_request_page
+│   │   ├── 0.partnership_dio
+│   │   │   └── partnership_screen_dio.dart
+│   │   ├── 1.partnership_mainPage
+│   │   │   ├── 7.1_partnership_request_screen.dart
+│   │   │   ├── 7.1.1._partnership_request_category.dart
+│   │   │   └── 7.1.2_partnership_request_customContainerBoard.dart
+│   │   ├── 2.partnership_formpage
+│   │   │   ├── 7.2_partnership_request_form.dart
+│   │   │   ├── 7.2.1_partnership_request_form_textfield.dart
+│   │   │   └── 7.2.2_partnership_request_form_button.dart
+│   │   ├── 3.partnership_formpage_detail
+│   │   │   ├── 7.3_partnership_search.dart
+│   │   │   ├── 7.3.1_partnership_searchScreen.dart
+│   │   │   └── 7.3.2_partnership_kakaoMap.dart
+│   │   ├── 4.partnership_detail_page
+│   │   │   ├── 7.4_partnership_detail_page.dart
+│   │   │   ├── 7.4.1_parthership_detail_comment.dart
+│   │   │   ├── 7.4.2_partnership_detail_title.dart
+│   │   │   └── 7.4.3_partnership_detail_userinfo.dart
+│   │   └── 7.5_parthership_request_change_form.dart
+│   ├── 8_detail_store
+│   │   ├── 8_detail_store.dart
+│   │   ├── 8.1_detail_store_title.dart
+│   │   ├── 8.2_detail_store_notice.dart
+│   │   ├── 8.3_detail_store_event.dart
+│   │   ├── 8.4_detail_store_appbarcategory.dart
+│   │   ├── 8.4.1_detail_store_appbarcategory_Icon.dart
+│   │   ├── 8.6_detail_coupons.dart
+│   │   ├── detail_store_dio
+│   │   │   └── detail_dio.dart
+│   │   └── menu_option
+│   │       ├── bottomSheet_menu_cubit.dart
+│   │       ├── bottomSheet_menu_page.dart
+│   │       ├── bottomSheet_menu_state.dart
+│   │       ├── bottomSheet_menu_state.freezed.dart
+│   │       └── widget
+│   │           ├── bottomSheet_classification_options.dart
+│   │           ├── bottomSheet_classification.dart
+│   │           └── bottomSheet_title.dart
+│   └── 9_store_review
+│       ├── 9.1_store_review_container.dart
+│       ├── 9.2_store_review_summary.dart
+│       ├── 9.3_store_reivew_photo_review.dart
+│       ├── 9.4_store_review_navigator.dart
+│       ├── 9.5_store_review_content.dart
+│       ├── 9.6_store_review_best_content_detail.dart
+│       ├── 9.6.1_store_review_content_detail.dart
+│       ├── 9.7_store_review_photo_review_detail.dart
+│       ├── 9.8_store_review_content_dialog.dart
+│       └── store_review_dio
+│           └── store_review_dio.dart
+└── repository
+    ├── affiliated_store_api
+    │   ├── affiliated_store_remote_repository.dart
+    │   ├── affiliated_store_remote_response.dart
+    │   ├── affiliated_store_remote_response.freezed.dart
+    │   ├── affiliated_store_remote_response.g.dart
+    │   ├── affiliated_store_remote_service.dart
+    │   └── affiliated_store_remote_source.dart
+    ├── cart_api
+    │   ├── cart_remote_repository.dart
+    │   ├── cart_reomte_response.dart
+    │   ├── cart_reomte_response.freezed.dart
+    │   ├── cart_reomte_response.g.dart
+    │   ├── cart_reomte_service.dart
+    │   └── cart_reomte_source.dart
+    ├── menu_option_api
+    │   ├── menu_option_remote_repository.dart
+    │   ├── menu_option_remote_response.dart
+    │   ├── menu_option_remote_response.freezed.dart
+    │   ├── menu_option_remote_response.g.dart
+    │   ├── menu_option_remote_service.dart
+    │   └── menu_option_remote_source.dart
+    ├── naver_map_api
+    │   ├── naver_map_local_source.dart
+    │   ├── naver_map_remote_repository.dart
+    │   ├── naver_map_remote_source.dart
+    │   ├── nver_map_response.dart
+    │   ├── nver_map_response.freezed.dart
+    │   └── nver_map_response.g.dart
+    └── start_api
+        ├── start_remote_local.dart
+        ├── start_remote_repository.dart
+        ├── start_remote_response.dart
+        ├── start_remote_response.freezed.dart
+        ├── start_remote_response.g.dart
+        └── start_reomte_source.dart''';
   static const String detailedLinesOutput =
       '''      53 lib/coreService/isar/naver_map/naver_map_data_service.dart
       39 lib/coreService/isar/naver_map/naver_map_category_service.dart

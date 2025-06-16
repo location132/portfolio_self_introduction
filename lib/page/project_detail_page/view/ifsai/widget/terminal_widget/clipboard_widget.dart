@@ -11,7 +11,7 @@ class ClipboardWidget extends StatefulWidget {
 }
 
 class _ClipboardWidgetState extends State<ClipboardWidget> {
-  final List<bool> _isCommandCopied = [false, false];
+  final List<bool> _isCommandCopied = [false, false, false];
 
   @override
   Widget build(BuildContext context) {

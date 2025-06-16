@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../../constants/text_constants.dart';
-import '../../ifsai_cubit.dart';
-import '../../ifsai_state.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_cubit.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_state.dart';
 
 class TerminalWidget extends StatefulWidget {
-  const TerminalWidget({super.key});
+  final IfsaiState state;
+  final IfsaiCubit cubit;
+  const TerminalWidget({super.key, required this.state, required this.cubit});
 
   @override
   State<TerminalWidget> createState() => _TerminalWidgetState();
@@ -44,7 +46,6 @@ class _TerminalWidgetState extends State<TerminalWidget>
 
     for (final line in lines) {
       if (line.contains('jung_won@Lee-Jungwon-MacBookAir IFSAI-Flutter %')) {
-        // 프롬프트는 흰색으로
         spans.add(
           TextSpan(
             text: '$line\n',
@@ -52,7 +53,6 @@ class _TerminalWidgetState extends State<TerminalWidget>
           ),
         );
       } else if (line.isNotEmpty) {
-        // 다른 출력은 녹색으로
         spans.add(
           TextSpan(
             text: '$line\n',
@@ -60,7 +60,6 @@ class _TerminalWidgetState extends State<TerminalWidget>
           ),
         );
       } else {
-        // 빈 줄
         spans.add(const TextSpan(text: '\n'));
       }
     }
@@ -82,7 +81,6 @@ class _TerminalWidgetState extends State<TerminalWidget>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 터미널 헤더
           Row(
             children: [
               Container(
@@ -121,72 +119,67 @@ class _TerminalWidgetState extends State<TerminalWidget>
 
           const SizedBox(height: 16),
 
-          // 터미널 출력
           Expanded(
             child: SingleChildScrollView(
-              child: BlocBuilder<IfsaiCubit, IfsaiState>(
-                builder: (context, state) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                          children: _buildTerminalText(state.terminalOutput),
-                          style: const TextStyle(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      children: _buildTerminalText(widget.state.terminalOutput),
+                      style: const TextStyle(
+                        fontFamily: 'monospace',
+                        fontSize: 16,
+                        height: 1.4,
+                      ),
+                    ),
+                  ),
+                  if (widget.state.isTerminalExecuting)
+                    const Row(
+                      children: [
+                        Text(
+                          TerminalTextConstants.executingText,
+                          style: TextStyle(
                             fontFamily: 'monospace',
+                            color: Colors.yellow,
                             fontSize: 16,
-                            height: 1.4,
                           ),
                         ),
-                      ),
-                      if (state.isTerminalExecuting)
-                        const Row(
-                          children: [
-                            Text(
-                              TerminalTextConstants.executingText,
-                              style: TextStyle(
-                                fontFamily: 'monospace',
-                                color: Colors.yellow,
-                                fontSize: 16,
-                              ),
+                        SizedBox(width: 8),
+                        SizedBox(
+                          width: 12,
+                          height: 12,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.yellow,
                             ),
-                            SizedBox(width: 8),
-                            SizedBox(
-                              width: 12,
-                              height: 12,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  Colors.yellow,
+                          ),
+                        ),
+                      ],
+                    ),
+                  if (!widget.state.isTerminalExecuting)
+                    Row(
+                      children: [
+                        AnimatedBuilder(
+                          animation: _cursorAnimation,
+                          builder: (context, child) {
+                            return Opacity(
+                              opacity: _cursorAnimation.value,
+                              child: const Text(
+                                '▎',
+                                style: TextStyle(
+                                  fontFamily: 'monospace',
+                                  color: Colors.white,
+                                  fontSize: 16,
                                 ),
                               ),
-                            ),
-                          ],
+                            );
+                          },
                         ),
-                      if (!state.isTerminalExecuting)
-                        Row(
-                          children: [
-                            AnimatedBuilder(
-                              animation: _cursorAnimation,
-                              builder: (context, child) {
-                                return Opacity(
-                                  opacity: _cursorAnimation.value,
-                                  child: const Text(
-                                    '▎',
-                                    style: TextStyle(
-                                      fontFamily: 'monospace',
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                    ],
-                  );
-                },
+                      ],
+                    ),
+                ],
               ),
             ),
           ),
@@ -194,50 +187,42 @@ class _TerminalWidgetState extends State<TerminalWidget>
           // 붙여넣기 버튼
           Align(
             alignment: Alignment.centerRight,
-            child: BlocBuilder<IfsaiCubit, IfsaiState>(
-              builder: (context, state) {
-                return GestureDetector(
-                  onTap:
-                      state.isTerminalExecuting
-                          ? null
-                          : () =>
-                              context
-                                  .read<IfsaiCubit>()
-                                  .pasteAndExecuteTerminalCommand(),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 8,
+            child: GestureDetector(
+              onTap:
+                  widget.state.isTerminalExecuting
+                      ? null
+                      : () =>
+                          context
+                              .read<IfsaiCubit>()
+                              .pasteAndExecuteTerminalCommand(),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
+                decoration: BoxDecoration(
+                  color:
+                      widget.state.isTerminalExecuting
+                          ? Colors.grey[600]
+                          : Colors.blue[700],
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.content_paste, color: Colors.white, size: 16),
+                    SizedBox(width: 8),
+                    Text(
+                      TerminalTextConstants.executeButtonText,
+                      style: TextStyle(
+                        fontFamily: 'monospace',
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
                     ),
-                    decoration: BoxDecoration(
-                      color:
-                          state.isTerminalExecuting
-                              ? Colors.grey[600]
-                              : Colors.blue[700],
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.content_paste,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          TerminalTextConstants.executeButtonText,
-                          style: TextStyle(
-                            fontFamily: 'monospace',
-                            color: Colors.white,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
+                  ],
+                ),
+              ),
             ),
           ),
         ],

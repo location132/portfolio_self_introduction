@@ -82,7 +82,10 @@ class IfsaiDetailView extends StatelessWidget {
                         cubit: context.read<IfsaiCubit>(),
                       ),
                       SizedBox(height: 200),
-                      TerminalView(),
+                      TerminalView(
+                        state: state,
+                        cubit: context.read<IfsaiCubit>(),
+                      ),
                       SizedBox(height: 200),
                       // Service 탭바 위젯
                       const ServiceTabsWidget(),

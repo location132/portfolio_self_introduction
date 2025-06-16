@@ -339,6 +339,8 @@ class IfsaiCubit extends Cubit<IfsaiState> {
       return TerminalTextConstants.totalLinesOutput;
     } else if (command.contains('find lib -name "*.dart" | xargs wc -l')) {
       return TerminalTextConstants.detailedLinesOutput;
+    } else if (command.contains('tree lib')) {
+      return TerminalTextConstants.treeLibOutput;
     }
     return TerminalTextConstants.invalidCommandMessage;
   }
