@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_cubit.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_state.dart';
-import 'terminal_widget.dart';
-import 'clipboard_widget.dart';
+import 'terminal_manager.dart';
 
 class TerminalView extends StatefulWidget {
   final IfsaiState state;
@@ -26,8 +25,11 @@ class _TerminalViewState extends State<TerminalView> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isDesktop = screenWidth > 1024;
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 40),
+      padding: EdgeInsets.symmetric(horizontal: isDesktop ? 40 : 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -36,19 +38,13 @@ class _TerminalViewState extends State<TerminalView> {
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 30,
+              fontSize: isDesktop ? 30 : 24,
               fontWeight: FontWeight.bold,
               height: 1.4,
             ),
           ),
-          SizedBox(height: 60),
-          Column(
-            children: [
-              ClipboardWidget(),
-              SizedBox(height: 20),
-              TerminalWidget(state: widget.state, cubit: widget.cubit),
-            ],
-          ),
+          SizedBox(height: isDesktop ? 60 : 40),
+          TerminalManager(state: widget.state, cubit: widget.cubit),
         ],
       ),
     );
