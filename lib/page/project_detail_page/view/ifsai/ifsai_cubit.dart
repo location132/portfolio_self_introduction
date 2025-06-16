@@ -352,4 +352,22 @@ class IfsaiCubit extends Cubit<IfsaiState> {
     state.scrollController?.dispose();
     return super.close();
   }
+
+  // -- 사용자가 스크롤 했을 시 인터렉션 효과 나오게 진행 = 6월 16일 시작
+
+  // 1번 프로젝트 컨텐츠 카드
+  void onProjectCardVisibilityChanged() {
+    emit(state.copyWith(isProjectCard1Visible: true));
+  }
+
+  // 2번 프로젝트 컨텐츠 카드
+  void onProjectCard2VisibilityChanged() {
+    emit(state.copyWith(isProjectCard2Visible: true));
+  }
+
+  // 3번 프로젝트 컨텐츠 카드
+  void onProjectCard3VisibilityChanged() {
+    emit(state.copyWith(isProjectCard3Visible: true));
+    print('check ==> point');
+  }
 }

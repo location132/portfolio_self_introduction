@@ -6,8 +6,8 @@ import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/if
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_state.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/background/bg_view.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/faq_widget/faq_view.dart';
-import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_content2.dart';
-import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_contents.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_content/project_content2.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_content/project_contents.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_detail_section.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/project_player.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/widget/service_tabs_widget.dart';
@@ -70,19 +70,16 @@ class IfsaiDetailView extends StatelessWidget {
                             context.read<IfsaiCubit>().setPlayerVisible(false);
                           }
                         },
-                        child: ProjectContents(state: state),
+                        child: ProjectContents(
+                          state: state,
+                          cubit: context.read<IfsaiCubit>(),
+                        ),
                       ),
 
                       SizedBox(height: 200),
-                      VisibilityDetector(
-                        key: const Key('project-content2-view'),
-                        onVisibilityChanged: (VisibilityInfo info) {
-                          if (info.visibleFraction > 0.1 &&
-                              !state.isPlayerVisible) {
-                            context.read<IfsaiCubit>().setPlayerVisible(false);
-                          }
-                        },
-                        child: ProjectContent2(),
+                      ProjectContent2(
+                        isProjectCard3Visible: state.isProjectCard3Visible,
+                        cubit: context.read<IfsaiCubit>(),
                       ),
                       SizedBox(height: 200),
                       TerminalView(),
