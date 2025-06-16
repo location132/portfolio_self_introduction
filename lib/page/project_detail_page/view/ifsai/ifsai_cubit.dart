@@ -57,6 +57,8 @@ class IfsaiCubit extends Cubit<IfsaiState> {
     );
 
     await videoController.initialize();
+    await videoController.setVolume(0.0);
+
     emit(
       state.copyWith(
         backgroundVideoController: videoController,
@@ -159,6 +161,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
     );
 
     videoController.addListener(_backgroundVideoListener);
+    await videoController.setVolume(0.0);
     await videoController.play();
   }
 

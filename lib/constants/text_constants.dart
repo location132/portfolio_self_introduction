@@ -205,7 +205,8 @@ class TitleTextConstants {
   static const List<Map<String, String>> faqData = [
     {
       'question': '깃 허브 주소가 있나요?',
-      'answer': '잎 사이 프로젝트의 깃 허브 주소는 https://github.com/username/ifsai 입니다',
+      'answer':
+          '잎 사이 프로젝트의 깃 허브 주소는 https://github.com/location132/IFSAI 입니다.\n\n 위 레포지토리에는 모든 것이 올라간 것이 아니며,\n모든 파일이 올라가는 곳은 서버와 연결이 되어있어 따로 공개하겠습니다.',
     },
     {
       'question': '프로젝트는 배포를 아직 못한건가요?',

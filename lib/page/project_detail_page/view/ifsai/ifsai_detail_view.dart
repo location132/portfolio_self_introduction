@@ -91,7 +91,8 @@ class IfsaiDetailView extends StatelessWidget {
                       VisibilityDetector(
                         key: const Key('service-tab-view'),
                         onVisibilityChanged: (info) {
-                          if (info.visibleFraction > 0.5) {
+                          if (info.visibleFraction > 0.5 &&
+                              !state.isServiceTabVisible) {
                             context
                                 .read<IfsaiCubit>()
                                 .onServiceTabVisibilityChanged();
@@ -147,7 +148,6 @@ class IfsaiDetailView extends StatelessWidget {
                         },
                         child: LibrarySection(state: state),
                       ),
-
                       SizedBox(height: 200),
 
                       // FAQ

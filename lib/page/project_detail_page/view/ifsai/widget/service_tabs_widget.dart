@@ -182,7 +182,7 @@ class _ServiceTabsWidgetState extends State<ServiceTabsWidget>
                 child: WidgetAnimation(
                   isStart: widget.isServiceTabVisible,
                   beginDy: 0.1,
-
+                  duration: 1000,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
