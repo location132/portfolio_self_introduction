@@ -88,7 +88,19 @@ class IfsaiDetailView extends StatelessWidget {
                       ),
                       SizedBox(height: 200),
                       // Service 탭바 위젯
-                      const ServiceTabsWidget(),
+                      VisibilityDetector(
+                        key: const Key('service-tab-view'),
+                        onVisibilityChanged: (info) {
+                          if (info.visibleFraction > 0.5) {
+                            context
+                                .read<IfsaiCubit>()
+                                .onServiceTabVisibilityChanged();
+                          }
+                        },
+                        child: ServiceTabsWidget(
+                          isServiceTabVisible: state.isServiceTabVisible,
+                        ),
+                      ),
                       SizedBox(height: 200),
                       // 백그라운드 섹션
                       VisibilityDetector(

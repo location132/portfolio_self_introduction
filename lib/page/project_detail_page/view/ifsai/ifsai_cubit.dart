@@ -370,6 +370,10 @@ class IfsaiCubit extends Cubit<IfsaiState> {
   // 3번 프로젝트 컨텐츠 카드
   void onProjectCard3VisibilityChanged() {
     emit(state.copyWith(isProjectCard3Visible: true));
-    print('check ==> point');
+  }
+
+  // 서비스 위젯
+  void onServiceTabVisibilityChanged() {
+    emit(state.copyWith(isServiceTabVisible: true));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:self_introduction_flutter/components/widget/animation/widget_animation.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/animation/service_tab_animation.dart';
 
 class ServiceData {
@@ -14,7 +15,8 @@ class ServiceData {
 }
 
 class ServiceTabsWidget extends StatefulWidget {
-  const ServiceTabsWidget({super.key});
+  final bool isServiceTabVisible;
+  const ServiceTabsWidget({super.key, required this.isServiceTabVisible});
 
   @override
   State<ServiceTabsWidget> createState() => _ServiceTabsWidgetState();
@@ -144,7 +146,7 @@ class _ServiceTabsWidgetState extends State<ServiceTabsWidget>
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Text(
-            'UI는 누구나 구현해요\n제 강점은 Service 파일이에요',
+            '누구나 구현하는 UI\n나의 강점은 Service파일로부터',
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,
@@ -177,36 +179,42 @@ class _ServiceTabsWidgetState extends State<ServiceTabsWidget>
 
               SizedBox(
                 width: 400,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    SizedBox(height: 140),
-                    Text(
-                      'Cubit을 도와주는 최고의 기술.',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        height: 1.6,
+                child: WidgetAnimation(
+                  isStart: widget.isServiceTabVisible,
+                  beginDy: 0.1,
+
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      SizedBox(height: 140),
+                      Text(
+                        'Cubit을 도와주는 최고의 기술.',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          height: 1.6,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 74),
-                    Text(
-                      'UI와 계산을 도와주는 함수, 앱을 서포트하는 서비스의 조합.\n'
-                      '싱글톤 패턴을 기반으로 구성되어 있어 어느 위치에서든\n'
-                      '필요한 기능에 접근할 수 있습니다.',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        height: 1.6,
+                      SizedBox(height: 74),
+                      Text(
+                        'UI와 계산을 도와주는 함수, 앱을 서포트하는 서비스의 조합.\n'
+                        '싱글톤 패턴을 기반으로 구성되어 있어 어느 위치에서든\n'
+                        '필요한 기능에 접근할 수 있습니다.',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          height: 1.6,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 140),
-                    Text(
-                      '- 함수를 구현하는 Cubit과 Service파일은 독립적인 관계입니다.',
-                      style: TextStyle(color: Colors.grey, fontSize: 14),
-                    ),
-                  ],
+                      SizedBox(height: 140),
+                      Text(
+                        '- 함수를 구현하는 Cubit과 Service파일은 독립적인 관계입니다.',
+                        style: TextStyle(color: Colors.grey, fontSize: 14),
+                      ),
+                      SizedBox(height: 80),
+                    ],
+                  ),
                 ),
               ),
             ],

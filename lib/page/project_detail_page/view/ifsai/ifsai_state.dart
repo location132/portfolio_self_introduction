@@ -51,5 +51,6 @@ class IfsaiState with _$IfsaiState {
     @Default(false) bool isProjectCard1Visible,
     @Default(false) bool isProjectCard2Visible,
     @Default(false) bool isProjectCard3Visible,
+    @Default(false) bool isServiceTabVisible,
   }) = _IfsaiState;
 }

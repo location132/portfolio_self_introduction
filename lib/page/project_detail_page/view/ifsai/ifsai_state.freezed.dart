@@ -56,6 +56,7 @@ mixin _$IfsaiState {
   bool get isProjectCard1Visible => throw _privateConstructorUsedError;
   bool get isProjectCard2Visible => throw _privateConstructorUsedError;
   bool get isProjectCard3Visible => throw _privateConstructorUsedError;
+  bool get isServiceTabVisible => throw _privateConstructorUsedError;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.
@@ -103,6 +104,7 @@ abstract class $IfsaiStateCopyWith<$Res> {
     bool isProjectCard1Visible,
     bool isProjectCard2Visible,
     bool isProjectCard3Visible,
+    bool isServiceTabVisible,
   });
 }
 
@@ -152,6 +154,7 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
     Object? isProjectCard1Visible = null,
     Object? isProjectCard2Visible = null,
     Object? isProjectCard3Visible = null,
+    Object? isServiceTabVisible = null,
   }) {
     return _then(
       _value.copyWith(
@@ -310,6 +313,11 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
                     ? _value.isProjectCard3Visible
                     : isProjectCard3Visible // ignore: cast_nullable_to_non_nullable
                         as bool,
+            isServiceTabVisible:
+                null == isServiceTabVisible
+                    ? _value.isServiceTabVisible
+                    : isServiceTabVisible // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -357,6 +365,7 @@ abstract class _$$IfsaiStateImplCopyWith<$Res>
     bool isProjectCard1Visible,
     bool isProjectCard2Visible,
     bool isProjectCard3Visible,
+    bool isServiceTabVisible,
   });
 }
 
@@ -405,6 +414,7 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
     Object? isProjectCard1Visible = null,
     Object? isProjectCard2Visible = null,
     Object? isProjectCard3Visible = null,
+    Object? isServiceTabVisible = null,
   }) {
     return _then(
       _$IfsaiStateImpl(
@@ -563,6 +573,11 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
                 ? _value.isProjectCard3Visible
                 : isProjectCard3Visible // ignore: cast_nullable_to_non_nullable
                     as bool,
+        isServiceTabVisible:
+            null == isServiceTabVisible
+                ? _value.isServiceTabVisible
+                : isServiceTabVisible // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -603,6 +618,7 @@ class _$IfsaiStateImpl implements _IfsaiState {
     this.isProjectCard1Visible = false,
     this.isProjectCard2Visible = false,
     this.isProjectCard3Visible = false,
+    this.isServiceTabVisible = false,
   });
 
   @override
@@ -702,10 +718,13 @@ class _$IfsaiStateImpl implements _IfsaiState {
   @override
   @JsonKey()
   final bool isProjectCard3Visible;
+  @override
+  @JsonKey()
+  final bool isServiceTabVisible;
 
   @override
   String toString() {
-    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText, isPlayerLongText: $isPlayerLongText, isPlayerWhiteBackground: $isPlayerWhiteBackground, backgroundVideoController: $backgroundVideoController, backgroundFadeController: $backgroundFadeController, isBackgroundVideoCompleted: $isBackgroundVideoCompleted, isBackgroundVideoInitialized: $isBackgroundVideoInitialized, isBackgroundVisible: $isBackgroundVisible, hasBackgroundStartedPlaying: $hasBackgroundStartedPlaying, isLibraryCardsAnimationStarted: $isLibraryCardsAnimationStarted, isLibraryDetailVisible: $isLibraryDetailVisible, currentFaqTitleIndex: $currentFaqTitleIndex, isInFaqSection: $isInFaqSection, terminalOutput: $terminalOutput, isTerminalExecuting: $isTerminalExecuting, isProjectCard1Visible: $isProjectCard1Visible, isProjectCard2Visible: $isProjectCard2Visible, isProjectCard3Visible: $isProjectCard3Visible)';
+    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText, isPlayerLongText: $isPlayerLongText, isPlayerWhiteBackground: $isPlayerWhiteBackground, backgroundVideoController: $backgroundVideoController, backgroundFadeController: $backgroundFadeController, isBackgroundVideoCompleted: $isBackgroundVideoCompleted, isBackgroundVideoInitialized: $isBackgroundVideoInitialized, isBackgroundVisible: $isBackgroundVisible, hasBackgroundStartedPlaying: $hasBackgroundStartedPlaying, isLibraryCardsAnimationStarted: $isLibraryCardsAnimationStarted, isLibraryDetailVisible: $isLibraryDetailVisible, currentFaqTitleIndex: $currentFaqTitleIndex, isInFaqSection: $isInFaqSection, terminalOutput: $terminalOutput, isTerminalExecuting: $isTerminalExecuting, isProjectCard1Visible: $isProjectCard1Visible, isProjectCard2Visible: $isProjectCard2Visible, isProjectCard3Visible: $isProjectCard3Visible, isServiceTabVisible: $isServiceTabVisible)';
   }
 
   @override
@@ -802,7 +821,9 @@ class _$IfsaiStateImpl implements _IfsaiState {
             (identical(other.isProjectCard2Visible, isProjectCard2Visible) ||
                 other.isProjectCard2Visible == isProjectCard2Visible) &&
             (identical(other.isProjectCard3Visible, isProjectCard3Visible) ||
-                other.isProjectCard3Visible == isProjectCard3Visible));
+                other.isProjectCard3Visible == isProjectCard3Visible) &&
+            (identical(other.isServiceTabVisible, isServiceTabVisible) ||
+                other.isServiceTabVisible == isServiceTabVisible));
   }
 
   @override
@@ -839,6 +860,7 @@ class _$IfsaiStateImpl implements _IfsaiState {
     isProjectCard1Visible,
     isProjectCard2Visible,
     isProjectCard3Visible,
+    isServiceTabVisible,
   ]);
 
   /// Create a copy of IfsaiState
@@ -883,6 +905,7 @@ abstract class _IfsaiState implements IfsaiState {
     final bool isProjectCard1Visible,
     final bool isProjectCard2Visible,
     final bool isProjectCard3Visible,
+    final bool isServiceTabVisible,
   }) = _$IfsaiStateImpl;
 
   @override
@@ -947,6 +970,8 @@ abstract class _IfsaiState implements IfsaiState {
   bool get isProjectCard2Visible;
   @override
   bool get isProjectCard3Visible;
+  @override
+  bool get isServiceTabVisible;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.

@@ -526,7 +526,7 @@ class MainPageTextConstants {
 }
 
 class TerminalTextConstants {
-  static const String terminalTitle = '파일 구조\n어떻게 작성했는지 확인하실 수 있어요';
+  static const String terminalTitle = '명확한 책임 분리\n파일구조부터 차별화할 수 있도록';
   static const String clipboardTitle = '명령어 클립보드';
   static const String terminalHeader = 'Terminal';
   static const String copyButtonText = '복사';
