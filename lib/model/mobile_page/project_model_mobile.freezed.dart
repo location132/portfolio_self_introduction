@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'project_model.dart';
+part of 'project_model_mobile.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 );
 
 /// @nodoc
-mixin _$ProjectModel {
+mixin _$ProjectModelWithMobile {
   bool get isBackGroundAniStart => throw _privateConstructorUsedError;
   bool get isTitleAniStart => throw _privateConstructorUsedError;
   bool get isProjectItemsAniStart => throw _privateConstructorUsedError;
@@ -24,19 +24,19 @@ mixin _$ProjectModel {
   bool get isProjectDetailAni => throw _privateConstructorUsedError;
   String get selectedProjectCategory => throw _privateConstructorUsedError;
 
-  /// Create a copy of ProjectModel
+  /// Create a copy of ProjectModelWithMobile
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProjectModelCopyWith<ProjectModel> get copyWith =>
+  $ProjectModelWithMobileCopyWith<ProjectModelWithMobile> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProjectModelCopyWith<$Res> {
-  factory $ProjectModelCopyWith(
-    ProjectModel value,
-    $Res Function(ProjectModel) then,
-  ) = _$ProjectModelCopyWithImpl<$Res, ProjectModel>;
+abstract class $ProjectModelWithMobileCopyWith<$Res> {
+  factory $ProjectModelWithMobileCopyWith(
+    ProjectModelWithMobile value,
+    $Res Function(ProjectModelWithMobile) then,
+  ) = _$ProjectModelWithMobileCopyWithImpl<$Res, ProjectModelWithMobile>;
   @useResult
   $Res call({
     bool isBackGroundAniStart,
@@ -49,16 +49,19 @@ abstract class $ProjectModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProjectModelCopyWithImpl<$Res, $Val extends ProjectModel>
-    implements $ProjectModelCopyWith<$Res> {
-  _$ProjectModelCopyWithImpl(this._value, this._then);
+class _$ProjectModelWithMobileCopyWithImpl<
+  $Res,
+  $Val extends ProjectModelWithMobile
+>
+    implements $ProjectModelWithMobileCopyWith<$Res> {
+  _$ProjectModelWithMobileCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ProjectModel
+  /// Create a copy of ProjectModelWithMobile
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -109,12 +112,12 @@ class _$ProjectModelCopyWithImpl<$Res, $Val extends ProjectModel>
 }
 
 /// @nodoc
-abstract class _$$ProjectModelImplCopyWith<$Res>
-    implements $ProjectModelCopyWith<$Res> {
-  factory _$$ProjectModelImplCopyWith(
-    _$ProjectModelImpl value,
-    $Res Function(_$ProjectModelImpl) then,
-  ) = __$$ProjectModelImplCopyWithImpl<$Res>;
+abstract class _$$ProjectModelWithMobileImplCopyWith<$Res>
+    implements $ProjectModelWithMobileCopyWith<$Res> {
+  factory _$$ProjectModelWithMobileImplCopyWith(
+    _$ProjectModelWithMobileImpl value,
+    $Res Function(_$ProjectModelWithMobileImpl) then,
+  ) = __$$ProjectModelWithMobileImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({
@@ -128,15 +131,16 @@ abstract class _$$ProjectModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ProjectModelImplCopyWithImpl<$Res>
-    extends _$ProjectModelCopyWithImpl<$Res, _$ProjectModelImpl>
-    implements _$$ProjectModelImplCopyWith<$Res> {
-  __$$ProjectModelImplCopyWithImpl(
-    _$ProjectModelImpl _value,
-    $Res Function(_$ProjectModelImpl) _then,
+class __$$ProjectModelWithMobileImplCopyWithImpl<$Res>
+    extends
+        _$ProjectModelWithMobileCopyWithImpl<$Res, _$ProjectModelWithMobileImpl>
+    implements _$$ProjectModelWithMobileImplCopyWith<$Res> {
+  __$$ProjectModelWithMobileImplCopyWithImpl(
+    _$ProjectModelWithMobileImpl _value,
+    $Res Function(_$ProjectModelWithMobileImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of ProjectModel
+  /// Create a copy of ProjectModelWithMobile
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -149,7 +153,7 @@ class __$$ProjectModelImplCopyWithImpl<$Res>
     Object? selectedProjectCategory = null,
   }) {
     return _then(
-      _$ProjectModelImpl(
+      _$ProjectModelWithMobileImpl(
         isBackGroundAniStart:
             null == isBackGroundAniStart
                 ? _value.isBackGroundAniStart
@@ -187,8 +191,8 @@ class __$$ProjectModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProjectModelImpl implements _ProjectModel {
-  const _$ProjectModelImpl({
+class _$ProjectModelWithMobileImpl implements _ProjectModelWithMobile {
+  const _$ProjectModelWithMobileImpl({
     this.isBackGroundAniStart = false,
     this.isTitleAniStart = false,
     this.isProjectItemsAniStart = false,
@@ -218,14 +222,14 @@ class _$ProjectModelImpl implements _ProjectModel {
 
   @override
   String toString() {
-    return 'ProjectModel(isBackGroundAniStart: $isBackGroundAniStart, isTitleAniStart: $isTitleAniStart, isProjectItemsAniStart: $isProjectItemsAniStart, isProjectDetailVisible: $isProjectDetailVisible, isProjectDetailAni: $isProjectDetailAni, selectedProjectCategory: $selectedProjectCategory)';
+    return 'ProjectModelWithMobile(isBackGroundAniStart: $isBackGroundAniStart, isTitleAniStart: $isTitleAniStart, isProjectItemsAniStart: $isProjectItemsAniStart, isProjectDetailVisible: $isProjectDetailVisible, isProjectDetailAni: $isProjectDetailAni, selectedProjectCategory: $selectedProjectCategory)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectModelImpl &&
+            other is _$ProjectModelWithMobileImpl &&
             (identical(other.isBackGroundAniStart, isBackGroundAniStart) ||
                 other.isBackGroundAniStart == isBackGroundAniStart) &&
             (identical(other.isTitleAniStart, isTitleAniStart) ||
@@ -254,24 +258,28 @@ class _$ProjectModelImpl implements _ProjectModel {
     selectedProjectCategory,
   );
 
-  /// Create a copy of ProjectModel
+  /// Create a copy of ProjectModelWithMobile
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProjectModelImplCopyWith<_$ProjectModelImpl> get copyWith =>
-      __$$ProjectModelImplCopyWithImpl<_$ProjectModelImpl>(this, _$identity);
+  _$$ProjectModelWithMobileImplCopyWith<_$ProjectModelWithMobileImpl>
+  get copyWith =>
+      __$$ProjectModelWithMobileImplCopyWithImpl<_$ProjectModelWithMobileImpl>(
+        this,
+        _$identity,
+      );
 }
 
-abstract class _ProjectModel implements ProjectModel {
-  const factory _ProjectModel({
+abstract class _ProjectModelWithMobile implements ProjectModelWithMobile {
+  const factory _ProjectModelWithMobile({
     final bool isBackGroundAniStart,
     final bool isTitleAniStart,
     final bool isProjectItemsAniStart,
     final bool isProjectDetailVisible,
     final bool isProjectDetailAni,
     final String selectedProjectCategory,
-  }) = _$ProjectModelImpl;
+  }) = _$ProjectModelWithMobileImpl;
 
   @override
   bool get isBackGroundAniStart;
@@ -286,10 +294,10 @@ abstract class _ProjectModel implements ProjectModel {
   @override
   String get selectedProjectCategory;
 
-  /// Create a copy of ProjectModel
+  /// Create a copy of ProjectModelWithMobile
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProjectModelImplCopyWith<_$ProjectModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ProjectModelWithMobileImplCopyWith<_$ProjectModelWithMobileImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }

@@ -24,7 +24,7 @@ mixin _$MobileState {
   DetailMeModel get detailMeModel => throw _privateConstructorUsedError;
   ChapterModel get chapterModel => throw _privateConstructorUsedError;
   SkillModel get skillModel => throw _privateConstructorUsedError;
-  ProjectModel get projectModel => throw _privateConstructorUsedError;
+  ProjectModelWithMobile get projectModel => throw _privateConstructorUsedError;
   String get isPlayerText => throw _privateConstructorUsedError;
   bool get isBackGroundAniStart => throw _privateConstructorUsedError;
 
@@ -50,7 +50,7 @@ abstract class $MobileStateCopyWith<$Res> {
     DetailMeModel detailMeModel,
     ChapterModel chapterModel,
     SkillModel skillModel,
-    ProjectModel projectModel,
+    ProjectModelWithMobile projectModel,
     String isPlayerText,
     bool isBackGroundAniStart,
   });
@@ -62,7 +62,7 @@ abstract class $MobileStateCopyWith<$Res> {
   $DetailMeModelCopyWith<$Res> get detailMeModel;
   $ChapterModelCopyWith<$Res> get chapterModel;
   $SkillModelCopyWith<$Res> get skillModel;
-  $ProjectModelCopyWith<$Res> get projectModel;
+  $ProjectModelWithMobileCopyWith<$Res> get projectModel;
 }
 
 /// @nodoc
@@ -132,7 +132,7 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
                 null == projectModel
                     ? _value.projectModel
                     : projectModel // ignore: cast_nullable_to_non_nullable
-                        as ProjectModel,
+                        as ProjectModelWithMobile,
             isPlayerText:
                 null == isPlayerText
                     ? _value.isPlayerText
@@ -222,8 +222,8 @@ class _$MobileStateCopyWithImpl<$Res, $Val extends MobileState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ProjectModelCopyWith<$Res> get projectModel {
-    return $ProjectModelCopyWith<$Res>(_value.projectModel, (value) {
+  $ProjectModelWithMobileCopyWith<$Res> get projectModel {
+    return $ProjectModelWithMobileCopyWith<$Res>(_value.projectModel, (value) {
       return _then(_value.copyWith(projectModel: value) as $Val);
     });
   }
@@ -246,7 +246,7 @@ abstract class _$$MobileStateImplCopyWith<$Res>
     DetailMeModel detailMeModel,
     ChapterModel chapterModel,
     SkillModel skillModel,
-    ProjectModel projectModel,
+    ProjectModelWithMobile projectModel,
     String isPlayerText,
     bool isBackGroundAniStart,
   });
@@ -266,7 +266,7 @@ abstract class _$$MobileStateImplCopyWith<$Res>
   @override
   $SkillModelCopyWith<$Res> get skillModel;
   @override
-  $ProjectModelCopyWith<$Res> get projectModel;
+  $ProjectModelWithMobileCopyWith<$Res> get projectModel;
 }
 
 /// @nodoc
@@ -335,7 +335,7 @@ class __$$MobileStateImplCopyWithImpl<$Res>
             null == projectModel
                 ? _value.projectModel
                 : projectModel // ignore: cast_nullable_to_non_nullable
-                    as ProjectModel,
+                    as ProjectModelWithMobile,
         isPlayerText:
             null == isPlayerText
                 ? _value.isPlayerText
@@ -362,7 +362,7 @@ class _$MobileStateImpl implements _MobileState {
     this.detailMeModel = const DetailMeModel(),
     this.chapterModel = const ChapterModel(),
     this.skillModel = const SkillModel(),
-    this.projectModel = const ProjectModel(),
+    this.projectModel = const ProjectModelWithMobile(),
     this.isPlayerText = MainPageTextConstants.defaultPlayerText,
     this.isBackGroundAniStart = false,
   });
@@ -390,7 +390,7 @@ class _$MobileStateImpl implements _MobileState {
   final SkillModel skillModel;
   @override
   @JsonKey()
-  final ProjectModel projectModel;
+  final ProjectModelWithMobile projectModel;
   @override
   @JsonKey()
   final String isPlayerText;
@@ -463,7 +463,7 @@ abstract class _MobileState implements MobileState {
     final DetailMeModel detailMeModel,
     final ChapterModel chapterModel,
     final SkillModel skillModel,
-    final ProjectModel projectModel,
+    final ProjectModelWithMobile projectModel,
     final String isPlayerText,
     final bool isBackGroundAniStart,
   }) = _$MobileStateImpl;
@@ -483,7 +483,7 @@ abstract class _MobileState implements MobileState {
   @override
   SkillModel get skillModel;
   @override
-  ProjectModel get projectModel;
+  ProjectModelWithMobile get projectModel;
   @override
   String get isPlayerText;
   @override

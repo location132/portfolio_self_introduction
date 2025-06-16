@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
-import 'package:self_introduction_flutter/model/mobile_page/project_model.dart';
-import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
+import 'package:self_introduction_flutter/model/mobile_page/project_model_mobile.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/project_view/project_category_section.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/project_view/project_detail_content.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/project_view/animation/project_detail_animation.dart';
 
-class ProjectPage extends StatefulWidget {
-  final ProjectModel state;
-  final MobileCubit cubit;
-  const ProjectPage({super.key, required this.state, required this.cubit});
+class ProjectPageWithMobile extends StatefulWidget {
+  final ProjectModelWithMobile state;
+  final Function(String) showProjectDetail;
+  const ProjectPageWithMobile({
+    super.key,
+    required this.state,
+    required this.showProjectDetail,
+  });
 
   @override
-  State<ProjectPage> createState() => _ProjectPageState();
+  State<ProjectPageWithMobile> createState() => _ProjectPageState();
 }
 
-class _ProjectPageState extends State<ProjectPage>
+class _ProjectPageState extends State<ProjectPageWithMobile>
     with TickerProviderStateMixin {
   late ProjectDetailAnimation _detailAnimation;
 
@@ -27,7 +30,7 @@ class _ProjectPageState extends State<ProjectPage>
   }
 
   @override
-  void didUpdateWidget(ProjectPage oldWidget) {
+  void didUpdateWidget(ProjectPageWithMobile oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.state.isProjectDetailAni != widget.state.isProjectDetailAni) {
@@ -71,7 +74,7 @@ class _ProjectPageState extends State<ProjectPage>
                         description: ProjectTextConstants.flutterDescription,
                         projectCount: ProjectTextConstants.flutterProjectCount,
                         onButtonPressed: () {
-                          widget.cubit.showProjectDetail('flutter');
+                          widget.showProjectDetail('flutter');
                         },
                         isAnimationStart: widget.state.isProjectItemsAniStart,
                         animationDelay: 0,
@@ -88,7 +91,7 @@ class _ProjectPageState extends State<ProjectPage>
                         projectCount:
                             ProjectTextConstants.flutterRiveProjectCount,
                         onButtonPressed: () {
-                          widget.cubit.showProjectDetail('flutter_rive');
+                          widget.showProjectDetail('flutter_rive');
                         },
                         isAnimationStart: widget.state.isProjectItemsAniStart,
                         animationDelay: 200,
@@ -104,7 +107,7 @@ class _ProjectPageState extends State<ProjectPage>
                             ProjectTextConstants.futureProjectDescription,
                         projectCount: ProjectTextConstants.futureProjectCount,
                         onButtonPressed: () {
-                          widget.cubit.showProjectDetail('future');
+                          widget.showProjectDetail('future');
                         },
                         isAnimationStart: widget.state.isProjectItemsAniStart,
                         animationDelay: 400,

@@ -19,6 +19,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProjectsMainState {
   // 프로젝트 모델
   ProjectModel get projectModel =>
+      throw _privateConstructorUsedError; //프로젝트 모델 모바일
+  ProjectModelWithMobile get projectModelWithMobile =>
       throw _privateConstructorUsedError; //네비게이션 애니메이션 상태
   bool get isNaviAniStart => throw _privateConstructorUsedError;
 
@@ -36,9 +38,14 @@ abstract class $ProjectsMainStateCopyWith<$Res> {
     $Res Function(ProjectsMainState) then,
   ) = _$ProjectsMainStateCopyWithImpl<$Res, ProjectsMainState>;
   @useResult
-  $Res call({ProjectModel projectModel, bool isNaviAniStart});
+  $Res call({
+    ProjectModel projectModel,
+    ProjectModelWithMobile projectModelWithMobile,
+    bool isNaviAniStart,
+  });
 
   $ProjectModelCopyWith<$Res> get projectModel;
+  $ProjectModelWithMobileCopyWith<$Res> get projectModelWithMobile;
 }
 
 /// @nodoc
@@ -55,7 +62,11 @@ class _$ProjectsMainStateCopyWithImpl<$Res, $Val extends ProjectsMainState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? projectModel = null, Object? isNaviAniStart = null}) {
+  $Res call({
+    Object? projectModel = null,
+    Object? projectModelWithMobile = null,
+    Object? isNaviAniStart = null,
+  }) {
     return _then(
       _value.copyWith(
             projectModel:
@@ -63,6 +74,11 @@ class _$ProjectsMainStateCopyWithImpl<$Res, $Val extends ProjectsMainState>
                     ? _value.projectModel
                     : projectModel // ignore: cast_nullable_to_non_nullable
                         as ProjectModel,
+            projectModelWithMobile:
+                null == projectModelWithMobile
+                    ? _value.projectModelWithMobile
+                    : projectModelWithMobile // ignore: cast_nullable_to_non_nullable
+                        as ProjectModelWithMobile,
             isNaviAniStart:
                 null == isNaviAniStart
                     ? _value.isNaviAniStart
@@ -82,6 +98,19 @@ class _$ProjectsMainStateCopyWithImpl<$Res, $Val extends ProjectsMainState>
       return _then(_value.copyWith(projectModel: value) as $Val);
     });
   }
+
+  /// Create a copy of ProjectsMainState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProjectModelWithMobileCopyWith<$Res> get projectModelWithMobile {
+    return $ProjectModelWithMobileCopyWith<$Res>(
+      _value.projectModelWithMobile,
+      (value) {
+        return _then(_value.copyWith(projectModelWithMobile: value) as $Val);
+      },
+    );
+  }
 }
 
 /// @nodoc
@@ -93,10 +122,16 @@ abstract class _$$ProjectsMainStateImplCopyWith<$Res>
   ) = __$$ProjectsMainStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ProjectModel projectModel, bool isNaviAniStart});
+  $Res call({
+    ProjectModel projectModel,
+    ProjectModelWithMobile projectModelWithMobile,
+    bool isNaviAniStart,
+  });
 
   @override
   $ProjectModelCopyWith<$Res> get projectModel;
+  @override
+  $ProjectModelWithMobileCopyWith<$Res> get projectModelWithMobile;
 }
 
 /// @nodoc
@@ -112,7 +147,11 @@ class __$$ProjectsMainStateImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? projectModel = null, Object? isNaviAniStart = null}) {
+  $Res call({
+    Object? projectModel = null,
+    Object? projectModelWithMobile = null,
+    Object? isNaviAniStart = null,
+  }) {
     return _then(
       _$ProjectsMainStateImpl(
         projectModel:
@@ -120,6 +159,11 @@ class __$$ProjectsMainStateImplCopyWithImpl<$Res>
                 ? _value.projectModel
                 : projectModel // ignore: cast_nullable_to_non_nullable
                     as ProjectModel,
+        projectModelWithMobile:
+            null == projectModelWithMobile
+                ? _value.projectModelWithMobile
+                : projectModelWithMobile // ignore: cast_nullable_to_non_nullable
+                    as ProjectModelWithMobile,
         isNaviAniStart:
             null == isNaviAniStart
                 ? _value.isNaviAniStart
@@ -135,6 +179,7 @@ class __$$ProjectsMainStateImplCopyWithImpl<$Res>
 class _$ProjectsMainStateImpl implements _ProjectsMainState {
   const _$ProjectsMainStateImpl({
     this.projectModel = const ProjectModel(),
+    this.projectModelWithMobile = const ProjectModelWithMobile(),
     this.isNaviAniStart = false,
   });
 
@@ -142,6 +187,10 @@ class _$ProjectsMainStateImpl implements _ProjectsMainState {
   @override
   @JsonKey()
   final ProjectModel projectModel;
+  //프로젝트 모델 모바일
+  @override
+  @JsonKey()
+  final ProjectModelWithMobile projectModelWithMobile;
   //네비게이션 애니메이션 상태
   @override
   @JsonKey()
@@ -149,7 +198,7 @@ class _$ProjectsMainStateImpl implements _ProjectsMainState {
 
   @override
   String toString() {
-    return 'ProjectsMainState(projectModel: $projectModel, isNaviAniStart: $isNaviAniStart)';
+    return 'ProjectsMainState(projectModel: $projectModel, projectModelWithMobile: $projectModelWithMobile, isNaviAniStart: $isNaviAniStart)';
   }
 
   @override
@@ -159,12 +208,19 @@ class _$ProjectsMainStateImpl implements _ProjectsMainState {
             other is _$ProjectsMainStateImpl &&
             (identical(other.projectModel, projectModel) ||
                 other.projectModel == projectModel) &&
+            (identical(other.projectModelWithMobile, projectModelWithMobile) ||
+                other.projectModelWithMobile == projectModelWithMobile) &&
             (identical(other.isNaviAniStart, isNaviAniStart) ||
                 other.isNaviAniStart == isNaviAniStart));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, projectModel, isNaviAniStart);
+  int get hashCode => Object.hash(
+    runtimeType,
+    projectModel,
+    projectModelWithMobile,
+    isNaviAniStart,
+  );
 
   /// Create a copy of ProjectsMainState
   /// with the given fields replaced by the non-null parameter values.
@@ -181,12 +237,15 @@ class _$ProjectsMainStateImpl implements _ProjectsMainState {
 abstract class _ProjectsMainState implements ProjectsMainState {
   const factory _ProjectsMainState({
     final ProjectModel projectModel,
+    final ProjectModelWithMobile projectModelWithMobile,
     final bool isNaviAniStart,
   }) = _$ProjectsMainStateImpl;
 
   // 프로젝트 모델
   @override
-  ProjectModel get projectModel; //네비게이션 애니메이션 상태
+  ProjectModel get projectModel; //프로젝트 모델 모바일
+  @override
+  ProjectModelWithMobile get projectModelWithMobile; //네비게이션 애니메이션 상태
   @override
   bool get isNaviAniStart;
 

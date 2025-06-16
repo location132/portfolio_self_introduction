@@ -7,7 +7,7 @@ import 'package:self_introduction_flutter/model/mobile_page/aboutMe_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/chapter_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/detailMe_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/skill_model.dart';
-import 'package:self_introduction_flutter/model/mobile_page/project_model.dart';
+import 'package:self_introduction_flutter/model/mobile_page/project_model_mobile.dart';
 
 part 'mobile_state.freezed.dart';
 
@@ -21,7 +21,7 @@ class MobileState with _$MobileState {
     @Default(DetailMeModel()) DetailMeModel detailMeModel,
     @Default(ChapterModel()) ChapterModel chapterModel,
     @Default(SkillModel()) SkillModel skillModel,
-    @Default(ProjectModel()) ProjectModel projectModel,
+    @Default(ProjectModelWithMobile()) ProjectModelWithMobile projectModel,
     @Default(MainPageTextConstants.defaultPlayerText) String isPlayerText,
     @Default(false) bool isBackGroundAniStart,
   }) = _MobileState;

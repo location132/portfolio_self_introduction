@@ -12,7 +12,14 @@ class ProjectsMainCubit extends Cubit<ProjectsMainState> {
   }
 
   void startNaviAni() async {
-    await Future.delayed(const Duration(milliseconds: 1000));
+    emit(
+      state.copyWith(
+        projectModelWithMobile: state.projectModelWithMobile.copyWith(
+          isProjectItemsAniStart: true,
+        ),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 400));
     if (isClosed) return;
 
     emit(state.copyWith(isNaviAniStart: true));
@@ -63,13 +70,20 @@ class ProjectsMainCubit extends Cubit<ProjectsMainState> {
     );
   }
 
-  // 프로젝트 애니메이션 시작
-  void startProjectAnimation() {
-    if (isClosed) return;
-
+  // 프로젝트 디테일 스크린 표시
+  void showProjectDetail(String category) async {
     emit(
       state.copyWith(
-        projectModel: state.projectModel.copyWith(isProjectItemsAniStart: true),
+        projectModel: state.projectModel.copyWith(
+          isProjectDetailVisible: true,
+          selectedProjectCategory: category,
+        ),
+      ),
+    );
+    await Future.delayed(const Duration(milliseconds: 400));
+    emit(
+      state.copyWith(
+        projectModel: state.projectModel.copyWith(isProjectDetailAni: true),
       ),
     );
   }

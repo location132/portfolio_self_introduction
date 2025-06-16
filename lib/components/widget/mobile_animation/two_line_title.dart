@@ -100,3 +100,51 @@ class _TwoLineTitleState extends State<TwoLineTitle>
     );
   }
 }
+
+class TwoLineTitleNoAni extends StatelessWidget {
+  final String title;
+  final String subTitle;
+  final Color? color;
+  final Color? subTitleColor;
+  final double? subTitleFontSize;
+
+  const TwoLineTitleNoAni({
+    super.key,
+    required this.title,
+    required this.subTitle,
+    this.color,
+    this.subTitleColor,
+    this.subTitleFontSize,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 40.0, left: 32),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 25.0.sp,
+              fontWeight: FontWeight.bold,
+              color: color,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0),
+            child: Text(
+              subTitle,
+              style: TextStyle(
+                fontSize: subTitleFontSize ?? 20.0.sp,
+                fontWeight: FontWeight.bold,
+                color: subTitleColor,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

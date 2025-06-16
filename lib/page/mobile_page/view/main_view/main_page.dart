@@ -6,7 +6,7 @@ import 'package:self_introduction_flutter/model/mobile_page/aboutMe_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/chapter_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/detailMe_model.dart';
 import 'package:self_introduction_flutter/model/mobile_page/skill_model.dart';
-import 'package:self_introduction_flutter/model/mobile_page/project_model.dart';
+import 'package:self_introduction_flutter/model/mobile_page/project_model_mobile.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/about_me_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/chapter_view/chapter_page.dart';
@@ -21,7 +21,7 @@ class MainPage extends StatelessWidget {
   final DetailMeModel detailMeState;
   final ChapterModel chapterState;
   final SkillModel skillState;
-  final ProjectModel projectState;
+  final ProjectModelWithMobile projectState;
   final bool isTitelTextAniStart;
   final bool isChapterContainerAniStart;
   final bool isBackGroundAniStart;
@@ -198,7 +198,12 @@ class MainPage extends StatelessWidget {
                         cubit.projectBackGroundColor(true);
                       }
                     },
-                    child: ProjectPage(state: projectState, cubit: cubit),
+                    child: ProjectPageWithMobile(
+                      state: projectState,
+                      showProjectDetail: (category) {
+                        cubit.showProjectDetail(category);
+                      },
+                    ),
                   ),
                   const SizedBox(height: 100),
                 ],

@@ -28,48 +28,51 @@ class ProjectMenuBar extends StatelessWidget {
             width: 1,
           ),
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ProjectMenuButton(
-              title: '모든 프로젝트',
-              description: '모든 프로젝트',
-              projectCount: '0',
-              category: 'All',
-              isSelected: state.selectedProjectCategory == 'All',
-              onPressed: () => onCategorySelected('All'),
-            ),
-            const SizedBox(width: 22),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ProjectMenuButton(
+                title: '모든 프로젝트',
+                description: '모든 프로젝트',
+                projectCount: '0',
+                category: 'All',
+                isSelected: state.selectedProjectCategory == 'All',
+                onPressed: () => onCategorySelected('All'),
+              ),
+              const SizedBox(width: 22),
 
-            ProjectMenuButton(
-              title: ProjectTextConstants.flutterTitle,
-              description: ProjectTextConstants.flutterDescription,
-              projectCount: ProjectTextConstants.flutterProjectCount,
-              category: 'flutter',
-              isSelected: state.selectedProjectCategory == 'flutter',
-              onPressed: () => onCategorySelected('flutter'),
-            ),
-            const SizedBox(width: 22),
+              ProjectMenuButton(
+                title: ProjectTextConstants.flutterTitle,
+                description: ProjectTextConstants.flutterDescription,
+                projectCount: ProjectTextConstants.flutterProjectCount,
+                category: 'flutter',
+                isSelected: state.selectedProjectCategory == 'flutter',
+                onPressed: () => onCategorySelected('flutter'),
+              ),
+              const SizedBox(width: 22),
 
-            ProjectMenuButton(
-              title: ProjectTextConstants.flutterRiveTitle,
-              description: ProjectTextConstants.flutterRiveDescription,
-              projectCount: ProjectTextConstants.flutterRiveProjectCount,
-              category: 'flutter_rive',
-              isSelected: state.selectedProjectCategory == 'flutter_rive',
-              onPressed: () => onCategorySelected('flutter_rive'),
-            ),
-            const SizedBox(width: 22),
+              ProjectMenuButton(
+                title: ProjectTextConstants.flutterRiveTitle,
+                description: ProjectTextConstants.flutterRiveDescription,
+                projectCount: ProjectTextConstants.flutterRiveProjectCount,
+                category: 'flutter_rive',
+                isSelected: state.selectedProjectCategory == 'flutter_rive',
+                onPressed: () => onCategorySelected('flutter_rive'),
+              ),
+              const SizedBox(width: 22),
 
-            ProjectMenuButton(
-              title: ProjectTextConstants.futureProjectTitle,
-              description: ProjectTextConstants.futureProjectDescription,
-              projectCount: ProjectTextConstants.futureProjectCount,
-              category: 'future',
-              isSelected: state.selectedProjectCategory == 'future',
-              onPressed: () => onCategorySelected('future'),
-            ),
-          ],
+              ProjectMenuButton(
+                title: ProjectTextConstants.futureProjectTitle,
+                description: ProjectTextConstants.futureProjectDescription,
+                projectCount: ProjectTextConstants.futureProjectCount,
+                category: 'future',
+                isSelected: state.selectedProjectCategory == 'future',
+                onPressed: () => onCategorySelected('future'),
+              ),
+            ],
+          ),
         ),
       ),
     );
