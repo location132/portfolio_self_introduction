@@ -22,9 +22,6 @@ class ProjectContent2 extends StatefulWidget {
 class _ProjectContent2State extends State<ProjectContent2> {
   @override
   Widget build(BuildContext context) {
-    print(
-      'MediaQuery.of(context).size.width: ${MediaQuery.of(context).size.width}',
-    );
     const techStackData = TitleTextConstants.projectTechStackData;
 
     return VisibilityDetector(

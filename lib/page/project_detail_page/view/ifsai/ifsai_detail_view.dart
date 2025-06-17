@@ -32,6 +32,10 @@ class IfsaiDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(
+      'MediaQuery.of(context).size.width: ${MediaQuery.of(context).size.width}',
+    );
+
     return BlocBuilder<IfsaiCubit, IfsaiState>(
       builder: (context, state) {
         return Stack(

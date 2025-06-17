@@ -17,6 +17,8 @@ class BackgroundFeaturesGrid extends StatefulWidget {
 class _BackgroundFeaturesGridState extends State<BackgroundFeaturesGrid>
     with TickerProviderStateMixin {
   late BackgroundGridAnimation _animation;
+  bool _isMediumExpanded = false;
+  bool _isMobileExpanded = false;
 
   @override
   void initState() {
@@ -37,8 +39,42 @@ class _BackgroundFeaturesGridState extends State<BackgroundFeaturesGrid>
     });
   }
 
+  void _handleMediumToggle() {
+    setState(() {
+      _isMediumExpanded = !_isMediumExpanded;
+    });
+  }
+
+  void _handleMobileToggle() {
+    setState(() {
+      _isMobileExpanded = !_isMobileExpanded;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth <= 600;
+    final isMedium = screenWidth > 600 && screenWidth <= 1050;
+
+    int columnsPerRow;
+    double horizontalSpacing;
+    double verticalSpacing;
+
+    if (screenWidth >= 1500) {
+      columnsPerRow = 3;
+      horizontalSpacing = 24;
+      verticalSpacing = 24;
+    } else if (screenWidth > 1050) {
+      columnsPerRow = 2;
+      horizontalSpacing = 20;
+      verticalSpacing = 20;
+    } else {
+      columnsPerRow = 1;
+      horizontalSpacing = 0;
+      verticalSpacing = 16;
+    }
+
     final features = [
       {
         'title': '앱 시작 시 자동 초기화',
@@ -159,8 +195,18 @@ class _BackgroundFeaturesGridState extends State<BackgroundFeaturesGrid>
       },
     ];
 
-    final visibleFeatures =
-        _animation.isExpanded ? features : features.take(6).toList();
+    List<Map<String, dynamic>> visibleFeatures;
+
+    if (isMobile) {
+      visibleFeatures =
+          _isMobileExpanded ? features : features.take(2).toList();
+    } else if (isMedium) {
+      visibleFeatures =
+          _isMediumExpanded ? features : features.take(3).toList();
+    } else {
+      visibleFeatures =
+          _animation.isExpanded ? features : features.take(6).toList();
+    }
 
     return WidgetAnimation(
       isStart: widget.isBackgroundFeatureVisible,
@@ -172,49 +218,165 @@ class _BackgroundFeaturesGridState extends State<BackgroundFeaturesGrid>
             children: [
               for (
                 int row = 0;
-                row < (visibleFeatures.length / 3).ceil();
+                row < (visibleFeatures.length / columnsPerRow).ceil();
                 row++
               )
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 24),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      for (int col = 0; col < 3; col++)
-                        if (row * 3 + col < visibleFeatures.length)
-                          Padding(
-                            padding: EdgeInsets.only(right: col < 2 ? 24 : 0),
-                            child: _animation.buildAnimatedCard(
-                              child: BackgroundFeatureCard(
-                                title:
-                                    visibleFeatures[row * 3 + col]['title']
-                                        as String,
-                                subtitle:
-                                    visibleFeatures[row * 3 + col]['subtitle']
-                                        as String,
-                                icon:
-                                    visibleFeatures[row * 3 + col]['icon']
-                                        as IconData,
-                                features:
-                                    visibleFeatures[row * 3 + col]['features']
-                                        as List<String>,
-                              ),
-                              row: row,
-                              shouldAnimate:
-                                  _animation.isExpanded ? row >= 2 : false,
-                            ),
+                  padding: EdgeInsets.only(bottom: verticalSpacing),
+                  child:
+                      columnsPerRow == 1
+                          ? _buildSingleColumnRow(
+                            visibleFeatures,
+                            row,
+                            _animation,
+                          )
+                          : _buildMultiColumnRow(
+                            visibleFeatures,
+                            row,
+                            columnsPerRow,
+                            horizontalSpacing,
+                            _animation,
                           ),
-                    ],
-                  ),
                 ),
-
               const SizedBox(height: 24),
-              _animation.buildExpandButton(onTap: _handleToggle),
+              if (isMobile)
+                _buildMobileExpandButton()
+              else if (isMedium)
+                _buildMediumExpandButton()
+              else
+                _animation.buildExpandButton(onTap: _handleToggle),
             ],
           ),
-
-          _animation.buildGradientOverlay(),
+          if (!isMobile && !isMedium) _animation.buildGradientOverlay(),
         ],
+      ),
+    );
+  }
+
+  Widget _buildSingleColumnRow(
+    List<Map<String, dynamic>> features,
+    int row,
+    BackgroundGridAnimation animation,
+  ) {
+    if (row >= features.length) return const SizedBox.shrink();
+
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 350),
+        child: animation.buildAnimatedCard(
+          child: BackgroundFeatureCard(
+            title: features[row]['title'] as String,
+            subtitle: features[row]['subtitle'] as String,
+            icon: features[row]['icon'] as IconData,
+            features: features[row]['features'] as List<String>,
+          ),
+          row: row,
+          shouldAnimate: animation.isExpanded ? row >= 2 : false,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMultiColumnRow(
+    List<Map<String, dynamic>> features,
+    int row,
+    int columnsPerRow,
+    double horizontalSpacing,
+    BackgroundGridAnimation animation,
+  ) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        for (int col = 0; col < columnsPerRow; col++)
+          if (row * columnsPerRow + col < features.length)
+            Padding(
+              padding: EdgeInsets.only(
+                right: col < columnsPerRow - 1 ? horizontalSpacing : 0,
+              ),
+              child: animation.buildAnimatedCard(
+                child: BackgroundFeatureCard(
+                  title: features[row * columnsPerRow + col]['title'] as String,
+                  subtitle:
+                      features[row * columnsPerRow + col]['subtitle'] as String,
+                  icon: features[row * columnsPerRow + col]['icon'] as IconData,
+                  features:
+                      features[row * columnsPerRow + col]['features']
+                          as List<String>,
+                ),
+                row: row,
+                shouldAnimate: animation.isExpanded ? row >= 2 : false,
+              ),
+            ),
+      ],
+    );
+  }
+
+  Widget _buildMobileExpandButton() {
+    return GestureDetector(
+      onTap: _handleMobileToggle,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        decoration: BoxDecoration(
+          color: Colors.white.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(25),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.3)),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              _isMobileExpanded ? '접기' : '더보기',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Icon(
+              _isMobileExpanded
+                  ? Icons.keyboard_arrow_up
+                  : Icons.keyboard_arrow_down,
+              color: Colors.white,
+              size: 20,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMediumExpandButton() {
+    return GestureDetector(
+      onTap: _handleMediumToggle,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        decoration: BoxDecoration(
+          color: Colors.white.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(25),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.3)),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              _isMediumExpanded ? '접기' : '더보기',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Icon(
+              _isMediumExpanded
+                  ? Icons.keyboard_arrow_up
+                  : Icons.keyboard_arrow_down,
+              color: Colors.white,
+              size: 20,
+            ),
+          ],
+        ),
       ),
     );
   }

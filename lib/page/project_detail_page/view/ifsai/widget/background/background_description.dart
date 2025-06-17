@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/components/widget/animation/widget_animation.dart';
 
-class BackgroundDescription extends StatelessWidget {
+class BackgroundDescription extends StatefulWidget {
   final bool isTitleVisible;
   final bool isContentVisible;
   const BackgroundDescription({
@@ -11,19 +11,64 @@ class BackgroundDescription extends StatelessWidget {
   });
 
   @override
+  State<BackgroundDescription> createState() => _BackgroundDescriptionState();
+}
+
+class _BackgroundDescriptionState extends State<BackgroundDescription> {
+  double? _previousScreenWidth;
+
+  @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    if (_previousScreenWidth != null && _previousScreenWidth != screenWidth) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          setState(() {});
+        }
+      });
+    }
+    _previousScreenWidth = screenWidth;
+
+    double containerWidth;
+    double titleFontSize;
+    double descriptionFontSize;
+    double featureFontSize;
+
+    if (screenWidth > 1024) {
+      containerWidth = 500;
+      titleFontSize = 24;
+      descriptionFontSize = 16;
+      featureFontSize = 14;
+    } else if (screenWidth > 600) {
+      containerWidth = 600;
+      titleFontSize = 20;
+      descriptionFontSize = 14;
+      featureFontSize = 13;
+    } else {
+      containerWidth = 350;
+      titleFontSize = 18;
+      descriptionFontSize = 13;
+      featureFontSize = 12;
+    }
+
     return SizedBox(
-      width: 500,
+      width: containerWidth,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment:
+            screenWidth <= 1024
+                ? CrossAxisAlignment.center
+                : CrossAxisAlignment.start,
         children: [
           WidgetAnimation(
-            isStart: isTitleVisible,
+            isStart: widget.isTitleVisible,
             child: Text(
               '쉿!  사용자에게는 비밀이야',
+              textAlign:
+                  screenWidth <= 1024 ? TextAlign.center : TextAlign.left,
               style: TextStyle(
                 color: Colors.white.withValues(alpha: 0.9),
-                fontSize: 24,
+                fontSize: titleFontSize,
                 fontWeight: FontWeight.w600,
                 height: 1.4,
               ),
@@ -31,17 +76,22 @@ class BackgroundDescription extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           WidgetAnimation(
-            isStart: isContentVisible,
+            isStart: widget.isContentVisible,
             duration: 1000,
             beginDy: 0.1,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment:
+                  screenWidth <= 1024
+                      ? CrossAxisAlignment.center
+                      : CrossAxisAlignment.start,
               children: [
                 Text(
-                  '사용자가 인지하지 못하는 사이에 앱의 성능을 최적화하고, 필요한 데이터를 미리 준비하여 부드러운 사용자 경험을 제공합니다.',
+                  '사용자가 인지하지 못하는 사이에 앱의 성능을 최적화하고,\n 필요한 데이터를 미리 준비하여 부드러운 사용자 경험을 제공합니다.',
+                  textAlign:
+                      screenWidth <= 1024 ? TextAlign.center : TextAlign.left,
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.7),
-                    fontSize: 16,
+                    fontSize: descriptionFontSize,
                     height: 1.6,
                   ),
                 ),
@@ -56,9 +106,11 @@ class BackgroundDescription extends StatelessWidget {
                   '• 장바구니 실시간 동기화\n'
                   '• 성능 최적화 및 메모리 관리\n'
                   '• 서버 상태 모니터링',
+                  textAlign:
+                      screenWidth <= 1024 ? TextAlign.center : TextAlign.left,
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.8),
-                    fontSize: 14,
+                    fontSize: featureFontSize,
                     height: 1.5,
                   ),
                 ),
