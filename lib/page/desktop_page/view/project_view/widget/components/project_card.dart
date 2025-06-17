@@ -54,6 +54,12 @@ class _ProjectCardState extends State<ProjectCard> {
         return '8월 20일 업로드 예정';
       case '구름 x 카카오 x 인프런':
         return '9월 14일 업로드 예정';
+      case '악보 넘기기':
+        return '곧 시작합니다!';
+      case 'CCTV View':
+        return '곧 시작합니다!';
+      case '맞춤 건강 알림':
+        return '곧 시작합니다!';
       default:
         return '업로드 예정';
     }

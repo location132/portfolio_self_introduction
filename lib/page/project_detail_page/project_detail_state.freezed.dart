@@ -21,7 +21,9 @@ mixin _$ProjectDetailState {
   bool get isLoaded => throw _privateConstructorUsedError;
   bool get isScrollEnabled => throw _privateConstructorUsedError;
   String get projectName => throw _privateConstructorUsedError;
-  ScrollController? get scrollController => throw _privateConstructorUsedError;
+  ScrollController? get scrollController =>
+      throw _privateConstructorUsedError; // 메뉴 상태
+  bool get isMenuClicked => throw _privateConstructorUsedError;
 
   /// Create a copy of ProjectDetailState
   /// with the given fields replaced by the non-null parameter values.
@@ -43,6 +45,7 @@ abstract class $ProjectDetailStateCopyWith<$Res> {
     bool isScrollEnabled,
     String projectName,
     ScrollController? scrollController,
+    bool isMenuClicked,
   });
 }
 
@@ -66,6 +69,7 @@ class _$ProjectDetailStateCopyWithImpl<$Res, $Val extends ProjectDetailState>
     Object? isScrollEnabled = null,
     Object? projectName = null,
     Object? scrollController = freezed,
+    Object? isMenuClicked = null,
   }) {
     return _then(
       _value.copyWith(
@@ -94,6 +98,11 @@ class _$ProjectDetailStateCopyWithImpl<$Res, $Val extends ProjectDetailState>
                     ? _value.scrollController
                     : scrollController // ignore: cast_nullable_to_non_nullable
                         as ScrollController?,
+            isMenuClicked:
+                null == isMenuClicked
+                    ? _value.isMenuClicked
+                    : isMenuClicked // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -115,6 +124,7 @@ abstract class _$$ProjectDetailStateImplCopyWith<$Res>
     bool isScrollEnabled,
     String projectName,
     ScrollController? scrollController,
+    bool isMenuClicked,
   });
 }
 
@@ -137,6 +147,7 @@ class __$$ProjectDetailStateImplCopyWithImpl<$Res>
     Object? isScrollEnabled = null,
     Object? projectName = null,
     Object? scrollController = freezed,
+    Object? isMenuClicked = null,
   }) {
     return _then(
       _$ProjectDetailStateImpl(
@@ -165,6 +176,11 @@ class __$$ProjectDetailStateImplCopyWithImpl<$Res>
                 ? _value.scrollController
                 : scrollController // ignore: cast_nullable_to_non_nullable
                     as ScrollController?,
+        isMenuClicked:
+            null == isMenuClicked
+                ? _value.isMenuClicked
+                : isMenuClicked // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -179,6 +195,7 @@ class _$ProjectDetailStateImpl implements _ProjectDetailState {
     this.isScrollEnabled = false,
     this.projectName = '',
     this.scrollController,
+    this.isMenuClicked = false,
   });
 
   @override
@@ -195,10 +212,14 @@ class _$ProjectDetailStateImpl implements _ProjectDetailState {
   final String projectName;
   @override
   final ScrollController? scrollController;
+  // 메뉴 상태
+  @override
+  @JsonKey()
+  final bool isMenuClicked;
 
   @override
   String toString() {
-    return 'ProjectDetailState(isLoading: $isLoading, isLoaded: $isLoaded, isScrollEnabled: $isScrollEnabled, projectName: $projectName, scrollController: $scrollController)';
+    return 'ProjectDetailState(isLoading: $isLoading, isLoaded: $isLoaded, isScrollEnabled: $isScrollEnabled, projectName: $projectName, scrollController: $scrollController, isMenuClicked: $isMenuClicked)';
   }
 
   @override
@@ -215,7 +236,9 @@ class _$ProjectDetailStateImpl implements _ProjectDetailState {
             (identical(other.projectName, projectName) ||
                 other.projectName == projectName) &&
             (identical(other.scrollController, scrollController) ||
-                other.scrollController == scrollController));
+                other.scrollController == scrollController) &&
+            (identical(other.isMenuClicked, isMenuClicked) ||
+                other.isMenuClicked == isMenuClicked));
   }
 
   @override
@@ -226,6 +249,7 @@ class _$ProjectDetailStateImpl implements _ProjectDetailState {
     isScrollEnabled,
     projectName,
     scrollController,
+    isMenuClicked,
   );
 
   /// Create a copy of ProjectDetailState
@@ -247,6 +271,7 @@ abstract class _ProjectDetailState implements ProjectDetailState {
     final bool isScrollEnabled,
     final String projectName,
     final ScrollController? scrollController,
+    final bool isMenuClicked,
   }) = _$ProjectDetailStateImpl;
 
   @override
@@ -258,7 +283,9 @@ abstract class _ProjectDetailState implements ProjectDetailState {
   @override
   String get projectName;
   @override
-  ScrollController? get scrollController;
+  ScrollController? get scrollController; // 메뉴 상태
+  @override
+  bool get isMenuClicked;
 
   /// Create a copy of ProjectDetailState
   /// with the given fields replaced by the non-null parameter values.

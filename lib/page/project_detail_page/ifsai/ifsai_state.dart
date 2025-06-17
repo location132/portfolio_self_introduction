@@ -55,5 +55,8 @@ class IfsaiState with _$IfsaiState {
     @Default(false) bool isBackgrounTitleVisible,
     @Default(false) bool isBackgroundContentVisible,
     @Default(false) bool isBackgroundFeatureVisible,
+
+    // 메뉴 상태
+    @Default(false) bool isMenuClicked,
   }) = _IfsaiState;
 }

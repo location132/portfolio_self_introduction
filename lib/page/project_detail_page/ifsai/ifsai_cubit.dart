@@ -14,6 +14,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
     _addScrollListener();
   }
 
+  @protected
   void _addScrollListener() {
     if (!_listenerAdded && state.scrollController != null) {
       state.scrollController!.addListener(_onScroll);
@@ -281,6 +282,11 @@ class IfsaiCubit extends Cubit<IfsaiState> {
     if (state.isScrollEnabled != enabled) {
       emit(state.copyWith(isScrollEnabled: enabled));
     }
+  }
+
+  // 메뉴 토글 함수
+  void toggleMenu() {
+    emit(state.copyWith(isMenuClicked: !state.isMenuClicked));
   }
 
   // FAQ 관련 메서드들

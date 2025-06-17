@@ -59,7 +59,9 @@ mixin _$IfsaiState {
   bool get isServiceTabVisible => throw _privateConstructorUsedError;
   bool get isBackgrounTitleVisible => throw _privateConstructorUsedError;
   bool get isBackgroundContentVisible => throw _privateConstructorUsedError;
-  bool get isBackgroundFeatureVisible => throw _privateConstructorUsedError;
+  bool get isBackgroundFeatureVisible =>
+      throw _privateConstructorUsedError; // 메뉴 상태
+  bool get isMenuClicked => throw _privateConstructorUsedError;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.
@@ -111,6 +113,7 @@ abstract class $IfsaiStateCopyWith<$Res> {
     bool isBackgrounTitleVisible,
     bool isBackgroundContentVisible,
     bool isBackgroundFeatureVisible,
+    bool isMenuClicked,
   });
 }
 
@@ -140,7 +143,7 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
     Object? mainTitleTranslateY = null,
     Object? descriptionTranslateY = null,
     Object? backgroundDarkness = null,
-    Object? textColor = null,
+    Object? textColor = freezed,
     Object? isPlayerVisible = null,
     Object? playerText = null,
     Object? isPlayerLongText = null,
@@ -164,6 +167,7 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
     Object? isBackgrounTitleVisible = null,
     Object? isBackgroundContentVisible = null,
     Object? isBackgroundFeatureVisible = null,
+    Object? isMenuClicked = null,
   }) {
     return _then(
       _value.copyWith(
@@ -223,7 +227,7 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
                     : backgroundDarkness // ignore: cast_nullable_to_non_nullable
                         as double,
             textColor:
-                null == textColor
+                freezed == textColor
                     ? _value.textColor
                     : textColor // ignore: cast_nullable_to_non_nullable
                         as Color,
@@ -342,6 +346,11 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
                     ? _value.isBackgroundFeatureVisible
                     : isBackgroundFeatureVisible // ignore: cast_nullable_to_non_nullable
                         as bool,
+            isMenuClicked:
+                null == isMenuClicked
+                    ? _value.isMenuClicked
+                    : isMenuClicked // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -393,6 +402,7 @@ abstract class _$$IfsaiStateImplCopyWith<$Res>
     bool isBackgrounTitleVisible,
     bool isBackgroundContentVisible,
     bool isBackgroundFeatureVisible,
+    bool isMenuClicked,
   });
 }
 
@@ -421,7 +431,7 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
     Object? mainTitleTranslateY = null,
     Object? descriptionTranslateY = null,
     Object? backgroundDarkness = null,
-    Object? textColor = null,
+    Object? textColor = freezed,
     Object? isPlayerVisible = null,
     Object? playerText = null,
     Object? isPlayerLongText = null,
@@ -445,6 +455,7 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
     Object? isBackgrounTitleVisible = null,
     Object? isBackgroundContentVisible = null,
     Object? isBackgroundFeatureVisible = null,
+    Object? isMenuClicked = null,
   }) {
     return _then(
       _$IfsaiStateImpl(
@@ -504,7 +515,7 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
                 : backgroundDarkness // ignore: cast_nullable_to_non_nullable
                     as double,
         textColor:
-            null == textColor
+            freezed == textColor
                 ? _value.textColor
                 : textColor // ignore: cast_nullable_to_non_nullable
                     as Color,
@@ -623,6 +634,11 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
                 ? _value.isBackgroundFeatureVisible
                 : isBackgroundFeatureVisible // ignore: cast_nullable_to_non_nullable
                     as bool,
+        isMenuClicked:
+            null == isMenuClicked
+                ? _value.isMenuClicked
+                : isMenuClicked // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -667,6 +683,7 @@ class _$IfsaiStateImpl implements _IfsaiState {
     this.isBackgrounTitleVisible = false,
     this.isBackgroundContentVisible = false,
     this.isBackgroundFeatureVisible = false,
+    this.isMenuClicked = false,
   });
 
   @override
@@ -778,10 +795,14 @@ class _$IfsaiStateImpl implements _IfsaiState {
   @override
   @JsonKey()
   final bool isBackgroundFeatureVisible;
+  // 메뉴 상태
+  @override
+  @JsonKey()
+  final bool isMenuClicked;
 
   @override
   String toString() {
-    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText, isPlayerLongText: $isPlayerLongText, isPlayerWhiteBackground: $isPlayerWhiteBackground, backgroundVideoController: $backgroundVideoController, backgroundFadeController: $backgroundFadeController, isBackgroundVideoCompleted: $isBackgroundVideoCompleted, isBackgroundVideoInitialized: $isBackgroundVideoInitialized, isBackgroundVisible: $isBackgroundVisible, hasBackgroundStartedPlaying: $hasBackgroundStartedPlaying, isLibraryCardsAnimationStarted: $isLibraryCardsAnimationStarted, isLibraryDetailVisible: $isLibraryDetailVisible, currentFaqTitleIndex: $currentFaqTitleIndex, isInFaqSection: $isInFaqSection, terminalOutput: $terminalOutput, isTerminalExecuting: $isTerminalExecuting, isProjectCard1Visible: $isProjectCard1Visible, isProjectCard2Visible: $isProjectCard2Visible, isProjectCard3Visible: $isProjectCard3Visible, isServiceTabVisible: $isServiceTabVisible, isBackgrounTitleVisible: $isBackgrounTitleVisible, isBackgroundContentVisible: $isBackgroundContentVisible, isBackgroundFeatureVisible: $isBackgroundFeatureVisible)';
+    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText, isPlayerLongText: $isPlayerLongText, isPlayerWhiteBackground: $isPlayerWhiteBackground, backgroundVideoController: $backgroundVideoController, backgroundFadeController: $backgroundFadeController, isBackgroundVideoCompleted: $isBackgroundVideoCompleted, isBackgroundVideoInitialized: $isBackgroundVideoInitialized, isBackgroundVisible: $isBackgroundVisible, hasBackgroundStartedPlaying: $hasBackgroundStartedPlaying, isLibraryCardsAnimationStarted: $isLibraryCardsAnimationStarted, isLibraryDetailVisible: $isLibraryDetailVisible, currentFaqTitleIndex: $currentFaqTitleIndex, isInFaqSection: $isInFaqSection, terminalOutput: $terminalOutput, isTerminalExecuting: $isTerminalExecuting, isProjectCard1Visible: $isProjectCard1Visible, isProjectCard2Visible: $isProjectCard2Visible, isProjectCard3Visible: $isProjectCard3Visible, isServiceTabVisible: $isServiceTabVisible, isBackgrounTitleVisible: $isBackgrounTitleVisible, isBackgroundContentVisible: $isBackgroundContentVisible, isBackgroundFeatureVisible: $isBackgroundFeatureVisible, isMenuClicked: $isMenuClicked)';
   }
 
   @override
@@ -814,8 +835,7 @@ class _$IfsaiStateImpl implements _IfsaiState {
                 other.descriptionTranslateY == descriptionTranslateY) &&
             (identical(other.backgroundDarkness, backgroundDarkness) ||
                 other.backgroundDarkness == backgroundDarkness) &&
-            (identical(other.textColor, textColor) ||
-                other.textColor == textColor) &&
+            const DeepCollectionEquality().equals(other.textColor, textColor) &&
             (identical(other.isPlayerVisible, isPlayerVisible) ||
                 other.isPlayerVisible == isPlayerVisible) &&
             (identical(other.playerText, playerText) ||
@@ -832,11 +852,10 @@ class _$IfsaiStateImpl implements _IfsaiState {
                   backgroundVideoController,
                 ) ||
                 other.backgroundVideoController == backgroundVideoController) &&
-            (identical(
-                  other.backgroundFadeController,
-                  backgroundFadeController,
-                ) ||
-                other.backgroundFadeController == backgroundFadeController) &&
+            const DeepCollectionEquality().equals(
+              other.backgroundFadeController,
+              backgroundFadeController,
+            ) &&
             (identical(
                   other.isBackgroundVideoCompleted,
                   isBackgroundVideoCompleted,
@@ -897,7 +916,9 @@ class _$IfsaiStateImpl implements _IfsaiState {
                   isBackgroundFeatureVisible,
                 ) ||
                 other.isBackgroundFeatureVisible ==
-                    isBackgroundFeatureVisible));
+                    isBackgroundFeatureVisible) &&
+            (identical(other.isMenuClicked, isMenuClicked) ||
+                other.isMenuClicked == isMenuClicked));
   }
 
   @override
@@ -914,13 +935,13 @@ class _$IfsaiStateImpl implements _IfsaiState {
     mainTitleTranslateY,
     descriptionTranslateY,
     backgroundDarkness,
-    textColor,
+    const DeepCollectionEquality().hash(textColor),
     isPlayerVisible,
     playerText,
     isPlayerLongText,
     isPlayerWhiteBackground,
     backgroundVideoController,
-    backgroundFadeController,
+    const DeepCollectionEquality().hash(backgroundFadeController),
     isBackgroundVideoCompleted,
     isBackgroundVideoInitialized,
     isBackgroundVisible,
@@ -938,6 +959,7 @@ class _$IfsaiStateImpl implements _IfsaiState {
     isBackgrounTitleVisible,
     isBackgroundContentVisible,
     isBackgroundFeatureVisible,
+    isMenuClicked,
   ]);
 
   /// Create a copy of IfsaiState
@@ -986,6 +1008,7 @@ abstract class _IfsaiState implements IfsaiState {
     final bool isBackgrounTitleVisible,
     final bool isBackgroundContentVisible,
     final bool isBackgroundFeatureVisible,
+    final bool isMenuClicked,
   }) = _$IfsaiStateImpl;
 
   @override
@@ -1057,7 +1080,9 @@ abstract class _IfsaiState implements IfsaiState {
   @override
   bool get isBackgroundContentVisible;
   @override
-  bool get isBackgroundFeatureVisible;
+  bool get isBackgroundFeatureVisible; // 메뉴 상태
+  @override
+  bool get isMenuClicked;
 
   /// Create a copy of IfsaiState
   /// with the given fields replaced by the non-null parameter values.

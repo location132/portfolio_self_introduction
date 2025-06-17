@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/model/project_detail/ifsai_model.dart';
-import 'package:self_introduction_flutter/page/project_detail_page/ifsai/widget/project_detail_title.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/widget/title/sub_title.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/widget/title/project_detail_title_animated.dart';
 
 class ProjectDetailSection extends StatelessWidget {
   final IfsaiModel model;
@@ -56,48 +57,12 @@ class ProjectDetailSection extends StatelessWidget {
           top: MediaQuery.of(context).size.height * 0.4 + titleOffset,
           left: 0,
           right: 0,
-          child: Column(
-            children: [
-              Transform.translate(
-                offset: Offset(0, mainTitleTranslateY),
-                child: AnimatedOpacity(
-                  duration: const Duration(milliseconds: 16),
-                  opacity: mainTitleOpacity,
-                  child: Center(
-                    child: Text(
-                      '바로 핵심부터',
-                      style: TextStyle(
-                        fontSize: 34,
-                        color: textColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 30),
-              Transform.translate(
-                offset: Offset(0, descriptionTranslateY),
-                child: AnimatedOpacity(
-                  duration: const Duration(milliseconds: 16),
-                  opacity: descriptionOpacity,
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 40),
-                      child: Text(
-                        '잎사이 프로젝트에 적용한 모든 기술입니다. 상세한 내용은 클릭해주세요',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: textColor,
-                          height: 1.5,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+          child: SubTitle(
+            mainTitleTranslateY: mainTitleTranslateY,
+            mainTitleOpacity: mainTitleOpacity,
+            textColor: textColor,
+            descriptionTranslateY: descriptionTranslateY,
+            descriptionOpacity: descriptionOpacity,
           ),
         ),
       ],

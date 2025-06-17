@@ -180,69 +180,74 @@ class _ProjectsMainView extends StatelessWidget {
                                             ),
                                     minTextAdapt: true,
                                     splitScreenMode: true,
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: 32.w,
-                                          ),
-                                          child: Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: TwoLineTitleNoAni(
-                                              title:
-                                                  MainPageTextConstants
-                                                      .projectSectionTitle,
-                                              subTitle:
-                                                  MainPageTextConstants
-                                                      .projectSectionSubTitle,
-                                              color: Colors.white,
-                                              subTitleColor: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                        if (!state
-                                            .projectModelWithMobile
-                                            .isProjectDetailVisible)
-                                          ProjectPageWithMobile(
-                                            state: state.projectModelWithMobile,
-                                            showProjectDetail: (category) {
-                                              context
-                                                  .read<ProjectsMainCubit>()
-                                                  .showProjectDetail(category);
-                                            },
-                                          ),
-                                        if (state
-                                            .projectModelWithMobile
-                                            .isProjectDetailVisible)
-                                          AnimatedOpacity(
-                                            opacity:
-                                                state
-                                                        .projectModelWithMobile
-                                                        .isProjectDetailAni
-                                                    ? 1.0
-                                                    : 0.0,
-                                            duration: const Duration(
-                                              milliseconds: 400,
-                                            ),
-                                            child: Padding(
+                                    builder:
+                                        (context, child) => Column(
+                                          children: [
+                                            Padding(
                                               padding: EdgeInsets.symmetric(
                                                 horizontal: 32.w,
                                               ),
-                                              child: ProjectDetailContent(
-                                                category:
-                                                    state
-                                                        .projectModelWithMobile
-                                                        .selectedProjectCategory,
-                                                isAnimationStart:
-                                                    state
-                                                        .projectModelWithMobile
-                                                        .isProjectDetailAni,
+                                              child: Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: TwoLineTitleNoAni(
+                                                  title:
+                                                      MainPageTextConstants
+                                                          .projectSectionTitle,
+                                                  subTitle:
+                                                      MainPageTextConstants
+                                                          .projectSectionSubTitle,
+                                                  color: Colors.white,
+                                                  subTitleColor: Colors.white,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        SizedBox(height: 100.h),
-                                      ],
-                                    ),
+                                            if (!state
+                                                .projectModelWithMobile
+                                                .isProjectDetailVisible)
+                                              ProjectPageWithMobile(
+                                                state:
+                                                    state
+                                                        .projectModelWithMobile,
+                                                showProjectDetail: (category) {
+                                                  context
+                                                      .read<ProjectsMainCubit>()
+                                                      .showProjectDetail(
+                                                        category,
+                                                      );
+                                                },
+                                              ),
+                                            if (state
+                                                .projectModelWithMobile
+                                                .isProjectDetailVisible)
+                                              AnimatedOpacity(
+                                                opacity:
+                                                    state
+                                                            .projectModelWithMobile
+                                                            .isProjectDetailAni
+                                                        ? 1.0
+                                                        : 0.0,
+                                                duration: const Duration(
+                                                  milliseconds: 400,
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                    horizontal: 32.w,
+                                                  ),
+                                                  child: ProjectDetailContent(
+                                                    category:
+                                                        state
+                                                            .projectModelWithMobile
+                                                            .selectedProjectCategory,
+                                                    isAnimationStart:
+                                                        state
+                                                            .projectModelWithMobile
+                                                            .isProjectDetailAni,
+                                                  ),
+                                                ),
+                                              ),
+                                            SizedBox(height: 100.h),
+                                          ],
+                                        ),
                                   ),
                                 ],
                               ],

@@ -43,9 +43,9 @@ flutter:
   assets:
     - assets/Images/
     - assets/Images/project_img/
+    - assets/Images/ifsai_img/
     - assets/rive/
     - assets/icons/
-    - assets/images/ifsai_img/
 
 
 

@@ -30,6 +30,11 @@ class ProjectDetailCubit extends Cubit<ProjectDetailState> {
     emit(state.copyWith(isScrollEnabled: enabled));
   }
 
+  // 메뉴 토글 함수
+  void toggleMenu() {
+    emit(state.copyWith(isMenuClicked: !state.isMenuClicked));
+  }
+
   @override
   Future<void> close() {
     state.scrollController?.dispose();

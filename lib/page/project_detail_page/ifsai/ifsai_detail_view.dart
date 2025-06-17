@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/model/project_detail/ifsai_model.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_cubit.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_state.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/widget/background/bg_view.dart';
@@ -13,6 +15,9 @@ import 'package:self_introduction_flutter/page/project_detail_page/ifsai/widget/
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/widget/service_tabs_widget.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/widget/libraries_widget/library_manager.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/widget/terminal_widget/terminal_view.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/widget/title/sub_title.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/widget/title/project_detail_title_no_animation.dart';
+import 'package:self_introduction_flutter/service/main_service.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class IfsaiDetailPage extends StatelessWidget {
@@ -32,6 +37,13 @@ class IfsaiDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final logicalWidth = MediaQuery.of(context).size.width;
+    final isFoldable = logicalWidth >= 490;
+    final isMobileDevice = MainService().isMobileDevice();
+    final deviceType = MainService().setScreenSize(
+      MediaQuery.of(context).size.width,
+    );
+
     return BlocBuilder<IfsaiCubit, IfsaiState>(
       builder: (context, state) {
         return Stack(
@@ -55,12 +67,20 @@ class IfsaiDetailView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: MediaQuery.of(context).size.height - 83),
-                  SizedBox(
-                    height: (-0.5 * MediaQuery.of(context).size.height + 1650),
-                  ),
+                  if (MediaQuery.of(context).size.width > 1200) ...[
+                    SizedBox(height: MediaQuery.of(context).size.height - 83),
+                    SizedBox(
+                      height:
+                          (-0.5 * MediaQuery.of(context).size.height + 1650),
+                    ),
+                  ],
                   Column(
                     children: [
+                      if (MediaQuery.of(context).size.width < 1200) ...[
+                        ProjectDetailTitleNoAnimation(),
+                        SubTitleNoAnimation(),
+                      ],
+
                       VisibilityDetector(
                         key: const Key('project-contents-view'),
                         onVisibilityChanged: (VisibilityInfo info) {
@@ -179,22 +199,43 @@ class IfsaiDetailView extends StatelessWidget {
                 ],
               ),
             ),
+            if (deviceType == 'mobile') ...[
+              ScreenUtilInit(
+                designSize:
+                    isMobileDevice
+                        ? isFoldable
+                            ? const Size(770, 900)
+                            : const Size(450, 752)
+                        : Size(
+                          logicalWidth,
+                          MediaQuery.of(context).size.height,
+                        ),
 
-            ProjectDetailSection(
-              model: IfsaiModel(),
-              mainTitleOpacity: state.mainTitleOpacity,
-              descriptionOpacity: state.descriptionOpacity,
-              titleOpacity: state.titleOpacity,
-              titleScale: state.titleScale,
-              titleOffset: state.titleOffset,
-              scrollDescriptionOpacity: state.scrollDescriptionOpacity,
-              mainTitleTranslateY: state.mainTitleTranslateY,
-              descriptionTranslateY: state.descriptionTranslateY,
-              textColor: state.textColor,
-              setScrollEnabled:
-                  (isEnabled) =>
-                      context.read<IfsaiCubit>().setScrollEnabled(isEnabled),
-            ),
+                minTextAdapt: true,
+                splitScreenMode: true,
+                builder: (context, child) {
+                  return MenuScreen(isMenuClicked: state.isMenuClicked);
+                },
+              ),
+            ],
+
+            if (MediaQuery.of(context).size.width > 1200) ...[
+              ProjectDetailSection(
+                model: IfsaiModel(),
+                mainTitleOpacity: state.mainTitleOpacity,
+                descriptionOpacity: state.descriptionOpacity,
+                titleOpacity: state.titleOpacity,
+                titleScale: state.titleScale,
+                titleOffset: state.titleOffset,
+                scrollDescriptionOpacity: state.scrollDescriptionOpacity,
+                mainTitleTranslateY: state.mainTitleTranslateY,
+                descriptionTranslateY: state.descriptionTranslateY,
+                textColor: state.textColor,
+                setScrollEnabled:
+                    (isEnabled) =>
+                        context.read<IfsaiCubit>().setScrollEnabled(isEnabled),
+              ),
+            ],
 
             Positioned(
               bottom: 30,

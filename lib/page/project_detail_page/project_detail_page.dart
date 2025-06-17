@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:self_introduction_flutter/components/widget/animation/widget_animation.dart';
 import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/project_detail_cubit.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/project_detail_state.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_detail_view.dart';
@@ -47,7 +48,13 @@ class _ProjectDetailView extends StatelessWidget {
                     opacity: state.isLoading ? 1 : 0,
                     child: TopNavBar(
                       deviceType: deviceType,
-                      isMenuClicked: false,
+                      isMenuClicked: state.isMenuClicked,
+                      onPressed:
+                          deviceType == 'mobile'
+                              ? () {
+                                context.read<ProjectDetailCubit>().toggleMenu();
+                              }
+                              : null,
                       onHomePressed: () {
                         context.go('/');
                       },
@@ -71,6 +78,8 @@ class _ProjectDetailView extends StatelessWidget {
                             child: const IfsaiDetailPage(),
                           ),
                         ),
+                        if (deviceType == 'mobile')
+                          MenuScreen(isMenuClicked: state.isMenuClicked),
                       ],
                     ),
                   ),

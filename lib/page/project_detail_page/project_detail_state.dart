@@ -11,5 +11,8 @@ class ProjectDetailState with _$ProjectDetailState {
     @Default(false) bool isScrollEnabled,
     @Default('') String projectName,
     ScrollController? scrollController,
+
+    // 메뉴 상태
+    @Default(false) bool isMenuClicked,
   }) = _ProjectDetailState;
 }
