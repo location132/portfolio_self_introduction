@@ -12,6 +12,7 @@ import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_m
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/terminal/mobile_terminal_view.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/project_content/mobile_project_contents.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/project_content/mobile_project_content2.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/service/mobile_service_view.dart';
 import 'package:self_introduction_flutter/service/main_service.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -130,6 +131,22 @@ class IfsaiMobileDetailView extends StatelessWidget {
                     MobileTerminalView(
                       state: state,
                       cubit: context.read<IfsaiCubit>(),
+                    ),
+                    SizedBox(height: 180.h),
+                    VisibilityDetector(
+                      key: const Key('mobile-service-view'),
+                      onVisibilityChanged: (info) {
+                        if (info.visibleFraction > 0.1 &&
+                            !state.isServiceTabVisible) {
+                          context
+                              .read<IfsaiCubit>()
+                              .onServiceTabVisibilityChanged();
+                        }
+                      },
+                      child: MobileServiceView(
+                        state: state,
+                        cubit: context.read<IfsaiCubit>(),
+                      ),
                     ),
                   ],
                 ),
