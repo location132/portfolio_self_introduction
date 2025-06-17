@@ -46,6 +46,7 @@ class IfsaiState with _$IfsaiState {
     // 터미널 관련 상태
     @Default('') String terminalOutput,
     @Default(false) bool isTerminalExecuting,
+    @Default('') String selectedCommand,
 
     // 프로젝트 스크롤 인터렉션 관련 상태
     @Default(false) bool isProjectCard1Visible,

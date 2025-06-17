@@ -154,7 +154,7 @@ class _ClipboardWidgetState extends State<ClipboardWidget> {
               const SizedBox(height: 8),
               GestureDetector(
                 onTap: () async {
-                  await context.read<IfsaiCubit>().copyToClipboard(
+                  context.read<IfsaiCubit>().setSelectedCommand(
                     cmd['command']!,
                   );
                   setState(() {

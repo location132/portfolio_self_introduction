@@ -51,7 +51,8 @@ mixin _$IfsaiState {
   int get currentFaqTitleIndex => throw _privateConstructorUsedError;
   bool get isInFaqSection => throw _privateConstructorUsedError; // 터미널 관련 상태
   String get terminalOutput => throw _privateConstructorUsedError;
-  bool get isTerminalExecuting =>
+  bool get isTerminalExecuting => throw _privateConstructorUsedError;
+  String get selectedCommand =>
       throw _privateConstructorUsedError; // 프로젝트 스크롤 인터렉션 관련 상태
   bool get isProjectCard1Visible => throw _privateConstructorUsedError;
   bool get isProjectCard2Visible => throw _privateConstructorUsedError;
@@ -106,6 +107,7 @@ abstract class $IfsaiStateCopyWith<$Res> {
     bool isInFaqSection,
     String terminalOutput,
     bool isTerminalExecuting,
+    String selectedCommand,
     bool isProjectCard1Visible,
     bool isProjectCard2Visible,
     bool isProjectCard3Visible,
@@ -160,6 +162,7 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
     Object? isInFaqSection = null,
     Object? terminalOutput = null,
     Object? isTerminalExecuting = null,
+    Object? selectedCommand = null,
     Object? isProjectCard1Visible = null,
     Object? isProjectCard2Visible = null,
     Object? isProjectCard3Visible = null,
@@ -311,6 +314,11 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
                     ? _value.isTerminalExecuting
                     : isTerminalExecuting // ignore: cast_nullable_to_non_nullable
                         as bool,
+            selectedCommand:
+                null == selectedCommand
+                    ? _value.selectedCommand
+                    : selectedCommand // ignore: cast_nullable_to_non_nullable
+                        as String,
             isProjectCard1Visible:
                 null == isProjectCard1Visible
                     ? _value.isProjectCard1Visible
@@ -395,6 +403,7 @@ abstract class _$$IfsaiStateImplCopyWith<$Res>
     bool isInFaqSection,
     String terminalOutput,
     bool isTerminalExecuting,
+    String selectedCommand,
     bool isProjectCard1Visible,
     bool isProjectCard2Visible,
     bool isProjectCard3Visible,
@@ -448,6 +457,7 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
     Object? isInFaqSection = null,
     Object? terminalOutput = null,
     Object? isTerminalExecuting = null,
+    Object? selectedCommand = null,
     Object? isProjectCard1Visible = null,
     Object? isProjectCard2Visible = null,
     Object? isProjectCard3Visible = null,
@@ -599,6 +609,11 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
                 ? _value.isTerminalExecuting
                 : isTerminalExecuting // ignore: cast_nullable_to_non_nullable
                     as bool,
+        selectedCommand:
+            null == selectedCommand
+                ? _value.selectedCommand
+                : selectedCommand // ignore: cast_nullable_to_non_nullable
+                    as String,
         isProjectCard1Visible:
             null == isProjectCard1Visible
                 ? _value.isProjectCard1Visible
@@ -676,6 +691,7 @@ class _$IfsaiStateImpl implements _IfsaiState {
     this.isInFaqSection = false,
     this.terminalOutput = '',
     this.isTerminalExecuting = false,
+    this.selectedCommand = '',
     this.isProjectCard1Visible = false,
     this.isProjectCard2Visible = false,
     this.isProjectCard3Visible = false,
@@ -773,6 +789,9 @@ class _$IfsaiStateImpl implements _IfsaiState {
   @override
   @JsonKey()
   final bool isTerminalExecuting;
+  @override
+  @JsonKey()
+  final String selectedCommand;
   // 프로젝트 스크롤 인터렉션 관련 상태
   @override
   @JsonKey()
@@ -802,7 +821,7 @@ class _$IfsaiStateImpl implements _IfsaiState {
 
   @override
   String toString() {
-    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText, isPlayerLongText: $isPlayerLongText, isPlayerWhiteBackground: $isPlayerWhiteBackground, backgroundVideoController: $backgroundVideoController, backgroundFadeController: $backgroundFadeController, isBackgroundVideoCompleted: $isBackgroundVideoCompleted, isBackgroundVideoInitialized: $isBackgroundVideoInitialized, isBackgroundVisible: $isBackgroundVisible, hasBackgroundStartedPlaying: $hasBackgroundStartedPlaying, isLibraryCardsAnimationStarted: $isLibraryCardsAnimationStarted, isLibraryDetailVisible: $isLibraryDetailVisible, currentFaqTitleIndex: $currentFaqTitleIndex, isInFaqSection: $isInFaqSection, terminalOutput: $terminalOutput, isTerminalExecuting: $isTerminalExecuting, isProjectCard1Visible: $isProjectCard1Visible, isProjectCard2Visible: $isProjectCard2Visible, isProjectCard3Visible: $isProjectCard3Visible, isServiceTabVisible: $isServiceTabVisible, isBackgrounTitleVisible: $isBackgrounTitleVisible, isBackgroundContentVisible: $isBackgroundContentVisible, isBackgroundFeatureVisible: $isBackgroundFeatureVisible, isMenuClicked: $isMenuClicked)';
+    return 'IfsaiState(isScrollEnabled: $isScrollEnabled, scrollController: $scrollController, titleScale: $titleScale, titleOpacity: $titleOpacity, mainTitleOpacity: $mainTitleOpacity, descriptionOpacity: $descriptionOpacity, titleOffset: $titleOffset, scrollDescriptionOpacity: $scrollDescriptionOpacity, mainTitleTranslateY: $mainTitleTranslateY, descriptionTranslateY: $descriptionTranslateY, backgroundDarkness: $backgroundDarkness, textColor: $textColor, isPlayerVisible: $isPlayerVisible, playerText: $playerText, isPlayerLongText: $isPlayerLongText, isPlayerWhiteBackground: $isPlayerWhiteBackground, backgroundVideoController: $backgroundVideoController, backgroundFadeController: $backgroundFadeController, isBackgroundVideoCompleted: $isBackgroundVideoCompleted, isBackgroundVideoInitialized: $isBackgroundVideoInitialized, isBackgroundVisible: $isBackgroundVisible, hasBackgroundStartedPlaying: $hasBackgroundStartedPlaying, isLibraryCardsAnimationStarted: $isLibraryCardsAnimationStarted, isLibraryDetailVisible: $isLibraryDetailVisible, currentFaqTitleIndex: $currentFaqTitleIndex, isInFaqSection: $isInFaqSection, terminalOutput: $terminalOutput, isTerminalExecuting: $isTerminalExecuting, selectedCommand: $selectedCommand, isProjectCard1Visible: $isProjectCard1Visible, isProjectCard2Visible: $isProjectCard2Visible, isProjectCard3Visible: $isProjectCard3Visible, isServiceTabVisible: $isServiceTabVisible, isBackgrounTitleVisible: $isBackgrounTitleVisible, isBackgroundContentVisible: $isBackgroundContentVisible, isBackgroundFeatureVisible: $isBackgroundFeatureVisible, isMenuClicked: $isMenuClicked)';
   }
 
   @override
@@ -894,6 +913,8 @@ class _$IfsaiStateImpl implements _IfsaiState {
                 other.terminalOutput == terminalOutput) &&
             (identical(other.isTerminalExecuting, isTerminalExecuting) ||
                 other.isTerminalExecuting == isTerminalExecuting) &&
+            (identical(other.selectedCommand, selectedCommand) ||
+                other.selectedCommand == selectedCommand) &&
             (identical(other.isProjectCard1Visible, isProjectCard1Visible) ||
                 other.isProjectCard1Visible == isProjectCard1Visible) &&
             (identical(other.isProjectCard2Visible, isProjectCard2Visible) ||
@@ -954,6 +975,7 @@ class _$IfsaiStateImpl implements _IfsaiState {
     isInFaqSection,
     terminalOutput,
     isTerminalExecuting,
+    selectedCommand,
     isProjectCard1Visible,
     isProjectCard2Visible,
     isProjectCard3Visible,
@@ -1003,6 +1025,7 @@ abstract class _IfsaiState implements IfsaiState {
     final bool isInFaqSection,
     final String terminalOutput,
     final bool isTerminalExecuting,
+    final String selectedCommand,
     final bool isProjectCard1Visible,
     final bool isProjectCard2Visible,
     final bool isProjectCard3Visible,
@@ -1068,7 +1091,9 @@ abstract class _IfsaiState implements IfsaiState {
   @override
   String get terminalOutput;
   @override
-  bool get isTerminalExecuting; // 프로젝트 스크롤 인터렉션 관련 상태
+  bool get isTerminalExecuting;
+  @override
+  String get selectedCommand; // 프로젝트 스크롤 인터렉션 관련 상태
   @override
   bool get isProjectCard1Visible;
   @override

@@ -318,10 +318,13 @@ class IfsaiCubit extends Cubit<IfsaiState> {
     await Clipboard.setData(ClipboardData(text: command));
   }
 
+  void setSelectedCommand(String command) {
+    emit(state.copyWith(selectedCommand: command));
+  }
+
   Future<void> pasteAndExecuteTerminalCommand() async {
-    final clipboardData = await Clipboard.getData('text/plain');
-    if (clipboardData?.text != null) {
-      final command = clipboardData!.text!;
+    if (state.selectedCommand.isNotEmpty) {
+      final command = state.selectedCommand;
 
       emit(
         state.copyWith(
