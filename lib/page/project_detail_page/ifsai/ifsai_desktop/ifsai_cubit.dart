@@ -118,6 +118,20 @@ class IfsaiCubit extends Cubit<IfsaiState> {
     );
   }
 
+  void setFaqPlayerVisible(bool isVisible) {
+    if (isVisible) {
+      emit(
+        state.copyWith(
+          isPlayerVisible: true,
+          isPlayerLongText: false,
+          playerText: 'FAQ를 확인해보세요',
+        ),
+      );
+    } else {
+      emit(state.copyWith(isPlayerVisible: false));
+    }
+  }
+
   void onBackgroundVisibilityChanged() {
     emit(
       state.copyWith(

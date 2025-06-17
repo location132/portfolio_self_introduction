@@ -76,12 +76,6 @@ class _MobileLibraryViewState extends State<MobileLibraryView>
       });
       widget.cubit.setLibraryPlayerVisible(true);
       _cardAnimationController.forward();
-    } else if (info.visibleFraction <= 0.1 && _isLibraryVisible) {
-      setState(() {
-        _isLibraryVisible = false;
-      });
-      widget.cubit.setLibraryPlayerVisible(false);
-      _cardAnimationController.reset();
     }
   }
 

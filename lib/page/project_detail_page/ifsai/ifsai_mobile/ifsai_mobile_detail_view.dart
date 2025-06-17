@@ -16,6 +16,7 @@ import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_m
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/service/mobile_service_view.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/background/mobile_background_view.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/library/mobile_library_view.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/faq/mobile_faq_view.dart';
 import 'package:self_introduction_flutter/service/main_service.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -176,6 +177,11 @@ class IfsaiMobileDetailView extends StatelessWidget {
                     ),
                     SizedBox(height: 180.h),
                     MobileLibraryView(
+                      state: state,
+                      cubit: context.read<IfsaiCubit>(),
+                    ),
+                    SizedBox(height: 180.h),
+                    MobileFaqView(
                       state: state,
                       cubit: context.read<IfsaiCubit>(),
                     ),
