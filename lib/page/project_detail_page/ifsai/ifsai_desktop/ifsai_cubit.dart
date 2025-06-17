@@ -24,6 +24,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
 
   // Player
   void setPlayerVisible(bool isVisible) {
+    if (isClosed) return;
     if (state.isPlayerVisible != isVisible) {
       emit(
         state.copyWith(
@@ -36,6 +37,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
   }
 
   void setBackgroundSectionVisible(bool isVisible) {
+    if (isClosed) return;
     if (isVisible) {
       emit(
         state.copyWith(
@@ -50,6 +52,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
   }
 
   void hidePlayerForOtherSections() {
+    if (isClosed) return;
     emit(state.copyWith(isPlayerVisible: false));
   }
 
@@ -64,6 +67,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
     await videoController.initialize();
     await videoController.setVolume(0.0);
 
+    if (isClosed) return;
     emit(
       state.copyWith(
         backgroundVideoController: videoController,
@@ -75,6 +79,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
   }
 
   void _backgroundVideoListener() {
+    if (isClosed) return;
     if (state.backgroundVideoController != null &&
         state.backgroundVideoController!.value.position >=
             state.backgroundVideoController!.value.duration &&
@@ -88,6 +93,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
 
   // 라이브러리 관련 메서드
   void setLibraryCardsAnimationStarted(bool isStarted) {
+    if (isClosed) return;
     if (state.isLibraryCardsAnimationStarted != isStarted) {
       emit(
         state.copyWith(
@@ -99,6 +105,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
   }
 
   void setLibraryPlayerVisible(bool isVisible) {
+    if (isClosed) return;
     if (isVisible) {
       emit(
         state.copyWith(
@@ -113,6 +120,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
   }
 
   void setLibraryPlayerText(String text) {
+    if (isClosed) return;
     emit(
       state.copyWith(
         isPlayerVisible: true,
@@ -123,6 +131,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
   }
 
   void onBackgroundVisibilityChanged() {
+    if (isClosed) return;
     emit(
       state.copyWith(
         isBackgroundVisible: true,
@@ -133,6 +142,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
   }
 
   Future<void> replayBackgroundVideo() async {
+    if (isClosed) return;
     if (!state.isBackgroundVideoInitialized ||
         state.backgroundVideoController == null) {
       return;
@@ -141,6 +151,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
     await state.backgroundVideoController!.pause();
     await state.backgroundVideoController!.seekTo(Duration.zero);
 
+    if (isClosed) return;
     emit(
       state.copyWith(
         isBackgroundVideoCompleted: false,
@@ -151,21 +162,26 @@ class IfsaiCubit extends Cubit<IfsaiState> {
     state.backgroundFadeController?.reset();
 
     await Future.delayed(const Duration(milliseconds: 100));
+    if (isClosed) return;
 
     try {
       await state.backgroundVideoController!.play();
       await Future.delayed(const Duration(milliseconds: 500));
     } catch (e) {
-      _reinitializeBackgroundVideo();
+      if (!isClosed) {
+        _reinitializeBackgroundVideo();
+      }
     }
   }
 
   Future<void> _reinitializeBackgroundVideo() async {
+    if (isClosed) return;
     if (state.backgroundVideoController != null) {
       state.backgroundVideoController!.removeListener(_backgroundVideoListener);
       await state.backgroundVideoController!.dispose();
     }
 
+    if (isClosed) return;
     emit(
       state.copyWith(
         backgroundVideoController: null,
@@ -180,6 +196,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
     );
 
     await videoController.initialize();
+    if (isClosed) return;
     emit(
       state.copyWith(
         backgroundVideoController: videoController,
@@ -195,6 +212,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
   }
 
   void setBackgroundFadeController(AnimationController controller) {
+    if (isClosed) return;
     emit(state.copyWith(backgroundFadeController: controller));
   }
 
@@ -280,7 +298,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
       textColor: textColor,
     );
 
-    if (_shouldEmitState(newState)) {
+    if (_shouldEmitState(newState) && !isClosed) {
       emit(newState);
     }
   }
@@ -307,6 +325,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
   }
 
   void setScrollEnabled(bool enabled) {
+    if (isClosed) return;
     if (state.isScrollEnabled != enabled) {
       emit(state.copyWith(isScrollEnabled: enabled));
     }
@@ -314,11 +333,13 @@ class IfsaiCubit extends Cubit<IfsaiState> {
 
   // 메뉴 토글 함수
   void toggleMenu() {
+    if (isClosed) return;
     emit(state.copyWith(isMenuClicked: !state.isMenuClicked));
   }
 
   // FAQ 관련 메서드들
   void onFaqVisibilityChanged(int titleIndex) {
+    if (isClosed) return;
     if (state.currentFaqTitleIndex != titleIndex) {
       emit(
         state.copyWith(currentFaqTitleIndex: titleIndex, isInFaqSection: true),
@@ -327,6 +348,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
   }
 
   void onFaqSectionVisibilityChanged(bool isVisible) {
+    if (isClosed) return;
     if (state.isInFaqSection != isVisible) {
       emit(
         state.copyWith(
@@ -339,6 +361,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
 
   // 터미널
   void initializeTerminal() {
+    if (isClosed) return;
     emit(state.copyWith(terminalOutput: TerminalTextConstants.terminalPrompt));
   }
 
@@ -347,10 +370,12 @@ class IfsaiCubit extends Cubit<IfsaiState> {
   }
 
   void setSelectedCommand(String command) {
+    if (isClosed) return;
     emit(state.copyWith(selectedCommand: command));
   }
 
   Future<void> pasteAndExecuteTerminalCommand() async {
+    if (isClosed) return;
     if (state.selectedCommand.isNotEmpty) {
       final command = state.selectedCommand;
 
@@ -362,6 +387,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
       );
 
       await Future.delayed(const Duration(milliseconds: 1000));
+      if (isClosed) return;
 
       final output = _simulateCommandOutput(command);
       emit(
@@ -399,28 +425,30 @@ class IfsaiCubit extends Cubit<IfsaiState> {
 
   // 1번 프로젝트 컨텐츠 카드
   void onProjectCardVisibilityChanged() {
+    if (isClosed) return;
     emit(state.copyWith(isProjectCard1Visible: true));
   }
 
   // 2번 프로젝트 컨텐츠 카드
   void onProjectCard2VisibilityChanged() {
+    if (isClosed) return;
     emit(state.copyWith(isProjectCard1Visible: true));
     emit(state.copyWith(isProjectCard2Visible: true));
   }
 
   // 3번 프로젝트 컨텐츠 카드
   void onProjectCard3VisibilityChanged() {
+    if (isClosed) return;
     emit(state.copyWith(isProjectCard1Visible: true));
     emit(state.copyWith(isProjectCard2Visible: true));
-
     emit(state.copyWith(isProjectCard3Visible: true));
   }
 
   // 서비스 위젯
   void onServiceTabVisibilityChanged() {
+    if (isClosed) return;
     emit(state.copyWith(isProjectCard1Visible: true));
     emit(state.copyWith(isProjectCard2Visible: true));
-
     emit(state.copyWith(isProjectCard3Visible: true));
     emit(state.copyWith(isServiceTabVisible: true));
   }

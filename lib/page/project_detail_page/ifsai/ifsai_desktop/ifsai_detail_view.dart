@@ -66,18 +66,20 @@ class IfsaiDetailView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TopNavBar(
-                    deviceType: deviceType,
-                    isMenuClicked: state.isMenuClicked,
-                    onPressed:
-                        deviceType == 'mobile'
-                            ? () {
-                              context.read<IfsaiCubit>().toggleMenu();
-                            }
-                            : null,
-                    onHomePressed: () {
-                      context.go('/');
-                    },
+                  Center(
+                    child: TopNavBar(
+                      deviceType: deviceType,
+                      isMenuClicked: state.isMenuClicked,
+                      onPressed:
+                          deviceType == 'mobile'
+                              ? () {
+                                context.read<IfsaiCubit>().toggleMenu();
+                              }
+                              : null,
+                      onHomePressed: () {
+                        context.go('/');
+                      },
+                    ),
                   ),
                   if (MediaQuery.of(context).size.width > 1200) ...[
                     SizedBox(height: MediaQuery.of(context).size.height - 83),

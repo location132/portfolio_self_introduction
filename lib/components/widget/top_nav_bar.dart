@@ -26,6 +26,7 @@ class TopNavBar extends StatelessWidget {
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset('assets/Images/flutter_bird.png', scale: 25),
               GestureDetector(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'project_image_section.dart';
 import 'project_text_section.dart';
 
@@ -51,12 +50,12 @@ class ProjectRowLayout extends StatelessWidget {
           isReversed
               ? [
                 textSection,
-                SizedBox(width: screenWidth > 1400 ? 100.w : 60.w),
+                SizedBox(width: screenWidth > 1400 ? 100 : 60),
                 imageSection,
               ]
               : [
                 imageSection,
-                SizedBox(width: screenWidth > 1400 ? 100.w : 60.w),
+                SizedBox(width: screenWidth > 1400 ? 100 : 60),
                 textSection,
               ],
     );

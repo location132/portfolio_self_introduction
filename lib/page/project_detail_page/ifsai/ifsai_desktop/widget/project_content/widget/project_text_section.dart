@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/components/widget/animation/widget_animation.dart';
 
 class ProjectTextSection extends StatelessWidget {
@@ -35,33 +34,29 @@ class ProjectTextSection extends StatelessWidget {
               title,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 24.sp,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
                 height: 1.4,
               ),
             ),
-            SizedBox(height: 40.h),
+            SizedBox(height: 40),
             ...techStack.map(
               (tech) => Padding(
-                padding: EdgeInsets.only(bottom: 12.h),
+                padding: EdgeInsets.only(bottom: 12),
                 child: Text(
                   '• $tech',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16.sp,
+                    fontSize: 16,
                     height: 1.3,
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 40.h),
+            SizedBox(height: 40),
             Text(
               bottomDescription,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 15.sp,
-                height: 1.5,
-              ),
+              style: TextStyle(color: Colors.white, fontSize: 15, height: 1.5),
             ),
           ],
         ),
