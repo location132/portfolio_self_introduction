@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/model/project_detail/ifsai_model.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
@@ -67,6 +69,19 @@ class IfsaiDetailView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  TopNavBar(
+                    deviceType: deviceType,
+                    isMenuClicked: state.isMenuClicked,
+                    onPressed:
+                        deviceType == 'mobile'
+                            ? () {
+                              context.read<IfsaiCubit>().toggleMenu();
+                            }
+                            : null,
+                    onHomePressed: () {
+                      context.go('/');
+                    },
+                  ),
                   if (MediaQuery.of(context).size.width > 1200) ...[
                     SizedBox(height: MediaQuery.of(context).size.height - 83),
                     SizedBox(

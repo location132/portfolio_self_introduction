@@ -143,7 +143,7 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
     Object? mainTitleTranslateY = null,
     Object? descriptionTranslateY = null,
     Object? backgroundDarkness = null,
-    Object? textColor = freezed,
+    Object? textColor = null,
     Object? isPlayerVisible = null,
     Object? playerText = null,
     Object? isPlayerLongText = null,
@@ -227,7 +227,7 @@ class _$IfsaiStateCopyWithImpl<$Res, $Val extends IfsaiState>
                     : backgroundDarkness // ignore: cast_nullable_to_non_nullable
                         as double,
             textColor:
-                freezed == textColor
+                null == textColor
                     ? _value.textColor
                     : textColor // ignore: cast_nullable_to_non_nullable
                         as Color,
@@ -431,7 +431,7 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
     Object? mainTitleTranslateY = null,
     Object? descriptionTranslateY = null,
     Object? backgroundDarkness = null,
-    Object? textColor = freezed,
+    Object? textColor = null,
     Object? isPlayerVisible = null,
     Object? playerText = null,
     Object? isPlayerLongText = null,
@@ -515,7 +515,7 @@ class __$$IfsaiStateImplCopyWithImpl<$Res>
                 : backgroundDarkness // ignore: cast_nullable_to_non_nullable
                     as double,
         textColor:
-            freezed == textColor
+            null == textColor
                 ? _value.textColor
                 : textColor // ignore: cast_nullable_to_non_nullable
                     as Color,
@@ -835,7 +835,8 @@ class _$IfsaiStateImpl implements _IfsaiState {
                 other.descriptionTranslateY == descriptionTranslateY) &&
             (identical(other.backgroundDarkness, backgroundDarkness) ||
                 other.backgroundDarkness == backgroundDarkness) &&
-            const DeepCollectionEquality().equals(other.textColor, textColor) &&
+            (identical(other.textColor, textColor) ||
+                other.textColor == textColor) &&
             (identical(other.isPlayerVisible, isPlayerVisible) ||
                 other.isPlayerVisible == isPlayerVisible) &&
             (identical(other.playerText, playerText) ||
@@ -852,10 +853,11 @@ class _$IfsaiStateImpl implements _IfsaiState {
                   backgroundVideoController,
                 ) ||
                 other.backgroundVideoController == backgroundVideoController) &&
-            const DeepCollectionEquality().equals(
-              other.backgroundFadeController,
-              backgroundFadeController,
-            ) &&
+            (identical(
+                  other.backgroundFadeController,
+                  backgroundFadeController,
+                ) ||
+                other.backgroundFadeController == backgroundFadeController) &&
             (identical(
                   other.isBackgroundVideoCompleted,
                   isBackgroundVideoCompleted,
@@ -935,13 +937,13 @@ class _$IfsaiStateImpl implements _IfsaiState {
     mainTitleTranslateY,
     descriptionTranslateY,
     backgroundDarkness,
-    const DeepCollectionEquality().hash(textColor),
+    textColor,
     isPlayerVisible,
     playerText,
     isPlayerLongText,
     isPlayerWhiteBackground,
     backgroundVideoController,
-    const DeepCollectionEquality().hash(backgroundFadeController),
+    backgroundFadeController,
     isBackgroundVideoCompleted,
     isBackgroundVideoInitialized,
     isBackgroundVisible,

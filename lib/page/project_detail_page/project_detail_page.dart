@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:self_introduction_flutter/components/widget/animation/widget_animation.dart';
-import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/project_detail_cubit.dart';
@@ -42,47 +40,25 @@ class _ProjectDetailView extends StatelessWidget {
             constraints: const BoxConstraints(maxWidth: 2500),
             child: Scaffold(
               backgroundColor: Colors.transparent,
-              body: Column(
+              body: Stack(
                 children: [
-                  Opacity(
-                    opacity: state.isLoading ? 1 : 0,
-                    child: TopNavBar(
-                      deviceType: deviceType,
-                      isMenuClicked: state.isMenuClicked,
-                      onPressed:
-                          deviceType == 'mobile'
-                              ? () {
-                                context.read<ProjectDetailCubit>().toggleMenu();
-                              }
-                              : null,
-                      onHomePressed: () {
-                        context.go('/');
-                      },
+                  Positioned.fill(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      color: Colors.white,
                     ),
                   ),
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        Positioned.fill(
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Visibility(
-                          visible: state.projectName == 'ifsai',
-                          child: WidgetAnimation(
-                            beginDy: 0.02,
-                            isStart: state.isLoaded,
-                            child: const IfsaiDetailPage(),
-                          ),
-                        ),
-                        if (deviceType == 'mobile')
-                          MenuScreen(isMenuClicked: state.isMenuClicked),
-                      ],
+                  Visibility(
+                    visible: state.projectName == 'ifsai',
+                    child: WidgetAnimation(
+                      beginDy: 0.02,
+                      isStart: state.isLoaded,
+                      child: const IfsaiDetailPage(),
                     ),
                   ),
+                  if (deviceType == 'mobile')
+                    MenuScreen(isMenuClicked: state.isMenuClicked),
                 ],
               ),
             ),

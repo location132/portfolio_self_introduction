@@ -86,6 +86,10 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final double maxHeight = MediaQuery.of(context).size.height;
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
+    final double availableHeight =
+        maxHeight - statusBarHeight - 100; // 여유 공간 100 추가
+
     return Column(
       children: [
         Opacity(
@@ -108,61 +112,59 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
                 clipBehavior: Clip.hardEdge,
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.easeInOut,
-                height: widget.isMenuClicked ? maxHeight : 0,
+                height: widget.isMenuClicked ? availableHeight : 0,
                 width: double.infinity,
                 color: Colors.white,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(height: 30.h),
-                      ...menuItemAnimations.asMap().entries.map((entry) {
-                        final index = entry.key;
-                        final ani = entry.value;
-                        return Padding(
-                          padding:
-                              index == 0
-                                  ? EdgeInsets.only(
-                                    bottom: 30.h,
-                                    left: 20.w,
-                                    right: 20.w,
-                                  )
-                                  : EdgeInsets.symmetric(
-                                    vertical: 8.h,
-                                    horizontal: 20.w,
-                                  ),
-                          child: SlideTransition(
-                            position: ani.animation.moveShow,
-                            child: FadeTransition(
-                              opacity: ani.animation.opacityShow,
-                              child: GestureDetector(
-                                onTap: () => _handleMenuTap(index, ani.text),
-                                child: Container(
-                                  width: double.infinity,
-                                  padding: EdgeInsets.symmetric(vertical: 10.h),
-                                  child: Text(
-                                    ani.text,
-                                    textAlign:
-                                        index == 0
-                                            ? TextAlign.center
-                                            : TextAlign.left,
-                                    style: TextStyle(
-                                      fontSize: 18.0.sp,
-                                      fontWeight: FontWeight.bold,
-                                      color:
-                                          index == 0
-                                              ? Colors.grey[600]
-                                              : Colors.black,
-                                    ),
-                                  ),
+                child: ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: menuItemAnimations.length,
+                  itemBuilder: (context, index) {
+                    final ani = menuItemAnimations[index];
+                    return Padding(
+                      padding:
+                          index == 0
+                              ? EdgeInsets.only(
+                                top: 15.h,
+                                bottom: 15.h,
+                                left: 20.w,
+                                right: 20.w,
+                              )
+                              : EdgeInsets.symmetric(
+                                vertical: 3.h, // 4.h에서 3.h로 더 줄임
+                                horizontal: 20.w,
+                              ),
+                      child: SlideTransition(
+                        position: ani.animation.moveShow,
+                        child: FadeTransition(
+                          opacity: ani.animation.opacityShow,
+                          child: GestureDetector(
+                            onTap: () => _handleMenuTap(index, ani.text),
+                            child: Container(
+                              width: double.infinity,
+                              padding: EdgeInsets.symmetric(
+                                vertical: 6.h,
+                              ), // 8.h에서 6.h로 더 줄임
+                              child: Text(
+                                ani.text,
+                                textAlign:
+                                    index == 0
+                                        ? TextAlign.center
+                                        : TextAlign.left,
+                                style: TextStyle(
+                                  fontSize: 15.0.sp, // 16.0.sp에서 15.0.sp로 더 줄임
+                                  fontWeight: FontWeight.bold,
+                                  color:
+                                      index == 0
+                                          ? Colors.grey[600]
+                                          : Colors.black,
                                 ),
                               ),
                             ),
                           ),
-                        );
-                      }).toList(),
-                      SizedBox(height: 50.h),
-                    ],
-                  ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ],
