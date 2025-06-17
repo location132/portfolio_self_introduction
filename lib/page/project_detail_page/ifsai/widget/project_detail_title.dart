@@ -5,11 +5,13 @@ import 'package:self_introduction_flutter/page/project_detail_page/ifsai/animati
 
 class ProjectDetailTitle extends StatefulWidget {
   final IfsaiModel model;
+  final double scrollDescriptionOpacity;
   final Function(bool) onScrollChange;
 
   const ProjectDetailTitle({
     super.key,
     required this.model,
+    required this.scrollDescriptionOpacity,
     required this.onScrollChange,
   });
 
@@ -43,7 +45,7 @@ class _ProjectDetailTitleState extends State<ProjectDetailTitle>
         _isSubTitleStart = true;
       });
     }
-    await Future.delayed(const Duration(milliseconds: 300));
+    await Future.delayed(const Duration(milliseconds: 800));
     if (mounted) {
       setState(() {
         _isDescriptionStart = true;
@@ -112,21 +114,18 @@ class _ProjectDetailTitleState extends State<ProjectDetailTitle>
                       AnimatedBuilder(
                         animation: _animation.controller,
                         builder: (context, child) {
-                          return SlideTransition(
-                            position: _animation.logoSlide,
-                            child: ScaleTransition(
-                              scale: _animation.logoScale,
-                              child: FadeTransition(
-                                opacity: _animation.logoOpacity,
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 8,
-                                  ),
-                                  child: Image.asset(
-                                    'assets/Images/ifSai.png',
-                                    height: 100,
-                                    fit: BoxFit.contain,
-                                  ),
+                          return ScaleTransition(
+                            scale: _animation.logoScale,
+                            child: FadeTransition(
+                              opacity: _animation.logoOpacity,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 8,
+                                ),
+                                child: Image.asset(
+                                  'assets/Images/ifSai.png',
+                                  height: 100,
+                                  fit: BoxFit.contain,
                                 ),
                               ),
                             ),
@@ -139,22 +138,28 @@ class _ProjectDetailTitleState extends State<ProjectDetailTitle>
                   AnimatedBuilder(
                     animation: _animation.controller,
                     builder: (context, child) {
-                      return SlideTransition(
-                        position: _animation.dividerSlide,
-                        child: FadeTransition(
-                          opacity: _animation.dividerOpacity,
-                          child: Container(
-                            height: 7,
-                            width: 140,
-
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.black.withValues(alpha: 0.8),
-                                  Colors.black.withValues(alpha: 0.1),
-                                ],
-                              ),
+                      return FadeTransition(
+                        opacity: _animation.dividerOpacity,
+                        child: Container(
+                          height: 7,
+                          width: 140,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            gradient: LinearGradient(
+                              colors: [
+                                const Color.fromARGB(
+                                  255,
+                                  72,
+                                  159,
+                                  25,
+                                ).withValues(alpha: 0.8),
+                                const Color.fromARGB(
+                                  255,
+                                  129,
+                                  249,
+                                  118,
+                                ).withValues(alpha: 0.1),
+                              ],
                             ),
                           ),
                         ),
@@ -169,14 +174,18 @@ class _ProjectDetailTitleState extends State<ProjectDetailTitle>
             alignment: Alignment.center,
             child: Padding(
               padding: const EdgeInsets.only(bottom: 120.0),
-              child: WidgetAnimation(
-                isStart: _isDescriptionStart,
-                child: Text(
-                  '지루하지않게 저에 관해서 궁금한 것만 보여드리겠습니다.',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: Colors.black,
+              child: AnimatedOpacity(
+                duration: const Duration(milliseconds: 16),
+                opacity: widget.scrollDescriptionOpacity,
+                child: WidgetAnimation(
+                  isStart: _isDescriptionStart,
+                  child: Text(
+                    '지루하지않게 저에 관해서 궁금한 것만 보여드리겠습니다.',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),

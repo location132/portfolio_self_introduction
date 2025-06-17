@@ -6,7 +6,7 @@ import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/project_detail_cubit.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/project_detail_state.dart';
-import 'package:self_introduction_flutter/page/project_detail_page/view/ifsai/ifsai_detail_view.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_detail_view.dart';
 import 'package:self_introduction_flutter/service/main_service.dart';
 
 class ProjectDetailPage extends StatelessWidget {
@@ -53,9 +53,7 @@ class _ProjectDetailView extends StatelessWidget {
                       },
                     ),
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height - 83,
-                    width: MediaQuery.of(context).size.width,
+                  Expanded(
                     child: Stack(
                       children: [
                         Positioned.fill(
@@ -70,7 +68,7 @@ class _ProjectDetailView extends StatelessWidget {
                           child: WidgetAnimation(
                             beginDy: 0.02,
                             isStart: state.isLoaded,
-                            child: IfsaiDetailPage(),
+                            child: const IfsaiDetailPage(),
                           ),
                         ),
                       ],
