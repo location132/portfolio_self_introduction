@@ -1,0 +1,122 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
+import 'package:self_introduction_flutter/core_service/di/injector.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_desktop/ifsai_cubit.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_desktop/ifsai_state.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/mobile_project_title.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/mobile_sub_title.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_desktop/widget/project_content/project_contents.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_desktop/widget/project_content/project_content2.dart';
+import 'package:self_introduction_flutter/service/main_service.dart';
+import 'package:visibility_detector/visibility_detector.dart';
+
+class IfsaiMobileDetailPage extends StatelessWidget {
+  const IfsaiMobileDetailPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final logicalWidth = MediaQuery.of(context).size.width;
+    final isFoldable = logicalWidth >= 490;
+    final isMobileDevice = MainService().isMobileDevice();
+
+    return ScreenUtilInit(
+      designSize:
+          isMobileDevice
+              ? isFoldable
+                  ? const Size(770, 900)
+                  : const Size(450, 752)
+              : Size(logicalWidth, MediaQuery.of(context).size.height),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return BlocProvider(
+          create: (context) => di<IfsaiCubit>(),
+          child: const IfsaiMobileDetailView(),
+        );
+      },
+    );
+  }
+}
+
+class IfsaiMobileDetailView extends StatelessWidget {
+  const IfsaiMobileDetailView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final deviceType = MainService().setScreenSize(
+      MediaQuery.of(context).size.width,
+    );
+
+    return BlocBuilder<IfsaiCubit, IfsaiState>(
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: Colors.white,
+          body: Stack(
+            children: [
+              // 메인 콘텐츠
+              SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // 상단 네비게이션
+                    TopNavBar(
+                      deviceType: deviceType,
+                      isMenuClicked: state.isMenuClicked,
+                      onPressed: () {
+                        context.read<IfsaiCubit>().toggleMenu();
+                      },
+                      onHomePressed: () {
+                        context.go('/');
+                      },
+                    ),
+
+                    // 프로젝트 타이틀
+                    const MobileProjectTitle(),
+
+                    SizedBox(height: 130.h),
+
+                    // 서브 타이틀
+                    const MobileSubTitle(),
+
+                    // 기존 프로젝트 콘텐츠들
+                    VisibilityDetector(
+                      key: const Key('project-contents-view'),
+                      onVisibilityChanged: (VisibilityInfo info) {
+                        if (info.visibleFraction > 0.1 &&
+                            !state.isPlayerVisible) {
+                          context.read<IfsaiCubit>().setPlayerVisible(true);
+                        } else if (info.visibleFraction < 0.1 &&
+                            state.isPlayerVisible) {
+                          context.read<IfsaiCubit>().setPlayerVisible(false);
+                        }
+                      },
+                      child: ProjectContents(
+                        state: state,
+                        cubit: context.read<IfsaiCubit>(),
+                      ),
+                    ),
+
+                    SizedBox(height: 200.h),
+                    ProjectContent2(
+                      isProjectCard3Visible: state.isProjectCard3Visible,
+                      cubit: context.read<IfsaiCubit>(),
+                    ),
+
+                    SizedBox(height: 100.h),
+                  ],
+                ),
+              ),
+
+              // 메뉴 스크린
+              MenuScreen(isMenuClicked: state.isMenuClicked),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
