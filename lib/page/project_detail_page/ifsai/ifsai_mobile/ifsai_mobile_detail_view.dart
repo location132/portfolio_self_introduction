@@ -7,6 +7,7 @@ import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_desktop/ifsai_cubit.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_desktop/ifsai_state.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/widget/player.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/mobile_project_title.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/mobile_sub_title.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/terminal/mobile_terminal_view.dart';
@@ -185,6 +186,18 @@ class IfsaiMobileDetailView extends StatelessWidget {
 
               // 메뉴 스크린
               MenuScreen(isMenuClicked: state.isMenuClicked),
+
+              // Player 위젯
+              Positioned(
+                bottom: 30.h,
+                left: 0,
+                right: 0,
+                child: Player(
+                  isPlayerAniOpacity: state.isPlayerVisible,
+                  isPlayerText: state.playerText,
+                  fontSize: 12.sp,
+                ),
+              ),
             ],
           ),
         );

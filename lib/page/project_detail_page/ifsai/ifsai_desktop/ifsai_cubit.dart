@@ -82,7 +82,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
     }
   }
 
-  // 라브 카
+  // 라이브러리 관련 메서드
   void setLibraryCardsAnimationStarted(bool isStarted) {
     if (state.isLibraryCardsAnimationStarted != isStarted) {
       emit(
@@ -92,6 +92,30 @@ class IfsaiCubit extends Cubit<IfsaiState> {
         ),
       );
     }
+  }
+
+  void setLibraryPlayerVisible(bool isVisible) {
+    if (isVisible) {
+      emit(
+        state.copyWith(
+          isPlayerVisible: true,
+          isPlayerLongText: false,
+          playerText: '사진을 클릭해주세요',
+        ),
+      );
+    } else {
+      emit(state.copyWith(isPlayerVisible: false));
+    }
+  }
+
+  void setLibraryPlayerText(String text) {
+    emit(
+      state.copyWith(
+        isPlayerVisible: true,
+        isPlayerLongText: text.length > 20,
+        playerText: text,
+      ),
+    );
   }
 
   void onBackgroundVisibilityChanged() {
