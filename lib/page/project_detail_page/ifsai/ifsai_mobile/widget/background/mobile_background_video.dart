@@ -79,7 +79,8 @@ class _MobileBackgroundVideoState extends State<MobileBackgroundVideo>
                         .backgroundVideoController!
                         .value
                         .isInitialized &&
-                    widget.state.hasBackgroundStartedPlaying)
+                    widget.state.hasBackgroundStartedPlaying &&
+                    !widget.state.isBackgroundVideoCompleted)
                   SizedBox.expand(
                     child: FittedBox(
                       fit: BoxFit.cover,
@@ -121,7 +122,7 @@ class _MobileBackgroundVideoState extends State<MobileBackgroundVideo>
                         left: 0,
                         top: 0,
                         bottom: 0,
-                        width: 50.w,
+                        width: 100,
                         child: Container(
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
@@ -139,7 +140,7 @@ class _MobileBackgroundVideoState extends State<MobileBackgroundVideo>
                         right: 0,
                         top: 0,
                         bottom: 0,
-                        width: 50.w,
+                        width: 100,
                         child: Container(
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
@@ -178,8 +179,8 @@ class _MobileBackgroundVideoState extends State<MobileBackgroundVideo>
                             .value
                             .isPlaying))
                   Positioned(
-                    right: 20.w,
-                    bottom: 20.h,
+                    right: 20,
+                    bottom: 20,
                     child: GestureDetector(
                       onTap:
                           () =>
@@ -187,8 +188,8 @@ class _MobileBackgroundVideoState extends State<MobileBackgroundVideo>
                                   .read<IfsaiCubit>()
                                   .replayBackgroundVideo(),
                       child: Container(
-                        width: 50.w,
-                        height: 50.h,
+                        width: 60,
+                        height: 60,
                         decoration: BoxDecoration(
                           color: Colors.black.withValues(alpha: 0.7),
                           shape: BoxShape.circle,
@@ -197,10 +198,10 @@ class _MobileBackgroundVideoState extends State<MobileBackgroundVideo>
                             width: 2,
                           ),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.play_arrow,
                           color: Colors.white,
-                          size: 25.sp,
+                          size: 30,
                         ),
                       ),
                     ),
