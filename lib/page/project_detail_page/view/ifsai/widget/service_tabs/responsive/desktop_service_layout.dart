@@ -115,7 +115,7 @@ class DesktopServiceLayout {
         child: TabBar(
           controller: tabController,
           isScrollable: true,
-          tabAlignment: TabAlignment.start,
+          tabAlignment: TabAlignment.center,
           labelColor: Colors.white,
           unselectedLabelColor: Colors.white.withValues(alpha: 0.6),
           indicatorColor: Colors.white,
