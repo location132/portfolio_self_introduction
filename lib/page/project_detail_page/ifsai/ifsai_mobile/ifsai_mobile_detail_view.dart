@@ -9,6 +9,7 @@ import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_d
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_desktop/ifsai_state.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/mobile_project_title.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/mobile_sub_title.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/terminal/mobile_terminal_view.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/project_content/mobile_project_contents.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/project_content/mobile_project_content2.dart';
 import 'package:self_introduction_flutter/service/main_service.dart';
@@ -126,6 +127,10 @@ class IfsaiMobileDetailView extends StatelessWidget {
                     ),
 
                     SizedBox(height: 100.h),
+                    MobileTerminalView(
+                      state: state,
+                      cubit: context.read<IfsaiCubit>(),
+                    ),
                   ],
                 ),
               ),
