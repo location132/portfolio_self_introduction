@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/components/widget/animation/widget_animation.dart';
 
@@ -19,38 +20,9 @@ class ProjectDetailContent extends StatelessWidget {
       padding: EdgeInsets.only(top: 20.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          WidgetAnimation(
-            isStart: isAnimationStart,
-            beginDy: 0.3,
-            duration: 600,
-            child: Text(
-              _getCategoryTitle(),
-              style: TextStyle(
-                fontSize: 24.sp,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          SizedBox(height: 20.h),
-          ..._getProjectItems(context),
-        ],
+        children: [..._getProjectItems(context)],
       ),
     );
-  }
-
-  String _getCategoryTitle() {
-    switch (category) {
-      case 'flutter':
-        return ProjectTextConstants.flutterDetailTitle;
-      case 'flutter_rive':
-        return ProjectTextConstants.flutterRiveDetailTitle;
-      case 'future':
-        return ProjectTextConstants.futureProjectDetailTitle;
-      default:
-        return '프로젝트';
-    }
   }
 
   List<Widget> _getProjectItems(BuildContext context) {
@@ -184,7 +156,42 @@ class ProjectDetailContent extends StatelessWidget {
           beginDy: 0.5,
           duration: 600 + (index * 100),
           child: GestureDetector(
-            child: Container(
+            onTap: () {
+              if (project['title'] == '잎사이') {
+                context.go('/project-detail/ifsai');
+              } else {
+                String message = '';
+                switch (project['title']) {
+                  case 'NaverMap':
+                  case '네이버 Map':
+                    message = '네이버 맵 프로젝트는 7월 16일 업로드 예정입니다!';
+                    break;
+                  case '클랭(KLANG)':
+                  case 'Klang':
+                    message = '클랭 프로젝트는 8월 20일 업로드 예정입니다!';
+                    break;
+                  case '구름 x 카카오 x 인프런':
+                    message = '구름 x 카카오 x 인프런 프로젝트는 9월 14일 업로드 예정입니다!';
+                    break;
+                  default:
+                    message = '${project['title']} 프로젝트 상세 페이지가 곧 준비됩니다!';
+                }
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(message),
+                    backgroundColor: Colors.black.withValues(alpha: 0.9),
+                    behavior: SnackBarBehavior.floating,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    duration: const Duration(seconds: 3),
+                  ),
+                );
+              }
+            },
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
               margin: EdgeInsets.only(bottom: 20.h),
               padding: EdgeInsets.all(16.w),
               height: 160.h,
@@ -193,7 +200,10 @@ class ProjectDetailContent extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12.r),
                 color: Colors.white.withValues(alpha: 0.03),
                 border: Border.all(
-                  color: const Color.fromARGB(255, 204, 250, 248),
+                  color:
+                      project['title'] == '잎사이'
+                          ? const Color.fromARGB(255, 100, 200, 255)
+                          : const Color.fromARGB(255, 204, 250, 248),
                   width: 1,
                 ),
               ),
@@ -225,6 +235,100 @@ class ProjectDetailContent extends StatelessWidget {
                             ),
                           ),
                         ),
+                      if (project['title'] == '잎사이')
+                        Container(
+                          margin: EdgeInsets.only(right: 8.w),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 12.w,
+                            vertical: 8.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(
+                              255,
+                              100,
+                              200,
+                              255,
+                            ).withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(12.r),
+                            border: Border.all(
+                              color: const Color.fromARGB(255, 100, 200, 255),
+                              width: 1,
+                            ),
+                          ),
+                          child: Text(
+                            '자세히 보실 수 있습니다',
+                            style: TextStyle(
+                              fontSize: 9.sp,
+                              color: const Color.fromARGB(255, 100, 200, 255),
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      if (project['title'] == 'NaverMap' ||
+                          project['title'] == '네이버 Map')
+                        Container(
+                          margin: EdgeInsets.only(right: 8.w),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 12.w,
+                            vertical: 8.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(12.r),
+                            border: Border.all(color: Colors.grey, width: 1),
+                          ),
+                          child: Text(
+                            '7월 16일 업로드 예정',
+                            style: TextStyle(
+                              fontSize: 9.sp,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      if (project['title'] == '클랭(KLANG)' ||
+                          project['title'] == 'Klang')
+                        Container(
+                          margin: EdgeInsets.only(right: 8.w),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 12.w,
+                            vertical: 8.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(12.r),
+                            border: Border.all(color: Colors.grey, width: 1),
+                          ),
+                          child: Text(
+                            '8월 20일 업로드 예정',
+                            style: TextStyle(
+                              fontSize: 9.sp,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      if (project['title'] == '구름 x 카카오 x 인프런')
+                        Container(
+                          margin: EdgeInsets.only(right: 8.w),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 12.w,
+                            vertical: 8.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(12.r),
+                            border: Border.all(color: Colors.grey, width: 1),
+                          ),
+                          child: Text(
+                            '9월 14일 업로드 예정',
+                            style: TextStyle(
+                              fontSize: 9.sp,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
                       Expanded(
                         child: Text(
                           project['title']!,
@@ -236,9 +340,14 @@ class ProjectDetailContent extends StatelessWidget {
                         ),
                       ),
                       Icon(
-                        Icons.arrow_forward_ios,
+                        project['title'] == '잎사이'
+                            ? Icons.open_in_new
+                            : Icons.arrow_forward_ios,
                         size: 14.sp,
-                        color: Colors.white.withValues(alpha: 0.5),
+                        color:
+                            project['title'] == '잎사이'
+                                ? const Color.fromARGB(255, 100, 200, 255)
+                                : Colors.white.withValues(alpha: 0.5),
                       ),
                     ],
                   ),
@@ -248,11 +357,9 @@ class ProjectDetailContent extends StatelessWidget {
                       project['description']!,
                       style: TextStyle(
                         fontSize: 14.sp,
-                        color: Colors.white.withValues(alpha: 0.8),
+                        color: Colors.white.withValues(alpha: 0.7),
                         height: 1.4,
                       ),
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   SizedBox(height: 8.h),
@@ -265,30 +372,13 @@ class ProjectDetailContent extends StatelessWidget {
                       borderRadius: BorderRadius.circular(6.r),
                       color: Colors.white.withValues(alpha: 0.05),
                     ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (category == 'future')
-                          Icon(
-                            Icons.schedule,
-                            size: 12.sp,
-                            color: const Color.fromARGB(255, 204, 250, 248),
-                          ),
-                        if (category == 'future') SizedBox(width: 4.w),
-                        Text(
-                          project['tech']!,
-                          style: TextStyle(
-                            fontSize: 12.sp,
-                            color:
-                                category == 'future'
-                                    ? const Color.fromARGB(255, 204, 250, 248)
-                                    : Colors.white.withValues(alpha: 0.6),
-                            fontWeight: FontWeight.w500,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
+                    child: Text(
+                      project['tech']!,
+                      style: TextStyle(
+                        fontSize: 12.sp,
+                        color: Colors.white.withValues(alpha: 0.6),
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],

@@ -38,8 +38,37 @@ class _ProjectCardState extends State<ProjectCard> {
     });
   }
 
+  bool _isProjectAccessible() {
+    final title = widget.project['title'] ?? '';
+    return title == '잎사이';
+  }
+
+  String _getBadgeText() {
+    final title = widget.project['title'] ?? '';
+    switch (title) {
+      case '잎사이':
+        return '자세히 보실 수 있습니다';
+      case 'NaverMap':
+        return '7월 16일 업로드 예정';
+      case '클랭(KLANG)':
+        return '8월 20일 업로드 예정';
+      case '구름 x 카카오 x 인프런':
+        return '9월 14일 업로드 예정';
+      default:
+        return '업로드 예정';
+    }
+  }
+
+  Color _getBadgeColor() {
+    final title = widget.project['title'] ?? '';
+    if (title == '잎사이') {
+      return const Color.fromARGB(255, 100, 200, 255);
+    }
+    return Colors.grey;
+  }
+
   void _onProjectTap(BuildContext context) async {
-    if (_isCalled) {
+    if (_isCalled || !_isProjectAccessible()) {
       return;
     }
     setState(() {
@@ -47,23 +76,11 @@ class _ProjectCardState extends State<ProjectCard> {
     });
 
     final title = widget.project['title'] ?? '';
-    if (title == '악보 넘기기' || title == 'CCTV View' || title == '맞춤 건강 알림') {
-      return;
-    }
 
     String route;
     switch (title) {
       case '잎사이':
         route = '/project/ifsai';
-        break;
-      case 'NaverMap':
-        route = '/project/navermap';
-        break;
-      case '클랭(KLANG)':
-        route = '/project/klang';
-        break;
-      case '구름 x 카카오 x 인프런':
-        route = '/project/groom';
         break;
       case 'About Me - With myDream':
         route = '/project/about-me';
@@ -74,8 +91,20 @@ class _ProjectCardState extends State<ProjectCard> {
       case 'Detail Me':
         route = '/project/detail-me';
         break;
+      case '선배 개발자 따라잡기 With GS_SHOP':
+        route = '/project/gsshop';
+        break;
+      case '선배 개발자 따라잡기 With IDUS':
+        route = '/project/idus';
+        break;
+      case '포트폴리오 웹사이트':
+        route = '/project/web-portfolio';
+        break;
       default:
-        route = '/projects';
+        setState(() {
+          _isCalled = false;
+        });
+        return;
     }
     context.push(route);
     setState(() {
@@ -128,7 +157,6 @@ class _ProjectCardState extends State<ProjectCard> {
   Widget _buildImage() {
     final title = widget.project['title'] ?? '';
 
-    // 미래 프로젝트들은 Coming Soon 스타일로 표시
     if (title == '악보 넘기기' || title == 'CCTV View' || title == '맞춤 건강 알림') {
       return ClipRRect(
         borderRadius: BorderRadius.circular(16),
@@ -200,141 +228,148 @@ class _ProjectCardState extends State<ProjectCard> {
     return AnimatedOpacity(
       opacity: widget.isVisible ? 1.0 : 0.0,
       duration: Duration(milliseconds: 200 + (widget.index * 50)),
-      child: MouseRegion(
-        onEnter: (_) => _onHover(true),
-        onExit: (_) => _onHover(false),
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          onTap: () {
-            _onProjectTap(context);
-          },
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            width: 330,
-            margin: const EdgeInsets.only(right: 20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color:
-                    _isHovered
-                        ? Colors.white.withValues(alpha: 0.3)
-                        : Colors.white.withValues(alpha: 0.1),
-                width: _isHovered ? 2 : 1,
+      child: SizedBox(
+        width: 350,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(left: 12, bottom: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                color: _getBadgeColor().withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: _getBadgeColor(), width: 1),
+              ),
+              child: Text(
+                _getBadgeText(),
+                style: TextStyle(
+                  fontSize: 10,
+                  color: _getBadgeColor(),
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: Stack(
-                children: [
-                  Positioned.fill(child: _buildImage()),
-                  Positioned(
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    child: AnimatedOpacity(
-                      opacity: _isHovered ? 0.0 : 1.0,
-                      duration: const Duration(milliseconds: 300),
-                      child: Container(
-                        height: 200,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Colors.transparent,
-                              Colors.black.withValues(alpha: 0.8),
-                              Colors.black.withValues(alpha: 0.95),
-                            ],
-                          ),
-                          borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(16),
-                            bottomRight: Radius.circular(16),
-                          ),
-                        ),
-                        padding: const EdgeInsets.all(20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.end,
+            Flexible(
+              // 프로젝트 카드를 Flexible로 감싸기
+              child: MouseRegion(
+                onEnter: (_) => _onHover(true),
+                onExit: (_) => _onHover(false),
+                cursor:
+                    _isProjectAccessible()
+                        ? SystemMouseCursors.click
+                        : SystemMouseCursors.basic,
+                child: GestureDetector(
+                  onTap: () {
+                    _onProjectTap(context);
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    width: 330,
+                    margin: const EdgeInsets.only(right: 20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color:
+                            _isHovered && _isProjectAccessible()
+                                ? Colors.white.withValues(alpha: 0.3)
+                                : Colors.white.withValues(alpha: 0.1),
+                        width: _isHovered && _isProjectAccessible() ? 2 : 1,
+                      ),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: AspectRatio(
+                        aspectRatio: 330 / 580,
+                        child: Stack(
+                          fit: StackFit.expand,
                           children: [
-                            Row(
-                              children: [
-                                if (widget.showBadge)
-                                  Container(
-                                    margin: const EdgeInsets.only(right: 8),
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 6,
-                                      vertical: 2,
+                            Positioned.fill(child: _buildImage()),
+                            Positioned(
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
+                              child: AnimatedOpacity(
+                                opacity: _isHovered ? 0.0 : 1.0,
+                                duration: const Duration(milliseconds: 300),
+                                child: Container(
+                                  height: 200,
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [
+                                        Colors.transparent,
+                                        Colors.black.withValues(alpha: 0.8),
+                                        Colors.black.withValues(alpha: 0.95),
+                                      ],
                                     ),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(4),
-                                      border: Border.all(
-                                        color: const Color.fromARGB(
-                                          255,
-                                          204,
-                                          250,
-                                          248,
-                                        ),
-                                        width: 1,
-                                      ),
-                                    ),
-                                    child: Text(
-                                      widget.badgeText,
-                                      style: const TextStyle(
-                                        fontSize: 9,
-                                        color: Color.fromARGB(
-                                          255,
-                                          204,
-                                          250,
-                                          248,
-                                        ),
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                    borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(16),
+                                      bottomRight: Radius.circular(16),
                                     ),
                                   ),
-                                Expanded(
-                                  child: Text(
-                                    widget.project['title']!,
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
+                                  padding: const EdgeInsets.all(20),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        widget.project['title']!,
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Text(
+                                        widget.project['description']!,
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.white.withValues(
+                                            alpha: 0.9,
+                                          ),
+                                          height: 1.4,
+                                        ),
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      const SizedBox(height: 12),
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 10,
+                                          vertical: 6,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                          color: Colors.white.withValues(
+                                            alpha: 0.2,
+                                          ),
+                                        ),
+                                        child: Text(
+                                          widget.project['tech']!,
+                                          style: TextStyle(
+                                            fontSize: 11,
+                                            color: Colors.white.withValues(
+                                              alpha: 0.9,
+                                            ),
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              widget.project['description']!,
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.white.withValues(alpha: 0.9),
-                                height: 1.4,
-                              ),
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            const SizedBox(height: 12),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 6,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: Colors.white.withValues(alpha: 0.2),
-                              ),
-                              child: Text(
-                                widget.project['tech']!,
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  color: Colors.white.withValues(alpha: 0.9),
-                                  fontWeight: FontWeight.w500,
-                                ),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],
@@ -342,10 +377,10 @@ class _ProjectCardState extends State<ProjectCard> {
                       ),
                     ),
                   ),
-                ],
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

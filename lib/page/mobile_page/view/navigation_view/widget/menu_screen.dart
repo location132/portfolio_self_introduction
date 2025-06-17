@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/animation/menu_ani.dart';
@@ -21,8 +22,6 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
     TextConstants.topNavBar3,
     TextConstants.topNavBar4,
     TextConstants.topNavBar5,
-    TextConstants.topNavBar6,
-    TextConstants.topNavBar7,
   ];
 
   @override
@@ -62,6 +61,28 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
     super.dispose();
   }
 
+  void _handleMenuTap(int index, String text) {
+    if (index == 0) return;
+
+    if (text == TextConstants.topNavBar1) {
+      context.go('/');
+    } else if (text == TextConstants.topNavBar2) {
+      context.go('/projects');
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('$text 페이지가 곧 준비됩니다!'),
+          backgroundColor: Colors.black.withValues(alpha: 0.9),
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final double maxHeight = MediaQuery.of(context).size.height;
@@ -79,7 +100,6 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
             ),
           ),
         ),
-
         Align(
           alignment: Alignment.topCenter,
           child: Column(
@@ -91,41 +111,58 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
                 height: widget.isMenuClicked ? maxHeight : 0,
                 width: double.infinity,
                 color: Colors.white,
-                child: ListView.builder(
-                  itemCount: menuItemAnimations.length,
-                  padding: EdgeInsets.symmetric(
-                    vertical: 30.h,
-                    horizontal: 20.w,
-                  ),
-                  itemBuilder: (context, index) {
-                    final ani = menuItemAnimations[index];
-                    return Padding(
-                      padding:
-                          index == 0
-                              ? const EdgeInsets.only(bottom: 30.0)
-                              : EdgeInsets.zero,
-                      child: SlideTransition(
-                        position: ani.animation.moveShow,
-                        child: FadeTransition(
-                          opacity: ani.animation.opacityShow,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 10.h),
-                            child: Text(
-                              ani.text,
-                              textAlign:
-                                  index == 0
-                                      ? TextAlign.center
-                                      : TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 18.0.sp,
-                                fontWeight: FontWeight.bold,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 30.h),
+                      ...menuItemAnimations.asMap().entries.map((entry) {
+                        final index = entry.key;
+                        final ani = entry.value;
+                        return Padding(
+                          padding:
+                              index == 0
+                                  ? EdgeInsets.only(
+                                    bottom: 30.h,
+                                    left: 20.w,
+                                    right: 20.w,
+                                  )
+                                  : EdgeInsets.symmetric(
+                                    vertical: 8.h,
+                                    horizontal: 20.w,
+                                  ),
+                          child: SlideTransition(
+                            position: ani.animation.moveShow,
+                            child: FadeTransition(
+                              opacity: ani.animation.opacityShow,
+                              child: GestureDetector(
+                                onTap: () => _handleMenuTap(index, ani.text),
+                                child: Container(
+                                  width: double.infinity,
+                                  padding: EdgeInsets.symmetric(vertical: 10.h),
+                                  child: Text(
+                                    ani.text,
+                                    textAlign:
+                                        index == 0
+                                            ? TextAlign.center
+                                            : TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 18.0.sp,
+                                      fontWeight: FontWeight.bold,
+                                      color:
+                                          index == 0
+                                              ? Colors.grey[600]
+                                              : Colors.black,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                    );
-                  },
+                        );
+                      }).toList(),
+                      SizedBox(height: 50.h),
+                    ],
+                  ),
                 ),
               ),
             ],

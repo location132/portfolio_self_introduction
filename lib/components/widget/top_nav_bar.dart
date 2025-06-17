@@ -20,7 +20,6 @@ class TopNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 데스크탑
     if (deviceType == 'desktop') {
       return Padding(
         padding: EdgeInsets.only(top: 15.sh, bottom: 15.sh),
@@ -42,45 +41,42 @@ class TopNavBar extends StatelessWidget {
               const NavItem(title: TextConstants.topNavBar3),
               const NavItem(title: TextConstants.topNavBar4),
               const NavItem(title: TextConstants.topNavBar5),
-              const NavItem(title: TextConstants.topNavBar6),
-              const NavItem(title: TextConstants.topNavBar7),
             ],
           ),
         ),
       );
-    } else {
-      // 모바일
-      return Container(
-        color: Colors.transparent,
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 15.sh, horizontal: 40.sw),
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      onHomePressed?.call();
-                      context.go('/');
-                    },
-                    child: Image.asset(
-                      'assets/Images/flutter_bird.png',
-                      scale: 25,
-                    ),
-                  ),
-                  const Spacer(),
-                  MenuToggleButton(
-                    onPressed: onPressed ?? () {},
-                    isMenuClicked: isMenuClicked,
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 10.sh),
-          ],
-        ),
-      );
     }
+
+    return Container(
+      color: Colors.transparent,
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 15.sh, horizontal: 40.sw),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    onHomePressed?.call();
+                    context.go('/');
+                  },
+                  child: Image.asset(
+                    'assets/Images/flutter_bird.png',
+                    scale: 25,
+                  ),
+                ),
+                const Spacer(),
+                MenuToggleButton(
+                  onPressed: onPressed ?? () {},
+                  isMenuClicked: isMenuClicked,
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 10.sh),
+        ],
+      ),
+    );
   }
 }
 
@@ -96,12 +92,9 @@ class NavItem extends StatelessWidget {
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
           onTap: () {
-            // 자기소개서 클릭 시 메인 페이지로 이동
             if (title == TextConstants.topNavBar1) {
               context.go('/');
-            }
-            // 프로젝트 클릭 시 프로젝트 페이지로 이동
-            else if (title == TextConstants.topNavBar2) {
+            } else if (title == TextConstants.topNavBar2) {
               context.go('/projects');
             }
             debugPrint("$title 클릭됨");

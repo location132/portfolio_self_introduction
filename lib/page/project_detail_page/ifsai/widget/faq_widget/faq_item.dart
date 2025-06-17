@@ -7,12 +7,12 @@ class FaqItem extends StatefulWidget {
   final double screenWidth;
 
   const FaqItem({
-    Key? key,
+    super.key,
     required this.question,
     required this.answer,
     required this.isLast,
     required this.screenWidth,
-  }) : super(key: key);
+  });
 
   @override
   State<FaqItem> createState() => _FaqItemState();

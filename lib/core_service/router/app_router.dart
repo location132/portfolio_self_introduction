@@ -80,6 +80,31 @@ class AppRouter {
               transitionDuration: const Duration(milliseconds: 800),
             ),
       ),
+      GoRoute(
+        path: '/project-detail/ifsai',
+        name: 'mobile_ifsai_detail',
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              child: ProjectDetailPage(projectName: 'ifsai'),
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                final tween = Tween<Offset>(
+                  begin: const Offset(0, 1),
+                  end: Offset.zero,
+                ).chain(CurveTween(curve: Curves.easeInOut));
+                return SlideTransition(
+                  position: animation.drive(tween),
+                  child: FadeTransition(opacity: animation, child: child),
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 800),
+            ),
+      ),
     ],
   );
 }

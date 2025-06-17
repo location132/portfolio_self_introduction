@@ -15,5 +15,12 @@ class ProjectsMainState with _$ProjectsMainState {
 
     //네비게이션 애니메이션 상태
     @Default(false) bool isNaviAniStart,
+
+    // 플레이어 상태
+    @Default(false) bool isPlayerVisible,
+    @Default('') String playerText,
+
+    // 메뉴 상태
+    @Default(false) bool isMenuClicked,
   }) = _ProjectsMainState;
 }

@@ -1,15 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/page/projects_main_page/projects_main_state.dart';
 
 @injectable
 class ProjectsMainCubit extends Cubit<ProjectsMainState> {
   ProjectsMainCubit() : super(const ProjectsMainState());
-
-  @postConstruct
-  void pageInit() {
-    startNaviAni();
-  }
 
   void startNaviAni() async {
     emit(
@@ -29,9 +25,14 @@ class ProjectsMainCubit extends Cubit<ProjectsMainState> {
   Future<void> initializePage() async {
     if (isClosed) return;
 
+    startNaviAni();
+
     emit(
       state.copyWith(
         projectModel: state.projectModel.copyWith(isBackGroundAniStart: true),
+        projectModelWithMobile: state.projectModelWithMobile.copyWith(
+          isBackGroundAniStart: true,
+        ),
       ),
     );
 
@@ -41,6 +42,9 @@ class ProjectsMainCubit extends Cubit<ProjectsMainState> {
     emit(
       state.copyWith(
         projectModel: state.projectModel.copyWith(isTitleAniStart: true),
+        projectModelWithMobile: state.projectModelWithMobile.copyWith(
+          isTitleAniStart: true,
+        ),
       ),
     );
 
@@ -52,6 +56,9 @@ class ProjectsMainCubit extends Cubit<ProjectsMainState> {
         projectModel: state.projectModel.copyWith(
           isProjectListAni: true,
           isProjectListVisible: true,
+        ),
+        projectModelWithMobile: state.projectModelWithMobile.copyWith(
+          isProjectItemsAniStart: true,
         ),
       ),
     );
@@ -70,21 +77,49 @@ class ProjectsMainCubit extends Cubit<ProjectsMainState> {
     );
   }
 
-  // 프로젝트 디테일 스크린 표시
+  // 프로젝트 디테일 스크린 표시 (모바일용)
   void showProjectDetail(String category) async {
+    if (isClosed) return;
+
     emit(
       state.copyWith(
-        projectModel: state.projectModel.copyWith(
+        projectModelWithMobile: state.projectModelWithMobile.copyWith(
           isProjectDetailVisible: true,
           selectedProjectCategory: category,
         ),
+        isPlayerVisible: true,
+        playerText: ProjectTextConstants.backToProjectList,
       ),
     );
+
     await Future.delayed(const Duration(milliseconds: 400));
+    if (isClosed) return;
+
     emit(
       state.copyWith(
-        projectModel: state.projectModel.copyWith(isProjectDetailAni: true),
+        projectModelWithMobile: state.projectModelWithMobile.copyWith(
+          isProjectDetailAni: true,
+        ),
       ),
     );
+  }
+
+  // 프로젝트 디테일 스크린 숨기기 (모바일용)
+  void hideProjectDetail() {
+    emit(
+      state.copyWith(
+        projectModelWithMobile: state.projectModelWithMobile.copyWith(
+          isProjectDetailVisible: false,
+          isProjectDetailAni: false,
+        ),
+        isPlayerVisible: false,
+        playerText: '',
+      ),
+    );
+  }
+
+  // 메뉴 토글 함수
+  void toggleMenu() {
+    emit(state.copyWith(isMenuClicked: !state.isMenuClicked));
   }
 }
