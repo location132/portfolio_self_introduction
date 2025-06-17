@@ -87,8 +87,51 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final double maxHeight = MediaQuery.of(context).size.height;
     final double statusBarHeight = MediaQuery.of(context).padding.top;
-    final double availableHeight =
-        maxHeight - statusBarHeight - 100; // 여유 공간 100 추가
+
+    // 화면 높이에 따른 조건부 로직
+    double availableHeight;
+    EdgeInsets firstItemPadding;
+    EdgeInsets itemPadding;
+    EdgeInsets textPadding;
+    double fontSize;
+
+    if (maxHeight > 800) {
+      // 높은 화면: 여유롭게
+      availableHeight = maxHeight - statusBarHeight - 100;
+      firstItemPadding = EdgeInsets.only(
+        top: 20.h,
+        bottom: 20.h,
+        left: 20.w,
+        right: 20.w,
+      );
+      itemPadding = EdgeInsets.symmetric(vertical: 5.h, horizontal: 20.w);
+      textPadding = EdgeInsets.symmetric(vertical: 8.h);
+      fontSize = 16.0.sp;
+    } else if (maxHeight > 700) {
+      // 중간 화면: 적당히
+      availableHeight = maxHeight - statusBarHeight - 80;
+      firstItemPadding = EdgeInsets.only(
+        top: 15.h,
+        bottom: 15.h,
+        left: 20.w,
+        right: 20.w,
+      );
+      itemPadding = EdgeInsets.symmetric(vertical: 3.h, horizontal: 20.w);
+      textPadding = EdgeInsets.symmetric(vertical: 6.h);
+      fontSize = 15.0.sp;
+    } else {
+      // 낮은 화면: 최대한 컴팩트하게
+      availableHeight = maxHeight - statusBarHeight - 60;
+      firstItemPadding = EdgeInsets.only(
+        top: 10.h,
+        bottom: 10.h,
+        left: 20.w,
+        right: 20.w,
+      );
+      itemPadding = EdgeInsets.symmetric(vertical: 2.h, horizontal: 20.w);
+      textPadding = EdgeInsets.symmetric(vertical: 4.h);
+      fontSize = 14.0.sp;
+    }
 
     return Column(
       children: [
@@ -121,18 +164,7 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
                   itemBuilder: (context, index) {
                     final ani = menuItemAnimations[index];
                     return Padding(
-                      padding:
-                          index == 0
-                              ? EdgeInsets.only(
-                                top: 15.h,
-                                bottom: 15.h,
-                                left: 20.w,
-                                right: 20.w,
-                              )
-                              : EdgeInsets.symmetric(
-                                vertical: 3.h, // 4.h에서 3.h로 더 줄임
-                                horizontal: 20.w,
-                              ),
+                      padding: index == 0 ? firstItemPadding : itemPadding,
                       child: SlideTransition(
                         position: ani.animation.moveShow,
                         child: FadeTransition(
@@ -141,9 +173,7 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
                             onTap: () => _handleMenuTap(index, ani.text),
                             child: Container(
                               width: double.infinity,
-                              padding: EdgeInsets.symmetric(
-                                vertical: 6.h,
-                              ), // 8.h에서 6.h로 더 줄임
+                              padding: textPadding,
                               child: Text(
                                 ani.text,
                                 textAlign:
@@ -151,7 +181,7 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
                                         ? TextAlign.center
                                         : TextAlign.left,
                                 style: TextStyle(
-                                  fontSize: 15.0.sp, // 16.0.sp에서 15.0.sp로 더 줄임
+                                  fontSize: fontSize,
                                   fontWeight: FontWeight.bold,
                                   color:
                                       index == 0

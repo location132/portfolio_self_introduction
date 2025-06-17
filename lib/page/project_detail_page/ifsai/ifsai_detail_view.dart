@@ -93,6 +93,7 @@ class IfsaiDetailView extends StatelessWidget {
                     children: [
                       if (MediaQuery.of(context).size.width < 1200) ...[
                         ProjectDetailTitleNoAnimation(),
+                        SizedBox(height: 130),
                         SubTitleNoAnimation(),
                       ],
 
@@ -128,11 +129,20 @@ class IfsaiDetailView extends StatelessWidget {
                       VisibilityDetector(
                         key: const Key('service-tab-view'),
                         onVisibilityChanged: (info) {
-                          if (info.visibleFraction > 0.5 &&
-                              !state.isServiceTabVisible) {
-                            context
-                                .read<IfsaiCubit>()
-                                .onServiceTabVisibilityChanged();
+                          if (MediaQuery.of(context).size.width > 1200) {
+                            if (info.visibleFraction > 0.5 &&
+                                !state.isServiceTabVisible) {
+                              context
+                                  .read<IfsaiCubit>()
+                                  .onServiceTabVisibilityChanged();
+                            }
+                          } else {
+                            if (info.visibleFraction > 0.1 &&
+                                !state.isServiceTabVisible) {
+                              context
+                                  .read<IfsaiCubit>()
+                                  .onServiceTabVisibilityChanged();
+                            }
                           }
                         },
                         child: ServiceTabsWidget(
@@ -144,31 +154,61 @@ class IfsaiDetailView extends StatelessWidget {
                       VisibilityDetector(
                         key: const Key('background-video'),
                         onVisibilityChanged: (info) {
-                          if (info.visibleFraction > 0.2 &&
-                              !state.hasBackgroundStartedPlaying &&
-                              state.isBackgroundVideoInitialized) {
-                            context
-                                .read<IfsaiCubit>()
-                                .onBackgroundVisibilityChanged();
-                          }
-                          if (info.visibleFraction > 0.5 &&
-                              !state.isBackgrounTitleVisible) {
-                            context
-                                .read<IfsaiCubit>()
-                                .onBackgroundWidgetVisibilityChanged();
-                          }
+                          if (MediaQuery.of(context).size.height > 800) {
+                            if (info.visibleFraction > 0.2 &&
+                                !state.hasBackgroundStartedPlaying &&
+                                state.isBackgroundVideoInitialized) {
+                              context
+                                  .read<IfsaiCubit>()
+                                  .onBackgroundVisibilityChanged();
+                            }
+                            if (info.visibleFraction > 0.5 &&
+                                !state.isBackgrounTitleVisible) {
+                              context
+                                  .read<IfsaiCubit>()
+                                  .onBackgroundWidgetVisibilityChanged();
+                            }
 
-                          if (info.visibleFraction > 0.3) {
-                            context
-                                .read<IfsaiCubit>()
-                                .setBackgroundSectionVisible(true);
-                            context
-                                .read<IfsaiCubit>()
-                                .setLibraryCardsAnimationStarted(false);
+                            if (info.visibleFraction > 0.3) {
+                              context
+                                  .read<IfsaiCubit>()
+                                  .setBackgroundSectionVisible(true);
+                              context
+                                  .read<IfsaiCubit>()
+                                  .setLibraryCardsAnimationStarted(false);
+                            } else {
+                              context
+                                  .read<IfsaiCubit>()
+                                  .setBackgroundSectionVisible(false);
+                            }
                           } else {
-                            context
-                                .read<IfsaiCubit>()
-                                .setBackgroundSectionVisible(false);
+                            // 낮은 화면: 더 관대한 조건
+                            if (info.visibleFraction > 0.1 &&
+                                !state.hasBackgroundStartedPlaying &&
+                                state.isBackgroundVideoInitialized) {
+                              context
+                                  .read<IfsaiCubit>()
+                                  .onBackgroundVisibilityChanged();
+                            }
+                            if (info.visibleFraction > 0.3 &&
+                                !state.isBackgrounTitleVisible) {
+                              context
+                                  .read<IfsaiCubit>()
+                                  .onBackgroundWidgetVisibilityChanged();
+                            }
+
+                            if (info.visibleFraction > 0.2) {
+                              context
+                                  .read<IfsaiCubit>()
+                                  .setBackgroundSectionVisible(true);
+                              context
+                                  .read<IfsaiCubit>()
+                                  .setLibraryCardsAnimationStarted(false);
+                            } else {
+                              context
+                                  .read<IfsaiCubit>()
+                                  .setBackgroundSectionVisible(false);
+                            }
                           }
                         },
                         child: Container(
@@ -197,14 +237,18 @@ class IfsaiDetailView extends StatelessWidget {
                       VisibilityDetector(
                         key: const Key('faq-view'),
                         onVisibilityChanged: (info) {
-                          if (info.visibleFraction < 0.6) {
-                            context.read<IfsaiCubit>().onFaqVisibilityChanged(
-                              0,
-                            );
+                          if (MediaQuery.of(context).size.height > 800) {
+                            if (info.visibleFraction > 0.6) {
+                              context.read<IfsaiCubit>().onFaqVisibilityChanged(
+                                1,
+                              );
+                            }
                           } else {
-                            context.read<IfsaiCubit>().onFaqVisibilityChanged(
-                              1,
-                            );
+                            if (info.visibleFraction > 0.4) {
+                              context.read<IfsaiCubit>().onFaqVisibilityChanged(
+                                1,
+                              );
+                            }
                           }
                         },
                         child: FaqManager.build(context, state),
