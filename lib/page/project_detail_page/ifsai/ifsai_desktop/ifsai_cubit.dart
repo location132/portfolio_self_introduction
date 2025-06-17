@@ -49,6 +49,10 @@ class IfsaiCubit extends Cubit<IfsaiState> {
     }
   }
 
+  void hidePlayerForOtherSections() {
+    emit(state.copyWith(isPlayerVisible: false));
+  }
+
   // Background Video Methods
   Future<void> initializeBackgroundVideo() async {
     final videoController = VideoPlayerController.networkUrl(
@@ -116,20 +120,6 @@ class IfsaiCubit extends Cubit<IfsaiState> {
         playerText: text,
       ),
     );
-  }
-
-  void setFaqPlayerVisible(bool isVisible) {
-    if (isVisible) {
-      emit(
-        state.copyWith(
-          isPlayerVisible: true,
-          isPlayerLongText: false,
-          playerText: 'FAQ를 확인해보세요',
-        ),
-      );
-    } else {
-      emit(state.copyWith(isPlayerVisible: false));
-    }
   }
 
   void onBackgroundVisibilityChanged() {

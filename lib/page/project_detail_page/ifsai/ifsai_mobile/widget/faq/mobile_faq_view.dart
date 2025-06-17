@@ -65,13 +65,20 @@ class _MobileFaqViewState extends State<MobileFaqView>
       setState(() {
         _isFaqVisible = true;
       });
-      widget.cubit.onFaqVisibilityChanged(1);
-      widget.cubit.setFaqPlayerVisible(true);
+
+      widget.cubit.onFaqVisibilityChanged(0);
+      widget.cubit.hidePlayerForOtherSections();
       _titleAnimationController.forward();
 
       _titleAnimationController.addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           _itemsAnimationController.forward();
+
+          Future.delayed(const Duration(milliseconds: 1000), () {
+            if (mounted && _isFaqVisible) {
+              widget.cubit.onFaqVisibilityChanged(1);
+            }
+          });
         }
       });
     }

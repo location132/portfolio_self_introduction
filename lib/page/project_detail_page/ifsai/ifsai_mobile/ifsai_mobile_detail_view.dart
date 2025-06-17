@@ -106,6 +106,9 @@ class IfsaiMobileDetailView extends StatelessWidget {
                           context
                               .read<IfsaiCubit>()
                               .onProjectCardVisibilityChanged();
+                          context
+                              .read<IfsaiCubit>()
+                              .hidePlayerForOtherSections();
                         }
                       },
                       child: MobileProjectContents(
@@ -124,6 +127,9 @@ class IfsaiMobileDetailView extends StatelessWidget {
                           context
                               .read<IfsaiCubit>()
                               .onProjectCard3VisibilityChanged();
+                          context
+                              .read<IfsaiCubit>()
+                              .hidePlayerForOtherSections();
                         }
                       },
                       child: MobileProjectContent2(
@@ -145,6 +151,9 @@ class IfsaiMobileDetailView extends StatelessWidget {
                           context
                               .read<IfsaiCubit>()
                               .onServiceTabVisibilityChanged();
+                          context
+                              .read<IfsaiCubit>()
+                              .hidePlayerForOtherSections();
                         }
                       },
                       child: MobileServiceView(
