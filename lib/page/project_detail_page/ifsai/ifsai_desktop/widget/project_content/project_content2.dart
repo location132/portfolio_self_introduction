@@ -27,14 +27,20 @@ class _ProjectContent2State extends State<ProjectContent2> {
     return VisibilityDetector(
       key: Key('project-content2-view'),
       onVisibilityChanged: (VisibilityInfo info) {
-        if (MediaQuery.of(context).size.width > 1200) {
-          if (info.visibleFraction > 0.8 && !widget.isProjectCard3Visible) {
-            widget.cubit.onProjectCard3VisibilityChanged();
+        try {
+          if (!mounted) return;
+          if (MediaQuery.of(context).size.width > 1200) {
+            if (info.visibleFraction > 0.8 && !widget.isProjectCard3Visible) {
+              widget.cubit.onProjectCard3VisibilityChanged();
+            }
+          } else {
+            if (info.visibleFraction > 0.1 && !widget.isProjectCard3Visible) {
+              widget.cubit.onProjectCard3VisibilityChanged();
+            }
           }
-        } else {
-          if (info.visibleFraction > 0.1 && !widget.isProjectCard3Visible) {
-            widget.cubit.onProjectCard3VisibilityChanged();
-          }
+        } catch (e) {
+          //TODO: 왜 에러가 나지..
+          print(e);
         }
       },
       child: Column(

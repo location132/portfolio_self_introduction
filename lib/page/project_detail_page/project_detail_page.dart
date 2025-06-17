@@ -61,13 +61,10 @@ class _ProjectDetailView extends StatelessWidget {
                               isStart: state.isLoaded,
                               child: const IfsaiMobileDetailPage(),
                             )
-                            : Visibility(
-                              visible: deviceType == 'desktop',
-                              child: WidgetAnimation(
-                                beginDy: 0.02,
-                                isStart: state.isLoaded,
-                                child: const IfsaiDetailPage(),
-                              ),
+                            : WidgetAnimation(
+                              beginDy: 0.02,
+                              isStart: state.isLoaded,
+                              child: const IfsaiDetailPage(),
                             ),
                   ),
                 ],
