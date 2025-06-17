@@ -55,17 +55,19 @@ class _ProjectDetailView extends StatelessWidget {
                   Visibility(
                     visible: state.projectName == 'ifsai',
                     child:
-                        deviceType == 'mobile'
-                            ? WidgetAnimation(
-                              beginDy: 0.02,
-                              isStart: state.isLoaded,
-                              child: const IfsaiMobileDetailPage(),
-                            )
-                            : WidgetAnimation(
-                              beginDy: 0.02,
-                              isStart: state.isLoaded,
-                              child: const IfsaiDetailPage(),
-                            ),
+                    // deviceType == 'mobile'
+                    // ?
+                    WidgetAnimation(
+                      beginDy: 0.02,
+                      isStart: state.isLoaded,
+                      child: const IfsaiMobileDetailPage(),
+                    ),
+                    //     :
+                    // WidgetAnimation(
+                    //   beginDy: 0.02,
+                    //   isStart: state.isLoaded,
+                    //   child: const IfsaiDetailPage(),
+                    // ),
                   ),
                 ],
               ),

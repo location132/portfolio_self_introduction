@@ -9,8 +9,8 @@ import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_d
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_desktop/ifsai_state.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/mobile_project_title.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/mobile_sub_title.dart';
-import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_desktop/widget/project_content/project_contents.dart';
-import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_desktop/widget/project_content/project_content2.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/project_content/mobile_project_contents.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/widget/project_content/mobile_project_content2.dart';
 import 'package:self_introduction_flutter/service/main_service.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -54,11 +54,22 @@ class IfsaiMobileDetailView extends StatelessWidget {
     return BlocBuilder<IfsaiCubit, IfsaiState>(
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: Colors.white,
           body: Stack(
             children: [
+              // 배경색 컨테이너 (스크롤에 따라 변하는 배경)
+              Container(
+                width: double.infinity,
+                height: double.infinity,
+                color: Color.lerp(
+                  Colors.white,
+                  Colors.black,
+                  state.backgroundDarkness,
+                ),
+              ),
+
               // 메인 콘텐츠
               SingleChildScrollView(
+                controller: state.scrollController,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -76,34 +87,42 @@ class IfsaiMobileDetailView extends StatelessWidget {
 
                     // 프로젝트 타이틀
                     const MobileProjectTitle(),
-
                     SizedBox(height: 130.h),
-
                     // 서브 타이틀
                     const MobileSubTitle(),
-
-                    // 기존 프로젝트 콘텐츠들
+                    SizedBox(height: 80.h),
+                    // 메인화면 시작 -- 6월 17일 작업 중
                     VisibilityDetector(
                       key: const Key('project-contents-view'),
-                      onVisibilityChanged: (VisibilityInfo info) {
+                      onVisibilityChanged: (info) {
                         if (info.visibleFraction > 0.1 &&
-                            !state.isPlayerVisible) {
-                          context.read<IfsaiCubit>().setPlayerVisible(true);
-                        } else if (info.visibleFraction < 0.1 &&
-                            state.isPlayerVisible) {
-                          context.read<IfsaiCubit>().setPlayerVisible(false);
+                            !state.isProjectCard1Visible) {
+                          context
+                              .read<IfsaiCubit>()
+                              .onProjectCardVisibilityChanged();
                         }
                       },
-                      child: ProjectContents(
-                        state: state,
-                        cubit: context.read<IfsaiCubit>(),
+                      child: MobileProjectContents(
+                        isVisible: state.isProjectCard1Visible,
                       ),
                     ),
 
-                    SizedBox(height: 200.h),
-                    ProjectContent2(
-                      isProjectCard3Visible: state.isProjectCard3Visible,
-                      cubit: context.read<IfsaiCubit>(),
+                    SizedBox(height: 100.h),
+
+                    // (기술 스택)
+                    VisibilityDetector(
+                      key: const Key('project-content2-view'),
+                      onVisibilityChanged: (info) {
+                        if (info.visibleFraction > 0.1 &&
+                            !state.isProjectCard3Visible) {
+                          context
+                              .read<IfsaiCubit>()
+                              .onProjectCard3VisibilityChanged();
+                        }
+                      },
+                      child: MobileProjectContent2(
+                        isVisible: state.isProjectCard3Visible,
+                      ),
                     ),
 
                     SizedBox(height: 100.h),
