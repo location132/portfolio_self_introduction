@@ -27,23 +27,20 @@ class TechBlogCubit extends Cubit<TechBlogState> {
 
   // 카테고리 선택
   void selectCategory(int index) async {
-    if (state.selectedCategoryIndex == index || state.isPostListAnimating)
+    if (state.selectedCategoryIndex == index || state.isPostListAnimating) {
       return;
+    }
 
     emit(state.copyWith(isPostListAnimating: true));
 
-    // 기존 리스트 숨기기
     emit(state.copyWith(isPostListVisible: false));
 
-    // 카테고리 변경
     await Future.delayed(const Duration(milliseconds: 300));
     emit(state.copyWith(selectedCategoryIndex: index));
 
-    // 새 리스트 보이기
     await Future.delayed(const Duration(milliseconds: 100));
     emit(state.copyWith(isPostListVisible: true));
 
-    // 애니메이션 완료
     await Future.delayed(const Duration(milliseconds: 620));
     emit(state.copyWith(isPostListAnimating: false));
   }

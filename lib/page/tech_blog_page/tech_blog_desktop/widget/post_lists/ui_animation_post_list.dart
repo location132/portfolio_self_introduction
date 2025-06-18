@@ -128,6 +128,18 @@ class UIAnimationPostList extends StatelessWidget {
           title: 'CachedNetworkImage',
           tags: '#CachedNetworkImage  #Image Cache  #Network Image',
         ),
+        SizedBox(height: 40),
+        TechPostTitle(
+          number: 21,
+          title: '다이나믹 아일랜드',
+          tags: '#Dynamic Island  #iOS  #UI Feature',
+        ),
+        SizedBox(height: 40),
+        TechPostTitle(
+          number: 22,
+          title: 'Flutter 화면 스크롤 감지',
+          tags: '#Scroll Detection  #NotificationListener  #ScrollNotification',
+        ),
       ],
     );
   }

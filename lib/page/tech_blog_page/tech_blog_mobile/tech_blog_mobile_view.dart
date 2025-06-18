@@ -75,7 +75,7 @@ class _TechBlogMobileViewState extends State<TechBlogMobileView> {
                                 Divider(height: 1, color: Colors.grey.shade800),
                                 SizedBox(height: 32.h),
 
-                                const MobileTechPostList(),
+                                MobileTechPostList(state: state),
                                 SizedBox(height: 80.h),
                               ],
                             ),
