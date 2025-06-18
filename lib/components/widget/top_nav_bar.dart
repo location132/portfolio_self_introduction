@@ -97,6 +97,8 @@ class NavItem extends StatelessWidget {
               context.go('/');
             } else if (title == TextConstants.topNavBar2) {
               context.go('/projects');
+            } else if (title == TextConstants.topNavBar3) {
+              context.go('/tech-blog');
             }
             debugPrint("$title 클릭됨");
           },

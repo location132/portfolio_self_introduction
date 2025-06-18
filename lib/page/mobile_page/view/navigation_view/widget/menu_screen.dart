@@ -68,6 +68,8 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
       context.go('/');
     } else if (text == TextConstants.topNavBar2) {
       context.go('/projects');
+    } else if (text == TextConstants.topNavBar3) {
+      context.go('/tech-blog');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
