@@ -23,6 +23,8 @@ mixin _$TechBlogState {
   List<BlogPost> get filteredPosts => throw _privateConstructorUsedError;
   String get searchQuery => throw _privateConstructorUsedError;
   String get selectedCategory => throw _privateConstructorUsedError;
+  double get sidePreviewTopSpace => throw _privateConstructorUsedError;
+  bool get sidePreviewOpacity => throw _privateConstructorUsedError;
 
   /// Create a copy of TechBlogState
   /// with the given fields replaced by the non-null parameter values.
@@ -45,6 +47,8 @@ abstract class $TechBlogStateCopyWith<$Res> {
     List<BlogPost> filteredPosts,
     String searchQuery,
     String selectedCategory,
+    double sidePreviewTopSpace,
+    bool sidePreviewOpacity,
   });
 }
 
@@ -69,6 +73,8 @@ class _$TechBlogStateCopyWithImpl<$Res, $Val extends TechBlogState>
     Object? filteredPosts = null,
     Object? searchQuery = null,
     Object? selectedCategory = null,
+    Object? sidePreviewTopSpace = null,
+    Object? sidePreviewOpacity = null,
   }) {
     return _then(
       _value.copyWith(
@@ -102,6 +108,16 @@ class _$TechBlogStateCopyWithImpl<$Res, $Val extends TechBlogState>
                     ? _value.selectedCategory
                     : selectedCategory // ignore: cast_nullable_to_non_nullable
                         as String,
+            sidePreviewTopSpace:
+                null == sidePreviewTopSpace
+                    ? _value.sidePreviewTopSpace
+                    : sidePreviewTopSpace // ignore: cast_nullable_to_non_nullable
+                        as double,
+            sidePreviewOpacity:
+                null == sidePreviewOpacity
+                    ? _value.sidePreviewOpacity
+                    : sidePreviewOpacity // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -124,6 +140,8 @@ abstract class _$$TechBlogStateImplCopyWith<$Res>
     List<BlogPost> filteredPosts,
     String searchQuery,
     String selectedCategory,
+    double sidePreviewTopSpace,
+    bool sidePreviewOpacity,
   });
 }
 
@@ -147,6 +165,8 @@ class __$$TechBlogStateImplCopyWithImpl<$Res>
     Object? filteredPosts = null,
     Object? searchQuery = null,
     Object? selectedCategory = null,
+    Object? sidePreviewTopSpace = null,
+    Object? sidePreviewOpacity = null,
   }) {
     return _then(
       _$TechBlogStateImpl(
@@ -180,6 +200,16 @@ class __$$TechBlogStateImplCopyWithImpl<$Res>
                 ? _value.selectedCategory
                 : selectedCategory // ignore: cast_nullable_to_non_nullable
                     as String,
+        sidePreviewTopSpace:
+            null == sidePreviewTopSpace
+                ? _value.sidePreviewTopSpace
+                : sidePreviewTopSpace // ignore: cast_nullable_to_non_nullable
+                    as double,
+        sidePreviewOpacity:
+            null == sidePreviewOpacity
+                ? _value.sidePreviewOpacity
+                : sidePreviewOpacity // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -195,6 +225,8 @@ class _$TechBlogStateImpl implements _TechBlogState {
     final List<BlogPost> filteredPosts = const [],
     this.searchQuery = '',
     this.selectedCategory = 'all',
+    this.sidePreviewTopSpace = 0.0,
+    this.sidePreviewOpacity = false,
   }) : _blogPosts = blogPosts,
        _filteredPosts = filteredPosts;
 
@@ -228,10 +260,16 @@ class _$TechBlogStateImpl implements _TechBlogState {
   @override
   @JsonKey()
   final String selectedCategory;
+  @override
+  @JsonKey()
+  final double sidePreviewTopSpace;
+  @override
+  @JsonKey()
+  final bool sidePreviewOpacity;
 
   @override
   String toString() {
-    return 'TechBlogState(isMenuClicked: $isMenuClicked, isLoading: $isLoading, blogPosts: $blogPosts, filteredPosts: $filteredPosts, searchQuery: $searchQuery, selectedCategory: $selectedCategory)';
+    return 'TechBlogState(isMenuClicked: $isMenuClicked, isLoading: $isLoading, blogPosts: $blogPosts, filteredPosts: $filteredPosts, searchQuery: $searchQuery, selectedCategory: $selectedCategory, sidePreviewTopSpace: $sidePreviewTopSpace, sidePreviewOpacity: $sidePreviewOpacity)';
   }
 
   @override
@@ -254,7 +292,11 @@ class _$TechBlogStateImpl implements _TechBlogState {
             (identical(other.searchQuery, searchQuery) ||
                 other.searchQuery == searchQuery) &&
             (identical(other.selectedCategory, selectedCategory) ||
-                other.selectedCategory == selectedCategory));
+                other.selectedCategory == selectedCategory) &&
+            (identical(other.sidePreviewTopSpace, sidePreviewTopSpace) ||
+                other.sidePreviewTopSpace == sidePreviewTopSpace) &&
+            (identical(other.sidePreviewOpacity, sidePreviewOpacity) ||
+                other.sidePreviewOpacity == sidePreviewOpacity));
   }
 
   @override
@@ -266,6 +308,8 @@ class _$TechBlogStateImpl implements _TechBlogState {
     const DeepCollectionEquality().hash(_filteredPosts),
     searchQuery,
     selectedCategory,
+    sidePreviewTopSpace,
+    sidePreviewOpacity,
   );
 
   /// Create a copy of TechBlogState
@@ -285,6 +329,8 @@ abstract class _TechBlogState implements TechBlogState {
     final List<BlogPost> filteredPosts,
     final String searchQuery,
     final String selectedCategory,
+    final double sidePreviewTopSpace,
+    final bool sidePreviewOpacity,
   }) = _$TechBlogStateImpl;
 
   @override
@@ -299,6 +345,10 @@ abstract class _TechBlogState implements TechBlogState {
   String get searchQuery;
   @override
   String get selectedCategory;
+  @override
+  double get sidePreviewTopSpace;
+  @override
+  bool get sidePreviewOpacity;
 
   /// Create a copy of TechBlogState
   /// with the given fields replaced by the non-null parameter values.

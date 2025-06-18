@@ -11,23 +11,8 @@ import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_desktop/
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_state.dart';
 import 'package:self_introduction_flutter/service/main_service.dart';
 
-class TechBlogDesktopView extends StatefulWidget {
+class TechBlogDesktopView extends StatelessWidget {
   const TechBlogDesktopView({super.key});
-
-  @override
-  State<TechBlogDesktopView> createState() => _TechBlogDesktopViewState();
-}
-
-class _TechBlogDesktopViewState extends State<TechBlogDesktopView> {
-  final TextEditingController _searchController = TextEditingController();
-  final FocusNode _searchFocusNode = FocusNode();
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    _searchFocusNode.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +22,8 @@ class _TechBlogDesktopViewState extends State<TechBlogDesktopView> {
 
     return BlocBuilder<TechBlogCubit, TechBlogState>(
       builder: (context, state) {
+        final cubit = context.read<TechBlogCubit>();
+        cubit.onWidgetUpdate(MediaQuery.of(context).size.width);
         return Scaffold(
           backgroundColor: Colors.black,
           body: Stack(
@@ -51,7 +38,7 @@ class _TechBlogDesktopViewState extends State<TechBlogDesktopView> {
                         deviceType: deviceType,
                         isMenuClicked: state.isMenuClicked,
                         onPressed: () {
-                          context.read<TechBlogCubit>().toggleMenu();
+                          cubit.toggleMenu();
                         },
                         onHomePressed: () {
                           context.go('/');
@@ -63,6 +50,7 @@ class _TechBlogDesktopViewState extends State<TechBlogDesktopView> {
                     child: Container(
                       color: Colors.black,
                       child: SingleChildScrollView(
+                        controller: cubit.scrollController,
                         child: Column(
                           children: [
                             const SizedBox(height: 100),
@@ -80,18 +68,34 @@ class _TechBlogDesktopViewState extends State<TechBlogDesktopView> {
                                     const SizedBox(height: 120),
                                     const TechCategoryNav(),
                                     Divider(
+                                      key: cubit.dividerKey,
                                       height: 1,
                                       color: Colors.grey.shade800,
                                     ),
                                     const SizedBox(height: 40),
-
-                                    const Row(
+                                    Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        TechPostList(),
-                                        SizedBox(width: 32),
-                                        TechSidePreview(),
+                                        const TechPostList(),
+                                        const SizedBox(width: 32),
+                                        Expanded(
+                                          child: Column(
+                                            children: [
+                                              AnimatedContainer(
+                                                duration: const Duration(
+                                                  milliseconds: 100,
+                                                ),
+                                                height:
+                                                    state.sidePreviewTopSpace,
+                                              ),
+                                              TechSidePreview(
+                                                sidePreviewOpacity:
+                                                    state.sidePreviewOpacity,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ],

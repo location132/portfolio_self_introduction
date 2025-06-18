@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 part 'tech_blog_state.freezed.dart';
 
 @freezed
@@ -11,6 +10,8 @@ class TechBlogState with _$TechBlogState {
     @Default([]) List<BlogPost> filteredPosts,
     @Default('') String searchQuery,
     @Default('all') String selectedCategory,
+    @Default(0.0) double sidePreviewTopSpace,
+    @Default(false) bool sidePreviewOpacity,
   }) = _TechBlogState;
 }
 

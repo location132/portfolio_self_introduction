@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_state.dart';
@@ -6,14 +7,92 @@ import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_state.da
 class TechBlogCubit extends Cubit<TechBlogState> {
   TechBlogCubit() : super(const TechBlogState());
 
+  final ScrollController scrollController = ScrollController();
+  final GlobalKey dividerKey = GlobalKey();
+  final TextEditingController searchController = TextEditingController();
+  final FocusNode searchFocusNode = FocusNode();
+  bool _isListenerActive = false;
+
+  @postConstruct
+  void initialize() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (dividerKey.currentContext != null) {
+        final screenWidth =
+            MediaQuery.of(dividerKey.currentContext!).size.width;
+        updateListenerState(screenWidth);
+      }
+      sidePreviewOpacity();
+    });
+  }
+
+  // 사이드 사진 동작
+  void sidePreviewOpacity() async {
+    await Future.delayed(const Duration(seconds: 3));
+    if (isClosed) return;
+    emit(state.copyWith(sidePreviewOpacity: true));
+  }
+
+  void onWidgetUpdate(double screenWidth) {
+    updateListenerState(screenWidth);
+  }
+
   void toggleMenu() {
     emit(state.copyWith(isMenuClicked: !state.isMenuClicked));
+  }
+
+  void initializeScrollListener(double screenWidth) {
+    updateListenerState(screenWidth);
+  }
+
+  void updateListenerState(double screenWidth) {
+    final shouldBeActive = screenWidth >= 1000;
+
+    if (shouldBeActive && !_isListenerActive) {
+      scrollController.addListener(onScroll);
+      _isListenerActive = true;
+    } else if (!shouldBeActive && _isListenerActive) {
+      scrollController.removeListener(onScroll);
+      _isListenerActive = false;
+      emit(state.copyWith(sidePreviewTopSpace: 0));
+    }
+  }
+
+  void onScroll() {
+    if (!_isListenerActive) return;
+
+    final RenderBox? dividerBox =
+        dividerKey.currentContext?.findRenderObject() as RenderBox?;
+    if (dividerBox != null) {
+      final dividerPosition = dividerBox.localToGlobal(Offset.zero);
+      final dividerBottom = dividerPosition.dy + dividerBox.size.height;
+
+      final space =
+          dividerBottom < 300
+              ? (300 - dividerBottom).clamp(0.0, double.infinity)
+              : 0.0;
+
+      emit(state.copyWith(sidePreviewTopSpace: space));
+    }
+  }
+
+  void updateSidePreviewTopSpace(double space) {
+    emit(state.copyWith(sidePreviewTopSpace: space));
+  }
+
+  @override
+  Future<void> close() {
+    if (_isListenerActive) {
+      scrollController.removeListener(onScroll);
+    }
+    scrollController.dispose();
+    searchController.dispose();
+    searchFocusNode.dispose();
+    return super.close();
   }
 
   void loadBlogPosts() {
     emit(state.copyWith(isLoading: true));
 
-    // TODO: 실제 블로그 포스트 데이터 로드
     final mockPosts = [
       const BlogPost(
         id: '1',
@@ -99,7 +178,6 @@ class TechBlogCubit extends Cubit<TechBlogState> {
   void _applyFilters() {
     List<BlogPost> filtered = state.blogPosts;
 
-    // 카테고리 필터 적용
     if (state.selectedCategory != 'all') {
       filtered =
           filtered
@@ -113,7 +191,6 @@ class TechBlogCubit extends Cubit<TechBlogState> {
               .toList();
     }
 
-    // 검색 필터 적용
     if (state.searchQuery.isNotEmpty) {
       final query = state.searchQuery.toLowerCase();
       filtered =
