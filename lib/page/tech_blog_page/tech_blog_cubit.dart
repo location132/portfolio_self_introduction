@@ -5,7 +5,7 @@ import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_state.da
 
 @injectable
 class TechBlogCubit extends Cubit<TechBlogState> {
-  TechBlogCubit() : super(const TechBlogState());
+  TechBlogCubit() : super(const TechBlogState(isPostListVisible: true));
 
   final ScrollController scrollController = ScrollController();
   final GlobalKey dividerKey = GlobalKey();
@@ -25,6 +25,29 @@ class TechBlogCubit extends Cubit<TechBlogState> {
     });
   }
 
+  // 카테고리 선택
+  void selectCategory(int index) async {
+    if (state.selectedCategoryIndex == index || state.isPostListAnimating)
+      return;
+
+    emit(state.copyWith(isPostListAnimating: true));
+
+    // 기존 리스트 숨기기
+    emit(state.copyWith(isPostListVisible: false));
+
+    // 카테고리 변경
+    await Future.delayed(const Duration(milliseconds: 300));
+    emit(state.copyWith(selectedCategoryIndex: index));
+
+    // 새 리스트 보이기
+    await Future.delayed(const Duration(milliseconds: 100));
+    emit(state.copyWith(isPostListVisible: true));
+
+    // 애니메이션 완료
+    await Future.delayed(const Duration(milliseconds: 620));
+    emit(state.copyWith(isPostListAnimating: false));
+  }
+
   // 사이드 사진 동작
   void sidePreviewOpacity() async {
     await Future.delayed(const Duration(seconds: 3));
@@ -32,19 +55,23 @@ class TechBlogCubit extends Cubit<TechBlogState> {
     emit(state.copyWith(sidePreviewOpacity: true));
   }
 
+  // 데스크탑 모드 확인
   void onWidgetUpdate(double screenWidth) {
     updateListenerState(screenWidth);
     emit(state.copyWith(isTabletMode: screenWidth <= 1200));
   }
 
+  // 메뉴 변경
   void toggleMenu() {
     emit(state.copyWith(isMenuClicked: !state.isMenuClicked));
   }
 
+  // 스크롤 리스너
   void initializeScrollListener(double screenWidth) {
     updateListenerState(screenWidth);
   }
 
+  // 스크롤 리스너 업데이트 (프리뷰 위치 조절한다고 제작함)
   void updateListenerState(double screenWidth) {
     final shouldBeActive = screenWidth >= 1000;
 
@@ -58,6 +85,7 @@ class TechBlogCubit extends Cubit<TechBlogState> {
     }
   }
 
+  // 스크롤 리스너 이벤트
   void onScroll() {
     if (!_isListenerActive) return;
 
