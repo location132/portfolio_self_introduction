@@ -60,7 +60,6 @@ class _TechCategoryTextState extends State<TechCategoryText> {
                       : _isHovered
                       ? Colors.white.withValues(alpha: 0.9)
                       : Colors.grey.shade400,
-              decorationColor: Colors.white,
             ),
             child: Text(widget.label),
           ),
