@@ -85,13 +85,13 @@ class TechBlogDesktopView extends StatelessWidget {
                                       ),
                                       const SizedBox(height: 40),
                                       if (state.isTabletMode)
-                                        const TechPostList()
+                                        TechPostList(state: state)
                                       else
                                         Row(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            const TechPostList(),
+                                            TechPostList(state: state),
                                             const SizedBox(width: 32),
                                             Expanded(
                                               child: Column(
