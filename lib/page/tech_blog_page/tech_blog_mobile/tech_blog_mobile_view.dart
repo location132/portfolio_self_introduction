@@ -7,7 +7,7 @@ import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_cubit.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_state.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_mobile/widget/mobile_tech_blog_header.dart';
-import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_mobile/widget/mobile_tech_category_nav.dart';
+import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_mobile/widget/category/mobile_category_nav.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_mobile/widget/mobile_tech_post_list.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_mobile/widget/mobile_tech_player.dart';
 import 'package:self_introduction_flutter/service/main_service.dart';
@@ -71,7 +71,7 @@ class _TechBlogMobileViewState extends State<TechBlogMobileView> {
                                 const MobileTechBlogHeader(),
                                 SizedBox(height: 60.h),
 
-                                const MobileTechCategoryNav(),
+                                const MobileCategoryNav(),
                                 Divider(height: 1, color: Colors.grey.shade800),
                                 SizedBox(height: 32.h),
 

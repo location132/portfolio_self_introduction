@@ -24,8 +24,6 @@ mixin _$TechBlogState {
   String get searchQuery => throw _privateConstructorUsedError;
   String get selectedCategory => throw _privateConstructorUsedError;
   int get selectedCategoryIndex => throw _privateConstructorUsedError;
-  bool get isPostListVisible => throw _privateConstructorUsedError;
-  bool get isPostListAnimating => throw _privateConstructorUsedError;
   double get sidePreviewTopSpace => throw _privateConstructorUsedError;
   bool get sidePreviewOpacity => throw _privateConstructorUsedError;
   bool get isTabletMode => throw _privateConstructorUsedError;
@@ -52,8 +50,6 @@ abstract class $TechBlogStateCopyWith<$Res> {
     String searchQuery,
     String selectedCategory,
     int selectedCategoryIndex,
-    bool isPostListVisible,
-    bool isPostListAnimating,
     double sidePreviewTopSpace,
     bool sidePreviewOpacity,
     bool isTabletMode,
@@ -82,8 +78,6 @@ class _$TechBlogStateCopyWithImpl<$Res, $Val extends TechBlogState>
     Object? searchQuery = null,
     Object? selectedCategory = null,
     Object? selectedCategoryIndex = null,
-    Object? isPostListVisible = null,
-    Object? isPostListAnimating = null,
     Object? sidePreviewTopSpace = null,
     Object? sidePreviewOpacity = null,
     Object? isTabletMode = null,
@@ -125,16 +119,6 @@ class _$TechBlogStateCopyWithImpl<$Res, $Val extends TechBlogState>
                     ? _value.selectedCategoryIndex
                     : selectedCategoryIndex // ignore: cast_nullable_to_non_nullable
                         as int,
-            isPostListVisible:
-                null == isPostListVisible
-                    ? _value.isPostListVisible
-                    : isPostListVisible // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            isPostListAnimating:
-                null == isPostListAnimating
-                    ? _value.isPostListAnimating
-                    : isPostListAnimating // ignore: cast_nullable_to_non_nullable
-                        as bool,
             sidePreviewTopSpace:
                 null == sidePreviewTopSpace
                     ? _value.sidePreviewTopSpace
@@ -173,8 +157,6 @@ abstract class _$$TechBlogStateImplCopyWith<$Res>
     String searchQuery,
     String selectedCategory,
     int selectedCategoryIndex,
-    bool isPostListVisible,
-    bool isPostListAnimating,
     double sidePreviewTopSpace,
     bool sidePreviewOpacity,
     bool isTabletMode,
@@ -202,8 +184,6 @@ class __$$TechBlogStateImplCopyWithImpl<$Res>
     Object? searchQuery = null,
     Object? selectedCategory = null,
     Object? selectedCategoryIndex = null,
-    Object? isPostListVisible = null,
-    Object? isPostListAnimating = null,
     Object? sidePreviewTopSpace = null,
     Object? sidePreviewOpacity = null,
     Object? isTabletMode = null,
@@ -245,16 +225,6 @@ class __$$TechBlogStateImplCopyWithImpl<$Res>
                 ? _value.selectedCategoryIndex
                 : selectedCategoryIndex // ignore: cast_nullable_to_non_nullable
                     as int,
-        isPostListVisible:
-            null == isPostListVisible
-                ? _value.isPostListVisible
-                : isPostListVisible // ignore: cast_nullable_to_non_nullable
-                    as bool,
-        isPostListAnimating:
-            null == isPostListAnimating
-                ? _value.isPostListAnimating
-                : isPostListAnimating // ignore: cast_nullable_to_non_nullable
-                    as bool,
         sidePreviewTopSpace:
             null == sidePreviewTopSpace
                 ? _value.sidePreviewTopSpace
@@ -286,8 +256,6 @@ class _$TechBlogStateImpl implements _TechBlogState {
     this.searchQuery = '',
     this.selectedCategory = 'all',
     this.selectedCategoryIndex = 0,
-    this.isPostListVisible = false,
-    this.isPostListAnimating = false,
     this.sidePreviewTopSpace = 0.0,
     this.sidePreviewOpacity = false,
     this.isTabletMode = false,
@@ -329,12 +297,6 @@ class _$TechBlogStateImpl implements _TechBlogState {
   final int selectedCategoryIndex;
   @override
   @JsonKey()
-  final bool isPostListVisible;
-  @override
-  @JsonKey()
-  final bool isPostListAnimating;
-  @override
-  @JsonKey()
   final double sidePreviewTopSpace;
   @override
   @JsonKey()
@@ -345,7 +307,7 @@ class _$TechBlogStateImpl implements _TechBlogState {
 
   @override
   String toString() {
-    return 'TechBlogState(isMenuClicked: $isMenuClicked, isLoading: $isLoading, blogPosts: $blogPosts, filteredPosts: $filteredPosts, searchQuery: $searchQuery, selectedCategory: $selectedCategory, selectedCategoryIndex: $selectedCategoryIndex, isPostListVisible: $isPostListVisible, isPostListAnimating: $isPostListAnimating, sidePreviewTopSpace: $sidePreviewTopSpace, sidePreviewOpacity: $sidePreviewOpacity, isTabletMode: $isTabletMode)';
+    return 'TechBlogState(isMenuClicked: $isMenuClicked, isLoading: $isLoading, blogPosts: $blogPosts, filteredPosts: $filteredPosts, searchQuery: $searchQuery, selectedCategory: $selectedCategory, selectedCategoryIndex: $selectedCategoryIndex, sidePreviewTopSpace: $sidePreviewTopSpace, sidePreviewOpacity: $sidePreviewOpacity, isTabletMode: $isTabletMode)';
   }
 
   @override
@@ -371,10 +333,6 @@ class _$TechBlogStateImpl implements _TechBlogState {
                 other.selectedCategory == selectedCategory) &&
             (identical(other.selectedCategoryIndex, selectedCategoryIndex) ||
                 other.selectedCategoryIndex == selectedCategoryIndex) &&
-            (identical(other.isPostListVisible, isPostListVisible) ||
-                other.isPostListVisible == isPostListVisible) &&
-            (identical(other.isPostListAnimating, isPostListAnimating) ||
-                other.isPostListAnimating == isPostListAnimating) &&
             (identical(other.sidePreviewTopSpace, sidePreviewTopSpace) ||
                 other.sidePreviewTopSpace == sidePreviewTopSpace) &&
             (identical(other.sidePreviewOpacity, sidePreviewOpacity) ||
@@ -393,8 +351,6 @@ class _$TechBlogStateImpl implements _TechBlogState {
     searchQuery,
     selectedCategory,
     selectedCategoryIndex,
-    isPostListVisible,
-    isPostListAnimating,
     sidePreviewTopSpace,
     sidePreviewOpacity,
     isTabletMode,
@@ -418,8 +374,6 @@ abstract class _TechBlogState implements TechBlogState {
     final String searchQuery,
     final String selectedCategory,
     final int selectedCategoryIndex,
-    final bool isPostListVisible,
-    final bool isPostListAnimating,
     final double sidePreviewTopSpace,
     final bool sidePreviewOpacity,
     final bool isTabletMode,
@@ -439,10 +393,6 @@ abstract class _TechBlogState implements TechBlogState {
   String get selectedCategory;
   @override
   int get selectedCategoryIndex;
-  @override
-  bool get isPostListVisible;
-  @override
-  bool get isPostListAnimating;
   @override
   double get sidePreviewTopSpace;
   @override

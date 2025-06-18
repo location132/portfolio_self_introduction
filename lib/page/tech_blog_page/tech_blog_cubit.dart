@@ -5,7 +5,7 @@ import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_state.da
 
 @injectable
 class TechBlogCubit extends Cubit<TechBlogState> {
-  TechBlogCubit() : super(const TechBlogState(isPostListVisible: true));
+  TechBlogCubit() : super(const TechBlogState());
 
   final ScrollController scrollController = ScrollController();
   final GlobalKey dividerKey = GlobalKey();
@@ -26,23 +26,11 @@ class TechBlogCubit extends Cubit<TechBlogState> {
   }
 
   // 카테고리 선택
-  void selectCategory(int index) async {
-    if (state.selectedCategoryIndex == index || state.isPostListAnimating) {
+  void selectCategory(int index) {
+    if (state.selectedCategoryIndex == index) {
       return;
     }
-
-    emit(state.copyWith(isPostListAnimating: true));
-
-    emit(state.copyWith(isPostListVisible: false));
-
-    await Future.delayed(const Duration(milliseconds: 300));
     emit(state.copyWith(selectedCategoryIndex: index));
-
-    await Future.delayed(const Duration(milliseconds: 100));
-    emit(state.copyWith(isPostListVisible: true));
-
-    await Future.delayed(const Duration(milliseconds: 620));
-    emit(state.copyWith(isPostListAnimating: false));
   }
 
   // 사이드 사진 동작

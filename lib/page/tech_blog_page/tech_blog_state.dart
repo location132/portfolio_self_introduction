@@ -13,8 +13,6 @@ class TechBlogState with _$TechBlogState {
     @Default('') String searchQuery,
     @Default('all') String selectedCategory,
     @Default(0) int selectedCategoryIndex,
-    @Default(false) bool isPostListVisible,
-    @Default(false) bool isPostListAnimating,
     @Default(0.0) double sidePreviewTopSpace,
     @Default(false) bool sidePreviewOpacity,
     @Default(false) bool isTabletMode,
