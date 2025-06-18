@@ -16,7 +16,7 @@ class TechBlogPage extends StatelessWidget {
     );
 
     return BlocProvider(
-      create: (context) => di<TechBlogCubit>()..loadBlogPosts(),
+      create: (context) => di<TechBlogCubit>(),
       child:
           deviceType == 'mobile'
               ? const TechBlogMobileView()

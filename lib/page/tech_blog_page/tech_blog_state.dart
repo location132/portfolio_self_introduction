@@ -1,4 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:self_introduction_flutter/model/tech_note/blog_post.dart';
+
 part 'tech_blog_state.freezed.dart';
 
 @freezed
@@ -13,17 +15,4 @@ class TechBlogState with _$TechBlogState {
     @Default(0.0) double sidePreviewTopSpace,
     @Default(false) bool sidePreviewOpacity,
   }) = _TechBlogState;
-}
-
-@freezed
-class BlogPost with _$BlogPost {
-  const factory BlogPost({
-    required String id,
-    required String title,
-    required String description,
-    required String date,
-    required String content,
-    @Default([]) List<String> tags,
-    @Default(false) bool isPublished,
-  }) = _BlogPost;
 }

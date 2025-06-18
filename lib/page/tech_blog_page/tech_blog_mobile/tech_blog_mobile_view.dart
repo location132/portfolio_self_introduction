@@ -108,11 +108,7 @@ class _TechBlogMobileViewState extends State<TechBlogMobileView> {
                                   child: TextField(
                                     controller: _searchController,
                                     focusNode: _searchFocusNode,
-                                    onChanged: (value) {
-                                      context.read<TechBlogCubit>().searchPosts(
-                                        value,
-                                      );
-                                    },
+                                    onChanged: (value) {},
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 16.sp,
