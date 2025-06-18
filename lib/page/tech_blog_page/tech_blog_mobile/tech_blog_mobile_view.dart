@@ -6,6 +6,10 @@ import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_cubit.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_state.dart';
+import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_mobile/widget/mobile_tech_blog_header.dart';
+import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_mobile/widget/mobile_tech_category_nav.dart';
+import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_mobile/widget/mobile_tech_post_list.dart';
+import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_mobile/widget/mobile_tech_player.dart';
 import 'package:self_introduction_flutter/service/main_service.dart';
 
 class TechBlogMobileView extends StatefulWidget {
@@ -16,16 +20,6 @@ class TechBlogMobileView extends StatefulWidget {
 }
 
 class _TechBlogMobileViewState extends State<TechBlogMobileView> {
-  final TextEditingController _searchController = TextEditingController();
-  final FocusNode _searchFocusNode = FocusNode();
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    _searchFocusNode.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     final logicalWidth = MediaQuery.of(context).size.width;
@@ -74,60 +68,15 @@ class _TechBlogMobileViewState extends State<TechBlogMobileView> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  '기술 블로그',
-                                  style: TextStyle(
-                                    fontSize: 20.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                SizedBox(height: 8.h),
-                                Text(
-                                  '개발하면서 배운 것들을 정리하는 공간',
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    color: Colors.grey[400],
-                                    height: 1.5,
-                                  ),
-                                ),
+                                const MobileTechBlogHeader(),
+                                SizedBox(height: 60.h),
+
+                                const MobileTechCategoryNav(),
+                                Divider(height: 1, color: Colors.grey.shade800),
                                 SizedBox(height: 32.h),
 
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFF2d2d2d),
-                                    borderRadius: BorderRadius.circular(8.r),
-                                    border: Border.all(
-                                      color:
-                                          _searchFocusNode.hasFocus
-                                              ? Colors.blue[400]!
-                                              : Colors.grey[600]!,
-                                      width: 1,
-                                    ),
-                                  ),
-                                  child: TextField(
-                                    controller: _searchController,
-                                    focusNode: _searchFocusNode,
-                                    onChanged: (value) {},
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16.sp,
-                                    ),
-                                    decoration: InputDecoration(
-                                      hintText: '검색어를 입력하세요...',
-                                      hintStyle: TextStyle(
-                                        color: Colors.grey[500],
-                                        fontSize: 16.sp,
-                                      ),
-                                      border: InputBorder.none,
-                                      contentPadding: EdgeInsets.symmetric(
-                                        horizontal: 16.w,
-                                        vertical: 12.h,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 48.h),
+                                const MobileTechPostList(),
+                                SizedBox(height: 80.h),
                               ],
                             ),
                           ),
@@ -136,6 +85,7 @@ class _TechBlogMobileViewState extends State<TechBlogMobileView> {
                     ],
                   ),
                   MenuScreen(isMenuClicked: state.isMenuClicked),
+                  const MobileTechPlayer(),
                 ],
               ),
             );
