@@ -14,5 +14,6 @@ class TechBlogState with _$TechBlogState {
     @Default('all') String selectedCategory,
     @Default(0.0) double sidePreviewTopSpace,
     @Default(false) bool sidePreviewOpacity,
+    @Default(false) bool isTabletMode,
   }) = _TechBlogState;
 }

@@ -25,6 +25,7 @@ mixin _$TechBlogState {
   String get selectedCategory => throw _privateConstructorUsedError;
   double get sidePreviewTopSpace => throw _privateConstructorUsedError;
   bool get sidePreviewOpacity => throw _privateConstructorUsedError;
+  bool get isTabletMode => throw _privateConstructorUsedError;
 
   /// Create a copy of TechBlogState
   /// with the given fields replaced by the non-null parameter values.
@@ -49,6 +50,7 @@ abstract class $TechBlogStateCopyWith<$Res> {
     String selectedCategory,
     double sidePreviewTopSpace,
     bool sidePreviewOpacity,
+    bool isTabletMode,
   });
 }
 
@@ -75,6 +77,7 @@ class _$TechBlogStateCopyWithImpl<$Res, $Val extends TechBlogState>
     Object? selectedCategory = null,
     Object? sidePreviewTopSpace = null,
     Object? sidePreviewOpacity = null,
+    Object? isTabletMode = null,
   }) {
     return _then(
       _value.copyWith(
@@ -118,6 +121,11 @@ class _$TechBlogStateCopyWithImpl<$Res, $Val extends TechBlogState>
                     ? _value.sidePreviewOpacity
                     : sidePreviewOpacity // ignore: cast_nullable_to_non_nullable
                         as bool,
+            isTabletMode:
+                null == isTabletMode
+                    ? _value.isTabletMode
+                    : isTabletMode // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -142,6 +150,7 @@ abstract class _$$TechBlogStateImplCopyWith<$Res>
     String selectedCategory,
     double sidePreviewTopSpace,
     bool sidePreviewOpacity,
+    bool isTabletMode,
   });
 }
 
@@ -167,6 +176,7 @@ class __$$TechBlogStateImplCopyWithImpl<$Res>
     Object? selectedCategory = null,
     Object? sidePreviewTopSpace = null,
     Object? sidePreviewOpacity = null,
+    Object? isTabletMode = null,
   }) {
     return _then(
       _$TechBlogStateImpl(
@@ -210,6 +220,11 @@ class __$$TechBlogStateImplCopyWithImpl<$Res>
                 ? _value.sidePreviewOpacity
                 : sidePreviewOpacity // ignore: cast_nullable_to_non_nullable
                     as bool,
+        isTabletMode:
+            null == isTabletMode
+                ? _value.isTabletMode
+                : isTabletMode // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -227,6 +242,7 @@ class _$TechBlogStateImpl implements _TechBlogState {
     this.selectedCategory = 'all',
     this.sidePreviewTopSpace = 0.0,
     this.sidePreviewOpacity = false,
+    this.isTabletMode = false,
   }) : _blogPosts = blogPosts,
        _filteredPosts = filteredPosts;
 
@@ -266,10 +282,13 @@ class _$TechBlogStateImpl implements _TechBlogState {
   @override
   @JsonKey()
   final bool sidePreviewOpacity;
+  @override
+  @JsonKey()
+  final bool isTabletMode;
 
   @override
   String toString() {
-    return 'TechBlogState(isMenuClicked: $isMenuClicked, isLoading: $isLoading, blogPosts: $blogPosts, filteredPosts: $filteredPosts, searchQuery: $searchQuery, selectedCategory: $selectedCategory, sidePreviewTopSpace: $sidePreviewTopSpace, sidePreviewOpacity: $sidePreviewOpacity)';
+    return 'TechBlogState(isMenuClicked: $isMenuClicked, isLoading: $isLoading, blogPosts: $blogPosts, filteredPosts: $filteredPosts, searchQuery: $searchQuery, selectedCategory: $selectedCategory, sidePreviewTopSpace: $sidePreviewTopSpace, sidePreviewOpacity: $sidePreviewOpacity, isTabletMode: $isTabletMode)';
   }
 
   @override
@@ -296,7 +315,9 @@ class _$TechBlogStateImpl implements _TechBlogState {
             (identical(other.sidePreviewTopSpace, sidePreviewTopSpace) ||
                 other.sidePreviewTopSpace == sidePreviewTopSpace) &&
             (identical(other.sidePreviewOpacity, sidePreviewOpacity) ||
-                other.sidePreviewOpacity == sidePreviewOpacity));
+                other.sidePreviewOpacity == sidePreviewOpacity) &&
+            (identical(other.isTabletMode, isTabletMode) ||
+                other.isTabletMode == isTabletMode));
   }
 
   @override
@@ -310,6 +331,7 @@ class _$TechBlogStateImpl implements _TechBlogState {
     selectedCategory,
     sidePreviewTopSpace,
     sidePreviewOpacity,
+    isTabletMode,
   );
 
   /// Create a copy of TechBlogState
@@ -331,6 +353,7 @@ abstract class _TechBlogState implements TechBlogState {
     final String selectedCategory,
     final double sidePreviewTopSpace,
     final bool sidePreviewOpacity,
+    final bool isTabletMode,
   }) = _$TechBlogStateImpl;
 
   @override
@@ -349,6 +372,8 @@ abstract class _TechBlogState implements TechBlogState {
   double get sidePreviewTopSpace;
   @override
   bool get sidePreviewOpacity;
+  @override
+  bool get isTabletMode;
 
   /// Create a copy of TechBlogState
   /// with the given fields replaced by the non-null parameter values.

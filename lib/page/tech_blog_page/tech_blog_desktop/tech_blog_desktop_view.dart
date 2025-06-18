@@ -20,9 +20,6 @@ class TechBlogDesktopView extends StatelessWidget {
       MediaQuery.of(context).size.width,
     );
 
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isTabletMode = screenWidth <= 1200;
-
     return BlocBuilder<TechBlogCubit, TechBlogState>(
       builder: (context, state) {
         final cubit = context.read<TechBlogCubit>();
@@ -61,15 +58,17 @@ class TechBlogDesktopView extends StatelessWidget {
                               child: ConstrainedBox(
                                 constraints: BoxConstraints(
                                   maxWidth:
-                                      isTabletMode ? double.infinity : 1200,
+                                      state.isTabletMode
+                                          ? double.infinity
+                                          : 1200,
                                 ),
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
-                                    horizontal: isTabletMode ? 20.0 : 0.0,
+                                    horizontal: state.isTabletMode ? 20.0 : 0.0,
                                   ),
                                   child: Column(
                                     children: [
-                                      isTabletMode
+                                      state.isTabletMode
                                           ? Center(
                                             child: const TechBlogHeader(),
                                           )
@@ -85,7 +84,7 @@ class TechBlogDesktopView extends StatelessWidget {
                                         color: Colors.grey.shade800,
                                       ),
                                       const SizedBox(height: 40),
-                                      if (isTabletMode)
+                                      if (state.isTabletMode)
                                         const TechPostList()
                                       else
                                         Row(

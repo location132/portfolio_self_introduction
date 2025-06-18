@@ -34,6 +34,7 @@ class TechBlogCubit extends Cubit<TechBlogState> {
 
   void onWidgetUpdate(double screenWidth) {
     updateListenerState(screenWidth);
+    emit(state.copyWith(isTabletMode: screenWidth <= 1200));
   }
 
   void toggleMenu() {
