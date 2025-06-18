@@ -20,6 +20,9 @@ class TechBlogDesktopView extends StatelessWidget {
       MediaQuery.of(context).size.width,
     );
 
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isTabletMode = screenWidth <= 1200;
+
     return BlocBuilder<TechBlogCubit, TechBlogState>(
       builder: (context, state) {
         final cubit = context.read<TechBlogCubit>();
@@ -56,49 +59,64 @@ class TechBlogDesktopView extends StatelessWidget {
                             const SizedBox(height: 100),
                             Center(
                               child: ConstrainedBox(
-                                constraints: const BoxConstraints(
-                                  maxWidth: 1200,
+                                constraints: BoxConstraints(
+                                  maxWidth:
+                                      isTabletMode ? double.infinity : 1200,
                                 ),
-                                child: Column(
-                                  children: [
-                                    const Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: TechBlogHeader(),
-                                    ),
-                                    const SizedBox(height: 120),
-                                    const TechCategoryNav(),
-                                    Divider(
-                                      key: cubit.dividerKey,
-                                      height: 1,
-                                      color: Colors.grey.shade800,
-                                    ),
-                                    const SizedBox(height: 40),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const TechPostList(),
-                                        const SizedBox(width: 32),
-                                        Expanded(
-                                          child: Column(
-                                            children: [
-                                              AnimatedContainer(
-                                                duration: const Duration(
-                                                  milliseconds: 100,
-                                                ),
-                                                height:
-                                                    state.sidePreviewTopSpace,
-                                              ),
-                                              TechSidePreview(
-                                                sidePreviewOpacity:
-                                                    state.sidePreviewOpacity,
-                                              ),
-                                            ],
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: isTabletMode ? 20.0 : 0.0,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      isTabletMode
+                                          ? Center(
+                                            child: const TechBlogHeader(),
+                                          )
+                                          : const Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: TechBlogHeader(),
                                           ),
+                                      const SizedBox(height: 120),
+                                      const TechCategoryNav(),
+                                      Divider(
+                                        key: cubit.dividerKey,
+                                        height: 1,
+                                        color: Colors.grey.shade800,
+                                      ),
+                                      const SizedBox(height: 40),
+                                      if (isTabletMode)
+                                        const TechPostList()
+                                      else
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const TechPostList(),
+                                            const SizedBox(width: 32),
+                                            Expanded(
+                                              child: Column(
+                                                children: [
+                                                  AnimatedContainer(
+                                                    duration: const Duration(
+                                                      milliseconds: 100,
+                                                    ),
+                                                    height:
+                                                        state
+                                                            .sidePreviewTopSpace,
+                                                  ),
+                                                  TechSidePreview(
+                                                    sidePreviewOpacity:
+                                                        state
+                                                            .sidePreviewOpacity,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
