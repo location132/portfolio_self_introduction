@@ -3,7 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MobileTechPlayer extends StatefulWidget {
-  const MobileTechPlayer({super.key});
+  final Function(bool) isFocused;
+  const MobileTechPlayer({super.key, required this.isFocused});
 
   @override
   State<MobileTechPlayer> createState() => _MobileTechPlayerState();
@@ -33,8 +34,12 @@ class _MobileTechPlayerState extends State<MobileTechPlayer> {
   @override
   Widget build(BuildContext context) {
     final bool isFocused = _searchFocusNode.hasFocus;
-    return Align(
-      alignment: Alignment.bottomCenter,
+    widget.isFocused(isFocused);
+
+    return AnimatedAlign(
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOut,
+      alignment: isFocused ? Alignment.center : Alignment.bottomCenter,
       child: Padding(
         padding: EdgeInsets.only(bottom: 32.h),
         child: AnimatedContainer(
