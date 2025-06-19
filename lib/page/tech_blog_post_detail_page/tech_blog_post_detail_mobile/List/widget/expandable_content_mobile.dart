@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ExpandableContentMobile extends StatefulWidget {
   final String summary;
@@ -58,7 +59,7 @@ class _ExpandableContentMobileState extends State<ExpandableContentMobile>
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 800,
+      width: 800.w,
       child: Column(
         children: [
           Align(
@@ -67,13 +68,13 @@ class _ExpandableContentMobileState extends State<ExpandableContentMobile>
               widget.summary,
               style: TextStyle(
                 color: widget.isBackgroundColor ? Colors.black : Colors.white,
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w400,
                 height: 1.6,
               ),
             ),
           ),
-          const SizedBox(height: 40),
+          SizedBox(height: 40.h),
           GestureDetector(
             onTap: _toggleExpansion,
             child: Row(
@@ -87,11 +88,11 @@ class _ExpandableContentMobileState extends State<ExpandableContentMobile>
                         widget.isBackgroundColor
                             ? Colors.black
                             : Colors.grey.shade300,
-                    fontSize: 14,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(width: 8),
+                SizedBox(width: 8.w),
                 AnimatedRotation(
                   turns: _isExpanded ? 0.5 : 0.0,
                   duration: const Duration(milliseconds: 300),
@@ -101,7 +102,7 @@ class _ExpandableContentMobileState extends State<ExpandableContentMobile>
                         widget.isBackgroundColor
                             ? Colors.black
                             : Colors.grey.shade300,
-                    size: 20,
+                    size: 20.sp,
                   ),
                 ),
               ],
@@ -116,14 +117,14 @@ class _ExpandableContentMobileState extends State<ExpandableContentMobile>
                     ? FadeTransition(
                       opacity: _fadeAnimation,
                       child: Container(
-                        margin: const EdgeInsets.only(top: 20),
-                        padding: const EdgeInsets.all(20),
+                        margin: EdgeInsets.only(top: 20.h),
+                        padding: EdgeInsets.all(20.w),
                         decoration: BoxDecoration(
                           color:
                               widget.isBackgroundColor
                                   ? Colors.grey.shade100.withValues(alpha: 0.4)
                                   : Colors.grey.shade900.withValues(alpha: 0.4),
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                           border: Border.all(
                             color:
                                 widget.isBackgroundColor
@@ -133,7 +134,7 @@ class _ExpandableContentMobileState extends State<ExpandableContentMobile>
                                     : Colors.grey.shade700.withValues(
                                       alpha: 0.5,
                                     ),
-                            width: 1,
+                            width: 1.w,
                           ),
                         ),
                         child: Text(
@@ -143,7 +144,7 @@ class _ExpandableContentMobileState extends State<ExpandableContentMobile>
                                 widget.isBackgroundColor
                                     ? Colors.black
                                     : Colors.grey.shade200,
-                            fontSize: 15,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w400,
                             height: 1.7,
                           ),

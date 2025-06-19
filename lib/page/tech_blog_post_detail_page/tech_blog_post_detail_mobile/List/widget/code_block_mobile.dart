@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/monokai-sublime.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CodeBlockMobile extends StatefulWidget {
   final String code;
@@ -31,7 +32,7 @@ class _CodeBlockMobileState extends State<CodeBlockMobile> {
         if (widget.title != null) ...[
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
             decoration: BoxDecoration(
               color:
                   widget.isBackgroundColor
@@ -39,11 +40,11 @@ class _CodeBlockMobileState extends State<CodeBlockMobile> {
                       : Colors.grey.shade800,
               borderRadius:
                   _isExpanded
-                      ? const BorderRadius.only(
-                        topLeft: Radius.circular(12),
-                        topRight: Radius.circular(12),
+                      ? BorderRadius.only(
+                        topLeft: Radius.circular(12.r),
+                        topRight: Radius.circular(12.r),
                       )
-                      : BorderRadius.circular(12),
+                      : BorderRadius.circular(12.r),
               border: Border.all(
                 color:
                     widget.isBackgroundColor
@@ -62,26 +63,26 @@ class _CodeBlockMobileState extends State<CodeBlockMobile> {
                   Row(
                     children: [
                       Container(
-                        width: 12,
-                        height: 12,
+                        width: 12.w,
+                        height: 12.h,
                         decoration: const BoxDecoration(
                           color: Colors.red,
                           shape: BoxShape.circle,
                         ),
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8.w),
                       Container(
-                        width: 12,
-                        height: 12,
+                        width: 12.w,
+                        height: 12.h,
                         decoration: const BoxDecoration(
                           color: Colors.yellow,
                           shape: BoxShape.circle,
                         ),
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8.w),
                       Container(
-                        width: 12,
-                        height: 12,
+                        width: 12.w,
+                        height: 12.h,
                         decoration: const BoxDecoration(
                           color: Colors.green,
                           shape: BoxShape.circle,
@@ -89,7 +90,7 @@ class _CodeBlockMobileState extends State<CodeBlockMobile> {
                       ),
                     ],
                   ),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16.w),
                   Expanded(
                     child: Text(
                       widget.title!,
@@ -98,7 +99,7 @@ class _CodeBlockMobileState extends State<CodeBlockMobile> {
                             widget.isBackgroundColor
                                 ? Colors.black
                                 : Colors.white,
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -111,7 +112,7 @@ class _CodeBlockMobileState extends State<CodeBlockMobile> {
                         widget.isBackgroundColor
                             ? Colors.grey.shade600
                             : Colors.grey.shade400,
-                    size: 20,
+                    size: 20.sp,
                   ),
                 ],
               ),
@@ -128,11 +129,11 @@ class _CodeBlockMobileState extends State<CodeBlockMobile> {
                       : const Color(0xFF23241f),
               borderRadius:
                   widget.title != null
-                      ? const BorderRadius.only(
-                        bottomLeft: Radius.circular(12),
-                        bottomRight: Radius.circular(12),
+                      ? BorderRadius.only(
+                        bottomLeft: Radius.circular(12.r),
+                        bottomRight: Radius.circular(12.r),
                       )
-                      : BorderRadius.circular(12),
+                      : BorderRadius.circular(12.r),
               border: Border.all(
                 color:
                     widget.isBackgroundColor
@@ -144,9 +145,9 @@ class _CodeBlockMobileState extends State<CodeBlockMobile> {
               widget.code,
               language: widget.language,
               theme: monokaiSublimeTheme,
-              padding: const EdgeInsets.all(20),
-              textStyle: const TextStyle(
-                fontSize: 16,
+              padding: EdgeInsets.all(20.w),
+              textStyle: TextStyle(
+                fontSize: 16.sp,
                 fontFamily: 'Courier',
                 height: 1.5,
               ),

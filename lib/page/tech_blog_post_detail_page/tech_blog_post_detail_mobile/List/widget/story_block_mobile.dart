@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StoryBlockMobile extends StatelessWidget {
   final String story;
@@ -12,12 +13,12 @@ class StoryBlockMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20),
+      padding: EdgeInsets.only(left: 20.w),
       child: Text(
         story,
         style: TextStyle(
           color: isBackgroundColor ? Colors.black : Colors.white,
-          fontSize: 16,
+          fontSize: 16.sp,
         ),
       ),
     );

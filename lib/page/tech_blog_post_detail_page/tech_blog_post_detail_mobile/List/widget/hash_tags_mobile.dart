@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HashTagsMobile extends StatelessWidget {
   final List<String> tags;
@@ -8,8 +9,8 @@ class HashTagsMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: 12,
-      runSpacing: 8,
+      spacing: 12.w,
+      runSpacing: 8.h,
       children: tags.map((tag) => _buildTag(tag)).toList(),
     );
   }
@@ -17,11 +18,11 @@ class HashTagsMobile extends StatelessWidget {
   Widget _buildTag(String tag) {
     return Text(
       tag,
-      style: const TextStyle(
-        color: Color.fromARGB(255, 151, 205, 246),
-        fontSize: 15,
+      style: TextStyle(
+        color: const Color.fromARGB(255, 151, 205, 246),
+        fontSize: 15.sp,
         fontWeight: FontWeight.w500,
-        letterSpacing: 0.2,
+        letterSpacing: 0.2.sp,
       ),
     );
   }
