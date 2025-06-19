@@ -44,17 +44,34 @@ class TechBlogPostDetailDesktopView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  TechDetailPostSlug(postSlug: postSlug),
+                  TechDetailPostSlug(
+                    postSlug: postSlug,
+                    isFocused: (isFocused) {
+                      context.read<TechBlogPostDetailCubit>().togglePlayerFocus(
+                        postSlug,
+                      );
+                    },
+                  ),
                 ],
               ),
 
-              // Positioned.fill(
-              //   child:
-              //       state.isScreenFilter
-              //           ? Container(color: Colors.black.withValues(alpha: 0.8))
-              //           : const SizedBox.shrink(),
-              // ),
-              TechDetailPlayer(isFocused: (isFocused) {}),
+              Positioned.fill(
+                child:
+                    state.isScreenFilter
+                        ? Container(color: Colors.black.withValues(alpha: 0.8))
+                        : const SizedBox.shrink(),
+              ),
+              TechDetailPlayer(
+                isFocused: (isFocused) {},
+                playerTitle: state.playerTitle,
+                isPlayerFocused: state.isPlayerFocused,
+                isPlayerClicked: state.isPlayerClicked,
+                showOptions: state.showOptions,
+                searchQuery: state.searchQuery,
+                onFocusLost: () {
+                  context.read<TechBlogPostDetailCubit>().clearPlayerFocus();
+                },
+              ),
             ],
           ),
         );

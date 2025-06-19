@@ -31,14 +31,14 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     gh.factory<_i903.DesktopCubit>(() => _i903.DesktopCubit()..init());
-    gh.factory<_i673.MobileCubit>(() => _i673.MobileCubit()..init());
-    gh.factory<_i595.ProjectDetailCubit>(() => _i595.ProjectDetailCubit());
-    gh.factory<_i68.ProjectsMainCubit>(() => _i68.ProjectsMainCubit());
-    gh.factory<_i426.IfsaiCubit>(() => _i426.IfsaiCubit());
-    gh.factory<_i706.TechBlogCubit>(() => _i706.TechBlogCubit()..initialize());
     gh.factory<_i330.TechBlogPostDetailCubit>(
       () => _i330.TechBlogPostDetailCubit(),
     );
+    gh.factory<_i673.MobileCubit>(() => _i673.MobileCubit()..init());
+    gh.factory<_i706.TechBlogCubit>(() => _i706.TechBlogCubit()..initialize());
+    gh.factory<_i595.ProjectDetailCubit>(() => _i595.ProjectDetailCubit());
+    gh.factory<_i426.IfsaiCubit>(() => _i426.IfsaiCubit());
+    gh.factory<_i68.ProjectsMainCubit>(() => _i68.ProjectsMainCubit());
     gh.singleton<_i112.IntroService>(() => _i112.IntroService());
     return this;
   }

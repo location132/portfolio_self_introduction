@@ -5,8 +5,20 @@ import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/w
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/post_header.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/expandable_content.dart';
 
-class Mvvm extends StatelessWidget {
-  const Mvvm({super.key});
+class Mvvm extends StatefulWidget {
+  final Function(bool) isFocused;
+  const Mvvm({super.key, required this.isFocused});
+
+  @override
+  State<Mvvm> createState() => _MvvmState();
+}
+
+class _MvvmState extends State<Mvvm> {
+  @override
+  void initState() {
+    super.initState();
+    widget.isFocused(true);
+  }
 
   @override
   Widget build(BuildContext context) {

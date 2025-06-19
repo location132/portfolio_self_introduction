@@ -3,9 +3,14 @@ import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/m
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/clean_architecture.dart';
 
 class TechDetailPostSlug extends StatelessWidget {
+  final Function(bool) isFocused;
   final String postSlug;
 
-  const TechDetailPostSlug({super.key, required this.postSlug});
+  const TechDetailPostSlug({
+    super.key,
+    required this.postSlug,
+    required this.isFocused,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +26,11 @@ class TechDetailPostSlug extends StatelessWidget {
   Widget _buildPostContent() {
     switch (postSlug) {
       case 'mvvm':
-        return const Mvvm();
+        return Mvvm(
+          isFocused: (isFocused) {
+            this.isFocused(isFocused);
+          },
+        );
       case 'clean-architecture':
         return const CleanArchitecture();
       case 'repository-pattern':

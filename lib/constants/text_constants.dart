@@ -1216,3 +1216,84 @@ class TerminalTextConstants {
       24 lib/model/affiliated_store.dart
    50688 total''';
 }
+
+class TechBlogPostConstants {
+  static const List<Map<String, String>> techPosts = [
+    {'title': 'MVVM 패턴', 'tags': '#MVVM #Architecture #Pattern'},
+    {'title': 'Clean Architecture', 'tags': '#Clean #Architecture #DDD'},
+    {'title': 'BLoC Pattern', 'tags': '#BLoC #State Management #Flutter'},
+    {'title': 'Provider 상태관리', 'tags': '#Provider #State Management'},
+    {'title': 'GetIt 의존성 주입', 'tags': '#GetIt #DI #Dependency Injection'},
+    {'title': 'Repository 패턴', 'tags': '#Repository #Pattern #Data Layer'},
+    {
+      'title': 'Freezed 데이터 클래스',
+      'tags': '#Freezed #Data Class #Code Generation',
+    },
+    {'title': 'Dio HTTP 클라이언트', 'tags': '#Dio #HTTP #API'},
+    {'title': 'Flutter 애니메이션', 'tags': '#Flutter #Animation #UI'},
+    {'title': 'Rive 애니메이션', 'tags': '#Rive #Animation #Interactive'},
+    {'title': 'Custom Widget 만들기', 'tags': '#Custom Widget #Flutter #UI'},
+    {'title': 'Flutter 생명주기', 'tags': '#Lifecycle #Flutter #Widget'},
+    {'title': 'Flutter 테스트', 'tags': '#Test #Unit Test #Widget Test'},
+    {'title': 'Firebase 연동', 'tags': '#Firebase #Backend #Database'},
+    {
+      'title': 'Flutter Web 최적화',
+      'tags': '#Flutter Web #Optimization #Performance',
+    },
+    {'title': 'Flutter 성능 최적화', 'tags': '#Performance #Optimization #Flutter'},
+    {'title': 'Flutter 디버깅', 'tags': '#Debug #Flutter #Development'},
+    {'title': 'Flutter 패키지 개발', 'tags': '#Package #Plugin #Flutter'},
+    {
+      'title': 'Flutter 국제화',
+      'tags': '#Internationalization #i18n #Localization',
+    },
+    {'title': 'Flutter 접근성', 'tags': '#Accessibility #A11y #Flutter'},
+    {'title': 'Flutter 보안', 'tags': '#Security #Flutter #App Security'},
+    {'title': 'Flutter 배포', 'tags': '#Deploy #Release #Store'},
+    {'title': 'Dart 언어 심화', 'tags': '#Dart #Language #Advanced'},
+    {'title': 'Flutter 위젯 트리', 'tags': '#Widget Tree #Flutter #Architecture'},
+    {'title': 'Flutter 렌더링', 'tags': '#Rendering #Flutter #Performance'},
+    {
+      'title': 'Flutter 플랫폼 채널',
+      'tags': '#Platform Channel #Native #Integration',
+    },
+    {'title': 'Flutter 플러그인 개발', 'tags': '#Plugin #Native #Flutter'},
+    {'title': 'Flutter CI/CD', 'tags': '#CI/CD #DevOps #Automation'},
+    {'title': 'Flutter 코드 리뷰', 'tags': '#Code Review #Best Practice #Quality'},
+    {'title': 'Flutter 아키텍처 패턴', 'tags': '#Architecture #Pattern #Design'},
+    {'title': 'Flutter 상태 복원', 'tags': '#State Restoration #Flutter #UX'},
+    {
+      'title': 'Flutter 메모리 관리',
+      'tags': '#Memory Management #Performance #Flutter',
+    },
+    {'title': 'Flutter 네트워킹', 'tags': '#Networking #HTTP #API'},
+    {'title': 'Flutter 데이터베이스', 'tags': '#Database #SQLite #Local Storage'},
+    {'title': 'Flutter 파일 시스템', 'tags': '#File System #Storage #Flutter'},
+    {'title': 'Flutter 센서 활용', 'tags': '#Sensor #Hardware #Flutter'},
+    {'title': 'Flutter 지도 연동', 'tags': '#Map #Location #GPS'},
+    {'title': 'Flutter 카메라 활용', 'tags': '#Camera #Media #Flutter'},
+    {'title': 'Flutter 푸시 알림', 'tags': '#Push Notification #FCM #Messaging'},
+    {'title': 'Flutter 백그라운드 작업', 'tags': '#Background Task #Service #Flutter'},
+    {'title': 'PopupMenuButton', 'tags': '#PopupMenuButton #Menu #Popup'},
+    {
+      'title': 'CachedNetworkImage',
+      'tags': '#CachedNetworkImage #Image Cache #Network Image',
+    },
+    {'title': 'dio 캐시 처리', 'tags': '#Dio #Cache #HTTP Cache #Interceptor'},
+    {'title': '캘린더 라이브러리', 'tags': '#Calendar #Date Picker #Library'},
+    {
+      'title': 'NaverMap with Flutter',
+      'tags': '#Naver Map #Map Widget #Location',
+    },
+    {
+      'title': '바텀 네비게이션 바 (구글)',
+      'tags': '#BottomNavigationBar #Navigation #Google Style',
+    },
+    {'title': '물결 애니메이션', 'tags': '#Wave Animation #Custom Animation #Ripple'},
+    {'title': '그라디언트', 'tags': '#Gradient #LinearGradient #RadialGradient'},
+    {
+      'title': '⭐ 반짝이는 별 애니메이션 구현 기록',
+      'tags': '#Star Animation #Sparkle #Custom Animation',
+    },
+  ];
+}
