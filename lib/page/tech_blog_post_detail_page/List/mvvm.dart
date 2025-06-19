@@ -141,6 +141,7 @@ class Mvvm extends StatelessWidget {
                   const SizedBox(height: 30),
                   CodeBlock(
                     title: '''@freezed를 사용한 Model''',
+                    language: 'dart',
                     code: r'''
 import 'package:freezed_annotation/freezed_annotation.dart';
 
