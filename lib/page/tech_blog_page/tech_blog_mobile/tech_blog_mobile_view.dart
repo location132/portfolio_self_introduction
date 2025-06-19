@@ -54,7 +54,7 @@ class _TechBlogMobileViewState extends State<TechBlogMobileView> {
                           context.read<TechBlogCubit>().toggleMenu();
                         },
                         onHomePressed: () {
-                          context.go('/');
+                          context.push('/');
                         },
                       ),
                       Expanded(

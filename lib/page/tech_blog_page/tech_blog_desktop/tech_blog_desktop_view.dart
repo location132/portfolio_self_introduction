@@ -41,7 +41,7 @@ class TechBlogDesktopView extends StatelessWidget {
                           cubit.toggleMenu();
                         },
                         onHomePressed: () {
-                          context.go('/');
+                          context.push('/');
                         },
                       ),
                     ),

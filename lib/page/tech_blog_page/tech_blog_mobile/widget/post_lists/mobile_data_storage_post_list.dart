@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_mobile/widget/mobile_tech_post_title.dart';
 
 class MobileDataStoragePostList extends StatelessWidget {
@@ -10,34 +11,39 @@ class MobileDataStoragePostList extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const MobileTechPostTitle(
+        MobileTechPostTitle(
           number: 1,
           title: 'Isar 로컬 NoSQL DB',
           tags: '#Isar  #NoSQL  #Local Database',
+          onTap: () => context.push('/tech-blog/post/clean-architecture'),
         ),
         SizedBox(height: 30.h),
-        const MobileTechPostTitle(
+        MobileTechPostTitle(
           number: 2,
           title: 'Hive 로컬 저장',
           tags: '#Hive  #Local Storage  #NoSQL',
+          onTap: () => context.push('/tech-blog/post/clean-architecture'),
         ),
         SizedBox(height: 30.h),
-        const MobileTechPostTitle(
+        MobileTechPostTitle(
           number: 3,
           title: 'SharedPreferences\nFlutter Secure Storage 로컬 캐싱',
           tags: '#SharedPreferences  #SecureStorage  #Local Cache',
+          onTap: () => context.push('/tech-blog/post/clean-architecture'),
         ),
         SizedBox(height: 30.h),
-        const MobileTechPostTitle(
+        MobileTechPostTitle(
           number: 4,
           title: 'MemoryCache\nDio Cache Interceptor - 메모리 및 네트워크 캐싱',
           tags: '#MemoryCache  #Dio  #Network Cache',
+          onTap: () => context.push('/tech-blog/post/clean-architecture'),
         ),
         SizedBox(height: 30.h),
-        const MobileTechPostTitle(
+        MobileTechPostTitle(
           number: 5,
           title: 'dio 캐시 처리',
           tags: '#Dio  #Cache  #HTTP Cache  #Interceptor',
+          onTap: () => context.push('/tech-blog/post/clean-architecture'),
         ),
       ],
     );

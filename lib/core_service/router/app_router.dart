@@ -6,6 +6,7 @@ import 'package:self_introduction_flutter/page/desktop_page/desktop_page.dart';
 import 'package:self_introduction_flutter/page/projects_main_page/projects_main_page.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/project_detail_page.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_page.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_page.dart';
 
 import 'package:self_introduction_flutter/service/main_service.dart';
 
@@ -113,6 +114,33 @@ class AppRouter {
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
               child: const TechBlogPage(),
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                final tween = Tween<Offset>(
+                  begin: const Offset(1, 0),
+                  end: Offset.zero,
+                ).chain(CurveTween(curve: Curves.easeInOut));
+                return SlideTransition(
+                  position: animation.drive(tween),
+                  child: child,
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 400),
+            ),
+      ),
+      GoRoute(
+        path: '/tech-blog/post/:postSlug',
+        name: 'tech_blog_post',
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              child: TechBlogPostDetailPage(
+                postSlug: state.pathParameters['postSlug'] ?? 'not-found',
+              ),
               transitionsBuilder: (
                 context,
                 animation,
