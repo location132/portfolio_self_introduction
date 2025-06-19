@@ -58,19 +58,36 @@ class TechBlogPostDetailDesktopView extends StatelessWidget {
               Positioned.fill(
                 child:
                     state.isScreenFilter
-                        ? Container(color: Colors.black.withValues(alpha: 0.8))
+                        ? InkWell(
+                          onTap: () {
+                            context
+                                .read<TechBlogPostDetailCubit>()
+                                .clearPlayerFocus();
+                          },
+                          child: Container(
+                            color: Colors.black.withValues(alpha: 0.8),
+                          ),
+                        )
                         : const SizedBox.shrink(),
               ),
-              TechDetailPlayer(
-                isFocused: (isFocused) {},
-                playerTitle: state.playerTitle,
-                isPlayerFocused: state.isPlayerFocused,
-                isPlayerClicked: state.isPlayerClicked,
-                showOptions: state.showOptions,
-                searchQuery: state.searchQuery,
-                onFocusLost: () {
-                  context.read<TechBlogPostDetailCubit>().clearPlayerFocus();
+              GestureDetector(
+                onTap: () {
+                  if (!state.isPlayerClicked) {
+                    context.read<TechBlogPostDetailCubit>().togglePlayerFocus(
+                      postSlug,
+                    );
+                  }
                 },
+                child: TechDetailPlayer(
+                  isFocused: (isFocused) {},
+                  playerTitle: state.playerTitle,
+                  isPlayerClicked: state.isPlayerClicked,
+                  showOptions: state.showOptions,
+                  searchQuery: state.searchQuery,
+                  onFocusLost: () {
+                    context.read<TechBlogPostDetailCubit>().clearPlayerFocus();
+                  },
+                ),
               ),
             ],
           ),

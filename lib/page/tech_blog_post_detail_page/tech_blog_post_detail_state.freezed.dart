@@ -24,7 +24,6 @@ mixin _$TechBlogPostDetailState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isPostFound => throw _privateConstructorUsedError;
   bool get isMenuClicked => throw _privateConstructorUsedError; //플레이어
-  bool get isPlayerFocused => throw _privateConstructorUsedError;
   String get playerTitle => throw _privateConstructorUsedError;
   bool get isPlayerClicked => throw _privateConstructorUsedError;
   bool get showOptions => throw _privateConstructorUsedError;
@@ -53,7 +52,6 @@ abstract class $TechBlogPostDetailStateCopyWith<$Res> {
     bool isLoading,
     bool isPostFound,
     bool isMenuClicked,
-    bool isPlayerFocused,
     String playerTitle,
     bool isPlayerClicked,
     bool showOptions,
@@ -87,7 +85,6 @@ class _$TechBlogPostDetailStateCopyWithImpl<
     Object? isLoading = null,
     Object? isPostFound = null,
     Object? isMenuClicked = null,
-    Object? isPlayerFocused = null,
     Object? playerTitle = null,
     Object? isPlayerClicked = null,
     Object? showOptions = null,
@@ -130,11 +127,6 @@ class _$TechBlogPostDetailStateCopyWithImpl<
                 null == isMenuClicked
                     ? _value.isMenuClicked
                     : isMenuClicked // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            isPlayerFocused:
-                null == isPlayerFocused
-                    ? _value.isPlayerFocused
-                    : isPlayerFocused // ignore: cast_nullable_to_non_nullable
                         as bool,
             playerTitle:
                 null == playerTitle
@@ -184,7 +176,6 @@ abstract class _$$TechBlogPostDetailStateImplCopyWith<$Res>
     bool isLoading,
     bool isPostFound,
     bool isMenuClicked,
-    bool isPlayerFocused,
     String playerTitle,
     bool isPlayerClicked,
     bool showOptions,
@@ -218,7 +209,6 @@ class __$$TechBlogPostDetailStateImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? isPostFound = null,
     Object? isMenuClicked = null,
-    Object? isPlayerFocused = null,
     Object? playerTitle = null,
     Object? isPlayerClicked = null,
     Object? showOptions = null,
@@ -262,11 +252,6 @@ class __$$TechBlogPostDetailStateImplCopyWithImpl<$Res>
                 ? _value.isMenuClicked
                 : isMenuClicked // ignore: cast_nullable_to_non_nullable
                     as bool,
-        isPlayerFocused:
-            null == isPlayerFocused
-                ? _value.isPlayerFocused
-                : isPlayerFocused // ignore: cast_nullable_to_non_nullable
-                    as bool,
         playerTitle:
             null == playerTitle
                 ? _value.playerTitle
@@ -308,7 +293,6 @@ class _$TechBlogPostDetailStateImpl implements _TechBlogPostDetailState {
     this.isLoading = false,
     this.isPostFound = false,
     this.isMenuClicked = false,
-    this.isPlayerFocused = false,
     this.playerTitle = '다양한 것들을 도와드릴게요 저를 클릭해주세요',
     this.isPlayerClicked = false,
     this.showOptions = false,
@@ -340,9 +324,6 @@ class _$TechBlogPostDetailStateImpl implements _TechBlogPostDetailState {
   //플레이어
   @override
   @JsonKey()
-  final bool isPlayerFocused;
-  @override
-  @JsonKey()
   final String playerTitle;
   @override
   @JsonKey()
@@ -360,7 +341,7 @@ class _$TechBlogPostDetailStateImpl implements _TechBlogPostDetailState {
 
   @override
   String toString() {
-    return 'TechBlogPostDetailState(postSlug: $postSlug, title: $title, tags: $tags, content: $content, isLoading: $isLoading, isPostFound: $isPostFound, isMenuClicked: $isMenuClicked, isPlayerFocused: $isPlayerFocused, playerTitle: $playerTitle, isPlayerClicked: $isPlayerClicked, showOptions: $showOptions, searchQuery: $searchQuery, isScreenFilter: $isScreenFilter)';
+    return 'TechBlogPostDetailState(postSlug: $postSlug, title: $title, tags: $tags, content: $content, isLoading: $isLoading, isPostFound: $isPostFound, isMenuClicked: $isMenuClicked, playerTitle: $playerTitle, isPlayerClicked: $isPlayerClicked, showOptions: $showOptions, searchQuery: $searchQuery, isScreenFilter: $isScreenFilter)';
   }
 
   @override
@@ -379,8 +360,6 @@ class _$TechBlogPostDetailStateImpl implements _TechBlogPostDetailState {
                 other.isPostFound == isPostFound) &&
             (identical(other.isMenuClicked, isMenuClicked) ||
                 other.isMenuClicked == isMenuClicked) &&
-            (identical(other.isPlayerFocused, isPlayerFocused) ||
-                other.isPlayerFocused == isPlayerFocused) &&
             (identical(other.playerTitle, playerTitle) ||
                 other.playerTitle == playerTitle) &&
             (identical(other.isPlayerClicked, isPlayerClicked) ||
@@ -403,7 +382,6 @@ class _$TechBlogPostDetailStateImpl implements _TechBlogPostDetailState {
     isLoading,
     isPostFound,
     isMenuClicked,
-    isPlayerFocused,
     playerTitle,
     isPlayerClicked,
     showOptions,
@@ -431,7 +409,6 @@ abstract class _TechBlogPostDetailState implements TechBlogPostDetailState {
     final bool isLoading,
     final bool isPostFound,
     final bool isMenuClicked,
-    final bool isPlayerFocused,
     final String playerTitle,
     final bool isPlayerClicked,
     final bool showOptions,
@@ -453,8 +430,6 @@ abstract class _TechBlogPostDetailState implements TechBlogPostDetailState {
   bool get isPostFound;
   @override
   bool get isMenuClicked; //플레이어
-  @override
-  bool get isPlayerFocused;
   @override
   String get playerTitle;
   @override

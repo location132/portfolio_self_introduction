@@ -12,14 +12,12 @@ class TechBlogPostDetailCubit extends Cubit<TechBlogPostDetailState> {
   }
 
   // 플레이어 포커스
-  void togglePlayerFocus(String title) async {
-    await Future.delayed(const Duration(seconds: 1));
-    if (isClosed) return;
+  void togglePlayerFocus(String title) {
     emit(
       state.copyWith(
-        isPlayerFocused: true,
+        isPlayerClicked: true,
         isScreenFilter: true,
-        playerTitle: '$title 개념을 건너뛰고 핵심만 보고싶다면',
+        showOptions: true,
       ),
     );
   }
@@ -33,7 +31,6 @@ class TechBlogPostDetailCubit extends Cubit<TechBlogPostDetailState> {
   void clearPlayerFocus() {
     emit(
       state.copyWith(
-        isPlayerFocused: false,
         playerTitle: '',
         isPlayerClicked: false,
         showOptions: false,
@@ -61,20 +58,18 @@ class TechBlogPostDetailCubit extends Cubit<TechBlogPostDetailState> {
     emit(state.copyWith(searchQuery: query));
   }
 
-  // 빠른 액션 처리
+  // 플레이어 메뉴바
   void handleQuickAction(String action) {
     switch (action) {
-      case 'summary':
-        toggleScreenFilter();
-        break;
       case 'code':
         // TODO: 코드 예제로 이동
         break;
-      case 'back':
-        // TODO: 이전 페이지로 이동
+      case 'filter':
+        // TODO: 구현 해야함
         break;
     }
-    if (action != 'summary') {
+
+    if (action != 'filter') {
       clearPlayerFocus();
     }
   }

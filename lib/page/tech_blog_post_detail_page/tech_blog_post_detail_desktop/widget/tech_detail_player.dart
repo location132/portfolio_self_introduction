@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_cubit.dart';
@@ -10,7 +11,6 @@ import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_b
 
 class TechDetailPlayer extends StatefulWidget {
   final String playerTitle;
-  final bool isPlayerFocused;
   final bool isPlayerClicked;
   final bool showOptions;
   final String searchQuery;
@@ -20,7 +20,6 @@ class TechDetailPlayer extends StatefulWidget {
   const TechDetailPlayer({
     super.key,
     required this.playerTitle,
-    required this.isPlayerFocused,
     required this.isPlayerClicked,
     required this.showOptions,
     required this.searchQuery,
@@ -34,35 +33,15 @@ class TechDetailPlayer extends StatefulWidget {
 
 class _TechDetailPlayerState extends State<TechDetailPlayer> {
   final TextEditingController _searchController = TextEditingController();
-  final FocusNode _focusNode = FocusNode();
-  bool _wasFocused = false;
 
   @override
   void initState() {
     super.initState();
-    _focusNode.addListener(() {
-      final bool isFocused = _focusNode.hasFocus;
-
-      if (_wasFocused && !isFocused) {
-        _handleFocusLost();
-      }
-
-      if (!_wasFocused && isFocused && !widget.isPlayerClicked) {
-        context.read<TechBlogPostDetailCubit>().handlePlayerClick();
-      }
-
-      _wasFocused = isFocused;
-      widget.isFocused(isFocused);
-    });
   }
 
   @override
   void didUpdateWidget(covariant TechDetailPlayer oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.isPlayerFocused != widget.isPlayerFocused &&
-        widget.isPlayerFocused) {
-      _focusNode.requestFocus();
-    }
 
     if (oldWidget.searchQuery != widget.searchQuery &&
         _searchController.text != widget.searchQuery) {
@@ -76,31 +55,21 @@ class _TechDetailPlayerState extends State<TechDetailPlayer> {
 
   @override
   void dispose() {
-    _focusNode.dispose();
     _searchController.dispose();
     super.dispose();
-  }
-
-  void _handleFocusLost() {
-    if (widget.onFocusLost != null) {
-      widget.onFocusLost!();
-    }
   }
 
   List<Map<String, String>> _getFilteredPosts() {
     if (widget.searchQuery.isEmpty) return [];
 
-    return TechBlogPostConstants.techPosts
-        .where((post) {
-          return post['title']!.toLowerCase().contains(
-                widget.searchQuery.toLowerCase(),
-              ) ||
-              post['tags']!.toLowerCase().contains(
-                widget.searchQuery.toLowerCase(),
-              );
-        })
-        .take(5)
-        .toList();
+    return TechBlogPostConstants.techPosts.where((post) {
+      return post['title']!.toLowerCase().contains(
+            widget.searchQuery.toLowerCase(),
+          ) ||
+          post['tags']!.toLowerCase().contains(
+            widget.searchQuery.toLowerCase(),
+          );
+    }).toList();
   }
 
   @override
@@ -119,6 +88,7 @@ class _TechDetailPlayerState extends State<TechDetailPlayer> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            // 검색창
             AnimatedContainer(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
@@ -148,20 +118,12 @@ class _TechDetailPlayerState extends State<TechDetailPlayer> {
                 cursorColor:
                     widget.isPlayerClicked ? Colors.black : Colors.white,
                 controller: _searchController,
-                focusNode: _focusNode,
                 textAlignVertical: TextAlignVertical.center,
-                onChanged: (value) {
-                  if (widget.searchQuery != value) {
-                    context.read<TechBlogPostDetailCubit>().updateSearchQuery(
-                      value,
-                    );
-                  }
-                },
                 decoration: InputDecoration(
                   hintText:
                       widget.isPlayerClicked
-                          ? '검색어를 입력해주세요'
-                          : '다양한 것들을 도와드릴게요 저를 클릭해주세요',
+                          ? '아래의 메뉴를 선택하거나 검색어를 입력해주세요'
+                          : '궁금한 것이 있다면 클릭해주세요',
                   prefixIcon: Padding(
                     padding: const EdgeInsets.only(left: 12, right: 8),
                     child: Icon(
@@ -192,6 +154,7 @@ class _TechDetailPlayerState extends State<TechDetailPlayer> {
               ),
             ),
 
+            // 검색 결과 또는 옵션 메뉴 (분리된 컨테이너)
             if (showSearchMode) ...[
               const SizedBox(height: 16),
               Container(
@@ -254,10 +217,10 @@ class _TechDetailPlayerState extends State<TechDetailPlayer> {
                       icon: Icons.arrow_back,
                       title: '이전 페이지로',
                       subtitle: '기술 블로그 목록으로 돌아가기',
-                      onTap:
-                          () => context
-                              .read<TechBlogPostDetailCubit>()
-                              .handleQuickAction('back'),
+                      onTap: () {
+                        print('check ==>13');
+                        context.go('/tech-blog');
+                      },
                     ),
                     const DividerWidget(),
                     QuickActionItem(
@@ -277,7 +240,7 @@ class _TechDetailPlayerState extends State<TechDetailPlayer> {
                       onTap:
                           () => context
                               .read<TechBlogPostDetailCubit>()
-                              .handleQuickAction('summary'),
+                              .handleQuickAction('filter'),
                     ),
                   ],
                 ),
