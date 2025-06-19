@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'tech_blog_post_detail_state.freezed.dart';
@@ -21,5 +22,7 @@ class TechBlogPostDetailState with _$TechBlogPostDetailState {
     //화면 필터
     @Default(false) bool isScreenFilter,
     @Default(false) bool isBackgroundColorWhite,
+
+    ScrollController? scrollController,
   }) = _TechBlogPostDetailState;
 }

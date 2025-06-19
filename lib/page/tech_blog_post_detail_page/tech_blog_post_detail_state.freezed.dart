@@ -29,6 +29,7 @@ mixin _$TechBlogPostDetailState {
   String get searchQuery => throw _privateConstructorUsedError; //화면 필터
   bool get isScreenFilter => throw _privateConstructorUsedError;
   bool get isBackgroundColorWhite => throw _privateConstructorUsedError;
+  ScrollController? get scrollController => throw _privateConstructorUsedError;
 
   /// Create a copy of TechBlogPostDetailState
   /// with the given fields replaced by the non-null parameter values.
@@ -57,6 +58,7 @@ abstract class $TechBlogPostDetailStateCopyWith<$Res> {
     String searchQuery,
     bool isScreenFilter,
     bool isBackgroundColorWhite,
+    ScrollController? scrollController,
   });
 }
 
@@ -90,6 +92,7 @@ class _$TechBlogPostDetailStateCopyWithImpl<
     Object? searchQuery = null,
     Object? isScreenFilter = null,
     Object? isBackgroundColorWhite = null,
+    Object? scrollController = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -153,6 +156,11 @@ class _$TechBlogPostDetailStateCopyWithImpl<
                     ? _value.isBackgroundColorWhite
                     : isBackgroundColorWhite // ignore: cast_nullable_to_non_nullable
                         as bool,
+            scrollController:
+                freezed == scrollController
+                    ? _value.scrollController
+                    : scrollController // ignore: cast_nullable_to_non_nullable
+                        as ScrollController?,
           )
           as $Val,
     );
@@ -181,6 +189,7 @@ abstract class _$$TechBlogPostDetailStateImplCopyWith<$Res>
     String searchQuery,
     bool isScreenFilter,
     bool isBackgroundColorWhite,
+    ScrollController? scrollController,
   });
 }
 
@@ -214,6 +223,7 @@ class __$$TechBlogPostDetailStateImplCopyWithImpl<$Res>
     Object? searchQuery = null,
     Object? isScreenFilter = null,
     Object? isBackgroundColorWhite = null,
+    Object? scrollController = freezed,
   }) {
     return _then(
       _$TechBlogPostDetailStateImpl(
@@ -277,6 +287,11 @@ class __$$TechBlogPostDetailStateImplCopyWithImpl<$Res>
                 ? _value.isBackgroundColorWhite
                 : isBackgroundColorWhite // ignore: cast_nullable_to_non_nullable
                     as bool,
+        scrollController:
+            freezed == scrollController
+                ? _value.scrollController
+                : scrollController // ignore: cast_nullable_to_non_nullable
+                    as ScrollController?,
       ),
     );
   }
@@ -298,6 +313,7 @@ class _$TechBlogPostDetailStateImpl implements _TechBlogPostDetailState {
     this.searchQuery = '',
     this.isScreenFilter = false,
     this.isBackgroundColorWhite = false,
+    this.scrollController,
   });
 
   @override
@@ -338,10 +354,12 @@ class _$TechBlogPostDetailStateImpl implements _TechBlogPostDetailState {
   @override
   @JsonKey()
   final bool isBackgroundColorWhite;
+  @override
+  final ScrollController? scrollController;
 
   @override
   String toString() {
-    return 'TechBlogPostDetailState(postSlug: $postSlug, title: $title, tags: $tags, content: $content, isLoading: $isLoading, isPostFound: $isPostFound, isMenuClicked: $isMenuClicked, isPlayerClicked: $isPlayerClicked, showOptions: $showOptions, searchQuery: $searchQuery, isScreenFilter: $isScreenFilter, isBackgroundColorWhite: $isBackgroundColorWhite)';
+    return 'TechBlogPostDetailState(postSlug: $postSlug, title: $title, tags: $tags, content: $content, isLoading: $isLoading, isPostFound: $isPostFound, isMenuClicked: $isMenuClicked, isPlayerClicked: $isPlayerClicked, showOptions: $showOptions, searchQuery: $searchQuery, isScreenFilter: $isScreenFilter, isBackgroundColorWhite: $isBackgroundColorWhite, scrollController: $scrollController)';
   }
 
   @override
@@ -369,7 +387,9 @@ class _$TechBlogPostDetailStateImpl implements _TechBlogPostDetailState {
             (identical(other.isScreenFilter, isScreenFilter) ||
                 other.isScreenFilter == isScreenFilter) &&
             (identical(other.isBackgroundColorWhite, isBackgroundColorWhite) ||
-                other.isBackgroundColorWhite == isBackgroundColorWhite));
+                other.isBackgroundColorWhite == isBackgroundColorWhite) &&
+            (identical(other.scrollController, scrollController) ||
+                other.scrollController == scrollController));
   }
 
   @override
@@ -387,6 +407,7 @@ class _$TechBlogPostDetailStateImpl implements _TechBlogPostDetailState {
     searchQuery,
     isScreenFilter,
     isBackgroundColorWhite,
+    scrollController,
   );
 
   /// Create a copy of TechBlogPostDetailState
@@ -414,6 +435,7 @@ abstract class _TechBlogPostDetailState implements TechBlogPostDetailState {
     final String searchQuery,
     final bool isScreenFilter,
     final bool isBackgroundColorWhite,
+    final ScrollController? scrollController,
   }) = _$TechBlogPostDetailStateImpl;
 
   @override
@@ -440,6 +462,8 @@ abstract class _TechBlogPostDetailState implements TechBlogPostDetailState {
   bool get isScreenFilter;
   @override
   bool get isBackgroundColorWhite;
+  @override
+  ScrollController? get scrollController;
 
   /// Create a copy of TechBlogPostDetailState
   /// with the given fields replaced by the non-null parameter values.

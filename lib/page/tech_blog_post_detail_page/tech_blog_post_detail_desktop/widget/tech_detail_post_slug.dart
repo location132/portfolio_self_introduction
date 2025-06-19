@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/mvvm.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/clean_architecture.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_cubit.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_state.dart';
 
 class TechDetailPostSlug extends StatelessWidget {
   final Function(bool) isFocused;
@@ -28,12 +31,17 @@ class TechDetailPostSlug extends StatelessWidget {
   Widget _buildPostContent() {
     switch (postSlug) {
       case 'mvvm':
-        return Mvvm(
-          isFocused: (isFocused) {
-            this.isFocused(isFocused);
+        return BlocBuilder<TechBlogPostDetailCubit, TechBlogPostDetailState>(
+          builder: (context, state) {
+            return Mvvm(
+              isFocused: (isFocused) {
+                this.isFocused(isFocused);
+              },
+              scrollController: state.scrollController,
+            );
           },
-          isBackgroundColor: isBackgroundColor,
         );
+
       case 'clean-architecture':
         return const CleanArchitecture();
       case 'repository-pattern':

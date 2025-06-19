@@ -1,10 +1,15 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_state.dart';
 
 @injectable
 class TechBlogPostDetailCubit extends Cubit<TechBlogPostDetailState> {
-  TechBlogPostDetailCubit() : super(const TechBlogPostDetailState());
+  TechBlogPostDetailCubit()
+    : super(TechBlogPostDetailState(scrollController: ScrollController()));
+
+  // 스크롤 타겟 오프셋
+  double? targetScrollOffset;
 
   // 메뉴 변경
   void toggleMenu() {
@@ -53,9 +58,24 @@ class TechBlogPostDetailCubit extends Cubit<TechBlogPostDetailState> {
   void handleQuickAction(String action) {
     switch (action) {
       case 'code':
-        // TODO: 코드 예제로 이동
+        print('code');
+        emit(
+          state.copyWith(
+            isPlayerClicked: false,
+            showOptions: false,
+            isScreenFilter: false,
+          ),
+        );
+        _scrollToCodeSection();
         break;
       case 'filter':
+        emit(
+          state.copyWith(
+            isPlayerClicked: false,
+            showOptions: false,
+            isScreenFilter: false,
+          ),
+        );
         emit(
           state.copyWith(isBackgroundColorWhite: !state.isBackgroundColorWhite),
         );
@@ -64,6 +84,35 @@ class TechBlogPostDetailCubit extends Cubit<TechBlogPostDetailState> {
 
     if (action != 'filter') {
       clearPlayerFocus();
+    }
+  }
+
+  // 스크롤 타겟 오프셋 설정
+  void setScrollTargetOffset(double offset) {
+    targetScrollOffset = offset;
+  }
+
+  void _scrollToCodeSection() {
+    final controller = state.scrollController;
+
+    if (controller != null) {
+      double targetOffset = targetScrollOffset ?? 1200.0;
+
+      if (controller.hasClients) {
+        final maxScrollExtent = controller.position.maxScrollExtent;
+        if (targetOffset > maxScrollExtent) {
+          targetOffset = maxScrollExtent;
+        }
+      }
+
+      controller
+          .animateTo(
+            targetOffset,
+            duration: const Duration(milliseconds: 800),
+            curve: Curves.easeInOut,
+          )
+          .then((_) {})
+          .catchError((error) {});
     }
   }
 }
