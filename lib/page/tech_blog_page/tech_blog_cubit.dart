@@ -25,6 +25,11 @@ class TechBlogCubit extends Cubit<TechBlogState> {
     });
   }
 
+  // 화면 필터 색상
+  void toggleSearchExpansion(bool isFocused) {
+    emit(state.copyWith(isScreenFilter: isFocused));
+  }
+
   // 카테고리 선택
   void selectCategory(int index) {
     if (state.selectedCategoryIndex == index) {
@@ -49,11 +54,6 @@ class TechBlogCubit extends Cubit<TechBlogState> {
   // 메뉴 변경
   void toggleMenu() {
     emit(state.copyWith(isMenuClicked: !state.isMenuClicked));
-  }
-
-  // 스크롤 리스너
-  void initializeScrollListener(double screenWidth) {
-    updateListenerState(screenWidth);
   }
 
   // 스크롤 리스너 업데이트 (프리뷰 위치 조절한다고 제작함)
@@ -87,10 +87,6 @@ class TechBlogCubit extends Cubit<TechBlogState> {
 
       emit(state.copyWith(sidePreviewTopSpace: space));
     }
-  }
-
-  void updateSidePreviewTopSpace(double space) {
-    emit(state.copyWith(sidePreviewTopSpace: space));
   }
 
   @override

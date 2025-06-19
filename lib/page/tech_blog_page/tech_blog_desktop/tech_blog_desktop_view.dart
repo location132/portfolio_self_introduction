@@ -127,7 +127,18 @@ class TechBlogDesktopView extends StatelessWidget {
                   ),
                 ],
               ),
-              const TechPlayer(),
+
+              Positioned.fill(
+                child:
+                    state.isScreenFilter
+                        ? Container(color: Colors.black.withValues(alpha: 0.8))
+                        : const SizedBox.shrink(),
+              ),
+              TechPlayer(
+                isFocused: (isFocused) {
+                  cubit.toggleSearchExpansion(isFocused);
+                },
+              ),
             ],
           ),
         );

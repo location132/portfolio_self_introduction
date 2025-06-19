@@ -26,7 +26,8 @@ mixin _$TechBlogState {
   int get selectedCategoryIndex => throw _privateConstructorUsedError;
   double get sidePreviewTopSpace => throw _privateConstructorUsedError;
   bool get sidePreviewOpacity => throw _privateConstructorUsedError;
-  bool get isTabletMode => throw _privateConstructorUsedError;
+  bool get isTabletMode => throw _privateConstructorUsedError; //화면 필터
+  bool get isScreenFilter => throw _privateConstructorUsedError;
 
   /// Create a copy of TechBlogState
   /// with the given fields replaced by the non-null parameter values.
@@ -53,6 +54,7 @@ abstract class $TechBlogStateCopyWith<$Res> {
     double sidePreviewTopSpace,
     bool sidePreviewOpacity,
     bool isTabletMode,
+    bool isScreenFilter,
   });
 }
 
@@ -81,6 +83,7 @@ class _$TechBlogStateCopyWithImpl<$Res, $Val extends TechBlogState>
     Object? sidePreviewTopSpace = null,
     Object? sidePreviewOpacity = null,
     Object? isTabletMode = null,
+    Object? isScreenFilter = null,
   }) {
     return _then(
       _value.copyWith(
@@ -134,6 +137,11 @@ class _$TechBlogStateCopyWithImpl<$Res, $Val extends TechBlogState>
                     ? _value.isTabletMode
                     : isTabletMode // ignore: cast_nullable_to_non_nullable
                         as bool,
+            isScreenFilter:
+                null == isScreenFilter
+                    ? _value.isScreenFilter
+                    : isScreenFilter // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -160,6 +168,7 @@ abstract class _$$TechBlogStateImplCopyWith<$Res>
     double sidePreviewTopSpace,
     bool sidePreviewOpacity,
     bool isTabletMode,
+    bool isScreenFilter,
   });
 }
 
@@ -187,6 +196,7 @@ class __$$TechBlogStateImplCopyWithImpl<$Res>
     Object? sidePreviewTopSpace = null,
     Object? sidePreviewOpacity = null,
     Object? isTabletMode = null,
+    Object? isScreenFilter = null,
   }) {
     return _then(
       _$TechBlogStateImpl(
@@ -240,6 +250,11 @@ class __$$TechBlogStateImplCopyWithImpl<$Res>
                 ? _value.isTabletMode
                 : isTabletMode // ignore: cast_nullable_to_non_nullable
                     as bool,
+        isScreenFilter:
+            null == isScreenFilter
+                ? _value.isScreenFilter
+                : isScreenFilter // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -259,6 +274,7 @@ class _$TechBlogStateImpl implements _TechBlogState {
     this.sidePreviewTopSpace = 0.0,
     this.sidePreviewOpacity = false,
     this.isTabletMode = false,
+    this.isScreenFilter = false,
   }) : _blogPosts = blogPosts,
        _filteredPosts = filteredPosts;
 
@@ -304,10 +320,14 @@ class _$TechBlogStateImpl implements _TechBlogState {
   @override
   @JsonKey()
   final bool isTabletMode;
+  //화면 필터
+  @override
+  @JsonKey()
+  final bool isScreenFilter;
 
   @override
   String toString() {
-    return 'TechBlogState(isMenuClicked: $isMenuClicked, isLoading: $isLoading, blogPosts: $blogPosts, filteredPosts: $filteredPosts, searchQuery: $searchQuery, selectedCategory: $selectedCategory, selectedCategoryIndex: $selectedCategoryIndex, sidePreviewTopSpace: $sidePreviewTopSpace, sidePreviewOpacity: $sidePreviewOpacity, isTabletMode: $isTabletMode)';
+    return 'TechBlogState(isMenuClicked: $isMenuClicked, isLoading: $isLoading, blogPosts: $blogPosts, filteredPosts: $filteredPosts, searchQuery: $searchQuery, selectedCategory: $selectedCategory, selectedCategoryIndex: $selectedCategoryIndex, sidePreviewTopSpace: $sidePreviewTopSpace, sidePreviewOpacity: $sidePreviewOpacity, isTabletMode: $isTabletMode, isScreenFilter: $isScreenFilter)';
   }
 
   @override
@@ -338,7 +358,9 @@ class _$TechBlogStateImpl implements _TechBlogState {
             (identical(other.sidePreviewOpacity, sidePreviewOpacity) ||
                 other.sidePreviewOpacity == sidePreviewOpacity) &&
             (identical(other.isTabletMode, isTabletMode) ||
-                other.isTabletMode == isTabletMode));
+                other.isTabletMode == isTabletMode) &&
+            (identical(other.isScreenFilter, isScreenFilter) ||
+                other.isScreenFilter == isScreenFilter));
   }
 
   @override
@@ -354,6 +376,7 @@ class _$TechBlogStateImpl implements _TechBlogState {
     sidePreviewTopSpace,
     sidePreviewOpacity,
     isTabletMode,
+    isScreenFilter,
   );
 
   /// Create a copy of TechBlogState
@@ -377,6 +400,7 @@ abstract class _TechBlogState implements TechBlogState {
     final double sidePreviewTopSpace,
     final bool sidePreviewOpacity,
     final bool isTabletMode,
+    final bool isScreenFilter,
   }) = _$TechBlogStateImpl;
 
   @override
@@ -398,7 +422,9 @@ abstract class _TechBlogState implements TechBlogState {
   @override
   bool get sidePreviewOpacity;
   @override
-  bool get isTabletMode;
+  bool get isTabletMode; //화면 필터
+  @override
+  bool get isScreenFilter;
 
   /// Create a copy of TechBlogState
   /// with the given fields replaced by the non-null parameter values.

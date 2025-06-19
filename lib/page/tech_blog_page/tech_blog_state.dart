@@ -16,5 +16,8 @@ class TechBlogState with _$TechBlogState {
     @Default(0.0) double sidePreviewTopSpace,
     @Default(false) bool sidePreviewOpacity,
     @Default(false) bool isTabletMode,
+
+    //화면 필터
+    @Default(false) bool isScreenFilter,
   }) = _TechBlogState;
 }
