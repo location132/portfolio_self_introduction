@@ -9,14 +9,14 @@ import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_b
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/widget/divider_widget.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/widget/no_results_message.dart';
 
-class TechDetailPlayer extends StatefulWidget {
+class TechDetailPlayerMobile extends StatefulWidget {
   final bool isPlayerClicked;
   final bool showOptions;
   final String searchQuery;
   final Function(bool) isFocused;
   final VoidCallback? onFocusLost;
 
-  const TechDetailPlayer({
+  const TechDetailPlayerMobile({
     super.key,
     required this.isPlayerClicked,
     required this.showOptions,
@@ -26,10 +26,10 @@ class TechDetailPlayer extends StatefulWidget {
   });
 
   @override
-  State<TechDetailPlayer> createState() => _TechDetailPlayerState();
+  State<TechDetailPlayerMobile> createState() => _TechDetailPlayerMobileState();
 }
 
-class _TechDetailPlayerState extends State<TechDetailPlayer> {
+class _TechDetailPlayerMobileState extends State<TechDetailPlayerMobile> {
   final TextEditingController _searchController = TextEditingController();
 
   @override
@@ -38,7 +38,7 @@ class _TechDetailPlayerState extends State<TechDetailPlayer> {
   }
 
   @override
-  void didUpdateWidget(covariant TechDetailPlayer oldWidget) {
+  void didUpdateWidget(covariant TechDetailPlayerMobile oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.searchQuery != widget.searchQuery &&

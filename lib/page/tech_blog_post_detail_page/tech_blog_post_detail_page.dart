@@ -21,7 +21,7 @@ class TechBlogPostDetailPage extends StatelessWidget {
       create: (context) => di<TechBlogPostDetailCubit>(),
       child:
           deviceType == 'mobile'
-              ? TechBlogPostDetailMobileView(postSlug: postSlug)
+              ? TechBlogPostDetailMobilePage(postSlug: postSlug)
               : TechBlogPostDetailDesktopView(postSlug: postSlug),
     );
   }

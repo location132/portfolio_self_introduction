@@ -90,7 +90,6 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
     final double maxHeight = MediaQuery.of(context).size.height;
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
-    // 화면 높이에 따른 조건부 로직
     double availableHeight;
     EdgeInsets firstItemPadding;
     EdgeInsets itemPadding;
@@ -98,7 +97,6 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
     double fontSize;
 
     if (maxHeight > 800) {
-      // 높은 화면: 여유롭게
       availableHeight = maxHeight - statusBarHeight - 100;
       firstItemPadding = EdgeInsets.only(
         top: 20.h,
@@ -110,7 +108,6 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
       textPadding = EdgeInsets.symmetric(vertical: 8.h);
       fontSize = 16.0.sp;
     } else if (maxHeight > 700) {
-      // 중간 화면: 적당히
       availableHeight = maxHeight - statusBarHeight - 80;
       firstItemPadding = EdgeInsets.only(
         top: 15.h,
@@ -122,7 +119,6 @@ class _MenuScreenState extends State<MenuScreen> with TickerProviderStateMixin {
       textPadding = EdgeInsets.symmetric(vertical: 6.h);
       fontSize = 15.0.sp;
     } else {
-      // 낮은 화면: 최대한 컴팩트하게
       availableHeight = maxHeight - statusBarHeight - 60;
       firstItemPadding = EdgeInsets.only(
         top: 10.h,
