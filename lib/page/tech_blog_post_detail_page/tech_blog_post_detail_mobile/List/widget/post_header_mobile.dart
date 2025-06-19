@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/hash_tags.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_mobile/List/widget/hash_tags_mobile.dart';
 
 class PostHeaderMobile extends StatelessWidget {
   final String title;
@@ -60,7 +60,7 @@ class PostHeaderMobile extends StatelessWidget {
         ),
         const SizedBox(height: 48),
 
-        Center(child: HashTags(tags: tags)),
+        Center(child: HashTagsMobile(tags: tags)),
         const SizedBox(height: 28),
 
         Container(
