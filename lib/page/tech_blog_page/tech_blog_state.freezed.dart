@@ -27,7 +27,9 @@ mixin _$TechBlogState {
   double get sidePreviewTopSpace => throw _privateConstructorUsedError;
   bool get sidePreviewOpacity => throw _privateConstructorUsedError;
   bool get isTabletMode => throw _privateConstructorUsedError; //화면 필터
-  bool get isScreenFilter => throw _privateConstructorUsedError;
+  bool get isScreenFilter => throw _privateConstructorUsedError; // 호버 상태 관리
+  bool get isPostHovered => throw _privateConstructorUsedError;
+  String get hoveredPostTitle => throw _privateConstructorUsedError;
 
   /// Create a copy of TechBlogState
   /// with the given fields replaced by the non-null parameter values.
@@ -55,6 +57,8 @@ abstract class $TechBlogStateCopyWith<$Res> {
     bool sidePreviewOpacity,
     bool isTabletMode,
     bool isScreenFilter,
+    bool isPostHovered,
+    String hoveredPostTitle,
   });
 }
 
@@ -84,6 +88,8 @@ class _$TechBlogStateCopyWithImpl<$Res, $Val extends TechBlogState>
     Object? sidePreviewOpacity = null,
     Object? isTabletMode = null,
     Object? isScreenFilter = null,
+    Object? isPostHovered = null,
+    Object? hoveredPostTitle = null,
   }) {
     return _then(
       _value.copyWith(
@@ -142,6 +148,16 @@ class _$TechBlogStateCopyWithImpl<$Res, $Val extends TechBlogState>
                     ? _value.isScreenFilter
                     : isScreenFilter // ignore: cast_nullable_to_non_nullable
                         as bool,
+            isPostHovered:
+                null == isPostHovered
+                    ? _value.isPostHovered
+                    : isPostHovered // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            hoveredPostTitle:
+                null == hoveredPostTitle
+                    ? _value.hoveredPostTitle
+                    : hoveredPostTitle // ignore: cast_nullable_to_non_nullable
+                        as String,
           )
           as $Val,
     );
@@ -169,6 +185,8 @@ abstract class _$$TechBlogStateImplCopyWith<$Res>
     bool sidePreviewOpacity,
     bool isTabletMode,
     bool isScreenFilter,
+    bool isPostHovered,
+    String hoveredPostTitle,
   });
 }
 
@@ -197,6 +215,8 @@ class __$$TechBlogStateImplCopyWithImpl<$Res>
     Object? sidePreviewOpacity = null,
     Object? isTabletMode = null,
     Object? isScreenFilter = null,
+    Object? isPostHovered = null,
+    Object? hoveredPostTitle = null,
   }) {
     return _then(
       _$TechBlogStateImpl(
@@ -255,6 +275,16 @@ class __$$TechBlogStateImplCopyWithImpl<$Res>
                 ? _value.isScreenFilter
                 : isScreenFilter // ignore: cast_nullable_to_non_nullable
                     as bool,
+        isPostHovered:
+            null == isPostHovered
+                ? _value.isPostHovered
+                : isPostHovered // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        hoveredPostTitle:
+            null == hoveredPostTitle
+                ? _value.hoveredPostTitle
+                : hoveredPostTitle // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -275,6 +305,8 @@ class _$TechBlogStateImpl implements _TechBlogState {
     this.sidePreviewOpacity = false,
     this.isTabletMode = false,
     this.isScreenFilter = false,
+    this.isPostHovered = false,
+    this.hoveredPostTitle = '',
   }) : _blogPosts = blogPosts,
        _filteredPosts = filteredPosts;
 
@@ -324,10 +356,17 @@ class _$TechBlogStateImpl implements _TechBlogState {
   @override
   @JsonKey()
   final bool isScreenFilter;
+  // 호버 상태 관리
+  @override
+  @JsonKey()
+  final bool isPostHovered;
+  @override
+  @JsonKey()
+  final String hoveredPostTitle;
 
   @override
   String toString() {
-    return 'TechBlogState(isMenuClicked: $isMenuClicked, isLoading: $isLoading, blogPosts: $blogPosts, filteredPosts: $filteredPosts, searchQuery: $searchQuery, selectedCategory: $selectedCategory, selectedCategoryIndex: $selectedCategoryIndex, sidePreviewTopSpace: $sidePreviewTopSpace, sidePreviewOpacity: $sidePreviewOpacity, isTabletMode: $isTabletMode, isScreenFilter: $isScreenFilter)';
+    return 'TechBlogState(isMenuClicked: $isMenuClicked, isLoading: $isLoading, blogPosts: $blogPosts, filteredPosts: $filteredPosts, searchQuery: $searchQuery, selectedCategory: $selectedCategory, selectedCategoryIndex: $selectedCategoryIndex, sidePreviewTopSpace: $sidePreviewTopSpace, sidePreviewOpacity: $sidePreviewOpacity, isTabletMode: $isTabletMode, isScreenFilter: $isScreenFilter, isPostHovered: $isPostHovered, hoveredPostTitle: $hoveredPostTitle)';
   }
 
   @override
@@ -360,7 +399,11 @@ class _$TechBlogStateImpl implements _TechBlogState {
             (identical(other.isTabletMode, isTabletMode) ||
                 other.isTabletMode == isTabletMode) &&
             (identical(other.isScreenFilter, isScreenFilter) ||
-                other.isScreenFilter == isScreenFilter));
+                other.isScreenFilter == isScreenFilter) &&
+            (identical(other.isPostHovered, isPostHovered) ||
+                other.isPostHovered == isPostHovered) &&
+            (identical(other.hoveredPostTitle, hoveredPostTitle) ||
+                other.hoveredPostTitle == hoveredPostTitle));
   }
 
   @override
@@ -377,6 +420,8 @@ class _$TechBlogStateImpl implements _TechBlogState {
     sidePreviewOpacity,
     isTabletMode,
     isScreenFilter,
+    isPostHovered,
+    hoveredPostTitle,
   );
 
   /// Create a copy of TechBlogState
@@ -401,6 +446,8 @@ abstract class _TechBlogState implements TechBlogState {
     final bool sidePreviewOpacity,
     final bool isTabletMode,
     final bool isScreenFilter,
+    final bool isPostHovered,
+    final String hoveredPostTitle,
   }) = _$TechBlogStateImpl;
 
   @override
@@ -424,7 +471,11 @@ abstract class _TechBlogState implements TechBlogState {
   @override
   bool get isTabletMode; //화면 필터
   @override
-  bool get isScreenFilter;
+  bool get isScreenFilter; // 호버 상태 관리
+  @override
+  bool get isPostHovered;
+  @override
+  String get hoveredPostTitle;
 
   /// Create a copy of TechBlogState
   /// with the given fields replaced by the non-null parameter values.

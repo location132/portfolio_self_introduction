@@ -89,6 +89,16 @@ class TechBlogCubit extends Cubit<TechBlogState> {
     }
   }
 
+  // 기술블로그에 사용자가 마우ㅠ스 올리면
+  void onPostHover(String postTitle) {
+    emit(state.copyWith(isPostHovered: true, hoveredPostTitle: postTitle));
+  }
+
+  // 기술블로그에 사용자가 마우스 벗어나면
+  void onPostHoverExit() {
+    emit(state.copyWith(isPostHovered: false, hoveredPostTitle: ''));
+  }
+
   @override
   Future<void> close() {
     if (_isListenerActive) {

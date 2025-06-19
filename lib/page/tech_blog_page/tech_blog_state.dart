@@ -19,5 +19,9 @@ class TechBlogState with _$TechBlogState {
 
     //화면 필터
     @Default(false) bool isScreenFilter,
+
+    // 호버 상태 관리
+    @Default(false) bool isPostHovered,
+    @Default('') String hoveredPostTitle,
   }) = _TechBlogState;
 }
