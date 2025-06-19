@@ -179,6 +179,260 @@ enum ChapterDetailButton { none, simple, detail }
 ''',
                   ),
                   const SizedBox(height: 100),
+
+                  // ViewModel 섹션
+                  const TitleTextTechBlog(title: '다음, VM — ViewModel'),
+                  const SizedBox(height: 30),
+                  StoryBlock(
+                    story:
+                        'ViewModel은 View와 Model 사이의 다리 역할을 합니다.\n'
+                        '저는 flutter_bloc의 Cubit을 사용해서 ViewModel을 구현합니다.\n\n'
+                        'Cubit은 상태 관리가 간단하고, emit을 통해 상태를 변경할 수 있어\n'
+                        'MVVM의 ViewModel 역할에 적합하다고 생각합니다.\n\n'
+                        'ChapterCubit은 ChapterModel을 관리하며,\n'
+                        '사용자의 액션을 받아 상태를 변경하고 View에 알려줍니다.',
+                  ),
+                  const SizedBox(height: 30),
+                  CodeBlock(
+                    title: '''실제 프로젝트의 ViewModel (DesktopCubit)''',
+                    language: 'dart',
+                    code: r'''
+@injectable
+class DesktopCubit extends Cubit<DesktopState> {
+  DesktopCubit()
+    : super(
+        DesktopState(
+          scrollModel: ScrollModel(scrollController: ScrollController()),
+        ),
+      );
+
+  @postConstruct
+  void init() async {
+    if (!isClosed) {
+      emit(
+        state.copyWith(
+          initModel: state.initModel.copyWith(initState: InitState.active),
+        ),
+      );
+    }
+
+    final controller = state.scrollModel.scrollController;
+    if (controller != null) {
+      await changeProfileViewHeight(controller);
+    }
+
+    
+    if (!isClosed) {
+      emit(
+        state.copyWith(
+          initModel: state.initModel.copyWith(initState: InitState.inactive),
+          scrollModel: state.scrollModel.copyWith(isScrollEnabled: true),
+        ),
+      );
+    }
+  }
+
+  ...
+}
+''',
+                  ),
+                  const SizedBox(height: 30),
+                  StoryBlock(
+                    story:
+                        '위 코드에서 중요한 점은:\n\n'
+                        '• ViewModel은 Model의 상태만 변경하고, UI 로직은 포함하지 않습니다.\n'
+                        '• emit()을 통해 새로운 상태를 View에 전달합니다.\n'
+                        '• copyWith를 사용해 불변성을 유지하며 상태를 업데이트합니다.\n'
+                        '• 각 메소드는 하나의 책임만 가지도록 분리했습니다.',
+                  ),
+                  const SizedBox(height: 100),
+
+                  // View 섹션
+                  const TitleTextTechBlog(title: '마지막, V — View'),
+                  const SizedBox(height: 30),
+                  StoryBlock(
+                    story:
+                        'View는 순수하게 UI 렌더링에만 집중합니다.\n'
+                        'BlocBuilder를 사용해서 ViewModel의 상태를 구독하고,\n'
+                        '상태가 변경될 때마다 UI를 다시 그립니다.\n\n'
+                        'View는 상태를 직접 변경하지 않고,\n'
+                        '사용자의 액션을 ViewModel에 전달하기만 합니다.',
+                  ),
+                  const SizedBox(height: 30),
+                  CodeBlock(
+                    title: '''View - 상태 구독과 UI 렌더링''',
+                    language: 'dart',
+                    code: r'''
+class _MainView extends StatefulWidget {
+  final bool isChromeBrowser;
+  final String deviceType;
+  
+  const _MainView({
+    required this.isChromeBrowser, 
+    required this.deviceType
+  });
+
+  @override
+  State<_MainView> createState() => _MainViewState();
+}
+
+class _MainViewState extends State<_MainView> {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<DesktopCubit, DesktopState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: _buildBody(context, state),
+        );
+      },
+    );
+  }
+
+  Widget _buildBody(BuildContext context, DesktopState state) {
+    return CustomScrollView(
+      controller: state.scrollModel.scrollController,
+      slivers: [
+        if (state.initModel.initState == InitState.active)
+          _buildLoadingSection(),
+        _buildProfileSection(state),
+        _buildChapterSection(state),
+      ],
+    );
+  }
+}
+''',
+                  ),
+                  const SizedBox(height: 30),
+                  StoryBlock(
+                    story:
+                        'View에서 중요한 원칙들:\n\n'
+                        '• BlocBuilder로 상태 변화를 구독합니다.\n'
+                        '• 사용자 액션은 context.read<ChapterCubit>()를 통해 ViewModel에 전달합니다.\n'
+                        '• View는 상태를 직접 변경하지 않고, 오직 표시만 담당합니다.\n'
+                        '• 복잡한 로직은 ViewModel에 위임하고, View는 단순하게 유지합니다.',
+                  ),
+                  const SizedBox(height: 80),
+
+                  // 실제 프로젝트 예시 추가
+                  const TitleTextTechBlog(title: '실제 프로젝트에서는 어떻게 구성했을까?'),
+                  const SizedBox(height: 30),
+                  StoryBlock(
+                    story:
+                        '저는 실제 프로젝트에서 Page와 View를 분리해서 구성합니다.\n\n'
+                        '• Page: BlocProvider를 제공하고 초기 설정을 담당\n'
+                        '• View: 실제 UI 렌더링과 상태 구독을 담당\n\n'
+                        '이렇게 분리하면 의존성 주입과 UI 로직이 명확하게 구분되어\n'
+                        '더 깔끔한 구조를 만들 수 있습니다.',
+                  ),
+                  const SizedBox(height: 30),
+                  CodeBlock(
+                    title: '''실제 프로젝트 구조 - Page와 View 분리''',
+                    language: 'dart',
+                    code: r'''
+// desktop_page.dart - Page는 BlocProvider와 초기 설정만 담당
+class DesktopPage extends StatelessWidget {
+  final bool isChromeBrowser;
+  final String deviceType;
+
+  const DesktopPage({
+    super.key,
+    required this.isChromeBrowser,
+    required this.deviceType,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      // 의존성 주입을 통해 ViewModel 제공
+      create: (context) => di<DesktopCubit>(),
+      child: _MainView(
+        isChromeBrowser: isChromeBrowser,
+        deviceType: deviceType,
+      ),
+    );
+  }
+}
+
+// _MainView는 실제 UI 렌더링과 상태 관리를 담당
+class _MainView extends StatefulWidget {
+  final bool isChromeBrowser;
+  final String deviceType;
+  
+  const _MainView({
+    required this.isChromeBrowser, 
+    required this.deviceType
+  });
+
+  @override
+  State<_MainView> createState() => _MainViewState();
+}
+
+class _MainViewState extends State<_MainView> {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<DesktopCubit, DesktopState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: _buildBody(context, state),
+          ...
+        );
+      },
+    ); 
+  }
+}
+
+    ''',
+                  ),
+                  const SizedBox(height: 30),
+                  StoryBlock(
+                    story:
+                        '이런 구조의 장점:\n\n'
+                        '✅ **명확한 책임 분리**: Page는 설정, View는 UI만 담당\n'
+                        '✅ **테스트 용이성**: _MainView를 독립적으로 테스트 가능\n'
+                        '✅ **재사용성**: _MainView는 다른 Page에서도 재사용 가능\n'
+                        '✅ **의존성 관리**: BlocProvider 설정이 Page에 집중됨\n\n'
+                        '특히 복잡한 화면일수록 이런 분리가 더욱 효과적입니다.',
+                  ),
+                  const SizedBox(height: 100),
+
+                  // 정리 섹션
+                  const TitleTextTechBlog(title: '이렇게 구성한 MVVM의 장점'),
+                  const SizedBox(height: 30),
+                  const ExpandableContent(
+                    summary: '제가 사용하는 Flutter MVVM 구조의 핵심 장점들을 정리해보면...',
+                    detailContent:
+                        '✅ **명확한 책임 분리**\n'
+                        '• Model: 순수한 데이터 구조 (freezed로 불변성 보장)\n'
+                        '• ViewModel: 비즈니스 로직과 상태 관리 (Cubit 사용)\n'
+                        '• View: UI 렌더링만 담당 (BlocBuilder로 상태 구독)\n\n'
+                        '✅ **테스트하기 쉬운 구조**\n'
+                        '• 각 레이어가 독립적이라 단위 테스트가 용이함\n'
+                        '• ViewModel의 로직을 UI 없이 테스트 가능\n'
+                        '• Mock 객체로 의존성을 쉽게 대체 가능\n\n'
+                        '✅ **확장 가능한 아키텍처**\n'
+                        '• 새로운 기능 추가 시 기존 코드 변경 최소화\n'
+                        '• 의존성 주입으로 느슨한 결합 유지\n'
+                        '• 상태 관리가 예측 가능하고 디버깅이 쉬움\n\n'
+                        '✅ **코드 재사용성**\n'
+                        '• ViewModel은 여러 View에서 재사용 가능\n'
+                        '• Model은 다양한 ViewModel에서 공유 가능\n'
+                        '• 컴포넌트 단위로 개발하여 모듈화 용이\n\n'
+                        '물론 작은 프로젝트에서는 과도할 수 있지만,\n'
+                        '중장기적으로 유지보수할 앱이라면 충분히 투자할 가치가 있다고 생각합니다.',
+                    toggleText: '장점들이 궁금하시면 Click',
+                    toggleTextClose: '도움이 되셨나요? (닫기)',
+                  ),
+                  const SizedBox(height: 80),
+
+                  // 단점 섹션 추가
+                  const TitleTextTechBlog(title: '솔직히 말하면... 단점도 있어요'),
+                  const SizedBox(height: 30),
+                  StoryBlock(
+                    story:
+                        '아직 신입이라서...\n'
+                        '가끔 "어라? 이게 왜 여기 있어?" 하는 순간들이 있습니다.^^..',
+                  ),
+                  const SizedBox(height: 150),
                 ],
               ),
             ],
