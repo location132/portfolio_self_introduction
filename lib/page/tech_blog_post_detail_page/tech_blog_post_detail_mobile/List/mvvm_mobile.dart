@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/code_block.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/story_block.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/title_text_tech.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/post_header.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/expandable_content.dart';
+
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_cubit.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_mobile/List/widget/expandable_content_mobile.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_mobile/List/widget/post_header_mobile.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_mobile/List/widget/story_block_mobile.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_mobile/List/widget/title_text_tech_mobile.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_state.dart';
 
 class Mvvm extends StatefulWidget {
@@ -55,7 +56,7 @@ class _MvvmState extends State<Mvvm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 100),
-                  PostHeader(
+                  PostHeaderMobile(
                     title: 'MVVM',
                     tags: const [
                       '#MVVM',
@@ -80,12 +81,12 @@ class _MvvmState extends State<Mvvm> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TitleTextTechBlog(
+                      TitleTextTechBlogMobile(
                         title: 'MVVM이란?',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
                       const SizedBox(height: 30),
-                      ExpandableContent(
+                      ExpandableContentMobile(
                         isBackgroundColor: state.isBackgroundColorWhite,
                         summary:
                             'MVVM(Model - View - ViewModel)은\n'
@@ -108,13 +109,13 @@ class _MvvmState extends State<Mvvm> {
                         toggleText: '개념을 자세히 정리했어요. 궁금하면 Click',
                       ),
                       const SizedBox(height: 80),
-                      TitleTextTechBlog(
+                      TitleTextTechBlogMobile(
                         title:
                             '개념을 토글해서 읽어봤는데..\n  Flutter에서는 MVVM이 불가능한거 아니에요?',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
                       const SizedBox(height: 40),
-                      ExpandableContent(
+                      ExpandableContentMobile(
                         isBackgroundColor: state.isBackgroundColorWhite,
                         summary:
                             '맞아요.\n'
@@ -147,7 +148,7 @@ class _MvvmState extends State<Mvvm> {
                             'MVVM로 Flutter에서도 충분히 구현할 수 있습니다.',
                       ),
                       const SizedBox(height: 80),
-                      TitleTextTechBlog(
+                      TitleTextTechBlogMobile(
                         title: 'MVVM 데이터 흐름도',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
@@ -207,12 +208,12 @@ class _MvvmState extends State<Mvvm> {
                         thickness: 1,
                       ),
                       const SizedBox(height: 30),
-                      TitleTextTechBlog(
+                      TitleTextTechBlogMobile(
                         title: '먼저, M — Model',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
                       const SizedBox(height: 30),
-                      StoryBlock(
+                      StoryBlockMobile(
                         isBackgroundColor: state.isBackgroundColorWhite,
                         story:
                             'Flutter에서는 저는 freezed를 사용해 모델을 선언합니다.\n'
@@ -264,12 +265,12 @@ enum ChapterDetailButton { none, simple, detail }
                       const SizedBox(height: 100),
 
                       // ViewModel 섹션
-                      TitleTextTechBlog(
+                      TitleTextTechBlogMobile(
                         title: '다음, VM — ViewModel',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
                       const SizedBox(height: 30),
-                      StoryBlock(
+                      StoryBlockMobile(
                         isBackgroundColor: state.isBackgroundColorWhite,
                         story:
                             'ViewModel은 View와 Model 사이의 다리 역할을 합니다.\n'
@@ -325,7 +326,7 @@ class DesktopCubit extends Cubit<DesktopState> {
 ''',
                       ),
                       const SizedBox(height: 30),
-                      StoryBlock(
+                      StoryBlockMobile(
                         isBackgroundColor: state.isBackgroundColorWhite,
                         story:
                             '위 코드에서 중요한 점은:\n\n'
@@ -337,12 +338,12 @@ class DesktopCubit extends Cubit<DesktopState> {
                       const SizedBox(height: 100),
 
                       // View 섹션
-                      TitleTextTechBlog(
+                      TitleTextTechBlogMobile(
                         title: '마지막, V — View',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
                       const SizedBox(height: 30),
-                      StoryBlock(
+                      StoryBlockMobile(
                         isBackgroundColor: state.isBackgroundColorWhite,
                         story:
                             'View는 순수하게 UI 렌더링에만 집중합니다.\n'
@@ -397,7 +398,7 @@ class _MainViewState extends State<_MainView> {
 ''',
                       ),
                       const SizedBox(height: 30),
-                      StoryBlock(
+                      StoryBlockMobile(
                         isBackgroundColor: state.isBackgroundColorWhite,
                         story:
                             'View에서 중요한 원칙들:\n\n'
@@ -409,12 +410,12 @@ class _MainViewState extends State<_MainView> {
                       const SizedBox(height: 80),
 
                       // 실제 프로젝트 예시 추가
-                      TitleTextTechBlog(
+                      TitleTextTechBlogMobile(
                         title: '실제 프로젝트에서는 어떻게 구성했을까?',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
                       const SizedBox(height: 30),
-                      StoryBlock(
+                      StoryBlockMobile(
                         isBackgroundColor: state.isBackgroundColorWhite,
                         story:
                             '저는 실제 프로젝트에서 Page와 View를 분리해서 구성합니다.\n\n'
@@ -484,7 +485,7 @@ class _MainViewState extends State<_MainView> {
     ''',
                       ),
                       const SizedBox(height: 30),
-                      StoryBlock(
+                      StoryBlockMobile(
                         isBackgroundColor: state.isBackgroundColorWhite,
                         story:
                             '이런 구조의 장점:\n\n'
@@ -497,12 +498,12 @@ class _MainViewState extends State<_MainView> {
                       const SizedBox(height: 100),
 
                       // 정리 섹션
-                      TitleTextTechBlog(
+                      TitleTextTechBlogMobile(
                         title: '이렇게 구성한 MVVM의 장점',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
                       const SizedBox(height: 30),
-                      ExpandableContent(
+                      ExpandableContentMobile(
                         isBackgroundColor: state.isBackgroundColorWhite,
                         summary: '제가 사용하는 Flutter MVVM 구조의 핵심 장점들을 정리해보면...',
                         detailContent:
@@ -530,12 +531,12 @@ class _MainViewState extends State<_MainView> {
                       const SizedBox(height: 80),
 
                       // 단점 섹션 추가
-                      TitleTextTechBlog(
+                      TitleTextTechBlogMobile(
                         title: '솔직히 말하면... 단점도 있어요',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
                       const SizedBox(height: 30),
-                      StoryBlock(
+                      StoryBlockMobile(
                         isBackgroundColor: state.isBackgroundColorWhite,
                         story:
                             '아직 신입이라서...\n'

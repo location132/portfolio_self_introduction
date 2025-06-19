@@ -15,7 +15,7 @@ class MobileDataStoragePostList extends StatelessWidget {
           number: 1,
           title: 'Isar 로컬 NoSQL DB',
           tags: '#Isar  #NoSQL  #Local Database',
-          onTap: () => context.push('/tech-blog/post/clean-architecture'),
+          onTap: () => context.push('/tech-blog/p ost/clean-architecture'),
         ),
         SizedBox(height: 30.h),
         MobileTechPostTitle(
