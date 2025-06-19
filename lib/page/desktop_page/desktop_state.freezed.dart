@@ -26,10 +26,7 @@ mixin _$DesktopState {
       throw _privateConstructorUsedError; //ChapterModel
   ChapterModel get chapterModel =>
       throw _privateConstructorUsedError; //ScrollModel
-  ScrollModel get scrollModel =>
-      throw _privateConstructorUsedError; //ProfileModel
-  AboutMeModel get aboutMeModel =>
-      throw _privateConstructorUsedError; //InitModel
+  ScrollModel get scrollModel => throw _privateConstructorUsedError; //InitModel
   InitModel get initModel => throw _privateConstructorUsedError; //DetailMeModel
   DetailMeModel get detailMeModel =>
       throw _privateConstructorUsedError; //ProjectModel
@@ -55,7 +52,6 @@ abstract class $DesktopStateCopyWith<$Res> {
     MySkillModel mySkillModel,
     ChapterModel chapterModel,
     ScrollModel scrollModel,
-    AboutMeModel aboutMeModel,
     InitModel initModel,
     DetailMeModel detailMeModel,
     ProjectModel projectModel,
@@ -66,7 +62,6 @@ abstract class $DesktopStateCopyWith<$Res> {
   $MySkillModelCopyWith<$Res> get mySkillModel;
   $ChapterModelCopyWith<$Res> get chapterModel;
   $ScrollModelCopyWith<$Res> get scrollModel;
-  $AboutMeModelCopyWith<$Res> get aboutMeModel;
   $InitModelCopyWith<$Res> get initModel;
   $DetailMeModelCopyWith<$Res> get detailMeModel;
   $ProjectModelCopyWith<$Res> get projectModel;
@@ -92,7 +87,6 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
     Object? mySkillModel = null,
     Object? chapterModel = null,
     Object? scrollModel = null,
-    Object? aboutMeModel = null,
     Object? initModel = null,
     Object? detailMeModel = null,
     Object? projectModel = null,
@@ -124,11 +118,6 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
                     ? _value.scrollModel
                     : scrollModel // ignore: cast_nullable_to_non_nullable
                         as ScrollModel,
-            aboutMeModel:
-                null == aboutMeModel
-                    ? _value.aboutMeModel
-                    : aboutMeModel // ignore: cast_nullable_to_non_nullable
-                        as AboutMeModel,
             initModel:
                 null == initModel
                     ? _value.initModel
@@ -207,16 +196,6 @@ class _$DesktopStateCopyWithImpl<$Res, $Val extends DesktopState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AboutMeModelCopyWith<$Res> get aboutMeModel {
-    return $AboutMeModelCopyWith<$Res>(_value.aboutMeModel, (value) {
-      return _then(_value.copyWith(aboutMeModel: value) as $Val);
-    });
-  }
-
-  /// Create a copy of DesktopState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $InitModelCopyWith<$Res> get initModel {
     return $InitModelCopyWith<$Res>(_value.initModel, (value) {
       return _then(_value.copyWith(initModel: value) as $Val);
@@ -259,7 +238,6 @@ abstract class _$$DesktopStateImplCopyWith<$Res>
     MySkillModel mySkillModel,
     ChapterModel chapterModel,
     ScrollModel scrollModel,
-    AboutMeModel aboutMeModel,
     InitModel initModel,
     DetailMeModel detailMeModel,
     ProjectModel projectModel,
@@ -275,8 +253,6 @@ abstract class _$$DesktopStateImplCopyWith<$Res>
   $ChapterModelCopyWith<$Res> get chapterModel;
   @override
   $ScrollModelCopyWith<$Res> get scrollModel;
-  @override
-  $AboutMeModelCopyWith<$Res> get aboutMeModel;
   @override
   $InitModelCopyWith<$Res> get initModel;
   @override
@@ -304,7 +280,6 @@ class __$$DesktopStateImplCopyWithImpl<$Res>
     Object? mySkillModel = null,
     Object? chapterModel = null,
     Object? scrollModel = null,
-    Object? aboutMeModel = null,
     Object? initModel = null,
     Object? detailMeModel = null,
     Object? projectModel = null,
@@ -336,11 +311,6 @@ class __$$DesktopStateImplCopyWithImpl<$Res>
                 ? _value.scrollModel
                 : scrollModel // ignore: cast_nullable_to_non_nullable
                     as ScrollModel,
-        aboutMeModel:
-            null == aboutMeModel
-                ? _value.aboutMeModel
-                : aboutMeModel // ignore: cast_nullable_to_non_nullable
-                    as AboutMeModel,
         initModel:
             null == initModel
                 ? _value.initModel
@@ -370,7 +340,6 @@ class _$DesktopStateImpl implements _DesktopState {
     this.mySkillModel = const MySkillModel(),
     this.chapterModel = const ChapterModel(),
     this.scrollModel = const ScrollModel(),
-    this.aboutMeModel = const AboutMeModel(),
     this.initModel = const InitModel(),
     this.detailMeModel = const DetailMeModel(),
     this.projectModel = const ProjectModel(),
@@ -395,10 +364,6 @@ class _$DesktopStateImpl implements _DesktopState {
   @override
   @JsonKey()
   final ScrollModel scrollModel;
-  //ProfileModel
-  @override
-  @JsonKey()
-  final AboutMeModel aboutMeModel;
   //InitModel
   @override
   @JsonKey()
@@ -414,7 +379,7 @@ class _$DesktopStateImpl implements _DesktopState {
 
   @override
   String toString() {
-    return 'DesktopState(startAnimation: $startAnimation, bannerModel: $bannerModel, mySkillModel: $mySkillModel, chapterModel: $chapterModel, scrollModel: $scrollModel, aboutMeModel: $aboutMeModel, initModel: $initModel, detailMeModel: $detailMeModel, projectModel: $projectModel)';
+    return 'DesktopState(startAnimation: $startAnimation, bannerModel: $bannerModel, mySkillModel: $mySkillModel, chapterModel: $chapterModel, scrollModel: $scrollModel, initModel: $initModel, detailMeModel: $detailMeModel, projectModel: $projectModel)';
   }
 
   @override
@@ -432,8 +397,6 @@ class _$DesktopStateImpl implements _DesktopState {
                 other.chapterModel == chapterModel) &&
             (identical(other.scrollModel, scrollModel) ||
                 other.scrollModel == scrollModel) &&
-            (identical(other.aboutMeModel, aboutMeModel) ||
-                other.aboutMeModel == aboutMeModel) &&
             (identical(other.initModel, initModel) ||
                 other.initModel == initModel) &&
             (identical(other.detailMeModel, detailMeModel) ||
@@ -450,7 +413,6 @@ class _$DesktopStateImpl implements _DesktopState {
     mySkillModel,
     chapterModel,
     scrollModel,
-    aboutMeModel,
     initModel,
     detailMeModel,
     projectModel,
@@ -472,7 +434,6 @@ abstract class _DesktopState implements DesktopState {
     final MySkillModel mySkillModel,
     final ChapterModel chapterModel,
     final ScrollModel scrollModel,
-    final AboutMeModel aboutMeModel,
     final InitModel initModel,
     final DetailMeModel detailMeModel,
     final ProjectModel projectModel,
@@ -488,9 +449,7 @@ abstract class _DesktopState implements DesktopState {
   @override
   ChapterModel get chapterModel; //ScrollModel
   @override
-  ScrollModel get scrollModel; //ProfileModel
-  @override
-  AboutMeModel get aboutMeModel; //InitModel
+  ScrollModel get scrollModel; //InitModel
   @override
   InitModel get initModel; //DetailMeModel
   @override

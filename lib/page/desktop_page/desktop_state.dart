@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:self_introduction_flutter/model/init_model.dart';
-import 'package:self_introduction_flutter/model/main_page/about_me_model.dart';
 import 'package:self_introduction_flutter/model/main_page/banner_model.dart';
 import 'package:self_introduction_flutter/model/main_page/chapter_model.dart';
 
@@ -29,9 +28,6 @@ class DesktopState with _$DesktopState {
 
     //ScrollModel
     @Default(ScrollModel()) ScrollModel scrollModel,
-
-    //ProfileModel
-    @Default(AboutMeModel()) AboutMeModel aboutMeModel,
 
     //InitModel
     @Default(InitModel()) InitModel initModel,

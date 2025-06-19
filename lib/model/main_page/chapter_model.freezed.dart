@@ -21,7 +21,7 @@ mixin _$ChapterModel {
   bool get isChapterActive => throw _privateConstructorUsedError;
   int get currentTitleIndex => throw _privateConstructorUsedError;
   bool get isManuallyChanged =>
-      throw _privateConstructorUsedError; // 챕터 디테일 관련 필드들
+      throw _privateConstructorUsedError; // 챕터 디테일 관련 필드
   bool get isChapterDetailVisible => throw _privateConstructorUsedError;
   bool get isChapterDetailAni => throw _privateConstructorUsedError;
   int get selectedChapterIndex => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ mixin _$ChapterModel {
   ChapterDetailButton get chapterDetailButton =>
       throw _privateConstructorUsedError;
   bool get isBackGroundAniStart =>
-      throw _privateConstructorUsedError; // 챕터2 섹션 관련 필드들
+      throw _privateConstructorUsedError; // 챕터2 섹션 관련 필드
   int get currentChapter2Index => throw _privateConstructorUsedError;
   List<Map<String, String>> get chapter2Sections =>
       throw _privateConstructorUsedError;
@@ -389,7 +389,7 @@ class _$ChapterModelImpl implements _ChapterModel {
   @override
   @JsonKey()
   final bool isManuallyChanged;
-  // 챕터 디테일 관련 필드들
+  // 챕터 디테일 관련 필드
   @override
   @JsonKey()
   final bool isChapterDetailVisible;
@@ -423,7 +423,7 @@ class _$ChapterModelImpl implements _ChapterModel {
   @override
   @JsonKey()
   final bool isBackGroundAniStart;
-  // 챕터2 섹션 관련 필드들
+  // 챕터2 섹션 관련 필드
   @override
   @JsonKey()
   final int currentChapter2Index;
@@ -556,7 +556,7 @@ abstract class _ChapterModel implements ChapterModel {
   @override
   int get currentTitleIndex;
   @override
-  bool get isManuallyChanged; // 챕터 디테일 관련 필드들
+  bool get isManuallyChanged; // 챕터 디테일 관련 필드
   @override
   bool get isChapterDetailVisible;
   @override
@@ -578,7 +578,7 @@ abstract class _ChapterModel implements ChapterModel {
   @override
   ChapterDetailButton get chapterDetailButton;
   @override
-  bool get isBackGroundAniStart; // 챕터2 섹션 관련 필드들
+  bool get isBackGroundAniStart; // 챕터2 섹션 관련 필드
   @override
   int get currentChapter2Index;
   @override

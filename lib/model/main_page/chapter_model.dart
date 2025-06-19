@@ -10,7 +10,7 @@ class ChapterModel with _$ChapterModel {
     @Default(0) int currentTitleIndex,
     @Default(false) bool isManuallyChanged,
 
-    // 챕터 디테일 관련 필드들
+    // 챕터 디테일 관련 필드
     @Default(false) bool isChapterDetailVisible,
     @Default(false) bool isChapterDetailAni,
     @Default(0) int selectedChapterIndex,
@@ -23,7 +23,7 @@ class ChapterModel with _$ChapterModel {
     @Default(ChapterDetailButton.none) ChapterDetailButton chapterDetailButton,
     @Default(false) bool isBackGroundAniStart,
 
-    // 챕터2 섹션 관련 필드들
+    // 챕터2 섹션 관련 필드
     @Default(0) int currentChapter2Index,
     @Default([]) List<Map<String, String>> chapter2Sections,
   }) = _ChapterModel;
