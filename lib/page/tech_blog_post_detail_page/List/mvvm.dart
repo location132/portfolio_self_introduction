@@ -7,7 +7,12 @@ import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/w
 
 class Mvvm extends StatefulWidget {
   final Function(bool) isFocused;
-  const Mvvm({super.key, required this.isFocused});
+  final bool isBackgroundColor;
+  const Mvvm({
+    super.key,
+    required this.isFocused,
+    required this.isBackgroundColor,
+  });
 
   @override
   State<Mvvm> createState() => _MvvmState();

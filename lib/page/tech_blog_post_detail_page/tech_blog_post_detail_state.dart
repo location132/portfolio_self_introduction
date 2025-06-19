@@ -20,5 +20,6 @@ class TechBlogPostDetailState with _$TechBlogPostDetailState {
 
     //화면 필터
     @Default(false) bool isScreenFilter,
+    @Default(true) bool isBackgroundColorBlack,
   }) = _TechBlogPostDetailState;
 }

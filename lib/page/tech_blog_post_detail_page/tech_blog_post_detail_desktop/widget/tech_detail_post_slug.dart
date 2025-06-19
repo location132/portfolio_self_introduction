@@ -5,11 +5,13 @@ import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/c
 class TechDetailPostSlug extends StatelessWidget {
   final Function(bool) isFocused;
   final String postSlug;
+  final bool isBackgroundColor;
 
   const TechDetailPostSlug({
     super.key,
     required this.postSlug,
     required this.isFocused,
+    required this.isBackgroundColor,
   });
 
   @override
@@ -17,7 +19,7 @@ class TechDetailPostSlug extends StatelessWidget {
     return Expanded(
       child: Container(
         width: double.infinity,
-        color: Colors.black,
+        color: isBackgroundColor ? Colors.black : Colors.white,
         child: _buildPostContent(),
       ),
     );
@@ -30,6 +32,7 @@ class TechDetailPostSlug extends StatelessWidget {
           isFocused: (isFocused) {
             this.isFocused(isFocused);
           },
+          isBackgroundColor: true,
         );
       case 'clean-architecture':
         return const CleanArchitecture();

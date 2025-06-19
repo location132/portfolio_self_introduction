@@ -21,9 +21,9 @@ class TechBlogPostDetailDesktopView extends StatelessWidget {
 
     return BlocBuilder<TechBlogPostDetailCubit, TechBlogPostDetailState>(
       builder: (context, state) {
-        print('postSlug: $postSlug');
         return Scaffold(
-          backgroundColor: Colors.black,
+          backgroundColor:
+              state.isBackgroundColorBlack ? Colors.black : Colors.white,
           body: Stack(
             children: [
               Column(
@@ -51,6 +51,7 @@ class TechBlogPostDetailDesktopView extends StatelessWidget {
                         postSlug,
                       );
                     },
+                    isBackgroundColor: state.isBackgroundColorBlack,
                   ),
                 ],
               ),
@@ -73,7 +74,6 @@ class TechBlogPostDetailDesktopView extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   if (!state.isPlayerClicked) {
-                    print('chekc ==> 11');
                     context.read<TechBlogPostDetailCubit>().togglePlayerFocus(
                       postSlug,
                     );

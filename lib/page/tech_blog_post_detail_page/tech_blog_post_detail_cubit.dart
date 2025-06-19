@@ -55,7 +55,10 @@ class TechBlogPostDetailCubit extends Cubit<TechBlogPostDetailState> {
         // TODO: 코드 예제로 이동
         break;
       case 'filter':
-        // TODO: 구현 해야함
+        print('check ==> 11');
+        emit(
+          state.copyWith(isBackgroundColorBlack: !state.isBackgroundColorBlack),
+        );
         break;
     }
 
