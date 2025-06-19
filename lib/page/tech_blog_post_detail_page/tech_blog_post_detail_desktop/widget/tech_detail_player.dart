@@ -10,7 +10,6 @@ import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_b
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/widget/no_results_message.dart';
 
 class TechDetailPlayer extends StatefulWidget {
-  final String playerTitle;
   final bool isPlayerClicked;
   final bool showOptions;
   final String searchQuery;
@@ -19,7 +18,6 @@ class TechDetailPlayer extends StatefulWidget {
 
   const TechDetailPlayer({
     super.key,
-    required this.playerTitle,
     required this.isPlayerClicked,
     required this.showOptions,
     required this.searchQuery,
@@ -119,6 +117,16 @@ class _TechDetailPlayerState extends State<TechDetailPlayer> {
                     widget.isPlayerClicked ? Colors.black : Colors.white,
                 controller: _searchController,
                 textAlignVertical: TextAlignVertical.center,
+                onTap: () {
+                  if (!widget.isPlayerClicked) {
+                    widget.isFocused(true);
+                  }
+                },
+                onChanged: (value) {
+                  context.read<TechBlogPostDetailCubit>().updateSearchQuery(
+                    value,
+                  );
+                },
                 decoration: InputDecoration(
                   hintText:
                       widget.isPlayerClicked

@@ -13,13 +13,10 @@ class TechBlogPostDetailCubit extends Cubit<TechBlogPostDetailState> {
 
   // 플레이어 포커스
   void togglePlayerFocus(String title) {
-    emit(
-      state.copyWith(
-        isPlayerClicked: true,
-        isScreenFilter: true,
-        showOptions: true,
-      ),
-    );
+    if (!state.isPlayerClicked) {
+      emit(state.copyWith(isPlayerClicked: true, isScreenFilter: true));
+      emit(state.copyWith(showOptions: true));
+    }
   }
 
   // 화면 필터
@@ -31,7 +28,6 @@ class TechBlogPostDetailCubit extends Cubit<TechBlogPostDetailState> {
   void clearPlayerFocus() {
     emit(
       state.copyWith(
-        playerTitle: '',
         isPlayerClicked: false,
         showOptions: false,
         searchQuery: '',
@@ -40,16 +36,10 @@ class TechBlogPostDetailCubit extends Cubit<TechBlogPostDetailState> {
     );
   }
 
-  // 플레이어 클릭 처리
+  // 플레이어 직접 클릭 처리
   void handlePlayerClick() {
     if (!state.isPlayerClicked) {
-      emit(state.copyWith(isPlayerClicked: true, isScreenFilter: true));
-
-      Future.delayed(const Duration(milliseconds: 400), () {
-        if (!isClosed && state.isPlayerClicked) {
-          emit(state.copyWith(showOptions: true));
-        }
-      });
+      togglePlayerFocus('');
     }
   }
 

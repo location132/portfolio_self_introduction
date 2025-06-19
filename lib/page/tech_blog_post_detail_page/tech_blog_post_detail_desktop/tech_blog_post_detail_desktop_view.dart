@@ -73,14 +73,20 @@ class TechBlogPostDetailDesktopView extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   if (!state.isPlayerClicked) {
+                    print('chekc ==> 11');
                     context.read<TechBlogPostDetailCubit>().togglePlayerFocus(
                       postSlug,
                     );
                   }
                 },
                 child: TechDetailPlayer(
-                  isFocused: (isFocused) {},
-                  playerTitle: state.playerTitle,
+                  isFocused: (isFocused) {
+                    if (isFocused && !state.isPlayerClicked) {
+                      context.read<TechBlogPostDetailCubit>().togglePlayerFocus(
+                        postSlug,
+                      );
+                    }
+                  },
                   isPlayerClicked: state.isPlayerClicked,
                   showOptions: state.showOptions,
                   searchQuery: state.searchQuery,

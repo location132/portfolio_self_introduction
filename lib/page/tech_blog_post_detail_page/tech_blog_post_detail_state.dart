@@ -14,7 +14,6 @@ class TechBlogPostDetailState with _$TechBlogPostDetailState {
     @Default(false) bool isMenuClicked,
 
     //플레이어
-    @Default('다양한 것들을 도와드릴게요 저를 클릭해주세요') String playerTitle,
     @Default(false) bool isPlayerClicked,
     @Default(false) bool showOptions,
     @Default('') String searchQuery,
