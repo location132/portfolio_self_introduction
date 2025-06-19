@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class TitleTextTechBlog extends StatelessWidget {
+class TitleTextTechBlogMobile extends StatelessWidget {
   final String title;
   final bool isBackgroundColor;
 
-  const TitleTextTechBlog({
+  const TitleTextTechBlogMobile({
     super.key,
     required this.title,
     this.isBackgroundColor = false,

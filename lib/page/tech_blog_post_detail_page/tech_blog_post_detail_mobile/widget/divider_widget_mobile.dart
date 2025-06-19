@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DividerWidget extends StatelessWidget {
-  const DividerWidget({super.key});
+class DividerWidgetMobile extends StatelessWidget {
+  const DividerWidgetMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      height: 1,
+      margin: EdgeInsets.symmetric(horizontal: 20.w),
+      height: 1.h,
       color: Colors.grey.shade200,
     );
   }

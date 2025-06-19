@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_cubit.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/widget/search_result_item.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/widget/quick_action_item.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/widget/divider_widget.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/widget/no_results_message.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_mobile/widget/search_result_item_mobile.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_mobile/widget/quick_action_item_mobile.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_mobile/widget/divider_widget_mobile.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_mobile/widget/no_results_message_mobile.dart';
 
 class TechDetailPlayerMobile extends StatefulWidget {
   final bool isPlayerClicked;
@@ -82,7 +83,7 @@ class _TechDetailPlayerMobileState extends State<TechDetailPlayerMobile> {
       alignment:
           widget.isPlayerClicked ? Alignment.center : Alignment.bottomCenter,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 32),
+        padding: EdgeInsets.only(bottom: 32.h),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -90,27 +91,27 @@ class _TechDetailPlayerMobileState extends State<TechDetailPlayerMobile> {
             AnimatedContainer(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
-              width: widget.isPlayerClicked ? 570 : 330,
-              height: widget.isPlayerClicked ? 56 : 48,
+              width: widget.isPlayerClicked ? 380.w : 280.w,
+              height: widget.isPlayerClicked ? 56.h : 48.h,
               decoration: BoxDecoration(
                 color:
                     widget.isPlayerClicked
                         ? Colors.white
                         : Colors.grey.shade800.withValues(alpha: 0.8),
-                borderRadius: BorderRadius.circular(24),
+                borderRadius: BorderRadius.circular(24.r),
                 border: Border.all(color: Colors.grey.shade700),
-                boxShadow: const [
+                boxShadow: [
                   BoxShadow(
                     color: Colors.black26,
-                    blurRadius: 8,
-                    offset: Offset(0, 2),
+                    blurRadius: 8.r,
+                    offset: Offset(0, 2.h),
                   ),
                 ],
               ),
               child: TextField(
                 style: GoogleFonts.montserrat(
                   color: widget.isPlayerClicked ? Colors.black : Colors.white,
-                  fontSize: widget.isPlayerClicked ? 16 : 14,
+                  fontSize: widget.isPlayerClicked ? 16.sp : 14.sp,
                   fontWeight: FontWeight.w400,
                 ),
                 cursorColor:
@@ -133,49 +134,45 @@ class _TechDetailPlayerMobileState extends State<TechDetailPlayerMobile> {
                           ? '아래의 메뉴를 선택하거나 검색어를 입력해주세요'
                           : '궁금한 것이 있다면 클릭해주세요',
                   prefixIcon: Padding(
-                    padding: const EdgeInsets.only(left: 12, right: 8),
-                    child: Icon(
-                      Icons.search,
-                      color: Colors.grey.shade600,
-                      size: widget.isPlayerClicked ? 30 : 24,
-                    ),
+                    padding: EdgeInsets.only(left: 12.w, right: 8.w),
+                    child: Icon(Icons.search, color: Colors.grey.shade600),
                   ),
-                  prefixIconConstraints: const BoxConstraints(
-                    minWidth: 48,
-                    minHeight: 48,
+                  prefixIconConstraints: BoxConstraints(
+                    minWidth: 48.w,
+                    minHeight: 48.h,
                   ),
                   hintStyle: GoogleFonts.montserrat(
                     color:
                         !widget.isPlayerClicked
                             ? Colors.white
                             : Colors.grey.shade600,
-                    fontSize: widget.isPlayerClicked ? 16 : 14,
+                    fontSize: widget.isPlayerClicked ? 14.sp : 14.sp,
                     fontWeight: FontWeight.w400,
                   ),
                   border: InputBorder.none,
                   isDense: true,
                   contentPadding: EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: widget.isPlayerClicked ? 18 : 12,
+                    horizontal: 24.w,
+                    vertical: widget.isPlayerClicked ? 18.h : 12.h,
                   ),
                 ),
               ),
             ),
 
             if (showSearchMode) ...[
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Container(
-                width: 570,
-                height: 300,
+                width: 380.w,
+                height: 300.h,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(16.r),
                   border: Border.all(color: Colors.grey.shade300),
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
                       color: Colors.black12,
-                      blurRadius: 12,
-                      offset: Offset(0, 4),
+                      blurRadius: 12.r,
+                      offset: Offset(0, 4.h),
                     ),
                   ],
                 ),
@@ -185,10 +182,10 @@ class _TechDetailPlayerMobileState extends State<TechDetailPlayerMobile> {
                           shrinkWrap: true,
                           itemCount: filteredPosts.length,
                           separatorBuilder:
-                              (context, index) => const DividerWidget(),
+                              (context, index) => const DividerWidgetMobile(),
                           itemBuilder: (context, index) {
                             final post = filteredPosts[index];
-                            return SearchResultItem(
+                            return SearchResultItemMobile(
                               title: post['title']!,
                               tags: post['tags']!,
                               onTap: () {
@@ -197,40 +194,39 @@ class _TechDetailPlayerMobileState extends State<TechDetailPlayerMobile> {
                             );
                           },
                         )
-                        : const NoResultsMessage(),
+                        : const NoResultsMessageMobile(),
               ),
             ] else if (widget.showOptions) ...[
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               AnimatedContainer(
                 duration: const Duration(milliseconds: 400),
                 curve: Curves.easeInOut,
-                width: 570,
+                width: 380.w,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(16.r),
                   border: Border.all(color: Colors.grey.shade300),
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
                       color: Colors.black12,
-                      blurRadius: 12,
-                      offset: Offset(0, 4),
+                      blurRadius: 12.r,
+                      offset: Offset(0, 4.h),
                     ),
                   ],
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    QuickActionItem(
+                    QuickActionItemMobile(
                       icon: Icons.arrow_back,
                       title: '이전 페이지로',
                       subtitle: '기술 블로그 목록으로 돌아가기',
                       onTap: () {
-                        print('check ==>13');
                         context.go('/tech-blog');
                       },
                     ),
-                    const DividerWidget(),
-                    QuickActionItem(
+                    const DividerWidgetMobile(),
+                    QuickActionItemMobile(
                       icon: Icons.code,
                       title: '실전 구조 살펴보기',
                       subtitle: '개념을 건너뛰고 핵심만 살펴볼 수 있어요',
@@ -239,8 +235,8 @@ class _TechDetailPlayerMobileState extends State<TechDetailPlayerMobile> {
                               .read<TechBlogPostDetailCubit>()
                               .handleQuickAction('code'),
                     ),
-                    const DividerWidget(),
-                    QuickActionItem(
+                    const DividerWidgetMobile(),
+                    QuickActionItemMobile(
                       icon: Icons.flash_on,
                       title: '색상 반전',
                       subtitle: '배경색을 변경해 더 편한게 볼 수 있어요',

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class StoryBlock extends StatelessWidget {
+class StoryBlockMobile extends StatelessWidget {
   final String story;
   final bool isBackgroundColor;
-  const StoryBlock({
+  const StoryBlockMobile({
     super.key,
     required this.story,
     this.isBackgroundColor = false,

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class ExpandableContent extends StatefulWidget {
+class ExpandableContentMobile extends StatefulWidget {
   final String summary;
   final String detailContent;
   final String toggleText;
   final String toggleTextClose;
   final bool isBackgroundColor;
-  const ExpandableContent({
+  const ExpandableContentMobile({
     super.key,
     required this.summary,
     required this.detailContent,
@@ -16,10 +16,11 @@ class ExpandableContent extends StatefulWidget {
   });
 
   @override
-  State<ExpandableContent> createState() => _ExpandableContentState();
+  State<ExpandableContentMobile> createState() =>
+      _ExpandableContentMobileState();
 }
 
-class _ExpandableContentState extends State<ExpandableContent>
+class _ExpandableContentMobileState extends State<ExpandableContentMobile>
     with SingleTickerProviderStateMixin {
   bool _isExpanded = false;
   late AnimationController _animationController;

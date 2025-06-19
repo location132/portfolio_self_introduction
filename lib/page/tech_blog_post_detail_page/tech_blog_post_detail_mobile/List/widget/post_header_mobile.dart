@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/hash_tags.dart';
 
-class PostHeader extends StatelessWidget {
+class PostHeaderMobile extends StatelessWidget {
   final String title;
   final List<String> tags;
   final String content;
   final bool isBackgroundColor;
 
-  const PostHeader({
+  const PostHeaderMobile({
     super.key,
     required this.title,
     required this.tags,

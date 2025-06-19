@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class QuickActionItem extends StatelessWidget {
+class QuickActionItemMobile extends StatelessWidget {
   final IconData icon;
   final String title;
   final String subtitle;
   final VoidCallback onTap;
 
-  const QuickActionItem({
+  const QuickActionItemMobile({
     super.key,
     required this.icon,
     required this.title,
@@ -21,23 +22,23 @@ class QuickActionItem extends StatelessWidget {
       onTap: onTap,
       canRequestFocus: false,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
         child: Row(
           children: [
             Container(
-              width: 40,
-              height: 40,
+              width: 40.w,
+              height: 40.h,
               decoration: BoxDecoration(
                 color: Colors.black,
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8.r),
               ),
               child: Icon(
                 icon,
                 color: Color.fromARGB(255, 134, 234, 249),
-                size: 20,
+                size: 20.sp,
               ),
             ),
-            const SizedBox(width: 16),
+            SizedBox(width: 16.w),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,16 +46,16 @@ class QuickActionItem extends StatelessWidget {
                   Text(
                     title,
                     style: GoogleFonts.montserrat(
-                      fontSize: 14,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w600,
                       color: Colors.black87,
                     ),
                   ),
-                  const SizedBox(height: 2),
+                  SizedBox(height: 2.h),
                   Text(
                     subtitle,
                     style: GoogleFonts.montserrat(
-                      fontSize: 12,
+                      fontSize: 12.sp,
                       fontWeight: FontWeight.w400,
                       color: Colors.grey.shade600,
                     ),
@@ -62,7 +63,7 @@ class QuickActionItem extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(Icons.chevron_right, color: Colors.grey.shade400, size: 20),
+            Icon(Icons.chevron_right, color: Colors.grey.shade400, size: 20.sp),
           ],
         ),
       ),

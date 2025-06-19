@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class HashTags extends StatelessWidget {
+class HashTagsMobile extends StatelessWidget {
   final List<String> tags;
 
-  const HashTags({super.key, required this.tags});
+  const HashTagsMobile({super.key, required this.tags});
 
   @override
   Widget build(BuildContext context) {

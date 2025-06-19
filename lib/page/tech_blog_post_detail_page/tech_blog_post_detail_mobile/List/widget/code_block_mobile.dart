@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/monokai-sublime.dart';
 
-class CodeBlock extends StatefulWidget {
+class CodeBlockMobile extends StatefulWidget {
   final String code;
   final String? title;
   final String language;
   final bool isBackgroundColor;
 
-  const CodeBlock({
+  const CodeBlockMobile({
     super.key,
     required this.code,
     this.title,
@@ -17,10 +17,10 @@ class CodeBlock extends StatefulWidget {
   });
 
   @override
-  State<CodeBlock> createState() => _CodeBlockState();
+  State<CodeBlockMobile> createState() => _CodeBlockMobileState();
 }
 
-class _CodeBlockState extends State<CodeBlock> {
+class _CodeBlockMobileState extends State<CodeBlockMobile> {
   bool _isExpanded = true;
 
   @override
