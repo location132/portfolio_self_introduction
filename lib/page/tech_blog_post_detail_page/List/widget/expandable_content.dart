@@ -5,12 +5,14 @@ class ExpandableContent extends StatefulWidget {
   final String detailContent;
   final String toggleText;
   final String toggleTextClose;
+  final bool isBackgroundColor;
   const ExpandableContent({
     super.key,
     required this.summary,
     required this.detailContent,
     this.toggleText = '개념을 자세히 정리했어요. 궁금하면 Click',
     this.toggleTextClose = '이해했어요 (닫기)',
+    this.isBackgroundColor = false,
   });
 
   @override
@@ -62,8 +64,8 @@ class _ExpandableContentState extends State<ExpandableContent>
             alignment: Alignment.centerLeft,
             child: Text(
               widget.summary,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: widget.isBackgroundColor ? Colors.black : Colors.white,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
                 height: 1.6,
@@ -80,7 +82,10 @@ class _ExpandableContentState extends State<ExpandableContent>
                 Text(
                   _isExpanded ? widget.toggleTextClose : widget.toggleText,
                   style: TextStyle(
-                    color: Colors.grey.shade300,
+                    color:
+                        widget.isBackgroundColor
+                            ? Colors.black
+                            : Colors.grey.shade300,
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                   ),
@@ -91,7 +96,10 @@ class _ExpandableContentState extends State<ExpandableContent>
                   duration: const Duration(milliseconds: 300),
                   child: Icon(
                     Icons.keyboard_arrow_down,
-                    color: Colors.grey.shade300,
+                    color:
+                        widget.isBackgroundColor
+                            ? Colors.black
+                            : Colors.grey.shade300,
                     size: 20,
                   ),
                 ),
@@ -110,17 +118,30 @@ class _ExpandableContentState extends State<ExpandableContent>
                         margin: const EdgeInsets.only(top: 20),
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: Colors.grey.shade900.withValues(alpha: 0.4),
+                          color:
+                              widget.isBackgroundColor
+                                  ? Colors.grey.shade100.withValues(alpha: 0.4)
+                                  : Colors.grey.shade900.withValues(alpha: 0.4),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: Colors.grey.shade700.withValues(alpha: 0.5),
+                            color:
+                                widget.isBackgroundColor
+                                    ? Colors.grey.shade300.withValues(
+                                      alpha: 0.5,
+                                    )
+                                    : Colors.grey.shade700.withValues(
+                                      alpha: 0.5,
+                                    ),
                             width: 1,
                           ),
                         ),
                         child: Text(
                           widget.detailContent,
                           style: TextStyle(
-                            color: Colors.grey.shade200,
+                            color:
+                                widget.isBackgroundColor
+                                    ? Colors.black
+                                    : Colors.grey.shade200,
                             fontSize: 15,
                             fontWeight: FontWeight.w400,
                             height: 1.7,

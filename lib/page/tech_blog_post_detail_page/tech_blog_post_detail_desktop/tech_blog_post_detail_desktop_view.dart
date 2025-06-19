@@ -23,7 +23,7 @@ class TechBlogPostDetailDesktopView extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           backgroundColor:
-              state.isBackgroundColorBlack ? Colors.black : Colors.white,
+              state.isBackgroundColorWhite ? Colors.white : Colors.black,
           body: Stack(
             children: [
               Column(
@@ -51,7 +51,7 @@ class TechBlogPostDetailDesktopView extends StatelessWidget {
                         postSlug,
                       );
                     },
-                    isBackgroundColor: state.isBackgroundColorBlack,
+                    isBackgroundColor: state.isBackgroundColorWhite,
                   ),
                 ],
               ),

@@ -5,12 +5,14 @@ class PostHeader extends StatelessWidget {
   final String title;
   final List<String> tags;
   final String content;
+  final bool isBackgroundColor;
 
   const PostHeader({
     super.key,
     required this.title,
     required this.tags,
     required this.content,
+    required this.isBackgroundColor,
   });
 
   @override
@@ -20,8 +22,8 @@ class PostHeader extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: isBackgroundColor ? Colors.black : Colors.white,
             fontSize: 48,
             fontWeight: FontWeight.w700,
             letterSpacing: -1.0,
@@ -31,7 +33,7 @@ class PostHeader extends StatelessWidget {
         Text(
           '시작하기 전에',
           style: TextStyle(
-            color: Colors.grey.shade500,
+            color: isBackgroundColor ? Colors.black : Colors.white,
             fontSize: 16,
             fontWeight: FontWeight.w500,
           ),
@@ -49,7 +51,7 @@ class PostHeader extends StatelessWidget {
           child: Text(
             content,
             style: TextStyle(
-              color: Colors.grey.shade300,
+              color: isBackgroundColor ? Colors.grey.shade300 : Colors.white,
               fontSize: 16,
               fontWeight: FontWeight.w400,
               height: 1.7,

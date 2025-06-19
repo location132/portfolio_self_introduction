@@ -12,9 +12,10 @@ class TechBlogPostDetailCubit extends Cubit<TechBlogPostDetailState> {
   }
 
   // 플레이어 포커스
-  void togglePlayerFocus(String title) {
+  void togglePlayerFocus(String title) async {
     if (!state.isPlayerClicked) {
       emit(state.copyWith(isPlayerClicked: true, isScreenFilter: true));
+
       emit(state.copyWith(showOptions: true));
     }
   }
@@ -55,9 +56,8 @@ class TechBlogPostDetailCubit extends Cubit<TechBlogPostDetailState> {
         // TODO: 코드 예제로 이동
         break;
       case 'filter':
-        print('check ==> 11');
         emit(
-          state.copyWith(isBackgroundColorBlack: !state.isBackgroundColorBlack),
+          state.copyWith(isBackgroundColorWhite: !state.isBackgroundColorWhite),
         );
         break;
     }

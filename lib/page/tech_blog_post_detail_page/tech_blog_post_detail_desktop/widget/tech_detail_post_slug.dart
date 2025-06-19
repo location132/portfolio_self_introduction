@@ -19,7 +19,7 @@ class TechDetailPostSlug extends StatelessWidget {
     return Expanded(
       child: Container(
         width: double.infinity,
-        color: isBackgroundColor ? Colors.black : Colors.white,
+        color: isBackgroundColor ? Colors.white : Colors.black,
         child: _buildPostContent(),
       ),
     );
@@ -32,7 +32,7 @@ class TechDetailPostSlug extends StatelessWidget {
           isFocused: (isFocused) {
             this.isFocused(isFocused);
           },
-          isBackgroundColor: true,
+          isBackgroundColor: isBackgroundColor,
         );
       case 'clean-architecture':
         return const CleanArchitecture();
@@ -158,7 +158,7 @@ class TechDetailPostSlug extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade800.withOpacity(0.5),
+                    color: Colors.grey.shade800.withValues(alpha: 0.5),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(

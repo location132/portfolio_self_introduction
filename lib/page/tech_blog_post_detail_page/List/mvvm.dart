@@ -36,7 +36,7 @@ class _MvvmState extends State<Mvvm> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 100),
-              const PostHeader(
+              PostHeader(
                 title: 'MVVM',
                 tags: [
                   '#MVVM',
@@ -55,14 +55,19 @@ class _MvvmState extends State<Mvvm> {
                     '물론, 지금 제가 사용하는 방식이 정답은 아닐 수 있습니다.\n'
                     '하지만 시행착오 속에서 저만의 방식으로 정리된 MVVM 구조는\n'
                     '프로젝트를 안정적으로 운영하고, 유지보수 가능한 코드의 기반이 되어주고 있습니다.',
+                isBackgroundColor: widget.isBackgroundColor,
               ),
               const SizedBox(height: 64),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const TitleTextTechBlog(title: 'MVVM이란?'),
+                  TitleTextTechBlog(
+                    title: 'MVVM이란?',
+                    isBackgroundColor: widget.isBackgroundColor,
+                  ),
                   const SizedBox(height: 30),
-                  const ExpandableContent(
+                  ExpandableContent(
+                    isBackgroundColor: widget.isBackgroundColor,
                     summary:
                         'MVVM(Model - View - ViewModel)은\n'
                         '어플리케이션의 UI와 비즈니스 로직, 그리고 상태(State)를\n'
@@ -84,11 +89,13 @@ class _MvvmState extends State<Mvvm> {
                     toggleText: '개념을 자세히 정리했어요. 궁금하면 Click',
                   ),
                   const SizedBox(height: 80),
-                  const TitleTextTechBlog(
+                  TitleTextTechBlog(
                     title: '개념을 토글해서 읽어봤는데..\n  Flutter에서는 MVVM이 불가능한거 아니에요?',
+                    isBackgroundColor: widget.isBackgroundColor,
                   ),
                   const SizedBox(height: 40),
-                  const ExpandableContent(
+                  ExpandableContent(
+                    isBackgroundColor: widget.isBackgroundColor,
                     summary:
                         '맞아요.\n'
                         '저도 대학동기들과 해당 내용으로 토론을 진행했지만 그 당시에는 지식이 부족해서 졌어요..\n\n'
@@ -120,45 +127,83 @@ class _MvvmState extends State<Mvvm> {
                         'MVVM로 Flutter에서도 충분히 구현할 수 있습니다.',
                   ),
                   const SizedBox(height: 80),
-                  const TitleTextTechBlog(title: 'MVVM 데이터 흐름도'),
-                  const SizedBox(height: 30),
-                  const Text(
-                    '[사용자 행동] → [ViewModel에서 로직 처리] → [Model 상태 변경]\n'
-                    '→ [ViewModel이 상태 가공] → [View가 상태를 받아 UI 렌더링]',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  TitleTextTechBlog(
+                    title: 'MVVM 데이터 흐름도',
+                    isBackgroundColor: widget.isBackgroundColor,
                   ),
                   const SizedBox(height: 30),
-                  Divider(color: Colors.grey.shade700, thickness: 1),
+                  Text(
+                    '[사용자 행동] → [ViewModel에서 로직 처리] → [Model 상태 변경]\n'
+                    '→ [ViewModel이 상태 가공] → [View가 상태를 받아 UI 렌더링]',
+                    style: TextStyle(
+                      color:
+                          widget.isBackgroundColor
+                              ? Colors.black
+                              : Colors.white,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  Divider(
+                    color:
+                        widget.isBackgroundColor
+                            ? Colors.black
+                            : Colors.grey.shade700,
+                    thickness: 1,
+                  ),
                   const SizedBox(height: 150),
                   Center(
-                    child: const Text(
+                    child: Text(
                       '정답은 아닐 수 있지만, 나만의 MVVM으로 재해석한',
-                      style: TextStyle(color: Colors.white, fontSize: 24),
+                      style: TextStyle(
+                        color:
+                            widget.isBackgroundColor
+                                ? Colors.black
+                                : Colors.white,
+                        fontSize: 24,
+                      ),
                     ),
                   ),
                   Center(
-                    child: const Text(
+                    child: Text(
                       '구조와 방법 지금부터 소개합니다.',
-                      style: TextStyle(color: Colors.white, fontSize: 24),
+                      style: TextStyle(
+                        color:
+                            widget.isBackgroundColor
+                                ? Colors.black
+                                : Colors.white,
+                        fontSize: 24,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 150),
 
-                  Divider(color: Colors.grey.shade700, thickness: 1),
+                  Divider(
+                    color:
+                        widget.isBackgroundColor
+                            ? Colors.black
+                            : Colors.grey.shade700,
+                    thickness: 1,
+                  ),
                   const SizedBox(height: 30),
-                  const TitleTextTechBlog(title: '먼저, M — Model'),
+                  TitleTextTechBlog(
+                    title: '먼저, M — Model',
+                    isBackgroundColor: widget.isBackgroundColor,
+                  ),
                   const SizedBox(height: 30),
                   StoryBlock(
+                    isBackgroundColor: widget.isBackgroundColor,
                     story:
                         'Flutter에서는 저는 freezed를 사용해 모델을 선언합니다.\n'
                         'freezed는 불변성과 구조적인 상태 관리를 쉽게 해주기 때문에,\n'
-                        'MVVM의 “예측 가능한 상태 관리” 의도와 잘 맞을 수 있도록 했습니다.\n\n'
+                        'MVVM의 "예측 가능한 상태 관리" 의도와 잘 맞을 수 있도록 했습니다.\n\n'
                         '예를 들어, ChapterModel은 화면 내 챕터 섹션의 상태를 정의합니다',
                   ),
                   const SizedBox(height: 30),
                   CodeBlock(
                     title: '''@freezed를 사용한 Model''',
                     language: 'dart',
+                    isBackgroundColor: widget.isBackgroundColor,
                     code: r'''
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -198,9 +243,13 @@ enum ChapterDetailButton { none, simple, detail }
                   const SizedBox(height: 100),
 
                   // ViewModel 섹션
-                  const TitleTextTechBlog(title: '다음, VM — ViewModel'),
+                  TitleTextTechBlog(
+                    title: '다음, VM — ViewModel',
+                    isBackgroundColor: widget.isBackgroundColor,
+                  ),
                   const SizedBox(height: 30),
                   StoryBlock(
+                    isBackgroundColor: widget.isBackgroundColor,
                     story:
                         'ViewModel은 View와 Model 사이의 다리 역할을 합니다.\n'
                         '저는 flutter_bloc의 Cubit을 사용해서 ViewModel을 구현합니다.\n\n'
@@ -213,6 +262,7 @@ enum ChapterDetailButton { none, simple, detail }
                   CodeBlock(
                     title: '''실제 프로젝트의 ViewModel (DesktopCubit)''',
                     language: 'dart',
+                    isBackgroundColor: widget.isBackgroundColor,
                     code: r'''
 @injectable
 class DesktopCubit extends Cubit<DesktopState> {
@@ -255,6 +305,7 @@ class DesktopCubit extends Cubit<DesktopState> {
                   ),
                   const SizedBox(height: 30),
                   StoryBlock(
+                    isBackgroundColor: widget.isBackgroundColor,
                     story:
                         '위 코드에서 중요한 점은:\n\n'
                         '• ViewModel은 Model의 상태만 변경하고, UI 로직은 포함하지 않습니다.\n'
@@ -265,9 +316,13 @@ class DesktopCubit extends Cubit<DesktopState> {
                   const SizedBox(height: 100),
 
                   // View 섹션
-                  const TitleTextTechBlog(title: '마지막, V — View'),
+                  TitleTextTechBlog(
+                    title: '마지막, V — View',
+                    isBackgroundColor: widget.isBackgroundColor,
+                  ),
                   const SizedBox(height: 30),
                   StoryBlock(
+                    isBackgroundColor: widget.isBackgroundColor,
                     story:
                         'View는 순수하게 UI 렌더링에만 집중합니다.\n'
                         'BlocBuilder를 사용해서 ViewModel의 상태를 구독하고,\n'
@@ -279,6 +334,7 @@ class DesktopCubit extends Cubit<DesktopState> {
                   CodeBlock(
                     title: '''View - 상태 구독과 UI 렌더링''',
                     language: 'dart',
+                    isBackgroundColor: widget.isBackgroundColor,
                     code: r'''
 class _MainView extends StatefulWidget {
   final bool isChromeBrowser;
@@ -321,6 +377,7 @@ class _MainViewState extends State<_MainView> {
                   ),
                   const SizedBox(height: 30),
                   StoryBlock(
+                    isBackgroundColor: widget.isBackgroundColor,
                     story:
                         'View에서 중요한 원칙들:\n\n'
                         '• BlocBuilder로 상태 변화를 구독합니다.\n'
@@ -331,9 +388,13 @@ class _MainViewState extends State<_MainView> {
                   const SizedBox(height: 80),
 
                   // 실제 프로젝트 예시 추가
-                  const TitleTextTechBlog(title: '실제 프로젝트에서는 어떻게 구성했을까?'),
+                  TitleTextTechBlog(
+                    title: '실제 프로젝트에서는 어떻게 구성했을까?',
+                    isBackgroundColor: widget.isBackgroundColor,
+                  ),
                   const SizedBox(height: 30),
                   StoryBlock(
+                    isBackgroundColor: widget.isBackgroundColor,
                     story:
                         '저는 실제 프로젝트에서 Page와 View를 분리해서 구성합니다.\n\n'
                         '• Page: BlocProvider를 제공하고 초기 설정을 담당\n'
@@ -345,6 +406,7 @@ class _MainViewState extends State<_MainView> {
                   CodeBlock(
                     title: '''실제 프로젝트 구조 - Page와 View 분리''',
                     language: 'dart',
+                    isBackgroundColor: widget.isBackgroundColor,
                     code: r'''
 // desktop_page.dart - Page는 BlocProvider와 초기 설정만 담당
 class DesktopPage extends StatelessWidget {
@@ -402,6 +464,7 @@ class _MainViewState extends State<_MainView> {
                   ),
                   const SizedBox(height: 30),
                   StoryBlock(
+                    isBackgroundColor: widget.isBackgroundColor,
                     story:
                         '이런 구조의 장점:\n\n'
                         '✅ **명확한 책임 분리**: Page는 설정, View는 UI만 담당\n'
@@ -413,9 +476,13 @@ class _MainViewState extends State<_MainView> {
                   const SizedBox(height: 100),
 
                   // 정리 섹션
-                  const TitleTextTechBlog(title: '이렇게 구성한 MVVM의 장점'),
+                  TitleTextTechBlog(
+                    title: '이렇게 구성한 MVVM의 장점',
+                    isBackgroundColor: widget.isBackgroundColor,
+                  ),
                   const SizedBox(height: 30),
-                  const ExpandableContent(
+                  ExpandableContent(
+                    isBackgroundColor: widget.isBackgroundColor,
                     summary: '제가 사용하는 Flutter MVVM 구조의 핵심 장점들을 정리해보면...',
                     detailContent:
                         '✅ **명확한 책임 분리**\n'
@@ -442,9 +509,13 @@ class _MainViewState extends State<_MainView> {
                   const SizedBox(height: 80),
 
                   // 단점 섹션 추가
-                  const TitleTextTechBlog(title: '솔직히 말하면... 단점도 있어요'),
+                  TitleTextTechBlog(
+                    title: '솔직히 말하면... 단점도 있어요',
+                    isBackgroundColor: widget.isBackgroundColor,
+                  ),
                   const SizedBox(height: 30),
                   StoryBlock(
+                    isBackgroundColor: widget.isBackgroundColor,
                     story:
                         '아직 신입이라서...\n'
                         '가끔 "어라? 이게 왜 여기 있어?" 하는 순간들이 있습니다.^^..',

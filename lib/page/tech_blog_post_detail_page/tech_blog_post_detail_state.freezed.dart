@@ -28,7 +28,7 @@ mixin _$TechBlogPostDetailState {
   bool get showOptions => throw _privateConstructorUsedError;
   String get searchQuery => throw _privateConstructorUsedError; //화면 필터
   bool get isScreenFilter => throw _privateConstructorUsedError;
-  bool get isBackgroundColorBlack => throw _privateConstructorUsedError;
+  bool get isBackgroundColorWhite => throw _privateConstructorUsedError;
 
   /// Create a copy of TechBlogPostDetailState
   /// with the given fields replaced by the non-null parameter values.
@@ -56,7 +56,7 @@ abstract class $TechBlogPostDetailStateCopyWith<$Res> {
     bool showOptions,
     String searchQuery,
     bool isScreenFilter,
-    bool isBackgroundColorBlack,
+    bool isBackgroundColorWhite,
   });
 }
 
@@ -89,7 +89,7 @@ class _$TechBlogPostDetailStateCopyWithImpl<
     Object? showOptions = null,
     Object? searchQuery = null,
     Object? isScreenFilter = null,
-    Object? isBackgroundColorBlack = null,
+    Object? isBackgroundColorWhite = null,
   }) {
     return _then(
       _value.copyWith(
@@ -148,10 +148,10 @@ class _$TechBlogPostDetailStateCopyWithImpl<
                     ? _value.isScreenFilter
                     : isScreenFilter // ignore: cast_nullable_to_non_nullable
                         as bool,
-            isBackgroundColorBlack:
-                null == isBackgroundColorBlack
-                    ? _value.isBackgroundColorBlack
-                    : isBackgroundColorBlack // ignore: cast_nullable_to_non_nullable
+            isBackgroundColorWhite:
+                null == isBackgroundColorWhite
+                    ? _value.isBackgroundColorWhite
+                    : isBackgroundColorWhite // ignore: cast_nullable_to_non_nullable
                         as bool,
           )
           as $Val,
@@ -180,7 +180,7 @@ abstract class _$$TechBlogPostDetailStateImplCopyWith<$Res>
     bool showOptions,
     String searchQuery,
     bool isScreenFilter,
-    bool isBackgroundColorBlack,
+    bool isBackgroundColorWhite,
   });
 }
 
@@ -213,7 +213,7 @@ class __$$TechBlogPostDetailStateImplCopyWithImpl<$Res>
     Object? showOptions = null,
     Object? searchQuery = null,
     Object? isScreenFilter = null,
-    Object? isBackgroundColorBlack = null,
+    Object? isBackgroundColorWhite = null,
   }) {
     return _then(
       _$TechBlogPostDetailStateImpl(
@@ -272,10 +272,10 @@ class __$$TechBlogPostDetailStateImplCopyWithImpl<$Res>
                 ? _value.isScreenFilter
                 : isScreenFilter // ignore: cast_nullable_to_non_nullable
                     as bool,
-        isBackgroundColorBlack:
-            null == isBackgroundColorBlack
-                ? _value.isBackgroundColorBlack
-                : isBackgroundColorBlack // ignore: cast_nullable_to_non_nullable
+        isBackgroundColorWhite:
+            null == isBackgroundColorWhite
+                ? _value.isBackgroundColorWhite
+                : isBackgroundColorWhite // ignore: cast_nullable_to_non_nullable
                     as bool,
       ),
     );
@@ -297,7 +297,7 @@ class _$TechBlogPostDetailStateImpl implements _TechBlogPostDetailState {
     this.showOptions = false,
     this.searchQuery = '',
     this.isScreenFilter = false,
-    this.isBackgroundColorBlack = true,
+    this.isBackgroundColorWhite = false,
   });
 
   @override
@@ -337,11 +337,11 @@ class _$TechBlogPostDetailStateImpl implements _TechBlogPostDetailState {
   final bool isScreenFilter;
   @override
   @JsonKey()
-  final bool isBackgroundColorBlack;
+  final bool isBackgroundColorWhite;
 
   @override
   String toString() {
-    return 'TechBlogPostDetailState(postSlug: $postSlug, title: $title, tags: $tags, content: $content, isLoading: $isLoading, isPostFound: $isPostFound, isMenuClicked: $isMenuClicked, isPlayerClicked: $isPlayerClicked, showOptions: $showOptions, searchQuery: $searchQuery, isScreenFilter: $isScreenFilter, isBackgroundColorBlack: $isBackgroundColorBlack)';
+    return 'TechBlogPostDetailState(postSlug: $postSlug, title: $title, tags: $tags, content: $content, isLoading: $isLoading, isPostFound: $isPostFound, isMenuClicked: $isMenuClicked, isPlayerClicked: $isPlayerClicked, showOptions: $showOptions, searchQuery: $searchQuery, isScreenFilter: $isScreenFilter, isBackgroundColorWhite: $isBackgroundColorWhite)';
   }
 
   @override
@@ -368,8 +368,8 @@ class _$TechBlogPostDetailStateImpl implements _TechBlogPostDetailState {
                 other.searchQuery == searchQuery) &&
             (identical(other.isScreenFilter, isScreenFilter) ||
                 other.isScreenFilter == isScreenFilter) &&
-            (identical(other.isBackgroundColorBlack, isBackgroundColorBlack) ||
-                other.isBackgroundColorBlack == isBackgroundColorBlack));
+            (identical(other.isBackgroundColorWhite, isBackgroundColorWhite) ||
+                other.isBackgroundColorWhite == isBackgroundColorWhite));
   }
 
   @override
@@ -386,7 +386,7 @@ class _$TechBlogPostDetailStateImpl implements _TechBlogPostDetailState {
     showOptions,
     searchQuery,
     isScreenFilter,
-    isBackgroundColorBlack,
+    isBackgroundColorWhite,
   );
 
   /// Create a copy of TechBlogPostDetailState
@@ -413,7 +413,7 @@ abstract class _TechBlogPostDetailState implements TechBlogPostDetailState {
     final bool showOptions,
     final String searchQuery,
     final bool isScreenFilter,
-    final bool isBackgroundColorBlack,
+    final bool isBackgroundColorWhite,
   }) = _$TechBlogPostDetailStateImpl;
 
   @override
@@ -439,7 +439,7 @@ abstract class _TechBlogPostDetailState implements TechBlogPostDetailState {
   @override
   bool get isScreenFilter;
   @override
-  bool get isBackgroundColorBlack;
+  bool get isBackgroundColorWhite;
 
   /// Create a copy of TechBlogPostDetailState
   /// with the given fields replaced by the non-null parameter values.

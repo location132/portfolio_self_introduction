@@ -6,12 +6,14 @@ class CodeBlock extends StatefulWidget {
   final String code;
   final String? title;
   final String language;
+  final bool isBackgroundColor;
 
   const CodeBlock({
     super.key,
     required this.code,
     this.title,
     this.language = 'dart',
+    this.isBackgroundColor = false,
   });
 
   @override
@@ -31,7 +33,10 @@ class _CodeBlockState extends State<CodeBlock> {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             decoration: BoxDecoration(
-              color: Colors.grey.shade800,
+              color:
+                  widget.isBackgroundColor
+                      ? Colors.grey.shade200
+                      : Colors.grey.shade800,
               borderRadius:
                   _isExpanded
                       ? const BorderRadius.only(
@@ -39,7 +44,12 @@ class _CodeBlockState extends State<CodeBlock> {
                         topRight: Radius.circular(12),
                       )
                       : BorderRadius.circular(12),
-              border: Border.all(color: Colors.grey.shade600),
+              border: Border.all(
+                color:
+                    widget.isBackgroundColor
+                        ? Colors.grey.shade400
+                        : Colors.grey.shade600,
+              ),
             ),
             child: GestureDetector(
               onTap: () {
@@ -83,8 +93,11 @@ class _CodeBlockState extends State<CodeBlock> {
                   Expanded(
                     child: Text(
                       widget.title!,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color:
+                            widget.isBackgroundColor
+                                ? Colors.black
+                                : Colors.white,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ),
@@ -94,7 +107,10 @@ class _CodeBlockState extends State<CodeBlock> {
                     _isExpanded
                         ? Icons.keyboard_arrow_up
                         : Icons.keyboard_arrow_down,
-                    color: Colors.grey.shade400,
+                    color:
+                        widget.isBackgroundColor
+                            ? Colors.grey.shade600
+                            : Colors.grey.shade400,
                     size: 20,
                   ),
                 ],
@@ -106,7 +122,10 @@ class _CodeBlockState extends State<CodeBlock> {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: const Color(0xFF23241f),
+              color:
+                  widget.isBackgroundColor
+                      ? Colors.grey.shade50
+                      : const Color(0xFF23241f),
               borderRadius:
                   widget.title != null
                       ? const BorderRadius.only(
@@ -114,7 +133,12 @@ class _CodeBlockState extends State<CodeBlock> {
                         bottomRight: Radius.circular(12),
                       )
                       : BorderRadius.circular(12),
-              border: Border.all(color: Colors.grey.shade600),
+              border: Border.all(
+                color:
+                    widget.isBackgroundColor
+                        ? Colors.grey.shade400
+                        : Colors.grey.shade600,
+              ),
             ),
             child: HighlightView(
               widget.code,
