@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/code_block.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/data_flow_chart.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/my_story_start.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/story_block.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/subtitle_text_tech.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/title_text_tech.dart';
 
 class RepositoryPattern extends StatelessWidget {
   final bool isBackgroundColorWhite;
-  final GlobalKey codeExampleSectionKey;
   final bool isMobile;
 
   const RepositoryPattern({
     super.key,
     required this.isBackgroundColorWhite,
-    required this.codeExampleSectionKey,
     required this.isMobile,
   });
 
@@ -24,15 +21,6 @@ class RepositoryPattern extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
 
       children: [
-        MyStoryStart(
-          isMobile: isMobile,
-          isBackgroundColorWhite: isBackgroundColorWhite,
-          codeExampleSectionKey: codeExampleSectionKey,
-          textTitle: 'ICT 인턴에서 배운 현업 Clean Architecture',
-          textSubTitle: '프로젝트 구조를 개선하는 저만의 방법을 소개합니다.',
-          textSubTitle2: '\n\n\n\n소개하는 코드는 제 잎사이 프로젝트에서 실제 구현한 코드입니다.',
-        ),
-        const SizedBox(height: 30),
         TitleTextTechBlog(
           isMobile: isMobile,
 

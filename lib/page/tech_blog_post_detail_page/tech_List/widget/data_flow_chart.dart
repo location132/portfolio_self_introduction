@@ -45,8 +45,8 @@ class DataFlowChart extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: isMobile ? 15.w : 15,
-        vertical: isMobile ? 10.w : 10,
+        horizontal: isMobile ? 10.w : 15,
+        vertical: isMobile ? 5.w : 10,
       ),
       decoration: BoxDecoration(
         color: isBackgroundColor ? Colors.white : Colors.black,
@@ -63,7 +63,7 @@ class DataFlowChart extends StatelessWidget {
         title,
         style: TextStyle(
           color: isBackgroundColor ? Colors.black : Colors.white,
-          fontSize: isMobile ? 14.sp : 14,
+          fontSize: isMobile ? 12.sp : 14,
           fontWeight: FontWeight.w600,
         ),
         textAlign: TextAlign.center,

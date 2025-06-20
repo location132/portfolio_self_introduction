@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/my_story_start.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/repository_widget.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/domain_layer.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/presentation_layer.dart';
@@ -167,10 +168,18 @@ class _CleanArchitectureState extends State<CleanArchitecture> {
                             '\n\n\n\n이 블로그를 다시 작성하며, 개발 초기 개념을 잡아준 이수석님과 유선임님 그 시절 제가 너무 부족했지만\n 천천히 개념과 이론을 잡아주셔서 너무 감사했습니다.',
                       ),
                       SizedBox(height: widget.isMobile ? 150.h : 150),
-
-                      RepositoryPattern(
+                      MyStoryStart(
+                        isMobile: widget.isMobile,
                         isBackgroundColorWhite: state.isBackgroundColorWhite,
                         codeExampleSectionKey: _codeExampleSectionKey,
+                        textTitle: 'ICT 인턴에서 배운 현업 Clean Architecture',
+                        textSubTitle: '프로젝트 구조를 개선하는 저만의 방법을 소개합니다.',
+                        textSubTitle2:
+                            '\n\n\n\n소개하는 코드는 제 잎사이 프로젝트에서 실제 구현한 코드입니다.',
+                      ),
+                      const SizedBox(height: 30),
+                      RepositoryPattern(
+                        isBackgroundColorWhite: state.isBackgroundColorWhite,
                         isMobile: widget.isMobile,
                       ),
 
