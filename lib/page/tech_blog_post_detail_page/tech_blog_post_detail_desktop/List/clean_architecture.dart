@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/repository_pattern.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/domain_layer.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/presentation_layer.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/title_text_tech.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/post_header.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/expandable_content.dart';
@@ -155,18 +156,18 @@ class _CleanArchitectureState extends State<CleanArchitecture> {
                             '\n\n\n\n이 블로그를 다시 작성하며, 개발 초기 개념을 잡아준 이수석님과 유선임님 그 시절 제가 너무 부족했지만\n 천천히 개념과 이론을 잡아주셔서 너무 감사했습니다.',
                       ),
                       const SizedBox(height: 150),
+
                       RepositoryPattern(
                         isBackgroundColorWhite: state.isBackgroundColorWhite,
                         codeExampleSectionKey: _codeExampleSectionKey,
                       ),
 
-                      //--------------------------------
+                      // //--------------------------------
                       DomainLayer(
                         isBackgroundColorWhite: state.isBackgroundColorWhite,
                       ),
-                      TitleTextTechBlog(
-                        title: 'Presentation (UI) 계층',
-                        isBackgroundColor: state.isBackgroundColorWhite,
+                      PresentationLayer(
+                        isBackgroundColorWhite: state.isBackgroundColorWhite,
                       ),
                       const SizedBox(height: 150),
                     ],

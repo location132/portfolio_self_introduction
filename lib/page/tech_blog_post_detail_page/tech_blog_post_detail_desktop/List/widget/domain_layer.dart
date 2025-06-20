@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/code_block.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/expandable_content.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/story_block.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/subtitle_text_tech.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/title_text_tech.dart';
@@ -35,7 +34,7 @@ class DomainLayer extends StatelessWidget {
         const SizedBox(height: 80),
 
         // 도메인 모델
-        TitleTextTechBlog(
+        SubtitleTextTechBlog(
           title: '모델 (Domain Models)',
           isBackgroundColor: isBackgroundColorWhite,
         ),
@@ -109,8 +108,8 @@ class BannerModel with _$BannerModel {
         const SizedBox(height: 80),
 
         // 도메인 서비스
-        TitleTextTechBlog(
-          title: '2. 도메인 서비스 (Domain Services)',
+        SubtitleTextTechBlog(
+          title: '도메인 서비스 (Domain Services)',
           isBackgroundColor: isBackgroundColorWhite,
         ),
         const SizedBox(height: 30),
@@ -236,8 +235,8 @@ class LocationService {
         const SizedBox(height: 80),
 
         // 값 객체와 열거형
-        TitleTextTechBlog(
-          title: '3. 값 객체와 열거형 (Value Objects & Enums)',
+        SubtitleTextTechBlog(
+          title: '값 객체와 열거형 (Value Objects & Enums)',
           isBackgroundColor: isBackgroundColorWhite,
         ),
         const SizedBox(height: 30),
@@ -302,42 +301,7 @@ class MenuOption with _$MenuOption {
               '예를 들어 `DeviceType.mobile`은 단순한 문자열보다\n'
               '훨씬 명확한 의도를 표현합니다.',
         ),
-        const SizedBox(height: 80),
-
-        // 도메인 계층의 장점
-        TitleTextTechBlog(
-          title: '도메인 계층을 분리한 효과',
-          isBackgroundColor: isBackgroundColorWhite,
-        ),
-        const SizedBox(height: 30),
-        ExpandableContent(
-          isBackgroundColor: isBackgroundColorWhite,
-          summary:
-              '실제 프로젝트에서 도메인 계층을 분리해보니\n'
-              '비즈니스 로직이 명확해지고 유지보수가 훨씬 편해졌습니다.',
-          detailContent:
-              '✅ 비즈니스 로직의 명확성\n'
-              '• 핵심 비즈니스 규칙이 UI나 DB 로직과 섞이지 않음\n'
-              '• "이 로직이 왜 필요한지" 비즈니스 관점에서 이해 가능\n'
-              '• 도메인 전문가와 소통할 때 코드가 곧 비즈니스 언어가 됨\n\n'
-              '✅ 변경에 대한 안정성\n'
-              '• UI 프레임워크가 바뀌어도 비즈니스 로직은 그대로 유지\n'
-              '• 외부 API 스펙 변경이 핵심 비즈니스 로직에 영향 없음\n'
-              '• 데이터베이스 기술 변경과 독립적\n\n'
-              '✅ 테스트의 용이성\n'
-              '• 복잡한 UI 설정 없이 비즈니스 로직만 독립적으로 테스트\n'
-              '• Mock 없이도 순수 함수처럼 테스트 가능한 로직들\n'
-              '• 비즈니스 시나리오를 코드로 검증 가능\n\n'
-              '✅ 팀 협업의 효율성\n'
-              '• 백엔드 개발자와 도메인 모델로 소통 가능\n'
-              '• 기획자가 요구사항을 코드에서 직접 확인 가능\n'
-              '• 새로운 팀원도 비즈니스 로직을 빠르게 이해\n\n'
-              '특히 잎사이 프로젝트처럼 복잡한 비즈니스 규칙이 많은 경우\n'
-              '도메인 계층의 분리가 프로젝트 관리에 큰 도움이 되었습니다.',
-          toggleText: '실제 효과가 궁금하시면 Click',
-          toggleTextClose: '도움이 되셨나요? (닫기)',
-        ),
-        const SizedBox(height: 100),
+        const SizedBox(height: 180),
       ],
     );
   }

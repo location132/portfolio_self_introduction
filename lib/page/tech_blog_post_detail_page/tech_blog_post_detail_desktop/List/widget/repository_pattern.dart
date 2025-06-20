@@ -72,7 +72,7 @@ class RepositoryPattern extends StatelessWidget {
           story:
               '• Repository: 도메인 계층에 필요한 데이터 접근 로직을 추상화\n'
               '• DTO: 외부 API/DB 통신용 데이터 구조 정의 및 캡슐화\n'
-              '• Mapper: DTO ↔ 도메인 모델 간 변환 책임\n'
+              '• Mapper: DTO 도메인 모델 간 변환 책임\n'
               '• Data Source: API 호출, 로컬 DB(Isar) 쿼리 처리\n\n',
         ),
         const SizedBox(height: 100),
