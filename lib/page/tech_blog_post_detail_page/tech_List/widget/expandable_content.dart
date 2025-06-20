@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ExpandableContent extends StatefulWidget {
   final String summary;
@@ -6,6 +7,7 @@ class ExpandableContent extends StatefulWidget {
   final String toggleText;
   final String toggleTextClose;
   final bool isBackgroundColor;
+  final bool isMobile;
   const ExpandableContent({
     super.key,
     required this.summary,
@@ -13,6 +15,7 @@ class ExpandableContent extends StatefulWidget {
     this.toggleText = '개념을 자세히 정리했어요. 궁금하면 Click',
     this.toggleTextClose = '이해했어요 (닫기)',
     this.isBackgroundColor = false,
+    required this.isMobile,
   });
 
   @override
@@ -66,13 +69,13 @@ class _ExpandableContentState extends State<ExpandableContent>
               widget.summary,
               style: TextStyle(
                 color: widget.isBackgroundColor ? Colors.black : Colors.white,
-                fontSize: 16,
+                fontSize: widget.isMobile ? 16.sp : 16,
                 fontWeight: FontWeight.w400,
                 height: 1.6,
               ),
             ),
           ),
-          const SizedBox(height: 40),
+          SizedBox(height: widget.isMobile ? 40.h : 40),
           GestureDetector(
             onTap: _toggleExpansion,
             child: Row(
@@ -86,11 +89,11 @@ class _ExpandableContentState extends State<ExpandableContent>
                         widget.isBackgroundColor
                             ? Colors.black
                             : Colors.grey.shade300,
-                    fontSize: 14,
+                    fontSize: widget.isMobile ? 14.sp : 14,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(width: 8),
+                SizedBox(width: widget.isMobile ? 8.w : 8),
                 AnimatedRotation(
                   turns: _isExpanded ? 0.5 : 0.0,
                   duration: const Duration(milliseconds: 300),
@@ -100,7 +103,7 @@ class _ExpandableContentState extends State<ExpandableContent>
                         widget.isBackgroundColor
                             ? Colors.black
                             : Colors.grey.shade300,
-                    size: 20,
+                    size: widget.isMobile ? 20.sp : 20,
                   ),
                 ),
               ],
@@ -115,14 +118,18 @@ class _ExpandableContentState extends State<ExpandableContent>
                     ? FadeTransition(
                       opacity: _fadeAnimation,
                       child: Container(
-                        margin: const EdgeInsets.only(top: 20),
-                        padding: const EdgeInsets.all(20),
+                        margin: EdgeInsets.only(
+                          top: widget.isMobile ? 20.h : 20,
+                        ),
+                        padding: EdgeInsets.all(widget.isMobile ? 20.w : 20),
                         decoration: BoxDecoration(
                           color:
                               widget.isBackgroundColor
                                   ? Colors.grey.shade100.withValues(alpha: 0.4)
                                   : Colors.grey.shade900.withValues(alpha: 0.4),
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(
+                            widget.isMobile ? 12.w : 12,
+                          ),
                           border: Border.all(
                             color:
                                 widget.isBackgroundColor
@@ -142,7 +149,7 @@ class _ExpandableContentState extends State<ExpandableContent>
                                 widget.isBackgroundColor
                                     ? Colors.black
                                     : Colors.grey.shade200,
-                            fontSize: 15,
+                            fontSize: widget.isMobile ? 15.sp : 15,
                             fontWeight: FontWeight.w400,
                             height: 1.7,
                           ),

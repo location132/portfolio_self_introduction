@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/repository_widget.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/domain_layer.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/presentation_layer.dart';
@@ -12,10 +13,12 @@ import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_b
 class CleanArchitecture extends StatefulWidget {
   final Function(bool) isFocused;
   final ScrollController? scrollController;
+  final bool isMobile;
   const CleanArchitecture({
     super.key,
     required this.isFocused,
     this.scrollController,
+    required this.isMobile,
   });
 
   @override
@@ -41,7 +44,11 @@ class _CleanArchitectureState extends State<CleanArchitecture> {
               as RenderBox;
       final position = renderBox.localToGlobal(Offset.zero);
       final cubit = context.read<TechBlogPostDetailCubit>();
-      cubit.setScrollTargetOffset(position.dy - 200);
+      if (widget.isMobile) {
+        cubit.setScrollTargetOffset(position.dy - 0);
+      } else {
+        cubit.setScrollTargetOffset(position.dy - 250);
+      }
     }
   }
 
@@ -54,11 +61,11 @@ class _CleanArchitectureState extends State<CleanArchitecture> {
           child: Center(
             child: Container(
               constraints: const BoxConstraints(maxWidth: 800),
-              padding: const EdgeInsets.all(24.0),
+              padding: EdgeInsets.all(widget.isMobile ? 24.0.w : 24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 100),
+                  SizedBox(height: widget.isMobile ? 100.h : 100),
                   PostHeader(
                     title: 'Clean Architecture',
                     tags: const [
@@ -80,17 +87,20 @@ class _CleanArchitectureState extends State<CleanArchitecture> {
                         'ICT 인턴십 실무를 통해 실제 현업에서 사용하는 Clean Architecture 패턴을 처음 접하게 되었고, 2024년 10월부터 제 Flutter 프로젝트에 적용하기 시작했습니다.\n\n'
                         '이제는 이 구조가 제 프로젝트의 필수 골격 중 하나로 자리 잡았습니다. 완벽하지는 않지만, 제가 Flutter에서 Clean Architecture를 어떻게 해석하고 적용했는지를 함께 공유해보겠습니다.',
                     isBackgroundColor: state.isBackgroundColorWhite,
+                    isMobile: widget.isMobile,
                   ),
-                  const SizedBox(height: 64),
+                  SizedBox(height: widget.isMobile ? 64.h : 64),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TitleTextTechBlog(
                         title: 'Clean Architecture란?',
                         isBackgroundColor: state.isBackgroundColorWhite,
+                        isMobile: widget.isMobile,
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       ExpandableContent(
+                        isMobile: widget.isMobile,
                         isBackgroundColor: state.isBackgroundColorWhite,
                         summary:
                             'Clean Architecture는 Robert C. Martin(Uncle Bob)이 제안한'
@@ -115,13 +125,15 @@ class _CleanArchitectureState extends State<CleanArchitecture> {
                             '구분해서 적용할 수 있습니다.',
                         toggleText: '개념이 궁금하시면 Click',
                       ),
-                      const SizedBox(height: 80),
+                      SizedBox(height: widget.isMobile ? 80.h : 80),
                       TitleTextTechBlog(
+                        isMobile: widget.isMobile,
                         title: '개념을 보니까..\n   너무 복잡한 거 아닌가요?',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
-                      const SizedBox(height: 40),
+                      SizedBox(height: widget.isMobile ? 40.h : 40),
                       ExpandableContent(
+                        isMobile: widget.isMobile,
                         isBackgroundColor: state.isBackgroundColorWhite,
                         summary:
                             '저도 처음에는 그렇게 생각했어요.\n\n'
@@ -154,21 +166,24 @@ class _CleanArchitectureState extends State<CleanArchitecture> {
                             '상태 관리도 훨씬 깔끔해져서 편하게 작업하고 있습니다.'
                             '\n\n\n\n이 블로그를 다시 작성하며, 개발 초기 개념을 잡아준 이수석님과 유선임님 그 시절 제가 너무 부족했지만\n 천천히 개념과 이론을 잡아주셔서 너무 감사했습니다.',
                       ),
-                      const SizedBox(height: 150),
+                      SizedBox(height: widget.isMobile ? 150.h : 150),
 
                       RepositoryPattern(
                         isBackgroundColorWhite: state.isBackgroundColorWhite,
                         codeExampleSectionKey: _codeExampleSectionKey,
+                        isMobile: widget.isMobile,
                       ),
 
                       // //--------------------------------
                       DomainLayer(
                         isBackgroundColorWhite: state.isBackgroundColorWhite,
+                        isMobile: widget.isMobile,
                       ),
                       PresentationLayer(
                         isBackgroundColorWhite: state.isBackgroundColorWhite,
+                        isMobile: widget.isMobile,
                       ),
-                      const SizedBox(height: 150),
+                      SizedBox(height: widget.isMobile ? 150.h : 150),
                     ],
                   ),
                 ],

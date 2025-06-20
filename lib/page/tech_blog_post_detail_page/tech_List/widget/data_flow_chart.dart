@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DataFlowChart extends StatelessWidget {
   final bool isBackgroundColor;
   final List<String> flowSteps;
   final bool isLastStep;
+  final bool isMobile;
 
   const DataFlowChart({
     super.key,
     required this.isBackgroundColor,
     required this.flowSteps,
     this.isLastStep = true,
+    required this.isMobile,
   });
 
   @override
@@ -41,10 +44,13 @@ class DataFlowChart extends StatelessWidget {
     bool isCurrentLastStep = isLastStep && (index == flowSteps.length - 1);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 15.w : 15,
+        vertical: isMobile ? 10.w : 10,
+      ),
       decoration: BoxDecoration(
         color: isBackgroundColor ? Colors.white : Colors.black,
-        borderRadius: BorderRadius.circular(11),
+        borderRadius: BorderRadius.circular(isMobile ? 11.w : 11),
         border: Border.all(
           color:
               isCurrentLastStep
@@ -57,7 +63,7 @@ class DataFlowChart extends StatelessWidget {
         title,
         style: TextStyle(
           color: isBackgroundColor ? Colors.black : Colors.white,
-          fontSize: 14,
+          fontSize: isMobile ? 14.sp : 14,
           fontWeight: FontWeight.w600,
         ),
         textAlign: TextAlign.center,
@@ -69,7 +75,7 @@ class DataFlowChart extends StatelessWidget {
     return Icon(
       Icons.keyboard_arrow_right,
       color: isBackgroundColor ? Colors.black : Colors.white,
-      size: 24,
+      size: isMobile ? 24.sp : 24,
     );
   }
 }

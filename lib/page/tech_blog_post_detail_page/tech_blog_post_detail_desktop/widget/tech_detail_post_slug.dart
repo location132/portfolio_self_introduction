@@ -50,6 +50,7 @@ class TechDetailPostSlug extends StatelessWidget {
         return BlocBuilder<TechBlogPostDetailCubit, TechBlogPostDetailState>(
           builder: (context, state) {
             return CleanArchitecture(
+              isMobile: isMobile,
               isFocused: (isFocused) {
                 this.isFocused(isFocused);
               },
@@ -61,6 +62,7 @@ class TechDetailPostSlug extends StatelessWidget {
         return BlocBuilder<TechBlogPostDetailCubit, TechBlogPostDetailState>(
           builder: (context, state) {
             return RepositoryPatternPage(
+              isMobile: isMobile,
               isFocused: (isFocused) {
                 this.isFocused(isFocused);
               },

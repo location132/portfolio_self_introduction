@@ -6,8 +6,13 @@ import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_L
 
 class DomainLayer extends StatelessWidget {
   final bool isBackgroundColorWhite;
+  final bool isMobile;
 
-  const DomainLayer({super.key, required this.isBackgroundColorWhite});
+  const DomainLayer({
+    super.key,
+    required this.isBackgroundColorWhite,
+    required this.isMobile,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +20,7 @@ class DomainLayer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TitleTextTechBlog(
+          isMobile: isMobile,
           title: '도메인 계층 (Domain Layer)',
           isBackgroundColor: isBackgroundColorWhite,
         ),
@@ -22,9 +28,11 @@ class DomainLayer extends StatelessWidget {
         SubtitleTextTechBlog(
           title: '비즈니스 로직의 핵심\n    앱의 "무엇을"을 정의하는 계층',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               '도메인 계층은 Clean Architecture의 가장 안쪽 계층으로,\n'
@@ -37,9 +45,11 @@ class DomainLayer extends StatelessWidget {
         SubtitleTextTechBlog(
           title: '모델 (Domain Models)',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               '도메인 모델은 비즈니스 개념을 코드로 표현한 것입니다.\n'
@@ -51,6 +61,7 @@ class DomainLayer extends StatelessWidget {
           title: '''잎사이 프로젝트 - 매장(Market) 도메인 모델''',
           language: 'dart',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
           code: r'''
 @freezed
 class MarketModel with _$MarketModel {
@@ -79,6 +90,7 @@ class MarketModel with _$MarketModel {
           title: '''포트폴리오 프로젝트 - 배너(Banner) 도메인 모델''',
           language: 'dart',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
           code: r'''
 @freezed
 class BannerModel with _$BannerModel {
@@ -97,6 +109,7 @@ class BannerModel with _$BannerModel {
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               '도메인 모델의 특징:\n\n'
@@ -111,9 +124,11 @@ class BannerModel with _$BannerModel {
         SubtitleTextTechBlog(
           title: '도메인 서비스 (Domain Services)',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               '도메인 서비스는 여러 도메인 객체가 협력해야 하는 복잡한 비즈니스 로직을 처리합니다.\n'
@@ -124,6 +139,7 @@ class BannerModel with _$BannerModel {
           title: '''NaverMapService - 지도와 위치 계산 도메인 로직''',
           language: 'dart',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
           code: r'''
 @singleton
 class NaverMapService {
@@ -174,6 +190,7 @@ class NaverMapService {
           title: '''LocationService - 위치 권한과 GPS 관리 도메인 로직''',
           language: 'dart',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
           code: r'''
 @singleton
 class LocationService {
@@ -222,6 +239,7 @@ class LocationService {
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               '도메인 서비스의 특징:\n\n'
@@ -238,9 +256,11 @@ class LocationService {
         SubtitleTextTechBlog(
           title: '값 객체와 열거형 (Value Objects & Enums)',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               '도메인의 개념을 명확하게 표현하는 작은 단위의 객체들입니다.\n'
@@ -251,6 +271,7 @@ class LocationService {
           title: '''도메인 열거형과 값 객체들''',
           language: 'dart',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
           code: r'''
 // 초기화 상태 - 앱의 생명주기 표현
 enum InitState { inactive, active }
@@ -291,6 +312,7 @@ class MenuOption with _$MenuOption {
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               '값 객체와 열거형의 역할:\n\n'

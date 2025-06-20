@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/code_block.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/my_story_start.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/story_block.dart';
@@ -44,7 +45,11 @@ class _MvvmState extends State<Mvvm> {
               as RenderBox;
       final position = renderBox.localToGlobal(Offset.zero);
       final cubit = context.read<TechBlogPostDetailCubit>();
-      cubit.setScrollTargetOffset(position.dy - 250);
+      if (widget.isMobile) {
+        cubit.setScrollTargetOffset(position.dy - 0);
+      } else {
+        cubit.setScrollTargetOffset(position.dy - 250);
+      }
     }
   }
 
@@ -57,11 +62,11 @@ class _MvvmState extends State<Mvvm> {
           child: Center(
             child: Container(
               constraints: const BoxConstraints(maxWidth: 800),
-              padding: const EdgeInsets.all(24.0),
+              padding: EdgeInsets.all(widget.isMobile ? 24.0.w : 24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 100),
+                  SizedBox(height: widget.isMobile ? 100.h : 100),
                   PostHeader(
                     title: 'MVVM',
                     tags: const [
@@ -82,17 +87,20 @@ class _MvvmState extends State<Mvvm> {
                         '하지만 시행착오 속에서 저만의 방식으로 정리된 MVVM 구조는\n'
                         '프로젝트를 안정적으로 운영하고, 유지보수 가능한 코드의 기반이 되어주고 있습니다.',
                     isBackgroundColor: state.isBackgroundColorWhite,
+                    isMobile: widget.isMobile,
                   ),
-                  const SizedBox(height: 64),
+                  SizedBox(height: widget.isMobile ? 64.h : 64),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TitleTextTechBlog(
+                        isMobile: widget.isMobile,
                         title: 'MVVM이란?',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       ExpandableContent(
+                        isMobile: widget.isMobile,
                         isBackgroundColor: state.isBackgroundColorWhite,
                         summary:
                             'MVVM(Model - View - ViewModel)은\n'
@@ -114,14 +122,17 @@ class _MvvmState extends State<Mvvm> {
                             '통해 MVVM 패턴을 구현할 수 있습니다.',
                         toggleText: '개념을 자세히 정리했어요. 궁금하면 Click',
                       ),
-                      const SizedBox(height: 80),
+                      SizedBox(height: widget.isMobile ? 80.h : 80),
                       TitleTextTechBlog(
+                        isMobile: widget.isMobile,
+
                         title:
                             '개념을 토글해서 읽어봤는데..\n  Flutter에서는 MVVM이 불가능한거 아니에요?',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
-                      const SizedBox(height: 40),
+                      SizedBox(height: widget.isMobile ? 40.h : 40),
                       ExpandableContent(
+                        isMobile: widget.isMobile,
                         isBackgroundColor: state.isBackgroundColorWhite,
                         summary:
                             '맞아요.\n'
@@ -153,12 +164,14 @@ class _MvvmState extends State<Mvvm> {
                             '"책임 분리", "단방향 데이터 흐름", "상태 기반 UI"만 잘 갖추면\n'
                             'MVVM로 Flutter에서도 충분히 구현할 수 있습니다.',
                       ),
-                      const SizedBox(height: 80),
+                      SizedBox(height: widget.isMobile ? 80.h : 80),
                       TitleTextTechBlog(
+                        isMobile: widget.isMobile,
+
                         title: 'MVVM 데이터 흐름도',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       Text(
                         '[사용자 행동] → [ViewModel에서 로직 처리] → [Model 상태 변경]\n'
                         '→ [ViewModel이 상태 가공] → [View가 상태를 받아 UI 렌더링]',
@@ -167,23 +180,27 @@ class _MvvmState extends State<Mvvm> {
                               state.isBackgroundColorWhite
                                   ? Colors.black
                                   : Colors.white,
-                          fontSize: 16,
+                          fontSize: widget.isMobile ? 16.sp : 16,
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       MyStoryStart(
+                        isMobile: widget.isMobile,
                         isBackgroundColorWhite: state.isBackgroundColorWhite,
                         codeExampleSectionKey: _codeExampleSectionKey,
                         textTitle: '정답은 아닐 수 있지만, 나만의 MVVM으로 재해석한',
                         textSubTitle: '구조와 방법 지금부터 소개합니다.',
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       TitleTextTechBlog(
+                        isMobile: widget.isMobile,
+
                         title: '먼저, M — Model',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       StoryBlock(
+                        isMobile: widget.isMobile,
                         isBackgroundColor: state.isBackgroundColorWhite,
                         story:
                             'Flutter에서는 저는 freezed를 사용해 모델을 선언합니다.\n'
@@ -191,8 +208,9 @@ class _MvvmState extends State<Mvvm> {
                             'MVVM의 "예측 가능한 상태 관리" 의도와 잘 맞을 수 있도록 했습니다.\n\n'
                             '예를 들어, ChapterModel은 화면 내 챕터 섹션의 상태를 정의합니다',
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       CodeBlock(
+                        isMobile: widget.isMobile,
                         title: '''@freezed를 사용한 Model''',
                         language: 'dart',
                         isBackgroundColor: state.isBackgroundColorWhite,
@@ -232,15 +250,18 @@ enum ChapterDetailButton { none, simple, detail }
 
 ''',
                       ),
-                      const SizedBox(height: 100),
+                      SizedBox(height: widget.isMobile ? 100.h : 100),
 
                       // ViewModel 섹션
                       TitleTextTechBlog(
+                        isMobile: widget.isMobile,
+
                         title: '다음, VM — ViewModel',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       StoryBlock(
+                        isMobile: widget.isMobile,
                         isBackgroundColor: state.isBackgroundColorWhite,
                         story:
                             'ViewModel은 View와 Model 사이의 다리 역할을 합니다.\n'
@@ -250,8 +271,9 @@ enum ChapterDetailButton { none, simple, detail }
                             'ChapterCubit은 ChapterModel을 관리하며,\n'
                             '사용자의 액션을 받아 상태를 변경하고 View에 알려줍니다.',
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       CodeBlock(
+                        isMobile: widget.isMobile,
                         title: '''실제 프로젝트의 ViewModel (DesktopCubit)''',
                         language: 'dart',
                         isBackgroundColor: state.isBackgroundColorWhite,
@@ -295,8 +317,9 @@ class DesktopCubit extends Cubit<DesktopState> {
 }
 ''',
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       StoryBlock(
+                        isMobile: widget.isMobile,
                         isBackgroundColor: state.isBackgroundColorWhite,
                         story:
                             '위 코드에서 중요한 점은:\n\n'
@@ -305,15 +328,18 @@ class DesktopCubit extends Cubit<DesktopState> {
                             '• copyWith를 사용해 불변성을 유지하며 상태를 업데이트합니다.\n'
                             '• 각 메소드는 하나의 책임만 가지도록 분리했습니다.',
                       ),
-                      const SizedBox(height: 100),
+                      SizedBox(height: widget.isMobile ? 100.h : 100),
 
                       // View 섹션
                       TitleTextTechBlog(
+                        isMobile: widget.isMobile,
+
                         title: '마지막, V — View',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       StoryBlock(
+                        isMobile: widget.isMobile,
                         isBackgroundColor: state.isBackgroundColorWhite,
                         story:
                             'View는 순수하게 UI 렌더링에만 집중합니다.\n'
@@ -322,8 +348,9 @@ class DesktopCubit extends Cubit<DesktopState> {
                             'View는 상태를 직접 변경하지 않고,\n'
                             '사용자의 액션을 ViewModel에 전달하기만 합니다.',
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       CodeBlock(
+                        isMobile: widget.isMobile,
                         title: '''View - 상태 구독과 UI 렌더링''',
                         language: 'dart',
                         isBackgroundColor: state.isBackgroundColorWhite,
@@ -367,8 +394,9 @@ class _MainViewState extends State<_MainView> {
 }
 ''',
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       StoryBlock(
+                        isMobile: widget.isMobile,
                         isBackgroundColor: state.isBackgroundColorWhite,
                         story:
                             'View에서 중요한 원칙들:\n\n'
@@ -377,15 +405,18 @@ class _MainViewState extends State<_MainView> {
                             '• View는 상태를 직접 변경하지 않고, 오직 표시만 담당합니다.\n'
                             '• 복잡한 로직은 ViewModel에 위임하고, View는 단순하게 유지합니다.',
                       ),
-                      const SizedBox(height: 80),
+                      SizedBox(height: widget.isMobile ? 80.h : 80),
 
                       // 실제 프로젝트 예시 추가
                       TitleTextTechBlog(
+                        isMobile: widget.isMobile,
+
                         title: '실제 프로젝트에서는 어떻게 구성했을까?',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       StoryBlock(
+                        isMobile: widget.isMobile,
                         isBackgroundColor: state.isBackgroundColorWhite,
                         story:
                             '저는 실제 프로젝트에서 Page와 View를 분리해서 구성합니다.\n\n'
@@ -394,8 +425,9 @@ class _MainViewState extends State<_MainView> {
                             '이렇게 분리하면 의존성 주입과 UI 로직이 명확하게 구분되어\n'
                             '더 깔끔한 구조를 만들 수 있습니다.',
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       CodeBlock(
+                        isMobile: widget.isMobile,
                         title: '''실제 프로젝트 구조 - Page와 View 분리''',
                         language: 'dart',
                         isBackgroundColor: state.isBackgroundColorWhite,
@@ -454,8 +486,9 @@ class _MainViewState extends State<_MainView> {
 
     ''',
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       StoryBlock(
+                        isMobile: widget.isMobile,
                         isBackgroundColor: state.isBackgroundColorWhite,
                         story:
                             '이런 구조의 장점:\n\n'
@@ -465,15 +498,18 @@ class _MainViewState extends State<_MainView> {
                             '✅ 의존성 관리: BlocProvider 설정이 Page에 집중됨\n\n'
                             '특히 복잡한 화면일수록 이런 분리가 더욱 효과적입니다.',
                       ),
-                      const SizedBox(height: 100),
+                      SizedBox(height: widget.isMobile ? 100.h : 100),
 
                       // 정리 섹션
                       TitleTextTechBlog(
+                        isMobile: widget.isMobile,
+
                         title: '이렇게 구성한 MVVM의 장점',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       ExpandableContent(
+                        isMobile: widget.isMobile,
                         isBackgroundColor: state.isBackgroundColorWhite,
                         summary: '제가 사용하는 Flutter MVVM 구조의 핵심 장점들을 정리해보면...',
                         detailContent:
@@ -498,21 +534,24 @@ class _MainViewState extends State<_MainView> {
                         toggleText: '장점들이 궁금하시면 Click',
                         toggleTextClose: '도움이 되셨나요? (닫기)',
                       ),
-                      const SizedBox(height: 80),
+                      SizedBox(height: widget.isMobile ? 80.h : 80),
 
                       // 단점 섹션 추가
                       TitleTextTechBlog(
+                        isMobile: widget.isMobile,
+
                         title: '솔직히 말하면... 단점도 있어요',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: widget.isMobile ? 30.h : 30),
                       StoryBlock(
+                        isMobile: widget.isMobile,
                         isBackgroundColor: state.isBackgroundColorWhite,
                         story:
                             '아직 신입이라서...\n'
-                            '가끔 "어라? 이게 왜 여기 있어?" 하는 순간들이 있습니다.^^..',
+                            '가끔 "어라? 이게 왜 여기 있어?" 하는 순간들이 많이 있습니다.',
                       ),
-                      const SizedBox(height: 150),
+                      SizedBox(height: widget.isMobile ? 150.h : 150),
                     ],
                   ),
                 ],

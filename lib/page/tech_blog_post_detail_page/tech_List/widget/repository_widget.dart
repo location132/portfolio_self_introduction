@@ -9,11 +9,13 @@ import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_L
 class RepositoryPattern extends StatelessWidget {
   final bool isBackgroundColorWhite;
   final GlobalKey codeExampleSectionKey;
+  final bool isMobile;
 
   const RepositoryPattern({
     super.key,
     required this.isBackgroundColorWhite,
     required this.codeExampleSectionKey,
+    required this.isMobile,
   });
 
   @override
@@ -23,6 +25,7 @@ class RepositoryPattern extends StatelessWidget {
 
       children: [
         MyStoryStart(
+          isMobile: isMobile,
           isBackgroundColorWhite: isBackgroundColorWhite,
           codeExampleSectionKey: codeExampleSectionKey,
           textTitle: 'ICT 인턴에서 배운 현업 Clean Architecture',
@@ -31,6 +34,8 @@ class RepositoryPattern extends StatelessWidget {
         ),
         const SizedBox(height: 30),
         TitleTextTechBlog(
+          isMobile: isMobile,
+
           title: '데이터 계층 (Data Layer)',
           isBackgroundColor: isBackgroundColorWhite,
         ),
@@ -38,12 +43,14 @@ class RepositoryPattern extends StatelessWidget {
         SubtitleTextTechBlog(
           title: '바로 핵심부터\n    데이터 계층, 저는 이렇게 사용하고 있어요',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
         ),
 
         const SizedBox(height: 30),
         SizedBox(
           width: double.infinity,
           child: DataFlowChart(
+            isMobile: isMobile,
             isLastStep: false,
             isBackgroundColor: isBackgroundColorWhite,
             flowSteps: const [
@@ -61,6 +68,7 @@ class RepositoryPattern extends StatelessWidget {
         ),
         const SizedBox(height: 80),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               '다음으로 제가 데이터 계층에서 어떻게 사용하는지 기술해보겠습니다!\n데이터 계층은 아래 아래의 내용을 포함해 설명하겠습니다.',
@@ -68,6 +76,7 @@ class RepositoryPattern extends StatelessWidget {
         const SizedBox(height: 80),
 
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               '• Repository: 도메인 계층에 필요한 데이터 접근 로직을 추상화\n'
@@ -79,6 +88,7 @@ class RepositoryPattern extends StatelessWidget {
         SubtitleTextTechBlog(
           title: '이제 시작합니다!.',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
         ),
         SizedBox(height: 50),
         SizedBox(
@@ -88,6 +98,7 @@ class RepositoryPattern extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: DataFlowChart(
+                  isMobile: isMobile,
                   isBackgroundColor: isBackgroundColorWhite,
                   flowSteps: const ['Cubit'],
                 ),
@@ -98,6 +109,7 @@ class RepositoryPattern extends StatelessWidget {
         // 큐빅코드와 큐빅이 Service 파일에 넘겨주는 방법
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'Cubit은 Clean Architecture에서 Presentation 계층의 핵심입니다.\n'
@@ -110,6 +122,7 @@ class RepositoryPattern extends StatelessWidget {
           title: '''ShoppingCartCubit - Clean Architecture의 시작점''',
           language: 'dart',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
           code: r'''
 @injectable
 class ShoppingCartCubit extends Cubit<ShoppingCartState> {
@@ -170,6 +183,7 @@ class ShoppingCartCubit extends Cubit<ShoppingCartState> {
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'Cubit에서 중요한 원칙들:\n\n'
@@ -188,6 +202,7 @@ class ShoppingCartCubit extends Cubit<ShoppingCartState> {
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: DataFlowChart(
+                  isMobile: isMobile,
                   isBackgroundColor: isBackgroundColorWhite,
                   flowSteps: const ['Cubit', 'Service File'],
                 ),
@@ -198,6 +213,7 @@ class ShoppingCartCubit extends Cubit<ShoppingCartState> {
         // Service코드와 Service  파일이 Remote Repository 넘겨주는 방법
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'Service는 Repository를 조합해서 복잡한 비즈니스 로직을 처리합니다.\n'
@@ -209,6 +225,7 @@ class ShoppingCartCubit extends Cubit<ShoppingCartState> {
           title: '''CartRemoteService - 비즈니스 로직 조합''',
           language: 'dart',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
           code: r'''
 @singleton
 class CartRemoteService {
@@ -231,6 +248,7 @@ class CartRemoteService {
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'Service 계층의 역할:\n\n'
@@ -252,6 +270,7 @@ class CartRemoteService {
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: DataFlowChart(
+                  isMobile: isMobile,
                   isBackgroundColor: isBackgroundColorWhite,
                   flowSteps: const [
                     'Cubit',
@@ -265,6 +284,7 @@ class CartRemoteService {
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'Repository는 도메인 계층과 데이터 계층 사이의 경계입니다.\n'
@@ -276,6 +296,7 @@ class CartRemoteService {
           title: '''CartRemoteRepository - 데이터 접근 추상화''',
           language: 'dart',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
           code: r'''
 @singleton
 class CartRemoteRepository {
@@ -301,6 +322,7 @@ class CartRemoteRepository {
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'Repository가 중요한 이유:\n\n'
@@ -317,6 +339,7 @@ class CartRemoteRepository {
           width: double.infinity,
           constraints: const BoxConstraints(maxWidth: 800),
           child: DataFlowChart(
+            isMobile: isMobile,
             isBackgroundColor: isBackgroundColorWhite,
             flowSteps: const [
               'Cubit',
@@ -328,6 +351,7 @@ class CartRemoteRepository {
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'Remote Source는 외부 API를 호출하거나 로컬 DB에 접근하는 계층입니다.\n'
@@ -339,6 +363,7 @@ class CartRemoteRepository {
           title: '''CartRemoteSource - API 호출과 변환''',
           language: 'dart',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
           code: r'''
 @singleton
 class CartRemoteSource {
@@ -363,6 +388,7 @@ class CartRemoteSource {
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'Remote Source의 핵심 역할:\n\n'
@@ -380,6 +406,7 @@ class CartRemoteSource {
           width: double.infinity,
           constraints: const BoxConstraints(maxWidth: 800),
           child: DataFlowChart(
+            isMobile: isMobile,
             isBackgroundColor: isBackgroundColorWhite,
             flowSteps: const [
               'Cubit',
@@ -392,6 +419,7 @@ class CartRemoteSource {
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'Remote Dio Request는  HTTP,DIO 통신을 담당하는 가장 하위 계층입니다.\n'
@@ -403,6 +431,7 @@ class CartRemoteSource {
           title: '''DIO Request 함수들''',
           language: 'dart',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
           code: r'''
 // 내 장바구니 조회 DIO 요청
 Future<CartResponse> getMyCartWithDioRequest({int cacheMemory = 0}) async {
@@ -447,6 +476,7 @@ Future<RecommendedSideMenuResponse> getRecommendedSideMenuRequest(int marketId) 
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'DIO Request 계층의 책임:\n\n'
@@ -463,6 +493,7 @@ Future<RecommendedSideMenuResponse> getRecommendedSideMenuRequest(int marketId) 
           width: double.infinity,
           constraints: const BoxConstraints(maxWidth: 800),
           child: DataFlowChart(
+            isMobile: isMobile,
             isBackgroundColor: isBackgroundColorWhite,
             flowSteps: const [
               'Cubit',
@@ -476,6 +507,7 @@ Future<RecommendedSideMenuResponse> getRecommendedSideMenuRequest(int marketId) 
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'RemoteResponse는 서버에서 받은 원시 JSON 응답입니다.\n'
@@ -487,6 +519,7 @@ Future<RecommendedSideMenuResponse> getRecommendedSideMenuRequest(int marketId) 
           title: '''서버 응답 (JSON)''',
           language: 'json',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
           code: r'''
 // 장바구니 조회 API 응답
 {
@@ -524,6 +557,7 @@ Future<RecommendedSideMenuResponse> getRecommendedSideMenuRequest(int marketId) 
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'JSON 응답의 특징:\n\n'
@@ -540,6 +574,7 @@ Future<RecommendedSideMenuResponse> getRecommendedSideMenuRequest(int marketId) 
           width: double.infinity,
           constraints: const BoxConstraints(maxWidth: 800),
           child: DataFlowChart(
+            isMobile: isMobile,
             isBackgroundColor: isBackgroundColorWhite,
             flowSteps: const [
               'Cubit',
@@ -554,6 +589,7 @@ Future<RecommendedSideMenuResponse> getRecommendedSideMenuRequest(int marketId) 
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'RemoteDTO(Data Transfer Object)는 서버 응답을 구조화된 객체로 변환하는 계층입니다.\n'
@@ -565,6 +601,7 @@ Future<RecommendedSideMenuResponse> getRecommendedSideMenuRequest(int marketId) 
           title: '''CartResponse - 서버 응답을 위한 DTO''',
           language: 'dart',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
           code: r'''
 // 장바구니 조회 응답 DTO
 @freezed
@@ -637,6 +674,7 @@ class MenuResponse with _$MenuResponse {
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'RemoteDTO의 핵심 역할:\n\n'
@@ -654,6 +692,7 @@ class MenuResponse with _$MenuResponse {
           width: double.infinity,
           constraints: const BoxConstraints(maxWidth: 800),
           child: DataFlowChart(
+            isMobile: isMobile,
             isBackgroundColor: isBackgroundColorWhite,
             flowSteps: const [
               'Cubit',
@@ -669,6 +708,7 @@ class MenuResponse with _$MenuResponse {
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'Model은 앱의 도메인 계층에서 사용하는 핵심 데이터 구조입니다.\n'
@@ -680,6 +720,7 @@ class MenuResponse with _$MenuResponse {
           title: '''CartModel - 도메인을 위한 Model''',
           language: 'dart',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
           code: r'''
 // 장바구니 도메인 모델
 @freezed
@@ -734,6 +775,7 @@ class SideMenuModel with _$SideMenuModel {
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'Model과 DTO의 차이점:\n\n'
@@ -755,6 +797,7 @@ class SideMenuModel with _$SideMenuModel {
           width: double.infinity,
           constraints: const BoxConstraints(maxWidth: 800),
           child: DataFlowChart(
+            isMobile: isMobile,
             isLastStep: true,
             isBackgroundColor: isBackgroundColorWhite,
             flowSteps: const [
@@ -772,6 +815,7 @@ class SideMenuModel with _$SideMenuModel {
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               '마지막 단계입니다! JSON 응답을 DTO로 변환하고,\n'
@@ -783,6 +827,7 @@ class SideMenuModel with _$SideMenuModel {
           title: '''DTO와 Model 변환 과정''',
           language: 'dart',
           isBackgroundColor: isBackgroundColorWhite,
+          isMobile: isMobile,
           code: r'''
 // 1. JSON → DTO 변환 (CartResponse.fromJson)
 @freezed
@@ -829,6 +874,7 @@ emit(state.copyWith(
         ),
         const SizedBox(height: 30),
         StoryBlock(
+          isMobile: isMobile,
           isBackgroundColor: isBackgroundColorWhite,
           story:
               '완전한 데이터 흐름의 완성:\n\n'

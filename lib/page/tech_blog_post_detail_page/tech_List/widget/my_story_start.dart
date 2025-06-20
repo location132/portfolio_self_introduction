@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyStoryStart extends StatelessWidget {
   final bool isBackgroundColorWhite;
@@ -6,6 +7,7 @@ class MyStoryStart extends StatelessWidget {
   final String textTitle;
   final String textSubTitle;
   final String? textSubTitle2;
+  final bool isMobile;
   const MyStoryStart({
     super.key,
     required this.isBackgroundColorWhite,
@@ -13,6 +15,7 @@ class MyStoryStart extends StatelessWidget {
     required this.textTitle,
     required this.textSubTitle,
     this.textSubTitle2 = '',
+    required this.isMobile,
   });
 
   @override
@@ -23,14 +26,14 @@ class MyStoryStart extends StatelessWidget {
           color: isBackgroundColorWhite ? Colors.black : Colors.grey.shade700,
           thickness: 1,
         ),
-        const SizedBox(height: 150),
+        SizedBox(height: isMobile ? 150.h : 150),
         Center(
           key: codeExampleSectionKey,
           child: Text(
             textTitle,
             style: TextStyle(
               color: isBackgroundColorWhite ? Colors.black : Colors.white,
-              fontSize: 24,
+              fontSize: isMobile ? 20.sp : 24,
             ),
           ),
         ),
@@ -39,7 +42,7 @@ class MyStoryStart extends StatelessWidget {
             textSubTitle,
             style: TextStyle(
               color: isBackgroundColorWhite ? Colors.black : Colors.white,
-              fontSize: 24,
+              fontSize: isMobile ? 20.sp : 24,
             ),
           ),
         ),
@@ -48,11 +51,11 @@ class MyStoryStart extends StatelessWidget {
             textSubTitle2 ?? '',
             style: TextStyle(
               color: isBackgroundColorWhite ? Colors.black : Colors.white,
-              fontSize: 18,
+              fontSize: isMobile ? 16.sp : 18,
             ),
           ),
         ),
-        const SizedBox(height: 150),
+        SizedBox(height: isMobile ? 150.h : 150),
 
         Divider(
           color: isBackgroundColorWhite ? Colors.black : Colors.grey.shade700,

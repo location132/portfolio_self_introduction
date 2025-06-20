@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/repository_widget.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/post_header.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_cubit.dart';
@@ -8,10 +9,12 @@ import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_b
 class RepositoryPatternPage extends StatefulWidget {
   final Function(bool) isFocused;
   final ScrollController? scrollController;
+  final bool isMobile;
   const RepositoryPatternPage({
     super.key,
     required this.isFocused,
     this.scrollController,
+    required this.isMobile,
   });
 
   @override
@@ -50,11 +53,11 @@ class _RepositoryPatternPageState extends State<RepositoryPatternPage> {
           child: Center(
             child: Container(
               constraints: const BoxConstraints(maxWidth: 800),
-              padding: const EdgeInsets.all(24.0),
+              padding: EdgeInsets.all(widget.isMobile ? 24.0.w : 24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 100),
+                  SizedBox(height: widget.isMobile ? 100.h : 100),
                   PostHeader(
                     title: 'Repository Pattern',
                     tags: const [
@@ -79,16 +82,18 @@ class _RepositoryPatternPageState extends State<RepositoryPatternPage> {
                         '테스트하기도 훨씬 쉬워졌습니다.\n\n'
                         '제가 Flutter 프로젝트에서 Repository Pattern을 어떻게 구현하고 활용하는지 공유해보겠습니다.',
                     isBackgroundColor: state.isBackgroundColorWhite,
+                    isMobile: widget.isMobile,
                   ),
-                  const SizedBox(height: 64),
+                  SizedBox(height: widget.isMobile ? 64.h : 64),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       RepositoryPattern(
                         isBackgroundColorWhite: state.isBackgroundColorWhite,
                         codeExampleSectionKey: _codeExampleSectionKey,
+                        isMobile: widget.isMobile,
                       ),
-                      const SizedBox(height: 150),
+                      SizedBox(height: widget.isMobile ? 150.h : 150),
                     ],
                   ),
                 ],
