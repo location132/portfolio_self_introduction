@@ -43,7 +43,16 @@ class TechDetailPostSlug extends StatelessWidget {
         );
 
       case 'clean-architecture':
-        return const CleanArchitecture();
+        return BlocBuilder<TechBlogPostDetailCubit, TechBlogPostDetailState>(
+          builder: (context, state) {
+            return CleanArchitecture(
+              isFocused: (isFocused) {
+                this.isFocused(isFocused);
+              },
+              scrollController: state.scrollController,
+            );
+          },
+        );
       case 'repository-pattern':
         return _buildPlaceholderPost('Repository Pattern');
       case 'bloc-cubit':

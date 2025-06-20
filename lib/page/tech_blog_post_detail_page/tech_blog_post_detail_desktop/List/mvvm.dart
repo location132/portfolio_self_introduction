@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/code_block.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/my_story_start.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/story_block.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/title_text_tech.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/post_header.dart';
@@ -37,7 +38,7 @@ class _MvvmState extends State<Mvvm> {
               as RenderBox;
       final position = renderBox.localToGlobal(Offset.zero);
       final cubit = context.read<TechBlogPostDetailCubit>();
-      cubit.setScrollTargetOffset(position.dy - 200);
+      cubit.setScrollTargetOffset(position.dy - 250);
     }
   }
 
@@ -164,47 +165,11 @@ class _MvvmState extends State<Mvvm> {
                         ),
                       ),
                       const SizedBox(height: 30),
-                      Divider(
-                        color:
-                            state.isBackgroundColorWhite
-                                ? Colors.black
-                                : Colors.grey.shade700,
-                        thickness: 1,
-                      ),
-                      const SizedBox(height: 150),
-                      Center(
-                        key: _codeExampleSectionKey,
-                        child: Text(
-                          '정답은 아닐 수 있지만, 나만의 MVVM으로 재해석한',
-                          style: TextStyle(
-                            color:
-                                state.isBackgroundColorWhite
-                                    ? Colors.black
-                                    : Colors.white,
-                            fontSize: 24,
-                          ),
-                        ),
-                      ),
-                      Center(
-                        child: Text(
-                          '구조와 방법 지금부터 소개합니다.',
-                          style: TextStyle(
-                            color:
-                                state.isBackgroundColorWhite
-                                    ? Colors.black
-                                    : Colors.white,
-                            fontSize: 24,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 150),
-
-                      Divider(
-                        color:
-                            state.isBackgroundColorWhite
-                                ? Colors.black
-                                : Colors.grey.shade700,
-                        thickness: 1,
+                      MyStoryStart(
+                        isBackgroundColorWhite: state.isBackgroundColorWhite,
+                        codeExampleSectionKey: _codeExampleSectionKey,
+                        textTitle: '정답은 아닐 수 있지만, 나만의 MVVM으로 재해석한',
+                        textSubTitle: '구조와 방법 지금부터 소개합니다.',
                       ),
                       const SizedBox(height: 30),
                       TitleTextTechBlog(
