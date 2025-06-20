@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/code_block.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/data_flow_chart.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/my_story_start.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/story_block.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/subtitle_text_tech.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/title_text_tech.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/code_block.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/data_flow_chart.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/my_story_start.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/story_block.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/subtitle_text_tech.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/title_text_tech.dart';
 
 class RepositoryPattern extends StatelessWidget {
   final bool isBackgroundColorWhite;

@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/story_block.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/code_block.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/subtitle_text_tech.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/title_text_tech.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/story_block.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/code_block.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/subtitle_text_tech.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/title_text_tech.dart';
 
-class PresentationLayerMobile extends StatelessWidget {
+class PresentationLayer extends StatelessWidget {
   final bool isBackgroundColorWhite;
 
-  const PresentationLayerMobile({
-    super.key,
-    required this.isBackgroundColorWhite,
-  });
+  const PresentationLayer({super.key, required this.isBackgroundColorWhite});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +19,7 @@ class PresentationLayerMobile extends StatelessWidget {
           title: 'Presentation (UI) 계층',
           isBackgroundColor: isBackgroundColorWhite,
         ),
-        SizedBox(height: 30.h),
+        const SizedBox(height: 30),
 
         // Presentation Layer 설명
         StoryBlock(
@@ -34,14 +30,14 @@ class PresentationLayerMobile extends StatelessWidget {
               '이 계층의 핵심은 "어떻게 보여줄 것인가"에 집중하면서도,\n'
               '비즈니스 로직은 내부 계층에 위임하는 것입니다.',
         ),
-        SizedBox(height: 80.h),
+        const SizedBox(height: 80),
 
         // Cubit (상태 관리)
         SubtitleTextTechBlog(
           title: 'Cubit (상태 관리)',
           isBackgroundColor: isBackgroundColorWhite,
         ),
-        SizedBox(height: 30.h),
+        const SizedBox(height: 30),
         StoryBlock(
           isBackgroundColor: isBackgroundColorWhite,
           story:
@@ -49,7 +45,7 @@ class PresentationLayerMobile extends StatelessWidget {
               '비즈니스 로직은 Service 계층에 위임하고, 순수하게 상태 변화만 담당합니다.\n\n'
               '프로젝트의 Desktop Cubit 구현을 보겠습니다.',
         ),
-        SizedBox(height: 30.h),
+        const SizedBox(height: 30),
 
         CodeBlock(
           title: '''DesktopCubit - 프로젝트 상태 관리''',
@@ -149,7 +145,7 @@ class DesktopCubit extends Cubit<DesktopState> {
 }
 ''',
         ),
-        SizedBox(height: 30.h),
+        const SizedBox(height: 30),
         StoryBlock(
           isBackgroundColor: isBackgroundColorWhite,
           story:
@@ -161,21 +157,21 @@ class DesktopCubit extends Cubit<DesktopState> {
               '제 코드 스타일은 복잡한 비즈니스 로직은 Service에 위임하고,\n'
               'Cubit은 상태 변화에만 집중합니다.',
         ),
-        SizedBox(height: 80.h),
+        const SizedBox(height: 80),
 
         // State 클래스
         SubtitleTextTechBlog(
           title: 'State 클래스',
           isBackgroundColor: isBackgroundColorWhite,
         ),
-        SizedBox(height: 30.h),
+        const SizedBox(height: 30),
         StoryBlock(
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'State 클래스는 UI가 보여줄 상태를 정의합니다.\n'
               'freezed를 사용해 불변성을 보장하고, copyWith로 안전한 상태 변경을 제공합니다.',
         ),
-        SizedBox(height: 30.h),
+        const SizedBox(height: 30),
 
         CodeBlock(
           title: '''DesktopState - 프로젝트 상태 정의''',
@@ -197,7 +193,7 @@ class DesktopState with _$DesktopState {
 }
 ''',
         ),
-        SizedBox(height: 30.h),
+        const SizedBox(height: 30),
         StoryBlock(
           isBackgroundColor: isBackgroundColorWhite,
           story:
@@ -223,7 +219,7 @@ class DesktopState with _$DesktopState {
               'View는 UI 렌더링과 상태 반응을 담당합니다.\n\n'
               '이 구조를 통해 관심사 분리와 재사용성을 높였습니다.',
         ),
-        SizedBox(height: 30.h),
+        const SizedBox(height: 30),
 
         CodeBlock(
           title: '''DesktopPage - Page 계층 (BlocProvider 설정)''',
@@ -376,7 +372,7 @@ class _BannerViewState extends State<BannerView> {
 }
 ''',
         ),
-        SizedBox(height: 30.h),
+        const SizedBox(height: 30),
         StoryBlock(
           isBackgroundColor: isBackgroundColorWhite,
           story:
@@ -388,14 +384,14 @@ class _BannerViewState extends State<BannerView> {
               '✅ View는 재사용 가능한 컴포넌트로 활용됩니다\n'
               '✅ 테스트 시 각 계층을 독립적으로 검증 가능합니다\n\n',
         ),
-        SizedBox(height: 80.h),
+        const SizedBox(height: 80),
 
         // 의존성 주입
         SubtitleTextTechBlog(
           title: '의존성 주입 (Dependency Injection)',
           isBackgroundColor: isBackgroundColorWhite,
         ),
-        SizedBox(height: 30.h),
+        const SizedBox(height: 30),
         StoryBlock(
           isBackgroundColor: isBackgroundColorWhite,
           story:
@@ -403,7 +399,7 @@ class _BannerViewState extends State<BannerView> {
               '각 계층이 구체적인 구현이 아닌 추상화에 의존하도록 만듭니다.\n\n'
               '제 프로젝트에서는 GetIt과 injectable을 사용합니다.',
         ),
-        SizedBox(height: 30.h),
+        const SizedBox(height: 30),
 
         CodeBlock(
           title: '''프로젝트 의존성 주입 설정''',
@@ -464,7 +460,7 @@ class DesktopCubit extends Cubit<DesktopState> {
 }
 ''',
         ),
-        SizedBox(height: 30.h),
+        const SizedBox(height: 30),
         StoryBlock(
           isBackgroundColor: isBackgroundColorWhite,
           story:
@@ -474,12 +470,12 @@ class DesktopCubit extends Cubit<DesktopState> {
               '✅ 생명주기 관리: factory와 singleton 패턴을 지원합니다\n'
               '✅ 테스트 친화적: Mock 객체로 쉽게 단위 테스트 가능합니다\n\n',
         ),
-        SizedBox(height: 180.h),
+        const SizedBox(height: 180),
         TitleTextTechBlog(
           title: '긴 글을 마치며',
           isBackgroundColor: isBackgroundColorWhite,
         ),
-        SizedBox(height: 30.h),
+        const SizedBox(height: 30),
         StoryBlock(
           story:
               '제가 작성한 코드 절대 정답이 아닙니다.\n'

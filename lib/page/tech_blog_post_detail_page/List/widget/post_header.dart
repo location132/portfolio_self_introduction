@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_mobile/List/widget/hash_tags_mobile.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/hash_tags.dart';
 
-class PostHeaderMobile extends StatelessWidget {
+class PostHeader extends StatelessWidget {
   final String title;
   final List<String> tags;
   final String content;
   final bool isBackgroundColor;
 
-  const PostHeaderMobile({
+  const PostHeader({
     super.key,
     required this.title,
     required this.tags,
@@ -25,47 +24,47 @@ class PostHeaderMobile extends StatelessWidget {
           title,
           style: TextStyle(
             color: isBackgroundColor ? Colors.black : Colors.white,
-            fontSize: 48.sp,
+            fontSize: 48,
             fontWeight: FontWeight.w700,
-            letterSpacing: -1.0.sp,
+            letterSpacing: -1.0,
           ),
         ),
-        SizedBox(height: 80.h),
+        const SizedBox(height: 80),
         Text(
           '시작하기 전에',
           style: TextStyle(
             color: isBackgroundColor ? Colors.black : Colors.white,
-            fontSize: 16.sp,
+            fontSize: 16,
             fontWeight: FontWeight.w500,
           ),
         ),
-        SizedBox(height: 16.h),
+        const SizedBox(height: 16),
 
         Container(
           width: double.infinity,
-          padding: EdgeInsets.all(24.w),
+          padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
             color: Colors.grey.shade900.withValues(alpha: 0.6),
-            borderRadius: BorderRadius.circular(12.r),
-            border: Border.all(color: Colors.grey.shade800, width: 1.w),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.grey.shade800, width: 1),
           ),
           child: Text(
             content,
             style: TextStyle(
               color: isBackgroundColor ? Colors.grey.shade300 : Colors.white,
-              fontSize: 16.sp,
+              fontSize: 16,
               fontWeight: FontWeight.w400,
               height: 1.7,
             ),
           ),
         ),
-        SizedBox(height: 48.h),
+        const SizedBox(height: 48),
 
-        Center(child: HashTagsMobile(tags: tags)),
-        SizedBox(height: 28.h),
+        Center(child: HashTags(tags: tags)),
+        const SizedBox(height: 28),
 
         Container(
-          height: 2.h,
+          height: 2,
           width: double.infinity,
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -77,7 +76,7 @@ class PostHeaderMobile extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 48.h),
+        const SizedBox(height: 48),
       ],
     );
   }
