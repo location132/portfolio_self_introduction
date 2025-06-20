@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/hash_tags.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/hash_tags.dart';
 
 class PostHeader extends StatelessWidget {
   final String title;

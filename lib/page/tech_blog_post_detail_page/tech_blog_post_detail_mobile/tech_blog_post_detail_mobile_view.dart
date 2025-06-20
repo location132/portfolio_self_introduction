@@ -72,6 +72,7 @@ class TechBlogPostDetailMobileView extends StatelessWidget {
                     ),
                   ),
                   TechDetailPostSlug(
+                    isMobile: true,
                     postSlug: postSlug,
                     isFocused: (isFocused) {
                       context.read<TechBlogPostDetailCubit>().togglePlayerFocus(

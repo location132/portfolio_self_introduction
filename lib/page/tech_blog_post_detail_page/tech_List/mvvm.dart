@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/code_block.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/my_story_start.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/story_block.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/title_text_tech.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/post_header.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/widget/expandable_content.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/code_block.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/my_story_start.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/story_block.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/title_text_tech.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/post_header.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/expandable_content.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_cubit.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_state.dart';
 
 class Mvvm extends StatefulWidget {
   final Function(bool) isFocused;
   final ScrollController? scrollController;
-  const Mvvm({super.key, required this.isFocused, this.scrollController});
+  final bool isMobile;
+  const Mvvm({
+    super.key,
+    required this.isFocused,
+    this.scrollController,
+    required this.isMobile,
+  });
 
   @override
   State<Mvvm> createState() => _MvvmState();

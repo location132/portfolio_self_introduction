@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/clean_architecture.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/mvvm.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/List/repository_pattern.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/clean_architecture.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/mvvm.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/repository_pattern.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_cubit.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_state.dart';
 
@@ -10,12 +10,14 @@ class TechDetailPostSlug extends StatelessWidget {
   final Function(bool) isFocused;
   final String postSlug;
   final bool isBackgroundColor;
+  final bool isMobile;
 
   const TechDetailPostSlug({
     super.key,
     required this.postSlug,
     required this.isFocused,
     required this.isBackgroundColor,
+    this.isMobile = false,
   });
 
   @override
@@ -35,6 +37,7 @@ class TechDetailPostSlug extends StatelessWidget {
         return BlocBuilder<TechBlogPostDetailCubit, TechBlogPostDetailState>(
           builder: (context, state) {
             return Mvvm(
+              isMobile: isMobile,
               isFocused: (isFocused) {
                 this.isFocused(isFocused);
               },
