@@ -21,7 +21,7 @@ class MobileProjectContents extends StatelessWidget {
             'Clean Architecture',
             'Repository Pattern',
             'BLoC / Cubit',
-            'Provider (보조 상태 관리로 사용)',
+            'Provider (단점만 모아보기?)',
             'Dependency Injection (GetIt + Injectable)',
           ],
           bottomDescription: '위 기술을 클릭해주세요\n패턴을 자세하게 볼 수 있어요',

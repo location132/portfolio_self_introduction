@@ -767,11 +767,11 @@ class SideMenuModel with _$SideMenuModel {
           isBackgroundColor: isBackgroundColorWhite,
           story:
               'Model과 DTO의 차이점:\n\n'
-              '✅ **Model**: 비즈니스 로직에 최적화된 구조\n'
+              '✅ Model: 비즈니스 로직에 최적화된 구조\n'
               '  • UI에서 직접 사용하기 편한 형태\n'
               '  • 필수/선택 필드가 비즈니스 요구사항에 맞게 설계\n'
               '  • 도메인 규칙과 제약사항 반영\n\n'
-              '✅ **DTO**: 서버 통신에 최적화된 구조\n'
+              '✅ DTO: 서버 통신에 최적화된 구조\n'
               '  • 서버 API 스펙을 그대로 반영\n'
               '  • JSON 직렬화/역직렬화에 특화\n'
               '  • 서버 변경사항의 영향을 DTO에서 흡수\n\n'

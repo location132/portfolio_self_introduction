@@ -31,7 +31,7 @@ class _BlocCubitPageState extends State<BlocCubitPage> {
   @override
   void initState() {
     super.initState();
-    // widget.isFocused(true);
+    widget.isFocused(true);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _calculateScrollOffset();
     });
@@ -45,7 +45,7 @@ class _BlocCubitPageState extends State<BlocCubitPage> {
       final position = renderBox.localToGlobal(Offset.zero);
       final cubit = context.read<TechBlogPostDetailCubit>();
       if (widget.isMobile) {
-        cubit.setScrollTargetOffset(position.dy - 0);
+        cubit.setScrollTargetOffset(position.dy - 100);
       } else {
         cubit.setScrollTargetOffset(position.dy - 250);
       }

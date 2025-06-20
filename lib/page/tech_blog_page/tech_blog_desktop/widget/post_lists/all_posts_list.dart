@@ -52,7 +52,7 @@ class AllPostsList extends StatelessWidget {
               const SizedBox(height: 40),
               TechPostTitle(
                 number: 5,
-                title: 'Provider (보조 상태 관리로 사용)',
+                title: 'Provider (단점만 모아보기?)',
                 tags: '#Provider  #State Management  #Context',
                 onTap: () => context.go('/tech-blog/post/provider'),
               ),

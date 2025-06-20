@@ -4,6 +4,7 @@ import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_L
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/mvvm.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/repository_pattern.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/bloc_cubit.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/provider.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_cubit.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_state.dart';
 
@@ -84,7 +85,17 @@ class TechDetailPostSlug extends StatelessWidget {
           },
         );
       case 'provider':
-        return _buildPlaceholderPost('Provider');
+        return BlocBuilder<TechBlogPostDetailCubit, TechBlogPostDetailState>(
+          builder: (context, state) {
+            return ProviderPage(
+              isMobile: isMobile,
+              isFocused: (isFocused) {
+                this.isFocused(isFocused);
+              },
+              scrollController: state.scrollController,
+            );
+          },
+        );
       case 'dependency-injection':
         return _buildPlaceholderPost('Dependency Injection');
       case 'freezed':
