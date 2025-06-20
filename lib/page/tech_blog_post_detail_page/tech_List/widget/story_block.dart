@@ -5,17 +5,22 @@ class StoryBlock extends StatelessWidget {
   final String story;
   final bool isBackgroundColor;
   final bool isMobile;
+  final bool isPadding;
   const StoryBlock({
     super.key,
     required this.story,
     this.isBackgroundColor = false,
     required this.isMobile,
+    this.isPadding = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: isMobile ? 20.w : 20),
+      padding:
+          isPadding
+              ? EdgeInsets.only(left: isMobile ? 20.w : 20)
+              : EdgeInsets.zero,
       child: Text(
         story,
         style: TextStyle(
