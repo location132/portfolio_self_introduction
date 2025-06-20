@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/repository_pattern.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/repository_widget.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/domain_layer.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/presentation_layer.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/widget/title_text_tech.dart';
@@ -28,8 +28,7 @@ class _CleanArchitectureState extends State<CleanArchitecture> {
   @override
   void initState() {
     super.initState();
-    // widget.isFocused(true);
-
+    widget.isFocused(true);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _calculateScrollOffset();
     });

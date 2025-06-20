@@ -31,8 +31,7 @@ class _CleanArchitectureMobileState extends State<CleanArchitectureMobile> {
   @override
   void initState() {
     super.initState();
-    // widget.isFocused(true);
-
+    widget.isFocused(true);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _calculateScrollOffset();
     });

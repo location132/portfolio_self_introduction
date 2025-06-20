@@ -9,16 +9,16 @@ import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_b
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_state.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Mvvm extends StatefulWidget {
+class MvvmMobile extends StatefulWidget {
   final Function(bool) isFocused;
   final ScrollController? scrollController;
-  const Mvvm({super.key, required this.isFocused, this.scrollController});
+  const MvvmMobile({super.key, required this.isFocused, this.scrollController});
 
   @override
-  State<Mvvm> createState() => _MvvmState();
+  State<MvvmMobile> createState() => _MvvmMobileState();
 }
 
-class _MvvmState extends State<Mvvm> {
+class _MvvmMobileState extends State<MvvmMobile> {
   final GlobalKey _codeExampleSectionKey = GlobalKey();
 
   @override
@@ -38,7 +38,7 @@ class _MvvmState extends State<Mvvm> {
               as RenderBox;
       final position = renderBox.localToGlobal(Offset.zero);
       final cubit = context.read<TechBlogPostDetailCubit>();
-      cubit.setScrollTargetOffset(position.dy - 200);
+      cubit.setScrollTargetOffset(position.dy);
     }
   }
 

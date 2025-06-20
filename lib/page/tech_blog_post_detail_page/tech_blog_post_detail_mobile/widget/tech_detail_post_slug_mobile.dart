@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/clean_architecture.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/mvvm.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/List/repository_pattern.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_cubit.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_mobile/List/clean_architecture_mobile.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_mobile/List/mvvm_mobile.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_state.dart';
 
-class TechDetailPostSlug extends StatelessWidget {
+class TechDetailPostSlugMobile extends StatelessWidget {
   final Function(bool) isFocused;
   final String postSlug;
   final bool isBackgroundColor;
 
-  const TechDetailPostSlug({
+  const TechDetailPostSlugMobile({
     super.key,
     required this.postSlug,
     required this.isFocused,
@@ -34,7 +34,7 @@ class TechDetailPostSlug extends StatelessWidget {
       case 'mvvm':
         return BlocBuilder<TechBlogPostDetailCubit, TechBlogPostDetailState>(
           builder: (context, state) {
-            return Mvvm(
+            return MvvmMobile(
               isFocused: (isFocused) {
                 this.isFocused(isFocused);
               },
@@ -46,7 +46,7 @@ class TechDetailPostSlug extends StatelessWidget {
       case 'clean-architecture':
         return BlocBuilder<TechBlogPostDetailCubit, TechBlogPostDetailState>(
           builder: (context, state) {
-            return CleanArchitecture(
+            return CleanArchitectureMobile(
               isFocused: (isFocused) {
                 this.isFocused(isFocused);
               },
