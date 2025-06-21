@@ -46,7 +46,7 @@ class _ProviderPageState extends State<ProviderPage> {
       final position = renderBox.localToGlobal(Offset.zero);
       final cubit = context.read<TechBlogPostDetailCubit>();
       if (widget.isMobile) {
-        cubit.setScrollTargetOffset(position.dy - 100);
+        cubit.setScrollTargetOffset(position.dy - 0);
       } else {
         cubit.setScrollTargetOffset(position.dy - 250);
       }
