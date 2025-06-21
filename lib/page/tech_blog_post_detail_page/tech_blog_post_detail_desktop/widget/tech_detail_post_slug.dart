@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/clean_architecture.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/dependency_injection/dependency_injection_view.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/dependency_injection_view.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/mvvm.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/repository_pattern.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/bloc_cubit.dart';
