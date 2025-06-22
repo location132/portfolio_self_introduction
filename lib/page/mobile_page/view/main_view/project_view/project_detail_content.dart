@@ -156,7 +156,6 @@ class ProjectDetailContent extends StatelessWidget {
               if (project['title'] == '잎사이') {
                 context.go('/project-detail/ifsai');
               } else {
-                // 다른 프로젝트들은 스케줄 페이지로 이동
                 context.go('/schedule');
               }
             },

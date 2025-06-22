@@ -63,12 +63,11 @@ class _WebProjectCardState extends State<WebProjectCard> {
       opacity: widget.isVisible ? 1.0 : 0.0,
       duration: const Duration(milliseconds: 200),
       child: SizedBox(
-        width: 1050, // 전체 너비 고정
+        width: 1050,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min, // Column 크기 최소화
+          mainAxisSize: MainAxisSize.min,
           children: [
-            // 배지 추가
             Container(
               margin: const EdgeInsets.only(left: 12, bottom: 8),
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -87,11 +86,11 @@ class _WebProjectCardState extends State<WebProjectCard> {
               ),
             ),
             Flexible(
-              // 웹 프로젝트 카드를 Flexible로 감싸기
               child: MouseRegion(
                 onEnter: (_) => _onHover(true),
                 onExit: (_) => _onHover(false),
-                cursor: SystemMouseCursors.basic, // 클릭 비활성화
+                cursor: SystemMouseCursors.basic,
+
                 child: GestureDetector(
                   onTap: () => _onProjectTap(context),
                   child: AnimatedContainer(
@@ -108,7 +107,7 @@ class _WebProjectCardState extends State<WebProjectCard> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(16),
                       child: AspectRatio(
-                        aspectRatio: 1030 / 580, // 배지 공간을 고려한 비율 조정
+                        aspectRatio: 1030 / 580,
                         child: Stack(
                           fit: StackFit.expand,
                           children: [
