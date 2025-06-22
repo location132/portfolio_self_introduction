@@ -6,6 +6,7 @@ class GeneralProjectsMobileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('GeneralProjectsMobileView');
     return const Column(
       children: [
         GeneralProjectMobileItem(
@@ -22,7 +23,7 @@ class GeneralProjectsMobileView extends StatelessWidget {
         ),
         GeneralProjectMobileItem(
           date: '9월 14일',
-          title: '구름 × 카카오 × 인프런',
+          title: '구름 x 카카오 x 인프런',
           description:
               '웹과 앱 그리고 서버개발자가 하나의 팀으로.\n부트캠프에서 우수상까지 올라간 나의 Flutter 첫 프로젝트. 9월 14일에 오픈됩니다.',
         ),

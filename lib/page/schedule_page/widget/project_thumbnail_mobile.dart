@@ -21,7 +21,7 @@ class _ProjectThumbnailMobileState extends State<ProjectThumbnailMobile> {
         return isHovered
             ? 'assets/Images/project_img/Klang_2.png'
             : 'assets/Images/project_img/Klang_1.png';
-      case '구름 × 카카오 × 인프런':
+      case '구름 x 카카오 x 인프런':
         return isHovered
             ? 'assets/Images/project_img/groom_2.png'
             : 'assets/Images/project_img/groom_1.png';
@@ -43,10 +43,10 @@ class _ProjectThumbnailMobileState extends State<ProjectThumbnailMobile> {
 
     if (widget.title == 'Flutter Web') {
       width = 200.w;
-      height = 120.h;
+      height = 160.h;
     } else {
-      width = 140.w;
-      height = 100.h;
+      width = 200.w;
+      height = 400.h;
     }
 
     return Container(
