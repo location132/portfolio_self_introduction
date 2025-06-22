@@ -70,17 +70,21 @@ class ProjectDetailContent extends StatelessWidget {
         projects = [
           {
             'title': 'About Me - With myDream',
-            'tech':
+            'description':
                 '사용자의 마우스 호버에 반응해 원하는 챕터로 이동할 수 있도록 만든 첫 Rive 프로젝트입니다. 0.2초 단위까지 정밀하게 조정해 섬세한 전환 타이밍을 구현했습니다.',
+            'tech': '',
           },
           {
             'title': 'MySkill - in Web',
-            'tech':
+            'description':
                 '총 4일간 제작한 가장 긴 애니메이션으로, 초기 진입부터 부드러운 화면 전환이 이어지며, 클릭과 호버에 맞춰 스킬이 나타나는 구조입니다.',
+            'tech': '',
           },
           {
             'title': 'Detail Me',
-            'tech': '빈 화면에서 핸드폰이 나타나고, 사용자가 원하는 구성으로 내용을 꾸밀 수 있도록 설계된 구조입니다.',
+            'description':
+                '빈 화면에서 핸드폰이 나타나고, 사용자가 원하는 구성으로 내용을 꾸밀 수 있도록 설계된 구조입니다.',
+            'tech': '',
           },
         ];
         break;

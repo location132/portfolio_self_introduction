@@ -108,7 +108,7 @@ class ScheduleTechBlogSection extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              '곧 오픈됩니다.\n\n기술 블로그',
+              '곧 오픈됩니다.\n기술 블로그',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20.sp,
