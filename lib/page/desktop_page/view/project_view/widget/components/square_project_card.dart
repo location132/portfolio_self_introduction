@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SquareProjectCard extends StatefulWidget {
   final Map<String, String> project;
@@ -28,7 +29,7 @@ class _SquareProjectCardState extends State<SquareProjectCard> {
   }
 
   void _onProjectTap(BuildContext context) {
-    return;
+    context.go('/schedule');
   }
 
   String _getImagePath() {
@@ -40,6 +41,23 @@ class _SquareProjectCardState extends State<SquareProjectCard> {
       return 'assets/Images/project_img/idus_logo.png';
     }
     return 'assets/Images/project_img/rive_flutter.png';
+  }
+
+  String _getUploadDate() {
+    final title = widget.project['title'] ?? '';
+
+    if (title == 'About Me - With myDream' ||
+        title == 'MySkill - in Web' ||
+        title == 'Detail Me') {
+      return '11월 10일 업로드 예정';
+    } else if (title == 'NaverMap') {
+      return '7월 16일 업로드 예정';
+    } else if (title == '클랭(KLANG)') {
+      return '8월 20일 업로드 예정';
+    } else if (title == '구름 x 카카오 x 인프런') {
+      return '9월 14일 업로드 예정';
+    }
+    return '업로드 예정';
   }
 
   @override
@@ -61,9 +79,9 @@ class _SquareProjectCardState extends State<SquareProjectCard> {
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: Colors.grey, width: 1),
               ),
-              child: const Text(
-                '업로드 예정',
-                style: TextStyle(
+              child: Text(
+                _getUploadDate(),
+                style: const TextStyle(
                   fontSize: 10,
                   color: Colors.grey,
                   fontWeight: FontWeight.w600,
@@ -74,7 +92,7 @@ class _SquareProjectCardState extends State<SquareProjectCard> {
               child: MouseRegion(
                 onEnter: (_) => _onHover(true),
                 onExit: (_) => _onHover(false),
-                cursor: SystemMouseCursors.basic,
+                cursor: SystemMouseCursors.click,
                 child: GestureDetector(
                   onTap: () => _onProjectTap(context),
                   child: AnimatedContainer(

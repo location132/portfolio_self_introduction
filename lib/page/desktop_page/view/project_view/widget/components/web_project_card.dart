@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class WebProjectCard extends StatefulWidget {
   final bool isVisible;
@@ -19,7 +20,7 @@ class _WebProjectCardState extends State<WebProjectCard> {
   }
 
   void _onProjectTap(BuildContext context) {
-    return;
+    context.go('/schedule');
   }
 
   String _getImagePath(bool isHovered) {
@@ -77,7 +78,7 @@ class _WebProjectCardState extends State<WebProjectCard> {
                 border: Border.all(color: Colors.grey, width: 1),
               ),
               child: const Text(
-                '업로드 예정',
+                '10월 20일 업로드 예정',
                 style: TextStyle(
                   fontSize: 10,
                   color: Colors.grey,
@@ -89,7 +90,7 @@ class _WebProjectCardState extends State<WebProjectCard> {
               child: MouseRegion(
                 onEnter: (_) => _onHover(true),
                 onExit: (_) => _onHover(false),
-                cursor: SystemMouseCursors.basic,
+                cursor: SystemMouseCursors.click,
 
                 child: GestureDetector(
                   onTap: () => _onProjectTap(context),

@@ -49,6 +49,8 @@ class _ProjectCardState extends State<ProjectCard> {
         return '8월 20일 업로드 예정';
       case '구름 x 카카오 x 인프런':
         return '9월 14일 업로드 예정';
+      case '모바일 웹 프로젝트':
+        return '10월 20일 업로드 예정';
       case '악보 넘기기':
         return '곧 시작합니다!';
       case 'CCTV View':
@@ -82,7 +84,6 @@ class _ProjectCardState extends State<ProjectCard> {
     if (title == '잎사이') {
       route = '/project/ifsai';
     } else {
-      // 다른 프로젝트들은 스케줄 페이지로 이동
       route = '/schedule';
     }
 

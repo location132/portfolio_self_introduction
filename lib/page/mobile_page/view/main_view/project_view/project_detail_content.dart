@@ -302,6 +302,29 @@ class ProjectDetailContent extends StatelessWidget {
                             ),
                           ),
                         ),
+                      if (project['title'] == 'About Me - With myDream' ||
+                          project['title'] == 'MySkill - in Web' ||
+                          project['title'] == 'Detail Me')
+                        Container(
+                          margin: EdgeInsets.only(right: 8.w),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 12.w,
+                            vertical: 8.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(12.r),
+                            border: Border.all(color: Colors.grey, width: 1),
+                          ),
+                          child: Text(
+                            '11월 10일 업로드 예정',
+                            style: TextStyle(
+                              fontSize: 9.sp,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
                       Expanded(
                         child: Text(
                           project['title']!,
