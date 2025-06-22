@@ -2,21 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TechPostTitle extends StatelessWidget {
+  final bool isUpload;
   final String title;
   final String tags;
   final int number;
   final VoidCallback? onTap;
   final Function(String)? onHover;
   final VoidCallback? onHoverExit;
+  final String? uploadDate;
+  final bool isCompleted;
 
   const TechPostTitle({
     super.key,
+    this.isUpload = false,
     required this.title,
     required this.tags,
     required this.number,
     this.onTap,
     this.onHover,
     this.onHoverExit,
+    this.uploadDate,
+    this.isCompleted = false,
   });
 
   @override
@@ -49,19 +55,58 @@ class TechPostTitle extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        title,
-                        style: GoogleFonts.montserrat(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              title,
+                              style: GoogleFonts.montserrat(
+                                color:
+                                    isUpload
+                                        ? Colors.white
+                                        : Colors.grey.shade600,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          if (uploadDate != null && !isCompleted) ...[
+                            const SizedBox(width: 8),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade600.withValues(
+                                  alpha: 0.1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(
+                                  color: Colors.grey.shade600,
+                                  width: 1,
+                                ),
+                              ),
+                              child: Text(
+                                '$uploadDate 업로드 예정',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey.shade600,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ],
                       ),
                       const SizedBox(height: 6),
                       Text(
                         tags,
                         style: GoogleFonts.montserrat(
-                          color: Colors.grey.shade400,
+                          color:
+                              isUpload
+                                  ? Colors.grey.shade400
+                                  : Colors.grey.shade600,
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                         ),
