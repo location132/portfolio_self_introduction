@@ -6,6 +6,7 @@ import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_L
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/repository_pattern.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/bloc_cubit.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/provider.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/freezed.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_cubit.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_state.dart';
 
@@ -110,7 +111,17 @@ class TechDetailPostSlug extends StatelessWidget {
           },
         );
       case 'freezed':
-        return _buildPlaceholderPost('Freezed');
+        return BlocBuilder<TechBlogPostDetailCubit, TechBlogPostDetailState>(
+          builder: (context, state) {
+            return FreezedPage(
+              isMobile: isMobile,
+              isFocused: (isFocused) {
+                this.isFocused(isFocused);
+              },
+              scrollController: state.scrollController ?? ScrollController(),
+            );
+          },
+        );
       case 'json-serializable':
         return _buildPlaceholderPost('JSON Serializable');
       case 'isar':

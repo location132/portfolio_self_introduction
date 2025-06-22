@@ -33,7 +33,7 @@ class _DependencyInjectionViewState extends State<DependencyInjectionView> {
   @override
   void initState() {
     super.initState();
-    // widget.isFocused(true);
+    widget.isFocused(true);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _calculateScrollOffset();
     });
@@ -1009,7 +1009,6 @@ class OrderService {
   }
 }
 
-// DI가 자동으로 처리하는 복잡한 의존성 체인:
 // di<NaverMapCubit>()
 //  1. LocationService 생성 및 주입
 //  2. NaverMapDio → NaverMapRemoteSource → NaverMapLocalSource → 
