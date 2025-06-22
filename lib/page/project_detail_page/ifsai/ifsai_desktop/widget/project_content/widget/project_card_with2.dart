@@ -9,6 +9,7 @@ class ProjectCardWith2 extends StatelessWidget {
   final List<String> techStack;
   final String bottomDescription;
   final bool isCardStarted;
+  final Function(String)? onTechStackTap;
 
   const ProjectCardWith2({
     super.key,
@@ -18,6 +19,7 @@ class ProjectCardWith2 extends StatelessWidget {
     required this.techStack,
     required this.bottomDescription,
     required this.isCardStarted,
+    this.onTechStackTap,
   });
 
   @override
@@ -41,6 +43,7 @@ class ProjectCardWith2 extends StatelessWidget {
                 bottomDescription: bottomDescription,
                 isCardStarted: isCardStarted,
                 isReversed: true,
+                onTechStackTap: onTechStackTap,
               )
               : ProjectColumnLayout(
                 imagePath: imagePath,
@@ -49,6 +52,7 @@ class ProjectCardWith2 extends StatelessWidget {
                 techStack: techStack,
                 bottomDescription: bottomDescription,
                 isCardStarted: isCardStarted,
+                onTechStackTap: onTechStackTap,
               ),
     );
   }

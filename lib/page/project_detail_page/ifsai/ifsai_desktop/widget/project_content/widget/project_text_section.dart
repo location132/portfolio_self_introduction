@@ -8,6 +8,7 @@ class ProjectTextSection extends StatelessWidget {
   final bool isCardStarted;
   final double width;
   final bool isCenter;
+  final Function(String)? onTechStackTap;
 
   const ProjectTextSection({
     super.key,
@@ -17,6 +18,7 @@ class ProjectTextSection extends StatelessWidget {
     required this.isCardStarted,
     required this.width,
     this.isCenter = false,
+    this.onTechStackTap,
   });
 
   @override
@@ -43,14 +45,30 @@ class ProjectTextSection extends StatelessWidget {
             ...techStack.map(
               (tech) => Padding(
                 padding: EdgeInsets.only(bottom: 12),
-                child: Text(
-                  '• $tech',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    height: 1.3,
-                  ),
-                ),
+                child:
+                    onTechStackTap != null
+                        ? MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () => onTechStackTap!(tech),
+                            child: Text(
+                              '• $tech',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                height: 1.3,
+                              ),
+                            ),
+                          ),
+                        )
+                        : Text(
+                          '• $tech',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            height: 1.3,
+                          ),
+                        ),
               ),
             ),
             SizedBox(height: 40),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_desktop/ifsai_state.dart';
@@ -471,5 +472,54 @@ class IfsaiCubit extends Cubit<IfsaiState> {
       return;
     }
     emit(state.copyWith(isBackgroundFeatureVisible: true));
+  }
+
+  void navigateToTechBlog(BuildContext context, String techName) {
+    String route;
+    switch (techName) {
+      case 'MVVM':
+        route = '/tech-blog/post/mvvm';
+        break;
+      case 'Clean Architecture':
+        route = '/tech-blog/post/clean-architecture';
+        break;
+      case 'Repository Pattern':
+        route = '/tech-blog/post/repository-pattern';
+        break;
+      case 'BLoC / Cubit':
+        route = '/tech-blog/post/bloc-cubit';
+        break;
+      case 'Provider (단점만 모아보기?)':
+        route = '/tech-blog/post/provider';
+        break;
+      case 'Dependency Injection (GetIt + Injectable)':
+        route = '/tech-blog/post/dependency-injection';
+        break;
+      default:
+        route = '/tech-blog';
+        break;
+    }
+    context.go(route);
+  }
+
+  void navigateToTechBlogCard2(BuildContext context, String techName) {
+    String route;
+    switch (techName) {
+      case 'Freezed':
+        route = '/tech-blog/post/freezed';
+        break;
+      case 'json_serializable\n  json_annotation 자동 JSON 직렬화':
+        route = '/tech-blog/post/json-serializable';
+        break;
+      case 'Isar 로컬 NoSQL DB':
+      case 'SharedPreferences\n  Flutter Secure Storage 로컬 캐싱':
+      case 'MemoryCache\n  Dio Cache Interceptor - 메모리 및 네트워크 캐싱':
+        route = '/schedule';
+        break;
+      default:
+        route = '/tech-blog';
+        break;
+    }
+    context.go(route);
   }
 }

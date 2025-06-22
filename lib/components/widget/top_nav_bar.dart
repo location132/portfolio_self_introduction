@@ -41,7 +41,6 @@ class TopNavBar extends StatelessWidget {
               const NavItem(title: TextConstants.topNavBar2),
               const NavItem(title: TextConstants.topNavBar3),
               const NavItem(title: TextConstants.topNavBar4),
-              const NavItem(title: TextConstants.topNavBar5),
             ],
           ),
         ),

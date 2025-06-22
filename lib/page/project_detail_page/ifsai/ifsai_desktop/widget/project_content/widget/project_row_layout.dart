@@ -10,6 +10,7 @@ class ProjectRowLayout extends StatelessWidget {
   final String bottomDescription;
   final bool isCardStarted;
   final bool isReversed;
+  final Function(String)? onTechStackTap;
 
   const ProjectRowLayout({
     super.key,
@@ -20,6 +21,7 @@ class ProjectRowLayout extends StatelessWidget {
     required this.bottomDescription,
     required this.isCardStarted,
     this.isReversed = false,
+    this.onTechStackTap,
   });
 
   @override
@@ -41,6 +43,7 @@ class ProjectRowLayout extends StatelessWidget {
       isCardStarted: isCardStarted,
       width: textWidth,
       isCenter: false,
+      onTechStackTap: onTechStackTap,
     );
 
     return Row(

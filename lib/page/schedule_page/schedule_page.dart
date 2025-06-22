@@ -85,7 +85,6 @@ class _ScheduleView extends StatelessWidget {
           );
         }
 
-        // 모바일 화면일 때만 ScreenUtilInit 적용
         if (isMobile) {
           return ScreenUtilInit(
             designSize:

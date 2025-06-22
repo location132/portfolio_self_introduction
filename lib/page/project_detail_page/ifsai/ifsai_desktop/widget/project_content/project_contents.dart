@@ -27,7 +27,6 @@ class _ProjectContentsState extends State<ProjectContents> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: 100),
-          // 1번 프로젝트
           VisibilityDetector(
             key: Key('project-card-view1'),
             onVisibilityChanged: (VisibilityInfo info) {
@@ -61,10 +60,12 @@ class _ProjectContentsState extends State<ProjectContents> {
               ],
               bottomDescription: '위 기술을 클릭해주세요\n패턴을 자세하게 볼 수 있어요',
               isCardStarted: widget.state.isProjectCard1Visible,
+              onTechStackTap:
+                  (techName) =>
+                      widget.cubit.navigateToTechBlog(context, techName),
             ),
           ),
           SizedBox(height: 200),
-          // 2번 프로젝트
           VisibilityDetector(
             key: Key('project-card-view2'),
             onVisibilityChanged: (VisibilityInfo info) {
@@ -95,6 +96,9 @@ class _ProjectContentsState extends State<ProjectContents> {
               ],
               bottomDescription: '위 기술을 클릭해주세요\n데이터 처리 방식을 자세하게 볼 수 있어요',
               isCardStarted: widget.state.isProjectCard2Visible,
+              onTechStackTap:
+                  (techName) =>
+                      widget.cubit.navigateToTechBlogCard2(context, techName),
             ),
           ),
         ],
