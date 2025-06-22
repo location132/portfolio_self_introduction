@@ -38,11 +38,6 @@ class _ProjectCardState extends State<ProjectCard> {
     });
   }
 
-  bool _isProjectAccessible() {
-    final title = widget.project['title'] ?? '';
-    return title == '잎사이';
-  }
-
   String _getBadgeText() {
     final title = widget.project['title'] ?? '';
     switch (title) {
@@ -74,7 +69,7 @@ class _ProjectCardState extends State<ProjectCard> {
   }
 
   void _onProjectTap(BuildContext context) async {
-    if (_isCalled || !_isProjectAccessible()) {
+    if (_isCalled) {
       return;
     }
     setState(() {
@@ -84,34 +79,13 @@ class _ProjectCardState extends State<ProjectCard> {
     final title = widget.project['title'] ?? '';
 
     String route;
-    switch (title) {
-      case '잎사이':
-        route = '/project/ifsai';
-        break;
-      case 'About Me - With myDream':
-        route = '/project/about-me';
-        break;
-      case 'MySkill - in Web':
-        route = '/project/myskill';
-        break;
-      case 'Detail Me':
-        route = '/project/detail-me';
-        break;
-      case '선배 개발자 따라잡기 With GS_SHOP':
-        route = '/project/gsshop';
-        break;
-      case '선배 개발자 따라잡기 With IDUS':
-        route = '/project/idus';
-        break;
-      case '포트폴리오 웹사이트':
-        route = '/project/web-portfolio';
-        break;
-      default:
-        setState(() {
-          _isCalled = false;
-        });
-        return;
+    if (title == '잎사이') {
+      route = '/project/ifsai';
+    } else {
+      // 다른 프로젝트들은 스케줄 페이지로 이동
+      route = '/schedule';
     }
+
     context.push(route);
     setState(() {
       _isCalled = false;
@@ -262,10 +236,7 @@ class _ProjectCardState extends State<ProjectCard> {
               child: MouseRegion(
                 onEnter: (_) => _onHover(true),
                 onExit: (_) => _onHover(false),
-                cursor:
-                    _isProjectAccessible()
-                        ? SystemMouseCursors.click
-                        : SystemMouseCursors.basic,
+                cursor: SystemMouseCursors.click,
                 child: GestureDetector(
                   onTap: () {
                     _onProjectTap(context);
@@ -278,10 +249,10 @@ class _ProjectCardState extends State<ProjectCard> {
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
                         color:
-                            _isHovered && _isProjectAccessible()
+                            _isHovered
                                 ? Colors.white.withValues(alpha: 0.3)
                                 : Colors.white.withValues(alpha: 0.1),
-                        width: _isHovered && _isProjectAccessible() ? 2 : 1,
+                        width: _isHovered ? 2 : 1,
                       ),
                     ),
                     child: ClipRRect(

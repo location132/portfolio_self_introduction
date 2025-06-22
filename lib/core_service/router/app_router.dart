@@ -5,6 +5,7 @@ import 'package:self_introduction_flutter/page/mobile_page/mobile_page.dart';
 import 'package:self_introduction_flutter/page/desktop_page/desktop_page.dart';
 import 'package:self_introduction_flutter/page/projects_main_page/projects_main_page.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/project_detail_page.dart';
+import 'package:self_introduction_flutter/page/schedule_page/schedule_page.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_page.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_page.dart';
 
@@ -89,6 +90,31 @@ class AppRouter {
               ) {
                 return child;
               },
+            ),
+      ),
+      GoRoute(
+        path: '/schedule',
+        name: 'schedule',
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              child: const SchedulePage(),
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                final tween = Tween<Offset>(
+                  begin: const Offset(1, 0),
+                  end: Offset.zero,
+                ).chain(CurveTween(curve: Curves.easeInOut));
+                return SlideTransition(
+                  position: animation.drive(tween),
+                  child: FadeTransition(opacity: animation, child: child),
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 600),
             ),
       ),
       GoRoute(

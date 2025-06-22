@@ -70,21 +70,17 @@ class ProjectDetailContent extends StatelessWidget {
         projects = [
           {
             'title': 'About Me - With myDream',
-            'description':
+            'tech':
                 '사용자의 마우스 호버에 반응해 원하는 챕터로 이동할 수 있도록 만든 첫 Rive 프로젝트입니다. 0.2초 단위까지 정밀하게 조정해 섬세한 전환 타이밍을 구현했습니다.',
-            'tech': 'Pick - 첫 Rive 프로젝트',
           },
           {
             'title': 'MySkill - in Web',
-            'description':
+            'tech':
                 '총 4일간 제작한 가장 긴 애니메이션으로, 초기 진입부터 부드러운 화면 전환이 이어지며, 클릭과 호버에 맞춰 스킬이 나타나는 구조입니다.',
-            'tech': 'Pick - 32개의 리스너, 16개의 포인터, 4개의 트리거',
           },
           {
             'title': 'Detail Me',
-            'description':
-                '빈 화면에서 핸드폰이 나타나고, 사용자가 원하는 구성으로 내용을 꾸밀 수 있도록 설계된 구조입니다.',
-            'tech': 'Pick - 다양한 연출에 쉽게 변형 가능한 범용적인 애니메이션',
+            'tech': '빈 화면에서 핸드폰이 나타나고, 사용자가 원하는 구성으로 내용을 꾸밀 수 있도록 설계된 구조입니다.',
           },
         ];
         break;
@@ -160,34 +156,8 @@ class ProjectDetailContent extends StatelessWidget {
               if (project['title'] == '잎사이') {
                 context.go('/project-detail/ifsai');
               } else {
-                String message = '';
-                switch (project['title']) {
-                  case 'NaverMap':
-                  case '네이버 Map':
-                    message = '네이버 맵 프로젝트는 7월 16일 업로드 예정입니다!';
-                    break;
-                  case '클랭(KLANG)':
-                  case 'Klang':
-                    message = '클랭 프로젝트는 8월 20일 업로드 예정입니다!';
-                    break;
-                  case '구름 x 카카오 x 인프런':
-                    message = '구름 x 카카오 x 인프런 프로젝트는 9월 14일 업로드 예정입니다!';
-                    break;
-                  default:
-                    message = '${project['title']} 프로젝트 상세 페이지가 곧 준비됩니다!';
-                }
-
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(message),
-                    backgroundColor: Colors.black.withValues(alpha: 0.9),
-                    behavior: SnackBarBehavior.floating,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    duration: const Duration(seconds: 3),
-                  ),
-                );
+                // 다른 프로젝트들은 스케줄 페이지로 이동
+                context.go('/schedule');
               }
             },
             child: AnimatedContainer(
