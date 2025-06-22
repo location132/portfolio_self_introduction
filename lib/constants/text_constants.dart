@@ -9,8 +9,8 @@ class TextConstants {
   static const String topNavBar1 = '자기소개서';
   static const String topNavBar2 = '프로젝트';
   static const String topNavBar3 = '기술 블로그';
-  static const String topNavBar4 = '패키지';
-  static const String topNavBar5 = '커리어 & 성장';
+  static const String topNavBar4 = '업데이트 될 내용';
+  static const String topNavBar5 = '웹 제작 History';
   static const String topNavBar6 = '나만의 개발 팁';
   static const String topNavBar7 = '교육 및 강의';
 }
