@@ -99,12 +99,18 @@ class IfsaiDetailView extends StatelessWidget {
                       VisibilityDetector(
                         key: const Key('project-contents-view'),
                         onVisibilityChanged: (VisibilityInfo info) {
-                          if (info.visibleFraction > 0.1 &&
-                              !state.isPlayerVisible) {
-                            context.read<IfsaiCubit>().setPlayerVisible(true);
-                          } else if (info.visibleFraction < 0.1 &&
-                              state.isPlayerVisible) {
-                            context.read<IfsaiCubit>().setPlayerVisible(false);
+                          if (!context.mounted) {
+                            return;
+                          } else {
+                            if (info.visibleFraction > 0.1 &&
+                                !state.isPlayerVisible) {
+                              context.read<IfsaiCubit>().setPlayerVisible(true);
+                            } else if (info.visibleFraction < 0.1 &&
+                                state.isPlayerVisible) {
+                              context.read<IfsaiCubit>().setPlayerVisible(
+                                false,
+                              );
+                            }
                           }
                         },
                         child: ProjectContents(

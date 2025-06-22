@@ -8,6 +8,7 @@ class MobileProjectTextSection extends StatelessWidget {
   final String bottomDescription;
   final bool isCardStarted;
   final double width;
+  final Function(String)? onTechStackTap;
 
   const MobileProjectTextSection({
     super.key,
@@ -16,6 +17,7 @@ class MobileProjectTextSection extends StatelessWidget {
     required this.bottomDescription,
     required this.isCardStarted,
     required this.width,
+    this.onTechStackTap,
   });
 
   @override
@@ -42,14 +44,30 @@ class MobileProjectTextSection extends StatelessWidget {
             ...techStack.map(
               (tech) => Padding(
                 padding: EdgeInsets.only(bottom: 12.h),
-                child: Text(
-                  '• $tech',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.sp,
-                    height: 1.3,
-                  ),
-                ),
+                child:
+                    onTechStackTap != null
+                        ? MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () => onTechStackTap!(tech),
+                            child: Text(
+                              '• $tech',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16.sp,
+                                height: 1.3,
+                              ),
+                            ),
+                          ),
+                        )
+                        : Text(
+                          '• $tech',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                            height: 1.3,
+                          ),
+                        ),
               ),
             ),
             SizedBox(height: 40.h),

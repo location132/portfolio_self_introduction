@@ -10,6 +10,7 @@ class MobileProjectCard extends StatelessWidget {
   final List<String> techStack;
   final String bottomDescription;
   final bool isCardStarted;
+  final Function(String)? onTechStackTap;
 
   const MobileProjectCard({
     super.key,
@@ -19,6 +20,7 @@ class MobileProjectCard extends StatelessWidget {
     required this.techStack,
     required this.bottomDescription,
     required this.isCardStarted,
+    this.onTechStackTap,
   });
 
   @override
@@ -47,6 +49,7 @@ class MobileProjectCard extends StatelessWidget {
                 bottomDescription: bottomDescription,
                 isCardStarted: isCardStarted,
                 width: contentWidth,
+                onTechStackTap: onTechStackTap,
               ),
             ),
           ],

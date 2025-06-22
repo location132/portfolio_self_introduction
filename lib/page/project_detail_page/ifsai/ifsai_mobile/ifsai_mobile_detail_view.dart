@@ -113,6 +113,8 @@ class IfsaiMobileDetailView extends StatelessWidget {
                       },
                       child: MobileProjectContents(
                         isVisible: state.isProjectCard1Visible,
+                        state: state,
+                        cubit: context.read<IfsaiCubit>(),
                       ),
                     ),
 

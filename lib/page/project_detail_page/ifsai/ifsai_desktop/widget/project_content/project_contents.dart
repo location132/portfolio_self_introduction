@@ -69,17 +69,21 @@ class _ProjectContentsState extends State<ProjectContents> {
           VisibilityDetector(
             key: Key('project-card-view2'),
             onVisibilityChanged: (VisibilityInfo info) {
-              if (MediaQuery.of(context).size.width > 1200) {
-                if (info.visibleFraction > 0.5 &&
-                    !widget.state.isProjectCard2Visible) {
-                  if (!mounted) return;
-                  widget.cubit.onProjectCard2VisibilityChanged();
-                }
-              } else {
-                if (info.visibleFraction > 0.1 &&
-                    !widget.state.isProjectCard2Visible) {
-                  if (!mounted) return;
-                  widget.cubit.onProjectCard2VisibilityChanged();
+              if (!mounted)
+                return;
+              else {
+                if (MediaQuery.of(context).size.width > 1200) {
+                  if (info.visibleFraction > 0.5 &&
+                      !widget.state.isProjectCard2Visible) {
+                    if (!mounted) return;
+                    widget.cubit.onProjectCard2VisibilityChanged();
+                  }
+                } else {
+                  if (info.visibleFraction > 0.1 &&
+                      !widget.state.isProjectCard2Visible) {
+                    if (!mounted) return;
+                    widget.cubit.onProjectCard2VisibilityChanged();
+                  }
                 }
               }
             },

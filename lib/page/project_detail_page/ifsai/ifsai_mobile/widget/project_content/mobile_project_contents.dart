@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_desktop/ifsai_cubit.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_desktop/ifsai_state.dart';
 import 'mobile_project_card.dart';
 
 class MobileProjectContents extends StatelessWidget {
   final bool isVisible;
+  final IfsaiState state;
+  final IfsaiCubit cubit;
 
-  const MobileProjectContents({super.key, required this.isVisible});
+  const MobileProjectContents({
+    super.key,
+    required this.isVisible,
+    required this.state,
+    required this.cubit,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +35,8 @@ class MobileProjectContents extends StatelessWidget {
           ],
           bottomDescription: '위 기술을 클릭해주세요\n패턴을 자세하게 볼 수 있어요',
           isCardStarted: isVisible,
+          onTechStackTap:
+              (techName) => cubit.navigateToTechBlog(context, techName),
         ),
         SizedBox(height: 120.h),
         MobileProjectCard(
@@ -41,6 +52,8 @@ class MobileProjectContents extends StatelessWidget {
           ],
           bottomDescription: '위 기술을 클릭해주세요\n데이터 처리 방식을 자세하게 볼 수 있어요',
           isCardStarted: isVisible,
+          onTechStackTap:
+              (techName) => cubit.navigateToTechBlogCard2(context, techName),
         ),
         SizedBox(height: 120.h),
       ],
