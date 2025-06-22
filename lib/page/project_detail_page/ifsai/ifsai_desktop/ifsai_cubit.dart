@@ -43,7 +43,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
         state.copyWith(
           isPlayerVisible: true,
           isPlayerLongText: true,
-          playerText: '위 기능은 실제 백그라운드로 구현한 기능입니다.',
+          playerText: '위 기능은 제 프로젝트의 백그라운드로 구현한 기능입니다.',
         ),
       );
     } else {

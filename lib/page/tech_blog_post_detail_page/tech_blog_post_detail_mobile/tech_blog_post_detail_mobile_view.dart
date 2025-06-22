@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_cubit.dart';
-import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_desktop/widget/tech_detail_post_slug.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_detail_post_slug.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_mobile/widget/tech_detail_player_mobile.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_state.dart';
 import 'package:self_introduction_flutter/service/main_service.dart';

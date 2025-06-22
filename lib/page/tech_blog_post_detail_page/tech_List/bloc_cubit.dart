@@ -157,7 +157,7 @@ class _BlocCubitPageState extends State<BlocCubitPage> {
                         isMobile: widget.isMobile,
                         isBackgroundColorWhite: state.isBackgroundColorWhite,
                         codeExampleSectionKey: _codeExampleSectionKey,
-                        textTitle: '이제부터는 제가 실제 프로젝트에서 사용하는',
+                        textTitle: '이제부터는 제가 프로젝트에서 사용하는',
                         textSubTitle: 'BLoC의Cubit 구현 방법과 패턴을 소개합니다.',
                         textSubTitle2:
                             '\n\n\n\n소개하는 코드는 제 잎사이 프로젝트와 포트폴리오 웹에서 실제로 구현한 코드입니다.',
@@ -286,7 +286,7 @@ class DesktopCubit extends Cubit<DesktopState> {
                       // 실제 프로젝트 Cubit 예시
                       TitleTextTechBlog(
                         isMobile: widget.isMobile,
-                        title: '실제 프로젝트의 Cubit 구현',
+                        title: '프로젝트에서 사용하는 Cubit 구현',
                         isBackgroundColor: state.isBackgroundColorWhite,
                       ),
                       SizedBox(height: widget.isMobile ? 30.h : 30),

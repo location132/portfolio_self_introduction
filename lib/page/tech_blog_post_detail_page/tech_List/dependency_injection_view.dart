@@ -146,7 +146,7 @@ class _DependencyInjectionViewState extends State<DependencyInjectionView> {
                         isMobile: widget.isMobile,
                         isBackgroundColor: state.isBackgroundColorWhite,
                         summary:
-                            '개념은 좋아 보이는데, 실제로는 언제 써야 하는지 감이 안 잡히시죠?\n'
+                            '개념은 좋아 보이는데, 언제 써야 하는지 감이 안 잡히시죠?\n'
                             '저도 처음에는 이 구조를 처음 접했을 때, 뭐하는 코드인지 모르고 선임을 무작정 따라했던 기억이 있어요\n\n'
                             '하지만 특정 상황들에서는 의존성 주입이 정말 필요하다는 걸 개인 프로젝트를 진행할 때, 알게되었어요',
                         detailContent:
