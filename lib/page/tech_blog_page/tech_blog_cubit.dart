@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_state.dart';
+import 'package:self_introduction_flutter/model/tech_note/tech_preview_model.dart';
 
 @injectable
 class TechBlogCubit extends Cubit<TechBlogState> {
-  TechBlogCubit() : super(const TechBlogState());
+  TechBlogCubit() : super(const TechBlogState()) {
+    _initializeTechPreviews();
+  }
 
   final ScrollController scrollController = ScrollController();
   final GlobalKey dividerKey = GlobalKey();
@@ -89,14 +92,84 @@ class TechBlogCubit extends Cubit<TechBlogState> {
     }
   }
 
-  // 기술블로그에 사용자가 마우ㅠ스 올리면
+  // 프리뷰 데이터
+  void _initializeTechPreviews() {
+    final previews = [
+      const TechPreviewModel(
+        title: 'MVVM',
+        imagePath: 'assets/Images/preview_tech/MVVM_pre.png',
+        keyValue: 'mvvm_preview',
+      ),
+      const TechPreviewModel(
+        title: 'Clean Architecture',
+        imagePath: 'assets/Images/preview_tech/clean_pre.png',
+        keyValue: 'clean_preview',
+      ),
+      const TechPreviewModel(
+        title: 'Repository Pattern',
+        imagePath: 'assets/Images/preview_tech/Repository_pre.png',
+        keyValue: 'repository_preview',
+      ),
+      const TechPreviewModel(
+        title: 'BLoC / Cubit',
+        imagePath: 'assets/Images/preview_tech/Bloc_pre.png',
+        keyValue: 'bloc_preview',
+      ),
+      const TechPreviewModel(
+        title: 'Provider (단점만 모아보기?)',
+        imagePath: 'assets/Images/preview_tech/provider_pre.png',
+        keyValue: 'provider_preview',
+      ),
+      const TechPreviewModel(
+        title: 'Dependency Injection (GetIt + Injectable)',
+        imagePath: 'assets/Images/preview_tech/DI_pre.png',
+        keyValue: 'di_preview',
+      ),
+      const TechPreviewModel(
+        title: 'Freezed',
+        imagePath: 'assets/Images/preview_tech/Freezed_pre.png',
+        keyValue: 'freezed_preview',
+      ),
+      const TechPreviewModel(
+        title: 'json_serializable\njson_annotation 자동 JSON 직렬화',
+        imagePath: 'assets/Images/preview_tech/json_pre.png',
+        keyValue: 'json_preview',
+      ),
+    ];
+
+    emit(state.copyWith(techPreviewList: previews));
+  }
+
+  // 기술블로그에 사용자가 마우스 올리면
   void onPostHover(String postTitle) {
-    emit(state.copyWith(isPostHovered: true, hoveredPostTitle: postTitle));
+    final preview = state.techPreviewList.firstWhere(
+      (preview) => preview.title == postTitle,
+      orElse:
+          () => const TechPreviewModel(
+            title: '',
+            imagePath: '',
+            keyValue: 'default_content',
+          ),
+    );
+
+    emit(
+      state.copyWith(
+        isPostHovered: true,
+        hoveredPostTitle: postTitle,
+        currentPreview: preview.title.isNotEmpty ? preview : null,
+      ),
+    );
   }
 
   // 기술블로그에 사용자가 마우스 벗어나면
   void onPostHoverExit() {
-    emit(state.copyWith(isPostHovered: false, hoveredPostTitle: ''));
+    emit(
+      state.copyWith(
+        isPostHovered: false,
+        hoveredPostTitle: '',
+        currentPreview: null,
+      ),
+    );
   }
 
   @override

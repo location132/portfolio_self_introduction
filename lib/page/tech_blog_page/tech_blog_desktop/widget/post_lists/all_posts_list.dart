@@ -34,6 +34,8 @@ class AllPostsList extends StatelessWidget {
                 tags:
                     '#Clean Architecture  #Domain  #Presentation  #Repository pattern',
                 onTap: () => context.go('/tech-blog/post/clean-architecture'),
+                onHover: (title) => cubit.onPostHover(title),
+                onHoverExit: () => cubit.onPostHoverExit(),
               ),
               const SizedBox(height: 40),
               TechPostTitle(
@@ -41,6 +43,8 @@ class AllPostsList extends StatelessWidget {
                 title: 'Repository Pattern',
                 tags: '#Repository  #Data Layer  #API',
                 onTap: () => context.go('/tech-blog/post/repository-pattern'),
+                onHover: (title) => cubit.onPostHover(title),
+                onHoverExit: () => cubit.onPostHoverExit(),
               ),
               const SizedBox(height: 40),
               TechPostTitle(
@@ -48,6 +52,8 @@ class AllPostsList extends StatelessWidget {
                 title: 'BLoC / Cubit',
                 tags: '#BLoC  #Cubit  #State Management',
                 onTap: () => context.go('/tech-blog/post/bloc-cubit'),
+                onHover: (title) => cubit.onPostHover(title),
+                onHoverExit: () => cubit.onPostHoverExit(),
               ),
               const SizedBox(height: 40),
               TechPostTitle(
@@ -55,6 +61,8 @@ class AllPostsList extends StatelessWidget {
                 title: 'Provider (단점만 모아보기?)',
                 tags: '#Provider  #State Management  #Context',
                 onTap: () => context.go('/tech-blog/post/provider'),
+                onHover: (title) => cubit.onPostHover(title),
+                onHoverExit: () => cubit.onPostHoverExit(),
               ),
               const SizedBox(height: 40),
               TechPostTitle(
@@ -62,6 +70,8 @@ class AllPostsList extends StatelessWidget {
                 title: 'Dependency Injection (GetIt + Injectable)',
                 tags: '#GetIt  #Injectable  #DI',
                 onTap: () => context.go('/tech-blog/post/dependency-injection'),
+                onHover: (title) => cubit.onPostHover(title),
+                onHoverExit: () => cubit.onPostHoverExit(),
               ),
               const SizedBox(height: 40),
               TechPostTitle(
@@ -69,6 +79,8 @@ class AllPostsList extends StatelessWidget {
                 title: 'Freezed',
                 tags: '#Freezed  #Immutable  #Code Generation',
                 onTap: () => context.go('/tech-blog/post/freezed'),
+                onHover: (title) => cubit.onPostHover(title),
+                onHoverExit: () => cubit.onPostHoverExit(),
               ),
               const SizedBox(height: 40),
               TechPostTitle(
@@ -76,6 +88,8 @@ class AllPostsList extends StatelessWidget {
                 title: 'json_serializable\njson_annotation 자동 JSON 직렬화',
                 tags: '#json_serializable  #json_annotation  #Serialization',
                 onTap: () => context.go('/tech-blog/post/json-serializable'),
+                onHover: (title) => cubit.onPostHover(title),
+                onHoverExit: () => cubit.onPostHoverExit(),
               ),
               const SizedBox(height: 40),
               TechPostTitle(

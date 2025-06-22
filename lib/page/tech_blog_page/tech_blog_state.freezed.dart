@@ -29,7 +29,10 @@ mixin _$TechBlogState {
   bool get isTabletMode => throw _privateConstructorUsedError; //화면 필터
   bool get isScreenFilter => throw _privateConstructorUsedError; // 호버 상태 관리
   bool get isPostHovered => throw _privateConstructorUsedError;
-  String get hoveredPostTitle => throw _privateConstructorUsedError;
+  String get hoveredPostTitle => throw _privateConstructorUsedError; // 프리뷰 관련
+  List<TechPreviewModel> get techPreviewList =>
+      throw _privateConstructorUsedError;
+  TechPreviewModel? get currentPreview => throw _privateConstructorUsedError;
 
   /// Create a copy of TechBlogState
   /// with the given fields replaced by the non-null parameter values.
@@ -59,7 +62,11 @@ abstract class $TechBlogStateCopyWith<$Res> {
     bool isScreenFilter,
     bool isPostHovered,
     String hoveredPostTitle,
+    List<TechPreviewModel> techPreviewList,
+    TechPreviewModel? currentPreview,
   });
+
+  $TechPreviewModelCopyWith<$Res>? get currentPreview;
 }
 
 /// @nodoc
@@ -90,6 +97,8 @@ class _$TechBlogStateCopyWithImpl<$Res, $Val extends TechBlogState>
     Object? isScreenFilter = null,
     Object? isPostHovered = null,
     Object? hoveredPostTitle = null,
+    Object? techPreviewList = null,
+    Object? currentPreview = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -158,9 +167,33 @@ class _$TechBlogStateCopyWithImpl<$Res, $Val extends TechBlogState>
                     ? _value.hoveredPostTitle
                     : hoveredPostTitle // ignore: cast_nullable_to_non_nullable
                         as String,
+            techPreviewList:
+                null == techPreviewList
+                    ? _value.techPreviewList
+                    : techPreviewList // ignore: cast_nullable_to_non_nullable
+                        as List<TechPreviewModel>,
+            currentPreview:
+                freezed == currentPreview
+                    ? _value.currentPreview
+                    : currentPreview // ignore: cast_nullable_to_non_nullable
+                        as TechPreviewModel?,
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of TechBlogState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TechPreviewModelCopyWith<$Res>? get currentPreview {
+    if (_value.currentPreview == null) {
+      return null;
+    }
+
+    return $TechPreviewModelCopyWith<$Res>(_value.currentPreview!, (value) {
+      return _then(_value.copyWith(currentPreview: value) as $Val);
+    });
   }
 }
 
@@ -187,7 +220,12 @@ abstract class _$$TechBlogStateImplCopyWith<$Res>
     bool isScreenFilter,
     bool isPostHovered,
     String hoveredPostTitle,
+    List<TechPreviewModel> techPreviewList,
+    TechPreviewModel? currentPreview,
   });
+
+  @override
+  $TechPreviewModelCopyWith<$Res>? get currentPreview;
 }
 
 /// @nodoc
@@ -217,6 +255,8 @@ class __$$TechBlogStateImplCopyWithImpl<$Res>
     Object? isScreenFilter = null,
     Object? isPostHovered = null,
     Object? hoveredPostTitle = null,
+    Object? techPreviewList = null,
+    Object? currentPreview = freezed,
   }) {
     return _then(
       _$TechBlogStateImpl(
@@ -285,6 +325,16 @@ class __$$TechBlogStateImplCopyWithImpl<$Res>
                 ? _value.hoveredPostTitle
                 : hoveredPostTitle // ignore: cast_nullable_to_non_nullable
                     as String,
+        techPreviewList:
+            null == techPreviewList
+                ? _value._techPreviewList
+                : techPreviewList // ignore: cast_nullable_to_non_nullable
+                    as List<TechPreviewModel>,
+        currentPreview:
+            freezed == currentPreview
+                ? _value.currentPreview
+                : currentPreview // ignore: cast_nullable_to_non_nullable
+                    as TechPreviewModel?,
       ),
     );
   }
@@ -307,8 +357,11 @@ class _$TechBlogStateImpl implements _TechBlogState {
     this.isScreenFilter = false,
     this.isPostHovered = false,
     this.hoveredPostTitle = '',
+    final List<TechPreviewModel> techPreviewList = const [],
+    this.currentPreview,
   }) : _blogPosts = blogPosts,
-       _filteredPosts = filteredPosts;
+       _filteredPosts = filteredPosts,
+       _techPreviewList = techPreviewList;
 
   @override
   @JsonKey()
@@ -363,10 +416,23 @@ class _$TechBlogStateImpl implements _TechBlogState {
   @override
   @JsonKey()
   final String hoveredPostTitle;
+  // 프리뷰 관련
+  final List<TechPreviewModel> _techPreviewList;
+  // 프리뷰 관련
+  @override
+  @JsonKey()
+  List<TechPreviewModel> get techPreviewList {
+    if (_techPreviewList is EqualUnmodifiableListView) return _techPreviewList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_techPreviewList);
+  }
+
+  @override
+  final TechPreviewModel? currentPreview;
 
   @override
   String toString() {
-    return 'TechBlogState(isMenuClicked: $isMenuClicked, isLoading: $isLoading, blogPosts: $blogPosts, filteredPosts: $filteredPosts, searchQuery: $searchQuery, selectedCategory: $selectedCategory, selectedCategoryIndex: $selectedCategoryIndex, sidePreviewTopSpace: $sidePreviewTopSpace, sidePreviewOpacity: $sidePreviewOpacity, isTabletMode: $isTabletMode, isScreenFilter: $isScreenFilter, isPostHovered: $isPostHovered, hoveredPostTitle: $hoveredPostTitle)';
+    return 'TechBlogState(isMenuClicked: $isMenuClicked, isLoading: $isLoading, blogPosts: $blogPosts, filteredPosts: $filteredPosts, searchQuery: $searchQuery, selectedCategory: $selectedCategory, selectedCategoryIndex: $selectedCategoryIndex, sidePreviewTopSpace: $sidePreviewTopSpace, sidePreviewOpacity: $sidePreviewOpacity, isTabletMode: $isTabletMode, isScreenFilter: $isScreenFilter, isPostHovered: $isPostHovered, hoveredPostTitle: $hoveredPostTitle, techPreviewList: $techPreviewList, currentPreview: $currentPreview)';
   }
 
   @override
@@ -403,7 +469,13 @@ class _$TechBlogStateImpl implements _TechBlogState {
             (identical(other.isPostHovered, isPostHovered) ||
                 other.isPostHovered == isPostHovered) &&
             (identical(other.hoveredPostTitle, hoveredPostTitle) ||
-                other.hoveredPostTitle == hoveredPostTitle));
+                other.hoveredPostTitle == hoveredPostTitle) &&
+            const DeepCollectionEquality().equals(
+              other._techPreviewList,
+              _techPreviewList,
+            ) &&
+            (identical(other.currentPreview, currentPreview) ||
+                other.currentPreview == currentPreview));
   }
 
   @override
@@ -422,6 +494,8 @@ class _$TechBlogStateImpl implements _TechBlogState {
     isScreenFilter,
     isPostHovered,
     hoveredPostTitle,
+    const DeepCollectionEquality().hash(_techPreviewList),
+    currentPreview,
   );
 
   /// Create a copy of TechBlogState
@@ -448,6 +522,8 @@ abstract class _TechBlogState implements TechBlogState {
     final bool isScreenFilter,
     final bool isPostHovered,
     final String hoveredPostTitle,
+    final List<TechPreviewModel> techPreviewList,
+    final TechPreviewModel? currentPreview,
   }) = _$TechBlogStateImpl;
 
   @override
@@ -475,7 +551,11 @@ abstract class _TechBlogState implements TechBlogState {
   @override
   bool get isPostHovered;
   @override
-  String get hoveredPostTitle;
+  String get hoveredPostTitle; // 프리뷰 관련
+  @override
+  List<TechPreviewModel> get techPreviewList;
+  @override
+  TechPreviewModel? get currentPreview;
 
   /// Create a copy of TechBlogState
   /// with the given fields replaced by the non-null parameter values.

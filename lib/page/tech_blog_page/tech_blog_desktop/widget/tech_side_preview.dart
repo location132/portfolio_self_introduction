@@ -23,10 +23,10 @@ class TechSidePreview extends StatelessWidget {
                 return FadeTransition(opacity: animation, child: child);
               },
               child:
-                  state.isPostHovered && state.hoveredPostTitle == 'MVVM'
+                  state.currentPreview != null
                       ? Image.asset(
-                        'assets/Images/preview_tech/MVVM_pre.png',
-                        key: const ValueKey('mvvm_preview'),
+                        state.currentPreview!.imagePath,
+                        key: ValueKey(state.currentPreview!.keyValue),
                         fit: BoxFit.cover,
                       )
                       : Stack(

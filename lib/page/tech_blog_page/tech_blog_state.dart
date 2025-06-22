@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:self_introduction_flutter/model/tech_note/blog_post.dart';
+import 'package:self_introduction_flutter/model/tech_note/tech_preview_model.dart';
 
 part 'tech_blog_state.freezed.dart';
 
@@ -23,5 +24,9 @@ class TechBlogState with _$TechBlogState {
     // 호버 상태 관리
     @Default(false) bool isPostHovered,
     @Default('') String hoveredPostTitle,
+
+    // 프리뷰 관련
+    @Default([]) List<TechPreviewModel> techPreviewList,
+    TechPreviewModel? currentPreview,
   }) = _TechBlogState;
 }
