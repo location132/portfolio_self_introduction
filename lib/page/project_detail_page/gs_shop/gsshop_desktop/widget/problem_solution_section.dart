@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'approach_image_widget.dart';
 import 'wrong_approach_list_widget.dart';
 
 class ProblemSolutionSection extends StatelessWidget {
-  const ProblemSolutionSection({super.key});
+  final bool isMobile;
+  const ProblemSolutionSection({super.key, this.isMobile = false});
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment:
+          isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -16,7 +19,7 @@ class ProblemSolutionSection extends StatelessWidget {
             Text(
               '문제의 원인을 분석했다면',
               style: TextStyle(
-                fontSize: 28,
+                fontSize: isMobile ? 28.sp : 28,
                 fontWeight: FontWeight.bold,
                 color: Colors.grey[100],
                 height: 1.3,
@@ -24,11 +27,11 @@ class ProblemSolutionSection extends StatelessWidget {
             ),
             Row(
               children: [
-                const SizedBox(width: 30),
+                SizedBox(width: isMobile ? 30.w : 30),
                 Text(
                   '이제 실력으로 해결해보겠습니다.',
                   style: TextStyle(
-                    fontSize: 28,
+                    fontSize: isMobile ? 28.sp : 28,
                     fontWeight: FontWeight.bold,
                     color: Colors.grey[100],
                     height: 1.3,
@@ -38,15 +41,15 @@ class ProblemSolutionSection extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: isMobile ? 20.h : 20),
         Container(width: double.infinity, height: 2, color: Colors.grey[600]),
-        const SizedBox(height: 100),
+        SizedBox(height: isMobile ? 100.h : 100),
 
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(child: WrongApproachListWidget()),
-            SizedBox(width: 40),
+            Expanded(child: WrongApproachListWidget(isMobile: isMobile)),
+            SizedBox(width: isMobile ? 40.w : 40),
 
             Visibility(
               visible: MediaQuery.of(context).size.width > 800,

@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GsShopHeaderSection extends StatelessWidget {
-  const GsShopHeaderSection({super.key});
+  final bool isMobile;
+  const GsShopHeaderSection({super.key, this.isMobile = false});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 40),
+      padding: EdgeInsets.symmetric(vertical: isMobile ? 0 : 40),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment:
+            isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
         children: [
           Text(
             '이 프로젝트를 시작한 이유',
             style: TextStyle(
-              fontSize: 22,
+              fontSize: isMobile ? 22.sp : 22,
               fontWeight: FontWeight.bold,
               color: Colors.grey[100],
               height: 1.3,
             ),
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: isMobile ? 20.h : 20),
           Text(
             'GS SHOP 애플리케이션은 제가 공부하고 있는 Flutter로 제작된 서비스입니다.\n\n'
             '저는 이 애플리케이션 똑같이 따라 만들기는 너무 어렵지만\n'
@@ -31,7 +34,7 @@ class GsShopHeaderSection extends StatelessWidget {
             '직접 문제를 개선해본 경험을\n프로젝트로 정리해 작성해보려고 합니다.\n\n'
             '목표: 현업 개발 선배님들의 실력을 따라잡기',
             style: TextStyle(
-              fontSize: 17,
+              fontSize: isMobile ? 17.sp : 17,
               color: Colors.grey[300],
               height: 1.6,
             ),

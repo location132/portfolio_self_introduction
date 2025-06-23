@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/code_block.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/title_text_tech.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/widget/story_block.dart';
 
 class SolutionContentWidget extends StatelessWidget {
-  const SolutionContentWidget({super.key});
+  final bool isMobile;
+  const SolutionContentWidget({super.key, this.isMobile = false});
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TitleTextTechBlog(title: '1. 생명주기 개선을 통한 상태 관리', isMobile: false),
-        SizedBox(height: 20),
+        TitleTextTechBlog(title: '1. 생명주기 개선을 통한 상태 관리', isMobile: isMobile),
+        SizedBox(height: isMobile ? 20.h : 20),
         StoryBlock(
-          isMobile: false,
+          isMobile: isMobile,
           story:
               '문제의 근본 원인은 검색창에 포커스가 갈 때마다 FutureBuilder가 재실행되어 화면이 번쩍이는 것이었습니다. '
               '이를 해결하기 위해 생명주기를 개선한 상태 관리를 적용했습니다.',
         ),
-        SizedBox(height: 20),
+        SizedBox(height: isMobile ? 20.h : 20),
 
         CodeBlock(
-          isMobile: false,
+          isMobile: isMobile,
           title: '생명주기 개선 코드',
           language: 'dart',
           code: '''
@@ -50,9 +52,9 @@ class _SearchHistory extends State<SearchHistory> {
 }''',
         ),
 
-        SizedBox(height: 20),
+        SizedBox(height: isMobile ? 20.h : 20),
         StoryBlock(
-          isMobile: false,
+          isMobile: isMobile,
           story:
               '개선사항:\n'
               '• _isFirstSearchBar 플래그로 첫 번째 로딩만 숨기기\n'
@@ -60,20 +62,20 @@ class _SearchHistory extends State<SearchHistory> {
               '• 이후 검색에서는 자연스러운 로딩 상태 표시',
         ),
 
-        SizedBox(height: 40),
+        SizedBox(height: isMobile ? 40.h : 40),
 
-        TitleTextTechBlog(title: '2. UI 상태 전환 개선', isMobile: false),
-        SizedBox(height: 20),
+        TitleTextTechBlog(title: '2. UI 상태 전환 개선', isMobile: isMobile),
+        SizedBox(height: isMobile ? 20.h : 20),
         StoryBlock(
-          isMobile: false,
+          isMobile: isMobile,
           story:
               '검색 기록 삭제나 상태 변경 시 갑작스러운 변화를 방지하기 위해 '
               'AnimatedOpacity를 활용해 자연스러운 UI 전환을 구현했습니다.',
         ),
-        SizedBox(height: 20),
+        SizedBox(height: isMobile ? 20.h : 20),
 
         CodeBlock(
-          isMobile: false,
+          isMobile: isMobile,
           title: 'UI 개선 코드',
           language: 'dart',
           code: '''
@@ -104,9 +106,9 @@ class _SearchHistory extends State<SearchHistory> {
 }''',
         ),
 
-        SizedBox(height: 20),
+        SizedBox(height: isMobile ? 20.h : 20),
         StoryBlock(
-          isMobile: false,
+          isMobile: isMobile,
           story:
               '개선 효과:\n'
               '• 삭제/수정 시 0.25초 페이드 아웃 → 작업 수행 → 0.7초 페이드 인\n'
@@ -114,20 +116,20 @@ class _SearchHistory extends State<SearchHistory> {
               '• 사용자에게 작업이 진행 중임을 시각적으로 알림',
         ),
 
-        SizedBox(height: 40),
+        SizedBox(height: isMobile ? 40.h : 40),
 
-        TitleTextTechBlog(title: '3. Cubit을 통한 중앙화된 상태 관리', isMobile: false),
-        SizedBox(height: 20),
+        TitleTextTechBlog(title: '3. Cubit을 통한 중앙화된 상태 관리', isMobile: isMobile),
+        SizedBox(height: isMobile ? 20.h : 20),
         StoryBlock(
-          isMobile: false,
+          isMobile: isMobile,
           story:
               '검색창과 검색 결과 화면 간의 상태 동기화를 위해 Cubit 패턴을 적용하여 '
               '중앙화된 상태 관리 시스템을 구축했습니다.',
         ),
-        SizedBox(height: 20),
+        SizedBox(height: isMobile ? 20.h : 20),
 
         CodeBlock(
-          isMobile: false,
+          isMobile: isMobile,
           title: 'Cubit 상태 관리 코드',
           language: 'dart',
           code: '''
@@ -163,9 +165,9 @@ void onSearchChanged(String value) {
 }''',
         ),
 
-        SizedBox(height: 20),
+        SizedBox(height: isMobile ? 20.h : 20),
         StoryBlock(
-          isMobile: false,
+          isMobile: isMobile,
           story:
               '상태 관리 개선사항:\n'
               '• Cubit을 통한 단방향 데이터 흐름\n'
@@ -174,20 +176,20 @@ void onSearchChanged(String value) {
               '• 컴포넌트 간 props drilling 제거',
         ),
 
-        SizedBox(height: 40),
+        SizedBox(height: isMobile ? 40.h : 40),
 
-        TitleTextTechBlog(title: '4. 서버 통신 최적화와 에러 핸들링', isMobile: false),
-        SizedBox(height: 20),
+        TitleTextTechBlog(title: '4. 서버 통신 최적화와 에러 핸들링', isMobile: isMobile),
+        SizedBox(height: isMobile ? 20.h : 20),
         StoryBlock(
-          isMobile: false,
+          isMobile: isMobile,
           story:
               'API 호출 시 발생할 수 있는 Race Condition과 네트워크 에러를 방지하기 위해 '
               '재시도 로직과 토큰 갱신 메커니즘을 구현했습니다.',
         ),
-        SizedBox(height: 20),
+        SizedBox(height: isMobile ? 20.h : 20),
 
         CodeBlock(
-          isMobile: false,
+          isMobile: isMobile,
           title: '서버 통신 최적화 코드',
           language: 'dart',
           code: '''
@@ -248,9 +250,9 @@ Future<List<RelatedSearchModel>> sendRelatedSearch(String search, {int retry = 0
 }''',
         ),
 
-        SizedBox(height: 20),
+        SizedBox(height: isMobile ? 20.h : 20),
         StoryBlock(
-          isMobile: false,
+          isMobile: isMobile,
           story:
               '통신 최적화 방법:\n'
               '• Freezed 기반 모델과 DTO로 타입 안전성 확보\n'
@@ -260,20 +262,20 @@ Future<List<RelatedSearchModel>> sendRelatedSearch(String search, {int retry = 0
               '• 에러 발생 시 빈 리스트 반환으로 앱 크래시 방지',
         ),
 
-        SizedBox(height: 40),
+        SizedBox(height: isMobile ? 40.h : 40),
 
-        TitleTextTechBlog(title: '5. Isar와 모델 기반 데이터 관리', isMobile: false),
-        SizedBox(height: 20),
+        TitleTextTechBlog(title: '5. Isar와 모델 기반 데이터 관리', isMobile: isMobile),
+        SizedBox(height: isMobile ? 20.h : 20),
         StoryBlock(
-          isMobile: false,
+          isMobile: isMobile,
           story:
               '로그인 상태에 따라 Isar 로컬 저장소와 서버 데이터를 seamless하게 전환하는 '
               '모델 기반 데이터 관리 시스템을 구현했습니다.',
         ),
-        SizedBox(height: 20),
+        SizedBox(height: isMobile ? 20.h : 20),
 
         CodeBlock(
-          isMobile: false,
+          isMobile: isMobile,
           title: 'SearchHistoryModel과 Isar 데이터 관리',
           language: 'dart',
           code: '''
@@ -330,9 +332,9 @@ class SearchHistoryRepository {
 }''',
         ),
 
-        SizedBox(height: 20),
+        SizedBox(height: isMobile ? 20.h : 20),
         StoryBlock(
-          isMobile: false,
+          isMobile: isMobile,
           story:
               '데이터 관리 개선사항:\n'
               '• Isar 컬렉션으로 타입 안전한 로컬 저장소\n'
@@ -341,20 +343,20 @@ class SearchHistoryRepository {
               '• 모델 기반 데이터 구조로 유지보수성 향상',
         ),
 
-        SizedBox(height: 40),
+        SizedBox(height: isMobile ? 40.h : 40),
 
-        TitleTextTechBlog(title: '6. 최적화된 검색 입력 처리', isMobile: false),
-        SizedBox(height: 20),
+        TitleTextTechBlog(title: '6. 최적화된 검색 입력 처리', isMobile: isMobile),
+        SizedBox(height: isMobile ? 20.h : 20),
         StoryBlock(
-          isMobile: false,
+          isMobile: isMobile,
           story:
               '한글 조합형 입력으로 인한 과도한 onChange 이벤트를 최적화하고, '
               '검색창 포커스 관리를 통해 UX를 개선했습니다.',
         ),
-        SizedBox(height: 20),
+        SizedBox(height: isMobile ? 20.h : 20),
 
         CodeBlock(
-          isMobile: false,
+          isMobile: isMobile,
           title: '검색 입력 처리 최적화 코드',
           language: 'dart',
           code: '''
@@ -406,9 +408,9 @@ class _SearchBarClangState extends State<SearchBarClang> {
 }''',
         ),
 
-        SizedBox(height: 20),
+        SizedBox(height: isMobile ? 20.h : 20),
         StoryBlock(
-          isMobile: false,
+          isMobile: isMobile,
           story:
               '입력 처리 개선사항:\n'
               '• FocusNode로 검색창 상태 정확한 추적\n'
@@ -418,7 +420,7 @@ class _SearchBarClangState extends State<SearchBarClang> {
               '• 한글 입력 중간 상태에서의 불필요한 API 호출 감소',
         ),
 
-        SizedBox(height: 100),
+        SizedBox(height: isMobile ? 100.h : 100),
       ],
     );
   }

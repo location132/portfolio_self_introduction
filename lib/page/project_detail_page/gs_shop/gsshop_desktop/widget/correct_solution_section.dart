@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'solution_content_widget.dart';
 
 class CorrectSolutionSection extends StatelessWidget {
-  const CorrectSolutionSection({super.key});
+  final bool isMobile;
+  const CorrectSolutionSection({super.key, this.isMobile = false});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class CorrectSolutionSection extends StatelessWidget {
             Text(
               '문제를 해결한',
               style: TextStyle(
-                fontSize: 28,
+                fontSize: isMobile ? 28.sp : 28,
                 fontWeight: FontWeight.bold,
                 color: Colors.grey[100],
                 height: 1.3,
@@ -23,11 +25,11 @@ class CorrectSolutionSection extends StatelessWidget {
             ),
             Row(
               children: [
-                const SizedBox(width: 30),
+                SizedBox(width: isMobile ? 30.w : 30),
                 Text(
                   '올바른 접근 방법',
                   style: TextStyle(
-                    fontSize: 28,
+                    fontSize: isMobile ? 28.sp : 28,
                     fontWeight: FontWeight.bold,
                     color: Colors.grey[100],
                     height: 1.3,
@@ -37,14 +39,14 @@ class CorrectSolutionSection extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: isMobile ? 20.h : 20),
         Container(width: double.infinity, height: 2, color: Colors.grey[600]),
 
-        const Divider(height: 1, color: Colors.transparent),
+        Divider(height: 1, color: Colors.transparent),
 
-        const SizedBox(height: 100),
+        SizedBox(height: isMobile ? 100.h : 100),
 
-        const SolutionContentWidget(),
+        SolutionContentWidget(isMobile: isMobile),
       ],
     );
   }

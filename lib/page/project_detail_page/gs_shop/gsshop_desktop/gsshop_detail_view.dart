@@ -36,7 +36,6 @@ class _GsShopDetailViewContent extends StatelessWidget {
 
     return BlocBuilder<GsShopCubit, GsShopState>(
       builder: (context, state) {
-        print(MediaQuery.of(context).size.width);
         return Container(
           color: Colors.black,
           child: Scaffold(

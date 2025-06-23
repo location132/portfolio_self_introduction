@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/gs_shop/gsshop_desktop/widget/description_video_player.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/gs_shop/gsshop_desktop/widget/video_player_gs_shop.dart';
 
 class ProblemDescriptionSection extends StatelessWidget {
+  final bool isMobile;
   final bool isLeft;
   final String videoUrl;
   final String videoTitle;
   final String videoDescription;
   final String sectionTitle;
   final String sectionDescription;
-  final bool isTextOnTop; // 새로운 매개변수 추가
+  final bool isTextOnTop;
 
   const ProblemDescriptionSection({
     super.key,
+    this.isMobile = false,
     required this.isLeft,
     required this.videoUrl,
     required this.videoTitle,
     required this.videoDescription,
     required this.sectionTitle,
     required this.sectionDescription,
-    this.isTextOnTop = false, // 기본값은 false (기존 동작 유지)
+    this.isTextOnTop = false,
   });
 
   @override
@@ -38,18 +41,18 @@ class ProblemDescriptionSection extends StatelessWidget {
               Text(
                 sectionTitle,
                 style: TextStyle(
-                  fontSize: 28,
+                  fontSize: isMobile ? 28.sp : 28,
                   fontWeight: FontWeight.bold,
                   color: Colors.grey[100],
                   height: 1.3,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 40),
+              SizedBox(height: isMobile ? 40.h : 40),
               Text(
                 sectionDescription,
                 style: TextStyle(
-                  fontSize: 17,
+                  fontSize: isMobile ? 17.sp : 17,
                   color: Colors.grey[300],
                   height: 1.6,
                 ),
@@ -72,8 +75,16 @@ class ProblemDescriptionSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children:
             isTextOnTop
-                ? [textWidget, const SizedBox(height: 40), videoWidget]
-                : [videoWidget, const SizedBox(height: 40), textWidget],
+                ? [
+                  textWidget,
+                  SizedBox(height: isMobile ? 40.h : 40),
+                  videoWidget,
+                ]
+                : [
+                  videoWidget,
+                  SizedBox(height: isMobile ? 40.h : 40),
+                  textWidget,
+                ],
       );
     } else {
       return isLeft

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'approach_item_widget.dart';
 
 class WrongApproachListWidget extends StatelessWidget {
-  const WrongApproachListWidget({super.key});
+  final bool isMobile;
+  const WrongApproachListWidget({super.key, this.isMobile = false});
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +15,16 @@ class WrongApproachListWidget extends StatelessWidget {
           child: Text(
             '잘못된 접근 방법',
             style: TextStyle(
-              fontSize: 24,
+              fontSize: isMobile ? 24.sp : 24,
               fontWeight: FontWeight.bold,
               color: Colors.grey[100],
               height: 1.4,
             ),
           ),
         ),
-        const SizedBox(height: 30),
-        const ApproachItemWidget(
+        SizedBox(height: isMobile ? 30.h : 30),
+        ApproachItemWidget(
+          isMobile: isMobile,
           number: '1',
           title: '애니메이션 사용',
           description:
@@ -30,8 +33,9 @@ class WrongApproachListWidget extends StatelessWidget {
           reason:
               '서버에서 값을 새로 받아왔다면 state의 생명주기 setState를 통해 새로고침하는 순간 애니메이션보다 화면의 새로고침되는 번쩍임이 우선순위였기 때문이였습니다.',
         ),
-        const SizedBox(height: 30),
-        const ApproachItemWidget(
+        SizedBox(height: isMobile ? 30.h : 30),
+        ApproachItemWidget(
+          isMobile: isMobile,
           number: '2',
           title: 'Debouncing 적용',
           description:
@@ -40,8 +44,9 @@ class WrongApproachListWidget extends StatelessWidget {
           reason:
               'API 호출 횟수는 줄였지만, 한글 조합형 입력 시 발생하는 각각의 onChange 이벤트마다 여전히 setState가 호출되어 UI가 재구성되는 근본적인 문제를 해결하지 못했습니다.',
         ),
-        const SizedBox(height: 30),
-        const ApproachItemWidget(
+        SizedBox(height: isMobile ? 30.h : 30),
+        ApproachItemWidget(
+          isMobile: isMobile,
           number: '3',
           title: 'Loading 상태 추가',
           description:
