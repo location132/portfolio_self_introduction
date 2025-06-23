@@ -36,6 +36,7 @@ class _GsShopDetailViewContent extends StatelessWidget {
 
     return BlocBuilder<GsShopCubit, GsShopState>(
       builder: (context, state) {
+        print(MediaQuery.of(context).size.width);
         return Container(
           color: Colors.black,
           child: Scaffold(
@@ -114,6 +115,7 @@ class _GsShopDetailViewContent extends StatelessWidget {
                             videoDescription: state.thirdVideoDescription,
                             sectionTitle: state.thirdSectionTitle,
                             sectionDescription: state.thirdSectionDescription,
+                            isTextOnTop: true, // 최종 결과에서는 텍스트가 위로
                           ),
 
                           const SizedBox(height: 100),

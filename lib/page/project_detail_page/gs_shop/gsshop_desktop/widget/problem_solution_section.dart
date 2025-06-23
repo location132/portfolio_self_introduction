@@ -42,13 +42,17 @@ class ProblemSolutionSection extends StatelessWidget {
         Container(width: double.infinity, height: 2, color: Colors.grey[600]),
         const SizedBox(height: 100),
 
-        const Row(
+        Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(child: WrongApproachListWidget()),
             SizedBox(width: 40),
-            ApproachImageWidget(
-              imagePath: 'assets/Images/gs_img/search_gs.png',
+
+            Visibility(
+              visible: MediaQuery.of(context).size.width > 800,
+              child: ApproachImageWidget(
+                imagePath: 'assets/Images/gs_img/search_gs.png',
+              ),
             ),
           ],
         ),

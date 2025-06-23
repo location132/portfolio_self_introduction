@@ -9,6 +9,7 @@ class ProblemDescriptionSection extends StatelessWidget {
   final String videoDescription;
   final String sectionTitle;
   final String sectionDescription;
+  final bool isTextOnTop; // 새로운 매개변수 추가
 
   const ProblemDescriptionSection({
     super.key,
@@ -18,43 +19,105 @@ class ProblemDescriptionSection extends StatelessWidget {
     required this.videoDescription,
     required this.sectionTitle,
     required this.sectionDescription,
+    this.isTextOnTop = false, // 기본값은 false (기존 동작 유지)
   });
 
   @override
   Widget build(BuildContext context) {
-    return isLeft
-        ? Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            DescriptionVideoPlayer(
-              title: sectionTitle,
-              description: sectionDescription,
-            ),
-            const SizedBox(width: 30),
-            VideoPlayerWithGSShop(
-              isLeft: isLeft,
-              videoUrl: videoUrl,
-              title: videoTitle,
-              description: videoDescription,
-            ),
-          ],
-        )
-        : Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            VideoPlayerWithGSShop(
-              circular: 55,
-              isLeft: isLeft,
-              videoUrl: videoUrl,
-              title: videoTitle,
-              description: videoDescription,
-            ),
-            const SizedBox(width: 30),
-            DescriptionVideoPlayer(
-              title: sectionTitle,
-              description: sectionDescription,
-            ),
-          ],
-        );
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isSmallScreen = screenWidth <= 900;
+
+    if (isSmallScreen) {
+      final textWidget = Center(
+        child: Container(
+          width: 435,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                sectionTitle,
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey[100],
+                  height: 1.3,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 40),
+              Text(
+                sectionDescription,
+                style: TextStyle(
+                  fontSize: 17,
+                  color: Colors.grey[300],
+                  height: 1.6,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      );
+
+      final videoWidget = VideoPlayerWithGSShop(
+        circular: 55,
+        isLeft: true,
+        videoUrl: videoUrl,
+        title: videoTitle,
+        description: videoDescription,
+      );
+
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children:
+            isTextOnTop
+                ? [textWidget, const SizedBox(height: 40), videoWidget]
+                : [videoWidget, const SizedBox(height: 40), textWidget],
+      );
+    } else {
+      return isLeft
+          ? Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: DescriptionVideoPlayer(
+                  title: sectionTitle,
+                  description: sectionDescription,
+                ),
+              ),
+              const SizedBox(width: 30),
+              Expanded(
+                child: VideoPlayerWithGSShop(
+                  isLeft: isLeft,
+                  videoUrl: videoUrl,
+                  title: videoTitle,
+                  description: videoDescription,
+                ),
+              ),
+            ],
+          )
+          : Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: VideoPlayerWithGSShop(
+                  circular: 55,
+                  isLeft: isLeft,
+                  videoUrl: videoUrl,
+                  title: videoTitle,
+                  description: videoDescription,
+                ),
+              ),
+              const SizedBox(width: 30),
+              Expanded(
+                child: DescriptionVideoPlayer(
+                  title: sectionTitle,
+                  description: sectionDescription,
+                ),
+              ),
+            ],
+          );
+    }
   }
 }

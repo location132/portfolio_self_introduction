@@ -11,10 +11,17 @@ class DescriptionVideoPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isSmallScreen = screenWidth <= 900;
+
     return Container(
       width: 435,
       padding: const EdgeInsets.only(left: 40),
       child: Column(
+        crossAxisAlignment:
+            isSmallScreen
+                ? CrossAxisAlignment.center
+                : CrossAxisAlignment.start,
         children: [
           Text(
             title,
@@ -24,6 +31,7 @@ class DescriptionVideoPlayer extends StatelessWidget {
               color: Colors.grey[100],
               height: 1.3,
             ),
+            textAlign: isSmallScreen ? TextAlign.center : TextAlign.start,
           ),
           const SizedBox(height: 40),
           Text(
@@ -33,6 +41,7 @@ class DescriptionVideoPlayer extends StatelessWidget {
               color: Colors.grey[300],
               height: 1.6,
             ),
+            textAlign: isSmallScreen ? TextAlign.center : TextAlign.start,
           ),
         ],
       ),
