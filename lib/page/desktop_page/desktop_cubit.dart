@@ -144,6 +144,10 @@ class DesktopCubit extends Cubit<DesktopState> {
       }
 
       await Future.delayed(const Duration(milliseconds: 1300));
+      if (isClosed) {
+        return;
+      }
+
       emit(
         state.copyWith(
           chapterModel: state.chapterModel.copyWith(isChapterActive: true),

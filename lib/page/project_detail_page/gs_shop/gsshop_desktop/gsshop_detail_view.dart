@@ -8,6 +8,8 @@ import 'package:self_introduction_flutter/page/project_detail_page/gs_shop/gssho
 import 'package:self_introduction_flutter/page/project_detail_page/gs_shop/gsshop_desktop/widget/gsshop_title_section.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/gs_shop/gsshop_desktop/widget/gsshop_header_section.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/gs_shop/gsshop_desktop/widget/problem_description_section.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/gs_shop/gsshop_desktop/widget/problem_analysis_section.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/gs_shop/gsshop_desktop/widget/problem_solution_section.dart';
 import 'package:self_introduction_flutter/service/main_service.dart';
 
 class GsShopDetailView extends StatelessWidget {
@@ -90,6 +92,14 @@ class _GsShopDetailViewContent extends StatelessWidget {
                             sectionTitle: state.secondSectionTitle,
                             sectionDescription: state.secondSectionDescription,
                           ),
+                          const SizedBox(height: 100),
+
+                          const ProblemAnalysisSection(),
+
+                          const SizedBox(height: 240),
+
+                          const ProblemSolutionSection(),
+
                           const SizedBox(height: 100),
                         ],
                       ),
