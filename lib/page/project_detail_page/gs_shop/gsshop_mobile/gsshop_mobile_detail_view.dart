@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/gs_shop/gsshop_desktop/widget/correct_solution_section.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/gs_shop/gsshop_desktop/widget/gsshop_header_section.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/gs_shop/gsshop_desktop/widget/gsshop_title_section.dart';
@@ -136,6 +137,7 @@ class _GsShopMobileDetailViewContent extends StatelessWidget {
                 ],
               ),
             ),
+            MenuScreen(isMenuClicked: state.isMenuClicked),
           ],
         );
       },

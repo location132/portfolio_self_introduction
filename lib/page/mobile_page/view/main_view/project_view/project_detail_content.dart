@@ -59,11 +59,6 @@ class ProjectDetailContent extends StatelessWidget {
             'description': ' 생명주기 개선을 통해 깜빡임 없는 매끄러운 화면 전환을 구현했습니다.',
             'tech': '생명주기 공부',
           },
-          {
-            'title': '선배 개발자 따라잡기 - idus',
-            'description': '쉬머 효과와 자연스러운 콘텐츠 전환을 위한 애니메이션을 적용했습니다.',
-            'tech': 'UI/UX, Flutter Animation',
-          },
         ];
         break;
       case 'flutter_rive':
@@ -159,6 +154,8 @@ class ProjectDetailContent extends StatelessWidget {
             onTap: () {
               if (project['title'] == '잎사이') {
                 context.go('/project-detail/ifsai');
+              } else if (project['title'] == '선배 개발자 따라잡기 - gsSHOP') {
+                context.go('/project/gsshop');
               } else {
                 context.go('/schedule');
               }
@@ -174,7 +171,8 @@ class ProjectDetailContent extends StatelessWidget {
                 color: Colors.white.withValues(alpha: 0.03),
                 border: Border.all(
                   color:
-                      project['title'] == '잎사이'
+                      project['title'] == '잎사이' ||
+                              project['title'] == '선배 개발자 따라잡기 - gsSHOP'
                           ? const Color.fromARGB(255, 100, 200, 255)
                           : const Color.fromARGB(255, 204, 250, 248),
                   width: 1,
@@ -208,7 +206,8 @@ class ProjectDetailContent extends StatelessWidget {
                             ),
                           ),
                         ),
-                      if (project['title'] == '잎사이')
+                      if (project['title'] == '잎사이' ||
+                          project['title'] == '선배 개발자 따라잡기 - gsSHOP')
                         Container(
                           margin: EdgeInsets.only(right: 8.w),
                           padding: EdgeInsets.symmetric(
@@ -221,7 +220,7 @@ class ProjectDetailContent extends StatelessWidget {
                               100,
                               200,
                               255,
-                            ).withValues(alpha: 0.1),
+                            ).withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(12.r),
                             border: Border.all(
                               color: const Color.fromARGB(255, 100, 200, 255),
@@ -236,75 +235,8 @@ class ProjectDetailContent extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                        ),
-                      if (project['title'] == 'NaverMap' ||
-                          project['title'] == '네이버 Map')
-                        Container(
-                          margin: EdgeInsets.only(right: 8.w),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 12.w,
-                            vertical: 8.h,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(12.r),
-                            border: Border.all(color: Colors.grey, width: 1),
-                          ),
-                          child: Text(
-                            '7월 16일 업로드 예정',
-                            style: TextStyle(
-                              fontSize: 9.sp,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      if (project['title'] == '클랭(KLANG)' ||
-                          project['title'] == 'Klang')
-                        Container(
-                          margin: EdgeInsets.only(right: 8.w),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 12.w,
-                            vertical: 8.h,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(12.r),
-                            border: Border.all(color: Colors.grey, width: 1),
-                          ),
-                          child: Text(
-                            '8월 20일 업로드 예정',
-                            style: TextStyle(
-                              fontSize: 9.sp,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      if (project['title'] == '구름 x 카카오 x 인프런')
-                        Container(
-                          margin: EdgeInsets.only(right: 8.w),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 12.w,
-                            vertical: 8.h,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(12.r),
-                            border: Border.all(color: Colors.grey, width: 1),
-                          ),
-                          child: Text(
-                            '9월 14일 업로드 예정',
-                            style: TextStyle(
-                              fontSize: 9.sp,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      if (project['title'] == 'About Me - With myDream' ||
-                          project['title'] == 'MySkill - in Web' ||
-                          project['title'] == 'Detail Me')
+                        )
+                      else
                         Container(
                           margin: EdgeInsets.only(right: 8.w),
                           padding: EdgeInsets.symmetric(
@@ -336,12 +268,14 @@ class ProjectDetailContent extends StatelessWidget {
                         ),
                       ),
                       Icon(
-                        project['title'] == '잎사이'
+                        project['title'] == '잎사이' ||
+                                project['title'] == '선배 개발자 따라잡기 - gsSHOP'
                             ? Icons.open_in_new
                             : Icons.arrow_forward_ios,
                         size: 14.sp,
                         color:
-                            project['title'] == '잎사이'
+                            project['title'] == '잎사이' ||
+                                    project['title'] == '선배 개발자 따라잡기 - gsSHOP'
                                 ? const Color.fromARGB(255, 100, 200, 255)
                                 : Colors.white.withValues(alpha: 0.5),
                       ),

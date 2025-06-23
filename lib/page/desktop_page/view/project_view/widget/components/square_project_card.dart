@@ -33,20 +33,15 @@ class _SquareProjectCardState extends State<SquareProjectCard> {
 
     if (title == '선배 개발자 따라잡기 With GS_SHOP') {
       context.go('/project/gsshop');
-    } else if (title == '선배 개발자 따라잡기 With IDUS') {
-      context.go('/project/idus');
     } else {
       context.go('/schedule');
     }
   }
 
   String _getImagePath() {
-    final title = widget.project['title'] ?? '';
-
+    final String title = widget.project['title'] ?? '';
     if (title == '선배 개발자 따라잡기 With GS_SHOP') {
       return 'assets/Images/project_img/gsshop_logo.jpeg';
-    } else if (title == '선배 개발자 따라잡기 With IDUS') {
-      return 'assets/Images/project_img/idus_logo.png';
     }
     return 'assets/Images/project_img/rive_flutter.png';
   }
@@ -65,7 +60,7 @@ class _SquareProjectCardState extends State<SquareProjectCard> {
     } else if (title == '구름 x 카카오 x 인프런') {
       return '9월 14일 업로드 예정';
     }
-    return '업로드 예정';
+    return '업로드 되었습니다!';
   }
 
   @override
@@ -89,9 +84,12 @@ class _SquareProjectCardState extends State<SquareProjectCard> {
               ),
               child: Text(
                 _getUploadDate(),
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 10,
-                  color: Colors.grey,
+                  color:
+                      _getUploadDate() == '업로드 되었습니다!'
+                          ? Color.fromARGB(255, 100, 200, 255)
+                          : Colors.grey,
                   fontWeight: FontWeight.w600,
                 ),
               ),
