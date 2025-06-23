@@ -135,6 +135,21 @@ class TechBlogCubit extends Cubit<TechBlogState> {
         imagePath: 'assets/Images/preview_tech/json_pre.png',
         keyValue: 'json_preview',
       ),
+      const TechPreviewModel(
+        title: 'Isar 로컬 NoSQL DB',
+        imagePath: 'assets/Images/preview_tech/isar_pre.png',
+        keyValue: 'isar_preview',
+      ),
+      const TechPreviewModel(
+        title: 'SharedPreferences\nFlutter Secure Storage 로컬 캐싱',
+        imagePath: 'assets/Images/preview_tech/local_storage_pre.png',
+        keyValue: 'local_storage_preview',
+      ),
+      const TechPreviewModel(
+        title: 'MemoryCache\nDio Cache Interceptor - 메모리 및 네트워크 캐싱',
+        imagePath: 'assets/Images/preview_tech/memory_cache_pre.png',
+        keyValue: 'memory_cache_preview',
+      ),
     ];
 
     emit(state.copyWith(techPreviewList: previews));

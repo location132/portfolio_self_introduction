@@ -106,6 +106,8 @@ class AllPostsList extends StatelessWidget {
                 title: 'Isar 로컬 NoSQL DB',
                 tags: '#Isar  #NoSQL  #Local Database',
                 onTap: () => context.go('/tech-blog/post/isar'),
+                onHover: (title) => cubit.onPostHover(title),
+                onHoverExit: () => cubit.onPostHoverExit(),
               ),
               const SizedBox(height: 40),
               TechPostTitle(
@@ -114,6 +116,8 @@ class AllPostsList extends StatelessWidget {
                 title: 'SharedPreferences\nFlutter Secure Storage 로컬 캐싱',
                 tags: '#SharedPreferences  #SecureStorage  #Local Cache',
                 onTap: () => context.go('/tech-blog/post/local-storage'),
+                onHover: (title) => cubit.onPostHover(title),
+                onHoverExit: () => cubit.onPostHoverExit(),
               ),
               const SizedBox(height: 40),
               TechPostTitle(
@@ -122,6 +126,8 @@ class AllPostsList extends StatelessWidget {
                 title: 'MemoryCache\nDio Cache Interceptor - 메모리 및 네트워크 캐싱',
                 tags: '#MemoryCache  #Dio  #Network Cache',
                 onTap: () => context.go('/tech-blog/post/memory-cache'),
+                onHover: (title) => cubit.onPostHover(title),
+                onHoverExit: () => cubit.onPostHoverExit(),
               ),
               const SizedBox(height: 40),
               TechPostTitle(
