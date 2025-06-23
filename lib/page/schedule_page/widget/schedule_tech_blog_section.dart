@@ -47,13 +47,18 @@ class ScheduleTechBlogSection extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildTechBlogScheduleItem('6월 25일 22:00', '9번 ~ 13번 포스트', [
-                    '9. Isar 로컬 NoSQL DB',
-                    '10. SharedPreferences & Flutter Secure Storage 로컬 캐싱',
-                    '11. MemoryCache & Dio Cache Interceptor - 메모리 및 네트워크 캐싱',
-                    '12. 네이버 로그인',
-                    '13. 카카오 로그인',
-                  ], isGreen: true),
+                  _buildTechBlogScheduleItem(
+                    '6월 25일 22:00',
+                    '9번 ~ 13번 포스트 (업로드 중입니다.)',
+                    [
+                      '9. Isar 로컬 NoSQL DB (업로드 완료)',
+                      '10. SharedPreferences & Flutter Secure Storage 로컬 캐싱',
+                      '11. MemoryCache & Dio Cache Interceptor - 메모리 및 네트워크 캐싱',
+                      '12. 네이버 로그인',
+                      '13. 카카오 로그인',
+                    ],
+                    isGreen: true,
+                  ),
                   _buildTechBlogScheduleItem('6월 28일', '14번 ~ 17번 포스트', [
                     '14. 화면 전환 (네비게이터)',
                     '15. Flutter 밑줄 선 (한글에서 안깨지는 방법)',
@@ -140,9 +145,9 @@ class ScheduleTechBlogSection extends StatelessWidget {
                 children: [
                   _buildTechBlogScheduleItemMobile(
                     '6월 25일 22:00',
-                    '9번 ~ 13번 포스트',
+                    '9번 ~ 13번 포스트(업로드 중입니다.)',
                     [
-                      '9. Isar 로컬 NoSQL DB',
+                      '9. Isar 로컬 NoSQL DB(업로드 완료)',
                       '10. SharedPreferences & Flutter Secure Storage 로컬 캐싱',
                       '11. MemoryCache & Dio Cache Interceptor - 메모리 및 네트워크 캐싱',
                       '12. 네이버 로그인',

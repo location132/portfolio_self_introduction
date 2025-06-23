@@ -12,11 +12,11 @@ class MobileDataStoragePostList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         MobileTechPostTitle(
+          isUpload: true,
           number: 1,
           title: 'Isar 로컬 NoSQL DB',
           tags: '#Isar  #NoSQL  #Local Database',
-          onTap: () => context.go('/schedule'),
-          uploadDate: '6월 25일',
+          onTap: () => context.go('/tech-blog/post/isar'),
         ),
         SizedBox(height: 30.h),
         MobileTechPostTitle(

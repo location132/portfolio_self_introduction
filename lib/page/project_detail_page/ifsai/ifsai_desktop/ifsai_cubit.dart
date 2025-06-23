@@ -512,6 +512,8 @@ class IfsaiCubit extends Cubit<IfsaiState> {
         route = '/tech-blog/post/json-serializable';
         break;
       case 'Isar 로컬 NoSQL DB':
+        route = '/tech-blog/post/isar';
+        break;
       case 'SharedPreferences\n  Flutter Secure Storage 로컬 캐싱':
       case 'MemoryCache\n  Dio Cache Interceptor - 메모리 및 네트워크 캐싱':
         route = '/schedule';

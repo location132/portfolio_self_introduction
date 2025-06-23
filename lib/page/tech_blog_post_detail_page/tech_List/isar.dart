@@ -31,7 +31,7 @@ class _IsarState extends State<Isar> {
   @override
   void initState() {
     super.initState();
-    // widget.isFocused(true);
+    widget.isFocused(true);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _calculateScrollOffset();
     });
@@ -809,7 +809,7 @@ Future<void> saveNaverMapData(List<NaverMapDataContent> response) async {
   });
   
   // writeTxn() 블록이 성공적으로 완료되면
-  // 모든 작업이 동시에 커밋됨!
+  // 모든 작업이 동시에 커밋
 }''',
                       ),
                       SizedBox(height: widget.isMobile ? 30.h : 30),

@@ -101,11 +101,11 @@ class AllPostsList extends StatelessWidget {
               ),
               const SizedBox(height: 40),
               TechPostTitle(
+                isUpload: true,
                 number: 9,
                 title: 'Isar 로컬 NoSQL DB',
                 tags: '#Isar  #NoSQL  #Local Database',
                 onTap: () => context.go('/tech-blog/post/isar'),
-                uploadDate: '6월 25일',
               ),
               const SizedBox(height: 40),
               TechPostTitle(

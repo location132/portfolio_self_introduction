@@ -79,11 +79,11 @@ class MobileAllPostsList extends StatelessWidget {
           ),
           SizedBox(height: 40.h),
           MobileTechPostTitle(
+            isUpload: true,
             number: 9,
             title: 'Isar 로컬 NoSQL DB',
             tags: '#Isar  #NoSQL  #Local Database',
-            onTap: () => context.go('/schedule'),
-            uploadDate: '6월 25일',
+            onTap: () => context.go('/tech-blog/post/isar'),
           ),
           SizedBox(height: 40.h),
           MobileTechPostTitle(
