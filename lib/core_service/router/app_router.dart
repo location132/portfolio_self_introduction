@@ -8,7 +8,6 @@ import 'package:self_introduction_flutter/page/project_detail_page/project_detai
 import 'package:self_introduction_flutter/page/schedule_page/schedule_page.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_page.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_page.dart';
-import 'package:self_introduction_flutter/page/project_detail_page/gs_shop/gs_shop_page.dart';
 
 import 'package:self_introduction_flutter/service/main_service.dart';
 
@@ -51,31 +50,31 @@ class AppRouter {
               },
             ),
       ),
-      // GoRoute(
-      //   path: '/project/ifsai',
-      //   name: 'ifsai_detail',
-      //   pageBuilder:
-      //       (context, state) => CustomTransitionPage(
-      //         key: state.pageKey,
-      //         child: ProjectDetailPage(projectName: 'ifsai'),
-      //         transitionsBuilder: (
-      //           context,
-      //           animation,
-      //           secondaryAnimation,
-      //           child,
-      //         ) {
-      //           final tween = Tween<Offset>(
-      //             begin: const Offset(0, 1),
-      //             end: Offset.zero,
-      //           ).chain(CurveTween(curve: Curves.easeInOut));
-      //           return SlideTransition(
-      //             position: animation.drive(tween),
-      //             child: FadeTransition(opacity: animation, child: child),
-      //           );
-      //         },
-      //         transitionDuration: const Duration(milliseconds: 800),
-      //       ),
-      // ),
+      GoRoute(
+        path: '/project/ifsai',
+        name: 'ifsai_detail',
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              child: ProjectDetailPage(projectName: 'ifsai'),
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                final tween = Tween<Offset>(
+                  begin: const Offset(0, 1),
+                  end: Offset.zero,
+                ).chain(CurveTween(curve: Curves.easeInOut));
+                return SlideTransition(
+                  position: animation.drive(tween),
+                  child: FadeTransition(opacity: animation, child: child),
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 800),
+            ),
+      ),
       GoRoute(
         path: '/project-detail/ifsai',
         name: 'mobile_ifsai_detail',
@@ -95,7 +94,28 @@ class AppRouter {
       ),
       GoRoute(
         path: '/project/gsshop',
-        builder: (context, state) => const GsShopPage(),
+        name: 'gsshop_detail',
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              child: ProjectDetailPage(projectName: 'gsshop'),
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                final tween = Tween<Offset>(
+                  begin: const Offset(0, 1),
+                  end: Offset.zero,
+                ).chain(CurveTween(curve: Curves.easeInOut));
+                return SlideTransition(
+                  position: animation.drive(tween),
+                  child: FadeTransition(opacity: animation, child: child),
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 800),
+            ),
       ),
       GoRoute(
         path: '/schedule',

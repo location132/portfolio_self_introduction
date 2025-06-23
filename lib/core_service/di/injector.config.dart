@@ -14,6 +14,7 @@ import 'package:injectable/injectable.dart' as _i526;
 
 import '../../page/desktop_page/desktop_cubit.dart' as _i903;
 import '../../page/mobile_page/mobile_cubit.dart' as _i673;
+import '../../page/project_detail_page/gs_shop/gsshop_cubit.dart' as _i701;
 import '../../page/project_detail_page/ifsai/ifsai_desktop/ifsai_cubit.dart'
     as _i426;
 import '../../page/project_detail_page/project_detail_cubit.dart' as _i595;
@@ -35,12 +36,13 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i330.TechBlogPostDetailCubit>(
       () => _i330.TechBlogPostDetailCubit(),
     );
+    gh.factory<_i229.ScheduleCubit>(() => _i229.ScheduleCubit());
     gh.factory<_i673.MobileCubit>(() => _i673.MobileCubit()..init());
     gh.factory<_i706.TechBlogCubit>(() => _i706.TechBlogCubit()..initialize());
     gh.factory<_i595.ProjectDetailCubit>(() => _i595.ProjectDetailCubit());
     gh.factory<_i426.IfsaiCubit>(() => _i426.IfsaiCubit());
     gh.factory<_i68.ProjectsMainCubit>(() => _i68.ProjectsMainCubit());
-    gh.factory<_i229.ScheduleCubit>(() => _i229.ScheduleCubit());
+    gh.factory<_i701.GsShopCubit>(() => _i701.GsShopCubit());
     gh.singleton<_i112.IntroService>(() => _i112.IntroService());
     return this;
   }

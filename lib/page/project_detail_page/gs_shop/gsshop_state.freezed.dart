@@ -17,50 +17,31 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$GsShopState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(String message) error,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(String message)? error,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  bool get isMenuClicked => throw _privateConstructorUsedError;
+  double get videoWidth => throw _privateConstructorUsedError;
+  double get textWidth => throw _privateConstructorUsedError;
+  VideoPlayerController? get videoController =>
+      throw _privateConstructorUsedError;
+  bool get isVideoInitialized => throw _privateConstructorUsedError;
+  bool get isVideoPlaying => throw _privateConstructorUsedError;
+  bool get showVideoControls => throw _privateConstructorUsedError; // 첫 번째 영상
+  String get firstVideoUrl => throw _privateConstructorUsedError;
+  String get firstVideoTitle => throw _privateConstructorUsedError;
+  String get firstVideoDescription => throw _privateConstructorUsedError;
+  String get firstSectionTitle => throw _privateConstructorUsedError;
+  String get firstSectionDescription =>
+      throw _privateConstructorUsedError; // 두 번째 영상
+  String get secondVideoUrl => throw _privateConstructorUsedError;
+  String get secondVideoTitle => throw _privateConstructorUsedError;
+  String get secondVideoDescription => throw _privateConstructorUsedError;
+  String get secondSectionTitle => throw _privateConstructorUsedError;
+  String get secondSectionDescription => throw _privateConstructorUsedError;
+
+  /// Create a copy of GsShopState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $GsShopStateCopyWith<GsShopState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -69,6 +50,26 @@ abstract class $GsShopStateCopyWith<$Res> {
     GsShopState value,
     $Res Function(GsShopState) then,
   ) = _$GsShopStateCopyWithImpl<$Res, GsShopState>;
+  @useResult
+  $Res call({
+    bool isMenuClicked,
+    double videoWidth,
+    double textWidth,
+    VideoPlayerController? videoController,
+    bool isVideoInitialized,
+    bool isVideoPlaying,
+    bool showVideoControls,
+    String firstVideoUrl,
+    String firstVideoTitle,
+    String firstVideoDescription,
+    String firstSectionTitle,
+    String firstSectionDescription,
+    String secondVideoUrl,
+    String secondVideoTitle,
+    String secondVideoDescription,
+    String secondSectionTitle,
+    String secondSectionDescription,
+  });
 }
 
 /// @nodoc
@@ -83,395 +84,269 @@ class _$GsShopStateCopyWithImpl<$Res, $Val extends GsShopState>
 
   /// Create a copy of GsShopState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isMenuClicked = null,
+    Object? videoWidth = null,
+    Object? textWidth = null,
+    Object? videoController = freezed,
+    Object? isVideoInitialized = null,
+    Object? isVideoPlaying = null,
+    Object? showVideoControls = null,
+    Object? firstVideoUrl = null,
+    Object? firstVideoTitle = null,
+    Object? firstVideoDescription = null,
+    Object? firstSectionTitle = null,
+    Object? firstSectionDescription = null,
+    Object? secondVideoUrl = null,
+    Object? secondVideoTitle = null,
+    Object? secondVideoDescription = null,
+    Object? secondSectionTitle = null,
+    Object? secondSectionDescription = null,
+  }) {
+    return _then(
+      _value.copyWith(
+            isMenuClicked:
+                null == isMenuClicked
+                    ? _value.isMenuClicked
+                    : isMenuClicked // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            videoWidth:
+                null == videoWidth
+                    ? _value.videoWidth
+                    : videoWidth // ignore: cast_nullable_to_non_nullable
+                        as double,
+            textWidth:
+                null == textWidth
+                    ? _value.textWidth
+                    : textWidth // ignore: cast_nullable_to_non_nullable
+                        as double,
+            videoController:
+                freezed == videoController
+                    ? _value.videoController
+                    : videoController // ignore: cast_nullable_to_non_nullable
+                        as VideoPlayerController?,
+            isVideoInitialized:
+                null == isVideoInitialized
+                    ? _value.isVideoInitialized
+                    : isVideoInitialized // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isVideoPlaying:
+                null == isVideoPlaying
+                    ? _value.isVideoPlaying
+                    : isVideoPlaying // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            showVideoControls:
+                null == showVideoControls
+                    ? _value.showVideoControls
+                    : showVideoControls // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            firstVideoUrl:
+                null == firstVideoUrl
+                    ? _value.firstVideoUrl
+                    : firstVideoUrl // ignore: cast_nullable_to_non_nullable
+                        as String,
+            firstVideoTitle:
+                null == firstVideoTitle
+                    ? _value.firstVideoTitle
+                    : firstVideoTitle // ignore: cast_nullable_to_non_nullable
+                        as String,
+            firstVideoDescription:
+                null == firstVideoDescription
+                    ? _value.firstVideoDescription
+                    : firstVideoDescription // ignore: cast_nullable_to_non_nullable
+                        as String,
+            firstSectionTitle:
+                null == firstSectionTitle
+                    ? _value.firstSectionTitle
+                    : firstSectionTitle // ignore: cast_nullable_to_non_nullable
+                        as String,
+            firstSectionDescription:
+                null == firstSectionDescription
+                    ? _value.firstSectionDescription
+                    : firstSectionDescription // ignore: cast_nullable_to_non_nullable
+                        as String,
+            secondVideoUrl:
+                null == secondVideoUrl
+                    ? _value.secondVideoUrl
+                    : secondVideoUrl // ignore: cast_nullable_to_non_nullable
+                        as String,
+            secondVideoTitle:
+                null == secondVideoTitle
+                    ? _value.secondVideoTitle
+                    : secondVideoTitle // ignore: cast_nullable_to_non_nullable
+                        as String,
+            secondVideoDescription:
+                null == secondVideoDescription
+                    ? _value.secondVideoDescription
+                    : secondVideoDescription // ignore: cast_nullable_to_non_nullable
+                        as String,
+            secondSectionTitle:
+                null == secondSectionTitle
+                    ? _value.secondSectionTitle
+                    : secondSectionTitle // ignore: cast_nullable_to_non_nullable
+                        as String,
+            secondSectionDescription:
+                null == secondSectionDescription
+                    ? _value.secondSectionDescription
+                    : secondSectionDescription // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
+  }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-    _$InitialImpl value,
-    $Res Function(_$InitialImpl) then,
-  ) = __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$GsShopStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-    _$InitialImpl _value,
-    $Res Function(_$InitialImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of GsShopState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
+abstract class _$$GsShopStateImplCopyWith<$Res>
+    implements $GsShopStateCopyWith<$Res> {
+  factory _$$GsShopStateImplCopyWith(
+    _$GsShopStateImpl value,
+    $Res Function(_$GsShopStateImpl) then,
+  ) = __$$GsShopStateImplCopyWithImpl<$Res>;
   @override
-  String toString() {
-    return 'GsShopState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(String message) error,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(String message)? error,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements GsShopState {
-  const factory _Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-    _$LoadingImpl value,
-    $Res Function(_$LoadingImpl) then,
-  ) = __$$LoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$GsShopStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-    _$LoadingImpl _value,
-    $Res Function(_$LoadingImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of GsShopState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
-
-  @override
-  String toString() {
-    return 'GsShopState.loading()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(String message) error,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(String message)? error,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Loading implements GsShopState {
-  const factory _Loading() = _$LoadingImpl;
-}
-
-/// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-    _$SuccessImpl value,
-    $Res Function(_$SuccessImpl) then,
-  ) = __$$SuccessImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$GsShopStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-    _$SuccessImpl _value,
-    $Res Function(_$SuccessImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of GsShopState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl();
-
-  @override
-  String toString() {
-    return 'GsShopState.success()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SuccessImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(String message) error,
-  }) {
-    return success();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(String message)? error,
-  }) {
-    return success?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Success implements GsShopState {
-  const factory _Success() = _$SuccessImpl;
-}
-
-/// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-    _$ErrorImpl value,
-    $Res Function(_$ErrorImpl) then,
-  ) = __$$ErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message});
+  $Res call({
+    bool isMenuClicked,
+    double videoWidth,
+    double textWidth,
+    VideoPlayerController? videoController,
+    bool isVideoInitialized,
+    bool isVideoPlaying,
+    bool showVideoControls,
+    String firstVideoUrl,
+    String firstVideoTitle,
+    String firstVideoDescription,
+    String firstSectionTitle,
+    String firstSectionDescription,
+    String secondVideoUrl,
+    String secondVideoTitle,
+    String secondVideoDescription,
+    String secondSectionTitle,
+    String secondSectionDescription,
+  });
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$GsShopStateCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-    _$ErrorImpl _value,
-    $Res Function(_$ErrorImpl) _then,
+class __$$GsShopStateImplCopyWithImpl<$Res>
+    extends _$GsShopStateCopyWithImpl<$Res, _$GsShopStateImpl>
+    implements _$$GsShopStateImplCopyWith<$Res> {
+  __$$GsShopStateImplCopyWithImpl(
+    _$GsShopStateImpl _value,
+    $Res Function(_$GsShopStateImpl) _then,
   ) : super(_value, _then);
 
   /// Create a copy of GsShopState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? message = null}) {
+  $Res call({
+    Object? isMenuClicked = null,
+    Object? videoWidth = null,
+    Object? textWidth = null,
+    Object? videoController = freezed,
+    Object? isVideoInitialized = null,
+    Object? isVideoPlaying = null,
+    Object? showVideoControls = null,
+    Object? firstVideoUrl = null,
+    Object? firstVideoTitle = null,
+    Object? firstVideoDescription = null,
+    Object? firstSectionTitle = null,
+    Object? firstSectionDescription = null,
+    Object? secondVideoUrl = null,
+    Object? secondVideoTitle = null,
+    Object? secondVideoDescription = null,
+    Object? secondSectionTitle = null,
+    Object? secondSectionDescription = null,
+  }) {
     return _then(
-      _$ErrorImpl(
-        null == message
-            ? _value.message
-            : message // ignore: cast_nullable_to_non_nullable
-                as String,
+      _$GsShopStateImpl(
+        isMenuClicked:
+            null == isMenuClicked
+                ? _value.isMenuClicked
+                : isMenuClicked // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        videoWidth:
+            null == videoWidth
+                ? _value.videoWidth
+                : videoWidth // ignore: cast_nullable_to_non_nullable
+                    as double,
+        textWidth:
+            null == textWidth
+                ? _value.textWidth
+                : textWidth // ignore: cast_nullable_to_non_nullable
+                    as double,
+        videoController:
+            freezed == videoController
+                ? _value.videoController
+                : videoController // ignore: cast_nullable_to_non_nullable
+                    as VideoPlayerController?,
+        isVideoInitialized:
+            null == isVideoInitialized
+                ? _value.isVideoInitialized
+                : isVideoInitialized // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isVideoPlaying:
+            null == isVideoPlaying
+                ? _value.isVideoPlaying
+                : isVideoPlaying // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        showVideoControls:
+            null == showVideoControls
+                ? _value.showVideoControls
+                : showVideoControls // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        firstVideoUrl:
+            null == firstVideoUrl
+                ? _value.firstVideoUrl
+                : firstVideoUrl // ignore: cast_nullable_to_non_nullable
+                    as String,
+        firstVideoTitle:
+            null == firstVideoTitle
+                ? _value.firstVideoTitle
+                : firstVideoTitle // ignore: cast_nullable_to_non_nullable
+                    as String,
+        firstVideoDescription:
+            null == firstVideoDescription
+                ? _value.firstVideoDescription
+                : firstVideoDescription // ignore: cast_nullable_to_non_nullable
+                    as String,
+        firstSectionTitle:
+            null == firstSectionTitle
+                ? _value.firstSectionTitle
+                : firstSectionTitle // ignore: cast_nullable_to_non_nullable
+                    as String,
+        firstSectionDescription:
+            null == firstSectionDescription
+                ? _value.firstSectionDescription
+                : firstSectionDescription // ignore: cast_nullable_to_non_nullable
+                    as String,
+        secondVideoUrl:
+            null == secondVideoUrl
+                ? _value.secondVideoUrl
+                : secondVideoUrl // ignore: cast_nullable_to_non_nullable
+                    as String,
+        secondVideoTitle:
+            null == secondVideoTitle
+                ? _value.secondVideoTitle
+                : secondVideoTitle // ignore: cast_nullable_to_non_nullable
+                    as String,
+        secondVideoDescription:
+            null == secondVideoDescription
+                ? _value.secondVideoDescription
+                : secondVideoDescription // ignore: cast_nullable_to_non_nullable
+                    as String,
+        secondSectionTitle:
+            null == secondSectionTitle
+                ? _value.secondSectionTitle
+                : secondSectionTitle // ignore: cast_nullable_to_non_nullable
+                    as String,
+        secondSectionDescription:
+            null == secondSectionDescription
+                ? _value.secondSectionDescription
+                : secondSectionDescription // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -479,119 +354,227 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorImpl implements _Error {
-  const _$ErrorImpl(this.message);
+class _$GsShopStateImpl implements _GsShopState {
+  const _$GsShopStateImpl({
+    this.isMenuClicked = false,
+    this.videoWidth = 300.0,
+    this.textWidth = 300.0,
+    this.videoController,
+    this.isVideoInitialized = false,
+    this.isVideoPlaying = false,
+    this.showVideoControls = true,
+    this.firstVideoUrl =
+        'https://kr.object.ncloudstorage.com/web0314/gs_shop.mov',
+    this.firstVideoTitle = 'GS Shop 원본 앱',
+    this.firstVideoDescription = '검색 시 화면 번쩍임 현상',
+    this.firstSectionTitle = '문제 상황 설명',
+    this.firstSectionDescription =
+        '사용자가 검색을 시도할 때, 데이터베이스에서 연관 검색어를 받아와 표시하는 과정에서 화면의 번쩍임 현상이 발생하였습니다.\n\n이 문제는 사용자가 "안녕"이라는 단어를 검색할 때, \'ㅇ\', \'ㅏ\', \'ㄴ\', \'ㄴ\', \'ㅕ\', \'ㅇ\' 총 6번의 화면이 setState 되는 문제였습니다.\n\n이로 인해 사용자는 과도한 번쩍거림 현상을 경험하게 되어 UX가 저하되는 문제가 발생하였으며, 이를 개선하고자 합니다.',
+    this.secondVideoUrl =
+        'https://kr.object.ncloudstorage.com/web0314/Flutter_gs_shop.mov',
+    this.secondVideoTitle = '같은 문제 상황 구현해보기',
+    this.secondVideoDescription = '같은 문제 재현',
+    this.secondSectionTitle = '문제 상황 직접 재현하기',
+    this.secondSectionDescription =
+        '이 문제를 이해하는 가장 좋은 방법은 직접 만들어 보는거라 생각하였습니다.\n\n그래서 저는 GS SHOP과 동일한 검색창을 Flutter로 구현했으며,\n문제 상황을 똑같이 재현하며 왜 이런 일이 벌어지는지 직접 확인했습니다.',
+  });
 
   @override
-  final String message;
+  @JsonKey()
+  final bool isMenuClicked;
+  @override
+  @JsonKey()
+  final double videoWidth;
+  @override
+  @JsonKey()
+  final double textWidth;
+  @override
+  final VideoPlayerController? videoController;
+  @override
+  @JsonKey()
+  final bool isVideoInitialized;
+  @override
+  @JsonKey()
+  final bool isVideoPlaying;
+  @override
+  @JsonKey()
+  final bool showVideoControls;
+  // 첫 번째 영상
+  @override
+  @JsonKey()
+  final String firstVideoUrl;
+  @override
+  @JsonKey()
+  final String firstVideoTitle;
+  @override
+  @JsonKey()
+  final String firstVideoDescription;
+  @override
+  @JsonKey()
+  final String firstSectionTitle;
+  @override
+  @JsonKey()
+  final String firstSectionDescription;
+  // 두 번째 영상
+  @override
+  @JsonKey()
+  final String secondVideoUrl;
+  @override
+  @JsonKey()
+  final String secondVideoTitle;
+  @override
+  @JsonKey()
+  final String secondVideoDescription;
+  @override
+  @JsonKey()
+  final String secondSectionTitle;
+  @override
+  @JsonKey()
+  final String secondSectionDescription;
 
   @override
   String toString() {
-    return 'GsShopState.error(message: $message)';
+    return 'GsShopState(isMenuClicked: $isMenuClicked, videoWidth: $videoWidth, textWidth: $textWidth, videoController: $videoController, isVideoInitialized: $isVideoInitialized, isVideoPlaying: $isVideoPlaying, showVideoControls: $showVideoControls, firstVideoUrl: $firstVideoUrl, firstVideoTitle: $firstVideoTitle, firstVideoDescription: $firstVideoDescription, firstSectionTitle: $firstSectionTitle, firstSectionDescription: $firstSectionDescription, secondVideoUrl: $secondVideoUrl, secondVideoTitle: $secondVideoTitle, secondVideoDescription: $secondVideoDescription, secondSectionTitle: $secondSectionTitle, secondSectionDescription: $secondSectionDescription)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
-            (identical(other.message, message) || other.message == message));
+            other is _$GsShopStateImpl &&
+            (identical(other.isMenuClicked, isMenuClicked) ||
+                other.isMenuClicked == isMenuClicked) &&
+            (identical(other.videoWidth, videoWidth) ||
+                other.videoWidth == videoWidth) &&
+            (identical(other.textWidth, textWidth) ||
+                other.textWidth == textWidth) &&
+            (identical(other.videoController, videoController) ||
+                other.videoController == videoController) &&
+            (identical(other.isVideoInitialized, isVideoInitialized) ||
+                other.isVideoInitialized == isVideoInitialized) &&
+            (identical(other.isVideoPlaying, isVideoPlaying) ||
+                other.isVideoPlaying == isVideoPlaying) &&
+            (identical(other.showVideoControls, showVideoControls) ||
+                other.showVideoControls == showVideoControls) &&
+            (identical(other.firstVideoUrl, firstVideoUrl) ||
+                other.firstVideoUrl == firstVideoUrl) &&
+            (identical(other.firstVideoTitle, firstVideoTitle) ||
+                other.firstVideoTitle == firstVideoTitle) &&
+            (identical(other.firstVideoDescription, firstVideoDescription) ||
+                other.firstVideoDescription == firstVideoDescription) &&
+            (identical(other.firstSectionTitle, firstSectionTitle) ||
+                other.firstSectionTitle == firstSectionTitle) &&
+            (identical(
+                  other.firstSectionDescription,
+                  firstSectionDescription,
+                ) ||
+                other.firstSectionDescription == firstSectionDescription) &&
+            (identical(other.secondVideoUrl, secondVideoUrl) ||
+                other.secondVideoUrl == secondVideoUrl) &&
+            (identical(other.secondVideoTitle, secondVideoTitle) ||
+                other.secondVideoTitle == secondVideoTitle) &&
+            (identical(other.secondVideoDescription, secondVideoDescription) ||
+                other.secondVideoDescription == secondVideoDescription) &&
+            (identical(other.secondSectionTitle, secondSectionTitle) ||
+                other.secondSectionTitle == secondSectionTitle) &&
+            (identical(
+                  other.secondSectionDescription,
+                  secondSectionDescription,
+                ) ||
+                other.secondSectionDescription == secondSectionDescription));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(
+    runtimeType,
+    isMenuClicked,
+    videoWidth,
+    textWidth,
+    videoController,
+    isVideoInitialized,
+    isVideoPlaying,
+    showVideoControls,
+    firstVideoUrl,
+    firstVideoTitle,
+    firstVideoDescription,
+    firstSectionTitle,
+    firstSectionDescription,
+    secondVideoUrl,
+    secondVideoTitle,
+    secondVideoDescription,
+    secondSectionTitle,
+    secondSectionDescription,
+  );
 
   /// Create a copy of GsShopState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(String message) error,
-  }) {
-    return error(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(String message)? error,
-  }) {
-    return error?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
+  _$$GsShopStateImplCopyWith<_$GsShopStateImpl> get copyWith =>
+      __$$GsShopStateImplCopyWithImpl<_$GsShopStateImpl>(this, _$identity);
 }
 
-abstract class _Error implements GsShopState {
-  const factory _Error(final String message) = _$ErrorImpl;
+abstract class _GsShopState implements GsShopState {
+  const factory _GsShopState({
+    final bool isMenuClicked,
+    final double videoWidth,
+    final double textWidth,
+    final VideoPlayerController? videoController,
+    final bool isVideoInitialized,
+    final bool isVideoPlaying,
+    final bool showVideoControls,
+    final String firstVideoUrl,
+    final String firstVideoTitle,
+    final String firstVideoDescription,
+    final String firstSectionTitle,
+    final String firstSectionDescription,
+    final String secondVideoUrl,
+    final String secondVideoTitle,
+    final String secondVideoDescription,
+    final String secondSectionTitle,
+    final String secondSectionDescription,
+  }) = _$GsShopStateImpl;
 
-  String get message;
+  @override
+  bool get isMenuClicked;
+  @override
+  double get videoWidth;
+  @override
+  double get textWidth;
+  @override
+  VideoPlayerController? get videoController;
+  @override
+  bool get isVideoInitialized;
+  @override
+  bool get isVideoPlaying;
+  @override
+  bool get showVideoControls; // 첫 번째 영상
+  @override
+  String get firstVideoUrl;
+  @override
+  String get firstVideoTitle;
+  @override
+  String get firstVideoDescription;
+  @override
+  String get firstSectionTitle;
+  @override
+  String get firstSectionDescription; // 두 번째 영상
+  @override
+  String get secondVideoUrl;
+  @override
+  String get secondVideoTitle;
+  @override
+  String get secondVideoDescription;
+  @override
+  String get secondSectionTitle;
+  @override
+  String get secondSectionDescription;
 
   /// Create a copy of GsShopState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+  _$$GsShopStateImplCopyWith<_$GsShopStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
