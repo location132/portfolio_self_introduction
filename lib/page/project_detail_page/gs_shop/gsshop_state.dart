@@ -37,5 +37,16 @@ class GsShopState with _$GsShopState {
       '이 문제를 이해하는 가장 좋은 방법은 직접 만들어 보는거라 생각하였습니다.\n\n그래서 저는 GS SHOP과 동일한 검색창을 Flutter로 구현했으며,\n문제 상황을 똑같이 재현하며 왜 이런 일이 벌어지는지 직접 확인했습니다.',
     )
     String secondSectionDescription,
+
+    // 세 번째 영상 개선된 버전
+    @Default('https://kr.object.ncloudstorage.com/web0314/fix_GsShop.mov')
+    String thirdVideoUrl,
+    @Default('검색 화면 수정 후') String thirdVideoTitle,
+    @Default('번쩍임 현상 줄이기') String thirdVideoDescription,
+    @Default('최종 개선 결과') String thirdSectionTitle,
+    @Default(
+      '6가지 핵심 개선 방법을 적용한 결과입니다.\n\n생명주기 개선, 애니메이션 최적화, Provider 상태 관리, 서버 통신 최적화, 로컬/서버 데이터 통합, 검색 입력 처리 최적화를 통해\n화면 번쩍임 현상을 완전히 제거하고 부드러운 사용자 경험을 구현했습니다.',
+    )
+    String thirdSectionDescription,
   }) = _GsShopState;
 }

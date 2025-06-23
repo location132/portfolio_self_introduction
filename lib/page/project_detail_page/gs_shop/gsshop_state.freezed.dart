@@ -35,7 +35,13 @@ mixin _$GsShopState {
   String get secondVideoTitle => throw _privateConstructorUsedError;
   String get secondVideoDescription => throw _privateConstructorUsedError;
   String get secondSectionTitle => throw _privateConstructorUsedError;
-  String get secondSectionDescription => throw _privateConstructorUsedError;
+  String get secondSectionDescription =>
+      throw _privateConstructorUsedError; // 세 번째 영상 개선된 버전
+  String get thirdVideoUrl => throw _privateConstructorUsedError;
+  String get thirdVideoTitle => throw _privateConstructorUsedError;
+  String get thirdVideoDescription => throw _privateConstructorUsedError;
+  String get thirdSectionTitle => throw _privateConstructorUsedError;
+  String get thirdSectionDescription => throw _privateConstructorUsedError;
 
   /// Create a copy of GsShopState
   /// with the given fields replaced by the non-null parameter values.
@@ -69,6 +75,11 @@ abstract class $GsShopStateCopyWith<$Res> {
     String secondVideoDescription,
     String secondSectionTitle,
     String secondSectionDescription,
+    String thirdVideoUrl,
+    String thirdVideoTitle,
+    String thirdVideoDescription,
+    String thirdSectionTitle,
+    String thirdSectionDescription,
   });
 }
 
@@ -104,6 +115,11 @@ class _$GsShopStateCopyWithImpl<$Res, $Val extends GsShopState>
     Object? secondVideoDescription = null,
     Object? secondSectionTitle = null,
     Object? secondSectionDescription = null,
+    Object? thirdVideoUrl = null,
+    Object? thirdVideoTitle = null,
+    Object? thirdVideoDescription = null,
+    Object? thirdSectionTitle = null,
+    Object? thirdSectionDescription = null,
   }) {
     return _then(
       _value.copyWith(
@@ -192,6 +208,31 @@ class _$GsShopStateCopyWithImpl<$Res, $Val extends GsShopState>
                     ? _value.secondSectionDescription
                     : secondSectionDescription // ignore: cast_nullable_to_non_nullable
                         as String,
+            thirdVideoUrl:
+                null == thirdVideoUrl
+                    ? _value.thirdVideoUrl
+                    : thirdVideoUrl // ignore: cast_nullable_to_non_nullable
+                        as String,
+            thirdVideoTitle:
+                null == thirdVideoTitle
+                    ? _value.thirdVideoTitle
+                    : thirdVideoTitle // ignore: cast_nullable_to_non_nullable
+                        as String,
+            thirdVideoDescription:
+                null == thirdVideoDescription
+                    ? _value.thirdVideoDescription
+                    : thirdVideoDescription // ignore: cast_nullable_to_non_nullable
+                        as String,
+            thirdSectionTitle:
+                null == thirdSectionTitle
+                    ? _value.thirdSectionTitle
+                    : thirdSectionTitle // ignore: cast_nullable_to_non_nullable
+                        as String,
+            thirdSectionDescription:
+                null == thirdSectionDescription
+                    ? _value.thirdSectionDescription
+                    : thirdSectionDescription // ignore: cast_nullable_to_non_nullable
+                        as String,
           )
           as $Val,
     );
@@ -225,6 +266,11 @@ abstract class _$$GsShopStateImplCopyWith<$Res>
     String secondVideoDescription,
     String secondSectionTitle,
     String secondSectionDescription,
+    String thirdVideoUrl,
+    String thirdVideoTitle,
+    String thirdVideoDescription,
+    String thirdSectionTitle,
+    String thirdSectionDescription,
   });
 }
 
@@ -259,6 +305,11 @@ class __$$GsShopStateImplCopyWithImpl<$Res>
     Object? secondVideoDescription = null,
     Object? secondSectionTitle = null,
     Object? secondSectionDescription = null,
+    Object? thirdVideoUrl = null,
+    Object? thirdVideoTitle = null,
+    Object? thirdVideoDescription = null,
+    Object? thirdSectionTitle = null,
+    Object? thirdSectionDescription = null,
   }) {
     return _then(
       _$GsShopStateImpl(
@@ -347,6 +398,31 @@ class __$$GsShopStateImplCopyWithImpl<$Res>
                 ? _value.secondSectionDescription
                 : secondSectionDescription // ignore: cast_nullable_to_non_nullable
                     as String,
+        thirdVideoUrl:
+            null == thirdVideoUrl
+                ? _value.thirdVideoUrl
+                : thirdVideoUrl // ignore: cast_nullable_to_non_nullable
+                    as String,
+        thirdVideoTitle:
+            null == thirdVideoTitle
+                ? _value.thirdVideoTitle
+                : thirdVideoTitle // ignore: cast_nullable_to_non_nullable
+                    as String,
+        thirdVideoDescription:
+            null == thirdVideoDescription
+                ? _value.thirdVideoDescription
+                : thirdVideoDescription // ignore: cast_nullable_to_non_nullable
+                    as String,
+        thirdSectionTitle:
+            null == thirdSectionTitle
+                ? _value.thirdSectionTitle
+                : thirdSectionTitle // ignore: cast_nullable_to_non_nullable
+                    as String,
+        thirdSectionDescription:
+            null == thirdSectionDescription
+                ? _value.thirdSectionDescription
+                : thirdSectionDescription // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -377,6 +453,13 @@ class _$GsShopStateImpl implements _GsShopState {
     this.secondSectionTitle = '문제 상황 직접 재현하기',
     this.secondSectionDescription =
         '이 문제를 이해하는 가장 좋은 방법은 직접 만들어 보는거라 생각하였습니다.\n\n그래서 저는 GS SHOP과 동일한 검색창을 Flutter로 구현했으며,\n문제 상황을 똑같이 재현하며 왜 이런 일이 벌어지는지 직접 확인했습니다.',
+    this.thirdVideoUrl =
+        'https://kr.object.ncloudstorage.com/web0314/fix_GsShop.mov',
+    this.thirdVideoTitle = '검색 화면 수정 후',
+    this.thirdVideoDescription = '번쩍임 현상 줄이기',
+    this.thirdSectionTitle = '최종 개선 결과',
+    this.thirdSectionDescription =
+        '6가지 핵심 개선 방법을 적용한 결과입니다.\n\n생명주기 개선, 애니메이션 최적화, Provider 상태 관리, 서버 통신 최적화, 로컬/서버 데이터 통합, 검색 입력 처리 최적화를 통해\n화면 번쩍임 현상을 완전히 제거하고 부드러운 사용자 경험을 구현했습니다.',
   });
 
   @override
@@ -431,10 +514,26 @@ class _$GsShopStateImpl implements _GsShopState {
   @override
   @JsonKey()
   final String secondSectionDescription;
+  // 세 번째 영상 개선된 버전
+  @override
+  @JsonKey()
+  final String thirdVideoUrl;
+  @override
+  @JsonKey()
+  final String thirdVideoTitle;
+  @override
+  @JsonKey()
+  final String thirdVideoDescription;
+  @override
+  @JsonKey()
+  final String thirdSectionTitle;
+  @override
+  @JsonKey()
+  final String thirdSectionDescription;
 
   @override
   String toString() {
-    return 'GsShopState(isMenuClicked: $isMenuClicked, videoWidth: $videoWidth, textWidth: $textWidth, videoController: $videoController, isVideoInitialized: $isVideoInitialized, isVideoPlaying: $isVideoPlaying, showVideoControls: $showVideoControls, firstVideoUrl: $firstVideoUrl, firstVideoTitle: $firstVideoTitle, firstVideoDescription: $firstVideoDescription, firstSectionTitle: $firstSectionTitle, firstSectionDescription: $firstSectionDescription, secondVideoUrl: $secondVideoUrl, secondVideoTitle: $secondVideoTitle, secondVideoDescription: $secondVideoDescription, secondSectionTitle: $secondSectionTitle, secondSectionDescription: $secondSectionDescription)';
+    return 'GsShopState(isMenuClicked: $isMenuClicked, videoWidth: $videoWidth, textWidth: $textWidth, videoController: $videoController, isVideoInitialized: $isVideoInitialized, isVideoPlaying: $isVideoPlaying, showVideoControls: $showVideoControls, firstVideoUrl: $firstVideoUrl, firstVideoTitle: $firstVideoTitle, firstVideoDescription: $firstVideoDescription, firstSectionTitle: $firstSectionTitle, firstSectionDescription: $firstSectionDescription, secondVideoUrl: $secondVideoUrl, secondVideoTitle: $secondVideoTitle, secondVideoDescription: $secondVideoDescription, secondSectionTitle: $secondSectionTitle, secondSectionDescription: $secondSectionDescription, thirdVideoUrl: $thirdVideoUrl, thirdVideoTitle: $thirdVideoTitle, thirdVideoDescription: $thirdVideoDescription, thirdSectionTitle: $thirdSectionTitle, thirdSectionDescription: $thirdSectionDescription)';
   }
 
   @override
@@ -481,11 +580,24 @@ class _$GsShopStateImpl implements _GsShopState {
                   other.secondSectionDescription,
                   secondSectionDescription,
                 ) ||
-                other.secondSectionDescription == secondSectionDescription));
+                other.secondSectionDescription == secondSectionDescription) &&
+            (identical(other.thirdVideoUrl, thirdVideoUrl) ||
+                other.thirdVideoUrl == thirdVideoUrl) &&
+            (identical(other.thirdVideoTitle, thirdVideoTitle) ||
+                other.thirdVideoTitle == thirdVideoTitle) &&
+            (identical(other.thirdVideoDescription, thirdVideoDescription) ||
+                other.thirdVideoDescription == thirdVideoDescription) &&
+            (identical(other.thirdSectionTitle, thirdSectionTitle) ||
+                other.thirdSectionTitle == thirdSectionTitle) &&
+            (identical(
+                  other.thirdSectionDescription,
+                  thirdSectionDescription,
+                ) ||
+                other.thirdSectionDescription == thirdSectionDescription));
   }
 
   @override
-  int get hashCode => Object.hash(
+  int get hashCode => Object.hashAll([
     runtimeType,
     isMenuClicked,
     videoWidth,
@@ -504,7 +616,12 @@ class _$GsShopStateImpl implements _GsShopState {
     secondVideoDescription,
     secondSectionTitle,
     secondSectionDescription,
-  );
+    thirdVideoUrl,
+    thirdVideoTitle,
+    thirdVideoDescription,
+    thirdSectionTitle,
+    thirdSectionDescription,
+  ]);
 
   /// Create a copy of GsShopState
   /// with the given fields replaced by the non-null parameter values.
@@ -534,6 +651,11 @@ abstract class _GsShopState implements GsShopState {
     final String secondVideoDescription,
     final String secondSectionTitle,
     final String secondSectionDescription,
+    final String thirdVideoUrl,
+    final String thirdVideoTitle,
+    final String thirdVideoDescription,
+    final String thirdSectionTitle,
+    final String thirdSectionDescription,
   }) = _$GsShopStateImpl;
 
   @override
@@ -569,7 +691,17 @@ abstract class _GsShopState implements GsShopState {
   @override
   String get secondSectionTitle;
   @override
-  String get secondSectionDescription;
+  String get secondSectionDescription; // 세 번째 영상 개선된 버전
+  @override
+  String get thirdVideoUrl;
+  @override
+  String get thirdVideoTitle;
+  @override
+  String get thirdVideoDescription;
+  @override
+  String get thirdSectionTitle;
+  @override
+  String get thirdSectionDescription;
 
   /// Create a copy of GsShopState
   /// with the given fields replaced by the non-null parameter values.
