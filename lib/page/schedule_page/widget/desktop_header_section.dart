@@ -15,8 +15,8 @@ class DesktopHeaderSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 100),
-            const Text(
-              '포트폴리오 웹사이트 리모델링과 함께\n더욱 많은 프로젝트들을 소개하겠습니다.',
+            Text(
+              'Version 2.0\n포트폴리오 웹사이트 리모델링과 함께\n더욱 많은 프로젝트들을 소개하겠습니다.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 32,

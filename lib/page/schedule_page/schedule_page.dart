@@ -68,7 +68,10 @@ class _ScheduleView extends StatelessWidget {
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
+                              SizedBox(height: 50),
+
                               ScheduleHeaderSection(isMobile: isMobile),
+
                               ScheduleProjectSection(isMobile: isMobile),
                               ScheduleTechBlogSection(isMobile: isMobile),
                             ],

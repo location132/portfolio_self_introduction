@@ -16,7 +16,7 @@ class MobileHeaderSection extends StatelessWidget {
           children: [
             SizedBox(height: 60.h),
             Text(
-              '포트폴리오 웹사이트 리모델링과 함께\n더욱 많은 프로젝트 그리고 기술블로그를 소개하겠습니다.',
+              'Version 2.0\n포트폴리오 웹사이트 리모델링과 함께\n더욱 많은 프로젝트들을 소개하겠습니다.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 24.sp,

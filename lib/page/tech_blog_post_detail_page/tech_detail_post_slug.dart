@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/clean_architecture.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/dependency_injection_view.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/isar.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/local_storage.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/mvvm.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/repository_pattern.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/bloc_cubit.dart';
@@ -149,7 +150,17 @@ class TechDetailPostSlug extends StatelessWidget {
           },
         );
       case 'local-storage':
-        return _buildPlaceholderPost('Local Storage');
+        return BlocBuilder<TechBlogPostDetailCubit, TechBlogPostDetailState>(
+          builder: (context, state) {
+            return LocalStorage(
+              isMobile: isMobile,
+              isFocused: (isFocused) {
+                this.isFocused(isFocused);
+              },
+              scrollController: state.scrollController ?? ScrollController(),
+            );
+          },
+        );
       case 'memory-cache':
         return _buildPlaceholderPost('Memory Cache');
       case 'naver-login':
