@@ -32,7 +32,7 @@ class _FreezedPageState extends State<FreezedPage> {
   @override
   void initState() {
     super.initState();
-    // widget.isFocused(true);
+    widget.isFocused(true);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _calculateScrollOffset();
     });

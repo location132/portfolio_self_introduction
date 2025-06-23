@@ -30,7 +30,7 @@ class _RepositoryPatternPageState extends State<RepositoryPatternPage> {
   @override
   void initState() {
     super.initState();
-    // widget.isFocused(true);
+    widget.isFocused(true);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _calculateScrollOffset();
     });

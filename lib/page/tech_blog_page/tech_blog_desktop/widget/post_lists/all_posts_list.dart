@@ -104,7 +104,7 @@ class AllPostsList extends StatelessWidget {
                 number: 9,
                 title: 'Isar 로컬 NoSQL DB',
                 tags: '#Isar  #NoSQL  #Local Database',
-                onTap: () => context.go('/schedule'),
+                onTap: () => context.go('/tech-blog/post/isar'),
                 uploadDate: '6월 25일',
               ),
               const SizedBox(height: 40),
