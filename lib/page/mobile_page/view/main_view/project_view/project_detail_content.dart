@@ -117,7 +117,7 @@ class ProjectDetailContent extends StatelessWidget {
     for (int index = 0; index < projects.length; index++) {
       Map<String, String> project = projects[index];
 
-      if (category == 'flutter' && index == 4) {
+      if (category == 'future') {
         projectWidgets.add(
           WidgetAnimation(
             isStart: isAnimationStart,

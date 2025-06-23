@@ -29,7 +29,15 @@ class _SquareProjectCardState extends State<SquareProjectCard> {
   }
 
   void _onProjectTap(BuildContext context) {
-    context.go('/schedule');
+    final title = widget.project['title'] ?? '';
+
+    if (title == '선배 개발자 따라잡기 With GS_SHOP') {
+      context.go('/project/gsshop');
+    } else if (title == '선배 개발자 따라잡기 With IDUS') {
+      context.go('/project/idus');
+    } else {
+      context.go('/schedule');
+    }
   }
 
   String _getImagePath() {
