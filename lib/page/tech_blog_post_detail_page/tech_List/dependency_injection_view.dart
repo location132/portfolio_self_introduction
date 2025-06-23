@@ -185,11 +185,11 @@ class _DependencyInjectionViewState extends State<DependencyInjectionView> {
                         isMobile: widget.isMobile,
                         isBackgroundColorWhite: state.isBackgroundColorWhite,
                         codeExampleSectionKey: _codeExampleSectionKey,
-                        textTitle: '4개의 이야기로 구성된 의존성 주입 포스팅',
+                        textTitle: '의존성 주입 포스팅',
                         textSubTitle:
-                            '프로젝트들에 적용하며 경험한 실제 이야기 입니다!\n\n\n\n                      자동 의존성 주입 구현하기\n                      4계층 아키텍쳐 + DI 설계\n                      다중 의존성과 순환 의존성\n총 5만줄 넘는 프로젝트를 구현하며 경험한 실제 효과',
+                            '\n자동 의존성 주입 구현하기\n4계층 아키텍쳐 + DI 설계\n다중 의존성과 순환 의존성',
                         textSubTitle2:
-                            '\n\n\n\n소개하는 코드는 제 프로젝트들과 포트폴리오 웹에서 실제로 구현한 코드입니다.',
+                            '\n\n\n\n소개하는 코드는 제 프로젝트들과 포트폴리오 웹에서 구현한 코드입니다.',
                       ),
                       SizedBox(height: widget.isMobile ? 30.h : 30),
                       // 내 코드와 이야기 시작
@@ -621,7 +621,7 @@ import 'package:my_dream/Page/11_shopping_cart/pages/shopping_page/shopping_cart
 
 @injectable  // Factory로 DI 등록 (매번 새 인스턴스)
 class ShoppingCartCubit extends Cubit<ShoppingCartState> {
-  final CartRemoteService _cartRemoteService;  // ⬅️ Service를 주입받음
+  final CartRemoteService _cartRemoteService;  // Service를 주입받음
 
   ShoppingCartCubit(this._cartRemoteService)  // 생성자 주입
       : super(const ShoppingCartState(screenState: ScreenState.loading));

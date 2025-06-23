@@ -109,11 +109,11 @@ class AllPostsList extends StatelessWidget {
               ),
               const SizedBox(height: 40),
               TechPostTitle(
+                isUpload: true,
                 number: 10,
                 title: 'SharedPreferences\nFlutter Secure Storage 로컬 캐싱',
                 tags: '#SharedPreferences  #SecureStorage  #Local Cache',
-                onTap: () => context.go('/schedule'),
-                uploadDate: '6월 25일',
+                onTap: () => context.go('/tech-blog/post/local-storage'),
               ),
               const SizedBox(height: 40),
               TechPostTitle(

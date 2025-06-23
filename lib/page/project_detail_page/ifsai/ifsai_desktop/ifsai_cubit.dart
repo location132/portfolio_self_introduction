@@ -515,6 +515,8 @@ class IfsaiCubit extends Cubit<IfsaiState> {
         route = '/tech-blog/post/isar';
         break;
       case 'SharedPreferences\n  Flutter Secure Storage 로컬 캐싱':
+        route = '/tech-blog/post/local-storage';
+        break;
       case 'MemoryCache\n  Dio Cache Interceptor - 메모리 및 네트워크 캐싱':
         route = '/schedule';
         break;

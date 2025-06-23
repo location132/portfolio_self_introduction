@@ -139,7 +139,7 @@ class _MvvmState extends State<Mvvm> {
                             '저도 대학동기들과 해당 내용으로 토론을 진행했지만 그 당시에는 지식이 부족해서 졌어요..\n\n'
                             '전통적인 의미의 MVVM은 Flutter에서 그대로 구현하기 어렵습니다.\n\n',
 
-                        toggleText: '이제는 토론에서 이길 수 있는\n  뒷 내용이 궁금하면 Click',
+                        toggleText: '이제는 토론에서 이길 수 있는\n뒷 내용이 궁금하면 Click',
                         toggleTextClose: '재미있는 사실 확인하셨나요? (닫기)',
                         detailContent:
                             'MVVM에서 흔히 말하는 자동 양방향 바인딩(View ↔ ViewModel)은\n'

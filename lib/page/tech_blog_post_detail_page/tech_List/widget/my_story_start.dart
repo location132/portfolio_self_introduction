@@ -35,6 +35,7 @@ class MyStoryStart extends StatelessWidget {
               color: isBackgroundColorWhite ? Colors.black : Colors.white,
               fontSize: isMobile ? 20.sp : 24,
             ),
+            textAlign: TextAlign.center,
           ),
         ),
         Center(
@@ -44,6 +45,7 @@ class MyStoryStart extends StatelessWidget {
               color: isBackgroundColorWhite ? Colors.black : Colors.white,
               fontSize: isMobile ? 20.sp : 24,
             ),
+            textAlign: TextAlign.center,
           ),
         ),
         Center(
@@ -53,6 +55,7 @@ class MyStoryStart extends StatelessWidget {
               color: isBackgroundColorWhite ? Colors.black : Colors.white,
               fontSize: isMobile ? 16.sp : 18,
             ),
+            textAlign: TextAlign.center,
           ),
         ),
         SizedBox(height: isMobile ? 150.h : 150),

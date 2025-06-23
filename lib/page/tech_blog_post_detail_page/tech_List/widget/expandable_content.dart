@@ -92,6 +92,7 @@ class _ExpandableContentState extends State<ExpandableContent>
                     fontSize: widget.isMobile ? 14.sp : 14,
                     fontWeight: FontWeight.w500,
                   ),
+                  textAlign: TextAlign.center,
                 ),
                 SizedBox(width: widget.isMobile ? 8.w : 8),
                 AnimatedRotation(

@@ -28,11 +28,11 @@ class MobileDataStoragePostList extends StatelessWidget {
         ),
         SizedBox(height: 30.h),
         MobileTechPostTitle(
+          isUpload: true,
           number: 3,
           title: 'SharedPreferences\nFlutter Secure Storage 로컬 캐싱',
           tags: '#SharedPreferences  #SecureStorage  #Local Cache',
-          onTap: () => context.go('/schedule'),
-          uploadDate: '6월 25일',
+          onTap: () => context.go('/tech-blog/post/local-storage'),
         ),
         SizedBox(height: 30.h),
         MobileTechPostTitle(
