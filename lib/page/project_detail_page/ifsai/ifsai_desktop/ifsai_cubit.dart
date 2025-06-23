@@ -518,7 +518,7 @@ class IfsaiCubit extends Cubit<IfsaiState> {
         route = '/tech-blog/post/local-storage';
         break;
       case 'MemoryCache\n  Dio Cache Interceptor - 메모리 및 네트워크 캐싱':
-        route = '/schedule';
+        route = '/tech-blog/post/memory-cache';
         break;
       default:
         route = '/tech-blog';

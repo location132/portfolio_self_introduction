@@ -31,7 +31,7 @@ class _LocalStorageState extends State<LocalStorage> {
   @override
   void initState() {
     super.initState();
-    // widget.isFocused(true);
+    widget.isFocused(true);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _calculateScrollOffset();
     });

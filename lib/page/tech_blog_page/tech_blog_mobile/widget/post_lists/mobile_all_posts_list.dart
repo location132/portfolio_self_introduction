@@ -95,11 +95,11 @@ class MobileAllPostsList extends StatelessWidget {
           ),
           SizedBox(height: 40.h),
           MobileTechPostTitle(
+            isUpload: true,
             number: 11,
             title: 'MemoryCache\nDio Cache Interceptor - 메모리 및 네트워크 캐싱',
             tags: '#MemoryCache  #Dio  #Network Cache',
-            onTap: () => context.go('/schedule'),
-            uploadDate: '6월 25일',
+            onTap: () => context.go('/tech-blog/post/memory-cache'),
           ),
           SizedBox(height: 40.h),
           MobileTechPostTitle(
