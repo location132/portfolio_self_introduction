@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_desktop/ifsai_cubit.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_desktop/ifsai_state.dart';
+import 'package:self_introduction_flutter/core_service/util/device_Info_size.dart';
 import 'package:video_player/video_player.dart';
 
 class BackgroundVideoPlayer extends StatefulWidget {
@@ -57,6 +58,7 @@ class _BackgroundVideoPlayerState extends State<BackgroundVideoPlayer>
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final isSafari = BrowserDetector.isSafari;
 
     if (_previousScreenWidth != null && _previousScreenWidth != screenWidth) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -97,7 +99,8 @@ class _BackgroundVideoPlayerState extends State<BackgroundVideoPlayer>
                   ),
                 ),
 
-                if (widget.state.backgroundVideoController != null &&
+                if (!isSafari &&
+                    widget.state.backgroundVideoController != null &&
                     widget.state.isBackgroundVideoInitialized &&
                     widget
                         .state
@@ -130,7 +133,8 @@ class _BackgroundVideoPlayerState extends State<BackgroundVideoPlayer>
                     ),
                   ),
 
-                if (widget.state.backgroundVideoController != null &&
+                if (!isSafari &&
+                    widget.state.backgroundVideoController != null &&
                     widget.state.isBackgroundVideoInitialized &&
                     widget
                         .state
@@ -181,7 +185,7 @@ class _BackgroundVideoPlayerState extends State<BackgroundVideoPlayer>
                     ],
                   ),
 
-                if (widget.state.isBackgroundVideoCompleted)
+                if (!isSafari && widget.state.isBackgroundVideoCompleted)
                   AnimatedBuilder(
                     animation: _fadeAnimation,
                     builder: (context, child) {
@@ -194,14 +198,15 @@ class _BackgroundVideoPlayerState extends State<BackgroundVideoPlayer>
                     },
                   ),
 
-                if (!widget.state.hasBackgroundStartedPlaying ||
-                    widget.state.isBackgroundVideoCompleted ||
-                    (widget.state.backgroundVideoController != null &&
-                        !widget
-                            .state
-                            .backgroundVideoController!
-                            .value
-                            .isPlaying))
+                if (!isSafari &&
+                    (!widget.state.hasBackgroundStartedPlaying ||
+                        widget.state.isBackgroundVideoCompleted ||
+                        (widget.state.backgroundVideoController != null &&
+                            !widget
+                                .state
+                                .backgroundVideoController!
+                                .value
+                                .isPlaying)))
                   Positioned(
                     right: 20,
                     bottom: 20,
@@ -231,7 +236,7 @@ class _BackgroundVideoPlayerState extends State<BackgroundVideoPlayer>
                     ),
                   ),
 
-                if (!widget.state.isBackgroundVideoInitialized)
+                if (!isSafari && !widget.state.isBackgroundVideoInitialized)
                   Container(
                     color: Colors.black.withValues(alpha: 0.3),
                     child: const Center(
@@ -244,7 +249,9 @@ class _BackgroundVideoPlayerState extends State<BackgroundVideoPlayer>
         ),
         const SizedBox(height: 16),
         Text(
-          '해당 영상은 잎사이(IFSAI)를 쉽게 설명하기 위해 제작하였습니다.',
+          isSafari
+              ? '사파리가 아닌 브라우저에서는 영상으로 확인하실 수 있습니다.'
+              : '해당 영상은 잎사이(IFSAI)를 쉽게 설명하기 위해 제작하였습니다.',
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.white.withValues(alpha: 0.8),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:html' as html;
 
 class ResponsiveSize {
   static late MediaQueryData _mediaQueryData;
@@ -17,4 +18,21 @@ class ResponsiveSize {
 extension SizeExtension on num {
   double get sw => this * ResponsiveSize.sw;
   double get sh => this * ResponsiveSize.sh;
+}
+
+class BrowserDetector {
+  static bool get isSafari {
+    final userAgent = html.window.navigator.userAgent;
+    return userAgent.contains('Safari') && !userAgent.contains('Chrome');
+  }
+
+  static bool get isChrome {
+    final userAgent = html.window.navigator.userAgent;
+    return userAgent.contains('Chrome');
+  }
+
+  static bool get isFirefox {
+    final userAgent = html.window.navigator.userAgent;
+    return userAgent.contains('Firefox');
+  }
 }
