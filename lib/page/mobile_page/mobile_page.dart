@@ -8,7 +8,6 @@ import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/intro_view/intro_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/aboutMe_view/widget/player.dart';
-import 'package:self_introduction_flutter/page/mobile_page/view/main_view/chapter_view/widget/chapter_detail/chapter_detail_screen.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/main_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/navi_bar.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/menu_screen.dart';
@@ -222,23 +221,6 @@ class _MobileViewState extends State<_MobileView> {
                                         .hideProjectDetail();
                                   }
                                   : null,
-                        ),
-                      ),
-                      // 챕터 상세 화면
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: ChapterDetailScreen(
-                          chapterState: state.chapterModel,
-                          onClose: () {
-                            context.read<MobileCubit>().hideChapterDetail();
-                          },
-                          chapterDetailButtonClicked: () {
-                            context
-                                .read<MobileCubit>()
-                                .chapterDetailButtonClicked();
-                          },
                         ),
                       ),
                     ],

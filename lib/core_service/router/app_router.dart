@@ -8,6 +8,7 @@ import 'package:self_introduction_flutter/page/project_detail_page/project_detai
 import 'package:self_introduction_flutter/page/schedule_page/schedule_page.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_page.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_blog_post_detail_page.dart';
+import 'package:self_introduction_flutter/page/mobile_page/view/chapter_detail_page/mobile_chapter_detail_page.dart';
 
 import 'package:self_introduction_flutter/service/main_service.dart';
 
@@ -179,6 +180,35 @@ class AppRouter {
               },
               transitionDuration: const Duration(milliseconds: 400),
             ),
+      ),
+      GoRoute(
+        path: '/chapter/:chapterIndex',
+        name: 'chapter_detail',
+        pageBuilder: (context, state) {
+          final chapterIndexStr = state.pathParameters['chapterIndex'] ?? '0';
+          final chapterIndex = int.tryParse(chapterIndexStr) ?? 0;
+
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: MobileChapterDetailPage(chapterIndex: chapterIndex),
+            transitionsBuilder: (
+              context,
+              animation,
+              secondaryAnimation,
+              child,
+            ) {
+              final tween = Tween<Offset>(
+                begin: const Offset(0, 1),
+                end: Offset.zero,
+              ).chain(CurveTween(curve: Curves.easeInOut));
+              return SlideTransition(
+                position: animation.drive(tween),
+                child: FadeTransition(opacity: animation, child: child),
+              );
+            },
+            transitionDuration: const Duration(milliseconds: 1000),
+          );
+        },
       ),
     ],
   );

@@ -530,6 +530,74 @@ class MobileCubit extends Cubit<MobileState> {
     }
   }
 
+  // 챕터 디테일 페이지 초기화 (새로운 페이지용)
+  void initChapterDetailPage(int chapterIndex) async {
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(
+          selectedChapterIndex: chapterIndex,
+          isChapterDetailVisible: true,
+          isBackGroundAniStart: true,
+          isChapterDetailAni: false,
+          isChapterDetailAniTitle: false,
+          isChapterDetailAniContent: false,
+          isChapterDescriptionAni: false,
+          isChapterDetailAniText: false,
+          isChapterContentVisible: false,
+          chapterDetailButton: ChapterDetailButton.none,
+        ),
+        aboutMeModel: state.aboutMeModel.copyWith(isPlayerAniOpacity: true),
+        isPlayerText: '챕터 목록으로 돌아가기',
+      ),
+    );
+    _updateGlobalBackgroundState();
+
+    await Future.delayed(const Duration(milliseconds: 600));
+    if (isClosed) return;
+
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(isChapterDetailAni: true),
+      ),
+    );
+
+    await Future.delayed(const Duration(milliseconds: 600));
+    if (isClosed) return;
+
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(
+          isChapterDetailAniTitle: true,
+        ),
+      ),
+    );
+
+    await Future.delayed(const Duration(milliseconds: 800));
+    if (isClosed) return;
+
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(
+          isChapterDetailAniContent: true,
+          isChapterDescriptionAni: true,
+        ),
+      ),
+    );
+
+    await Future.delayed(const Duration(milliseconds: 800));
+    if (isClosed) return;
+
+    emit(
+      state.copyWith(
+        chapterModel: state.chapterModel.copyWith(
+          isChapterDetailAniText: true,
+          isChapterContentVisible: true,
+          chapterDetailButton: ChapterDetailButton.detail,
+        ),
+      ),
+    );
+  }
+
   // 전역 배경색 상태 계산
   bool _calculateGlobalBackgroundState() {
     return state.aboutMeModel.isBackGroundAniStart ||

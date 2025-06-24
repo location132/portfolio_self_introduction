@@ -9,8 +9,8 @@ class CloseButtonWithIcon extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const Spacer(),
           GestureDetector(
             onTap: onClose,
             child: Container(

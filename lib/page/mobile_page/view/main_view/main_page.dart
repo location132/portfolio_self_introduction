@@ -15,6 +15,7 @@ import 'package:self_introduction_flutter/page/mobile_page/view/main_view/detail
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/skill_view/skill_page.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/main_view/project_view/project_page.dart';
 import 'package:visibility_detector/visibility_detector.dart';
+import 'package:go_router/go_router.dart';
 
 class MainPage extends StatelessWidget {
   final bool isMobileDevice;
@@ -75,7 +76,7 @@ class MainPage extends StatelessWidget {
               isChapterContainerAniStart: isChapterContainerAniStart,
               isBackGroundAniStart: aboutMeState.isBackGroundAniStart,
               onCardTap: (int chapterIndex) {
-                cubit.showChapterDetail(chapterIndex);
+                context.push('/chapter/$chapterIndex');
               },
             ),
             Visibility(
