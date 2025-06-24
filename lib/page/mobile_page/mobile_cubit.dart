@@ -98,8 +98,17 @@ class MobileCubit extends Cubit<MobileState> {
   }
 
   //메뉴 클릭
-  void menuClicked() {
+  void menuClicked() async {
     if (!state.introModel.isMenuClicked) {
+      final ctrl = state.scrollModel.scrollController;
+      if (ctrl != null && ctrl.hasClients) {
+        await ctrl.animateTo(
+          0,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+
       emit(
         state.copyWith(
           introModel: state.introModel.copyWith(isMenuClicked: true),
