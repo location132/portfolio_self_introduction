@@ -224,7 +224,7 @@ class _DesktopChapterCardState extends State<DesktopChapterCard> {
               opacity: isHovered ? 0.0 : 1.0,
               duration: const Duration(milliseconds: 500),
               child: Image.asset(
-                'assets/Images/Generated Image May 09, 2025 - 1_25PM.jpeg',
+                'assets/Images/my_self2.jpeg',
                 fit: BoxFit.cover,
               ),
             ),

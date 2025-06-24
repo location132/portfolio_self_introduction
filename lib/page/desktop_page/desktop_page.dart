@@ -64,132 +64,137 @@ class _MainViewState extends State<_MainView> {
                         deviceType: widget.deviceType,
                         isMenuClicked: false,
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height - 83,
-                        width: MediaQuery.of(context).size.width,
-                        child: SlowScrollPhysics(
-                          state: state,
-                          child: CustomScrollView(
-                            controller: state.scrollModel.scrollController,
-                            physics:
-                                state.detailMeModel.isSlowScrollDisabled
-                                    ? const ClampingScrollPhysics()
-                                    : const NeverScrollableScrollPhysics(),
-                            slivers: [
-                              SliverAppBar(
-                                expandedHeight:
-                                    MediaQuery.of(context).size.height,
-                                pinned: false,
-                                backgroundColor: Colors.transparent,
-                                flexibleSpace: FlexibleSpaceBar(
-                                  background: Introshowcase(
-                                    state: state,
-                                    cubit: context.read<DesktopCubit>(),
-                                    isChromeBrowser: widget.isChromeBrowser,
+                      Expanded(
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: SlowScrollPhysics(
+                            state: state,
+                            child: CustomScrollView(
+                              controller: state.scrollModel.scrollController,
+                              physics:
+                                  state.detailMeModel.isSlowScrollDisabled
+                                      ? const ClampingScrollPhysics()
+                                      : const NeverScrollableScrollPhysics(),
+                              slivers: [
+                                SliverAppBar(
+                                  expandedHeight:
+                                      MediaQuery.of(context).size.height,
+                                  pinned: false,
+                                  backgroundColor: Colors.transparent,
+                                  flexibleSpace: FlexibleSpaceBar(
+                                    background: Introshowcase(
+                                      state: state,
+                                      cubit: context.read<DesktopCubit>(),
+                                      isChromeBrowser: widget.isChromeBrowser,
+                                    ),
                                   ),
                                 ),
-                              ),
 
-                              SliverToBoxAdapter(
-                                child: Stack(
-                                  children: [
-                                    Positioned.fill(
-                                      child: AnimatedOpacity(
-                                        opacity:
-                                            state
-                                                    .chapterModel
-                                                    .isBlackBackgroundColor
-                                                ? 1
-                                                : 0,
-                                        duration: const Duration(seconds: 1),
-                                        child: Container(color: Colors.black),
+                                SliverToBoxAdapter(
+                                  child: Stack(
+                                    children: [
+                                      Positioned.fill(
+                                        child: AnimatedOpacity(
+                                          opacity:
+                                              state
+                                                      .chapterModel
+                                                      .isBlackBackgroundColor
+                                                  ? 1
+                                                  : 0,
+                                          duration: const Duration(seconds: 1),
+                                          child: Container(color: Colors.black),
+                                        ),
                                       ),
-                                    ),
-                                    Column(
-                                      children: [
-                                        VisibilityDetector(
-                                          key: const Key('main-view'),
-                                          onVisibilityChanged: (info) {
-                                            context
-                                                .read<DesktopCubit>()
-                                                .setBackgroundForSection(
-                                                  'banner',
-                                                  info.visibleFraction > 0.7,
-                                                );
-                                          },
-                                          child: BannerPage(
-                                            state: state,
-                                            desktopCubit:
-                                                context.read<DesktopCubit>(),
+                                      Column(
+                                        children: [
+                                          VisibilityDetector(
+                                            key: const Key('main-view'),
+                                            onVisibilityChanged: (info) {
+                                              context
+                                                  .read<DesktopCubit>()
+                                                  .setBackgroundForSection(
+                                                    'banner',
+                                                    info.visibleFraction > 0.7,
+                                                  );
+                                            },
+                                            child: BannerPage(
+                                              state: state,
+                                              desktopCubit:
+                                                  context.read<DesktopCubit>(),
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(height: 120),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            ChapterPage(
-                                              state: state,
-                                              desktopCubit:
-                                                  context.read<DesktopCubit>(),
-                                            ),
-                                            SkillPage(
-                                              state: state,
-                                              desktopCubit:
-                                                  context.read<DesktopCubit>(),
-                                            ),
-                                            // 어비웃 미 페이지
-                                            AboutMePage(
-                                              state: state,
-                                              desktopCubit:
-                                                  context.read<DesktopCubit>(),
-                                            ),
-                                            // 더 자세히 살펴보기 페이지
-                                            DetailMePage(
-                                              state: state,
-                                              desktopCubit:
-                                                  context.read<DesktopCubit>(),
-                                            ),
-
-                                            // 프로젝트 페이지
-                                            Visibility(
-                                              visible:
-                                                  state
-                                                      .detailMeModel
-                                                      .isAppPageScrollStart,
-                                              child: Column(
-                                                children: [
-                                                  SizedBox(height: 120),
-
-                                                  ProjectPage(
-                                                    state: state.projectModel,
-                                                    onCategorySelected:
-                                                        (category) => context
-                                                            .read<
-                                                              DesktopCubit
-                                                            >()
-                                                            .selectProjectCategory(
-                                                              category,
-                                                            ),
-                                                    projectAniStart:
-                                                        () =>
-                                                            context
-                                                                .read<
-                                                                  DesktopCubit
-                                                                >()
-                                                                .projectAniStart(),
-                                                  ),
-                                                ],
+                                          SizedBox(height: 120),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              ChapterPage(
+                                                state: state,
+                                                desktopCubit:
+                                                    context
+                                                        .read<DesktopCubit>(),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                              SkillPage(
+                                                state: state,
+                                                desktopCubit:
+                                                    context
+                                                        .read<DesktopCubit>(),
+                                              ),
+                                              // 어비웃 미 페이지
+                                              AboutMePage(
+                                                state: state,
+                                                desktopCubit:
+                                                    context
+                                                        .read<DesktopCubit>(),
+                                              ),
+                                              // 더 자세히 살펴보기 페이지
+                                              DetailMePage(
+                                                state: state,
+                                                desktopCubit:
+                                                    context
+                                                        .read<DesktopCubit>(),
+                                              ),
+
+                                              // 프로젝트 페이지
+                                              Visibility(
+                                                visible:
+                                                    state
+                                                        .detailMeModel
+                                                        .isAppPageScrollStart,
+                                                child: Column(
+                                                  children: [
+                                                    SizedBox(height: 120),
+
+                                                    ProjectPage(
+                                                      state: state.projectModel,
+                                                      onCategorySelected:
+                                                          (category) => context
+                                                              .read<
+                                                                DesktopCubit
+                                                              >()
+                                                              .selectProjectCategory(
+                                                                category,
+                                                              ),
+                                                      projectAniStart:
+                                                          () =>
+                                                              context
+                                                                  .read<
+                                                                    DesktopCubit
+                                                                  >()
+                                                                  .projectAniStart(),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

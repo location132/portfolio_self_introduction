@@ -34,8 +34,7 @@ class DetailMePage extends StatelessWidget {
                 desktopCubit.detailMeRiveStart();
               }
             } else if (MediaQuery.of(context).size.height < 983) {
-              shouldDisableSlowScroll =
-                  false; // 작은 화면에서는 항상 SlowScrollPhysics 활성화
+              shouldDisableSlowScroll = false;
               desktopCubit.detailMeRiveEnd();
             } else {
               shouldDisableSlowScroll = info.visibleFraction > 0.7;
@@ -46,7 +45,6 @@ class DetailMePage extends StatelessWidget {
               }
             }
 
-            // 상태가 변경될 때만 업데이트 (성능 최적화)
             desktopCubit.updateSlowScrollState(shouldDisableSlowScroll);
           },
           child: DesktopDetailMeView(state: state),
