@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/page/mobile_page/mobile_cubit.dart';
@@ -77,131 +78,174 @@ class _MobileViewState extends State<_MobileView> {
     return BlocBuilder<MobileCubit, MobileState>(
       builder: (context, state) {
         return Scaffold(
-          body: Stack(
-            children: [
-              ListView(
-                physics:
-                    state.scrollModel.isScrollWaiting
-                        ? const NeverScrollableScrollPhysics()
-                        : const ClampingScrollPhysics(),
-                controller: state.scrollModel.scrollController,
-                children: [
-                  Stack(
+          body: SafeArea(
+            child: Column(
+              children: [
+                TopNavBar(
+                  deviceType: widget.deviceType,
+                  onPressed: () => context.read<MobileCubit>().menuClicked(),
+                  onHomePressed: () {
+                    context.read<MobileCubit>().goHome();
+                  },
+                  isMenuClicked: state.introModel.isMenuClicked,
+                ),
+                Expanded(
+                  child: Stack(
                     children: [
-                      Column(
+                      ListView(
+                        physics:
+                            state.scrollModel.isScrollWaiting
+                                ? const NeverScrollableScrollPhysics()
+                                : const ClampingScrollPhysics(),
+                        controller: state.scrollModel.scrollController,
                         children: [
-                          AnimatedOpacity(
-                            opacity: state.initModel.isMobileInit ? 1.0 : 0.0,
-                            duration: const Duration(milliseconds: 600),
-                            child: NaviBar(
-                              deviceType: widget.deviceType,
-                              isDeviceSelector:
-                                  state.introModel.isDeviceSelector,
-                              isDescription: state.introModel.isDescription,
-                              isMenuClicked: state.introModel.isMenuClicked,
-                              onPressed:
-                                  () =>
-                                      context.read<MobileCubit>().menuClicked(),
-                              onHomePressed: () {
-                                context.read<MobileCubit>().goHome();
-                              },
-                            ),
-                          ),
-                          // MainPage(
-                          //   key: const ValueKey('main'),
-                          //   chapterState: state.chapterModel,
-                          //   cubit: context.read<MobileCubit>(),
-                          //   aboutMeState: state.aboutMeModel,
-                          //   detailMeState: state.detailMeModel,
-                          //   skillState: state.skillModel,
-                          //   projectState: state.projectModel,
-                          //   isTitelTextAniStart:
-                          //       state.introModel.isTitelTextAniStart,
-                          //   isChapterContainerAniStart:
-                          //       state.introModel.isChapterContainerAniStart,
-                          //   isMobileDevice: widget.isMobileDevice,
-                          // ),
+                          Stack(
+                            children: [
+                              Column(
+                                children: [
+                                  AnimatedOpacity(
+                                    opacity:
+                                        state.initModel.isMobileInit
+                                            ? 1.0
+                                            : 0.0,
+                                    duration: const Duration(milliseconds: 600),
+                                    child: NaviBar(
+                                      deviceType: widget.deviceType,
+                                      isDeviceSelector:
+                                          state.introModel.isDeviceSelector,
+                                      isDescription:
+                                          state.introModel.isDescription,
+                                      isMenuClicked:
+                                          state.introModel.isMenuClicked,
+                                      onPressed:
+                                          () =>
+                                              context
+                                                  .read<MobileCubit>()
+                                                  .menuClicked(),
+                                      onHomePressed: () {
+                                        context.read<MobileCubit>().goHome();
+                                      },
+                                    ),
+                                  ),
+                                  // MainPage(
+                                  //   key: const ValueKey('main'),
+                                  //   chapterState: state.chapterModel,
+                                  //   cubit: context.read<MobileCubit>(),
+                                  //   aboutMeState: state.aboutMeModel,
+                                  //   detailMeState: state.detailMeModel,
+                                  //   skillState: state.skillModel,
+                                  //   projectState: state.projectModel,
+                                  //   isTitelTextAniStart:
+                                  //       state.introModel.isTitelTextAniStart,
+                                  //   isChapterContainerAniStart:
+                                  //       state.introModel.isChapterContainerAniStart,
+                                  //   isMobileDevice: widget.isMobileDevice,
+                                  // ),
 
-                          // --------------------
-                          AnimatedOpacity(
-                            opacity:
-                                state.introModel.isPageTransition ? 0.0 : 1.0,
-                            duration: const Duration(milliseconds: 600),
-                            curve: Curves.easeInOut,
-                            child: Visibility(
-                              visible: !state.introModel.isIntroInActive,
-                              child: IntroPage(
-                                key: const ValueKey('intro'),
-                                introModel: state.introModel,
+                                  // --------------------
+                                  AnimatedOpacity(
+                                    opacity:
+                                        state.introModel.isPageTransition
+                                            ? 0.0
+                                            : 1.0,
+                                    duration: const Duration(milliseconds: 600),
+                                    curve: Curves.easeInOut,
+                                    child: Visibility(
+                                      visible:
+                                          !state.introModel.isIntroInActive,
+                                      child: IntroPage(
+                                        key: const ValueKey('intro'),
+                                        introModel: state.introModel,
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible:
+                                        state.introModel.isIntroImageChange,
+                                    child: AnimatedOpacity(
+                                      opacity:
+                                          state.introModel.isPageTransition
+                                              ? 1.0
+                                              : 0.0,
+                                      duration: const Duration(
+                                        milliseconds: 600,
+                                      ),
+                                      curve: Curves.easeInOut,
+                                      child: MainPage(
+                                        key: const ValueKey('main'),
+                                        chapterState: state.chapterModel,
+                                        cubit: context.read<MobileCubit>(),
+                                        aboutMeState: state.aboutMeModel,
+                                        detailMeState: state.detailMeModel,
+                                        skillState: state.skillModel,
+                                        projectState: state.projectModel,
+                                        isTitelTextAniStart:
+                                            state
+                                                .introModel
+                                                .isTitelTextAniStart,
+                                        isChapterContainerAniStart:
+                                            state
+                                                .introModel
+                                                .isChapterContainerAniStart,
+                                        isBackGroundAniStart:
+                                            state.isBackGroundAniStart,
+                                        isMobileDevice: widget.isMobileDevice,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ),
-                          Visibility(
-                            visible: state.introModel.isIntroImageChange,
-                            child: AnimatedOpacity(
-                              opacity:
-                                  state.introModel.isPageTransition ? 1.0 : 0.0,
-                              duration: const Duration(milliseconds: 600),
-                              curve: Curves.easeInOut,
-                              child: MainPage(
-                                key: const ValueKey('main'),
-                                chapterState: state.chapterModel,
-                                cubit: context.read<MobileCubit>(),
-                                aboutMeState: state.aboutMeModel,
-                                detailMeState: state.detailMeModel,
-                                skillState: state.skillModel,
-                                projectState: state.projectModel,
-                                isTitelTextAniStart:
-                                    state.introModel.isTitelTextAniStart,
-                                isChapterContainerAniStart:
-                                    state.introModel.isChapterContainerAniStart,
-                                isBackGroundAniStart:
-                                    state.isBackGroundAniStart,
-                                isMobileDevice: widget.isMobileDevice,
+                              MenuScreen(
+                                isMenuClicked: state.introModel.isMenuClicked,
                               ),
-                            ),
+                            ],
                           ),
                         ],
                       ),
-                      MenuScreen(isMenuClicked: state.introModel.isMenuClicked),
+                      //플레이어
+                      Positioned(
+                        bottom: 30,
+                        left: 0,
+                        right: 0,
+                        child: Player(
+                          isPlayerAniOpacity:
+                              state.aboutMeModel.isPlayerAniOpacity,
+                          isPlayerText: state.isPlayerText,
+                          onTap:
+                              (state.projectModel.isProjectDetailVisible &&
+                                      state.isPlayerText ==
+                                          ProjectTextConstants
+                                              .backToProjectList)
+                                  ? () {
+                                    context
+                                        .read<MobileCubit>()
+                                        .hideProjectDetail();
+                                  }
+                                  : null,
+                        ),
+                      ),
+                      // 챕터 상세 화면
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        child: ChapterDetailScreen(
+                          chapterState: state.chapterModel,
+                          onClose: () {
+                            context.read<MobileCubit>().hideChapterDetail();
+                          },
+                          chapterDetailButtonClicked: () {
+                            context
+                                .read<MobileCubit>()
+                                .chapterDetailButtonClicked();
+                          },
+                        ),
+                      ),
                     ],
                   ),
-                ],
-              ),
-              //플레이어
-              Positioned(
-                bottom: 30,
-                left: 0,
-                right: 0,
-                child: Player(
-                  isPlayerAniOpacity: state.aboutMeModel.isPlayerAniOpacity,
-                  isPlayerText: state.isPlayerText,
-                  onTap:
-                      (state.projectModel.isProjectDetailVisible &&
-                              state.isPlayerText ==
-                                  ProjectTextConstants.backToProjectList)
-                          ? () {
-                            context.read<MobileCubit>().hideProjectDetail();
-                          }
-                          : null,
                 ),
-              ),
-              // 챕터 상세 화면
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: ChapterDetailScreen(
-                  chapterState: state.chapterModel,
-                  onClose: () {
-                    context.read<MobileCubit>().hideChapterDetail();
-                  },
-                  chapterDetailButtonClicked: () {
-                    context.read<MobileCubit>().chapterDetailButtonClicked();
-                  },
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

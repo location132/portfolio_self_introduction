@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/components/widget/mobile_animation/two_line_title.dart';
 import 'package:self_introduction_flutter/model/mobile_page/aboutMe_model.dart';
@@ -56,6 +57,18 @@ class MainPage extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Opacity(
+              opacity: 0,
+              child: IgnorePointer(
+                ignoring: true,
+                child: TopNavBar(
+                  deviceType: 'mobile',
+                  onPressed: () {},
+                  onHomePressed: () {},
+                  isMenuClicked: false,
+                ),
+              ),
+            ),
             ChapterPage(
               isMobileDevice: isMobileDevice,
               isTitelTextAniStart: isTitelTextAniStart,
@@ -148,7 +161,7 @@ class MainPage extends StatelessWidget {
                         cubit.detailMePageStart(false);
                       }
 
-                      if (info.visibleFraction == 1 &&
+                      if (info.visibleFraction > 0.9 &&
                           !detailMeState.isDetailMeRiveStart) {
                         cubit.detailMeImageAni();
                       }

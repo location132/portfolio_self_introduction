@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:self_introduction_flutter/components/widget/animation/widget_animation.dart';
-import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/device_selector.dart';
 import 'package:self_introduction_flutter/page/mobile_page/view/navigation_view/widget/mobile_intro_notice_card.dart';
 
@@ -33,12 +32,6 @@ class _NaviBarState extends State<NaviBar> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TopNavBar(
-          deviceType: widget.deviceType,
-          onPressed: widget.onPressed,
-          onHomePressed: widget.onHomePressed,
-          isMenuClicked: widget.isMenuClicked,
-        ),
         SizedBox(height: 3.h),
         DeviceSelector(
           deviceType: widget.deviceType,

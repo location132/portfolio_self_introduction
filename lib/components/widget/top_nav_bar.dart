@@ -52,7 +52,7 @@ class TopNavBar extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 15.sh, horizontal: 40.sw),
+            padding: EdgeInsets.symmetric(vertical: 5.sh, horizontal: 40.sw),
             child: Row(
               children: [
                 GestureDetector(

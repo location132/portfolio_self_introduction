@@ -552,11 +552,9 @@ class MobileCubit extends Cubit<MobileState> {
     final ctrl = state.scrollModel.scrollController;
     if (ctrl == null || !ctrl.hasClients) return;
 
-    // 현재 스크롤 위치에서 조금 더 아래로 스크롤
     final currentOffset = ctrl.offset;
     final maxExtent = ctrl.position.maxScrollExtent;
 
-    // 아직 더 스크롤할 여지가 있다면 스크롤 계속 진행
     if (currentOffset < maxExtent) {
       final targetOffset = (currentOffset + 100).clamp(0.0, maxExtent);
       ctrl.animateTo(
@@ -572,10 +570,8 @@ class MobileCubit extends Cubit<MobileState> {
     final ctrl = state.scrollModel.scrollController;
     if (ctrl == null || !ctrl.hasClients) return;
 
-    // 현재 스크롤 위치에서 조금 더 위로 스크롤
     final currentOffset = ctrl.offset;
 
-    // 아직 더 위로 스크롤할 여지가 있다면 스크롤 계속 진행
     if (currentOffset > 0) {
       final targetOffset = (currentOffset - 100).clamp(
         0.0,

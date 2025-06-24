@@ -16,7 +16,7 @@ class SkillPage extends StatelessWidget {
     return VisibilityDetector(
       key: const Key('skill-view'),
       onVisibilityChanged: (VisibilityInfo info) {
-        if (info.visibleFraction > 0.6 &&
+        if (info.visibleFraction > 0.3 &&
             state.mySkillModel.status == MySkillViewStatus.inactive) {
           context.read<DesktopCubit>().viewListener('skill');
         }
