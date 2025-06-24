@@ -90,7 +90,7 @@ class IfsaiDetailView extends StatelessWidget {
                   ],
                   Column(
                     children: [
-                      if (MediaQuery.of(context).size.width < 1200) ...[
+                      if (MediaQuery.of(context).size.width <= 1200) ...[
                         ProjectDetailTitleNoAnimation(),
                         SizedBox(height: 130),
                         SubTitleNoAnimation(),

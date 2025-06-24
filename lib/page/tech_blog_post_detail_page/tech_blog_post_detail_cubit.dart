@@ -8,7 +8,6 @@ class TechBlogPostDetailCubit extends Cubit<TechBlogPostDetailState> {
   TechBlogPostDetailCubit()
     : super(TechBlogPostDetailState(scrollController: ScrollController()));
 
-  // 스크롤 타겟 오프셋
   double? targetScrollOffset;
 
   // 메뉴 변경
@@ -58,7 +57,6 @@ class TechBlogPostDetailCubit extends Cubit<TechBlogPostDetailState> {
   void handleQuickAction(String action) {
     switch (action) {
       case 'code':
-        print('code');
         emit(
           state.copyWith(
             isPlayerClicked: false,
