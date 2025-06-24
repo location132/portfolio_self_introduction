@@ -9,6 +9,7 @@ import 'package:self_introduction_flutter/page/mobile_page/mobile_state.dart';
 @injectable
 class MobileCubit extends Cubit<MobileState> {
   late final VoidCallback _scrollListener;
+  late final VoidCallback _detailScrollListener;
 
   MobileCubit()
     : super(
@@ -24,6 +25,20 @@ class MobileCubit extends Cubit<MobileState> {
         ctrl.removeListener(_scrollListener);
       }
     };
+
+    _detailScrollListener = () {
+      final ctrl = state.scrollModel.scrollController;
+      if (ctrl == null || !ctrl.hasClients) return;
+
+      // skillState.isSkillViewInit이 false이고 스크롤이 최하단에 있을 때
+      if (!state.skillModel.isSkillViewInit &&
+          ctrl.offset >= ctrl.position.maxScrollExtent - 10) {
+        detailMeImageAni();
+        // 한 번 실행 후 리스너 제거
+        ctrl.removeListener(_detailScrollListener);
+      }
+    };
+
     state.scrollModel.scrollController?.addListener(_scrollListener);
   }
 
@@ -150,6 +165,9 @@ class MobileCubit extends Cubit<MobileState> {
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
       ),
     );
+
+    // detail 스크롤 리스너 추가
+    state.scrollModel.scrollController?.addListener(_detailScrollListener);
   }
 
   // 다시 홈 화면으로 돌아가기
@@ -179,6 +197,7 @@ class MobileCubit extends Cubit<MobileState> {
       );
     }
     ctrl?.removeListener(_scrollListener);
+    ctrl?.removeListener(_detailScrollListener);
 
     emit(MobileState(scrollModel: ScrollModel(scrollController: ctrl)));
 
@@ -266,18 +285,21 @@ class MobileCubit extends Cubit<MobileState> {
       ),
     );
     await Future.delayed(const Duration(milliseconds: 300));
+    if (isClosed) return;
     emit(
       state.copyWith(
         detailMeModel: state.detailMeModel.copyWith(isDetailMeRiveStart: true),
       ),
     );
     await Future.delayed(const Duration(milliseconds: 900));
+    if (isClosed) return;
     emit(
       state.copyWith(
         detailMeModel: state.detailMeModel.copyWith(isAppPageStart: true),
       ),
     );
     await Future.delayed(const Duration(milliseconds: 400));
+    if (isClosed) return;
     emit(
       state.copyWith(
         detailMeModel: state.detailMeModel.copyWith(isAppPageScrollStart: true),
@@ -313,12 +335,14 @@ class MobileCubit extends Cubit<MobileState> {
     );
     _updateGlobalBackgroundState();
     await Future.delayed(const Duration(milliseconds: 50));
+    if (isClosed) return;
     emit(
       state.copyWith(
         chapterModel: state.chapterModel.copyWith(isChapterDetailAni: true),
       ),
     );
     await Future.delayed(const Duration(milliseconds: 600));
+    if (isClosed) return;
     emit(
       state.copyWith(
         chapterModel: state.chapterModel.copyWith(
@@ -327,6 +351,7 @@ class MobileCubit extends Cubit<MobileState> {
       ),
     );
     await Future.delayed(const Duration(milliseconds: 800));
+    if (isClosed) return;
     emit(
       state.copyWith(
         chapterModel: state.chapterModel.copyWith(
@@ -336,6 +361,7 @@ class MobileCubit extends Cubit<MobileState> {
       ),
     );
     await Future.delayed(const Duration(milliseconds: 800));
+    if (isClosed) return;
     emit(
       state.copyWith(
         chapterModel: state.chapterModel.copyWith(
@@ -356,6 +382,7 @@ class MobileCubit extends Cubit<MobileState> {
     );
 
     await Future.delayed(const Duration(milliseconds: 500));
+    if (isClosed) return;
     emit(
       state.copyWith(
         scrollModel: state.scrollModel.copyWith(isScrollWaiting: false),
@@ -403,6 +430,7 @@ class MobileCubit extends Cubit<MobileState> {
     );
     if (isStart) {
       await Future.delayed(const Duration(milliseconds: 300));
+      if (isClosed) return;
     }
     emit(
       state.copyWith(
@@ -451,6 +479,7 @@ class MobileCubit extends Cubit<MobileState> {
     );
     if (isStart) {
       await Future.delayed(const Duration(milliseconds: 300));
+      if (isClosed) return;
     }
     emit(
       state.copyWith(
@@ -490,6 +519,7 @@ class MobileCubit extends Cubit<MobileState> {
     );
 
     await Future.delayed(const Duration(milliseconds: 600));
+    if (isClosed) return;
     aboutMePlayerAni(false);
     emit(
       state.copyWith(

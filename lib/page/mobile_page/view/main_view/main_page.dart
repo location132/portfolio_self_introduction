@@ -161,11 +161,6 @@ class MainPage extends StatelessWidget {
                           detailMeState.isDetailMe) {
                         cubit.detailMePageStart(false);
                       }
-
-                      if (info.visibleFraction > 0.9 &&
-                          !detailMeState.isDetailMeRiveStart) {
-                        cubit.detailMeImageAni();
-                      }
                     },
                     child: DetailmePage(
                       state: detailMeState,
