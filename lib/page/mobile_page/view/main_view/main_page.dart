@@ -153,7 +153,15 @@ class MainPage extends StatelessWidget {
                         cubit.detailMeImageAni();
                       }
                     },
-                    child: DetailmePage(state: detailMeState),
+                    child: DetailmePage(
+                      state: detailMeState,
+                      onReachedBottom: () {
+                        cubit.continueMainScroll();
+                      },
+                      onReachedTop: () {
+                        cubit.scrollMainUp();
+                      },
+                    ),
                   ),
                 ],
               ),

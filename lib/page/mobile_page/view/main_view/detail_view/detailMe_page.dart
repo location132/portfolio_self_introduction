@@ -6,7 +6,15 @@ import 'package:self_introduction_flutter/page/mobile_page/view/main_view/detail
 
 class DetailmePage extends StatelessWidget {
   final DetailMeModel state;
-  const DetailmePage({super.key, required this.state});
+  final Function()? onReachedBottom;
+  final Function()? onReachedTop;
+
+  const DetailmePage({
+    super.key,
+    required this.state,
+    this.onReachedBottom,
+    this.onReachedTop,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +42,8 @@ class DetailmePage extends StatelessWidget {
             child: AppScreen(
               isAppPageStart: state.isAppPageStart,
               isAppPageScrollStart: state.isAppPageScrollStart,
+              onReachedBottom: onReachedBottom,
+              onReachedTop: onReachedTop,
             ),
           ),
         ],

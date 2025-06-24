@@ -5,10 +5,14 @@ import 'package:self_introduction_flutter/page/mobile_page/view/main_view/detail
 class AppScreen extends StatefulWidget {
   final bool isAppPageStart;
   final bool isAppPageScrollStart;
+  final Function()? onReachedBottom;
+  final Function()? onReachedTop;
   const AppScreen({
     super.key,
     required this.isAppPageStart,
     required this.isAppPageScrollStart,
+    this.onReachedBottom,
+    this.onReachedTop,
   });
 
   @override
@@ -56,6 +60,8 @@ class _AppScreenState extends State<AppScreen> {
             child: FirstAppPage(
               width: size.width,
               isAppPageScrollStart: widget.isAppPageScrollStart,
+              onReachedBottom: widget.onReachedBottom,
+              onReachedTop: widget.onReachedTop,
             ),
           ),
         ),

@@ -546,4 +546,46 @@ class MobileCubit extends Cubit<MobileState> {
       emit(state.copyWith(isBackGroundAniStart: newState));
     }
   }
+
+  // 디테일 페이지에서 바닥 도달 시 메인 스크롤 계속 진행
+  void continueMainScroll() {
+    final ctrl = state.scrollModel.scrollController;
+    if (ctrl == null || !ctrl.hasClients) return;
+
+    // 현재 스크롤 위치에서 조금 더 아래로 스크롤
+    final currentOffset = ctrl.offset;
+    final maxExtent = ctrl.position.maxScrollExtent;
+
+    // 아직 더 스크롤할 여지가 있다면 스크롤 계속 진행
+    if (currentOffset < maxExtent) {
+      final targetOffset = (currentOffset + 100).clamp(0.0, maxExtent);
+      ctrl.animateTo(
+        targetOffset,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    }
+  }
+
+  // 디테일 페이지에서 최상단에서 위로 스크롤 시 메인 스크롤 위로 올리기
+  void scrollMainUp() {
+    final ctrl = state.scrollModel.scrollController;
+    if (ctrl == null || !ctrl.hasClients) return;
+
+    // 현재 스크롤 위치에서 조금 더 위로 스크롤
+    final currentOffset = ctrl.offset;
+
+    // 아직 더 위로 스크롤할 여지가 있다면 스크롤 계속 진행
+    if (currentOffset > 0) {
+      final targetOffset = (currentOffset - 100).clamp(
+        0.0,
+        ctrl.position.maxScrollExtent,
+      );
+      ctrl.animateTo(
+        targetOffset,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    }
+  }
 }
