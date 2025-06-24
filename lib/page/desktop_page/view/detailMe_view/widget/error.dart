@@ -50,7 +50,7 @@ class ErrorSize extends StatelessWidget {
               ],
             ),
             child: Text(
-              '권장 높이: 985이상  •  현재: ${MediaQuery.of(context).size.height.toInt()}',
+              '권장 높이: 600이상  •  현재: ${MediaQuery.of(context).size.height.toInt()}',
               style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,

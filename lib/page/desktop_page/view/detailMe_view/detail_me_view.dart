@@ -16,6 +16,14 @@ class DesktopDetailMeView extends StatefulWidget {
 }
 
 class _DesktopDetailMeViewState extends State<DesktopDetailMeView> {
+  bool _shouldShowError(BuildContext context) {
+    return MediaQuery.of(context).size.height <= 600;
+  }
+
+  bool _shouldShowContent(BuildContext context) {
+    return MediaQuery.of(context).size.height > 600;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -40,7 +48,7 @@ class _DesktopDetailMeViewState extends State<DesktopDetailMeView> {
                 Align(
                   alignment: Alignment.center,
                   child: AnimatedOpacity(
-                    opacity: MediaQuery.of(context).size.height < 983 ? 1 : 0,
+                    opacity: _shouldShowError(context) ? 1 : 0,
                     duration: const Duration(milliseconds: 700),
                     child: const ErrorSize(),
                   ),
@@ -49,19 +57,21 @@ class _DesktopDetailMeViewState extends State<DesktopDetailMeView> {
               ],
             ),
             SizedBox(
-              height: 900,
+              height: MediaQuery.of(context).size.height < 1000 ? 700 : 900,
               child: Stack(
                 children: [
                   AnimatedOpacity(
-                    opacity: MediaQuery.of(context).size.height < 983 ? 0 : 1,
+                    opacity: _shouldShowContent(context) ? 1 : 0,
                     duration: const Duration(milliseconds: 700),
-                    child: MobileDetailRive(
-                      isStartAni:
-                          widget.state.detailMeModel.isDetailMeRiveStart,
+                    child: SizedBox(
+                      child: MobileDetailRive(
+                        isStartAni:
+                            widget.state.detailMeModel.isDetailMeRiveStart,
+                      ),
                     ),
                   ),
                   AnimatedOpacity(
-                    opacity: MediaQuery.of(context).size.height < 983 ? 0 : 1,
+                    opacity: _shouldShowContent(context) ? 1 : 0,
                     duration: const Duration(milliseconds: 700),
                     child: Align(
                       alignment: Alignment.bottomCenter,

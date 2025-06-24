@@ -19,19 +19,18 @@ class AppScreenDesktop extends StatefulWidget {
 class _AppScreenDesktopState extends State<AppScreenDesktop> {
   Size calculateSize(BuildContext context) {
     if (MediaQuery.of(context).size.height < 1000) {
-      double width = 385;
-      final double height = width * 1.65;
+      double width = 300;
+      const double height = 490;
       return Size(width, height);
     }
     double width = 390;
-    final double height = width * 1.65;
+    const double height = 643.5;
     return Size(width, height);
   }
 
   @override
   Widget build(BuildContext context) {
     final size = calculateSize(context);
-
     return WidgetAnimation(
       isStart: widget.isAppPageStart,
       beginDy: 0.08,
