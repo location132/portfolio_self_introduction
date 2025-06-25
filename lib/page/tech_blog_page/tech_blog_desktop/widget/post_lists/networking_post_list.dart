@@ -20,7 +20,7 @@ class NetworkingPostList extends StatelessWidget {
               title: '서버와 연결 (쿠키, secure_storage, dio)',
               tags: '#Server  #Cookie  #Dio  #HTTP',
               onTap: () => context.go('/schedule'),
-              uploadDate: '7월 2일',
+              uploadDate: '7월 5일',
             ),
             const SizedBox(height: 40),
             TechPostTitle(
@@ -36,7 +36,7 @@ class NetworkingPostList extends StatelessWidget {
               title: '네이버 로그인',
               tags: '#Naver  #Login  #OAuth  #Social Login',
               onTap: () => context.go('/schedule'),
-              uploadDate: '6월 25일',
+              uploadDate: '6월 30일',
             ),
             const SizedBox(height: 40),
             TechPostTitle(
@@ -44,7 +44,7 @@ class NetworkingPostList extends StatelessWidget {
               title: '카카오 로그인',
               tags: '#Kakao  #Login  #OAuth  #Social Login',
               onTap: () => context.go('/schedule'),
-              uploadDate: '6월 25일',
+              uploadDate: '6월 30일',
             ),
             const SizedBox(height: 40),
             TechPostTitle(
@@ -52,7 +52,7 @@ class NetworkingPostList extends StatelessWidget {
               title: '네트워크 이미지 사용방법 (심화 x, 기초)',
               tags: '#Network Image  #HTTP  #Image Loading',
               onTap: () => context.go('/schedule'),
-              uploadDate: '6월 28일',
+              uploadDate: '7월 1일',
             ),
             const SizedBox(height: 40),
             TechPostTitle(
@@ -60,7 +60,7 @@ class NetworkingPostList extends StatelessWidget {
               title: '카카오 맵 사용방법',
               tags: '#Kakao Map  #Map  #Location  #API',
               onTap: () => context.go('/schedule'),
-              uploadDate: '7월 2일',
+              uploadDate: '7월 5일',
             ),
             const SizedBox(height: 40),
             TechPostTitle(

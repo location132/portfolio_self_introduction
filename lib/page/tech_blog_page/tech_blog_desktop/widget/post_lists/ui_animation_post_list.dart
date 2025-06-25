@@ -20,7 +20,7 @@ class UIAnimationPostList extends StatelessWidget {
               title: '화면 전환 (네비게이터)',
               tags: '#Navigator  #Routing  #Screen Transition',
               onTap: () => context.go('/schedule'),
-              uploadDate: '6월 28일',
+              uploadDate: '7월 1일',
             ),
             const SizedBox(height: 40),
             TechPostTitle(
@@ -28,7 +28,7 @@ class UIAnimationPostList extends StatelessWidget {
               title: '자동 스크롤 (글로벌키, 고정 스크롤)',
               tags: '#Auto Scroll  #GlobalKey  #ScrollController',
               onTap: () => context.go('/schedule'),
-              uploadDate: '7월 2일',
+              uploadDate: '7월 5일',
             ),
             const SizedBox(height: 40),
             TechPostTitle(
@@ -44,7 +44,7 @@ class UIAnimationPostList extends StatelessWidget {
               title: 'Flutter 밑줄 선 (한글에서 안깨지는 방법)',
               tags: '#Underline  #Korean  #Text Decoration',
               onTap: () => context.go('/schedule'),
-              uploadDate: '6월 28일',
+              uploadDate: '7월 1일',
             ),
             const SizedBox(height: 40),
             TechPostTitle(
@@ -52,7 +52,7 @@ class UIAnimationPostList extends StatelessWidget {
               title: '배경화면 블러처리, 패딩 제거',
               tags: '#Blur  #Background  #Padding  #UI',
               onTap: () => context.go('/schedule'),
-              uploadDate: '6월 28일',
+              uploadDate: '7월 1일',
             ),
             const SizedBox(height: 40),
             TechPostTitle(
@@ -60,7 +60,7 @@ class UIAnimationPostList extends StatelessWidget {
               title: '다이아로그 함수 (Page-view)',
               tags: '#Dialog  #PageView  #Modal  #Popup',
               onTap: () => context.go('/schedule'),
-              uploadDate: '7월 2일',
+              uploadDate: '7월 5일',
             ),
             const SizedBox(height: 40),
             TechPostTitle(
@@ -116,7 +116,7 @@ class UIAnimationPostList extends StatelessWidget {
               title: '랜덤 함수',
               tags: '#Random  #Math  #Utilities',
               onTap: () => context.go('/schedule'),
-              uploadDate: '7월 2일',
+              uploadDate: '7월 5일',
             ),
             const SizedBox(height: 40),
             TechPostTitle(
@@ -124,7 +124,7 @@ class UIAnimationPostList extends StatelessWidget {
               title: '부모 위젯 사이즈 설정(x) 자식이 따라가기',
               tags: '#Widget Size  #Parent Child  #Layout',
               onTap: () => context.go('/schedule'),
-              uploadDate: '7월 2일',
+              uploadDate: '7월 5일',
             ),
             const SizedBox(height: 40),
             TechPostTitle(
@@ -132,7 +132,7 @@ class UIAnimationPostList extends StatelessWidget {
               title: '부모위젯 최소 자유 최대 x',
               tags: '#Constraints  #Min Max  #Flexible  #Layout',
               onTap: () => context.go('/schedule'),
-              uploadDate: '7월 2일',
+              uploadDate: '7월 5일',
             ),
             const SizedBox(height: 40),
             TechPostTitle(
