@@ -108,6 +108,7 @@ class _TechDetailPlayerState extends State<TechDetailPlayer> {
                 ],
               ),
               child: TextField(
+                readOnly: true,
                 style: GoogleFonts.montserrat(
                   color: widget.isPlayerClicked ? Colors.black : Colors.white,
                   fontSize: widget.isPlayerClicked ? 16 : 14,
@@ -130,7 +131,7 @@ class _TechDetailPlayerState extends State<TechDetailPlayer> {
                 decoration: InputDecoration(
                   hintText:
                       widget.isPlayerClicked
-                          ? '아래의 메뉴를 선택하거나 검색어를 입력해주세요'
+                          ? '아래의 메뉴를 선택해주세요'
                           : '궁금한 것이 있다면 클릭해주세요',
                   prefixIcon: Padding(
                     padding: const EdgeInsets.only(left: 12, right: 8),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:self_introduction_flutter/constants/text_constants.dart';
 import 'package:self_introduction_flutter/components/widget/animation/widget_animation.dart';
 
 class ProjectDetailContent extends StatelessWidget {
@@ -119,7 +118,7 @@ class ProjectDetailContent extends StatelessWidget {
             beginDy: 0.5,
             duration: 600 + (index * 100),
             child: Container(
-              margin: EdgeInsets.symmetric(vertical: 30.h),
+              margin: EdgeInsets.symmetric(vertical: 10.h),
               child: Column(
                 children: [
                   Container(
@@ -127,17 +126,6 @@ class ProjectDetailContent extends StatelessWidget {
                     width: double.infinity,
                     color: Colors.white.withValues(alpha: 0.1),
                   ),
-                  SizedBox(height: 20.h),
-                  Text(
-                    ProjectTextConstants.dividerText,
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: Colors.white.withValues(alpha: 0.7),
-                      height: 1.4,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 20.h),
                 ],
               ),
             ),
@@ -156,6 +144,10 @@ class ProjectDetailContent extends StatelessWidget {
                 context.go('/project-detail/ifsai');
               } else if (project['title'] == '선배 개발자 따라잡기 - gsSHOP') {
                 context.go('/project/gsshop');
+              } else if (project['title'] == '악보 넘기기' ||
+                  project['title'] == 'CCTV View' ||
+                  project['title'] == '맞춤 건강 알림') {
+                return;
               } else {
                 context.go('/schedule');
               }
@@ -164,7 +156,7 @@ class ProjectDetailContent extends StatelessWidget {
               duration: const Duration(milliseconds: 200),
               margin: EdgeInsets.only(bottom: 20.h),
               padding: EdgeInsets.all(16.w),
-              height: 160.h,
+              height: 170.h,
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.r),
@@ -237,26 +229,33 @@ class ProjectDetailContent extends StatelessWidget {
                           ),
                         )
                       else
-                        Container(
-                          margin: EdgeInsets.only(right: 8.w),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 12.w,
-                            vertical: 8.h,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(12.r),
-                            border: Border.all(color: Colors.grey, width: 1),
-                          ),
-                          child: Text(
-                            '11월 10일 업로드 예정',
-                            style: TextStyle(
-                              fontSize: 9.sp,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w600,
+                        project['title'] == '악보 넘기기' ||
+                                project['title'] == 'CCTV View' ||
+                                project['title'] == '맞춤 건강 알림'
+                            ? SizedBox()
+                            : Container(
+                              margin: EdgeInsets.only(right: 8.w),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 12.w,
+                                vertical: 8.h,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.grey.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(12.r),
+                                border: Border.all(
+                                  color: Colors.grey,
+                                  width: 1,
+                                ),
+                              ),
+                              child: Text(
+                                '11월 10일 업로드 예정',
+                                style: TextStyle(
+                                  fontSize: 9.sp,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
                       Expanded(
                         child: Text(
                           project['title']!,

@@ -123,8 +123,6 @@ class ProjectTextConstants {
 
   // 공통 텍스트
   static const String backToProjectList = '프로젝트 목록으로 돌아가기';
-  static const String dividerText =
-      '아래는 실제 출시된 앱을 분석하고 개선 아이디어를 반영해보는 실전 리디자인 프로젝트입니다.';
   static const String projectDetailPlayerText = '프로젝트 목록으로 돌아가기';
 }
 

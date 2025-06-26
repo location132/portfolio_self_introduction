@@ -43,9 +43,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i706.TechBlogCubit>(() => _i706.TechBlogCubit()..initialize());
     gh.factory<_i595.ProjectDetailCubit>(() => _i595.ProjectDetailCubit());
     gh.factory<_i426.IfsaiCubit>(() => _i426.IfsaiCubit());
+    gh.factory<_i849.RiveAboutMeCubit>(() => _i849.RiveAboutMeCubit());
     gh.factory<_i701.GsShopCubit>(() => _i701.GsShopCubit());
     gh.factory<_i68.ProjectsMainCubit>(() => _i68.ProjectsMainCubit());
-    gh.factory<_i849.RiveAboutMeCubit>(() => _i849.RiveAboutMeCubit());
     gh.singleton<_i112.IntroService>(() => _i112.IntroService());
     return this;
   }

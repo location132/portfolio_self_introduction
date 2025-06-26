@@ -83,6 +83,10 @@ class _ProjectCardState extends State<ProjectCard> {
     String route;
     if (title == '잎사이') {
       route = '/project/ifsai';
+    } else if (title == '악보 넘기기' ||
+        title == 'CCTV View' ||
+        title == '맞춤 건강 알림') {
+      return;
     } else {
       route = '/schedule';
     }

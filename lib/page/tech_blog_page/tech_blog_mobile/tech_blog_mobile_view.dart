@@ -85,21 +85,21 @@ class _TechBlogMobileViewState extends State<TechBlogMobileView> {
                     ],
                   ),
                   MenuScreen(isMenuClicked: state.isMenuClicked),
-                  Positioned.fill(
-                    child:
-                        state.isScreenFilter
-                            ? Container(
-                              color: Colors.black.withValues(alpha: 0.8),
-                            )
-                            : const SizedBox.shrink(),
-                  ),
-                  MobileTechPlayer(
-                    isFocused: (isFocused) {
-                      context.read<TechBlogCubit>().toggleSearchExpansion(
-                        isFocused,
-                      );
-                    },
-                  ),
+                  // Positioned.fill(
+                  //   child:
+                  //       state.isScreenFilter
+                  //           ? Container(
+                  //             color: Colors.black.withValues(alpha: 0.8),
+                  //           )
+                  //           : const SizedBox.shrink(),
+                  // ),
+                  // MobileTechPlayer(
+                  //   isFocused: (isFocused) {
+                  //     context.read<TechBlogCubit>().toggleSearchExpansion(
+                  //       isFocused,
+                  //     );
+                  //   },
+                  // ),
                 ],
               ),
             );
