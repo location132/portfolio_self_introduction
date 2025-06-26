@@ -119,6 +119,31 @@ class AppRouter {
             ),
       ),
       GoRoute(
+        path: '/project/Rive_about_me',
+        name: 'Rive_about_me_detail',
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              child: ProjectDetailPage(projectName: 'Rive_about_me'),
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                final tween = Tween<Offset>(
+                  begin: const Offset(0, 1),
+                  end: Offset.zero,
+                ).chain(CurveTween(curve: Curves.easeInOut));
+                return SlideTransition(
+                  position: animation.drive(tween),
+                  child: FadeTransition(opacity: animation, child: child),
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 800),
+            ),
+      ),
+      GoRoute(
         path: '/schedule',
         name: 'schedule',
         pageBuilder:
