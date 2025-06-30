@@ -9,7 +9,6 @@ import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_state.da
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_mobile/widget/mobile_tech_blog_header.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_mobile/widget/category/mobile_category_nav.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_mobile/widget/mobile_tech_post_list.dart';
-import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_mobile/widget/mobile_tech_player.dart';
 import 'package:self_introduction_flutter/service/main_service.dart';
 
 class TechBlogMobileView extends StatefulWidget {

@@ -103,19 +103,19 @@ class MobileAllPostsList extends StatelessWidget {
           ),
           SizedBox(height: 40.h),
           MobileTechPostTitle(
+            isUpload: true,
             number: 12,
             title: '네이버 로그인',
             tags: '#Naver  #Login  #OAuth  #Social Login',
-            onTap: () => context.go('/schedule'),
-            uploadDate: '6월 30일',
+            onTap: () => context.push('/tech-blog/post/naver-login'),
           ),
           SizedBox(height: 40.h),
           MobileTechPostTitle(
+            isUpload: true,
             number: 13,
             title: '카카오 로그인',
             tags: '#Kakao  #Login  #OAuth  #Social Login',
-            onTap: () => context.go('/schedule'),
-            uploadDate: '6월 30일',
+            onTap: () => context.push('/tech-blog/post/kakao-login'),
           ),
           SizedBox(height: 40.h),
           MobileTechPostTitle(

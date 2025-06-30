@@ -5,6 +5,8 @@ import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_L
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/isar.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/local_storage.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/memory_cache.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/naver_login.dart';
+import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/kakao_login.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/mvvm.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/repository_pattern.dart';
 import 'package:self_introduction_flutter/page/tech_blog_post_detail_page/tech_List/bloc_cubit.dart';
@@ -175,9 +177,29 @@ class TechDetailPostSlug extends StatelessWidget {
           },
         );
       case 'naver-login':
-        return _buildPlaceholderPost('Naver Login');
+        return BlocBuilder<TechBlogPostDetailCubit, TechBlogPostDetailState>(
+          builder: (context, state) {
+            return NaverLoginPage(
+              isMobile: isMobile,
+              isFocused: (isFocused) {
+                this.isFocused(isFocused);
+              },
+              scrollController: state.scrollController ?? ScrollController(),
+            );
+          },
+        );
       case 'kakao-login':
-        return _buildPlaceholderPost('Kakao Login');
+        return BlocBuilder<TechBlogPostDetailCubit, TechBlogPostDetailState>(
+          builder: (context, state) {
+            return KakaoLoginPage(
+              isMobile: isMobile,
+              isFocused: (isFocused) {
+                this.isFocused(isFocused);
+              },
+              scrollController: state.scrollController ?? ScrollController(),
+            );
+          },
+        );
       case 'navigation':
         return _buildPlaceholderPost('Navigation');
       case 'underline':

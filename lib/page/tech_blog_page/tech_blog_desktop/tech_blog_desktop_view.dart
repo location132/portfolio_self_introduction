@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:self_introduction_flutter/components/widget/top_nav_bar.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_cubit.dart';
-import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_desktop/widget/tech_player.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_desktop/widget/category/desktop_category_nav.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_desktop/widget/tech_blog_header.dart';
 import 'package:self_introduction_flutter/page/tech_blog_page/tech_blog_desktop/widget/tech_post_list.dart';

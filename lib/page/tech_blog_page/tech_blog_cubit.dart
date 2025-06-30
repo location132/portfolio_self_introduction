@@ -150,6 +150,16 @@ class TechBlogCubit extends Cubit<TechBlogState> {
         imagePath: 'assets/Images/preview_tech/memory_cache_pre.png',
         keyValue: 'memory_cache_preview',
       ),
+      const TechPreviewModel(
+        title: '네이버 로그인',
+        imagePath: 'assets/Images/preview_tech/naver_login.png',
+        keyValue: 'naver_login_preview',
+      ),
+      const TechPreviewModel(
+        title: '카카오 로그인',
+        imagePath: 'assets/Images/preview_tech/kakao_login.png',
+        keyValue: 'kakao_login_preview',
+      ),
     ];
 
     emit(state.copyWith(techPreviewList: previews));

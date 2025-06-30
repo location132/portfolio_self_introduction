@@ -12,6 +12,8 @@ class NetworkingPostList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TechBlogCubit, TechBlogState>(
       builder: (context, state) {
+        final cubit = context.read<TechBlogCubit>();
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -32,19 +34,23 @@ class NetworkingPostList extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             TechPostTitle(
+              isUpload: true,
               number: 3,
               title: '네이버 로그인',
               tags: '#Naver  #Login  #OAuth  #Social Login',
-              onTap: () => context.go('/schedule'),
-              uploadDate: '6월 30일',
+              onTap: () => context.go('/tech-blog/post/naver-login'),
+              onHover: (title) => cubit.onPostHover(title),
+              onHoverExit: () => cubit.onPostHoverExit(),
             ),
             const SizedBox(height: 40),
             TechPostTitle(
+              isUpload: true,
               number: 4,
               title: '카카오 로그인',
               tags: '#Kakao  #Login  #OAuth  #Social Login',
-              onTap: () => context.go('/schedule'),
-              uploadDate: '6월 30일',
+              onTap: () => context.go('/tech-blog/post/kakao-login'),
+              onHover: (title) => cubit.onPostHover(title),
+              onHoverExit: () => cubit.onPostHoverExit(),
             ),
             const SizedBox(height: 40),
             TechPostTitle(
