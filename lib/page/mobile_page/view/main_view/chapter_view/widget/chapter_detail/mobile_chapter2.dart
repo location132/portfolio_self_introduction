@@ -59,7 +59,7 @@ class MobileChapter2 extends StatelessWidget {
                         ),
                         clipBehavior: Clip.hardEdge,
                         child: Image.asset(
-                          'assets/images/story_3.png',
+                          'assets/Images/story_3.png',
                           width: double.infinity,
                           height: 200.h,
                           fit: BoxFit.cover,
@@ -132,7 +132,7 @@ class MobileChapter2 extends StatelessWidget {
                         ),
                         clipBehavior: Clip.hardEdge,
                         child: Image.asset(
-                          'assets/images/story_1.png',
+                          'assets/Images/story_1.png',
                           width: double.infinity,
                           height: 200.h,
                           fit: BoxFit.cover,
@@ -204,7 +204,7 @@ class MobileChapter2 extends StatelessWidget {
                         ),
                         clipBehavior: Clip.hardEdge,
                         child: Image.asset(
-                          'assets/images/story_2.png',
+                          'assets/Images/story_2.png',
                           width: double.infinity,
                           height: 200.h,
                           fit: BoxFit.cover,

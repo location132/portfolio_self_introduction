@@ -551,7 +551,7 @@ class DesktopCubit extends Cubit<DesktopState> {
       chapter2Sections = [
         {
           'title': '입학 후, 처음 개발 강의를 수강했던 날',
-          'imagePath': 'assets/images/story_3.png',
+          'imagePath': 'assets/Images/story_3.png',
           'contentTitle': '기본 개념조차 잡히지 않았던 우리.',
           'description':
               '기본 개념조차 잡히지 않았던 저와 동기들, Unix 수업 시간에 처음 들은 cd와 ls.\n\n'
@@ -560,7 +560,7 @@ class DesktopCubit extends Cubit<DesktopState> {
         },
         {
           'title': '우리손으로 뭔가를 해보겠다는 노력',
-          'imagePath': 'assets/images/story_1.png',
+          'imagePath': 'assets/Images/story_1.png',
           'contentTitle': '하나의 프로젝트라는 꿈으로 이어졌습니다.',
           'description':
               '처음엔 학생 몇 명이 모여 만든 엉망진창의 결과물. 완성도는 부족했지만,\n\n'
@@ -568,7 +568,7 @@ class DesktopCubit extends Cubit<DesktopState> {
         },
         {
           'title': 'Klang 프로젝트와 잎사이 프로젝트',
-          'imagePath': 'assets/images/story_2.png',
+          'imagePath': 'assets/Images/story_2.png',
           'contentTitle': 'Flutter 개발자로서의 가장 커다란 대학 경험.',
           'description':
               '9명의 개발자, 3명의 디자이너, 1명의 보안 전문가, 그리고 3명의 경영학 전공 친구들과 함께\n\n'

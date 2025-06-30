@@ -5,6 +5,7 @@ import 'package:self_introduction_flutter/core_service/di/injector.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_desktop/ifsai_detail_view.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/ifsai/ifsai_mobile/ifsai_mobile_detail_view.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/gs_shop/gsshop_desktop/gsshop_detail_view.dart';
+import 'package:self_introduction_flutter/page/project_detail_page/gs_shop/gsshop_mobile/gsshop_mobile_detail_view.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/project_detail_cubit.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/project_detail_state.dart';
 import 'package:self_introduction_flutter/page/project_detail_page/rive_aboutMe/aboutMe_desktop/about_me_rive_page.dart';
@@ -77,7 +78,7 @@ class _ProjectDetailView extends StatelessWidget {
                             ? WidgetAnimation(
                               beginDy: 0.02,
                               isStart: state.isLoaded,
-                              child: const AboutMeRivePage(),
+                              child: const GsShopMobileDetailView(),
                             )
                             : WidgetAnimation(
                               beginDy: 0.02,
