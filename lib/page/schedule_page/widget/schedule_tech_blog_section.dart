@@ -47,24 +47,12 @@ class ScheduleTechBlogSection extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildTechBlogScheduleItem(
-                    '6월 30일 22:00',
-                    '9번 ~ 13번 포스트 (업로드 중입니다.)',
-                    [
-                      '9. Isar 로컬 NoSQL DB (업로드 완료)',
-                      '10. SharedPreferences & Flutter Secure Storage 로컬 캐싱',
-                      '11. MemoryCache & Dio Cache Interceptor - 메모리 및 네트워크 캐싱',
-                      '12. 네이버 로그인',
-                      '13. 카카오 로그인',
-                    ],
-                    isGreen: true,
-                  ),
                   _buildTechBlogScheduleItem('7월 1일', '14번 ~ 17번 포스트', [
                     '14. 화면 전환 (네비게이터)',
                     '15. Flutter 밑줄 선 (한글에서 안깨지는 방법)',
                     '16. 배경화면 블러처리, 패딩 제거',
                     '17. 네트워크 이미지 사용방법 (심화 x, 기초)',
-                  ]),
+                  ], isGreen: true),
                   _buildTechBlogScheduleItem('7월 5일', '18번 ~ 24번 포스트', [
                     '18. 카카오 맵 사용방법',
                     '19. 자동 스크롤 (글로벌키, 고정 스크롤)',
@@ -143,24 +131,12 @@ class ScheduleTechBlogSection extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildTechBlogScheduleItemMobile(
-                    '6월 30일 22:00',
-                    '9번 ~ 13번 포스트(업로드 중입니다.)',
-                    [
-                      '9. Isar 로컬 NoSQL DB(업로드 완료)',
-                      '10. SharedPreferences & Flutter Secure Storage 로컬 캐싱',
-                      '11. MemoryCache & Dio Cache Interceptor - 메모리 및 네트워크 캐싱',
-                      '12. 네이버 로그인',
-                      '13. 카카오 로그인',
-                    ],
-                    isGreen: true,
-                  ),
                   _buildTechBlogScheduleItemMobile('7월 1일', '14번 ~ 17번 포스트', [
                     '14. 화면 전환 (네비게이터)',
                     '15. Flutter 밑줄 선 (한글에서 안깨지는 방법)',
                     '16. 배경화면 블러처리, 패딩 제거',
                     '17. 네트워크 이미지 사용방법 (심화 x, 기초)',
-                  ]),
+                  ], isGreen: true),
                   _buildTechBlogScheduleItemMobile('7월 5일', '18번 ~ 24번 포스트', [
                     '18. 카카오 맵 사용방법',
                     '19. 자동 스크롤 (글로벌키, 고정 스크롤)',
